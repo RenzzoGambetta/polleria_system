@@ -1,0 +1,57 @@
+@media (min-width: 1000px) {
+    #container {
+        width: 902px;
+        justify-content: space-between;
+    }
+
+    #container .banner {
+        display: flex;
+    }
+
+    #container .box-login {
+        width: 385px;
+        border-radius: 10px 10px 10px 0px;
+    }
+
+    body {
+        width: 100%;
+        height: 100vh;
+        background-image: url('../image/Cocinero_Tableta.jpeg');
+        background-repeat: no-repeat;
+        background-size: 110%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+
+}
+
+@media (min-width: 1300px) {
+    #container {
+        width: 902px;
+        justify-content: space-between;
+    }
+
+    #container .banner {
+        display: flex;
+    }
+
+    #container .box-login {
+        width: 385px;
+        border-radius: 10px 10px 10px 0px;
+    }
+
+    body {
+        width: 100%;
+        height: 100vh;
+        background-image: url('../image/Cocinero_Ordenador.jpeg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+
+}
