@@ -17,14 +17,30 @@
 
     <!-- menu vertica -->
     <div class="sidebar">
-        <a href="#" class="logo">
+        <a class="logo">
             <img src="{{ asset('global_resources/image/logo_polleria.ico') }}" alt="Icono" id="logo_icon">
             <div class="logo-name"><span>D'Brazza</span></div>
         </a>
 
         <ul class="side-menu">
 
-            <li class="active"><a href="#op"><i class='bx bxs-user-detail'></i>Usuarios</a></li>
+            <li class="{{ ($Navegacion['seccion'] ?? null) == 1 ? 'active' : '' }}">
+                <a href="{{ route('home') }}" class="{{ ($Navegacion['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-home'></i>Home</a>
+            </li>
+
+            <li class="{{ ($Navegacion['seccion'] ?? null) == 2 ? 'sub active' : 'sub' }} ">
+
+                <a href="{{ route('user') }}" class="{{ ($Navegacion['seccion'] ?? null) == 2 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navegacion['color'] ?? null) == 20 ? 'nav_select' : '' }}"><i class='bx bxs-user-detail'></i>Usuarios</a>
+                <ul class="sub">
+                    <li class="{{ ($Navegacion['sub_seccion'] ?? null) == 2.1 ? 'active' : '' }}">
+                        <a href="{{ route('employeer') }}" id="{{ ($Navegacion['color'] ?? null) == 21 ? 'nav_select' : '' }}"><i class='bx bxs-user-detail'></i>Enpleado</a>
+                    </li>
+                    <li class="{{ ($Navegacion['sub_seccion'] ?? null) == 2.2 ? 'active' : '' }}">
+                        <a href="{{ route('position') }}" id="{{ ($Navegacion['color'] ?? null) == 22 ? 'nav_select' : '' }}"><i class='bx bxs-user-detail'></i>Cargos</a>
+                    </li>
+                </ul>
+
+            </li>
 
         </ul>
 
