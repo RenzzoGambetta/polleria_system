@@ -14,6 +14,7 @@
     --success: #388E3C;
     --light-success: #BBF7D0;
     --logo_color:#bb0000;
+    --filtered: rgb(189, 189, 189);
 }
 
 #icon_cont_serve:before{
@@ -58,6 +59,7 @@ body.dark{
     --grey: #25252c;
     --dark: #fbfbfb;
     --logo_color: #ff7800;
+    --filtered: rgb(112, 112, 112);
 }
 
 body{

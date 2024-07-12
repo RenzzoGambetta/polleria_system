@@ -1,0 +1,53 @@
+:root {
+    --dark: #363949;
+}
+body.dark{
+    --dark: #fbfbfb;
+}
+
+#filtered {
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+    display: block;
+}
+.form-input {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    height: 36px;
+    margin-bottom: 30px;
+}
+
+form .form-input select {
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--filtered);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+}
+form .form-input button {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+    margin-top: 0px;
+}
+.sub-link {
+    color: var(--dark);
+}
+.active {
+    color: var(--primary);
+}
