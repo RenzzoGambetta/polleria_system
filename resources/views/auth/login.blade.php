@@ -11,9 +11,10 @@
     <link rel="icon" href="{{ asset('global_resources/image/logo_polleria.ico') }}" type="image/x-icon">
     <!--CSS-->
     <link rel="stylesheet" href="{{ asset('global_resources/css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset($rutaLoginMobile) }}">
     <link rel="stylesheet" href="{{ asset('resources/auth/css/login_desktop.css') }}">
-    <link rel="stylesheet" href="{{ asset('resources/auth/css/login_mobile.css') }}">
-    
+
+
     <!--JS & jQuery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
