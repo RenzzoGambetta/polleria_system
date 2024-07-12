@@ -11,7 +11,7 @@
         @csrf
         <input type="text" name="username">
         <input type="password" name="password">
-        <input type="password" name="password-verify">
+        <input type="password" name="password_confirmation">
         <input type="submit" value="Registrar">
     </form>
 </body>
