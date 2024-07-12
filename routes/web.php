@@ -7,7 +7,7 @@ use App\Http\Controllers\user_managment\User;
 use App\Http\Controllers\user_managment\Employee_Record;
 
 
-Route::get('/', [LoginControllerController::class,'show'])->name('login');
+Route::get('/', [LoginController::class,'show'])->name('login');
 
 Route::get('/login', [LoginController::class,'show'])->name('login');
 Route::post('/login', [LoginController::class,'login']);
