@@ -40,7 +40,7 @@
                 Bienvenidos a D'Brazza.
             </h1>
             <img src="{{ asset('global_resources/image/logo_polleria.ico') }}" alt="Logo" id="logo">
-            <form id="formulario" action="{{ route('session') }}" method="POST">
+            <form id="form" action='/login' method="POST">
                 <div class="box">
 
                     @csrf

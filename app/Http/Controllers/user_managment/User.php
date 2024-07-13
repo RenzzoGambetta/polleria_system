@@ -10,18 +10,17 @@ class User extends Controller
     public function user_list_view()
     {
         $Data = session('Data');
-        return view('user_managment.user', compact('Data'));
-    }
-    public function employeer_list_view()
-    {
-        $Data = session('Data');
         $Navigation = [
             'seccion' => 2,
-            'sub_seccion' => 2.1,
-            'color' => 21
+            'sub_seccion' => 2.0,
+            'color' => 20
+
         ];
-        return view('user_managment.employee', compact('Data','Navigation'));
+
+        $Data = session('Data');
+        return view('user_managment.user', compact('Data','Navigation'));
     }
+  
     public function position_list_view()
     {
         $Data = session('Data');
