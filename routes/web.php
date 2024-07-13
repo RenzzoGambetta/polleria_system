@@ -18,6 +18,7 @@ Route::get('/user', [UserController::class,'show_user_list'])->name('user');
 Route::get('/user', [UserController::class,'show_user_list'])->name('user');
 Route::get('/employeer', [EmployeeController::class,'show_employeer_list'])->name('employeer');
 Route::get('/employeer_register', [EmployeeController::class,'show_employeer_register'])->name('employeer_register');
+Route::get('/fetch_person_data', [EmployeeController::class,'fetch_person_data'])->name('fetch_person_data');
 Route::get('/position', [UserController::class,'show_position_list'])->name('position');
 
 Route::get('/home', [UserController::class,'show_home_list'])->name('home');

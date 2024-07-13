@@ -45,8 +45,8 @@
         <div class="header">
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
-            <a href="{{ route('employeer_register') }}"><i class='bx bx-plus-medical bx-burst'
-                    style ="color:red; font-size: 25px" id="Mas"></i></a>
+            <a href="{{ route('employeer_register') }}"><i class='bx bx-plus-medical bx-flashing '
+                    style ="color:red; font-size: 18px; padding: 10px;border-radius: 30px; background-color:  #fcb755" id="Mas"> Nuevo</i></a>
         </div>
         <table>
             <thead>
