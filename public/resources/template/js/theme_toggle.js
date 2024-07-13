@@ -7,6 +7,9 @@ sideLinks.forEach(item => {
             i.parentElement.classList.remove('active');
         })
         li.classList.add('active');
+        if (li.parentElement.classList.contains('sub')) {
+            li.parentElement.parentElement.classList.add('active');
+        }
     })
 });
 
