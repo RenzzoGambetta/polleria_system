@@ -225,13 +225,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-/*function saltarCampo(event, siguienteCampo) {
+/*function skip_field(event, siguienteCampo) {
     if (event.key === 'Enter') {
         event.preventDefault();  // Evitar que el formulario se envíe al presionar "Enter"
         document.getElementById(siguienteCampo).focus();  // Activar el foco en el siguiente campo
     }
 }*/
-    function saltarCampo(event, siguienteCampo) {
+    function skip_field(event, siguienteCampo) {
         if (event.key === 'Enter') {
             event.preventDefault();
             document.getElementById(siguienteCampo).focus();
@@ -239,24 +239,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.getElementById('Nombre').addEventListener('keydown', function(event) {
-        saltarCampo(event, 'fechaNacimiento');
+        skip_field(event, 'fechaNacimiento');
     });
 
     document.getElementById('fechaNacimiento').addEventListener('keydown', function(event) {
-        saltarCampo(event, 'Paterno');
+        skip_field(event, 'Paterno');
     });
 
     document.getElementById('Paterno').addEventListener('keydown', function(event) {
-        saltarCampo(event, 'Materno');
+        skip_field(event, 'Materno');
     });
 
 
     document.getElementById('Correo').addEventListener('keydown', function(event) {
-        saltarCampo(event, 'Contraseña');
+        skip_field(event, 'Contraseña');
     });
 
     document.getElementById('Contraseña').addEventListener('keydown', function(event) {
-        saltarCampo(event, 'C_Contraseña');
+        skip_field(event, 'C_Contraseña');
     });
 
     document.getElementById('Materno').addEventListener('keydown', function(event) {
