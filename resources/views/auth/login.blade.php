@@ -10,9 +10,9 @@
     <!--Icono-->
     <link rel="icon" href="{{ asset('global_resources/image/logo_polleria.ico') }}" type="image/x-icon">
     <!--CSS-->
-    <link rel="stylesheet" href="{{ asset('global_resources/css/fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset($rutaLoginMobile) }}">
-    <link rel="stylesheet" href="{{ asset('resources/auth/css/login_desktop.css') }}">
+    <link rel="stylesheet" href="{{ asset($Fonts) }}">
+    <link rel="stylesheet" href="{{ asset($LoginMobile) }}">
+    <link rel="stylesheet" href="{{ asset($LoginDesktop) }}">
 
 
     <!--JS & jQuery-->

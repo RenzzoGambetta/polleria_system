@@ -7,7 +7,7 @@
     <!--Icono-->
     <link rel="icon" href="{{ asset('global_resources/image/logo_polleria.ico') }}" type="image/x-icon">
     <!--CSS-->
-    <link rel="stylesheet" href="{{ asset('resources/template/css/template_desktop.css') }}">
+    <link rel="stylesheet" href="{{ asset($TemplateDesktop) }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <title>D'Brazza</title>

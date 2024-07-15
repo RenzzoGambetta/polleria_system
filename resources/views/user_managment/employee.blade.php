@@ -1,7 +1,7 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include('template.header')
 <!---------------------------------------------------------------------->
-<link rel="stylesheet" href="{{ asset('resources/user_managment/css/employee_record_desktop.css') }}">
+<link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 
 <div class="header">
     <div class="left">
