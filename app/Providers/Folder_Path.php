@@ -7,7 +7,7 @@ class Folder_Path
 
     // Carpetas Padres
     public const RESOURCE = "resources";
-    public const GLOBAL_RESOURCE = "global_resource";
+    public const GLOBAL_RESOURCE = "global_resources";
 
     // Carpetas Hijos
     public const AUTH = "auth";
@@ -19,16 +19,4 @@ class Folder_Path
     public const JS = "js";
     public const IMAGE = "image";
 
-}
-class Folder_Path_Function
-{
-    //Funciones de Concatenacion
-    public function Resource($subfolders, $integrated_subfolders, $assets)
-    {
-        return Folder_Path::RESOURCE + "/" + $subfolders + "/" + $integrated_subfolders + "/" + $assets;
-    }
-    public function Global_Resource($integrated_subfolders, $assets)
-    {
-        return Folder_Path::RESOURCE + "/" + $integrated_subfolders + "/" + $assets;
-    }
 }
