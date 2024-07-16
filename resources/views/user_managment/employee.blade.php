@@ -1,5 +1,5 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
-@include('template.header')
+@include('{{ asset($HeaderPanel) }}')
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 
@@ -70,5 +70,5 @@
     </div>
 </div>
 <!--Pie de pagina como plantilla de todo el panel de control-->
-@include('template.footer')
+@include('{{ asset($FooterPanel) }}')
 <!------------------------------------------------------------>

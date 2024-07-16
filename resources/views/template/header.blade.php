@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{$Language }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Icono-->
-    <link rel="icon" href="{{ asset('global_resources/image/logo_polleria.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset($CompanyLogoIcon) }}" type="image/x-icon">
     <!--CSS-->
     <link rel="stylesheet" href="{{ asset($TemplateDesktop) }}">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href="{{ $Boxicons }}" >
 
     <title>D'Brazza</title>
 </head>
@@ -18,7 +18,7 @@
     <!-- menu vertica -->
     <div class="sidebar">
         <a class="logo">
-            <img src="{{ asset('global_resources/image/logo_polleria.ico') }}" alt="Icono" id="logo_icon">
+            <img src="{{ asset($CompanyLogoIcon) }}" alt="Icono" id="logo_icon">
             <div class="logo-name"><span>D'Brazza</span></div>
         </a>
 
@@ -85,7 +85,7 @@
             <!-- menu -->
 
             <a href="#" class="profile">
-                <img src="{{ asset('resources/template/image/user_icon.png') }}">
+                <img src="{{ asset($TempUserIcon) }}">
             </a>
         </nav>
 

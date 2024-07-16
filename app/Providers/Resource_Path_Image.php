@@ -15,14 +15,25 @@ class Resource_Path_Image extends ServiceProvider
         View::composer('*', function ($view) use ($fpFunc) {
             //Global Resources
 
-            //$Fonts = $fpFunc->Global_Resource(Folder_Path::CSS, 'fonts.css');
-            //$view->with('Fonts', $Fonts);
+            $CompanyLogoIcon = $fpFunc->Global_Resource(Folder_Path::IMAGE, 'company_logo_icon.ico');
+            $view->with('CompanyLogoIcon', $CompanyLogoIcon);
 
             //Resources
 
-            // = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::CSS, 'login_mobile.css');
-            //$view->with('LoginMobile', $LoginMobile);
+            $FireBgImage = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::IMAGE, 'fire_bg_image.jpg');
+            $view->with('FireBgImage', $FireBgImage);
 
+            $KitchenBgTablet = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::IMAGE, 'kitchen_bg_tablet.jpg');
+            $view->with('KitchenBgTablet', $KitchenBgTablet);
+
+            $ChefBgDesktop = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::IMAGE, 'chef_bg_desktop.jpg');
+            $view->with('ChefBgDesktop', $ChefBgDesktop);
+
+            $SecurityMeaningImage = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::IMAGE, 'security_meaning_image.png');
+            $view->with('SecurityMeaningImage', $SecurityMeaningImage);
+
+            $TempUserIcon = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::IMAGE, 'temp_user_icon.png');
+            $view->with('TempUserIcon', $TempUserIcon);
         });
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ $Language }}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <title>D'Brazza</title>
 
     <!--Icono-->
-    <link rel="icon" href="{{ asset('global_resources/image/logo_polleria.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset($CompanyLogoIcon) }}" type="image/x-icon">
     <!--CSS-->
     <link rel="stylesheet" href="{{ asset($Fonts) }}">
     <link rel="stylesheet" href="{{ asset($LoginMobile) }}">
@@ -16,15 +16,14 @@
 
 
     <!--JS & jQuery-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ $JquerySrc }}" integrity="{{$JqueryIntegrity}}" crossorigin="{{$JqueryCrossorigin}}"></script>
 
 </head>
 
 <body>
     <div id="container">
         <div class="banner">
-            <img src="{{ asset('resources/auth/image/Seguridad.png') }}" alt="imagem-login"
+            <img src="{{ asset($SecurityMeaningImage) }}" alt="imagem-login"
                 id="imagen_login">
             <p style=" font-weight: 400;" id="data_login">
                 Solo se permite el acceso a trabajadores o familiares
@@ -39,7 +38,7 @@
                 Hola!<br>
                 Bienvenidos a D'Brazza.
             </h1>
-            <img src="{{ asset('global_resources/image/logo_polleria.ico') }}" alt="Logo" id="logo">
+            <img src="{{ asset($CompanyLogoIcon) }}" alt="Logo" id="logo">
             <form id="form" action='/login' method="POST">
                 <div class="box">
 

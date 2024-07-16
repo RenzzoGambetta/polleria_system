@@ -1,9 +1,10 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
-@include('template.header')
+@include('{{ asset($HeaderPanel) }}')
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($Form) }}">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{{ $JquerySrc }}" integrity="{{ $JqueryIntegrity }}" crossorigin="{{ $JqueryCrossorigin }}"></script>
+
 
 <div class="header">
     <div class="left">
@@ -335,7 +336,7 @@
     </section>
 </section>
 
-<script src="{{ asset('resources/user_managment/js/effects_and_actions.js') }}"></script>
+<script src="{{ asset($EffectsAndActions) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
-@include('template.footer')
+@include('{{ asset($FooterPanel) }}')
 <!------------------------------------------------------------>
