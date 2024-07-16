@@ -1,5 +1,5 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
-@include('{{ asset($HeaderPanel) }}')
+@include( $HeaderPanel )
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($Form) }}">
@@ -338,5 +338,5 @@
 
 <script src="{{ asset($EffectsAndActions) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
-@include('{{ asset($FooterPanel) }}')
+@include($FooterPanel)
 <!------------------------------------------------------------>
