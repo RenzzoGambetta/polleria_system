@@ -5,24 +5,23 @@ namespace App\Http\Controllers\user_managment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class User extends Controller
+class UserController extends Controller
 {
-    public function user_list_view()
-    {
-        $Data = session('Data');
-        return view('user_managment.user', compact('Data'));
-    }
-    public function employeer_list_view()
+    public function show_user_list()
     {
         $Data = session('Data');
         $Navigation = [
             'seccion' => 2,
-            'sub_seccion' => 2.1,
-            'color' => 21
+            'sub_seccion' => 2.0,
+            'color' => 20
+
         ];
-        return view('user_managment.employee', compact('Data','Navigation'));
+
+        $Data = session('Data');
+        return view('user_managment.user', compact('Data','Navigation'));
     }
-    public function position_list_view()
+
+    public function show_position_list()
     {
         $Data = session('Data');
         $Navigation = [
@@ -32,7 +31,7 @@ class User extends Controller
         ];
         return view('user_managment.workload', compact('Data','Navigation'));
     }
-    public function home_list_view()
+    public function show_home_list()
     {
         $Data = session('Data');
         $Navigation = [
