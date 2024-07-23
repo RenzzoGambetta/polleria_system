@@ -65,7 +65,7 @@ Composer install
 ```
 >_Inicia la migracion a la base de datos_
 ```php
-php artisan serve
+php artisan migrate
 ```
 >_Abre el servidor local para la prueba_
 ```php

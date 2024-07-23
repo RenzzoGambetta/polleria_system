@@ -44,7 +44,7 @@ class EmployeeService
         DB::beginTransaction();
         try {
             $person_id = $employee->person_id;
-            
+
             $employee->delete();
 
             $person = Person::find($person_id);

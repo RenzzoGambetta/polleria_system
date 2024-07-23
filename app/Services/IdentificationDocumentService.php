@@ -38,8 +38,9 @@ class IdentificationDocumentService
 
             if (property_exists($attachments, 'nombres') && $attachments->nombres !== null) {
                 $data = [
+                    //Camviar al ingles ..
                     'nombre' => $attachments->nombres,
-                    'apellido_paterno' => $attachments->apellidoPaterno,
+                    'paternal_surname' => $attachments->apellidoPaterno,
                     'apellido_materno' => $attachments->apellidoMaterno,
                     'documento' => $attachments->numeroDocumento,
                 ];

@@ -13,7 +13,7 @@
     <title>D'Brazza</title>
 </head>
 
-<body>
+<body class="{{ session('theme', 'light') }}">
 
     <!-- menu vertica -->
     <div class="sidebar">
@@ -30,13 +30,13 @@
 
             <li class="{{ ($Navigation['seccion'] ?? null) == 2 ? 'sub active' : 'sub' }} ">
 
-                <a href="{{ route('user') }}" class="{{ ($Navigation['seccion'] ?? null) == 2 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 20 ? 'nav_select' : '' }}"><i class='bx bxs-user-detail'></i>Usuarios</a>
+                <a href="{{ route('user') }}" class="{{ ($Navigation['seccion'] ?? null) == 2 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 20 ? 'nav_select' : '' }}"><i class='bx bxs-user-voice'></i>Usuarios</a>
                 <ul class="sub">
                     <li class="{{ ($Navigation['sub_seccion'] ?? null) == 2.1 ? 'active' : '' }}">
                         <a href="{{ route('employeer') }}" id="{{ ($Navigation['color'] ?? null) == 21 ? 'nav_select' : '' }}"><i class='bx bxs-user-detail'></i>Empleado</a>
                     </li>
                     <li class="{{ ($Navigation['sub_seccion'] ?? null) == 2.2 ? 'active' : '' }}">
-                        <a href="{{ route('position') }}" id="{{ ($Navigation['color'] ?? null) == 22 ? 'nav_select' : '' }}"><i class='bx bxs-user-detail'></i>Cargos</a>
+                        <a href="{{ route('position') }}" id="{{ ($Navigation['color'] ?? null) == 22 ? 'nav_select' : '' }}"><i class='bx bxs-component'></i>Roles</a>
                     </li>
                 </ul>
 
@@ -74,6 +74,7 @@
             <!-- modo claro and oscuro -->
 
             <label for="theme-toggle" class="theme-toggle"></label>
+            <script src="{{ asset($SwitchTheme) }}"></script>
 
             <!-- notoficaciones -->
 

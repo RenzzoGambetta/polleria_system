@@ -144,10 +144,11 @@ body{
     box-shadow: 20px 20px 0 var(--grey);
     z-index: -1;
 }
+/*
 #accion{
 
 }
-
+*/
 #nav_select{
     color: rgb(255, 153, 0);
 
@@ -272,9 +273,12 @@ a.submenu-toggle.nav_select{
     width: 100%;
     margin-right: auto;
 }
-
+a.profile {
+    display: none;
+}
 .content nav form .form-input{
-    display: flex;
+    /*display: flex; decomentar para poner el buscador*/
+    display: none;
     align-items: center;
     height: 36px;
 }

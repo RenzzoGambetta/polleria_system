@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\user_managment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Exception;
 use App\Utils\LogHelper;
 use App\Services\IdentificationDocumentService;
+use App\Services\user_managment\EmployeeService;
 
 class EmployeeController extends Controller
 {
     protected $identificationDocumentService;
+    protected $employeeService;
 
     protected $Navigation = [
         'seccion' => 2,
@@ -18,16 +21,18 @@ class EmployeeController extends Controller
         'color' => 21
     ];
 
-    public function __construct(IdentificationDocumentService $identificationDocumentService) 
+    public function __construct(IdentificationDocumentService $identificationDocumentService, EmployeeService $employeeService)
     {
         $this->identificationDocumentService = $identificationDocumentService;
+        $this->employeeService = $employeeService;
     }
- 
+
     public function show_employeer_list()
     {
+        $List = Employee::all();
 
         $Navigation = $this->Navigation;
-        return view('user_managment.employee', compact('Navigation'));
+        return view('user_managment.employee', compact('Navigation', "List" ));
     }
     public function show_employeer_register()
     {
@@ -41,8 +46,7 @@ class EmployeeController extends Controller
     {
 
         $personData = $request->validate([
-            'td' => 'required',
-            'dato' => 'required|size:8',
+        'dato' => 'required|size:8',
 
         ]);
 
@@ -50,14 +54,46 @@ class EmployeeController extends Controller
 
         $response = $this->identificationDocumentService->fetchDataByDni($dni);
 
-        if (is_array($response)) 
+        if (is_array($response))
         {
             return redirect()->route('employeer_register')->with('data', $response);
         }
-        else if (is_string($response)) 
+        else if (is_string($response))
         {
             return redirect()->route('employeer_register')->with('Ms', $response);
         }
     }
+    public function create_employee_record(Request $request)
+    {
+        $Datos = $request->validate([
+            'nombre' => 'required',
+            'documento_dni' => 'required',
+            'paterno' => 'required',
+            'materno' => 'required',
+            'genero' => '',
+            'fecha_n' => '',
+            'nacionalidad' => '',
+            'telefono' => '',
+            'correo' => 'required',
+            'direccion' => '',
+
+        ]);
+        $data = [
+            'dni' => $Datos['documento_dni'],
+            'name' =>  $Datos['nombre'],
+            'paternal_surname' =>  $Datos['paterno'],
+            'maternal_surname' =>  $Datos['materno'],
+            'birthdate' =>  $Datos['fecha_n'],
+            'gender' =>  $Datos['genero'],
+            'phone' =>  $Datos['telefono'],
+            'email' =>  $Datos['correo'],
+            'address' => $Datos['direccion'],
+            'nationality' => $Datos['nacionalidad'],
+        ];
+        $response = $this->employeeService->create($data);
+
+        return redirect()->route('fetch_person_data');
+    }
+
 }
 
