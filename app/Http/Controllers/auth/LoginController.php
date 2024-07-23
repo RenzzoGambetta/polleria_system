@@ -13,6 +13,7 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
+    
     public function login(LoginRequest $request){
         $credentials = $request->validated();
         if (!Auth::validate($credentials)) {
