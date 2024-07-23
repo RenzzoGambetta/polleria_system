@@ -60,17 +60,20 @@
                     <th>Usuario</th>
                 </tr>
             </thead>
-            @foreach ($List as $List_)
-                <td>{{ $List_->correo ?? 'No registrado' }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            @endforeach
+
             <tbody>
+                @foreach ($List as $List_)
+                    <tr>
 
+                        <td>{{ $List_->person->dni ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->firstname ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->lastname ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->phone ?? 'No registrado' }}</td>
+                        <td>{{ $List_->awd ?? 'No registrado' }}</td>
+                        <td>{{ $List_->awd ?? 'No registrado' }}</td>
 
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 
