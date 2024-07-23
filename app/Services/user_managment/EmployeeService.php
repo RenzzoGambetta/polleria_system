@@ -39,12 +39,12 @@ class EmployeeService
         }
     }
 
-    public function delete(Employee $employee, array $data)
+    public function delete(Employee $employee)
     {
         DB::beginTransaction();
         try {
             $person_id = $employee->person_id;
-            
+
             $employee->delete();
 
             $person = Person::find($person_id);

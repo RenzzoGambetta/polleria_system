@@ -1,5 +1,5 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
-@include( $HeaderPanel )
+@include($HeaderPanel)
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 
@@ -46,7 +46,8 @@
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
             <a href="{{ route('employeer_register') }}"><i class='bx bx-plus-medical '
-                    style ="color:red; font-size: 18px; padding: 10px;border-radius: 30px; background-color:  #fcb755" id="Mas"> Nuevo</i></a>
+                    style ="color:red; font-size: 18px; padding: 10px;border-radius: 30px; background-color:  #fcb755"
+                    id="Mas"> Nuevo</i></a>
         </div>
         <table>
             <thead>
@@ -59,7 +60,14 @@
                     <th>Usuario</th>
                 </tr>
             </thead>
-
+            @foreach ($List as $List_)
+                <td>{{ $List_->correo ?? 'No registrado' }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            @endforeach
             <tbody>
 
 
