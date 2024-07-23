@@ -39,7 +39,7 @@ class EmployeeService
         }
     }
 
-    public function delete(Employee $employee, array $data)
+    public function delete(Employee $employee)
     {
         DB::beginTransaction();
         try {
