@@ -58,5 +58,10 @@ class EmployeeController extends Controller
             return redirect()->route('employeer_register')->with('Ms', $response);
         }
     }
+    public function create_employee_record(Request $request)
+    {
+
+        return redirect()->route('fetch_person_data');
+    }
 }
 

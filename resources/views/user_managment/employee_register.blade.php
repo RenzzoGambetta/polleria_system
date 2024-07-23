@@ -54,7 +54,7 @@
 
     </section>
 
-    <form method="post" action="#ola">
+    <form method="post" action="{{ route('create_employee_record') }}">
         @csrf
         <section class="form_pos">
 
@@ -114,12 +114,12 @@
                         <div class="select">
                             <div class="generos">
                                 <label class="genero">
-                                    <input type="radio" name="genero" id="Hombre" required value="hombre" />
+                                    <input type="radio" name="genero" id="Hombre"  value="hombre" />
                                     <span> Hombre </span>
                                 </label>
 
                                 <label class="genero">
-                                    <input type="radio" id="Mujer" name="genero" required value="mujer" />
+                                    <input type="radio" id="Mujer" name="genero"  value="mujer" />
                                     <span> Mujer </span>
                                 </label>
                             </div>

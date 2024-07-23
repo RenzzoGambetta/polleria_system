@@ -273,9 +273,12 @@ a.submenu-toggle.nav_select{
     width: 100%;
     margin-right: auto;
 }
-
+a.profile {
+    display: none;
+}
 .content nav form .form-input{
-    display: flex;
+    /*display: flex; decomentar para poner el buscador*/
+    display: none;
     align-items: center;
     height: 36px;
 }
