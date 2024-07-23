@@ -36,6 +36,7 @@ class EmployeeController extends Controller
             'dato' => 'required',
 
         ]);
+        
         $customer_document_type = $person_data['td'];
         $data_document = $person_data['dato'];
         $curl = curl_init();
