@@ -20,7 +20,7 @@ class EmployeeService
                 'firstname' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
                 'birthdate' => $data['birthdate'],
-                'gender' => $data['gender'],
+                'gender' => $data['gender'] == 'male' ? 0 : 1,
                 'phone' => $data['phone'],
                 'email' => $data['email'],
             ]);
@@ -33,6 +33,24 @@ class EmployeeService
 
             DB::commit();
             return $employee;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function delete(Employee $employee, array $data)
+    {
+        DB::beginTransaction();
+        try {
+            $person_id = $employee->person_id;
+            
+            $employee->delete();
+
+            $person = Person::find($person_id);
+            $person->delete();
+            DB::commit();
+            return true;
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
