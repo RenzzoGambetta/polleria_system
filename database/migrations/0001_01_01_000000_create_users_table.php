@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('commentary');
+            $table->string('commentary')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
