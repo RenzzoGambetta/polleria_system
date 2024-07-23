@@ -18,11 +18,11 @@ class EmployeeController extends Controller
         'color' => 21
     ];
 
-    public function __construct(IdentificationDocumentService $identificationDocumentService) 
+    public function __construct(IdentificationDocumentService $identificationDocumentService)
     {
         $this->identificationDocumentService = $identificationDocumentService;
     }
- 
+
     public function show_employeer_list()
     {
 
@@ -41,8 +41,7 @@ class EmployeeController extends Controller
     {
 
         $personData = $request->validate([
-            'td' => 'required',
-            'dato' => 'required|size:8',
+        'dato' => 'required|size:8',
 
         ]);
 
@@ -50,11 +49,11 @@ class EmployeeController extends Controller
 
         $response = $this->identificationDocumentService->fetchDataByDni($dni);
 
-        if (is_array($response)) 
+        if (is_array($response))
         {
             return redirect()->route('employeer_register')->with('data', $response);
         }
-        else if (is_string($response)) 
+        else if (is_string($response))
         {
             return redirect()->route('employeer_register')->with('Ms', $response);
         }

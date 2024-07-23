@@ -144,10 +144,11 @@ body{
     box-shadow: 20px 20px 0 var(--grey);
     z-index: -1;
 }
+/*
 #accion{
 
 }
-
+*/
 #nav_select{
     color: rgb(255, 153, 0);
 

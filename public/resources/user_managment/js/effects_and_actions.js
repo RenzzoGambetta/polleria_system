@@ -46,27 +46,6 @@ function updateProgressbar() {
         ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
 
-const selected = document.querySelector('.selected');
-const options = document.querySelector('.options');
-const optionList = document.querySelectorAll('.option');
-
-selected.addEventListener('click', () => {
-    options.classList.toggle('active');
-});
-
-optionList.forEach(option => {
-    option.addEventListener('click', () => {
-        selected.innerHTML = option.querySelector('span').innerText;
-        options.classList.remove("active");
-    });
-});
-
-document.addEventListener('click', (event) => {
-    const isClickInside = selected.contains(event.target) || options.contains(event.target);
-    if (!isClickInside) {
-        options.classList.remove('active');
-    }
-});
 
 const posgenero = document.querySelector('.posgenero');
 const generos = document.querySelector('.generos');
@@ -90,78 +69,30 @@ document.addEventListener('click', (event) => {
     }
 });
 
-const poscargo = document.querySelector('.poscargo');
-const cargos = document.querySelector('.cargos');
-const cargo = document.querySelectorAll('.cargo');
-
-poscargo.addEventListener('click', () => {
-    cargos.classList.toggle('active');
-});
-
-cargo.forEach(option => {
-    option.addEventListener('click', () => {
-        poscargo.innerHTML = option.querySelector('span').innerText;
-        cargos.classList.remove("active");
-    });
-});
-
-document.addEventListener('click', (event) => {
-    const isClickInside = poscargo.contains(event.target) || cargos.contains(event.target);
-    if (!isClickInside) {
-        cargos.classList.remove('active');
-    }
-});
-
-const car1 = document.querySelector('.select-box');
-const car2 = document.querySelector('.dropdown');
-const car3 = document.querySelectorAll('.optio');
-
-
-car1.addEventListener('click', () => {
-    car2.classList.toggle('active');
-});
-
-car3.forEach(option => {
-    option.addEventListener('click', () => {
-        car1.innerHTML = option.querySelector('span').innerText;
-        car2.classList.remove("active");
-    });
-});
-
-document.addEventListener('click', (event) => {
-    const isClickInside = car1.contains(event.target) || car2.contains(event.target);
-    if (!isClickInside) {
-        car2.classList.remove('active');
-    }
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     const busqueda = document.getElementById('busqueda');
-    const radioDNI = document.getElementById('uiux');
-    const radioRUC = document.getElementById('frontend');
-    const datoInput = document.querySelector('.effect-6');
-    var msRrDiv = document.querySelector('.ms_bx');
+    const datoInput = document.getElementById('frame_dni_input'); // Mantén la referencia al nuevo input
+    const msRrDiv = document.querySelector('.ms_bx');
+
     busqueda.addEventListener('click', function () {
-        if (radioDNI.checked || radioRUC.checked) {
-            const tipoDocumento = radioDNI.checked ? 'dni' : 'ruc';
 
-            const dato = datoInput.value;
+        const dato = datoInput.value;
 
-            const url = `/fetch_person_data?td=${tipoDocumento}&dato=${dato}`;
-
-            window.location.href = url;
-        } else {
-
+        if (dato.trim() === '') {
             msRrDiv.classList.remove('hide-element', 'active');
 
             setTimeout(function () {
                 msRrDiv.classList.add('hide-element', 'active');
             }, 20000);
-            return false;
 
+            return false;
+        } else {
+            const url = `/fetch_person_data?dato=${dato}`;
+            window.location.href = url;
         }
     });
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const msDtElement = document.querySelector('.ms_dt');
@@ -185,10 +116,10 @@ function skip_field(event, siguienteCampo) {
 }
 
 document.getElementById('Nombre').addEventListener('keydown', function (event) {
-    skip_field(event, 'fechaNacimiento');
+    skip_field(event, 'frame_dni_input');
 });
 
-document.getElementById('fechaNacimiento').addEventListener('keydown', function (event) {
+document.getElementById('frame_dni_input').addEventListener('keydown', function (event) {
     skip_field(event, 'Paterno');
 });
 
@@ -196,66 +127,49 @@ document.getElementById('Paterno').addEventListener('keydown', function (event) 
     skip_field(event, 'Materno');
 });
 
+document.getElementById('Materno').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        formStepsNum++;
+        updateFormSteps();
+        updateProgressbar();
+        skip_field(event, 'fechaNacimiento');
+    }
+});
+
+document.getElementById('fechaNacimiento').addEventListener('keydown', function (event) {
+    skip_field(event, 'nacionalidad');
+});
+
+document.getElementById('nacionalidad').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        formStepsNum++;
+        updateFormSteps();
+        updateProgressbar();
+        skip_field(event, 'Telefono');
+    }
+});
+
+document.getElementById('Telefono').addEventListener('keydown', function (event) {
+    skip_field(event, 'Correo');
+});
 
 document.getElementById('Correo').addEventListener('keydown', function (event) {
-    skip_field(event, 'Contraseña');
+    skip_field(event, 'Direccion');
 });
 
-document.getElementById('Contraseña').addEventListener('keydown', function (event) {
-    skip_field(event, 'C_Contraseña');
-});
-
-document.getElementById('Materno').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        formStepsNum++;
-        updateFormSteps();
-        updateProgressbar();
-    }
-});
-document.getElementById('nacionalidad').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        formStepsNum++;
-        updateFormSteps();
-        updateProgressbar();
-    }
-});
-document.getElementById('Direccion').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        formStepsNum++;
-        updateFormSteps();
-        updateProgressbar();
-    }
-});
-document.getElementById('C_Contraseña').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        formStepsNum++;
-        updateFormSteps();
-        updateProgressbar();
-    }
-});
 
 function validarFormulario(event) {
     var nombre = document.getElementById('Nombre').value;
-    var fechaNacimiento = document.getElementById('fechaNacimiento').value;
     var paterno = document.getElementById('Paterno').value;
     var materno = document.getElementById('Materno').value;
-    var nacionalidad = document.getElementById('nacionalidad').value;
-    var telefono = document.getElementById('Telefono').value;
-    var direccion = document.getElementById('Direccion').value;
     var correo = document.getElementById('Correo').value;
     var msRrDiv = document.querySelector('.ms_rr');
     if (
         nombre.trim() === '' ||
-        fechaNacimiento.trim() === '' ||
         paterno.trim() === '' ||
         materno.trim() === '' ||
-        nacionalidad.trim() === '' ||
-        telefono.trim() === '' ||
-        direccion.trim() === '' ||
         correo.trim() === ''
     ) {
         msRrDiv.classList.remove('hide-element', 'active');
@@ -267,24 +181,3 @@ function validarFormulario(event) {
 }
 
 
-var contraseñaInput = document.getElementById('Contraseña');
-var confirmarContraseñaInput = document.getElementById('C_Contraseña');
-var mensajeContraseña = document.getElementById('mensaje-contraseña');
-var submitButton = document.getElementById('submitButton');
-
-function validarContraseñas() {
-    var contraseña = contraseñaInput.value;
-    var confirmarContraseña = confirmarContraseñaInput.value;
-
-    if (contraseña === confirmarContraseña) {
-        mensajeContraseña.textContent = 'Las contraseñas coinciden';
-        mensajeContraseña.className = 'password-match';
-        submitButton.type = 'submit';
-    } else {
-        mensajeContraseña.textContent = 'Las contraseñas no coinciden';
-        mensajeContraseña.className = 'password-mismatch';
-        submitButton.type = '#';
-    }
-}
-contraseñaInput.addEventListener('input', validarContraseñas);
-confirmarContraseñaInput.addEventListener('input', validarContraseñas);

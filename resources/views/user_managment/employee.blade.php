@@ -31,8 +31,8 @@
     <div class="form-input">
         <select name="ig_">
             <option value="t_o" selected>Todo</option>
-            <option value="v_od">active</option>
-            <option value="n_vod">Inactive</option>
+            <option value="v_od">Con Usuario</option>
+            <option value="n_vod">Sin Usuario</option>
         </select>
         <button class="search-btn" type="submit"><i class='bx bx-filter'></i></button>
     </div>
@@ -45,18 +45,18 @@
         <div class="header">
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
-            <a href="{{ route('employeer_register') }}"><i class='bx bx-plus-medical bx-flashing '
+            <a href="{{ route('employeer_register') }}"><i class='bx bx-plus-medical '
                     style ="color:red; font-size: 18px; padding: 10px;border-radius: 30px; background-color:  #fcb755" id="Mas"> Nuevo</i></a>
         </div>
         <table>
             <thead>
                 <tr>
-                    <th>Cliente</th>
-                    <th>Correo</th>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
                     <th>Telefono</th>
-                    <th>Edad</th>
-                    <th>Nacionalidad</th>
-                    <th>Verificación</th>
+                    <th>Cargo</th>
+                    <th>Usuario</th>
                 </tr>
             </thead>
 

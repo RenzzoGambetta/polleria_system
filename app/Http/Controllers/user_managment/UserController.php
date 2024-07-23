@@ -21,16 +21,7 @@ class UserController extends Controller
         return view('user_managment.user', compact('Data','Navigation'));
     }
 
-    public function show_position_list()
-    {
-        $Data = session('Data');
-        $Navigation = [
-            'seccion' => 2,
-            'sub_seccion' => 2.2,
-            'color' => 22
-        ];
-        return view('user_managment.workload', compact('Data','Navigation'));
-    }
+   
     public function show_home_list()
     {
         $Data = session('Data');
