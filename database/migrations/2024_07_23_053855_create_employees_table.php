@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('person_id');
             $table->foreign('person_id')->references('id')->on('persons');
-            $table->string('address');
-            $table->string('nationality');
+            $table->string('address')->nullable();
+            $table->string('nationality')->nullable();
             $table->timestamps();
         });
     }
