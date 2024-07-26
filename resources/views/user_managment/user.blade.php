@@ -44,8 +44,16 @@
             </thead>
 
             <tbody>
-
-
+                
+                @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->username ?? 'No registrado' }}</td>
+                    <td>-------</td>
+                    <td>-------</td>
+                    <td>-------</td>
+                    <td>-------</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
 
