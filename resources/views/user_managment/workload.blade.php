@@ -49,8 +49,15 @@
             </thead>
 
             <tbody>
-
-
+                @foreach ($roles as $rol)
+                <tr>
+                    <td>{{ $rol->id ?? 'No registrado' }}</td>
+                    <td>{{ $rol->name ?? 'No registrado' }}</td>
+                    <td>Sin data</td>
+                    <td>Sin data</td>
+                    <td>No asignado</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
 
