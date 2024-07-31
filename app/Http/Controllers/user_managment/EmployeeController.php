@@ -90,7 +90,7 @@ class EmployeeController extends Controller
             'address' => $Datos['direccion'],
             'nationality' => $Datos['nacionalidad'],
         ];
-        $response = $this->employeeService->create($data);
+        $response = $this->employeeService->createEmployee($data);
 
         return redirect()->route('fetch_person_data');
     }
