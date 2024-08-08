@@ -7,6 +7,7 @@
     <!--Icono-->
     <link rel="icon" href="{{ asset($CompanyLogoIcon) }}" type="image/x-icon">
     <!--CSS-->
+    <link rel="stylesheet" href="{{ asset($ColorNightAndDay) }}">
     <link rel="stylesheet" href="{{ asset($TemplateDesktop) }}">
     <link rel='stylesheet' href="{{ $Boxicons }}" >
 

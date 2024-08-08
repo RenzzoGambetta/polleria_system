@@ -6,7 +6,7 @@ use App\Models\Employee;
 use App\Models\Person;
 use Exception;
 use Illuminate\Support\Facades\DB;
-
+//use App\Utils\LogHelper;//Usalo para guardar los errores en consola
 class EmployeeService
 {
     public function __construct(){}
@@ -32,9 +32,10 @@ class EmployeeService
             ]);
 
             DB::commit();
-            return $employee;
+           return true;
         } catch (Exception $e) {
             DB::rollBack();
+            //LogHelper::logError($this,$e);//Se gurada los errores en consola
             throw $e;
         }
     }

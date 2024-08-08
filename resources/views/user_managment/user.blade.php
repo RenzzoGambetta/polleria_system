@@ -2,6 +2,7 @@
 @include( $HeaderPanel )
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
+<link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 
 <div class="header">
     <div class="left">
@@ -14,8 +15,8 @@
             <li>
                 /
             </li>
-            <a href="#" class="pagina">
-
+            <a  class="pagina">
+                {{ __('Lista de :from al :to de un total de :total   ', ['from' => $Users->firstItem(), 'to' => $Users->lastItem(), 'total' => $Users->total()]) }}
             </a>
 
         </ul>
@@ -44,8 +45,8 @@
             </thead>
 
             <tbody>
-                
-                @foreach ($users as $user)
+
+                @foreach ($Users as $user)
                 <tr>
                     <td>{{ $user->username ?? 'No registrado' }}</td>
                     <td>-------</td>
@@ -60,6 +61,12 @@
 
     </div>
 </div>
+
+<section class="paginacion">
+    {{ $Users->onEachSide(1)->links('pagination::custom') }}
+    {{ $Users->onEachSide(1)->links('pagination::numeros') }}
+    {{ $Users->onEachSide(1)->links('pagination::anterior') }}
+</section>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

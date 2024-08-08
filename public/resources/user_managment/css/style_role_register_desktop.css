@@ -1,8 +1,10 @@
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 20px;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .input-group {
@@ -10,8 +12,8 @@
     margin-right: 20px;
 }
 
-#op_op {
-    width: 80%;
+#dimensions {
+    min-width: 200px;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -104,22 +106,9 @@ label {
     transition: all 0.3s;
 }
 
-.apo {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-left: 10px;
-    margin-right: 10px;
-    flex-wrap: nowrap;
-    align-content: flex-start;
-    align-items: flex-start;
-}
 
-#subOrden_Ordenes,
-#subOrden_Productos,
-#subOrden_Mensajes,
-#subOrden_Trabajadores,
-#subOrden_Clientes {
+
+.sub-rol {
 
     margin-left: 20px;
     display: flex;

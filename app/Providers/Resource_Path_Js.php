@@ -31,6 +31,13 @@ class Resource_Path_Js extends ServiceProvider
 
             $SwitchTheme = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::JS, 'switch_theme.js');
             $view->with('SwitchTheme', $SwitchTheme);
+
+            $QueryAndResponseAjaxData = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'query_and_response_ajax_data.js');
+            $view->with('QueryAndResponseAjaxData', $QueryAndResponseAjaxData);
+
+            $RoleRegistrationButtonActions = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'role_registration_button_actions.js');
+            $view->with('RoleRegistrationButtonActions', $RoleRegistrationButtonActions);
+
         });
     }
 }

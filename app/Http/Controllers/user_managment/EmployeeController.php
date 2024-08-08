@@ -9,7 +9,9 @@ use Exception;
 use App\Utils\LogHelper;
 use App\Services\IdentificationDocumentService;
 use App\Services\user_managment\EmployeeService;
-
+use App\Http\Requests\user_managment\EmployeeRequest;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 class EmployeeController extends Controller
 {
     protected $identificationDocumentService;
@@ -29,7 +31,7 @@ class EmployeeController extends Controller
 
     public function show_employeer_list()
     {
-        $List = Employee::all();
+        $List = Employee::paginate(6);
 
         $Navigation = $this->Navigation;
         return view('user_managment.employee', compact('Navigation', 'List'));
@@ -45,54 +47,42 @@ class EmployeeController extends Controller
     public function fetch_person_data(Request $request)
     {
 
-        $personData = $request->validate([
-        'dato' => 'required|size:8',
-
+        $personData = validator::make(
+        $request->all(), [
+        'dni' => 'required|size:8',
         ]);
 
-        $dni = $personData['dato'];
+        $dni = $request->input('dni');
+        $sms = "El Dni solo resivido contiene ". strlen((string) abs($dni)) .  " digitos en ves de 8";
+
+        if ($personData->fails()){
+          return response()->json(['error' => $sms], 400);
+        }
 
         $response = $this->identificationDocumentService->fetchDataByDni($dni);
-
         if (is_array($response))
         {
-            return redirect()->route('employeer_register')->with('data', $response);
+            return response()->json(['data' => $response], 200);
         }
-        else if (is_string($response))
-        {
+        return response()->json(['error' => $response], 400);
+    }
+    public function create_employee_record(EmployeeRequest $request)
+    {
+        try {
+            $validatedData = $request->validated();
+            $response = $this->employeeService->create($validatedData);
+
+            if ($response === true) {
+                return redirect()->route('employeer')->with('success', 'Empleado creado exitosamente');
+            } else {
+                $fechaHoraActual = date("Y-m-d H:i:s");
+                $Ms = $fechaHoraActual . ' No se puede crear el registro. El error es -> ' . $response;
+                return response()->json(['error' => $Ms], 400);
+            }
+        } catch (Exception $e) {
+            $response = "Completa los campos";
             return redirect()->route('employeer_register')->with('Ms', $response);
         }
-    }
-    public function create_employee_record(Request $request)
-    {
-        $Datos = $request->validate([
-            'nombre' => 'required',
-            'documento_dni' => 'required',
-            'paterno' => 'required',
-            'materno' => 'required',
-            'genero' => '',
-            'fecha_n' => '',
-            'nacionalidad' => '',
-            'telefono' => '',
-            'correo' => 'required',
-            'direccion' => '',
-
-        ]);
-        $data = [
-            'dni' => $Datos['documento_dni'],
-            'name' =>  $Datos['nombre'],
-            'paternal_surname' =>  $Datos['paterno'],
-            'maternal_surname' =>  $Datos['materno'],
-            'birthdate' =>  $Datos['fecha_n'],
-            'gender' =>  $Datos['genero'],
-            'phone' =>  $Datos['telefono'],
-            'email' =>  $Datos['correo'],
-            'address' => $Datos['direccion'],
-            'nationality' => $Datos['nacionalidad'],
-        ];
-        $response = $this->employeeService->create($data);
-
-        return redirect()->route('fetch_person_data');
     }
 
 }

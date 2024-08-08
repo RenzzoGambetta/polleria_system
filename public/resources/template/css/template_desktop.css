@@ -1,22 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-:root {
-    --light: #f6f6f9;
-    --primary: #1976D2;
-    --light-primary: #CFE8FF;
-    --grey: #eee;
-    --dark-grey: #AAAAAA;
-    --dark: #363949;
-    --danger: #D32F2F;
-	--light-danger: #FECDD3;
-    --warning: #FBC02D;
-    --light-warning: #FFF2C6;
-    --success: #388E3C;
-    --light-success: #BBF7D0;
-    --logo_color:#bb0000;
-    --filtered: rgb(189, 189, 189);
-}
-
 #icon_cont_serve:before{
     content: "\ebfd";
 }
@@ -54,13 +37,7 @@ html{
     overflow-x: hidden;
 }
 
-body.dark{
-    --light: #181a1e;
-    --grey: #25252c;
-    --dark: #fbfbfb;
-    --logo_color: #ff7800;
-    --filtered: rgb(112, 112, 112);
-}
+
 
 body{
     background: var(--grey);

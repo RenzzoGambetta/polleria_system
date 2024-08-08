@@ -47,7 +47,7 @@
                 </div>
                 <div class = "ms_bx active hide-element">
                     <h4 class = "ms_tp">Alert:</h4>
-                    <h2 class = "ms_txt">selecciona un dato dni o ruc</h2>
+                    <h2 class = "ms_txt"> ms_txt </h2>
                 </div>
             </section>
         </div>
@@ -74,15 +74,12 @@
                 <div class="form-step form-step-active">
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="text" id="Nombre" name="nombre" class="effect-4" placeholder=" "
-                                required
-                                value="{{ session()->has('data') && session('data')['nombre'] !== null ? session('data')['nombre'] : '' }}" />
-                            <label for="Nombre">Nombre</label>
+                            <input type="text" id="name_input" class="effect-4" name="name" placeholder=" " required value="{{ session()->has('data') && session('data')['name'] !== null ? session('data')['name'] : '' }}" />
+                            <label for="Nombre">*Nombre</label>
                         </div>
                         <div class="input-group col-md-6" id="div_frame_dni_input">
-                            <input type="number" id="frame_dni_input" name="documento_dni" class="effect-4"
-                                placeholder=" "value="{{ session()->has('data') && session('data')['documento'] !== null ? session('data')['documento'] : '' }}">
-                            <label for="fechaNacimiento">DNI</label>
+                            <input type="number" id="frame_dni_input" class="effect-4" name="dni" placeholder=" " required value="{{ session()->has('data') && session('data')['dni'] !== null ? session('data')['dni'] : '' }}">
+                            <label for="Dni">*DNI</label>
                             <div id="busqueda">
                                 <h1 id="lupa"><i class="bx bxs-file-find" id="iten"></i></h1>
                             </div>
@@ -91,16 +88,12 @@
                     </div>
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="text" id="Paterno" name="paterno" class="effect-4" required
-                                placeholder=" "
-                                value="{{ session()->has('data') && session('data')['paternal_surname'] !== null ? session('data')['paternal_surname'] : '' }}" />
-                            <label for="Paterno">Apellido Paterno</label>
+                            <input type="text" id="paternal_surname_input" class="effect-4" name="paternal_surname" placeholder=" " required value="{{ session()->has('data') && session('data')['paternal_surname'] !== null ? session('data')['paternal_surname'] : '' }}" />
+                            <label for="Paterno">*Apellido Paterno</label>
                         </div>
                         <div class="input-group col-md-6">
-                            <input type="text" id="Materno" name="materno" class="effect-4" required
-                                placeholder=" "
-                                value="{{ session()->has('data') && session('data')['apellido_materno'] !== null ? session('data')['apellido_materno'] : '' }}" />
-                            <label for="Materno">Apellido Materno</label>
+                            <input type="text" id="maternal_surname_input" class="effect-4" name="maternal_surname" placeholder=" " required value="{{ session()->has('data') && session('data')['maternal_surname'] !== null ? session('data')['maternal_surname'] : '' }}" />
+                            <label for="Materno">*Apellido Materno</label>
                         </div>
                     </div>
                     <div class="">
@@ -114,27 +107,25 @@
                         <div class="select">
                             <div class="generos">
                                 <label class="genero">
-                                    <input type="radio" name="genero" id="Hombre"  value="hombre" />
+                                    <input type="radio" id="Hombre" name="gender" value="male" />
                                     <span> Hombre </span>
                                 </label>
 
                                 <label class="genero">
-                                    <input type="radio" id="Mujer" name="genero"  value="mujer" />
+                                    <input type="radio" id="Mujer" name="gender" value="feminine" />
                                     <span> Mujer </span>
                                 </label>
                             </div>
                             <div class="posgenero">Genero <i class='bx bxs-eject bx-rotate-180'></i></div>
                         </div>
-                        <div class="input-group col-md-6">
-                            <input type="Date" id="fechaNacimiento" name="fecha_n" class="effect-4"
-                                placeholder=" " />
-                            <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <div class="input-group col-md-6 one">
+                            <input type="Date" id="fechaNacimiento" class="effect-4" name="birthdate" placeholder=" " required value="{{ session()->has('data') && session('data')['birthdate'] !== null ? session('data')['birthdate'] : '' }}"/>
+                            <label for="fechaNacimiento">*Fecha de Nacimiento</label>
                         </div>
                     </div>
-                    <div class="input-group col-md-6">
-                        <input type="text" id="nacionalidad" class="effect-4" name="nacionalidad"
-                            placeholder=" " />
-                        <label for="nacionalidad">Nacionalidad</label>
+                    <div class="input-group col-md-6 one">
+                        <input type="text" id="nacionalidad" class="effect-4" name="nationality" placeholder=" " required value="{{ session()->has('data') && session('data')['nationality'] !== null ? session('data')['nationality'] : '' }}"/>
+                        <label for="nacionalidad">*Nacionalidad</label>
                     </div>
 
                     <div class="btns-group">
@@ -145,27 +136,23 @@
                 <div class="form-step">
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="number" id="Telefono" class="effect-4" name="telefono"
-                                placeholder=" " />
-                            <label for="Telefono">Telefono</label>
+                            <input type="number" id="Telefono" class="effect-4" name="phone" placeholder=" " required value="{{ session()->has('data') && session('data')['phone'] !== null ? session('data')['phone'] : '' }}"/>
+                            <label for="Telefono">*Telefono</label>
                         </div>
                         <div class="input-group col-md-6 one">
-                            <input type="email" id="Correo" name="correo" required class="effect-4"
-                                placeholder=" " />
-                            <label for="Correo">Correo</label>
+                            <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " required value="{{ session()->has('data') && session('data')['email'] !== null ? session('data')['email'] : '' }}"/>
+                            <label for="Correo">*Correo</label>
                         </div>
                     </div>
                     <div class="input-group col-md-6 one">
-                        <input type="text" id="Direccion" name="direccion"  class="effect-4"
-                            placeholder=" " />
-                        <label for="Direccion">Direccion</label>
+                        <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " required value="{{ session()->has('data') && session('data')['address'] !== null ? session('data')['address'] : '' }}"/>
+                        <label for="Direccion">*Direccion</label>
                     </div>
 
 
                     <div class="btns-group">
                         <a href="#" class="btn btn-prev">Atras</a>
-                        <input type="submit" value="Registrar" class="btn" id="submitButton"
-                            onclick="validarFormulario(event)" />
+                        <input type="submit" class="btn" id="submitButton" value="Registrar" onclick="validarFormulario(event)" />
                     </div>
 
 
@@ -175,8 +162,8 @@
         </section>
     </form>
 </section>
-
 <script src="{{ asset($EffectsAndActions) }}"></script>
+<script src="{{ asset($QueryAndResponseAjaxData) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

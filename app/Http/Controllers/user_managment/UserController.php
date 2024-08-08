@@ -17,13 +17,13 @@ class UserController extends Controller
             'color' => 20
 
         ];
-        $users = User::all();
+        $Users = User::paginate(6);
 
         $Data = session('Data');
-        return view('user_managment.user', compact('Data','Navigation', 'users'));
+        return view('user_managment.user', compact('Data','Navigation', 'Users'));
     }
 
-   
+
     public function show_home_list()
     {
         $Data = session('Data');

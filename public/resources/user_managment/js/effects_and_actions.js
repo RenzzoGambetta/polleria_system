@@ -70,31 +70,6 @@ document.addEventListener('click', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const busqueda = document.getElementById('busqueda');
-    const datoInput = document.getElementById('frame_dni_input'); // Mantén la referencia al nuevo input
-    const msRrDiv = document.querySelector('.ms_bx');
-
-    busqueda.addEventListener('click', function () {
-
-        const dato = datoInput.value;
-
-        if (dato.trim() === '') {
-            msRrDiv.classList.remove('hide-element', 'active');
-
-            setTimeout(function () {
-                msRrDiv.classList.add('hide-element', 'active');
-            }, 20000);
-
-            return false;
-        } else {
-            const url = `/fetch_person_data?dato=${dato}`;
-            window.location.href = url;
-        }
-    });
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
     const msDtElement = document.querySelector('.ms_dt');
 
     if (msDtElement) {
@@ -115,19 +90,19 @@ function skip_field(event, siguienteCampo) {
     }
 }
 
-document.getElementById('Nombre').addEventListener('keydown', function (event) {
+document.getElementById('name_input').addEventListener('keydown', function (event) {
     skip_field(event, 'frame_dni_input');
 });
 
 document.getElementById('frame_dni_input').addEventListener('keydown', function (event) {
-    skip_field(event, 'Paterno');
+    skip_field(event, 'paternal_surname_input');
 });
 
-document.getElementById('Paterno').addEventListener('keydown', function (event) {
-    skip_field(event, 'Materno');
+document.getElementById('paternal_surname_input').addEventListener('keydown', function (event) {
+    skip_field(event, 'maternal_surname_input');
 });
 
-document.getElementById('Materno').addEventListener('keydown', function(event) {
+document.getElementById('maternal_surname_input').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         formStepsNum++;
@@ -161,16 +136,16 @@ document.getElementById('Correo').addEventListener('keydown', function (event) {
 
 
 function validarFormulario(event) {
-    var nombre = document.getElementById('Nombre').value;
-    var paterno = document.getElementById('Paterno').value;
-    var materno = document.getElementById('Materno').value;
-    var correo = document.getElementById('Correo').value;
+    var nombre = document.getElementById('name_input').value;
+    var paterno = document.getElementById('paternal_surname_input').value;
+    var materno = document.getElementById('maternal_surname_input').value;
+    var dni = document.getElementById('frame_dni_input').value;
     var msRrDiv = document.querySelector('.ms_rr');
     if (
         nombre.trim() === '' ||
         paterno.trim() === '' ||
         materno.trim() === '' ||
-        correo.trim() === ''
+        dni.trim() === ''
     ) {
         msRrDiv.classList.remove('hide-element', 'active');
         setTimeout(function () {
