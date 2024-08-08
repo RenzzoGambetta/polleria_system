@@ -50,14 +50,6 @@
                     <th>Usuario</th>
                 </tr>
             </thead>
-            @foreach ($List as $List_)
-                <td>{{ $List_->correo ?? 'No registrado' }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            @endforeach
             <tbody>
                 @foreach ($List as $List_)
                     <tr>
