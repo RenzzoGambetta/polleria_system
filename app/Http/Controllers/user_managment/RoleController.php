@@ -25,6 +25,7 @@ class RoleController extends Controller
     {
         $Categories = Permission::all()->groupBy('category');
         $Permissions = Permission::all();
+
         $Navigation = $this->Navigation;
         return view('user_managment.role_register', compact('Navigation','Permissions','Categories'));
     }
@@ -50,3 +51,4 @@ class RoleController extends Controller
         ]);
     }
 }
+

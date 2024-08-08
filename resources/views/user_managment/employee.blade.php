@@ -50,19 +50,19 @@
                     <th>Usuario</th>
                 </tr>
             </thead>
-            @foreach ($List as $employee)
-            <tr>
-                <td>{{ $employee->person->dni }}</td>
-                <td>{{ $employee->person->firstname ?? 'No registrado' }}</td>
-                <td>{{ $employee->person->lastname ?? 'No registrado' }}</td>
-                <td>{{ $employee->person->phone ?? 'No registrado' }}</td>
-                <td>{{ $employee->person->birthdate ?? 'No registrado' }}</td>
-                <td>No asignado</td>
-            </tr>
-            @endforeach
             <tbody>
+                @foreach ($List as $List_)
+                    <tr>
 
+                        <td>{{ $List_->person->dni ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->firstname ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->lastname ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->phone ?? 'No registrado' }}</td>
+                        <td>{{ $List_->awd ?? 'No registrado' }}</td>
+                        <td>{{ $List_->awd ?? 'No registrado' }}</td>
 
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 
