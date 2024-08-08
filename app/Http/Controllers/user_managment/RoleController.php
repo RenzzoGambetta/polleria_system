@@ -18,11 +18,14 @@ class RoleController extends Controller
     {
         $Navigation = $this->Navigation;
 
-        $roles = Role::all();
-        return view('user_managment.workload', compact('Navigation', 'roles'));
+        $Roles = Role::paginate(6);
+        return view('user_managment.role', compact('Navigation', 'Roles'));
     }
     public function show_role_register()
     {
+        $Categories = Permission::all()->groupBy('category');
+        $Permissions = Permission::all();
+
         $Navigation = $this->Navigation;
         return view('user_managment.role_register', compact('Navigation','Permissions','Categories'));
     }
@@ -48,3 +51,4 @@ class RoleController extends Controller
         ]);
     }
 }
+
