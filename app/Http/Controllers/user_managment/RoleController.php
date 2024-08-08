@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user_managment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\Permission;
 
@@ -16,11 +17,12 @@ class RoleController extends Controller
     public function show_position_list()
     {
         $Navigation = $this->Navigation;
-        return view('user_managment.role', compact('Navigation'));
+
+        $roles = Role::all();
+        return view('user_managment.workload', compact('Navigation', 'roles'));
     }
     public function show_role_register()
     {
-        $Categories = Permission::all()->groupBy('category');
         $Navigation = $this->Navigation;
         return view('user_managment.role_register', compact('Navigation','Permissions','Categories'));
     }

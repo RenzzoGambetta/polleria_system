@@ -50,7 +50,7 @@
             </thead>
 
             <tbody>
-                @foreach ($roles as $rol)
+                @foreach ($Roles as $rol)
                 <tr>
                     <td>{{ $rol->id ?? 'No registrado' }}</td>
                     <td>{{ $rol->name ?? 'No registrado' }}</td>
