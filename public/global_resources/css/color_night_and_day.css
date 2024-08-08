@@ -1,0 +1,73 @@
+:root {
+    --primary-color: rgb(146 0 209);
+    --color-primary: #6C9BCF;
+    --color-danger: #FF0060;
+    --color-success: #1B9C85;
+    --color-warning: #F7D060;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+    --select-color: #d7d5ff;
+    --select-hover-color: #eeeeee;
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 1.2rem;
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    --light: #f6f6f9;
+    --primary: #1976D2;
+    --light-primary: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+    --light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --vali: #fb2d2d;
+    --light-warning: #FFF2C6;
+    --success: #388E3C;
+    --light-success: #BBF7D0;
+    --filtrado: rgb(189, 189, 189);
+    --paginacion: rgb(225, 225, 225);
+    --sesion: rgb(255, 255, 255, 0);
+    --enfoque: rgba(0, 0, 0, 0.2);
+    --seach: #ff8625;
+    --input_data: #ffccab;
+    --input_select: #ffefde;
+    --button-enfoque: rgba(0, 0, 0, 0.31);
+    --logo_color:#bb0000;
+    --filtered: rgb(189, 189, 189);
+    --title-categories:rgb(234 96 96);
+    --input-color-name:rgb(255, 255, 255);
+}
+
+
+body.dark {
+    --select-hover-color: rgb(216, 216, 216);
+    --select-color: #ffffff;
+    --light: #181a1e;
+    --grey: #25252c;
+    --dark: #fbfbfb;
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+    --filtrado: rgb(112, 112, 112);
+    --paginacion: rgb(0, 0, 0, 0);
+    --sesion: rgb(36 36 41);
+    --enfoque: rgba(255, 255, 255, 0.2);
+    --seach: #ec6f00;
+    --input_data: #714529;
+    --input_select: #5c452d;
+    --button-enfoque: rgba(255, 255, 255, 0.2);
+    --logo_color: #ff7800;
+    --filtered: rgb(112, 112, 112);
+    --title-categories:rgb(251 154 46);
+    --input-color-name:#353c49;
+}
