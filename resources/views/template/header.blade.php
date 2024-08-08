@@ -16,7 +16,7 @@
 
 <body class="{{ session('theme', 'light') }}">
 
-    <!-- menu vertica -->
+    <!-- menu vertical -->
     <div class="sidebar">
         <a class="logo">
             <img src="{{ asset($CompanyLogoIcon) }}" alt="Icono" id="logo_icon">
@@ -41,6 +41,18 @@
                     </li>
                 </ul>
 
+            </li>
+
+            <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
+                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-square'></i>Modulo 1</a>
+            </li>
+
+            <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
+                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-square'></i>Modulo 2</a>
+            </li>
+
+            <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
+                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-square'></i>Modulo 3</a>
             </li>
 
         </ul>

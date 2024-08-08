@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user_managment;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use app\Models\User;
 class UserController extends Controller
@@ -16,10 +17,9 @@ class UserController extends Controller
             'color' => 20
 
         ];
-        $Users = User::paginate(6);
 
         $Data = session('Data');
-        return view('user_managment.user', compact('Data','Navigation', 'Users'));
+        return view('user_managment.user', compact('Data','Navigation'));
     }
 
 

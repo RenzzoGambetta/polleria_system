@@ -34,7 +34,7 @@ class EmployeeController extends Controller
         $List = Employee::paginate(6);
 
         $Navigation = $this->Navigation;
-        return view('user_managment.employee', compact('Navigation', "List" ));
+        return view('user_managment.employee', compact('Navigation', 'List'));
     }
     public function show_employeer_register()
     {
