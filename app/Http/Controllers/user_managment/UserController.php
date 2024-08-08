@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user_managment;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use app\Models\User;
 class UserController extends Controller
 {
     public function show_user_list()
