@@ -23,6 +23,11 @@ class Resource_Path_Css extends ServiceProvider
             $Form = $fpFunc->Global_Resource(Folder_Path::CSS, 'form.css');
             $view->with('Form', $Form);
 
+            $PaginationStyle = $fpFunc->Global_Resource(Folder_Path::CSS, 'pagination_style.css');
+            $view->with('PaginationStyle', $PaginationStyle);
+
+            $ColorNightAndDay = $fpFunc->Global_Resource(Folder_Path::CSS, 'color_night_and_day.css');
+            $view->with('ColorNightAndDay', $ColorNightAndDay);
             //Resources
 
             $LoginMobile = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::CSS, 'login_mobile.css');

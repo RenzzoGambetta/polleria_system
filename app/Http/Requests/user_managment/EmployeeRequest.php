@@ -3,6 +3,8 @@
 namespace App\Http\Requests\user_managment;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class EmployeeRequest extends FormRequest
 {
@@ -22,16 +24,30 @@ class EmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dni' => 'required|string|size:8|unique:persons,dni',
+            'dni' => 'required',
             'name' => 'required|string|max:50',
             'paternal_surname' => 'required|string|max:50',
             'maternal_surname' => 'required|string|max:50',
             'birthdate' => 'required|date',
-            'gender' => 'required|in:masculino,femenino',
-            'phone' => 'string|max:20',
-            'email' => 'email',
-            'address' => 'string|max:255',
-            'nationality' => 'string|max:255',
+            'gender' => 'nullable',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email',
+            'address' => 'required|string|max:255',
+            'nationality' => 'required|string|max:255',
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param Validator $validator
+     * @return void
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        $errors = "Completa el campo obligatorio";
+        throw new HttpResponseException(
+            redirect()->back()->with('Ms', $errors)->withErrors($validator->errors())->withInput()
+        );
     }
 }

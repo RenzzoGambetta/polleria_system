@@ -2,6 +2,7 @@
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
+<link rel="stylesheet" href="{{ asset($RoleRegisterDesktop) }}">
 
 <div class="header">
     <div class="left">
@@ -21,53 +22,51 @@
         </ul>
     </div>
 </div>
-<link rel="stylesheet" href="{{ asset($RoleRegisterDesktop) }}">
+<form action="{{ route('role_register_store') }}" method="POST">
+    @csrf
+    <div class="container name-input">
 
-
-<div class="input-group">
-    <div class="container">
-        <div id="op_op">
-            <div class="input-group">
-                <input type="text" name="Nombre" id="Nombre" class="effect-1" placeholder="Nombre de cargo"
+        <div id="dimensions name-input">
+            <input type="submit" class="button-opcion previous" value="Cancelar">
+            <div class="input-group name-input">
+                <input type="text" id="name" class="effect-1" name="name" placeholder="Nombre de Rol"
                     value="" />
                 <span class="border"></span>
             </div>
+            <input type="submit" class="button-opcion next" value="Registrar">
         </div>
+
     </div>
-    <div style="width: 100%; text-align: center; font-size: 20px; color: #ff6363;">Permisos</div>
+
     <div class="input-group">
-        <div class="container">
 
-            <div id="op_op" class="apo">
-                <div class="checkbox checkbox-1">
-                    <input type="checkbox" id="Clientes" />
-                    <label for="Clientes">Clientes</label>
-                </div>
-                <div id="subOrden_Clientes">
-                    <div class="checkbox checkbox-1">
-                        <input type="checkbox" id="C_Editar" />
-                        <label for="C_Editar">Editar</label>
+        <div class="title_categories_primary">Permisos</div>
+        <div class="input-group">
+            <div class="container check">
+                @foreach ($Categories as $categories => $permissionGroup)
+                    <div id="dimensions" class="apo">
+                        <div class="checkbox checkbox-1">
+                            <input type="checkbox" id="{{ $categories }}" />
+                            <label for="{{ $categories }}" class="title_categories">{{ $categories }}</label>
+                        </div>
+                        <div id="{{ $categories }}" class="sub-rol">
+                            @foreach ($permissionGroup as $permission)
+                                <div class="checkbox checkbox-1">
+                                    <input type="checkbox" id="C_{{ $permission->name }}" name="permissions[]" value="{{ $permission->id }}" />
+                                    <label for="C_{{ $permission->name }}" class="sub_categories">{{ $permission->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="checkbox checkbox-1">
-                        <input type="checkbox" id="C_Buscar" />
-                        <label for="C_Buscar">Buscar</label>
-                    </div>
-                    <div class="checkbox checkbox-1">
-                        <input type="checkbox" id="C_Descargar" />
-                        <label for="C_Descargar">Descargar</label>
-                    </div>
-                </div>
-
-
+                @endforeach
             </div>
 
-
         </div>
     </div>
-</div>
+</form>
 
 
-
+<script src="{{ asset($RoleRegistrationButtonActions) }}"></script>
 
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

@@ -2,6 +2,7 @@
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
+<link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 
 <div class="header">
     <div class="left">
@@ -19,24 +20,13 @@
             <li>
                 /
             </li>
-            <a href="#" class="pagina">
-
+            <a  class="pagina">
+                {{ __('Lista de :from al :to de un total de :total   ', ['from' => $List->firstItem(), 'to' => $List->lastItem(), 'total' => $List->total()]) }}
             </a>
 
         </ul>
     </div>
 </div>
-
-<form action=" " id="filtered" method="get" onchange="cambiarAccion()">
-    <div class="form-input">
-        <select name="ig_">
-            <option value="t_o" selected>Todo</option>
-            <option value="v_od">Con Usuario</option>
-            <option value="n_vod">Sin Usuario</option>
-        </select>
-        <button class="search-btn" type="submit"><i class='bx bx-filter'></i></button>
-    </div>
-</form>
 
 <input type="checkbox" id="theme-toggle" hidden>
 
@@ -80,6 +70,11 @@
 
     </div>
 </div>
+<section class="paginacion">
+    {{ $List->onEachSide(1)->links('pagination::custom') }}
+    {{ $List->onEachSide(1)->links('pagination::numeros') }}
+    {{ $List->onEachSide(1)->links('pagination::anterior') }}
+</section>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>
