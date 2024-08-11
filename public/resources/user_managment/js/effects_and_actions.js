@@ -46,7 +46,7 @@ function updateProgressbar() {
         ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
 
-
+//Combox
 const posgenero = document.querySelector('.posgenero');
 const generos = document.querySelector('.generos');
 const genero = document.querySelectorAll('.genero');
@@ -69,6 +69,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
+//
 document.addEventListener('DOMContentLoaded', function () {
     const msDtElement = document.querySelector('.ms_dt');
 
@@ -156,3 +157,22 @@ function validarFormulario(event) {
 }
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    const fields = [
+        { labelId: 'Nombre', inputId: 'name_input' },
+        { labelId: 'Dni', inputId: 'frame_dni_input' },
+        { labelId: 'Paterno', inputId: 'paternal_surname_input' },
+        { labelId: 'Materno', inputId: 'maternal_surname_input' }
+    ];
+
+    fields.forEach(function(field) {
+        const label = document.querySelector(`label[for="${field.labelId}"]`);
+        const input = document.getElementById(field.inputId);
+
+        if (label && input) {
+            label.addEventListener('click', function() {
+                input.focus();
+            });
+        }
+    });
+});

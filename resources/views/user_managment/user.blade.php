@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 
 <div class="btn-mobile mobile">
-    <a href="{{ route('employeer_register') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+    <a href="{{ route('user_register') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
 </div>
 
 <div class="header">
@@ -34,7 +34,7 @@
         <div class="header">
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
-            <a href="{{ route('employeer_register') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+            <a href="{{ route('user_register') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
         </div>
         <table>
             <thead>

@@ -29,6 +29,9 @@ class Resource_Path_Js extends ServiceProvider
             $EffectsAndActions = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'effects_and_actions.js');
             $view->with('EffectsAndActions', $EffectsAndActions);
 
+            $EffectsAndActionsUserRegister = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'effects_and_actions_user_register.js');
+            $view->with('EffectsAndActionsUserRegister', $EffectsAndActionsUserRegister);
+
             $SwitchTheme = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::JS, 'switch_theme.js');
             $view->with('SwitchTheme', $SwitchTheme);
 
