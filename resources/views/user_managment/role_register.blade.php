@@ -24,13 +24,12 @@
 </div>
 <form action="{{ route('role_register_store') }}" method="POST">
     @csrf
-    <div class="container name-input">
+    <div class="name-input container">
 
         <div id="dimensions name-input">
             <input type="submit" class="button-opcion previous" value="Cancelar">
             <div class="input-group name-input">
-                <input type="text" id="name" class="effect-1" name="name" placeholder="Nombre de Rol"
-                    value="" />
+                <input type="text" id="name" class="effect-1" name="name" placeholder="Nombre de Rol" value="" />
                 <span class="border"></span>
             </div>
             <input type="submit" class="button-opcion next" value="Registrar">
@@ -42,7 +41,7 @@
 
         <div class="title_categories_primary">Permisos</div>
         <div class="input-group">
-            <div class="container check">
+            <div class="check container">
                 @foreach ($Categories as $categories => $permissionGroup)
                     <div id="dimensions" class="apo">
                         <div class="checkbox checkbox-1">
@@ -64,7 +63,6 @@
         </div>
     </div>
 </form>
-
 
 <script src="{{ asset($RoleRegistrationButtonActions) }}"></script>
 

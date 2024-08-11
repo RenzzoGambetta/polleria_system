@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{$Language }}">
+<html lang="{{ $Language }}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,12 @@
     <!--CSS-->
     <link rel="stylesheet" href="{{ asset($ColorNightAndDay) }}">
     <link rel="stylesheet" href="{{ asset($TemplateDesktop) }}">
-    <link rel='stylesheet' href="{{ $Boxicons }}" >
+    <link rel="stylesheet" href="{{ asset($TemplateMobile) }}">
+    <link rel='stylesheet' href="{{ $Boxicons }}">
+    <link rel='stylesheet' href="{{ $IconReferen }}">
+
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
 
     <title>D'Brazza</title>
 </head>
@@ -17,7 +22,7 @@
 <body class="{{ session('theme', 'light') }}">
 
     <!-- menu vertical -->
-    <div class="sidebar">
+    <div class="sidebar {{ session('menu_state') === 'close' ? 'close' : '' }}">
         <a class="logo">
             <img src="{{ asset($CompanyLogoIcon) }}" alt="Icono" id="logo_icon">
             <div class="logo-name"><span>D'Brazza</span></div>
@@ -29,30 +34,30 @@
                 <a href="{{ route('home') }}" class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-home'></i>Home</a>
             </li>
 
-            <li class="{{ ($Navigation['seccion'] ?? null) == 2 ? 'sub active' : 'sub' }} ">
+            <li class="{{ ($Navigation['seccion'] ?? null) == 2 ? 'sub active' : 'sub' }}">
 
-                <a href="{{ route('user') }}" class="{{ ($Navigation['seccion'] ?? null) == 2 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 20 ? 'nav_select' : '' }}"><i class='bx bxs-user-voice'></i>Usuarios</a>
+                <a href="{{ route('user') }}" class="{{ ($Navigation['seccion'] ?? null) == 2 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 20 ? 'nav_select' : '' }}"><i class='fi fi-ss-user-unlock bx-adjustment-icon'></i>Usuarios</a>
                 <ul class="sub">
                     <li class="{{ ($Navigation['sub_seccion'] ?? null) == 2.1 ? 'active' : '' }}">
-                        <a href="{{ route('employeer') }}" id="{{ ($Navigation['color'] ?? null) == 21 ? 'nav_select' : '' }}"><i class='bx bxs-user-detail'></i>Empleado</a>
+                        <a href="{{ route('employeer') }}" id="{{ ($Navigation['color'] ?? null) == 21 ? 'nav_select' : '' }}"><i class='fi fi-ss-users-medical bx-adjustment-icon'></i>Empleado</a>
                     </li>
                     <li class="{{ ($Navigation['sub_seccion'] ?? null) == 2.2 ? 'active' : '' }}">
-                        <a href="{{ route('position') }}" id="{{ ($Navigation['color'] ?? null) == 22 ? 'nav_select' : '' }}"><i class='bx bxs-component'></i>Roles</a>
+                        <a href="{{ route('position') }}" id="{{ ($Navigation['color'] ?? null) == 22 ? 'nav_select' : '' }}"><i class='fi fi-sr-chart-tree bx-adjustment-icon'></i>Roles</a>
                     </li>
                 </ul>
 
             </li>
 
             <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
-                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-square'></i>Modulo 1</a>
+                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class="fi fi-sr-module bx-adjustment-icon"></i>Modulo 1</a>
             </li>
 
             <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
-                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-square'></i>Modulo 2</a>
+                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='fi fi-sr-module bx-adjustment-icon'></i>Modulo 2</a>
             </li>
 
             <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
-                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-square'></i>Modulo 3</a>
+                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='fi fi-sr-module bx-adjustment-icon'></i>Modulo 3</a>
             </li>
 
         </ul>
@@ -71,7 +76,7 @@
     <!-- Contenido principal -->
     <div class="content">
         <!-- Barra de navegación -->
-        <nav>
+        <nav id="nav-style-primary">
             <i class='bx bx-menu'></i>
 
             <!-- buscador -->
@@ -82,13 +87,13 @@
                     <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <input type="checkbox" id="theme-toggle" hidden>
 
             <!-- modo claro and oscuro -->
-
-            <label for="theme-toggle" class="theme-toggle"></label>
+            <input type="checkbox" id="theme-toggle" hidden {{ session('theme') === 'dark' ? 'checked' : '' }}>
+            <label for="theme-toggle" class="theme-toggle {{ session('theme') === 'dark' ? 'dark-mode-button' : 'light-mode-button' }}"></label>
             <script src="{{ asset($SwitchTheme) }}"></script>
 
+            
             <!-- notoficaciones -->
 
             <a href="#" class="notif">
@@ -105,4 +110,4 @@
 
         <!-- Fin de la barra de navegación -->
 
-     <main>
+        <main>

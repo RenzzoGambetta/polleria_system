@@ -140,3 +140,21 @@ label {
 .checkbox-1 input:checked+label:after {
     transform: rotate(45deg) scale(1);
 }
+
+@media (max-width: 992px) {
+
+    .input-group.name-input {
+        width: 170px;
+        height: 5vh;
+    }
+    input#name {
+        font-size: 100%;
+    }
+    input.button-opcion {
+        height: 5vh;
+        width: 80px;
+        font-size: 11px;
+    }
+}
+
+

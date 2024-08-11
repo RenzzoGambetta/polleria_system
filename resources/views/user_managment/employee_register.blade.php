@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{{ asset($Form) }}">
 <script src="{{ $JquerySrc }}" integrity="{{ $JqueryIntegrity }}" crossorigin="{{ $JqueryCrossorigin }}"></script>
 
-
 <div class="header">
     <div class="left">
         <h1>Registro</h1>
@@ -59,7 +58,7 @@
         <section class="form_pos">
 
             <section class="form_pos2">
-                <h1 class="text-center">Formulario <i class='bx bxs-user-voice'></i></h1>
+                <h1 class="text-center title-form-h1">Formulario <i class='bx bxs-user-voice'></i></h1>
                 <!-- Progress bar -->
                 <div class="progressbar">
                     <div class="progress" id="progress"></div>
@@ -96,7 +95,7 @@
                             <label for="Materno">*Apellido Materno</label>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="btn-navegation-form">
                         <a href="#" class="btn btn-next width-50 ml-auto">Siguiente</a>
                     </div>
 
@@ -123,12 +122,12 @@
                             <label for="fechaNacimiento">*Fecha de Nacimiento</label>
                         </div>
                     </div>
-                    <div class="input-group col-md-6 one">
+                    <div class="input-group col-md-6 one unique">
                         <input type="text" id="nacionalidad" class="effect-4" name="nationality" placeholder=" " required value="{{ session()->has('data') && session('data')['nationality'] !== null ? session('data')['nationality'] : '' }}"/>
                         <label for="nacionalidad">*Nacionalidad</label>
                     </div>
 
-                    <div class="btns-group">
+                    <div class="btns-group btn-navegation-form-3frem">
                         <a href="#" class="btn btn-prev">Atras</a>
                         <a href="#" class="btn btn-next">Siguiente</a>
                     </div>
@@ -144,13 +143,13 @@
                             <label for="Correo">*Correo</label>
                         </div>
                     </div>
-                    <div class="input-group col-md-6 one">
+                    <div class="input-group col-md-6 one unique">
                         <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " required value="{{ session()->has('data') && session('data')['address'] !== null ? session('data')['address'] : '' }}"/>
                         <label for="Direccion">*Direccion</label>
                     </div>
 
 
-                    <div class="btns-group">
+                    <div class="btns-group btn-navegation-form-3frem">
                         <a href="#" class="btn btn-prev">Atras</a>
                         <input type="submit" class="btn" id="submitButton" value="Registrar" onclick="validarFormulario(event)" />
                     </div>

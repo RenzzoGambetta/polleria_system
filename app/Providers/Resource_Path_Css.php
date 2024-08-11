@@ -36,8 +36,8 @@ class Resource_Path_Css extends ServiceProvider
             $LoginDesktop = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::CSS, 'login_desktop.css');
             $view->with('LoginDesktop', $LoginDesktop);
 
-            //$TemplateMobile = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'template_mobile.css');
-            //$view->with('TemplateMobile', $TemplateMobile);
+            $TemplateMobile = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'template_mobile.css');
+            $view->with('TemplateMobile', $TemplateMobile);
 
             $TemplateDesktop = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'template_desktop.css');
             $view->with('TemplateDesktop', $TemplateDesktop);
@@ -50,6 +50,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $RoleRegisterDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::CSS, 'style_role_register_desktop.css');
             $view->with('RoleRegisterDesktop', $RoleRegisterDesktop);
+
+            $IconReferen = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'icon_referen.css');
+            $view->with('IconReferen', $IconReferen);
         });
     }
 }

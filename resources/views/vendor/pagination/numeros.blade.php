@@ -2,11 +2,11 @@
     <ul class="pagination_nu" id="centra" >
         {{-- Enlace a la página anterior --}}
         @if ($paginator->onFirstPage())
-            <li class="page-item disabled" aria-disabled="true" aria-label="Anterior">
+            <li class="page-item disabled icon-pagination" aria-disabled="true" aria-label="Anterior">
                 <span class="page-link" aria-hidden="true"><i class='bx bx-caret-left' style='color:#bb0e0e' ></i></span>
             </li>
         @else
-            <li class="page-item">
+            <li class="page-item icon-pagination">
                 <a class="page-link" id="icon_paginacion" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="Anterior"><i class='bx bx-caret-left bx-flashing' ></i></a>
             </li>
         @endif
@@ -22,11 +22,11 @@
 
         {{-- Enlace a la página siguiente --}}
         @if ($paginator->hasMorePages())
-            <li class="page-item">
+            <li class="page-item icon-pagination">
                 <a class="page-link" id="icon_paginacion" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="Siguiente"><i class='bx bx-caret-right bx-flashing' ></i></a>
             </li>
         @else
-            <li class="page-item disabled" aria-disabled="true" aria-label="Siguiente">
+            <li class="page-item disabled icon-pagination" aria-disabled="true" aria-label="Siguiente">
                 <span class="page-link" aria-hidden="true"><i class='bx bx-caret-right' style='color:#bb0e0e'  ></i></span>
             </li>
         @endif

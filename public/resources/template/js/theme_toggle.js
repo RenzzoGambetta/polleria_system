@@ -13,12 +13,7 @@ sideLinks.forEach(item => {
     })
 });
 
-const menuBar = document.querySelector('.content nav .bx.bx-menu');
-const sideBar = document.querySelector('.sidebar');
 
-menuBar.addEventListener('click', () => {
-    sideBar.classList.toggle('close');
-});
 
 const searchBtn = document.querySelector('.content nav form .form-input button');
 const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
@@ -48,12 +43,3 @@ window.addEventListener('resize', () => {
     }
 });
 
-const toggler = document.getElementById('theme-toggle');
-
-toggler.addEventListener('change', function () {
-    if (this.checked) {
-        document.body.classList.add('dark');
-    } else {
-        document.body.classList.remove('dark');
-    }
-});

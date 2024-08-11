@@ -43,6 +43,8 @@
     --filtered: rgb(189, 189, 189);
     --title-categories:rgb(234 96 96);
     --input-color-name:rgb(255, 255, 255);
+    --btn-plus-list:#4a9b32;
+
 }
 
 
@@ -70,4 +72,5 @@ body.dark {
     --filtered: rgb(112, 112, 112);
     --title-categories:rgb(251 154 46);
     --input-color-name:#353c49;
+    --btn-plus-list:#1b7700;
 }

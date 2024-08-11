@@ -1,8 +1,12 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
-@include( $HeaderPanel )
+@include($HeaderPanel)
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
+
+<div class="btn-mobile mobile">
+    <a href="{{ route('employeer_register') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+</div>
 
 <div class="header">
     <div class="left">
@@ -15,7 +19,7 @@
             <li>
                 /
             </li>
-            <a  class="pagina">
+            <a class="pagina">
                 {{ __('Lista de :from al :to de un total de :total   ', ['from' => $Users->firstItem(), 'to' => $Users->lastItem(), 'total' => $Users->total()]) }}
             </a>
 
@@ -30,8 +34,7 @@
         <div class="header">
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
-            <a href="{{ route('employeer_register') }}"><i class='bx bx-plus-medical '
-                    style ="color:red; font-size: 18px; padding: 10px;border-radius: 30px; background-color:  #fcb755" id="Mas"> Nuevo</i></a>
+            <a href="{{ route('employeer_register') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
         </div>
         <table>
             <thead>
@@ -47,17 +50,16 @@
             <tbody>
 
                 @foreach ($Users as $user)
-                <tr>
-                    <td>{{ $user->username ?? 'No registrado' }}</td>
-                    <td>-------</td>
-                    <td>-------</td>
-                    <td>-------</td>
-                    <td>-------</td>
-                </tr>
+                    <tr>
+                        <td>{{ $user->username ?? 'No registrado' }}</td>
+                        <td>-------</td>
+                        <td>-------</td>
+                        <td>-------</td>
+                        <td>-------</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
-
 
     </div>
 </div>

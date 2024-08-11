@@ -29,4 +29,5 @@ Route::post('/role_register_store', [RoleController::class,'store'])->name('role
 Route::get('/home', [UserController::class,'show_home_list'])->name('home');
 
 
-Route::post('/switch_theme_', [EfectController::class, 'switch_theme']);
+Route::get('/switch_theme_', [EfectController::class, 'switch_theme']);
+Route::get('/update_menu_state', [EfectController::class, 'updateMenuState']);
