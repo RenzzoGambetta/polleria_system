@@ -35,7 +35,6 @@
             </li>
 
             <li class="{{ ($Navigation['seccion'] ?? null) == 2 ? 'sub active' : 'sub' }}">
-
                 <a href="{{ route('user') }}" class="{{ ($Navigation['seccion'] ?? null) == 2 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 20 ? 'nav_select' : '' }}"><i class='fi fi-ss-user-unlock bx-adjustment-icon'></i>Usuarios</a>
                 <ul class="sub">
                     <li class="{{ ($Navigation['sub_seccion'] ?? null) == 2.1 ? 'active' : '' }}">
@@ -45,11 +44,18 @@
                         <a href="{{ route('position') }}" id="{{ ($Navigation['color'] ?? null) == 22 ? 'nav_select' : '' }}"><i class='fi fi-sr-chart-tree bx-adjustment-icon'></i>Roles</a>
                     </li>
                 </ul>
-
             </li>
 
-            <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
-                <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class="fi fi-sr-module bx-adjustment-icon"></i>Modulo 1</a>
+            <li class="{{ ($Navigation['seccion'] ?? null) == 3 ? 'sub active' : 'sub' }}">
+                <a href="{{ route('inventory') }}" class="{{ ($Navigation['seccion'] ?? null) == 3 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 30 ? 'nav_select' : '' }}"><i class='fi fi-br-supplier-alt bx-adjustment-icon'></i>Inventario</a>
+                <ul class="sub">
+                    <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.1 ? 'active' : '' }}">
+                        <a href="{{ route('employeer') }}" id="{{ ($Navigation['color'] ?? null) == 31 ? 'nav_select' : '' }}"><i class='fi fi-ss-users-medical bx-adjustment-icon'></i>Empleado</a>
+                    </li>
+                    <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.2 ? 'active' : '' }}">
+                        <a href="{{ route('position') }}" id="{{ ($Navigation['color'] ?? null) == 32 ? 'nav_select' : '' }}"><i class='fi fi-sr-chart-tree bx-adjustment-icon'></i>Roles</a>
+                    </li>
+                </ul>
             </li>
 
             <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
@@ -93,7 +99,7 @@
             <label for="theme-toggle" class="theme-toggle {{ session('theme') === 'dark' ? 'dark-mode-button' : 'light-mode-button' }}"></label>
             <script src="{{ asset($SwitchTheme) }}"></script>
 
-            
+
             <!-- notoficaciones -->
 
             <a href="#" class="notif">

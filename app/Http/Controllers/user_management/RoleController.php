@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user_managment;
+namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
@@ -19,7 +19,7 @@ class RoleController extends Controller
         $Navigation = $this->Navigation;
 
         $Roles = Role::paginate(6);
-        return view('user_managment.role', compact('Navigation', 'Roles'));
+        return view('user_management.role', compact('Navigation', 'Roles'));
     }
     public function show_role_register()
     {
@@ -27,7 +27,7 @@ class RoleController extends Controller
         $Permissions = Permission::all();
 
         $Navigation = $this->Navigation;
-        return view('user_managment.role_register', compact('Navigation','Permissions','Categories'));
+        return view('user_management.role_register', compact('Navigation','Permissions','Categories'));
     }
     public function store(Request $request)
     {

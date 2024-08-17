@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user_managment;
+namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
@@ -22,7 +22,7 @@ class UserController extends Controller
 
         $Users = User::paginate(6);
         $Navigation = $this->Navigation;
-        return view('user_managment.user', compact('Navigation', 'Users'));
+        return view('user_management.user', compact('Navigation', 'Users'));
 
     }
 
@@ -31,7 +31,7 @@ class UserController extends Controller
         $Employee = Employee::all();
         $Role = Role::all();
         $Navigation = $this->Navigation;
-        return view('user_managment.user_register', compact( 'Navigation', 'Role', 'Employee'));
+        return view('user_management.user_register', compact( 'Navigation', 'Role', 'Employee'));
 
     }
     public function store(Request $request): JsonResponse
@@ -52,7 +52,7 @@ class UserController extends Controller
             'color' => 10
         ];
         $List = Employee::paginate(6);
-        return view('user_managment.employee', compact('Navigation', 'List'));
+        return view('user_management.employee', compact('Navigation', 'List'));
 
     }
 

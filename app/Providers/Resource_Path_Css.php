@@ -42,13 +42,13 @@ class Resource_Path_Css extends ServiceProvider
             $TemplateDesktop = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'template_desktop.css');
             $view->with('TemplateDesktop', $TemplateDesktop);
 
-            //$EmployeeRecordMobile = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::CSS, 'employee_record_mobile.css');
+            //$EmployeeRecordMobile = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_mobile.css');
             //$view->with('EmployeeRecordMobile', $EmployeeRecordMobile);
 
-            $EmployeeRecordDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::CSS, 'employee_record_desktop.css');
+            $EmployeeRecordDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_desktop.css');
             $view->with('EmployeeRecordDesktop', $EmployeeRecordDesktop);
 
-            $RoleRegisterDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::CSS, 'style_role_register_desktop.css');
+            $RoleRegisterDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'style_role_register_desktop.css');
             $view->with('RoleRegisterDesktop', $RoleRegisterDesktop);
 
             $IconReferen = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'icon_referen.css');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\user_managment;
+namespace App\Services\user_management;
 
 use App\Models\Employee;
 use App\Models\Person;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user_managment;
+namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Exception;
 use App\Utils\LogHelper;
 use App\Services\IdentificationDocumentService;
-use App\Services\user_managment\EmployeeService;
-use App\Http\Requests\user_managment\EmployeeRequest;
+use App\Services\user_management\EmployeeService;
+use App\Http\Requests\user_management\EmployeeRequest;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 class EmployeeController extends Controller
@@ -34,13 +34,13 @@ class EmployeeController extends Controller
         $List = Employee::paginate(6);
 
         $Navigation = $this->Navigation;
-        return view('user_managment.employee', compact('Navigation', 'List'));
+        return view('user_management.employee', compact('Navigation', 'List'));
     }
     public function show_employeer_register()
     {
 
         $Navigation = $this->Navigation;
-        return view('user_managment.employee_register', compact('Navigation'));
+        return view('user_management.employee_register', compact('Navigation'));
     }
 
 

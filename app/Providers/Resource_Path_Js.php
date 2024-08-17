@@ -26,19 +26,19 @@ class Resource_Path_Js extends ServiceProvider
             $ThemeToggle = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::JS, 'theme_toggle.js');
             $view->with('ThemeToggle', $ThemeToggle);
 
-            $EffectsAndActions = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'effects_and_actions.js');
+            $EffectsAndActions = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::JS, 'effects_and_actions.js');
             $view->with('EffectsAndActions', $EffectsAndActions);
 
-            $EffectsAndActionsUserRegister = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'effects_and_actions_user_register.js');
+            $EffectsAndActionsUserRegister = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::JS, 'effects_and_actions_user_register.js');
             $view->with('EffectsAndActionsUserRegister', $EffectsAndActionsUserRegister);
 
             $SwitchTheme = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::JS, 'switch_theme.js');
             $view->with('SwitchTheme', $SwitchTheme);
 
-            $QueryAndResponseAjaxData = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'query_and_response_ajax_data.js');
+            $QueryAndResponseAjaxData = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::JS, 'query_and_response_ajax_data.js');
             $view->with('QueryAndResponseAjaxData', $QueryAndResponseAjaxData);
 
-            $RoleRegistrationButtonActions = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::JS, 'role_registration_button_actions.js');
+            $RoleRegistrationButtonActions = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::JS, 'role_registration_button_actions.js');
             $view->with('RoleRegistrationButtonActions', $RoleRegistrationButtonActions);
 
         });
