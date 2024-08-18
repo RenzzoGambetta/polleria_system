@@ -41,6 +41,9 @@ class Resource_Path_Js extends ServiceProvider
             $RoleRegistrationButtonActions = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::JS, 'role_registration_button_actions.js');
             $view->with('RoleRegistrationButtonActions', $RoleRegistrationButtonActions);
 
+            $OptionSelector = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'option_selector.js');
+            $view->with('OptionSelector', $OptionSelector);
+
         });
     }
 }

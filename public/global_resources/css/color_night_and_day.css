@@ -44,11 +44,20 @@
     --title-categories:rgb(234 96 96);
     --input-color-name:rgb(255, 255, 255);
     --btn-plus-list:#4a9b32;
+    --imput-efect-transiccion: #eee;
+    --imput-efect-transiccion-focus: #00af0d;
+    --label-efect-transiccion-focus: #0a3500;
+    --calendar-icon-color: invert(32%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(85%) contrast(88%);
+    --select-color-opcion:#ffffff;
+    --color-input-background-border:#b5b5b5;
+    --select-color-opcion-label:#0083f7;
+    --select-color-opcion-hover:#e1f7ff;
 
 }
 
 
 body.dark {
+
     --select-hover-color: rgb(216, 216, 216);
     --select-color: #ffffff;
     --light: #181a1e;
@@ -73,4 +82,13 @@ body.dark {
     --title-categories:rgb(251 154 46);
     --input-color-name:#353c49;
     --btn-plus-list:#1b7700;
+    --imput-efect-transiccion: #25252c;
+    --imput-efect-transiccion-focus: #00830a;
+    --label-efect-transiccion-focus: #36ff07;
+    --calendar-icon-color: invert(50%) sepia(91%) saturate(516%) hue-rotate(66deg) brightness(105%) contrast(102%);
+    --select-color-opcion:#36363b;
+    --select-color-opcion-label:#8697d5;
+    --color-input-background-border:#515151;
+    --select-color-opcion-hover:#27273b;
+
 }

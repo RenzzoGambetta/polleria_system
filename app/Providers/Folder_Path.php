@@ -13,6 +13,7 @@ class Folder_Path
     public const AUTH = "auth";
     public const TEMPLATE = "template";
     public const USER_MANAGEMENT = "user_management";
+    public const INVENTORY_MANAGEMENT = "inventory_management";
 
     // Carpetas integradas en Hijos
     public const CSS = "css";

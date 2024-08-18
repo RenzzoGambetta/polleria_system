@@ -53,6 +53,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $IconReferen = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'icon_referen.css');
             $view->with('IconReferen', $IconReferen);
+
+            $InventoryRegisterDesktop = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'inventory_register_desktop.css');
+            $view->with('InventoryRegisterDesktop', $InventoryRegisterDesktop);
         });
     }
 }
