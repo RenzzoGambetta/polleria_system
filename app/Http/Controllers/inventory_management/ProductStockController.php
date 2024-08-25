@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class ProductStockController extends Controller
@@ -16,7 +17,8 @@ class ProductStockController extends Controller
     {
 
         $Navigation = $this->Navigation;
-        return view('inventory_management.product_stock_entry', compact('Navigation'));
+        $Productos = Role::all();
+        return view('inventory_management.product_stock_entry', compact('Navigation' , 'Productos'));
 
     }
 }

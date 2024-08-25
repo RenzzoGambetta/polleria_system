@@ -43,7 +43,7 @@ class Resource_Path_Css extends ServiceProvider
             $view->with('TemplateDesktop', $TemplateDesktop);
 
             //$EmployeeRecordMobile = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_mobile.css');
-            //$view->with('EmployeeRecordMobile', $EmployeeRecordMobile);
+            //$view->with('EmployeeRecordMobile', $EmployeeRecordMobile);loading_style
 
             $EmployeeRecordDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_desktop.css');
             $view->with('EmployeeRecordDesktop', $EmployeeRecordDesktop);
@@ -56,6 +56,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $InventoryRegisterDesktop = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'inventory_register_desktop.css');
             $view->with('InventoryRegisterDesktop', $InventoryRegisterDesktop);
+
+            $LoadingStyle = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'loading_style.css');
+            $view->with('LoadingStyle', $LoadingStyle);
         });
     }
 }

@@ -52,6 +52,7 @@
     --color-input-background-border:#b5b5b5;
     --select-color-opcion-label:#0083f7;
     --select-color-opcion-hover:#e1f7ff;
+    --svg-color-loader: #d52b0a;
 
 }
 
@@ -90,5 +91,6 @@ body.dark {
     --select-color-opcion-label:#8697d5;
     --color-input-background-border:#515151;
     --select-color-opcion-hover:#27273b;
+    --svg-color-loader: #a50000;
 
 }

@@ -88,14 +88,7 @@
         </div>
 
     </div>
-    <div class="sub-input-02">
-        <button class="button-opcion-form cancel-option" onclick="cancelPage()" ><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
-        <button class="button-opcion-form clear-option" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
-        <button class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Agregar un elemento</button>
-        <button class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
-        <script src="{{ asset($FunctionButtonOnclick) }}"></script>
 
-    </div>
 </div>
 <div class="bottom-data">
     <div class="orders">
@@ -109,11 +102,25 @@
                     <th>Data</th>
                 </tr>
             </thead>
+            @foreach ($Productos as $item)
+                <tbody>
 
-            <tbody>
+                    <td>{{ $item ->id }}</td>
+                    <td>{{ $item ->name }}</td>
 
-            </tbody>
+                </tbody>
+            @endforeach
         </table>
+
+    </div>
+</div>
+<div>
+    <div class="sub-input-02">
+        <button class="button-opcion-form cancel-option" onclick="cancelPage()"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
+        <button class="button-opcion-form clear-option" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
+        <button class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Agregar un elemento</button>
+        <button class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
+        <script src="{{ asset($FunctionButtonOnclick) }}"></script>
 
     </div>
 </div>
