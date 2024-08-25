@@ -1,0 +1,47 @@
+<style>
+    :root {
+        --color-alert-panel: #ffffff;
+        --color-alert-background:rgb(115 115 115 / 90%);
+    }
+    body.dark {
+        --color-alert-panel: #131318;
+        --color-alert-background:rgb(0 0 0 / 90%);
+
+    }
+    .title{
+        font-size: 1.5rem;
+        color: #c72d2d;
+    }
+    div:where(.swal2-container).swal2-center>.swal2-popup {
+        grid-column: 2;
+        grid-row: 2;
+        place-self: center center;
+        height: 150%;
+        width: 90%;
+    }
+    div:where(.swal2-container) {
+        z-index: 2001;
+    }
+    div:where(.swal2-container) div:where(.swal2-popup) {
+        background-color: var(--color-alert-panel);
+    }
+    div:where(.swal2-container).swal2-backdrop-show, div:where(.swal2-container).swal2-noanimation {
+        background: var(--color-alert-background);
+
+    }
+</style>
+
+<header>
+
+
+    <div class="wave-group input-dimensions">
+        <input class="input effect-4" type="text" name='data' id="data-input" required="" />
+        <label class="label">
+            <span style="--index: 1" class="label-char">D</span>
+            <span style="--index: 2" class="label-char">a</span>
+            <span style="--index: 3" class="label-char">t</span>
+            <span style="--index: 4" class="label-char">o</span>
+            <span style="--index: 5" class="label-char">s</span>
+        </label>
+    </div>
+</header>

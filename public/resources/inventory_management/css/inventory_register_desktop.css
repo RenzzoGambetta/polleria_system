@@ -10,10 +10,12 @@
     margin: 0px 20px;
 
 }
-.icon-option{
+
+.icon-option {
     font-size: 25px;
     padding-right: 10px;
 }
+
 .comment {
     width: 50%;
     height: 100%;
@@ -44,6 +46,7 @@
     justify-content: space-around;
     align-items: center;
 }
+
 .sub-input-02 {
     margin-top: 10px;
     display: flex;
@@ -53,6 +56,7 @@
     align-items: center;
     align-content: center;
 }
+
 .button-opcion-form {
 
     padding: 5px 30px;
@@ -63,23 +67,29 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
+
 .cancel-option {
     background-color: #830606;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
-.clear-option{
+
+.clear-option {
     background-color: #5e17a1;
 }
+
 .element-option {
     background-color: #334099;
 }
-.register-option{
+
+.register-option {
     background-color: #12691b;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
 .block-02 {
     width: 40%;
     height: 20vh;
@@ -251,6 +261,7 @@ label input[type="radio"] {
     cursor: pointer;
     color: #999;
     margin-top: 12px;
+    height: 100%;
 }
 
 .default-iten-color {
@@ -336,8 +347,11 @@ label input[type="radio"] {
     margin-left: 20px;
 
 }
+
 .sub-title-div {
     margin-top: -12px;
     height: 0px;
-    opacity: 0; transition: 0.5s;
+    opacity: 0;
+    transition: 0.5s;
 }
+

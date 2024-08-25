@@ -44,6 +44,9 @@ class Resource_Path_Js extends ServiceProvider
             $OptionSelector = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'option_selector.js');
             $view->with('OptionSelector', $OptionSelector);
 
+            $FunctionButtonOnclick = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'function_button_onclick.js');
+            $view->with('FunctionButtonOnclick', $FunctionButtonOnclick);
+
         });
     }
 }

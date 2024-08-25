@@ -1,6 +1,7 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
+<script src="{{ $AlertSrc }}"></script>
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
 
 <div class="header">
@@ -60,12 +61,12 @@
             </div>
             <div class="lateralside-content">
                 <div class="input-group input-dimensions">
-                    <input type="date" id="effect5" class="input-iten effect-5" placeholder=" " value="{{ date('Y-m-d') }}">
+                    <input type="date" id="issue-date-input" class="input-iten effect-5" placeholder=" " value="{{ date('Y-m-d') }}">
                     <label for="effect5">Fecha de emision</label>
                 </div>
 
                 <div class="wave-group input-dimensions">
-                    <input class="input effect-4" type="text" required="" />
+                    <input class="input effect-4" type="text" name='data' id="data-input" required="" />
                     <label class="label">
                         @foreach (str_split($data) as $index => $char)
                             <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
@@ -77,7 +78,7 @@
         </div>
         <div class="block-02">
             <div class="wave-group input-dimensions comment">
-                <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" required=""></textarea>
+                <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input" required=""></textarea>
                 <label class="label">
                     @foreach (str_split($comment) as $index => $char)
                         <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
@@ -88,10 +89,11 @@
 
     </div>
     <div class="sub-input-02">
-        <button class="button-opcion-form cancel-option"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
-        <button class="button-opcion-form clear-option"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
-        <button class="button-opcion-form element-option"><i class="fi fi-sr-add-document icon-option"></i>Agregar un elemento</button>
+        <button class="button-opcion-form cancel-option" onclick="cancelPage()" ><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
+        <button class="button-opcion-form clear-option" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
+        <button class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Agregar un elemento</button>
         <button class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
+        <script src="{{ asset($FunctionButtonOnclick) }}"></script>
 
     </div>
 </div>

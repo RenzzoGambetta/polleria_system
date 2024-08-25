@@ -33,6 +33,10 @@ class Essential_Services extends ServiceProvider
             $view->with('HeaderPanel', 'template.header');
             $view->with('FooterPanel', 'template.footer');
 
+            //Alert
+
+            $view->with('AlertSrc', 'https://cdn.jsdelivr.net/npm/sweetalert2@11');
+
 
         });
     }
