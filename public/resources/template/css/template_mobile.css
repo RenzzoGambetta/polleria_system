@@ -5,7 +5,7 @@
         display: none;
     }
 
-    label.theme-toggle.dark-mode-button {
+    #theme-toggle-action{
         display: none;
     }
 

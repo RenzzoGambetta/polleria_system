@@ -3,6 +3,7 @@
 <!---------------------------------------------------------------------->
 <script src="{{ $AlertSrc }}"></script>
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
+<link rel="stylesheet" href="{{ asset($InventoryRegisterMobile) }}">
 
 <div class="header">
     <div class="left">
@@ -28,11 +29,10 @@
         @php
 
             $comment = 'Comentario';
-            $data = 'Datos';
 
         @endphp
         <div class="block-01">
-            <div class="lateralside-content">
+            <div class="lateralside-content sub-block-01">
 
                 <div class="select">
                     <div class="sub-title-div">
@@ -59,19 +59,10 @@
                     <div class="selected">Seleccionar un provedor</div>
                 </div>
             </div>
-            <div class="lateralside-content">
+            <div class="lateralside-content sub-block-02">
                 <div class="input-group input-dimensions">
-                    <input type="date" id="issue-date-input" class="input-iten effect-5" placeholder=" " value="{{ date('Y-m-d') }}">
+                    <input type="date" id="issue-date-input" class="input-iten effect-5 date-icon" placeholder=" " value="{{ date('Y-m-d') }}">
                     <label for="effect5">Fecha de emision</label>
-                </div>
-
-                <div class="wave-group input-dimensions">
-                    <input class="input effect-4" type="text" name='data' id="data-input" required="" />
-                    <label class="label">
-                        @foreach (str_split($data) as $index => $char)
-                            <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
-                        @endforeach
-                    </label>
                 </div>
             </div>
 
@@ -95,21 +86,41 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nº</th>
-                    <th>Data</th>
-                    <th>Data</th>
-                    <th>Data</th>
-                    <th>Data</th>
+                    <th>Producto</th>
+                    <th class="data-entry">Precio</th>
+                    <th class="data-entry">Cantidad</th>
+                    <th class="data-button">Opciones</th>
+
                 </tr>
             </thead>
             @foreach ($Productos as $item)
                 <tbody>
 
-                    <td>{{ $item ->id }}</td>
-                    <td>{{ $item ->name }}</td>
+                    <td>{{ $item['name'] }}</td>
+
+                    <td class="data-entry"><button class="accion-style-button less-button" onclick="valueActionInput(this,'preci','-')" onmousedown="startAction(this,'preci','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+                        <i class="icon-color-adaptation less-option">-</i>
+                    </button><input type="number" class="price-input no-spinner input-number-style" value="{{ $item['price_per_unit'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'preci','+')" onmousedown="startAction(this,'preci','+')" onmouseup="stopChange()" onmouseleave="stopChange()"  ontouchstart="startAction(this,'preci','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+                        <i class="icon-color-adaptation">+</i>
+                    </button></td>
+
+                    <td class="data-entry">
+                        <button class="accion-style-button less-button" onclick="valueActionInput(this,'quantity','-')" onmousedown="startAction(this,'quantity','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+                            <i class="icon-color-adaptation less-option">-</i>
+                        </button><input type="number" class="quantity-input no-spinner input-number-style" value="{{ $item['quantity'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'quantity','+')" onmousedown="startAction(this,'quantity','+')" onmouseup="stopChange()" onmouseleave="stopChange()"  ontouchstart="startAction(this,'quantity','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+                            <i class="icon-color-adaptation">+</i>
+                        </button>
+                    </td>
 
                 </tbody>
             @endforeach
+            <tbody>
+                <td>Total</td>
+
+                <td>s/<span id="total-price">0</span></td>
+                <td>Prd:<span> 0</span></td>
+            </tbody>
+
         </table>
 
     </div>

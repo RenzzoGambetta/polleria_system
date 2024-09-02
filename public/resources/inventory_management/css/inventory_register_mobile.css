@@ -1,0 +1,121 @@
+@media (max-width: 992px) {}
+
+@media (max-width: 768px) {
+
+    .content main {
+        padding: 0px 10px;
+    }
+
+    .content main .header .left h1.title-reducer {
+        font-size: 1rem;
+    }
+
+    .left {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 7vh;
+        margin-top: -4vh;
+    }
+
+    .sub-input-01 {
+        margin-top: 2vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .block-01 {
+        width: 100%;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+    }
+    .block-02 {
+        width: 100%;
+        margin-top: 1vh;
+
+    }
+    .select {
+
+        height: 4.5vh;
+    }
+
+    .selected {
+        padding: 6px 15px;
+        font-size: 0.7rem;
+    }
+
+    .wave-group .input,
+    .input-iten {
+        height: 4.5vh;
+
+    }
+
+    .selected::after {
+        width: 1rem;
+        height: 1rem;
+
+    }
+
+    .wave-group .input,
+    .input-iten {
+        font-size: 0.7rem;
+    }
+
+    .wave-group .input:focus~label .label-char, .wave-group .input:valid~label .label-char{
+        font-size: 0.6rem;
+
+    }
+    .effect-5:focus+label,
+    .effect-5:not(:placeholder-shown)+label {
+        font-size: 0.6rem;
+        left: 15px;
+    }
+
+    .wave-group .input,
+    .input-iten {
+        padding: 6px 15px;
+
+    }
+
+    input.date-icon[type="date"] {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        appearance: none;
+    }
+
+    .sub-title-select {
+        font-size: 0.6rem;
+        margin-left: 14px;
+    }
+
+    .select,
+    .input-dimensions{
+        margin: 0px;
+    }
+    .sub-block-01{
+        width: 65%;
+    }
+    .sub-block-02{
+        width: 35%;
+    }
+    .input-dimensions{
+        padding-left: 2%;
+    }
+    .input-dimensions.comment{
+        padding-left: 0%;
+    }
+    textarea.input.effect-4.comment {
+        height: 5.5vh;
+    }
+    .wave-group .label {
+        font-size: 0.7rem;
+        left: 15PX;
+    }
+}

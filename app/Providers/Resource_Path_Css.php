@@ -57,6 +57,9 @@ class Resource_Path_Css extends ServiceProvider
             $InventoryRegisterDesktop = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'inventory_register_desktop.css');
             $view->with('InventoryRegisterDesktop', $InventoryRegisterDesktop);
 
+            $InventoryRegisterMobile = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'inventory_register_mobile.css');
+            $view->with('InventoryRegisterMobile', $InventoryRegisterMobile);
+
             $LoadingStyle = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'loading_style.css');
             $view->with('LoadingStyle', $LoadingStyle);
         });

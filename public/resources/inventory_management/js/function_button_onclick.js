@@ -2,7 +2,7 @@ function cancelPage() {
     window.history.back();
 }
 function clearInput() {
-    document.getElementById('data-input').value = null;
+
     document.getElementById('comment-input').value = null;
     document.getElementById('issue-date-input').value = new Date().toISOString().slice(0, 10);
     revertSelectionChanges();
@@ -15,7 +15,7 @@ async function addItems() {
 
 
     Swal.fire({
-        title: '<h1 class="title">Nuevo producto</h1>' ,
+        title: '<h1 class="title">Nuevo producto</h1>',
         html: htmlContent,
         showCloseButton: true,
         showCancelButton: true,
@@ -62,4 +62,73 @@ async function loadHtmlFromFile(url) {
         console.error(error);
         return '';
     }
+}
+
+function sumOfPrices() {
+    const priceInputs = document.querySelectorAll('.price-input');
+    let total = 0;
+
+    priceInputs.forEach(input => {
+        total += parseFloat(input.value) || 0;
+    });
+
+    document.getElementById('total-price').textContent = total.toFixed(2);
+}
+document.querySelectorAll('.price-input').forEach(input => {
+    input.addEventListener('input', () => {
+        sumOfPrices();
+    });
+});
+window.addEventListener('DOMContentLoaded', sumOfPrices);
+
+
+var changeInterval;
+
+function startAction(button, inputName, buttonActionIcon) {
+
+    changeInterval = setInterval(function () {
+        valueActionInput(button, inputName, buttonActionIcon);
+    }, 200);
+}
+function stopChange() {
+    clearInterval(changeInterval);
+}
+function valueActionInput(button, inputName, buttonActionIcon) {
+
+    var input;
+
+    if (inputName === "quantity") {
+
+        input = button.parentElement.querySelector('.quantity-input');
+        var currentValue = parseInt(input.value, 10);
+
+        if (buttonActionIcon === "+") {
+            if (!isNaN(currentValue)) {
+                input.value = currentValue + 1;
+            }
+        } else if (buttonActionIcon === "-") {
+            if (!isNaN(currentValue) && currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        }
+    } else if (inputName === "preci") {
+
+        input = button.parentElement.querySelector('.price-input');
+        var currentValue = parseFloat(input.value);
+
+        if (buttonActionIcon === "+") {
+            if (!isNaN(currentValue)) {
+                input.value = (currentValue + 0.1).toFixed(1);
+            }
+        } else if (buttonActionIcon === "-") {
+            if (!isNaN(currentValue) && currentValue > 0) {
+                input.value = (currentValue - 0.1).toFixed(1);
+            }
+        }
+        sumOfPrices();
+    }
+    if (!input) {
+        console.error('Input element not found for inputName:', inputName);
+    }
+
 }

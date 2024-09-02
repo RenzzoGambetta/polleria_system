@@ -94,7 +94,7 @@
 
                 <!-- modo claro and oscuro -->
                 <input type="checkbox" id="theme-toggle" hidden {{ session('theme') === 'dark' ? 'checked' : '' }}>
-                <label for="theme-toggle" class="theme-toggle {{ session('theme') === 'dark' ? 'dark-mode-button' : 'light-mode-button' }}"></label>
+                <label for="theme-toggle" class="theme-toggle {{ session('theme') === 'dark' ? 'dark-mode-button' : 'light-mode-button' }}" id="theme-toggle-action"></label>
                 <script src="{{ asset($SwitchTheme) }}"></script>
 
                 <!-- notoficaciones -->
