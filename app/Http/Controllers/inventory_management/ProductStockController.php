@@ -15,7 +15,26 @@ class ProductStockController extends Controller
     ];
     public function showPanelRegisterEntry()
     {
-        $Productos = [
+
+        $Suppliers = [
+            ['id' => 1, 'name' => 'Distribuciones Morales'],
+            ['id' => 2, 'name' => 'Servicios Martínez'],
+            ['id' => 3, 'name' => 'Comercial López'],
+            ['id' => 4, 'name' => 'Suministros García'],
+            ['id' => 5, 'name' => 'Productos Fernández'],
+            ['id' => 6, 'name' => 'Importaciones Pérez'],
+            ['id' => 7, 'name' => 'Logística Gómez'],
+            ['id' => 8, 'name' => 'Ventas Ruiz'],
+            ['id' => 9, 'name' => 'Comercial Ortega'],
+            ['id' => 10, 'name' => 'Proveedores Sánchez'],
+        ];
+        $Navigation = $this->Navigation;
+
+        return view('inventory_management.product_stock_entry', compact('Navigation' , 'Suppliers'));
+
+    }
+    public function supplierProductList(){
+        $produc = [
             [
                 'id' => 1,
                 'name' => 'Pollo entero',
@@ -77,9 +96,8 @@ class ProductStockController extends Controller
                 'price_per_unit' => 2.50 // en moneda local
             ]
         ];
-        $Navigation = $this->Navigation;
 
-        return view('inventory_management.product_stock_entry', compact('Navigation' , 'Productos'));
-
+        // Devuelve los productos como una respuesta JSON
+        return response()->json($produc);
     }
 }

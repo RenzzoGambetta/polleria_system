@@ -42,6 +42,7 @@ use App\Http\Controllers\temp\EfectController;
     //Inventario
     Route::get('/inventory', [InventoryController::class,'showInventoryList'])->name('inventory');
     Route::get('/show_panel_register_entry', [ProductStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
+    Route::get('/supplier_product_list', [ProductStockController::class,'supplierProductList'])->name('supplier_product_list');
 
 //--> Home
 

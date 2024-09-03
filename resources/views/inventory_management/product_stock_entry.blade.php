@@ -40,19 +40,15 @@
 
                     </div>
                     <div class="options">
-                        <label for="uiux" class="option">
-                            <input type="radio" name="role" id="uiux" />
-                            <span> UI/UX Engineer</span>
-                        </label>
-
-                        <label for="frontend" class="option">
-                            <input type="radio" id="frontend" name="role" />
-                            <span>Frontend Engineer</span>
-                        </label>
-
-                        <label for="backend" class="option">
-                            <input type="radio" id="backend" name="role" />
-                            <span>Backend Engineer</span>
+                        @foreach ($Suppliers as $supplier)
+                            <label for="{{ $supplier['id'] }}" class="option">
+                                <input type="radio" name="supplier_id" id="{{ $supplier['id'] }}" value="{{ $supplier['id'] }}" />
+                                <span>{{ $supplier['name'] }}</span>
+                            </label>
+                        @endforeach
+                        <label for="new" class="option">
+                            <input type="radio" name="role" id="new" />
+                            <span>Nuevo provedor</span>
                         </label>
                     </div>
 
@@ -94,31 +90,54 @@
                 </tr>
             </thead>
             @foreach ($Productos as $item)
-                <tbody>
+                <tbody class="list-inten iten">
 
-                    <td>{{ $item['name'] }}</td>
+                    <td class="name-iten">
+                        <div class="name-aling-text"><span>{{ $item['name'] }}</span></div>
+                    </td>
 
                     <td class="data-entry"><button class="accion-style-button less-button" onclick="valueActionInput(this,'preci','-')" onmousedown="startAction(this,'preci','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
-                        <i class="icon-color-adaptation less-option">-</i>
-                    </button><input type="number" class="price-input no-spinner input-number-style" value="{{ $item['price_per_unit'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'preci','+')" onmousedown="startAction(this,'preci','+')" onmouseup="stopChange()" onmouseleave="stopChange()"  ontouchstart="startAction(this,'preci','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
-                        <i class="icon-color-adaptation">+</i>
-                    </button></td>
+                            <i class="icon-color-adaptation less-option">-</i>
+                        </button><input type="number" class="price-input no-spinner input-number-style" value="{{ $item['price_per_unit'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'preci','+')" onmousedown="startAction(this,'preci','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','-')"
+                            ontouchend="stopChange()" ontouchcancel="stopChange()">
+                            <i class="icon-color-adaptation">+</i>
+                        </button></td>
 
                     <td class="data-entry">
                         <button class="accion-style-button less-button" onclick="valueActionInput(this,'quantity','-')" onmousedown="startAction(this,'quantity','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
                             <i class="icon-color-adaptation less-option">-</i>
-                        </button><input type="number" class="quantity-input no-spinner input-number-style" value="{{ $item['quantity'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'quantity','+')" onmousedown="startAction(this,'quantity','+')" onmouseup="stopChange()" onmouseleave="stopChange()"  ontouchstart="startAction(this,'quantity','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+                        </button><input type="number" class="quantity-input no-spinner input-number-style" value="{{ $item['quantity'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'quantity','+')" onmousedown="startAction(this,'quantity','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','+')"
+                            ontouchend="stopChange()" ontouchcancel="stopChange()">
                             <i class="icon-color-adaptation">+</i>
                         </button>
                     </td>
-
+                    <td class="data-button">
+                        <button class="button-icon-dimensions edit-color">
+                            <div class="icon-calibration">
+                                <i class="fi fi-sc-pencil style-adicon-adaptation"></i>
+                            </div>
+                        </button>
+                        <button class="button-icon-dimensions delate-color">
+                            <div class="icon-calibration">
+                                <i class="fi fi-sr-trash style-adicon-adaptation"></i>
+                            </div>
+                        </button>
+                    </td>
                 </tbody>
             @endforeach
-            <tbody>
-                <td>Total</td>
+            <tbody class="list-inten" id="puntoClave">
+                <td class="name-iten total-price-and-unit">Total -></td>
 
-                <td>s/<span id="total-price">0</span></td>
-                <td>Prd:<span> 0</span></td>
+                <td class="total-price-and-unit">
+                    <div class="aling-center-displey">
+                        <div class="text-aling-preci">s/<span id="total-price">0</span></div>
+                    </div>
+                </td>
+                <td class="total-price-and-unit">
+                    <div class="aling-center-displey">
+                        <div class="text-aling-unit">Prd:<span class="double-space"> 0</span></div>
+                    </div>
+                </td>
             </tbody>
 
         </table>
@@ -130,7 +149,7 @@
         <button class="button-opcion-form cancel-option" onclick="cancelPage()"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
         <button class="button-opcion-form clear-option" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
         <button class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Agregar un elemento</button>
-        <button class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
+        <button class="button-opcion-form register-option" onclick="prueba(1)"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
         <script src="{{ asset($FunctionButtonOnclick) }}"></script>
 
     </div>

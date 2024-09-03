@@ -1,3 +1,5 @@
+const URL_TEMPLATE = "/resources/inventory_management/template/";
+
 function cancelPage() {
     window.history.back();
 }
@@ -11,7 +13,8 @@ function clearInput() {
 }
 async function addItems() {
 
-    const htmlContent = await loadHtmlFromFile('/resources/inventory_management/template/template_alert_input_inventary.html');
+    var url = URL_TEMPLATE + "template_alert_input_inventary.html";
+    const htmlContent = await loadHtmlFromFile(url);
 
 
     Swal.fire({
@@ -132,3 +135,59 @@ function valueActionInput(button, inputName, buttonActionIcon) {
     }
 
 }
+
+
+
+function addTableBodyAboveReference(item) {
+
+    var newTbody = document.createElement('tbody');
+    var url = URL_TEMPLATE + "structured_row_template.html";
+    newTbody.classList.add('list-inten', 'iten');
+
+    fetch(url)
+        .then(response => response.text())
+        .then(template => {
+            let htmlContent = template
+                .replace('{{name}}', item.name)
+                .replace('{{price_per_unit}}', item.price_per_unit)
+                .replace('{{quantity}}', item.quantity);
+
+            newTbody.innerHTML = htmlContent;
+
+            var referenceElement = document.getElementById('puntoClave');
+
+            referenceElement.parentNode.insertBefore(newTbody, referenceElement.previousSibling);
+        })
+        .catch(error => console.error('Error loading template:', error));
+}
+function removeAllTableBodies() {
+    const tbodies = document.querySelectorAll('tbody.list-inten.iten');
+    tbodies.forEach(tbody => tbody.remove());
+}
+
+function supplierConsultation(event) {
+    var supplierId = event.target.value;
+
+    removeAllTableBodies();
+
+    fetch(`/supplier_product_list`) // Ajusta la URL según tu ruta API /${supplierId}
+        .then(response => response.json())
+        .then(data => {
+
+            const items = data.map(product => ({
+                name: product.name,
+                price_per_unit: product.price_per_unit,
+                quantity: product.quantity
+            }));
+            items.forEach(item => {
+                addTableBodyAboveReference(item);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener los productos del proveedor:', error);
+        });
+}
+
+document.querySelectorAll('input[name="supplier_id"]').forEach(function(radio) {
+    radio.addEventListener('change', supplierConsultation);
+});
