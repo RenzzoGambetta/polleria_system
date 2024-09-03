@@ -8,6 +8,7 @@ function clearInput() {
     document.getElementById('comment-input').value = null;
     document.getElementById('issue-date-input').value = new Date().toISOString().slice(0, 10);
     revertSelectionChanges();
+    removeAllTableBodies();
 
 
 }
@@ -135,9 +136,6 @@ function valueActionInput(button, inputName, buttonActionIcon) {
     }
 
 }
-
-
-
 function addTableBodyAboveReference(item) {
 
     var newTbody = document.createElement('tbody');
@@ -163,6 +161,7 @@ function addTableBodyAboveReference(item) {
 function removeAllTableBodies() {
     const tbodies = document.querySelectorAll('tbody.list-inten.iten');
     tbodies.forEach(tbody => tbody.remove());
+    sumOfPrices()
 }
 
 function supplierConsultation(event) {
@@ -170,7 +169,7 @@ function supplierConsultation(event) {
 
     removeAllTableBodies();
 
-    fetch(`/supplier_product_list`) // Ajusta la URL según tu ruta API /${supplierId}
+    fetch(`/supplier_product_list?id=${supplierId}`)
         .then(response => response.json())
         .then(data => {
 
@@ -182,6 +181,7 @@ function supplierConsultation(event) {
             items.forEach(item => {
                 addTableBodyAboveReference(item);
             });
+            setTimeout(sumOfPrices, 500);
         })
         .catch(error => {
             console.error('Error al obtener los productos del proveedor:', error);

@@ -89,42 +89,7 @@
 
                 </tr>
             </thead>
-            @foreach ($Productos as $item)
-                <tbody class="list-inten iten">
-
-                    <td class="name-iten">
-                        <div class="name-aling-text"><span>{{ $item['name'] }}</span></div>
-                    </td>
-
-                    <td class="data-entry"><button class="accion-style-button less-button" onclick="valueActionInput(this,'preci','-')" onmousedown="startAction(this,'preci','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
-                            <i class="icon-color-adaptation less-option">-</i>
-                        </button><input type="number" class="price-input no-spinner input-number-style" value="{{ $item['price_per_unit'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'preci','+')" onmousedown="startAction(this,'preci','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','-')"
-                            ontouchend="stopChange()" ontouchcancel="stopChange()">
-                            <i class="icon-color-adaptation">+</i>
-                        </button></td>
-
-                    <td class="data-entry">
-                        <button class="accion-style-button less-button" onclick="valueActionInput(this,'quantity','-')" onmousedown="startAction(this,'quantity','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
-                            <i class="icon-color-adaptation less-option">-</i>
-                        </button><input type="number" class="quantity-input no-spinner input-number-style" value="{{ $item['quantity'] }}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'quantity','+')" onmousedown="startAction(this,'quantity','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','+')"
-                            ontouchend="stopChange()" ontouchcancel="stopChange()">
-                            <i class="icon-color-adaptation">+</i>
-                        </button>
-                    </td>
-                    <td class="data-button">
-                        <button class="button-icon-dimensions edit-color">
-                            <div class="icon-calibration">
-                                <i class="fi fi-sc-pencil style-adicon-adaptation"></i>
-                            </div>
-                        </button>
-                        <button class="button-icon-dimensions delate-color">
-                            <div class="icon-calibration">
-                                <i class="fi fi-sr-trash style-adicon-adaptation"></i>
-                            </div>
-                        </button>
-                    </td>
-                </tbody>
-            @endforeach
+           
             <tbody class="list-inten" id="puntoClave">
                 <td class="name-iten total-price-and-unit">Total -></td>
 

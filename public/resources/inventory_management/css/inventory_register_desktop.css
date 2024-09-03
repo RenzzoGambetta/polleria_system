@@ -514,3 +514,6 @@ tbody.list-inten {
 .double-space{
     padding-left: 0.5vh;
 }
+.content main .bottom-data .orders table tbody#puntoClave tr:hover{
+    background-color: transparent;
+}
