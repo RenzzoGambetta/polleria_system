@@ -82,14 +82,14 @@
         <table>
             <thead>
                 <tr>
-                    <th>Producto</th>
-                    <th class="data-entry">Precio</th>
-                    <th class="data-entry">Cantidad</th>
-                    <th class="data-button">Opciones</th>
+                    <th class="field-size movile-style-th">Producto</th>
+                    <th class="data-entry movile-style-th">Precio</th>
+                    <th class="data-entry movile-style-th">Cantidad</th>
+                    <th class="data-button movile-style-th">Opciones</th>
 
                 </tr>
             </thead>
-           
+
             <tbody class="list-inten" id="puntoClave">
                 <td class="name-iten total-price-and-unit">Total -></td>
 

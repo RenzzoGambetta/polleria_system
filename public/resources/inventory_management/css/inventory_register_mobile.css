@@ -118,4 +118,21 @@
         font-size: 0.7rem;
         left: 15PX;
     }
+    th.field-size {
+        width: 10%;
+        min-width: 50px;
+    }
+    .content main .bottom-data .orders table .movile-style-th{
+        font-size: 0.5rem;
+    }
+    tr.movile-style-tr-get,
+    input.price-input.no-spinner.input-number-style {
+        font-size: 0.7rem;
+    }
+    .input-number-style{
+        width: 30%;
+    }
+    button.accion-style-button {
+        width: 26%;
+    }
 }
