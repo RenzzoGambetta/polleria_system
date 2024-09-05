@@ -1,6 +1,4 @@
-@media (max-width: 992px) {}
-
-@media (max-width: 768px) {
+@media (max-width: 992px) {
 
     .content main {
         padding: 0px 10px;
@@ -36,18 +34,20 @@
         flex-direction: row;
         align-items: center;
     }
+
     .block-02 {
         width: 100%;
         margin-top: 1vh;
 
     }
+
     .select {
 
         height: 4.5vh;
     }
 
     .selected {
-        padding: 6px 15px;
+        padding: 1vh 15px;
         font-size: 0.7rem;
     }
 
@@ -68,10 +68,12 @@
         font-size: 0.7rem;
     }
 
-    .wave-group .input:focus~label .label-char, .wave-group .input:valid~label .label-char{
+    .wave-group .input:focus~label .label-char,
+    .wave-group .input:valid~label .label-char {
         font-size: 0.6rem;
 
     }
+
     .effect-5:focus+label,
     .effect-5:not(:placeholder-shown)+label {
         font-size: 0.6rem;
@@ -96,43 +98,90 @@
     }
 
     .select,
-    .input-dimensions{
+    .input-dimensions {
         margin: 0px;
     }
-    .sub-block-01{
+
+    .sub-block-01 {
         width: 65%;
     }
-    .sub-block-02{
+
+    .sub-block-02 {
         width: 35%;
     }
-    .input-dimensions{
+
+    .input-dimensions {
         padding-left: 2%;
     }
-    .input-dimensions.comment{
+
+    .input-dimensions.comment {
         padding-left: 0%;
     }
+
     textarea.input.effect-4.comment {
         height: 5.5vh;
     }
+
     .wave-group .label {
         font-size: 0.7rem;
         left: 15PX;
     }
+
     th.field-size {
         width: 10%;
         min-width: 50px;
     }
-    .content main .bottom-data .orders table .movile-style-th{
+
+    .content main .bottom-data .orders table .movile-style-th {
         font-size: 0.5rem;
     }
+
     tr.movile-style-tr-get,
     input.price-input.no-spinner.input-number-style {
         font-size: 0.7rem;
     }
-    .input-number-style{
+
+    .input-number-style {
         width: 30%;
     }
+
     button.accion-style-button {
         width: 26%;
+    }
+
+    .content main .bottom-data .orders table {
+        min-width: 180%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    button.button-opcion-form {
+        font-size: 0.5rem;
+        height: 5vh;
+    }
+
+    .cancel-option {
+        display: none;
+    }
+
+    .clear-option {
+        background-color: #5e17a1;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .icon-option {
+        font-size: 1rem;
+    }
+
+    .option {
+        font-size: 0.6rem;
+        padding: 10px 12px;
+    }
+
+    .text-aling-unit,
+    .text-aling-preci {
+        max-width: 82%;
     }
 }

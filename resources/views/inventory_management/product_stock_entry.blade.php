@@ -77,6 +77,7 @@
     </div>
 
 </div>
+
 <div class="bottom-data">
     <div class="orders">
         <table>
@@ -109,11 +110,12 @@
 
     </div>
 </div>
+
 <div>
     <div class="sub-input-02">
         <button class="button-opcion-form cancel-option" onclick="cancelPage()"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
         <button class="button-opcion-form clear-option" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
-        <button class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Agregar un elemento</button>
+        <button class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Aadir producto</button>
         <button class="button-opcion-form register-option" onclick="prueba(1)"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
         <script src="{{ asset($FunctionButtonOnclick) }}"></script>
 
