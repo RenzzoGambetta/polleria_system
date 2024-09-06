@@ -48,6 +48,9 @@ class Resource_Path_Css extends ServiceProvider
             $EmployeeRecordDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_desktop.css');
             $view->with('EmployeeRecordDesktop', $EmployeeRecordDesktop);
 
+            $LoadFragment = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'load_fragment.css');
+            $view->with('LoadFragment', $LoadFragment);
+
             $RoleRegisterDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'style_role_register_desktop.css');
             $view->with('RoleRegisterDesktop', $RoleRegisterDesktop);
 

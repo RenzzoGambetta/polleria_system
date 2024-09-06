@@ -161,12 +161,11 @@
         height: 5vh;
     }
 
-    .cancel-option {
+    .option-movile-none {
         display: none;
     }
 
-    .clear-option {
-        background-color: #5e17a1;
+    .border-style-left {
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;
     }
@@ -184,4 +183,6 @@
     .text-aling-preci {
         max-width: 82%;
     }
+
+
 }

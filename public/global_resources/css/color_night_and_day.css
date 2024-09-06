@@ -57,6 +57,7 @@
     --input-background-supplies-focus:#ace7f3;
     --edit-icon-color:#673399;
     --delate-icon-color:#bb0000;
+    --loader-color-list:#fdc170;
 }
 
 
@@ -99,5 +100,6 @@ body.dark {
     --input-background-supplies-focus:#263f4b;
     --edit-icon-color:#420081;
     --delate-icon-color:#af1c22;
+    --loader-color-list:#5f361c;
 
 }

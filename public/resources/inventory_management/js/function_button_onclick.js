@@ -1,7 +1,8 @@
 const URL_TEMPLATE = "/resources/inventory_management/template/";
 
-function cancelPage() {
-    window.history.back();
+function cancelPage(url) {
+    //window.history.back();
+    window.location.href = url;
 }
 function clearInput() {
 
@@ -9,7 +10,7 @@ function clearInput() {
     document.getElementById('issue-date-input').value = new Date().toISOString().slice(0, 10);
     revertSelectionChanges();
     removeAllTableBodies();
-
+    reverseToggleDisplay()
 
 }
 async function addItems() {
@@ -30,7 +31,23 @@ async function addItems() {
     })
     revertStyleDefaultAlert()
 }
+function deleteProductRow(id){
 
+   var rowId = 'idRow' + id;
+   var row = document.getElementById(rowId);
+   if (row) {
+       var tbody = row.closest('tbody');
+       if (tbody) {
+           tbody.parentNode.removeChild(tbody);
+       } else {
+           console.log('No se encontró el <tbody> que contiene la fila con ID: ' + rowId);
+       }
+   } else {
+       console.log('No se encontró la fila con ID: ' + rowId);
+   }
+   sumOfPrices();
+
+}
 
 
 function revertStyleDefaultAlert() {
@@ -146,6 +163,8 @@ function addTableBodyAboveReference(item) {
         .then(response => response.text())
         .then(template => {
             let htmlContent = template
+                .replace('{{id}}', item.id)
+                .replace('{{id-button}}', item.id)
                 .replace('{{name}}', item.name)
                 .replace('{{price_per_unit}}', item.price_per_unit)
                 .replace('{{quantity}}', item.quantity);
@@ -174,6 +193,7 @@ function supplierConsultation(event) {
         .then(data => {
 
             const items = data.map(product => ({
+                id: product.id,
                 name: product.name,
                 price_per_unit: product.price_per_unit,
                 quantity: product.quantity
@@ -182,6 +202,9 @@ function supplierConsultation(event) {
                 addTableBodyAboveReference(item);
             });
             setTimeout(sumOfPrices, 500);
+            setTimeout(toggleDisplay, 500);
+
+
         })
         .catch(error => {
             console.error('Error al obtener los productos del proveedor:', error);
@@ -190,4 +213,52 @@ function supplierConsultation(event) {
 
 document.querySelectorAll('input[name="supplier_id"]').forEach(function(radio) {
     radio.addEventListener('change', supplierConsultation);
+
 });
+function toggleDisplay() {
+    var listDataProduct = document.querySelector('.list-data-product');
+    var buttonElement = document.querySelector('.element-option');
+    var buttonClear = document.querySelector('.clear-option');
+    var buttonRegister = document.querySelector('.register-option');
+    var buttonCancel = document.querySelector('.cancel-option');
+    var filter = document.querySelector('.filter');
+
+    if (listDataProduct) {
+        listDataProduct.style.display = 'inline-table';
+        buttonElement.style.display = 'flex';
+        buttonRegister.style.display = 'flex';
+        if (buttonClear) {
+            buttonClear.classList.remove('border-style-right');
+            buttonClear.classList.add('border-style-left');
+            buttonCancel.classList.add('option-movile-none');
+        }
+    }
+
+    if (filter) {
+        filter.style.display = 'none';
+    }
+}
+function reverseToggleDisplay() {
+    var listDataProduct = document.querySelector('.list-data-product');
+    var buttonElement = document.querySelector('.element-option');
+    var buttonRegister = document.querySelector('.register-option');
+    var buttonClear = document.querySelector('.clear-option');
+    var buttonCancel = document.querySelector('.cancel-option');
+    var filter = document.querySelector('.filter');
+
+    if (listDataProduct) {
+        listDataProduct.style.display = 'none';
+        buttonElement.style.display = 'none';
+        buttonRegister.style.display = 'none';
+        if (buttonClear) {
+            buttonClear.classList.remove('border-style-left');
+            buttonClear.classList.add('border-style-right');
+            buttonCancel.classList.remove('option-movile-none');
+        }
+
+    }
+
+    if (filter) {
+        filter.style.display = 'flex';
+    }
+}

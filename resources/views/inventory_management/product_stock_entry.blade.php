@@ -4,6 +4,7 @@
 <script src="{{ $AlertSrc }}"></script>
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
 <link rel="stylesheet" href="{{ asset($InventoryRegisterMobile) }}">
+<link rel="stylesheet" href="{{ asset($LoadFragment) }}">
 
 <div class="header">
     <div class="left">
@@ -80,7 +81,7 @@
 
 <div class="bottom-data">
     <div class="orders">
-        <table>
+        <table class="list-data-product">
             <thead>
                 <tr>
                     <th class="field-size movile-style-th">Producto</th>
@@ -107,14 +108,32 @@
             </tbody>
 
         </table>
-
+        <div class="filter">
+            <div id="wifi-loader">
+                <svg class="circle-outer" viewBox="0 0 86 86">
+                    <circle class="back" cx="43" cy="43" r="40"></circle>
+                    <circle class="front" cx="43" cy="43" r="40"></circle>
+                    <circle class="new" cx="43" cy="43" r="40"></circle>
+                </svg>
+                <svg class="circle-middle" viewBox="0 0 60 60">
+                    <circle class="back" cx="30" cy="30" r="27"></circle>
+                    <circle class="front" cx="30" cy="30" r="27"></circle>
+                </svg>
+                <svg class="circle-inner" viewBox="0 0 34 34">
+                    <circle class="back" cx="17" cy="17" r="14"></circle>
+                    <circle class="front" cx="17" cy="17" r="14"></circle>
+                </svg>
+                <div class="text" data-text="Esperando a que seleccione un provedor"></div>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <div>
     <div class="sub-input-02">
-        <button class="button-opcion-form cancel-option" onclick="cancelPage()"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
-        <button class="button-opcion-form clear-option" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
+        <button class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
+        <button class="button-opcion-form clear-option border-style-right" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
         <button class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Aadir producto</button>
         <button class="button-opcion-form register-option" onclick="prueba(1)"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
         <script src="{{ asset($FunctionButtonOnclick) }}"></script>

@@ -1,4 +1,4 @@
-<tr class="movile-style-tr-get">
+<tr class="movile-style-tr-get" id="idRow{{id}}">
     <td class="name-iten">
         <div class="name-aling-text"><span>{{name}}</span></div>
     </td>
@@ -22,7 +22,7 @@
                 <i class="fi fi-sc-pencil style-adicon-adaptation"></i>
             </div>
         </button>
-        <button class="button-icon-dimensions delate-color">
+        <button class="button-icon-dimensions delate-color" onclick="deleteProductRow('{{id-button}}')">
             <div class="icon-calibration">
                 <i class="fi fi-sr-trash style-adicon-adaptation"></i>
             </div>
