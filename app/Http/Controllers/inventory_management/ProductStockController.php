@@ -45,7 +45,7 @@ class ProductStockController extends Controller
         );
 
         $id = $request->input('id');
-        if($id == 1){
+        if ($id == 1) {
             $produc = [
                 [
                     'id' => 1,
@@ -60,7 +60,7 @@ class ProductStockController extends Controller
                     'price_per_unit' => 1.50 // en moneda local
                 ],
             ];
-        }else if($id == 2){
+        } else if ($id == 2) {
             $produc = [
                 [
                     'id' => 5,
@@ -81,7 +81,7 @@ class ProductStockController extends Controller
                     'price_per_unit' => 6.00 // en moneda local
                 ]
             ];
-        }else if($id == 3){
+        } else if ($id == 3) {
             $produc = [
                 [
                     'id' => 9,
@@ -96,7 +96,7 @@ class ProductStockController extends Controller
                     'price_per_unit' => 2.50 // en moneda local
                 ]
             ];
-        }else if($id == 4){
+        } else if ($id == 4) {
             $produc = [
                 [
                     'id' => 4,
@@ -135,71 +135,107 @@ class ProductStockController extends Controller
                     'price_per_unit' => 2.00 // en moneda local
                 ]
             ];
-        }else{
-        $produc = [
-            [
-                'id' => 1,
-                'name' => 'Pollo entero',
-                'quantity' => 100, // en unidades
-                'price_per_unit' => 12.00 // en moneda local
-            ],
-            [
-                'id' => 2,
-                'name' => 'Papas',
-                'quantity' => 500, // en kilogramos
-                'price_per_unit' => 1.50 // en moneda local
-            ],
-            [
-                'id' => 3,
-                'name' => 'Aceite vegetal',
-                'quantity' => 200, // en litros
-                'price_per_unit' => 3.00 // en moneda local
-            ],
-            [
-                'id' => 4,
-                'name' => 'Sal',
-                'quantity' => 50, // en kilogramos
-                'price_per_unit' => 0.50 // en moneda local
-            ],
-            [
-                'id' => 5,
-                'name' => 'Pimienta',
-                'quantity' => 20, // en kilogramos
-                'price_per_unit' => 5.00 // en moneda local
-            ],
-            [
-                'id' => 6,
-                'name' => 'Ajo',
-                'quantity' => 100, // en kilogramos
-                'price_per_unit' => 4.00 // en moneda local
-            ],
-            [
-                'id' => 7,
-                'name' => 'Ají panca',
-                'quantity' => 80, // en kilogramos
-                'price_per_unit' => 6.00 // en moneda local
-            ],
-            [
-                'id' => 8,
-                'name' => 'Comino',
-                'quantity' => 30, // en kilogramos
-                'price_per_unit' => 7.00 // en moneda local
-            ],
-            [
-                'id' => 9,
-                'name' => 'Culantro',
-                'quantity' => 50, // en manojos
-                'price_per_unit' => 2.00 // en moneda local
-            ],
-            [
-                'id' => 10,
-                'name' => 'Vinagre',
-                'quantity' => 150, // en litros
-                'price_per_unit' => 2.50 // en moneda local
-            ]
-        ];}
+        } else {
+            $produc = [
+                [
+                    'id' => 1,
+                    'name' => 'Pollo entero',
+                    'quantity' => 100, // en unidades
+                    'price_per_unit' => 12.00 // en moneda local
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Papas',
+                    'quantity' => 500, // en kilogramos
+                    'price_per_unit' => 1.50 // en moneda local
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'Aceite vegetal',
+                    'quantity' => 200, // en litros
+                    'price_per_unit' => 3.00 // en moneda local
+                ],
+                [
+                    'id' => 4,
+                    'name' => 'Sal',
+                    'quantity' => 50, // en kilogramos
+                    'price_per_unit' => 0.50 // en moneda local
+                ],
+                [
+                    'id' => 5,
+                    'name' => 'Pimienta',
+                    'quantity' => 20, // en kilogramos
+                    'price_per_unit' => 5.00 // en moneda local
+                ],
+                [
+                    'id' => 6,
+                    'name' => 'Ajo',
+                    'quantity' => 100, // en kilogramos
+                    'price_per_unit' => 4.00 // en moneda local
+                ],
+                [
+                    'id' => 7,
+                    'name' => 'Ají panca',
+                    'quantity' => 80, // en kilogramos
+                    'price_per_unit' => 6.00 // en moneda local
+                ],
+                [
+                    'id' => 8,
+                    'name' => 'Comino',
+                    'quantity' => 30, // en kilogramos
+                    'price_per_unit' => 7.00 // en moneda local
+                ],
+                [
+                    'id' => 9,
+                    'name' => 'Culantro',
+                    'quantity' => 50, // en manojos
+                    'price_per_unit' => 2.00 // en moneda local
+                ],
+                [
+                    'id' => 10,
+                    'name' => 'Vinagre',
+                    'quantity' => 150, // en litros
+                    'price_per_unit' => 2.50 // en moneda local
+                ]
+            ];
+        }
 
         // Devuelve los productos como una respuesta JSON
         return response()->json($produc);
+    }
+    public function registerProductEntry(Request $request)
+    {
+        // Obtén los datos del request
+        $data = $request->all();
+
+        // Inicializa un array para almacenar los ítems formateados
+        $items = [];
+
+        // Verifica que las claves 'id', 'quantity', 'price' y 'total_amount' existan en los datos
+        if (isset($data['id']) && isset($data['quantity']) && isset($data['price']) && isset($data['total_amount'])) {
+            // Recorre cada ítem y crea el formato deseado
+            foreach ($data['id'] as $index => $id) {
+                $items[] = [
+                    'id' => $id,
+                    'quantity' => $data['quantity'][$index],
+                    'price' => $data['price'][$index],
+                    'total_amount' => $data['total_amount'][$index]
+                ];
+            }
+        }
+
+        // Reorganiza los datos en el formato requerido
+        $formattedItems = [];
+        foreach ($items as $index => $item) {
+            $formattedItems["iten-" . str_pad($index + 1, 2, '0', STR_PAD_LEFT)] = $item;
+        }
+        $formattedData = [
+            '_token' => $data['_token'] ?? '',
+            'supplier_id' => $data['supplier_id'] ?? '',
+            'comment' => $data['comment'] ?? '',
+            'items' => $formattedItems
+        ];
+        // Imprime los datos formateados (puedes devolverlos como respuesta o hacer otras operaciones)
+        return response()->json($formattedData);
     }
 }

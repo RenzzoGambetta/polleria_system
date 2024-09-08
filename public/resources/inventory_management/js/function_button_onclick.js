@@ -31,21 +31,21 @@ async function addItems() {
     })
     revertStyleDefaultAlert()
 }
-function deleteProductRow(id){
+function deleteProductRow(id) {
 
-   var rowId = 'idRow' + id;
-   var row = document.getElementById(rowId);
-   if (row) {
-       var tbody = row.closest('tbody');
-       if (tbody) {
-           tbody.parentNode.removeChild(tbody);
-       } else {
-           console.log('No se encontró el <tbody> que contiene la fila con ID: ' + rowId);
-       }
-   } else {
-       console.log('No se encontró la fila con ID: ' + rowId);
-   }
-   sumOfPrices();
+    var rowId = 'idRow' + id;
+    var row = document.getElementById(rowId);
+    if (row) {
+        var tbody = row.closest('tbody');
+        if (tbody) {
+            tbody.parentNode.removeChild(tbody);
+        } else {
+            console.log('No se encontró el <tbody> que contiene la fila con ID: ' + rowId);
+        }
+    } else {
+        console.log('No se encontró la fila con ID: ' + rowId);
+    }
+    sumOfPrices();
 
 }
 
@@ -86,7 +86,7 @@ async function loadHtmlFromFile(url) {
 }
 
 function sumOfPrices() {
-    const priceInputs = document.querySelectorAll('.price-input');
+    const priceInputs = document.querySelectorAll('.price-input-total');
     let total = 0;
 
     priceInputs.forEach(input => {
@@ -95,13 +95,6 @@ function sumOfPrices() {
 
     document.getElementById('total-price').textContent = total.toFixed(2);
 }
-document.querySelectorAll('.price-input').forEach(input => {
-    input.addEventListener('input', () => {
-        sumOfPrices();
-    });
-});
-window.addEventListener('DOMContentLoaded', sumOfPrices);
-
 
 var changeInterval;
 
@@ -114,43 +107,84 @@ function startAction(button, inputName, buttonActionIcon) {
 function stopChange() {
     clearInterval(changeInterval);
 }
+
+function updatePrice(button, type) {
+
+    const row = button.closest('tr');
+    const priceInput = row.querySelector('.price-input');
+    const quantityInput = row.querySelector('.quantity-input');
+    const priceTotalInput = row.querySelector('.price-input-total');
+
+    const price = parseFloat(priceInput.value) || 0;
+    const quantity = parseFloat(quantityInput.value) || 0;
+    const priceTotal = parseFloat(priceTotalInput.value) || 0;
+
+    if (type === 'total') {
+        const totalPrice = price * quantity;
+        priceTotalInput.value = totalPrice.toFixed(1);
+    } else if (type === 'unit') {
+        const totalUnit = priceTotal / quantity;
+        priceInput.value = totalUnit.toFixed(2);
+    }
+}
+
 function valueActionInput(button, inputName, buttonActionIcon) {
 
-    var input;
+    var inputQuantity = button.parentElement.querySelector('.quantity-input');
+    var inputPrice = button.parentElement.querySelector('.price-input');
+    var inputPriceTotal = button.parentElement.querySelector('.price-input-total');
 
     if (inputName === "quantity") {
 
-        input = button.parentElement.querySelector('.quantity-input');
-        var currentValue = parseInt(input.value, 10);
+        var currentValueQuantity = parseInt(inputQuantity.value, 10);
 
         if (buttonActionIcon === "+") {
-            if (!isNaN(currentValue)) {
-                input.value = currentValue + 1;
+            if (!isNaN(currentValueQuantity)) {
+                inputQuantity.value = currentValueQuantity + 1;
             }
         } else if (buttonActionIcon === "-") {
-            if (!isNaN(currentValue) && currentValue > 0) {
-                input.value = currentValue - 1;
+            if (!isNaN(currentValueQuantity) && currentValueQuantity > 0) {
+                inputQuantity.value = currentValueQuantity - 1;
             }
         }
+        updatePrice(button, 'total');
+
     } else if (inputName === "preci") {
 
-        input = button.parentElement.querySelector('.price-input');
-        var currentValue = parseFloat(input.value);
+        var currentValuePreci = parseFloat(inputPrice.value);
 
         if (buttonActionIcon === "+") {
-            if (!isNaN(currentValue)) {
-                input.value = (currentValue + 0.1).toFixed(1);
+            if (!isNaN(currentValuePreci)) {
+                inputPrice.value = (currentValuePreci + 0.1).toFixed(1);
             }
         } else if (buttonActionIcon === "-") {
-            if (!isNaN(currentValue) && currentValue > 0) {
-                input.value = (currentValue - 0.1).toFixed(1);
+            if (!isNaN(currentValuePreci) && currentValuePreci > 0) {
+                inputPrice.value = (currentValuePreci - 0.1).toFixed(1);
             }
         }
-        sumOfPrices();
+        updatePrice(button, 'total');
+
+    } else if (inputName === "preci-total") {
+
+        var currentValuePreciTotal = parseFloat(inputPriceTotal.value);
+
+        if (buttonActionIcon === "+") {
+            if (!isNaN(currentValuePreciTotal)) {
+                inputPriceTotal.value = (currentValuePreciTotal + 0.1).toFixed(1);
+            }
+        } else if (buttonActionIcon === "-") {
+            if (!isNaN(currentValuePreciTotal) && currentValuePreciTotal > 0) {
+                inputPriceTotal.value = (currentValuePreciTotal - 0.1).toFixed(1);
+            }
+        }
+        updatePrice(button, 'unit');
+
     }
-    if (!input) {
+    if (!inputName) {
         console.error('Input element not found for inputName:', inputName);
     }
+
+    sumOfPrices();
 
 }
 function addTableBodyAboveReference(item) {
@@ -164,8 +198,10 @@ function addTableBodyAboveReference(item) {
         .then(template => {
             let htmlContent = template
                 .replace('{{id}}', item.id)
+                .replace('{{id-input}}', item.id)
                 .replace('{{id-button}}', item.id)
                 .replace('{{name}}', item.name)
+                .replace('{{price_total}}', item.price_per_unit * item.quantity)
                 .replace('{{price_per_unit}}', item.price_per_unit)
                 .replace('{{quantity}}', item.quantity);
 
@@ -211,7 +247,7 @@ function supplierConsultation(event) {
         });
 }
 
-document.querySelectorAll('input[name="supplier_id"]').forEach(function(radio) {
+document.querySelectorAll('input[name="supplier_id"]').forEach(function (radio) {
     radio.addEventListener('change', supplierConsultation);
 
 });
@@ -262,3 +298,28 @@ function reverseToggleDisplay() {
         filter.style.display = 'flex';
     }
 }
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('input', (event) => {
+        if (event.target.matches('input[type="number"]')) {
+
+            const inputElement = event.target;
+            const inputClass = inputElement.className;
+
+            var type;
+            if (inputClass == "price-input-total no-spinner input-number-style") {
+                type = "unit";
+            } else {
+                type = "total";
+            }
+            updatePrice(inputElement, type)
+            sumOfPrices()
+
+        }
+    });
+
+});
+
+
