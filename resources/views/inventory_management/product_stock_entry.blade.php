@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
 <link rel="stylesheet" href="{{ asset($InventoryRegisterMobile) }}">
 <link rel="stylesheet" href="{{ asset($LoadFragment) }}">
+<link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
 
 <div class="header">
     <div class="left">
@@ -60,7 +61,7 @@
                 </div>
                 <div class="lateralside-content sub-block-02">
                     <div class="input-group input-dimensions">
-                        <input type="date" id="issue-date-input" class="input-iten effect-5 date-icon" placeholder=" " value="{{ date('Y-m-d') }}">
+                        <input type="date" name="date" id="issue-date-input" class="input-iten effect-5 date-icon" placeholder=" " value="{{ date('Y-m-d') }}">
                         <label for="effect5">Fecha de emision</label>
                     </div>
                 </div>

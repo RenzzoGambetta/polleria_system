@@ -203,6 +203,85 @@ class ProductStockController extends Controller
         // Devuelve los productos como una respuesta JSON
         return response()->json($produc);
     }
+    public function listOfProducts()
+    {
+        $product = [
+            [
+                'id' => 1,
+                'name' => 'Pollo',
+            ],
+            [
+                'id' => 2,
+                'name' => 'Carne de Res',
+            ],
+            [
+                'id' => 3,
+                'name' => 'Pescado',
+            ],
+            [
+                'id' => 4,
+                'name' => 'Cerdo',
+            ],
+            [
+                'id' => 5,
+                'name' => 'Pavo',
+            ],
+            [
+                'id' => 6,
+                'name' => 'Cordero',
+            ],
+            [
+                'id' => 7,
+                'name' => 'Salchichas',
+            ],
+            [
+                'id' => 8,
+                'name' => 'Hamburguesas',
+            ],
+            [
+                'id' => 9,
+                'name' => 'Tacos',
+            ],
+            [
+                'id' => 10,
+                'name' => 'Costillas',
+            ],
+        ];
+        return response()->json($product);
+    }
+    public function anchorProductProvider(Request $request)
+    {
+        $idData = validator::make(
+            $request->all(),
+            [
+                'supplierId' => 'required',
+                'productId' => 'required',
+            ]
+        );
+
+        $productId = $request->input('productId');
+        $supplierId = $request->input('supplierId');
+        if($productId != "null"){
+            $reply = [
+
+                'producto' => $productId,
+                'provedor' => $supplierId,
+                'mensage' => 'Totos los productos fueron registrados con exito'
+
+            ];
+        }else{
+            $reply = [
+
+                'producto' => $productId,
+                'provedor' => $supplierId,
+                'mensage' => 'El registro no se pude realizar'
+
+            ];
+        }
+
+        return response()->json($reply);
+
+    }
     public function registerProductEntry(Request $request)
     {
         // Obtén los datos del request

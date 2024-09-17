@@ -4,23 +4,23 @@
         <input type="text" name="id[]" value="{{id-input}}" class="hidden-input">
     </td>
     <td class="data-entry">
-        <button class="accion-style-button less-button" onclick="valueActionInput(this,'quantity','-')" onmousedown="startAction(this,'quantity','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+        <button type="button" class="accion-style-button less-button" onclick="valueActionInput(this,'quantity','-')" onmousedown="startAction(this,'quantity','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
             <i class="icon-color-adaptation less-option">-</i>
-        </button><input type="number" name="quantity[]" class="quantity-input no-spinner input-number-style" value="{{quantity}}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'quantity','+')" onmousedown="startAction(this,'quantity','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+        </button><input type="number" name="quantity[]" class="quantity-input no-spinner input-number-style" value="{{quantity}}"><button type="button" class="accion-style-button plus-button" onclick="valueActionInput(this,'quantity','+')" onmousedown="startAction(this,'quantity','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'quantity','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
             <i class="icon-color-adaptation">+</i>
         </button>
     </td>
     <td class="data-entry">
-        <button class="accion-style-button less-button" onclick="valueActionInput(this,'preci','-')" onmousedown="startAction(this,'preci','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+        <button type="button" class="accion-style-button less-button" onclick="valueActionInput(this,'preci','-')" onmousedown="startAction(this,'preci','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
             <i class="icon-color-adaptation less-option">-</i>
-        </button><input type="number" name="price[]" class="price-input no-spinner input-number-style" value="{{price_per_unit}}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'preci','+')" onmousedown="startAction(this,'preci','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+        </button><input type="number" name="price[]" class="price-input no-spinner input-number-style" value="{{price_per_unit}}" step="0.01"><button type="button" class="accion-style-button plus-button" onclick="valueActionInput(this,'preci','+')" onmousedown="startAction(this,'preci','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
             <i class="icon-color-adaptation">+</i>
         </button>
     </td>
     <td class="data-entry">
-        <button class="accion-style-button less-button" onclick="valueActionInput(this,'preci-total','-')" onmousedown="startAction(this,'preci-total','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci-total','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+        <button type="button" class="accion-style-button less-button" onclick="valueActionInput(this,'preci-total','-')" onmousedown="startAction(this,'preci-total','-')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci-total','-')" ontouchend="stopChange()" ontouchcancel="stopChange()">
             <i class="icon-color-adaptation less-option">-</i>
-        </button><input type="number" name="total_amount[]" class="price-input-total no-spinner input-number-style" value="{{price_total}}"><button class="accion-style-button plus-button" onclick="valueActionInput(this,'preci-total','+')" onmousedown="startAction(this,'preci-total','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci-total','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
+        </button><input type="number" name="total_amount[]" class="price-input-total no-spinner input-number-style" value="{{price_total}}" step="0.01"><button type="button" class="accion-style-button plus-button" onclick="valueActionInput(this,'preci-total','+')" onmousedown="startAction(this,'preci-total','+')" onmouseup="stopChange()" onmouseleave="stopChange()" ontouchstart="startAction(this,'preci-total','+')" ontouchend="stopChange()" ontouchcancel="stopChange()">
             <i class="icon-color-adaptation">+</i>
         </button>
     </td>
@@ -32,7 +32,7 @@
                 </div>
             </button>
         -->
-        <button class="button-icon-dimensions delate-color" onclick="deleteProductRow('{{id-button}}')">
+        <button type="button" class="button-icon-dimensions delate-color" onclick="deleteProductRow('{{id-button}}')">
             <div class="icon-calibration">
                 <i class="fi fi-sr-trash style-adicon-adaptation"></i>
             </div>

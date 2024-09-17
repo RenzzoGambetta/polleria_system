@@ -39,3 +39,38 @@ document.addEventListener('click', (event) => {
         }
     }
 })
+function selectorIten(select, option, listOption) {
+
+    const selected = document.querySelector(select);
+    const optionsContainer = document.querySelector(option);
+
+
+    selected.addEventListener('click', () => {
+        optionsContainer.classList.toggle('active');
+        selected.classList.toggle('focus-select');
+    });
+
+
+    optionsContainer.addEventListener('click', (event) => {
+        const option = event.target.closest(listOption);
+
+        if (option) {
+            const optionText = option.querySelector('span').innerText;
+            selected.innerHTML = optionText;
+            optionsContainer.classList.remove('active');
+            selected.classList.remove('focus-select');
+            selected.classList.add('default-iten-color');
+        }
+    });
+
+
+    document.addEventListener('click', (event) => {
+        if (!selected.contains(event.target) && !optionsContainer.contains(event.target)) {
+            if (optionsContainer.classList.contains('active')) {
+                optionsContainer.classList.remove('active');
+                selected.classList.remove('focus-select');
+            }
+        }
+    });
+}
+

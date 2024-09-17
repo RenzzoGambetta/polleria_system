@@ -20,17 +20,73 @@ async function addItems() {
 
 
     Swal.fire({
-        title: '<h1 class="title">Nuevo producto</h1>',
+        title: '<h1 class="title">Agregar producto</h1>',
         html: htmlContent,
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
-        confirmButtonText: `<i class='bx bxs-face-mask' id="alert_btn"> <span> Mas info!</span></i> `,
+        confirmButtonText: `<i id="alert_btn"> <span> Agregar</span></i> `,
         cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
         cancelButtonAriaLabel: "Thumbs down",
-    })
-    revertStyleDefaultAlert()
+
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            const product = document.querySelector('input[name="product"]:checked');
+            const supplier = document.querySelector('input[name="supplier_id"]:checked');
+            const productId = product ? product.value : null;
+            const supplierId = supplier ? supplier.value : null;
+            const productName = product ? product.nextElementSibling.textContent : null;
+            const price = parseFloat(document.getElementById('price-data').value) || 0;
+            const quantity = parseFloat(document.getElementById('quantity-data').value) || 1;
+            const save_option = document.getElementById('checkbox-preference').checked;
+
+            const item = {
+                id: productId,
+                name: productName,
+                price_per_unit: price,
+                quantity: quantity
+            };
+            if (save_option) {
+                anchorProduct(productId,supplierId)
+            }
+            if (productId != null){
+                addTableBodyAboveReference(item);
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No seleccionastes un producto",
+                  });
+            }
+
+        } else if (result.isDismissed) {
+        }
+    });
+    fetchRoles();
+    selectorIten(".selected-iten", ".options-iten", ".option-iten");
+    revertStyleDefaultAlert();
+
+
 }
+async function newProduct() {
+
+    var url = URL_TEMPLATE + "new_product_alert_template.html";
+    const htmlContent = await loadHtmlFromFile(url);
+
+    Swal.fire({
+        title: '<h1 class="title">Registrar nuevo producto</h1>',
+        html: htmlContent,
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: `<i id="alert_btn"> <span> Agregar</span></i> `,
+        cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
+        cancelButtonAriaLabel: "Thumbs down",
+
+    })
+}
+
 function deleteProductRow(id) {
 
     var rowId = 'idRow' + id;
@@ -111,6 +167,7 @@ function stopChange() {
 function updatePrice(button, type) {
 
     const row = button.closest('tr');
+    if (!row) { return; }
     const priceInput = row.querySelector('.price-input');
     const quantityInput = row.querySelector('.quantity-input');
     const priceTotalInput = row.querySelector('.price-input-total');
@@ -291,9 +348,7 @@ function reverseToggleDisplay() {
             buttonClear.classList.add('border-style-right');
             buttonCancel.classList.remove('option-movile-none');
         }
-
     }
-
     if (filter) {
         filter.style.display = 'flex';
     }
@@ -316,10 +371,67 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             updatePrice(inputElement, type)
             sumOfPrices()
-
         }
     });
 
 });
 
 
+
+function fetchRoles() {
+    const url = '/list_of_products';
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const container = document.getElementById('options-container');
+
+            if (!container) {
+                console.log("Se canselo la peticion")
+                return;
+            }
+
+            container.innerHTML = '';
+
+            data.forEach(product => {
+                const label = document.createElement('label');
+                label.setAttribute('for', product.name);
+                label.classList.add('option-iten');
+                const input = document.createElement('input');
+                input.setAttribute('type', 'radio');
+                input.setAttribute('id', product.name);
+                input.setAttribute('name', 'product');
+                input.setAttribute('value', product.id);
+                const span = document.createElement('span');
+                span.textContent = product.name;
+                label.appendChild(input);
+                label.appendChild(span);
+                container.appendChild(label);
+            });
+        })
+        .catch(error => console.error('Error al obtener los productos:', error));
+}
+function anchorProduct(productId, supplierId) {
+
+    const url = '/anchor_product_provider?productId='+productId+'&supplierId='+supplierId;
+
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Datos recibidos:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
+}
