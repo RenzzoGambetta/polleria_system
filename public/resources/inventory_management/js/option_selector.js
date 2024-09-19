@@ -19,13 +19,17 @@ selected.addEventListener('click', () => {
 
 optionList.forEach(option => {
     option.addEventListener('click', () => {
-        selected.innerHTML = option.querySelector('span').innerText
+
+        if (option && option.querySelector('span')) {
+            selected.innerHTML = option.querySelector('span').innerText;
+        }
         options.classList.remove('active')
         selected.classList.remove('focus-select')
         selected.classList.add('default-iten-color')
         subTitleDiv.style.opacity = "1"
         let currentPadding = parseInt(window.getComputedStyle(options).padding) || 0
         options.style.padding = `${currentPadding - 8}px`
+
     })
 })
 
@@ -73,4 +77,31 @@ function selectorIten(select, option, listOption) {
         }
     });
 }
+function previewImage(event) {
+    const file = event.target.files[0];
+    const iconPreview = document.getElementById('icon-preview');
+    const textPreview = document.getElementById('text-preview');
+    const existingImg = document.getElementById('preview-image');
 
+    if (existingImg) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            existingImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgPreview = document.createElement('img');
+                imgPreview.src = e.target.result;
+                imgPreview.id = 'preview-image';
+                imgPreview.className = 'Img-style-preview';
+                iconPreview.style.display = 'none';
+                textPreview.style.display = 'none';
+                iconPreview.parentNode.insertBefore(imgPreview, iconPreview);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+}

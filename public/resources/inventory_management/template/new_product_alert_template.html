@@ -4,7 +4,7 @@
         grid-row: 2;
         place-self: center center;
         height: 70vh;
-        width: 90vh;
+        width: 100vh;
     }
 
 
@@ -16,7 +16,7 @@
 
     div#swal2-html-container {
         height: 35vh;
-        padding: 0px 20px;
+        padding: 10px 20px;
         overflow: hidden;
     }
 
@@ -54,7 +54,7 @@
     }
 
     .input-group.input-dimensions.alert-style-div-input {
-        margin: 0px 1vh;
+        margin: 10px 1vh;
     }
 
     .effect-5+label.label-input-data {
@@ -72,8 +72,231 @@
         width: 45%;
         border-radius: 1.5vh;
     }
+
+    /*estilo de carga de archivo*/
+    .custum-file-upload {
+        height: 25vh;
+        width: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: space-between;
+        gap: 20px;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed var(--color-input-background-border);
+        background-color: #75757529;
+        padding: 0px;
+        border-radius: 10px;
+    }
+
+    .custum-file-upload .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custum-file-upload .icon svg {
+        height: 80px;
+        fill: #e8e8e8;
+    }
+
+    .custum-file-upload .text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custum-file-upload .text span {
+        font-weight: 400;
+        color: #e8e8e8;
+    }
+
+    .custum-file-upload input {
+        display: none;
+    }
+
+
+    .conteiner-01 {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .frame-01 {
+        height: 100%;
+        width: 100%;
+    }
+
+    img#preview-image {
+        max-height: 95%;
+        max-width: 95%;
+        border-radius: 0.5rem;
+    }
+
+    .conteiner-01 {
+        height: 25vh;
+    }
+
+    .heigh-div-input {
+        height: 6vh;
+    }
+
+    .input-data-number {
+        margin-top: 2vh;
+    }
+
+    .input-data-number {
+        margin-top: 2vh;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .custum-file-upload .text span {
+        color: var(--dark);
+        font-family: revert;
+
+    }
+
+    .custum-file-upload .icon svg {
+        fill: var(--color-input-background-border);
+    }
+
+    .checkbox-preference {
+        margin-top: 4vh;
+    }
+
+
+.type-measure {
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px auto;
+    font-family: 'Arial', sans-serif;
+}
+
+
+.sub-text-measure {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+.input-radio-option {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-measure-option {
+    display: none;
+}
+
+.label-measure-option {
+    background-color: #d7d7d775;
+    border: 0px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+
+.label-measure-option:hover {
+    background-color: #d4d4d4;
+}
+
+.input-measure-option:checked + .label-measure-option {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}
+
+.input-measure-option:checked + .label-measure-option:hover {
+    background-color: #45a049;
+}
+
 </style>
 <header>
-   
 
+    <div class="conteiner-01">
+        <div class="frame-01">
+            <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+                <div class="input-group input-dimensions alert-style-div-input">
+                    <input type="text" id="name-data" name="name"
+                        class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                    <label for="name-data" class="label-input-data">Nombre</label>
+                </div>
+            </div>
+            <div class="input-data-number">
+                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+                    <div class="input-group input-dimensions alert-style-div-input">
+                        <input type="number" id="price-data" name="price"
+                            class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                        <label for="price-data" class="label-input-data">Precio unitario</label>
+                    </div>
+                </div>
+                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+                    <div class="input-group input-dimensions alert-style-div-input">
+                        <input type="number" id="quantity-data" name="quantity"
+                            class="input-iten effect-5 no-spinner alert-style" placeholder=" ">
+                        <label for="quantity-data" class="label-input-data">Cantidad</label>
+                    </div>
+                </div>
+            </div>
+            <div class="type-measure">
+                <h1 class="sub-text-measure">Tipo de medida</h1>
+                <div class="input-radio-option">
+                    <input type="radio" class="input-measure-option" id="kilo" name="measurement" value="kilo">
+                    <label for="kilo" class="label-measure-option">Kilo</label><br>
+
+                    <input type="radio" class="input-measure-option" id="litro" name="measurement" value="litro">
+                    <label for="litro" class="label-measure-option">Litro</label><br>
+
+                    <input type="radio" class="input-measure-option" id="unidad" name="measurement" value="unidad">
+                    <label for="unidad" class="label-measure-option">Unidad</label><br>
+                </div>
+            </div>
+        </div>
+        <div class="frame-02">
+            <label for="file" class="custum-file-upload">
+                <div class="icon" id="icon-preview">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
+                                fill=""></path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="text" id="text-preview">
+                    <span>Subir una imagen</span>
+                </div>
+                <input id="file" type="file" accept="image/*" onchange="previewImage(event)" style="display:none;">
+            </label>
+
+        </div>
+    </div>
+    <div class="conteiner-02">
+ <div class="checkbox checkbox-preference">
+                <input type="checkbox" id="checkbox-preference" name="save_option" value="True" />
+                <label for="checkbox-preference" class="text-check">Mantener guardada la relación con el proveedor para
+                    obtener un acceso más rápido.</label>
+            </div>
+
+    </div>
 </header>

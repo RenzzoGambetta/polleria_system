@@ -665,3 +665,21 @@ tbody.list-inten {
 .hidden-input{
     display: none;
 }
+button.option.new-supplier {
+    width: 100%;
+    border: 0px;
+    border-radius: 15px;
+    background-color: #4d4d4d24;
+    text-align: justify;
+    font-size: 1rem;
+    color: #fd7700;
+}
+button.option.new-supplier:hover {
+    width: 100%;
+    border: 0px;
+    border-radius: 15px;
+    background-color: #9704049c;
+    text-align: justify;
+    font-size: 1rem;
+    color: #ffffff;
+}

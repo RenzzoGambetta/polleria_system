@@ -435,3 +435,20 @@ function anchorProduct(productId, supplierId) {
 
 
 }
+async function newSupplierRegistrationFast(){
+
+    var url = URL_TEMPLATE + "new_product_alert_template.html";
+    const htmlContent = await loadHtmlFromFile(url);
+
+    Swal.fire({
+        title: '<h1 class="title">Registrar nuevo producto</h1>',
+        html: "hol",
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: `<i id="alert_btn"> <span> Agregar</span></i> `,
+        cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
+        cancelButtonAriaLabel: "Thumbs down",
+
+    })
+}

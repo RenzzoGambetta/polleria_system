@@ -50,10 +50,7 @@
                                     <span>{{ $supplier['name'] }}</span>
                                 </label>
                             @endforeach
-                            <label for="new" class="option">
-                                <input type="radio" name="role" id="new" />
-                                <span>Nuevo provedor</span>
-                            </label>
+                            <button type="button" class="option new-supplier" onclick="newSupplierRegistrationFast()">Registrar nuevo provedor . . .</button>
                         </div>
 
                         <div class="selected">Seleccionar un provedor</div>
@@ -139,6 +136,11 @@
 
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    newProduct();
+});
+</script>
 </form>
 <script src="{{ asset($OptionSelector) }}"></script>
 
