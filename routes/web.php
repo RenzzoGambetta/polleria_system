@@ -8,6 +8,7 @@ use App\Http\Controllers\user_management\EmployeeController;
 use App\Http\Controllers\user_management\RoleController;
 use App\Http\Controllers\inventory_management\InventoryController;
 use App\Http\Controllers\inventory_management\ProductStockController;
+use App\Http\Controllers\inventory_management\SuppliersController;
 use App\Http\Controllers\temp\EfectController;
 
 
@@ -46,6 +47,8 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/list_of_products', [ProductStockController::class,'listOfProducts'])->name('list_of_products');
     Route::get('/anchor_product_provider', [ProductStockController::class,'anchorProductProvider'])->name('anchor_product_provider');
     Route::post('/register_product_entry', [ProductStockController::class,'registerProductEntry'])->name('register_product_entry');
+    Route::get('/suppliers', [SuppliersController::class,'showSuppliersList'])->name('suppliers');
+    Route::get('/suppliers_register_and_edit', [SuppliersController::class,'showSuppliersRegisterAndEdit'])->name('suppliers_register_and_edit');
 
 //--> Home
 

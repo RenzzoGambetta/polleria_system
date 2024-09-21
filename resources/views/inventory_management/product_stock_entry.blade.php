@@ -136,11 +136,6 @@
 
     </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    newProduct();
-});
-</script>
 </form>
 <script src="{{ asset($OptionSelector) }}"></script>
 

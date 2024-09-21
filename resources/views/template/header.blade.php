@@ -52,7 +52,9 @@
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.1 ? 'active' : '' }}">
                             <a href="{{ route('show_panel_register_entry') }}" id="{{ ($Navigation['color'] ?? null) == 31 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-in bx-adjustment-icon'></i>Entradas</a>
                         </li>
-
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.2 ? 'active' : '' }}">
+                            <a href="{{ route('suppliers') }}" id="{{ ($Navigation['color'] ?? null) == 32 ? 'nav_select' : '' }}"><i class='fi fi-bs-person-dolly bx-adjustment-icon'></i>Provedores</a>
+                        </li>
                     </ul>
                 </li>
 
