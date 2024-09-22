@@ -72,161 +72,18 @@
         width: 45%;
         border-radius: 1.5vh;
     }
+    @media (max-width: 768px) {
 
-    /*estilo de carga de archivo*/
-    .custum-file-upload {
-        height: 25vh;
-        width: 40vh;
-        display: flex;
-        flex-direction: column;
-        align-items: space-between;
-        gap: 20px;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        border: 2px dashed var(--color-input-background-border);
-        background-color: #75757529;
-        padding: 0px;
-        border-radius: 10px;
+        div:where(.swal2-container).swal2-center>.swal2-popup {
+        grid-column: 2;
+        grid-row: 2;
+        height: 85vh;
+        width: 100vh;
+    }
+    div#swal2-html-container {
+        height: 60vh;}
     }
 
-    .custum-file-upload .icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .custum-file-upload .icon svg {
-        height: 80px;
-        fill: #e8e8e8;
-    }
-
-    .custum-file-upload .text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .custum-file-upload .text span {
-        font-weight: 400;
-        color: #e8e8e8;
-    }
-
-    .custum-file-upload input {
-        display: none;
-    }
-
-
-    .conteiner-01 {
-        display: flex;
-        flex-direction: row;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .frame-01 {
-        height: 100%;
-        width: 100%;
-    }
-
-    img#preview-image {
-        max-height: 95%;
-        max-width: 95%;
-        border-radius: 0.5rem;
-    }
-
-    .conteiner-01 {
-        height: 25vh;
-    }
-
-    .heigh-div-input {
-        height: 6vh;
-    }
-
-    .input-data-number {
-        margin-top: 2vh;
-    }
-
-    .input-data-number {
-        margin-top: 2vh;
-        display: flex;
-        flex-direction: row;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .custum-file-upload .text span {
-        color: var(--dark);
-        font-family: revert;
-
-    }
-
-    .custum-file-upload .icon svg {
-        fill: var(--color-input-background-border);
-    }
-
-    .checkbox-preference {
-        margin-top: 4vh;
-    }
-
-
-.type-measure {
-    padding: 5px;
-    border-radius: 10px;
-    margin: 10px auto;
-    font-family: 'Arial', sans-serif;
-}
-
-
-.sub-text-measure {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-
-.input-radio-option {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-content: center;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.input-measure-option {
-    display: none;
-}
-
-.label-measure-option {
-    background-color: #d7d7d775;
-    border: 0px solid #e0e0e0;
-    border-radius: 5px;
-    padding: 10px 15px;
-    text-align: center;
-    font-size: 16px;
-    color: #000000;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-
-.label-measure-option:hover {
-    background-color: #d4d4d4;
-}
-
-.input-measure-option:checked + .label-measure-option {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
-    color: white;
-}
-
-.input-measure-option:checked + .label-measure-option:hover {
-    background-color: #45a049;
-}
 
 </style>
 <header>
@@ -234,25 +91,25 @@
     <div class="conteiner-01">
         <div class="frame-01">
             <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
-                <div class="input-group input-dimensions alert-style-div-input">
+                <div class="input-group input-dimensions alert-style-div-input alert-input">
                     <input type="text" id="name-data" name="name"
                         class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
-                    <label for="name-data" class="label-input-data">Nombre</label>
+                    <label for="name-data" class="label-input-data mobile-label">Nombre</label>
                 </div>
             </div>
             <div class="input-data-number">
                 <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
-                    <div class="input-group input-dimensions alert-style-div-input">
+                    <div class="input-group input-dimensions alert-style-div-input alert-input">
                         <input type="number" id="price-data" name="price"
                             class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
-                        <label for="price-data" class="label-input-data">Precio unitario</label>
+                        <label for="price-data" class="label-input-data mobile-label">Precio unitario</label>
                     </div>
                 </div>
                 <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
-                    <div class="input-group input-dimensions alert-style-div-input">
+                    <div class="input-group input-dimensions alert-style-div-input alert-input">
                         <input type="number" id="quantity-data" name="quantity"
                             class="input-iten effect-5 no-spinner alert-style" placeholder=" ">
-                        <label for="quantity-data" class="label-input-data">Cantidad</label>
+                        <label for="quantity-data" class="label-input-data mobile-label">Cantidad</label>
                     </div>
                 </div>
             </div>

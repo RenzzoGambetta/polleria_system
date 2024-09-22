@@ -58,6 +58,7 @@
     --edit-icon-color:#673399;
     --delate-icon-color:#bb0000;
     --loader-color-list:#fdc170;
+    --select-color-opcion-alert: #dfdfdf;
 }
 
 
@@ -101,5 +102,7 @@ body.dark {
     --edit-icon-color:#420081;
     --delate-icon-color:#af1c22;
     --loader-color-list:#5f361c;
+    --select-color-opcion-alert: #36363b;
+
 
 }

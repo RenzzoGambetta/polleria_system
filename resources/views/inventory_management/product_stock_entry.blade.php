@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<form id="myForm" action="{{route('register_product_entry')}}" method="POST">
+<form id="myForm" action="{{ route('register_product_entry') }}" method="POST">
     @csrf
     <div class="input-data-form">
         <div class="sub-input-01">
@@ -126,16 +126,21 @@
         </div>
 
     </div>
-<div>
-    <div class="sub-input-02">
-        <button  type="button" class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
-        <button  type="button" class="button-opcion-form clear-option border-style-right" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
-        <button  type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Aadir producto</button>
-        <button  type="submit" class="button-opcion-form register-option" ><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
-        <script src="{{ asset($FunctionButtonOnclick) }}"></script>
+    <script>
+       // $(document).ready(function() {
+       //     newProduct()
+       // });
+    </script>
+    <div>
+        <div class="sub-input-02">
+            <button type="button" class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
+            <button type="button" class="button-opcion-form clear-option border-style-right" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
+            <button type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Añadir producto</button>
+            <button type="submit" class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
+            <script src="{{ asset($FunctionButtonOnclick) }}"></script>
 
+        </div>
     </div>
-</div>
 </form>
 <script src="{{ asset($OptionSelector) }}"></script>
 

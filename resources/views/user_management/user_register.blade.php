@@ -3,7 +3,6 @@
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($Form) }}">
-<script src="{{ $JquerySrc }}" integrity="{{ $JqueryIntegrity }}" crossorigin="{{ $JqueryCrossorigin }}"></script>
 
 <div class="header">
     <div class="left">

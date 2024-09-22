@@ -15,7 +15,7 @@
     }
 
     div#swal2-html-container {
-        height: 35vh;
+        height: 38vh;
         padding: 0px 20px;
         overflow: hidden;
     }
@@ -72,6 +72,11 @@
         width: 45%;
         border-radius: 1.5vh;
     }
+    @media (max-width: 992px) {
+        .division-select-iten, .price-and-quantity-data-splitting {
+        height: 8vh;
+    }
+    }
 </style>
 <header>
     <div class="division-select-iten">
@@ -96,14 +101,14 @@
             <div class="input-group input-dimensions alert-style-div-input">
                 <input type="number" id="price-data" name="price"
                     class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
-                <label for="price-data" class="label-input-data">Precio unitario</label>
+                <label for="price-data" class="label-input-data mobile-label">Precio unitario</label>
             </div>
         </div>
         <div class="lateralside-content sub-block-02 alert-style-div">
             <div class="input-group input-dimensions alert-style-div-input">
                 <input type="number" id="quantity-data" name="quantity"
                     class="input-iten effect-5 no-spinner alert-style" placeholder=" ">
-                <label for="quantity-data" class="label-input-data">Cantidad</label>
+                <label for="quantity-data" class="label-input-data mobile-label ">Cantidad</label>
             </div>
         </div>
     </div>

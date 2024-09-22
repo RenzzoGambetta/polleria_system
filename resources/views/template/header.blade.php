@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="{{ asset($TemplateDesktop) }}">
     <link rel="stylesheet" href="{{ asset($TemplateMobile) }}">
     <link rel='stylesheet' href="{{ $Boxicons }}">
-    <link rel='stylesheet' href="{{ $IconReferen }}">
+    <link rel='stylesheet' href="{{ asset($IconReferen) }}">
+
+    <script src="{{ asset($JquerySrc) }}"></script>
 
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 

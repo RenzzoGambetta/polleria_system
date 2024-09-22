@@ -3,7 +3,6 @@
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($Form) }}">
-<script src="{{ $JquerySrc }}" integrity="{{ $JqueryIntegrity }}" crossorigin="{{ $JqueryCrossorigin }}"></script>
 
 <div class="header">
     <div class="left">
@@ -162,7 +161,7 @@
     </form>
 </section>
 <script src="{{ asset($EffectsAndActions) }}"></script>
-<script src="{{ asset($QueryAndResponseAjaxData) }}"></script>
+<script src="{{ asset($FueryFetch) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

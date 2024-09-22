@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 })
                 .catch(error => {
-                    console.error('Error fetching data:', error);
+                    console.error('Error en la consulta por tunel:', error);
                 });
         }
     });

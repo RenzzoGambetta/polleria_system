@@ -254,9 +254,7 @@ function addTableBodyAboveReference(item) {
         .then(response => response.text())
         .then(template => {
             let htmlContent = template
-                .replace('{{id}}', item.id)
-                .replace('{{id-input}}', item.id)
-                .replace('{{id-button}}', item.id)
+                .replaceAll('{{id}}', item.id)
                 .replace('{{name}}', item.name)
                 .replace('{{price_total}}', item.price_per_unit * item.quantity)
                 .replace('{{price_per_unit}}', item.price_per_unit)

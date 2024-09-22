@@ -11,6 +11,7 @@ body.dark {
     --color-alert-background: rgb(0 0 0 / 90%);
 
 }
+
 div:where(.swal2-container) {
     z-index: 2001;
 }
@@ -24,6 +25,7 @@ div:where(.swal2-container).swal2-noanimation {
     background: var(--color-alert-background);
 
 }
+
 .select-iten {
     position: relative;
     width: 98%;
@@ -63,7 +65,7 @@ div:where(.swal2-container).swal2-noanimation {
 .options-iten {
     position: absolute;
     top: calc(100% + 4px);
-    background-color: var(--select-color-opcion);
+    background-color: var(--select-color-opcion-alert);
     border-radius: var(--rounded);
     width: 100%;
     max-height: 0px;
@@ -114,16 +116,17 @@ div:where(.swal2-container).swal2-noanimation {
 
 .checkbox input {
     display: none;
-  }
+}
+
 label.text-check {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 1rem;
     position: relative;
     user-select: none;
-  }
+}
 
-  .checkbox label:before {
+.checkbox label:before {
     content: "";
     display: inline-block;
     width: 2vh;
@@ -132,9 +135,9 @@ label.text-check {
     margin-right: 0.5rem;
     border-radius: 2px;
     transition: all 0.3s;
-  }
+}
 
-  .checkbox-preference label:after {
+.checkbox-preference label:after {
     content: "";
     position: absolute;
     left: 0.8vh;
@@ -146,32 +149,36 @@ label.text-check {
     border-width: 0 3px 3px 0;
     transform: rotate(45deg) scale(0);
     transition: transform 0.3s;
-  }
+}
 
-  .checkbox-preference input:checked + label:before{
+.checkbox-preference input:checked+label:before {
     background-color: #4caf50;
-  }
+}
 
-  .checkbox-preference input:checked + label:after {
+.checkbox-preference input:checked+label:after {
     transform: rotate(45deg) scale(1);
-  }
+}
 
- .text-data {
+.text-data {
     margin-top: 2vh;
 }
+
 label.text-check {
     font-family: cursive;
     color: #4caf50;
 }
+
 label.text-check:hover {
     font-family: cursive;
     text-decoration: underline;
     color: #408d43;
     cursor: pointer;
 }
+
 .div-new-product {
     margin-top: 4vh;
 }
+
 .butthon-new-product {
     background-color: #6d6d6d;
     color: white;
@@ -181,7 +188,8 @@ label.text-check:hover {
     cursor: pointer;
     font-family: cursive;
 }
-.butthon-new-product:hover{
+
+.butthon-new-product:hover {
     background-color: #f04343;
 
 }
@@ -194,6 +202,7 @@ label.loader-section {
     justify-content: center;
     align-items: center;
 }
+
 .loading {
     --speed-of-animation: 0.9s;
     --gap: 6px;
@@ -208,41 +217,333 @@ label.loader-section {
     width: 100px;
     gap: 6px;
     height: 100px;
-   }
+}
 
-   .loading span {
+.loading span {
     width: 4px;
     height: 50px;
     background: var(--first-color);
     animation: scale var(--speed-of-animation) ease-in-out infinite;
-   }
+}
 
-   .loading span:nth-child(2) {
+.loading span:nth-child(2) {
     background: var(--second-color);
     animation-delay: -0.8s;
-   }
+}
 
-   .loading span:nth-child(3) {
+.loading span:nth-child(3) {
     background: var(--third-color);
     animation-delay: -0.7s;
-   }
+}
 
-   .loading span:nth-child(4) {
+.loading span:nth-child(4) {
     background: var(--fourth-color);
     animation-delay: -0.6s;
-   }
+}
 
-   .loading span:nth-child(5) {
+.loading span:nth-child(5) {
     background: var(--fifth-color);
     animation-delay: -0.5s;
-   }
+}
 
-   @keyframes scale {
-    0%, 40%, 100% {
-     transform: scaleY(0.05);
+@keyframes scale {
+
+    0%,
+    40%,
+    100% {
+        transform: scaleY(0.05);
     }
 
     20% {
-     transform: scaleY(1);
+        transform: scaleY(1);
     }
-   }
+}
+
+.custum-file-upload {
+    height: 25vh;
+    width: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--color-input-background-border);
+    background-color: #75757529;
+    padding: 0px;
+    border-radius: 10px;
+}
+
+.custum-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+    height: 80px;
+    fill: #e8e8e8;
+}
+
+.custum-file-upload .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custum-file-upload .text span {
+    font-weight: 400;
+    color: #e8e8e8;
+}
+
+.custum-file-upload input {
+    display: none;
+}
+
+
+.conteiner-01 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.frame-01 {
+    height: 100%;
+    width: 100%;
+}
+
+img#preview-image {
+    max-height: 95%;
+    max-width: 95%;
+    border-radius: 0.5rem;
+}
+
+.conteiner-01 {
+    height: 25vh;
+}
+
+.heigh-div-input {
+    height: 6vh;
+}
+
+.input-data-number {
+    margin-top: 2vh;
+}
+
+.input-data-number {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.custum-file-upload .text span {
+    color: var(--dark);
+    font-family: revert;
+
+}
+
+.custum-file-upload .icon svg {
+    fill: var(--color-input-background-border);
+}
+
+.checkbox-preference {
+    margin-top: 4vh;
+}
+
+
+.type-measure {
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px auto;
+    font-family: 'Arial', sans-serif;
+}
+
+
+.sub-text-measure {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+.input-radio-option {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-measure-option {
+    display: none;
+}
+
+.label-measure-option {
+    background-color: #d7d7d775;
+    border: 0px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+
+.label-measure-option:hover {
+    background-color: #d4d4d4;
+}
+
+.input-measure-option:checked+.label-measure-option {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}
+
+.input-measure-option:checked+.label-measure-option:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 992px) {
+    label.label-input-data.mobile-label {
+        font-size: 0.8rem;
+    }
+
+    .selected-iten {
+        height: 5vh;
+        font-size: 1rem;
+        display: flex;
+        align-content: center;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    label.option-iten {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .butthon-new-product,
+    label.text-check {
+        font-family: serif;
+        font-size: 1rem;
+    }
+
+    label.text-check:hover {
+        font-family: serif;
+        text-decoration: underline;
+        color: #408d43;
+        cursor: pointer;
+    }
+
+    .checkbox label:before {
+        width: 1.5vh;
+        height: 1.5vh;
+    }
+
+    .checkbox-preference label:after {
+        left: 0.6vh;
+        top: 0px;
+        width: 3px;
+        height: 10px;
+        border-width: 0 2px 2px 0;
+    }
+}
+
+@media (max-width: 768px) {
+
+    label.label-input-data.mobile-label {
+        font-size: 0.7rem;
+    }
+
+    .selected-iten {
+        height: 5vh;
+        font-size: 0.8rem;
+        display: flex;
+        align-content: center;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    label.option-iten {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    .butthon-new-product,
+    label.text-check {
+        font-family: serif;
+        font-size: 0.7rem;
+    }
+
+    label.text-check:hover {
+        font-family: serif;
+        text-decoration: underline;
+        color: #408d43;
+        cursor: pointer;
+    }
+
+    .checkbox label:before {
+        width: 1.5vh;
+        height: 1.5vh;
+    }
+
+    .checkbox-preference label:after {
+        left: 0.6vh;
+        top: -4px;
+        width: 3px;
+        height: 10px;
+        border-width: 0 2px 2px 0;
+    }
+
+
+    .custum-file-upload {
+        height: 15vh;
+        width: 35vh;
+    }
+
+    .custum-file-upload .icon svg {
+        height: 40px;
+    }
+
+    .custum-file-upload .text {
+        font-size: 0.7rem;
+    }
+
+    .conteiner-01 {
+        display: flex;
+        flex-direction: column-reverse;
+        align-content: center;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+    }
+
+    .frame-01 {
+        margin-top: 4vh;
+    }
+
+    .input-dimensions.alert-input {
+        padding-left: 0%;
+    }
+
+    .sub-text-measure {
+        font-size: 0.8rem;
+    }
+
+    .label-measure-option {
+        padding: 10px 25px;
+        font-size: 0.8rem;
+    }
+}
