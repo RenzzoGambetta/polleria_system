@@ -292,7 +292,6 @@ section#miFormulario {
     max-height: 0px;
     overflow: hidden;
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 8px;
     opacity: 0;
     border-radius: 10px;
     z-index: 12;
@@ -307,7 +306,7 @@ section#miFormulario {
     max-height: 200px;
     opacity: 1;
     overflow-y: scroll;
-
+    padding: 8px;
 }
 
 .options.active+.selected::after,

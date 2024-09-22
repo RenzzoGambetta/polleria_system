@@ -34,12 +34,18 @@ const sideBar = document.querySelector('.sidebar');
 
 menuBar.addEventListener('click', () => {
     const isClosed = sideBar.classList.toggle('close');
+    fetchDataNavBar(isClosed);
+    //Variable rastreda de -> "/theme_toggle"
+    sideBarClosed = isClosed;
+    sideBarClosedMemori = isClosed;
+});
 
+function fetchDataNavBar(isClosed){
     fetch(`/update_menu_state?state=${isClosed ? 'close' : 'open'}`)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'State updated') {
-                //console.log('Estado guardado en sesión:', isClosed ? 'Menú cerrado' : 'Menú abierto');
+                //console.log('Estado guardado en sesión:', isClosed );
             } else {
                 console.error('Error al guardar el estado');
             }
@@ -47,4 +53,4 @@ menuBar.addEventListener('click', () => {
         .catch(error => {
             console.error('Error:', error);
         });
-});
+}
