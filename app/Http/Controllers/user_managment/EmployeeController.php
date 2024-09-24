@@ -70,7 +70,7 @@ class EmployeeController extends Controller
     {
         try {
             $validatedData = $request->validated();
-            $response = $this->employeeService->create($validatedData);
+            $response = $this->employeeService->createEmployee($validatedData);
 
             if ($response === true) {
                 return redirect()->route('employeer')->with('success', 'Empleado creado exitosamente');
@@ -84,6 +84,5 @@ class EmployeeController extends Controller
             return redirect()->route('employeer_register')->with('Ms', $response);
         }
     }
-
 }
 

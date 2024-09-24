@@ -11,7 +11,7 @@ class EmployeeService
 {
     public function __construct(){}
 
-    public function create(array $data)
+    public function createEmployee(array $data)
     {
         DB::beginTransaction();
         try {
@@ -40,7 +40,36 @@ class EmployeeService
         }
     }
 
-    public function delete(Employee $employee)
+    public function updateEmployee(array $data, Employee $employee)
+    {
+        DB::beginTransaction();
+        try {
+            $employee->update([
+                'address' => $data['address'],
+                'nationality' => $data['nationality'],
+            ]);
+
+            $person_id = $employee->person_id;
+            $person = Person::first($person_id);
+            $person->update([
+                'dni' => $data['dni'],
+                'firstname' => $data['name'],
+                'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
+                'birthdate' => $data['birthdate'],
+                'gender' => $data['gender'] == 'male' ? 0 : 1,
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+            ]);
+
+            DB::commit();
+            return $employee;
+         } catch (Exception $e) {
+            DB::rollBack();
+            throw $e; 
+         }
+    }
+
+    public function deleteEmployee(Employee $employee)
     {
         DB::beginTransaction();
         try {
@@ -48,7 +77,7 @@ class EmployeeService
 
             $employee->delete();
 
-            $person = Person::find($person_id);
+            $person = Person::first($person_id);
             $person->delete();
             DB::commit();
             return true;
