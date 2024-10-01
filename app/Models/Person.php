@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Employee;
+use App\Models\Supplier;
 
 
 class Person extends Model
@@ -18,5 +19,10 @@ class Person extends Model
     public function employee(): HasOne
     {
         return $this->hasOne(Employee::class);
+    }
+
+    public function supplier(): HasOne
+    {
+        return $this->hasOne(Supplier::class);
     }
 }
