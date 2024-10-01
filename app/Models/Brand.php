@@ -13,7 +13,7 @@ class Brand extends Model
 
     protected $fillable = ['name', 'description'];
 
-    public function Supply(): BelongsTo
+    public function suppliers(): BelongsTo
     {
         return $this->belongsTo(Supply::class);
     }
