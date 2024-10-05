@@ -49,6 +49,8 @@ use App\Http\Controllers\temp\EfectController;
     Route::post('/register_product_entry', [ProductStockController::class,'registerProductEntry'])->name('register_product_entry');
     Route::get('/suppliers', [SuppliersController::class,'showSuppliersList'])->name('suppliers');
     Route::get('/suppliers_register_and_edit', [SuppliersController::class,'showSuppliersRegisterAndEdit'])->name('suppliers_register_and_edit');
+    Route::get('/show_list_inventory_movements', [InventoryController::class,'showListInventoryMovements'])->name('show_list_inventory_movements');
+    Route::get('/new_product_inventory', [InventoryController::class,'newProductInventory'])->name('new_product_inventory');
 
 //--> Home
 

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 <div class="btn-mobile mobile">
-    <a href="{{ route('new_product_inventory') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+    <a href="{{ route('show_panel_register_entry') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
 </div>
 
 <div class="header">
@@ -13,13 +13,13 @@
         <ul class="breadcrumb">
 
             <a href="{{ route('inventory') }}" class="active">
-                todos
+                Movimientos
             </a>
             <li>
                 /
             </li>
             <a class="pagina">
-                {{ __('Lista de :from al :to de un total de :total   ', ['from' => $Inventory->firstItem(), 'to' => $Inventory->lastItem(), 'total' => $Inventory->total()]) }}
+                {{ __('Lista de :from al :to de un total de :total   ', ['from' => $Movement->firstItem(), 'to' => $Movement->lastItem(), 'total' => $Movement->total()]) }}
             </a>
 
         </ul>
@@ -33,22 +33,21 @@
         <div class="header">
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
-            <a href="{{ route('new_product_inventory') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+            <a href="{{ route('show_panel_register_entry') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
         </div>
         <table>
             <thead>
                 <tr>
                     <th>Producto</th>
-                    <th>Stock</th>
+                    <th>Movimiento</th>
                     <th>Marca</th>
-                    <th>Estado</th>
-                    <th>Opciones</th>
+                    <th>Provedor</th>
                 </tr>
             </thead>
 
             <tbody>
 
-                @foreach ($Inventory as $Inventories)
+                @foreach ($Movement as $Movements)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>-------</td>
@@ -64,9 +63,9 @@
 </div>
 
 <section class="paginacion">
-    {{ $Inventory->onEachSide(1)->links('pagination::custom') }}
-    {{ $Inventory->onEachSide(1)->links('pagination::numeros') }}
-    {{ $Inventory->onEachSide(1)->links('pagination::anterior') }}
+    {{ $Movement->onEachSide(1)->links('pagination::custom') }}
+    {{ $Movement->onEachSide(1)->links('pagination::numeros') }}
+    {{ $Movement->onEachSide(1)->links('pagination::anterior') }}
 </section>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

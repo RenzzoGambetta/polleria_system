@@ -52,10 +52,16 @@
                     <a href="{{ route('inventory') }}" class="{{ ($Navigation['seccion'] ?? null) == 3 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 30 ? 'nav_select' : '' }}"><i class='fi fi-br-supplier-alt bx-adjustment-icon'></i>Inventario</a>
                     <ul class="sub">
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.1 ? 'active' : '' }}">
-                            <a href="{{ route('show_panel_register_entry') }}" id="{{ ($Navigation['color'] ?? null) == 31 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-in bx-adjustment-icon'></i>Entradas</a>
+                            <a href="{{ route('show_list_inventory_movements') }}" id="{{ ($Navigation['color'] ?? null) == 31 ? 'nav_select' : '' }}"><i class='fi fi-bs-sort-alt bx-adjustment-icon'></i>Movimientos</a>
                         </li>
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.2 ? 'active' : '' }}">
-                            <a href="{{ route('suppliers') }}" id="{{ ($Navigation['color'] ?? null) == 32 ? 'nav_select' : '' }}"><i class='fi fi-bs-person-dolly bx-adjustment-icon'></i>Provedores</a>
+                            <a href="{{ route('show_panel_register_entry') }}" id="{{ ($Navigation['color'] ?? null) == 32 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-out bx-adjustment-icon'></i>Salida</a>
+                        </li>
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.3 ? 'active' : '' }}">
+                            <a href="{{ route('show_panel_register_entry') }}" id="{{ ($Navigation['color'] ?? null) == 33 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-in bx-adjustment-icon'></i>Entradas</a>
+                        </li>
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.4 ? 'active' : '' }}">
+                            <a href="{{ route('suppliers') }}" id="{{ ($Navigation['color'] ?? null) == 34 ? 'nav_select' : '' }}"><i class='fi fi-bs-person-dolly bx-adjustment-icon'></i>Provedores</a>
                         </li>
                     </ul>
                 </li>

@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductStockController extends Controller
 {
-    protected $Navigation = [
+    protected $NavigationEntry = [
         'seccion' => 3,
-        'sub_seccion' => 3.1,
-        'color' => 31
+        'sub_seccion' => 3.3,
+        'color' => 33
+    ];
+    protected $NavigationOutput = [
+        'seccion' => 3,
+        'sub_seccion' => 3.2,
+        'color' => 32
     ];
     public function showPanelRegisterEntry()
     {
@@ -29,7 +34,7 @@ class ProductStockController extends Controller
             ['id' => 9, 'name' => 'Comercial Ortega'],
             ['id' => 10, 'name' => 'Proveedores Sánchez'],
         ];
-        $Navigation = $this->Navigation;
+        $Navigation = $this->NavigationEntry;
 
         return view('inventory_management.product_stock_entry', compact('Navigation', 'Suppliers'));
 

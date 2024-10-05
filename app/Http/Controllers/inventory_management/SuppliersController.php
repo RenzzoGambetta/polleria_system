@@ -10,8 +10,8 @@ class SuppliersController extends Controller
 {
     protected $Navigation = [
         'seccion' => 3,
-        'sub_seccion' => 3.2,
-        'color' => 32
+        'sub_seccion' => 3.4,
+        'color' => 34
     ];
     public function showSuppliersList(){
         $Suppliers = User::paginate(6);
