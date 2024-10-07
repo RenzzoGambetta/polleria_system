@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
-            $table->string('code', 15);
-            $table->string('name', 64);
-            $table->boolean('is_stockable');
-            $table->integer('stock');
-            $table->string('unit', 15);
-            $table->string('note', 255);
+            $table->string('code', 15)->nullable();
+            $table->string('name', 100);
+            $table->boolean('is_stockable')->default(false);
+            $table->integer('stock')->default(0);
+            $table->string('unit', 15)->default('uni');
+            $table->string('note', 255)->nullable();
             $table->timestamps();
         });
     }
