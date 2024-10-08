@@ -21,6 +21,11 @@ class InventoryReceipt extends Model
         'commentary',
     ];
 
+    public function details() 
+    {
+        return $this->hasMany(InventoryReceiptDetails::class, 'receipt_id');
+    }
+
     public function voucherType()
     {
         return $this->belongsTo(VoucherType::class, 'voucher_id');

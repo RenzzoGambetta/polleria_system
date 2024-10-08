@@ -10,6 +10,7 @@ use App\Models\Permission;
 use App\Models\Supplier;
 use App\Models\Brand;
 use App\Models\InventoryReceipt;
+use App\Models\InventoryReceiptDetails;
 use App\Models\Supply;
 use App\Models\VoucherType;
 use Database\Factories\UserPermissionFactory;
@@ -51,7 +52,7 @@ class DatabaseSeeder extends Seeder
         Brand::factory(5)->create();
         Supply::factory(10)->create();
         VoucherType::factory()->createDefault();
-        InventoryReceipt::factory(10)->create();
+        InventoryReceiptDetails::factory(10)->create();
 
         $roles = Role::factory(2)->create();
         $permissions = Permission::factory(6)->create();
