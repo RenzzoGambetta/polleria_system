@@ -1,4 +1,5 @@
 const URL_TEMPLATE = "/resources/inventory_management/template/";
+var changeInterval;
 
 function cancelPage(url) {
     //window.history.back();
@@ -32,14 +33,17 @@ async function addItems() {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            const product = document.querySelector('input[name="product"]:checked');
+            //const product = document.querySelector('input[name="product"]:checked');
             const supplier = document.querySelector('input[name="supplier_id"]:checked');
-            const productId = product ? product.value : null;
+            //const productId = product ? product.value : null;
             const supplierId = supplier ? supplier.value : null;
-            const productName = product ? product.nextElementSibling.textContent : null;
+            //const productName = product ? product.nextElementSibling.textContent : null;
+
+            const productName = document.getElementsByName('product_name')[0]?.value || null;
+            const productId = parseInt(document.getElementsByName('id_product_name')[0]?.value) || null;
             const price = parseFloat(document.getElementById('price-data').value) || 0;
             const quantity = parseFloat(document.getElementById('quantity-data').value) || 1;
-            const save_option = document.getElementById('checkbox-preference').checked;
+            const save_option = document.getElementById('checkbox-preference-input').checked;
 
             const item = {
                 id: productId,
@@ -47,26 +51,33 @@ async function addItems() {
                 price_per_unit: price,
                 quantity: quantity
             };
-            if (save_option) {
-                anchorProduct(productId,supplierId)
+            if (save_option & productId != null) {
+                anchorProduct(productId, supplierId)
             }
-            if (productId != null){
+            if (productId != null) {
                 addTableBodyAboveReference(item);
-            }else{
+            } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "No seleccionastes un producto",
-                  });
+                    text: "No seleccionastes un producto o no esta escrito bien",
+                });
             }
 
         } else if (result.isDismissed) {
         }
     });
-    fetchRoles();
-    selectorIten(".selected-iten", ".options-iten", ".option-iten");
-    revertStyleDefaultAlert();
 
+    const apiUrl = '/list_of_products';
+    new SearchBox('No se encuntro el producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-product', apiUrl, 5, 0);
+    //fetchRoles();
+    //selectorIten(".selected-iten", ".options-iten", ".option-iten");
+    revertStyleDefaultAlert();
+    $(document).ready(function () {
+        $('#checkbox-preference-input').change(function () {
+            updateLabelColor();
+        });
+    });
 
 }
 async function newProduct() {
@@ -84,9 +95,87 @@ async function newProduct() {
         cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
         cancelButtonAriaLabel: "Thumbs down",
 
-    })
-}
+    }).then(async (result) => {
+        if (result.isConfirmed) {
 
+            const newProductName = document.getElementsByName('name_new_product')[0]?.value || null;
+            const newProductQuantity = document.getElementsByName('quantity_new_product')[0]?.value || null;
+            const newProductPrice = document.getElementsByName('price_new_product')[0]?.value || null;
+
+            const isStock = document.getElementsByName('is_stock')[0]?.checked || false;
+            const saveOption = document.getElementsByName('save_option')[0]?.checked || false;
+
+            const measurementSystem = document.querySelector('input[name="measurement_system"]:checked');
+            const measurementSystemValue = measurementSystem ? measurementSystem.value : null;
+
+            const data = {
+                name: newProductName,
+                unit_measure: measurementSystemValue,
+                is_stockable: isStock,
+                save_option: saveOption,
+            };
+            if (newProductName != null & newProductQuantity != null & newProductPrice != null & measurementSystemValue != null) {
+                const result = await querySearchGet("/register_new_product", data);
+                if (result.response === true) {
+                    const item = {
+                        id: result.id,
+                        name: result.name,
+                        price_per_unit: newProductPrice,
+                        quantity: newProductQuantity
+                    };
+                    addTableBodyAboveReference(item);
+                    quickAlert("success", "Se registro exitosamente", "Listo")
+                } else {
+                    quickAlert("error", "No seleccionastes un producto o no esta escrito bien", "Oops...")
+                }
+            } else {
+                quickAlert("error", "Dejastes algunos campos vacíos", "Oops...")
+            }
+
+        }
+        else if (result.isDismissed) {
+            console.log("Se canselo el registro")
+        }
+    });
+    selectorIten(".selected-unit-of-measurement-product-new", ".options-unit-of-measurement-product-new", ".option-unit-of-measurement-product-new");
+    $(document).ready(function () {
+        $('#checkbox-preference-input').change(function () {
+            updateLabelColor();
+        });
+    });
+
+}
+function quickAlert(icon, text, title) {
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+    });
+}
+async function querySearchGet(url, dataCompact) {
+    const queryParams = new URLSearchParams(dataCompact).toString();
+    const ref = url + `?${queryParams}`;
+
+    try {
+        const response = await fetch(ref);
+        if (!response.ok) {
+            throw new Error('Error en la solicitud: ' + response.statusText);
+        }
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Error:', error);
+        return false;
+    }
+}
+function updateLabelColor() {
+    if ($('#checkbox-preference-input').is(':checked')) {
+        $('label.text-adapt-item').css('color', 'red');
+    } else {
+        $('label.text-adapt-item').css('color', 'green');
+    }
+}
 function deleteProductRow(id) {
 
     var rowId = 'idRow' + id;
@@ -104,8 +193,6 @@ function deleteProductRow(id) {
     sumOfPrices();
 
 }
-
-
 function revertStyleDefaultAlert() {
     const bodyElement = document.querySelector('body.dark.swal2-shown.swal2-height-auto');
     if (bodyElement) {
@@ -127,7 +214,6 @@ function revertSelectionChanges() {
     subTitleDiv.style.opacity = "0";
     selected.innerHTML = 'Seleccionar un provedor';
 }
-
 async function loadHtmlFromFile(url) {
     try {
         const response = await fetch(url);
@@ -140,7 +226,6 @@ async function loadHtmlFromFile(url) {
         return '';
     }
 }
-
 function sumOfPrices() {
     const priceInputs = document.querySelectorAll('.price-input-total');
     let total = 0;
@@ -151,9 +236,6 @@ function sumOfPrices() {
 
     document.getElementById('total-price').textContent = total.toFixed(2);
 }
-
-var changeInterval;
-
 function startAction(button, inputName, buttonActionIcon) {
 
     changeInterval = setInterval(function () {
@@ -163,7 +245,6 @@ function startAction(button, inputName, buttonActionIcon) {
 function stopChange() {
     clearInterval(changeInterval);
 }
-
 function updatePrice(button, type) {
 
     const row = button.closest('tr');
@@ -184,7 +265,6 @@ function updatePrice(button, type) {
         priceInput.value = totalUnit.toFixed(2);
     }
 }
-
 function valueActionInput(button, inputName, buttonActionIcon) {
 
     var inputQuantity = button.parentElement.querySelector('.quantity-input');
@@ -273,10 +353,8 @@ function removeAllTableBodies() {
     tbodies.forEach(tbody => tbody.remove());
     sumOfPrices()
 }
-
-function supplierConsultation(event) {
-    var supplierId = event.target.value;
-
+function supplierConsultation(id) {
+    var supplierId = id;
     removeAllTableBodies();
 
     fetch(`/supplier_product_list?id=${supplierId}`)
@@ -302,10 +380,6 @@ function supplierConsultation(event) {
         });
 }
 
-document.querySelectorAll('input[name="supplier_id"]').forEach(function (radio) {
-    radio.addEventListener('change', supplierConsultation);
-
-});
 function toggleDisplay() {
     var listDataProduct = document.querySelector('.list-data-product');
     var buttonElement = document.querySelector('.element-option');
@@ -351,9 +425,6 @@ function reverseToggleDisplay() {
         filter.style.display = 'flex';
     }
 }
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     document.body.addEventListener('input', (event) => {
         if (event.target.matches('input[type="number"]')) {
@@ -373,8 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-
-
+/* funcion remplasada por search_box_template
 
 function fetchRoles() {
     const url = '/list_of_products';
@@ -413,34 +483,35 @@ function fetchRoles() {
         })
         .catch(error => console.error('Error al obtener los productos:', error));
 }
+*/
 function anchorProduct(productId, supplierId) {
 
-    const url = '/anchor_product_provider?productId='+productId+'&supplierId='+supplierId;
+    const url = '/anchor_product_provider?productId=' + productId + '&supplierId=' + supplierId;
 
     fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud: ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Datos recibidos:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Datos recibidos:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
 
 }
-async function newSupplierRegistrationFast(){
+async function newSupplierRegistrationFast() {
 
-    var url = URL_TEMPLATE + "new_product_alert_template.html";
+    var url = URL_TEMPLATE + "new_supplier_alert_template.html";
     const htmlContent = await loadHtmlFromFile(url);
 
     Swal.fire({
-        title: '<h1 class="title">Registrar nuevo producto</h1>',
-        html: "hol",
+        title: '<h1 class="title">Registrar nuevo provedor</h1>',
+        html: htmlContent,
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
@@ -448,5 +519,43 @@ async function newSupplierRegistrationFast(){
         cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
         cancelButtonAriaLabel: "Thumbs down",
 
-    })
+
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const companyName = document.getElementsByName('company_name')[0]?.value || null;
+            const documentNumber = document.getElementsByName('document_number')[0]?.value || null;
+            const phone = document.getElementsByName('phone')[0]?.value || null;
+
+            const dataCompact = {
+                company_name: companyName,
+                document_number: documentNumber,
+                phone: phone,
+            };
+
+            if (!documentNumber || documentNumber.length < 8) {
+                quickAlert("error", "El número de documento debe tener al menos 8 caracteres.")
+            } else {
+                if (!phone || phone.length < 9) {
+                    quickAlert("error", "El número de teléfono debe tener al menos 9 dígitos.", "Oops...")
+                } else {
+                    if (companyName != null & documentNumber != null & phone != null) {
+                        const result = await querySearchGet("/new_supplier_registration_fast", dataCompact);
+                        if (result.response === true) {
+                            quickAlert("success", "Se registro exitosamente el provedor", "Listo")
+                        } else {
+                            quickAlert("error", "No se pudo registrar el provedor", "Oops...")
+                        }
+                    }
+                }
+            }
+        } else if (result.isDismissed) {
+            console.log("Se canselo el registro de nuevo provedor")
+        }
+    });
+
 }
+document.getElementById('form-register-entry').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
+});

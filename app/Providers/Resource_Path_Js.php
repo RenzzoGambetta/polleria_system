@@ -47,6 +47,9 @@ class Resource_Path_Js extends ServiceProvider
             $FunctionButtonOnclick = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'function_button_onclick.js');
             $view->with('FunctionButtonOnclick', $FunctionButtonOnclick);
 
+            $SearchBoxTemplate = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'search_box_template.js');
+            $view->with('SearchBoxTemplate', $SearchBoxTemplate);
+
         });
     }
 }

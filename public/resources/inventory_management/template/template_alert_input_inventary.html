@@ -72,28 +72,32 @@
         width: 45%;
         border-radius: 1.5vh;
     }
+
     @media (max-width: 992px) {
-        .division-select-iten, .price-and-quantity-data-splitting {
-        height: 8vh;
-    }
+
+        .division-select-iten,
+        .price-and-quantity-data-splitting {
+            height: 8vh;
+        }
     }
 </style>
 <header>
     <div class="division-select-iten">
-        <div class="select-iten">
-            <div class="options-iten" id="options-container">
-                <label class="loader-section">
-                    <div class="loading">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </label>
+        <div class="search-container">
+            <input type="number" id="id-product" name="id_product_name">
+            <input type="text" id="search" name="product_name" class="search-box input-iten effect-5 no-spinner alert-style" placeholder=" "
+                autocomplete="off">
+            <label for="search" id="search-label" class="label-input-data mobile-label ">Producto</label>
+            <div id="suggestions" class="suggestions"></div>
+            <div id="loader" class="loader-section">
+                <div class="loading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-
-            <div class="selected-iten">Seleccione el producto</div>
         </div>
     </div>
     <div class="price-and-quantity-data-splitting">
@@ -113,10 +117,22 @@
         </div>
     </div>
     <div class="text-data">
-        <div class="checkbox checkbox-preference">
-            <input type="checkbox" id="checkbox-preference" name="save_option" value="True" />
-            <label for="checkbox-preference" class="text-check">Mantener guardada la relación con el proveedor para
-                obtener un acceso más rápido.</label>
+        <div class="checkbox-preference adapt-item">
+            <label class="container-supplier">
+                <input checked="checked" type="checkbox" id="checkbox-preference-input" name="save_option" value="True">
+                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="lock-open">
+                    <path
+                        d="M352 144c0-44.2 35.8-80 80-80s80 35.8 80 80v48c0 17.7 14.3 32 32 32s32-14.3 32-32V144C576 64.5 511.5 0 432 0S288 64.5 288 144v48H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64H352V144z">
+                    </path>
+                </svg>
+                <svg viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="lock">
+                    <path
+                        d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z">
+                    </path>
+                </svg>
+            </label>
+            <label for="checkbox-preference-input" class="text-check text-adapt-item">Anclar el producto al
+                provedor</label>
         </div>
         <div class="div-new-product">
             <button type="button" class="butthon-new-product" onclick="newProduct();">¿El producto no se encuentra

@@ -66,8 +66,14 @@ class Resource_Path_Css extends ServiceProvider
             $ItemSelectionAlert = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'item_selection_alert.css');
             $view->with('ItemSelectionAlert', $ItemSelectionAlert);
 
+            $CheckboxAnimation = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'checkbox_animation.css');
+            $view->with('CheckboxAnimation', $CheckboxAnimation);
+
             $LoadingStyle = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'loading_style.css');
             $view->with('LoadingStyle', $LoadingStyle);
+
+            $SearchBox = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'search_box.css');
+            $view->with('SearchBox', $SearchBox);
         });
     }
 }

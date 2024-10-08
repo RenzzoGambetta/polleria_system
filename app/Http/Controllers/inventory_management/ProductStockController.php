@@ -220,7 +220,7 @@ class ProductStockController extends Controller
                 'name' => 'Carne de Res',
             ],
             [
-                'id' => 3,
+                'id' => 32,
                 'name' => 'Pescado',
             ],
             [
@@ -248,11 +248,36 @@ class ProductStockController extends Controller
                 'name' => 'Tacos',
             ],
             [
-                'id' => 10,
+                'id' => 102,
                 'name' => 'Costillas',
             ],
         ];
         return response()->json($product);
+    }
+    public function registerNewProduct(Request $request){
+
+        $name = $request->input('name');
+        $unit_measure = $request->input('unit_measure');
+        $is_stockable = $request->input('is_stockable');
+        $save_option = $request->input('save_option');
+
+
+        if($name != "null" & $unit_measure != "null"){
+            $reply = [
+                'id' => 22,
+                'name' => $name,
+                'unit_measure' => $unit_measure,
+                'is_stockable' => $is_stockable,
+                'save_option' => $save_option,
+                'response' => true
+            ];
+        }else{
+            $reply = [
+                'response' => false
+            ];
+        }
+
+        return response()->json($reply);
     }
     public function anchorProductProvider(Request $request)
     {

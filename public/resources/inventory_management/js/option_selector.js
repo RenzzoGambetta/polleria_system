@@ -1,4 +1,4 @@
-const selected = document.querySelector('.selected')
+/*const selected = document.querySelector('.selected')
 const options = document.querySelector('.options')
 const optionList = document.querySelectorAll('.option')
 const subTitleDiv = document.querySelector('.sub-title-div')
@@ -42,7 +42,7 @@ document.addEventListener('click', (event) => {
             options.style.padding = `${currentPadding - 8}px`
         }
     }
-})
+})*/
 function selectorIten(select, option, listOption) {
 
     const selected = document.querySelector(select);

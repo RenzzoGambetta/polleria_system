@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{ asset($InventoryRegisterMobile) }}">
 <link rel="stylesheet" href="{{ asset($LoadFragment) }}">
 <link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
+<link rel="stylesheet" href="{{ asset($CheckboxAnimation) }}">
+<link rel="stylesheet" href="{{ asset($SearchBox) }}">
 
 <div class="header">
     <div class="left">
@@ -26,7 +28,7 @@
     </div>
 </div>
 
-<form id="myForm" action="{{ route('register_product_entry') }}" method="POST">
+<form id="form-register-entry" action="{{ route('register_product_entry') }}" method="POST">
     @csrf
     <div class="input-data-form">
         <div class="sub-input-01">
@@ -38,23 +40,23 @@
             <div class="block-01">
                 <div class="lateralside-content sub-block-01">
 
-                    <div class="select">
-                        <div class="sub-title-div">
-                            <label for="sub-title-select-01" class="sub-title-select">Seleccione un provedor</label>
-
+                    <div class="search-container">
+                        <input type="number" id="id-supplier" name="id_supplier_name">
+                        <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" "
+                            autocomplete="off">
+                        <label for="search" id="search-label-supplier" class="label-input-data mobile-label">Producto</label>
+                        <div id="suggestions" class="suggestions-supplier"></div>
+                        <div id="loader-supplier" class="loader-section">
+                            <div class="loading">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </div>
-                        <div class="options">
-                            @foreach ($Suppliers as $supplier)
-                                <label for="{{ $supplier['id'] }}" class="option">
-                                    <input type="radio" name="supplier_id" id="{{ $supplier['id'] }}" value="{{ $supplier['id'] }}" />
-                                    <span>{{ $supplier['name'] }}</span>
-                                </label>
-                            @endforeach
-                            <button type="button" class="option new-supplier" onclick="newSupplierRegistrationFast()">Registrar nuevo provedor . . .</button>
-                        </div>
-
-                        <div class="selected">Seleccionar un provedor</div>
                     </div>
+
                 </div>
                 <div class="lateralside-content sub-block-02">
                     <div class="input-group input-dimensions">
@@ -78,7 +80,7 @@
         </div>
 
     </div>
-
+   
     <div class="bottom-data">
         <div class="orders">
             <table class="list-data-product">
@@ -127,9 +129,9 @@
 
     </div>
     <script>
-       // $(document).ready(function() {
-       //     newProduct()
-       // });
+        //$(document).ready(function() {
+        //    newSupplierRegistrationFast()
+        //});
     </script>
     <div>
         <div class="sub-input-02">
@@ -142,8 +144,12 @@
         </div>
     </div>
 </form>
+<script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($OptionSelector) }}"></script>
-
+<script>
+    const apiUrl = '/list_of_suppliers';
+    new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier', apiUrl, 5, 1);
+</script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

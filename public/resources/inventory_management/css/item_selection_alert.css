@@ -25,14 +25,18 @@ div:where(.swal2-container).swal2-noanimation {
     background: var(--color-alert-background);
 
 }
-
-.select-iten {
+/*Combox animation index*/
+.select-iten,
+.select-unit-of-measurement-product-new
+{
     position: relative;
     width: 98%;
     margin: 1.5rem 1vh;
 }
 
-.selected-iten {
+.selected-iten,
+.selected-unit-of-measurement-product-new
+{
     background-color: transparent;
     padding: 12px 24px;
     border: 2.5px solid var(--color-input-background-border);
@@ -43,11 +47,15 @@ div:where(.swal2-container).swal2-noanimation {
     height: 100%;
 }
 
-.selected-iten::after {
+.selected-iten::after,
+.selected-unit-of-measurement-product-new::after
+{
     top: 50%;
 }
 
-.selected-iten::after {
+.selected-iten::after,
+.selected-unit-of-measurement-product-new::after
+{
     content: "";
     position: absolute;
     top: 53%;
@@ -62,7 +70,9 @@ div:where(.swal2-container).swal2-noanimation {
     filter: var(--calendar-icon-color);
 }
 
-.options-iten {
+.options-iten,
+.options-unit-of-measurement-product-new
+{
     position: absolute;
     top: calc(100% + 4px);
     background-color: var(--select-color-opcion-alert);
@@ -75,7 +85,9 @@ div:where(.swal2-container).swal2-noanimation {
     z-index: 1;
 }
 
-.options-iten.active {
+.options-iten.active,
+.options-unit-of-measurement-product-new.active
+{
     max-height: 200px;
     opacity: 1;
     overflow-y: scroll;
@@ -83,30 +95,41 @@ div:where(.swal2-container).swal2-noanimation {
     padding: 12px;
 }
 
-.options-iten.active+.selected-iten::after {
+.options-iten.active+.selected-iten::after,
+.options-unit-of-measurement-product-new.active+.selectedunit-of-measurement-product-new::after
+{
     transform: rotateX(180deg) translateY(50%);
 }
 
-.options-iten::-webkit-scrollbar {
+.options-iten::-webkit-scrollbar,
+.options-unit-of-measurement-product-new::-webkit-scrollbar
+{
     width: 0.375rem;
 }
 
-.options-iten::-webkit-scrollbar-thumb {
+.options-iten::-webkit-scrollbar-thumb,
+.options-unit-of-measurement-product-new::-webkit-scrollbar-thumb
+{
     background-color: #ccc;
     border-radius: 0 6px 6px 0;
 }
 
-.option-iten {
+.option-iten,
+.option-unit-of-measurement-product-new
+{
     display: block;
     padding: 12px;
     cursor: pointer;
     border-radius: 4px;
 }
 
-.option-iten:hover {
+.option-iten:hover,
+.option-unit-of-measurement-product-new:hover
+{
     background-color: var(--select-color-opcion-hover);
     border-radius: 15px;
 }
+/*Combox animation end*/
 
 
 .effect-5:focus+label.label-input-data,
@@ -412,6 +435,18 @@ img#preview-image {
 .input-measure-option:checked+.label-measure-option:hover {
     background-color: #45a049;
 }
+.new-product-select{
+    height: 6vh;
+    padding: 6px 2vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+}
+.options-unit-of-measurement-product-new.active{
+    max-height: 18vh;
+}
 
 @media (max-width: 992px) {
     label.label-input-data.mobile-label {
@@ -545,5 +580,21 @@ img#preview-image {
     .label-measure-option {
         padding: 10px 25px;
         font-size: 0.8rem;
+    }
+    .new-product-select{
+        height: 4.5vh;
+        font-size: 0.7rem;
+        border: 2px solid var(--color-input-background-border);
+        border-radius: 10px;
+
+    }
+   .selected-unit-of-measurement-product-new::after{
+        width: 1rem;
+        height: 1rem;
+    }
+   .option-unit-of-measurement-product-new {
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 0.6rem;
     }
 }
