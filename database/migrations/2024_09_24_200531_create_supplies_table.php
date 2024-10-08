@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->string('code', 15)->nullable();
@@ -22,16 +21,6 @@ return new class extends Migration
             $table->integer('stock')->default(0);
             $table->string('unit', 15)->default('uni');
             $table->string('note', 255)->nullable();
-=======
-            $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brands');
-            $table->string('code', 15);
-            $table->string('name', 64);
-            $table->boolean('is_stockable');
-            $table->integer('stock');
-            $table->string('unit', 15);
-            $table->string('note', 255);
->>>>>>> 6b50f5a (implementacion de migraciones y fabricas de los modelos marca, proveedor e insumo)
             $table->timestamps();
         });
     }
