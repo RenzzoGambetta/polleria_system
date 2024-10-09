@@ -13,6 +13,9 @@ use App\Models\InventoryReceipt;
 use App\Models\InventoryReceiptDetails;
 use App\Models\Supply;
 use App\Models\VoucherType;
+use App\Models\Lounge;
+use App\Models\Table;
+use Database\Factories\TableFactory;
 use Database\Factories\UserPermissionFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -41,6 +44,9 @@ class DatabaseSeeder extends Seeder
         DB::table('persons')->truncate();
         DB::table('voucher_types')->truncate();
         DB::table('inventory_receipts')->truncate();
+        DB::table('tables')->truncate();
+        DB::table('lounges')->truncate();
+
 
         // Re-enable foreign key constraints
         Schema::enableForeignKeyConstraints();
@@ -62,12 +68,14 @@ class DatabaseSeeder extends Seeder
                 $permissions->random(rand(1, 2))->pluck('id')->toArray()
             );
         });
-        /**
-         * User::factory()->create([
-         *   'name' => 'Test User',
-         *   'email' => 'test@example.com',
-         * ]);
-         */
+
+        $lounges = Lounge::factory()->count(3)->create();
+
+        foreach ($lounges as $lounge) {
+            for ($i = 0; $i < 10; $i++) {
+                Table::create((new TableFactory())->newWithCode($lounge->id, $i));
+            }
+        }
         
     }
 }
