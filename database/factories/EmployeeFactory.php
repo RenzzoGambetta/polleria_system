@@ -17,7 +17,7 @@ class EmployeeFactory extends Factory
     */
     protected $model = Employee::class;
 
-    private static $personId = 1;
+    private static $incrementPersonId = 1;
 
     public function definition(): array
     {
@@ -25,8 +25,8 @@ class EmployeeFactory extends Factory
         static $counter = 0;
 
         return [
-            'user_id' => $counter < 2 ? $userIds[$counter++] : null, // Asigna 4 y 5 a los dos últimos registros
-            'person_id' => self::$personId++, // Incrementa automáticamente desde 1
+            'user_id' => $counter < 2 ? $userIds[$counter++] : null,
+            'person_id' => self::$incrementPersonId++,
             'address' => $this->faker->address,
             'nationality' => $this->faker->randomElement(['peruano', 'venezolano', 'chileno']),
         ];

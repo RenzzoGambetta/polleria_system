@@ -15,12 +15,13 @@ class PermissionFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected static $increment = 1;
+
     public function definition(): array
     {
-        $permissionNames = ['per1', 'per2', 'per3', 'per4'];
 
         return [
-            'name' => $this->faker->unique()->randomElement($permissionNames),
+            'name' => 'permission' . self::$increment++,
             'category' => $this->faker->randomElement(['admin', 'ventas', 'pedidos', 'cocina']),
         ];
     }

@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Services\user_management;
+namespace App\Services\inventory;
 
-use App\Models\Employee;
 use App\Models\Person;
+use App\Models\Supplier;
 use Exception;
 use Illuminate\Support\Facades\DB;
-//use App\Utils\LogHelper;//Usalo para guardar los errores en consola
-class EmployeeService
+
+class SupplierService
 {
     public function __construct(){}
-
-    public function createEmployee(array $data)
-    {
+    
+    public function createSupplier(array $data) {
         DB::beginTransaction();
+
         try {
             $person = Person::create([
                 'dni' => $data['dni'],
@@ -25,32 +25,32 @@ class EmployeeService
                 'email' => $data['email'],
             ]);
 
-            $employee = Employee::create([
+            $supplier = Supplier::create([
                 'person_id' => $person->id,
                 'address' => $data['address'],
-                'nationality' => $data['nationality'],
+
             ]);
 
             DB::commit();
-           return true;
-        } catch (Exception $e) {
+            return $supplier;
+        }
+        catch (Exception $e) {
             DB::rollBack();
-            //LogHelper::logError($this,$e);//Se gurada los errores en consola
-            throw $e;
+            return $e;
         }
     }
 
-    public function updateEmployee(array $data, Employee $employee)
-    {
+    public function updateSupplier(Supplier $supplier, array $data) {
         DB::beginTransaction();
+
         try {
-            $employee->update([
+            $supplier->update([
                 'address' => $data['address'],
-                'nationality' => $data['nationality'],
             ]);
 
-            $person_id = $employee->person_id;
-            $person = Person::first($person_id);
+            $personId = $supplier->person_id;
+            $person = Person::first($personId);
+
             $person->update([
                 'dni' => $data['dni'],
                 'firstname' => $data['name'],
@@ -62,28 +62,31 @@ class EmployeeService
             ]);
 
             DB::commit();
-            return $employee;
-         } catch (Exception $e) {
+            return $supplier;
+        }
+        catch (Exception $e) {
             DB::rollBack();
-            throw $e; 
-         }
+            return $e;
+        }
     }
 
-    public function deleteEmployee(Employee $employee)
+    public function deleteSupplier(Supplier $supplier)
     {
         DB::beginTransaction();
+
         try {
-            $person_id = $employee->person_id;
+            $personId = $supplier->person_id;
+            $supplier->delete();
 
-            $employee->delete();
-
-            $person = Person::first($person_id);
+            $person = Person::first($personId);
             $person->delete();
+
             DB::commit();
             return true;
         } catch (Exception $e) {
             DB::rollBack();
-            throw $e;
+            return $e;
         }
     }
+
 }

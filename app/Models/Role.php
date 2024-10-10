@@ -15,4 +15,9 @@ class Role extends Model
     {
         return $this->belongsToMany(Permission::class, 'role_permission');
     }
+
+    public function updatePermissions($idPermissionsArray)
+    {
+        return $this->permissions()->sync($idPermissionsArray);
+    }
 }
