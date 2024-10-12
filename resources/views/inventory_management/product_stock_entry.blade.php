@@ -3,6 +3,7 @@
 <!---------------------------------------------------------------------->
 <script src="{{ $AlertSrc }}"></script>
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
+<link rel="stylesheet" href="{{ asset($InputResources) }}">
 <link rel="stylesheet" href="{{ asset($InventoryRegisterMobile) }}">
 <link rel="stylesheet" href="{{ asset($LoadFragment) }}">
 <link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
@@ -42,9 +43,8 @@
 
                     <div class="search-container">
                         <input type="number" id="id-supplier" name="id_supplier_name">
-                        <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" "
-                            autocomplete="off">
-                        <label for="search" id="search-label-supplier" class="label-input-data mobile-label">Producto</label>
+                        <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
+                        <label for="search" id="search-label-supplier" class="label-input-data mobile-label main-panel">Producto</label>
                         <div id="suggestions" class="suggestions-supplier"></div>
                         <div id="loader-supplier" class="loader-section">
                             <div class="loading">
@@ -58,14 +58,21 @@
                     </div>
 
                 </div>
+
                 <div class="lateralside-content sub-block-02">
                     <div class="input-group input-dimensions">
-                        <input type="date" name="date" id="issue-date-input" class="input-iten effect-5 date-icon" placeholder=" " value="{{ date('Y-m-d') }}">
-                        <label for="effect5">Fecha de emision</label>
+                        <input type="text" name="document" id="document" class="input-iten effect-5 date-icon" placeholder=" " value="">
+                        <label for="document">Documento</label>
                     </div>
+                    <div class="input-group input-dimensions">
+                        <input type="text" name="typeFacture" id="typeFacture" class="input-iten effect-5 date-icon" placeholder=" " value="">
+                        <label for="typeFacture">Tipo</label>
+                    </div>
+
                 </div>
 
             </div>
+
             <div class="block-02">
                 <div class="wave-group input-dimensions comment">
                     <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input" required=""></textarea>
@@ -76,11 +83,26 @@
                     </label>
                 </div>
             </div>
-
         </div>
+        <div class="input-data-form-numeric">
+            <div class="col-3 input-effect data-numeric">
+                <input class="effect-16" type="text" name="numeric" id="numeric" placeholder="" value="">
+                <label for="numeric">Numero</label>
+                <span class="focus-border"></span>
+            </div>
 
+            <div class="col-3 input-effect data-numeric">
+                <input type="text" name="series" id="series" class="effect-16" placeholder=" " value="">
+                <label for="series">Serie</label>
+            </div>
+
+            <div class="col-3 input-effect date-time">
+                <input type="date" name="date" id="dateTime" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
+                <label for="dateTime">Fecha y hora de emision</label>
+            </div>
+        </div>
     </div>
-   
+
     <div class="bottom-data">
         <div class="orders">
             <table class="list-data-product">

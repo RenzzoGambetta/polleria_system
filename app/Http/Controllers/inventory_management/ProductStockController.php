@@ -4,6 +4,7 @@ namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\Supply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,21 +23,10 @@ class ProductStockController extends Controller
     public function showPanelRegisterEntry()
     {
 
-        $Suppliers = [
-            ['id' => 1, 'name' => 'Distribuciones Morales'],
-            ['id' => 2, 'name' => 'Servicios Martínez'],
-            ['id' => 3, 'name' => 'Comercial López'],
-            ['id' => 4, 'name' => 'Suministros García'],
-            ['id' => 5, 'name' => 'Productos Fernández'],
-            ['id' => 6, 'name' => 'Importaciones Pérez'],
-            ['id' => 7, 'name' => 'Logística Gómez'],
-            ['id' => 8, 'name' => 'Ventas Ruiz'],
-            ['id' => 9, 'name' => 'Comercial Ortega'],
-            ['id' => 10, 'name' => 'Proveedores Sánchez'],
-        ];
+
         $Navigation = $this->NavigationEntry;
 
-        return view('inventory_management.product_stock_entry', compact('Navigation', 'Suppliers'));
+        return view('inventory_management.product_stock_entry', compact('Navigation'));
 
     }
     public function supplierProductList(Request $request)
@@ -55,8 +45,8 @@ class ProductStockController extends Controller
                 [
                     'id' => 1,
                     'name' => 'Pollo entero',
-                    'quantity' => 100, // en unidades
-                    'price_per_unit' => 12.00 // en moneda local
+                    'quantity' => 100,
+                    'price_per_unit' => 12.00
                 ],
                 [
                     'id' => 2,
@@ -210,48 +200,8 @@ class ProductStockController extends Controller
     }
     public function listOfProducts()
     {
-        $product = [
-            [
-                'id' => 1,
-                'name' => 'Pollo',
-            ],
-            [
-                'id' => 2,
-                'name' => 'Carne de Res',
-            ],
-            [
-                'id' => 32,
-                'name' => 'Pescado',
-            ],
-            [
-                'id' => 4,
-                'name' => 'Cerdo',
-            ],
-            [
-                'id' => 5,
-                'name' => 'Pavo',
-            ],
-            [
-                'id' => 6,
-                'name' => 'Cordero',
-            ],
-            [
-                'id' => 7,
-                'name' => 'Salchichas',
-            ],
-            [
-                'id' => 8,
-                'name' => 'Hamburguesas',
-            ],
-            [
-                'id' => 9,
-                'name' => 'Tacos',
-            ],
-            [
-                'id' => 102,
-                'name' => 'Costillas',
-            ],
-        ];
+
+        $product = Supply::all();
         return response()->json($product);
     }
     public function registerNewProduct(Request $request){
@@ -314,37 +264,9 @@ class ProductStockController extends Controller
     }
     public function registerProductEntry(Request $request)
     {
-        // Obtén los datos del request
-        $data = $request->all();
 
-        // Inicializa un array para almacenar los ítems formateados
-        $items = [];
 
-        // Verifica que las claves 'id', 'quantity', 'price' y 'total_amount' existan en los datos
-        if (isset($data['id']) && isset($data['quantity']) && isset($data['price']) && isset($data['total_amount'])) {
-            // Recorre cada ítem y crea el formato deseado
-            foreach ($data['id'] as $index => $id) {
-                $items[] = [
-                    'id' => $id,
-                    'quantity' => $data['quantity'][$index],
-                    'price' => $data['price'][$index],
-                    'total_amount' => $data['total_amount'][$index]
-                ];
-            }
-        }
 
-        // Reorganiza los datos en el formato requerido
-        $formattedItems = [];
-        foreach ($items as $index => $item) {
-            $formattedItems["iten-" . str_pad($index + 1, 2, '0', STR_PAD_LEFT)] = $item;
-        }
-        $formattedData = [
-            '_token' => $data['_token'] ?? '',
-            'supplier_id' => $data['supplier_id'] ?? '',
-            'comment' => $data['comment'] ?? '',
-            'items' => $formattedItems
-        ];
-        // Imprime los datos formateados (puedes devolverlos como respuesta o hacer otras operaciones)
-        return response()->json($formattedData);
+        return response()->json($request);
     }
 }

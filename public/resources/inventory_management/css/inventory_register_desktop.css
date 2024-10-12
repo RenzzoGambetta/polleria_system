@@ -7,7 +7,7 @@
 
 .input-dimensions {
     width: 100%;
-    margin: 0px 20px;
+    margin: 0px 1vh;
 
 }
 
@@ -112,7 +112,7 @@
 
 input.input.effect-4.comment,
 textarea.input.effect-4.comment {
-    height: 18vh;
+    height: 16vh;
 }
 
 .wave-group.input-dimensions.comment {
@@ -658,13 +658,16 @@ tbody.list-inten {
 .register-option {
     display: none;
 }
-.border-style-right{
+
+.border-style-right {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-.hidden-input{
+
+.hidden-input {
     display: none;
 }
+
 button.option.new-supplier {
     width: 100%;
     border: 0px;
@@ -674,6 +677,7 @@ button.option.new-supplier {
     font-size: 1rem;
     color: #fd7700;
 }
+
 button.option.new-supplier:hover {
     width: 100%;
     border: 0px;
@@ -684,9 +688,31 @@ button.option.new-supplier:hover {
     color: #ffffff;
 }
 
-@media (max-width: 768px) {
-
-
-
-
+.effect-5:focus+label.label-input-data.main-panel,
+.effect-5:not(:placeholder-shown)+label.label-input-data.main-panel {
+    background-color: var(--imput-efect-transiccion);
 }
+
+.input-data-form-numeric {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vh;
+}
+
+.effect-5.date-icon+label {
+    left: 2vh;
+}
+
+.col-3.input-effect.date-time {
+    width: 40%;
+}
+
+.col-3.input-effect.data-numeric{
+    width: 30%;
+}
+
+@media (max-width: 768px) {}

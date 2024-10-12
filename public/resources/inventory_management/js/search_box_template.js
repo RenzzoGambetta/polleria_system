@@ -34,6 +34,7 @@ class SearchBox {
                 this.loaderElement.hide();
                 this.inputElement.show();
                 this.labelElement.show();
+                console.log(data);
             })
             .catch(error => {
                 console.error('Error fetching all items:', error);

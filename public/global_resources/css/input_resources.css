@@ -1,0 +1,76 @@
+:focus {
+    outline: none;
+}
+
+.col-3 {
+    float: left;
+    width: 100%;
+    margin: 0px 1vh;
+    position: relative;
+}
+
+input.effect-16 {
+
+
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    background: transparent;
+    padding: 10px 20PX;
+    height: 6vh;
+    color: var(--dark);
+}
+
+.effect-16 {
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 2px solid var(--color-input-background-border);
+    background-color: transparent;
+}
+
+.effect-16~.focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--imput-efect-transiccion-focus);
+    transition: 0.4s;
+}
+
+.effect-16:focus~.focus-border,
+.has-content.effect-16~.focus-border {
+    width: 100%;
+    transition: 0.4s;
+}
+
+.effect-16~label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 9px;
+    color: #ccc;
+    transition: 0.3s;
+    z-index: -1;
+    letter-spacing: 0.5px;
+}
+
+.effect-16:focus~label,
+.has-content.effect-16~label {
+    top: -1.5vh;
+    font-size: 12px;
+    color: var(--label-efect-transiccion-focus);
+    transition: 0.3s;
+}
+
+.effect-16:not(:placeholder-shown) + label {
+    top: -1.5vh;
+    transition: 0.3s;
+    font-size: 12px;
+    background-color: transparent;
+    color: var(--label-efect-transiccion-focus);
+
+  }
