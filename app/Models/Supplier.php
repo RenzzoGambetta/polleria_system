@@ -17,4 +17,9 @@ class Supplier extends Model
     {
         return $this->belongsTo(Person::class);
     }
+
+    public function inventoryReceipts()
+    {
+        return $this->hasMany(InventoryReceipt::class, 'supplier_id');
+    }
 }
