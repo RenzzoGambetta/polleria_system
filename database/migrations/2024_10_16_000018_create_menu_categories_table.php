@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('menu_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lounge_id');
-            $table->foreign('lounge_id')->references('id')->on('lounges');
-            $table->char('code', 4);
-            $table->boolean('status')->default(false);
+            $table->string('name', 124);
+            $table->unsignedTinyInteger('display_order');
             $table->timestamps();
-            $table->unique(['lounge_id', 'code'], 'unique_code_lounge');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('menu_categories');
     }
 };

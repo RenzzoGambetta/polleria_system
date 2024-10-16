@@ -13,7 +13,9 @@ use App\Models\InventoryReceipt;
 use App\Models\InventoryReceiptDetails;
 use App\Models\Supply;
 use App\Models\VoucherType;
-use App\Models\Lounge;
+use App\Models\menu\Lounge;
+use App\Models\menu\MenuCategory;
+use App\Models\menu\MenuItem;
 use App\Models\Table;
 use Database\Factories\TableFactory;
 use Database\Factories\UserPermissionFactory;
@@ -46,6 +48,8 @@ class DatabaseSeeder extends Seeder
         DB::table('inventory_receipts')->truncate();
         DB::table('tables')->truncate();
         DB::table('lounges')->truncate();
+        DB::table('menu_categories')->truncate();
+        DB::table('menu_items')->truncate();
 
 
         // Re-enable foreign key constraints
@@ -59,6 +63,11 @@ class DatabaseSeeder extends Seeder
         Supply::factory(10)->create();
         VoucherType::factory()->createDefault();
         InventoryReceiptDetails::factory(10)->create();
+
+        MenuCategory::factory(4)->create()->each(function ($category) {
+            $qty = rand(1, 5);
+            MenuItem::factory($qty)->create(['category_id' => $category->id]);
+        });
 
         $roles = Role::factory(2)->create();
         $permissions = Permission::factory(6)->create();
