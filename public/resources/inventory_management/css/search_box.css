@@ -3,7 +3,8 @@
     width: 100%;
     margin: 0px 1vh
 }
-
+input#search-supplier {
+}
 .search-box-supplier:focus,
 .search-box:focus {
     width: 100%;
@@ -13,7 +14,6 @@
 .search-box-supplier,
 .search-box {
     width: 100%;
-    padding: 1vh 2vh;
     border-radius: 10px;
     border: 2px solid var(--color-input-background-border);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -83,7 +83,14 @@ div#loader {
 
 #search-label-supplier,
 #search-label {
-    left: 20px;
+    left: 15px;
+}
+.loading {
+    height: 100%;
+}
+
+div#loader-supplier {
+    height: 50%;
 }
 
 @media (max-width: 992px) {

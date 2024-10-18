@@ -3,7 +3,7 @@
         grid-column: 2;
         grid-row: 2;
         place-self: center center;
-        height: 70vh;
+        height: 65vh;
         width: 90vh;
     }
 
@@ -15,7 +15,7 @@
     }
 
     div#swal2-html-container {
-        height: 38vh;
+        height: 36vh;
         padding: 0px 20px;
         overflow: hidden;
     }
@@ -72,13 +72,21 @@
         width: 45%;
         border-radius: 1.5vh;
     }
-
+    .alert-input-01 {
+        margin-top: 0%;
+    }
     @media (max-width: 992px) {
 
         .division-select-iten,
         .price-and-quantity-data-splitting {
             height: 8vh;
         }
+        div#swal2-html-container {
+        height: 32vh;
+        padding: 0px 20px;
+        overflow: hidden;
+    }
+
     }
 </style>
 <header>
@@ -101,14 +109,14 @@
         </div>
     </div>
     <div class="price-and-quantity-data-splitting">
-        <div class="lateralside-content sub-block-02 alert-style-div">
+        <div class="lateralside-content sub-block-02 alert-style-div alert-input-01">
             <div class="input-group input-dimensions alert-style-div-input">
                 <input type="number" id="price-data" name="price"
                     class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
                 <label for="price-data" class="label-input-data mobile-label">Precio unitario</label>
             </div>
         </div>
-        <div class="lateralside-content sub-block-02 alert-style-div">
+        <div class="lateralside-content sub-block-02 alert-style-div alert-input-01">
             <div class="input-group input-dimensions alert-style-div-input">
                 <input type="number" id="quantity-data" name="quantity"
                     class="input-iten effect-5 no-spinner alert-style" placeholder=" ">

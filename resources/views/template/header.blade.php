@@ -55,7 +55,7 @@
                             <a href="{{ route('show_list_inventory_movements') }}" id="{{ ($Navigation['color'] ?? null) == 31 ? 'nav_select' : '' }}"><i class='fi fi-bs-sort-alt bx-adjustment-icon'></i>Movimientos</a>
                         </li>
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.2 ? 'active' : '' }}">
-                            <a href="{{ route('show_panel_register_entry') }}" id="{{ ($Navigation['color'] ?? null) == 32 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-out bx-adjustment-icon'></i>Salida</a>
+                            <a href="{{ route('show_panel_register_output') }}" id="{{ ($Navigation['color'] ?? null) == 32 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-out bx-adjustment-icon'></i>Salida</a>
                         </li>
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.3 ? 'active' : '' }}">
                             <a href="{{ route('show_panel_register_entry') }}" id="{{ ($Navigation['color'] ?? null) == 33 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-in bx-adjustment-icon'></i>Entradas</a>

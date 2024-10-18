@@ -50,10 +50,16 @@
 
                 @foreach ($Inventory as $Inventories)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>-------</td>
-                        <td>-------</td>
-                        <td>-------</td>
+                        <td>{{ $Inventories->name }}</td>
+                        <td>{{ $Inventories->stock }}</td>
+                        <td>
+                            @if ($Inventories->brands && $Inventories->brands->name)
+                                {{ $Inventories->brands->name }}
+                            @else
+                                <span>no registrado</span>
+                            @endif
+                        </td>
+                        <td>{{ $Inventories->brand_id }}</td>
                         <td>-------</td>
                     </tr>
                 @endforeach

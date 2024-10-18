@@ -73,6 +73,14 @@
         border-radius: 1.5vh;
     }
 
+    .options-unit-of-measurement-product-new.active {
+        max-height: 16vh;
+    }
+
+    .alert-input-02 {
+        margin-top: 2%;
+    }
+
     @media (max-width: 768px) {
 
         div:where(.swal2-container).swal2-center>.swal2-popup {
@@ -92,7 +100,7 @@
     <div class="conteiner-01">
         <div class="frame-01">
 
-            <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+            <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input alert-input-02">
                 <div class="input-group input-dimensions alert-style-div-input alert-input">
                     <input type="text" id="name-data" name="name_new_product"
                         class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
@@ -101,35 +109,35 @@
             </div>
 
             <div class="input-data-number">
-                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input alert-input-02">
                     <div class="input-group input-dimensions alert-style-div-input alert-input">
                         <input type="number" id="quantity-data" name="quantity_new_product"
                             class="input-iten effect-5 no-spinner alert-style" placeholder=" ">
                         <label for="quantity-data" class="label-input-data mobile-label">Cantidad</label>
                     </div>
                 </div>
-                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input alert-input-02">
                     <div class="select-unit-of-measurement-product-new">
 
                         <div class="options-unit-of-measurement-product-new">
                             <label for="kg" class="option-unit-of-measurement-product-new">
-                                <input type="radio" name="measurement_system" id="kg" value="kg"/>
+                                <input type="radio" name="measurement_system" id="kg" value="kg" />
                                 <span> kilo.</span>
                             </label>
                             <label for="g" class="option-unit-of-measurement-product-new">
-                                <input type="radio" id="g" name="measurement_system" value="g"/>
+                                <input type="radio" id="g" name="measurement_system" value="g" />
                                 <span>gramo.</span>
                             </label>
                             <label for="l" class="option-unit-of-measurement-product-new">
-                                <input type="radio" id="l" name="measurement_system" value="l"/>
+                                <input type="radio" id="l" name="measurement_system" value="l" />
                                 <span>litro.</span>
                             </label>
                             <label for="ml" class="option-unit-of-measurement-product-new">
-                                <input type="radio" id="ml" name="measurement_system" value="ml"/>
+                                <input type="radio" id="ml" name="measurement_system" value="ml" />
                                 <span>mililitro.</span>
                             </label>
                             <label for="ud" class="option-unit-of-measurement-product-new">
-                                <input type="radio" id="ud" name="measurement_system" value="ud"/>
+                                <input type="radio" id="ud" name="measurement_system" value="ud" />
                                 <span>unidad.</span>
                             </label>
                         </div>
@@ -139,14 +147,14 @@
                 </div>
             </div>
             <div class="input-data-number">
-                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input alert-input-02">
                     <div class="input-group input-dimensions alert-style-div-input alert-input">
                         <input type="number" id="price-data" name="price_new_product"
                             class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
                         <label for="price-data" class="label-input-data mobile-label">Precio unitario</label>
                     </div>
                 </div>
-                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+                <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input alert-input-02">
                     <div class="checkbox-wrapper-35">
                         <input value="private" name="is_stock" id="switch" type="checkbox" class="switch">
                         <label for="switch">
@@ -199,7 +207,8 @@
                     </path>
                 </svg>
             </label>
-            <label for="checkbox-preference-input" class="text-check text-adapt-item">Anclar el producto al provedor</label>
+            <label for="checkbox-preference-input" class="text-check text-adapt-item">Anclar el producto al
+                provedor</label>
         </div>
 
 

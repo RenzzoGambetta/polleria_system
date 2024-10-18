@@ -23,10 +23,17 @@ class ProductStockController extends Controller
     public function showPanelRegisterEntry()
     {
 
-
         $Navigation = $this->NavigationEntry;
 
         return view('inventory_management.product_stock_entry', compact('Navigation'));
+
+    }
+    public function showPanelRegisterOutput()
+    {
+
+        $Navigation = $this->NavigationOutput;
+
+        return view('inventory_management.product_stock_output', compact('Navigation'));
 
     }
     public function supplierProductList(Request $request)

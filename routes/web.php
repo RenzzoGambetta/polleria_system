@@ -44,6 +44,7 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/inventory', [InventoryController::class,'showInventoryList'])->name('inventory');
     Route::get('/show_panel_register_entry', [ProductStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
     Route::get('/register_new_product', [ProductStockController::class,'registerNewProduct'])->name('register_new_product');
+    Route::get('/show_panel_register_output', [ProductStockController::class,'showPanelRegisterOutput'])->name('show_panel_register_output');
     Route::get('/supplier_product_list', [ProductStockController::class,'supplierProductList'])->name('supplier_product_list');
     Route::get('/list_of_products', [ProductStockController::class,'listOfProducts'])->name('list_of_products');
     Route::get('/anchor_product_provider', [ProductStockController::class,'anchorProductProvider'])->name('anchor_product_provider');

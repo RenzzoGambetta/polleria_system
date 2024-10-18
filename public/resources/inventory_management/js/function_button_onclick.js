@@ -7,9 +7,13 @@ function cancelPage(url) {
 }
 function clearInput() {
 
+    document.getElementById('series').value = null;
+    document.getElementById('numeric').value = null;
+    document.getElementById('search-supplier').value = null;
+    document.getElementById('id-supplier').value = null;
     document.getElementById('comment-input').value = null;
-    document.getElementById('issue-date-input').value = new Date().toISOString().slice(0, 10);
-    revertSelectionChanges();
+    document.getElementById('dateTime').value = new Date().toISOString().slice(0, 10);
+    //revertSelectionChanges();
     removeAllTableBodies();
     reverseToggleDisplay()
 

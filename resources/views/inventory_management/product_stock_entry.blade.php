@@ -31,131 +31,142 @@
 
 <form id="form-register-entry" action="{{ route('register_product_entry') }}" method="POST">
     @csrf
-    <div class="input-data-form">
-        <div class="sub-input-01">
-            @php
+    <div class="conteiner-principal">
 
-                $comment = 'Comentario';
+        <div class="input-data-form">
+            <div class="sub-input-01">
+                @php
 
-            @endphp
-            <div class="block-01">
-                <div class="lateralside-content sub-block-01">
+                    $comment = 'Comentario';
 
-                    <div class="search-container">
-                        <input type="number" id="id-supplier" name="id_supplier_name">
-                        <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
-                        <label for="search" id="search-label-supplier" class="label-input-data mobile-label main-panel">Producto</label>
-                        <div id="suggestions" class="suggestions-supplier"></div>
-                        <div id="loader-supplier" class="loader-section">
-                            <div class="loading">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                @endphp
+                <div class="block-01">
+                    <div class="lateralside-content sub-block-01">
+
+                        <div class="search-container">
+                            <input type="number" id="id-supplier" name="id_supplier_name">
+                            <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
+                            <label for="search-supplier" id="search-label-supplier" class="label-input-data mobile-label main-panel">Seleccione el provedor</label>
+                            <div id="suggestions" class="suggestions-supplier"></div>
+                            <div id="loader-supplier" class="loader-section">
+                                <div class="loading">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
                             </div>
                         </div>
+
+                    </div>
+
+                    <div class="lateralside-content sub-block-02">
+                        <div class="input-group input-dimensions">
+                            <input type="text" name="document" id="document" class="input-iten effect-5 date-icon" placeholder=" " value="">
+                            <label for="document">Documento</label>
+                        </div>
+                        <div class="input-group input-dimensions">
+                            <input type="text" name="typeFacture" id="typeFacture" class="input-iten effect-5 date-icon" placeholder=" " value="">
+                            <label for="typeFacture">Tipo</label>
+                        </div>
+
                     </div>
 
                 </div>
 
-                <div class="lateralside-content sub-block-02">
-                    <div class="input-group input-dimensions">
-                        <input type="text" name="document" id="document" class="input-iten effect-5 date-icon" placeholder=" " value="">
-                        <label for="document">Documento</label>
+                <div class="block-02">
+
+                    <div class="dub-block-001">
+                        <div class="col-3 input-effect date-time">
+                            <input type="date" name="date" id="dateTime" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
+                            <label for="dateTime">Fecha y hora de emision</label>
+                            <span class="focus-border"></span>
+                        </div>
                     </div>
-                    <div class="input-group input-dimensions">
-                        <input type="text" name="typeFacture" id="typeFacture" class="input-iten effect-5 date-icon" placeholder=" " value="">
-                        <label for="typeFacture">Tipo</label>
+                    <div class="dub-block-002">
+                        <div class="col-3 input-effect data-series">
+                            <input type="text" name="series" id="series" class="effect-16" placeholder=" " value="">
+                            <label for="series">Serie</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="col-3 input-effect data-numeric">
+                            <input class="effect-16" type="text" name="numeric" id="numeric" placeholder="" value="">
+                            <label for="numeric">Numero</label>
+                            <span class="focus-border"></span>
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
-
-            <div class="block-02">
+            <div class="input-data-form-numeric">
                 <div class="wave-group input-dimensions comment">
-                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input" required=""></textarea>
+                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input" value="" placeholder=" "></textarea>
                     <label class="label">
                         @foreach (str_split($comment) as $index => $char)
                             <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
                         @endforeach
                     </label>
                 </div>
+
             </div>
         </div>
-        <div class="input-data-form-numeric">
-            <div class="col-3 input-effect data-numeric">
-                <input class="effect-16" type="text" name="numeric" id="numeric" placeholder="" value="">
-                <label for="numeric">Numero</label>
-                <span class="focus-border"></span>
-            </div>
 
-            <div class="col-3 input-effect data-numeric">
-                <input type="text" name="series" id="series" class="effect-16" placeholder=" " value="">
-                <label for="series">Serie</label>
-            </div>
+        <div class="bottom-data">
+            <div class="orders">
+                <table class="list-data-product">
+                    <thead>
+                        <tr>
+                            <th class="field-size movile-style-th">Producto</th>
+                            <th class="data-entry movile-style-th">Unidad</th>
+                            <th class="data-entry movile-style-th">C/Unitario</th>
+                            <th class="data-entry movile-style-th">C/Total</th>
+                            <th class="data-button movile-style-th">Opciones</th>
 
-            <div class="col-3 input-effect date-time">
-                <input type="date" name="date" id="dateTime" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
-                <label for="dateTime">Fecha y hora de emision</label>
-            </div>
-        </div>
-    </div>
+                        </tr>
+                    </thead>
 
-    <div class="bottom-data">
-        <div class="orders">
-            <table class="list-data-product">
-                <thead>
-                    <tr>
-                        <th class="field-size movile-style-th">Producto</th>
-                        <th class="data-entry movile-style-th">Unidad</th>
-                        <th class="data-entry movile-style-th">C/Unitario</th>
-                        <th class="data-entry movile-style-th">C/Total</th>
-                        <th class="data-button movile-style-th">Opciones</th>
+                    <tbody class="list-inten" id="puntoClave">
+                        <td></td>
+                        <td></td>
+                        <td class="name-iten total-price-and-unit">Total -></td>
+                        <td class="total-price-and-unit">
+                            <div class="aling-center-displey">
+                                <div class="text-aling-preci">s/<span id="total-price">0</span></div>
+                            </div>
+                        </td>
+                    </tbody>
 
-                    </tr>
-                </thead>
-
-                <tbody class="list-inten" id="puntoClave">
-                    <td></td>
-                    <td></td>
-                    <td class="name-iten total-price-and-unit">Total -></td>
-                    <td class="total-price-and-unit">
-                        <div class="aling-center-displey">
-                            <div class="text-aling-preci">s/<span id="total-price">0</span></div>
-                        </div>
-                    </td>
-                </tbody>
-
-            </table>
-            <div class="filter">
-                <div id="wifi-loader">
-                    <svg class="circle-outer" viewBox="0 0 86 86">
-                        <circle class="back" cx="43" cy="43" r="40"></circle>
-                        <circle class="front" cx="43" cy="43" r="40"></circle>
-                        <circle class="new" cx="43" cy="43" r="40"></circle>
-                    </svg>
-                    <svg class="circle-middle" viewBox="0 0 60 60">
-                        <circle class="back" cx="30" cy="30" r="27"></circle>
-                        <circle class="front" cx="30" cy="30" r="27"></circle>
-                    </svg>
-                    <svg class="circle-inner" viewBox="0 0 34 34">
-                        <circle class="back" cx="17" cy="17" r="14"></circle>
-                        <circle class="front" cx="17" cy="17" r="14"></circle>
-                    </svg>
-                    <div class="text" data-text="Esperando a que seleccione un provedor"></div>
+                </table>
+                <div class="filter">
+                    <div id="wifi-loader">
+                        <svg class="circle-outer" viewBox="0 0 86 86">
+                            <circle class="back" cx="43" cy="43" r="40"></circle>
+                            <circle class="front" cx="43" cy="43" r="40"></circle>
+                            <circle class="new" cx="43" cy="43" r="40"></circle>
+                        </svg>
+                        <svg class="circle-middle" viewBox="0 0 60 60">
+                            <circle class="back" cx="30" cy="30" r="27"></circle>
+                            <circle class="front" cx="30" cy="30" r="27"></circle>
+                        </svg>
+                        <svg class="circle-inner" viewBox="0 0 34 34">
+                            <circle class="back" cx="17" cy="17" r="14"></circle>
+                            <circle class="front" cx="17" cy="17" r="14"></circle>
+                        </svg>
+                        <div class="text" data-text="Esperando a que seleccione un provedor"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
     <script>
         //$(document).ready(function() {
         //    newSupplierRegistrationFast()
         //});
     </script>
-    <div>
+    <div class="options-button">
         <div class="sub-input-02">
             <button type="button" class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
             <button type="button" class="button-opcion-form clear-option border-style-right" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>

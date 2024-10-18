@@ -96,7 +96,7 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .options-iten.active+.selected-iten::after,
-.options-unit-of-measurement-product-new.active+.selectedunit-of-measurement-product-new::after
+.options-unit-of-measurement-product-new.active+.selected-unit-of-measurement-product-new::after
 {
     transform: rotateX(180deg) translateY(50%);
 }

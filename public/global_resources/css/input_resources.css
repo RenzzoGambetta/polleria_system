@@ -19,8 +19,8 @@ input.effect-16 {
     padding: 10px 10px 10px 5px;
     display: block;
     background: transparent;
-    padding: 10px 20PX;
-    height: 6vh;
+    padding: 10px;
+    height: 50%;
     color: var(--dark);
 }
 
@@ -54,7 +54,6 @@ input.effect-16 {
     top: 9px;
     color: #ccc;
     transition: 0.3s;
-    z-index: -1;
     letter-spacing: 0.5px;
 }
 

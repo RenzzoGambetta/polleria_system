@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Models\Supply;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -21,7 +22,7 @@ class InventoryController extends Controller
     public function showInventoryList()
     {
 
-        $Inventory = User::paginate(6);
+        $Inventory = Supply::paginate(6);
         $Navigation = $this->NavigationProduct;
         return view('inventory_management.inventory', compact('Navigation', 'Inventory'));
 

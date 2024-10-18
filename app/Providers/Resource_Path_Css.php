@@ -78,6 +78,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $SearchBox = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'search_box.css');
             $view->with('SearchBox', $SearchBox);
+
+            $RegisterNewProduct = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'register_new-product.css');
+            $view->with('RegisterNewProduct', $RegisterNewProduct);
         });
     }
 }
