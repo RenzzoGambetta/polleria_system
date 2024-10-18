@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Menu;
 
-use App\Models\Lounge;
-use App\Models\Table;
+use App\Models\menu\Lounge;
+use App\Models\menu\Table;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

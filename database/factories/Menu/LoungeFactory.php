@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Menu;
 
 use App\Models\Lounge;
 use Illuminate\Database\Eloquent\Factories\Factory;
