@@ -50,8 +50,8 @@ class Resource_Path_Js extends ServiceProvider
             $SearchBoxTemplate = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'search_box_template.js');
             $view->with('SearchBoxTemplate', $SearchBoxTemplate);
 
-            $NewProductAction = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'new_product_action.js');
-            $view->with('NewProductAction', $NewProductAction);
+            $NewsupplyAction = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'new_supply_action.js');
+            $view->with('NewsupplyAction', $NewsupplyAction);
         });
     }
 }

@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<form id="form-register-entry" action="{{ route('register_product_entry') }}" method="POST">
+<form id="form-register-entry" action="{{ route('register_supply_entry') }}" method="POST">
     @csrf
     <div class="conteiner-principal">
 
@@ -80,7 +80,7 @@
                     <div class="dub-block-001">
                         <div class="col-3 input-effect date-time">
                             <input type="date" name="date" id="dateTime" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
-                            <label for="dateTime">Fecha y hora de emision</label>
+                            <label for="dateTime">Fecha de emision</label>
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -115,10 +115,10 @@
 
         <div class="bottom-data">
             <div class="orders">
-                <table class="list-data-product">
+                <table class="list-data-supply">
                     <thead>
                         <tr>
-                            <th class="field-size movile-style-th">Producto</th>
+                            <th class="field-size movile-style-th">supplyo</th>
                             <th class="data-entry movile-style-th">Unidad</th>
                             <th class="data-entry movile-style-th">C/Unitario</th>
                             <th class="data-entry movile-style-th">C/Total</th>
@@ -162,15 +162,15 @@
         </div>
     </div>
     <script>
-        //$(document).ready(function() {
-        //    newSupplierRegistrationFast()
-        //});
+        $(document).ready(function() {
+            newSupply()
+        });
     </script>
     <div class="options-button">
         <div class="sub-input-02">
             <button type="button" class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
             <button type="button" class="button-opcion-form clear-option border-style-right" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
-            <button type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Añadir producto</button>
+            <button type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Añadir supplyo</button>
             <button type="submit" class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
             <script src="{{ asset($FunctionButtonOnclick) }}"></script>
 

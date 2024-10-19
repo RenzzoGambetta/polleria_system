@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 <div class="btn-mobile mobile">
-    <a href="{{ route('new_product_inventory') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+    <a href="{{ route('new_supply_inventory') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
 </div>
 
 <div class="header">
@@ -33,15 +33,15 @@
         <div class="header">
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
-            <a href="{{ route('new_product_inventory') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+            <a href="{{ route('new_supply_inventory') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
         </div>
         <table>
             <thead>
                 <tr>
-                    <th>Producto</th>
+                    <th>supplyo</th>
                     <th>Stock</th>
                     <th>Marca</th>
-                    <th>Estado</th>
+                    <th>Codigo</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -56,11 +56,17 @@
                             @if ($Inventories->brand && $Inventories->brand->name)
                                 {{ $Inventories->brand->name }}
                             @else
-                                <span>no registrado</span>
+                                <span></span>
                             @endif
                         </td>
-                        <td>{{ $Inventories->brand_id }}</td>
-                        <td>-------</td>
+                        <td>
+                            @if ($Inventories->code )
+                                #{{ $Inventories->code }}
+                            @else
+                                <span></span>
+                            @endif
+                        </td>
+                        <td><button type="button" class="btn-clasic">Eitar</button></td>
                     </tr>
                 @endforeach
             </tbody>

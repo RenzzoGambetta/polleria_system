@@ -27,7 +27,7 @@ div:where(.swal2-container).swal2-noanimation {
 }
 /*Combox animation index*/
 .select-iten,
-.select-unit-of-measurement-product-new
+.select-unit-of-measurement-supply-new
 {
     position: relative;
     width: 98%;
@@ -35,7 +35,7 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .selected-iten,
-.selected-unit-of-measurement-product-new
+.selected-unit-of-measurement-supply-new
 {
     background-color: transparent;
     padding: 12px 24px;
@@ -48,13 +48,13 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .selected-iten::after,
-.selected-unit-of-measurement-product-new::after
+.selected-unit-of-measurement-supply-new::after
 {
     top: 50%;
 }
 
 .selected-iten::after,
-.selected-unit-of-measurement-product-new::after
+.selected-unit-of-measurement-supply-new::after
 {
     content: "";
     position: absolute;
@@ -71,7 +71,7 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .options-iten,
-.options-unit-of-measurement-product-new
+.options-unit-of-measurement-supply-new
 {
     position: absolute;
     top: calc(100% + 4px);
@@ -86,7 +86,7 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .options-iten.active,
-.options-unit-of-measurement-product-new.active
+.options-unit-of-measurement-supply-new.active
 {
     max-height: 200px;
     opacity: 1;
@@ -96,26 +96,26 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .options-iten.active+.selected-iten::after,
-.options-unit-of-measurement-product-new.active+.selected-unit-of-measurement-product-new::after
+.options-unit-of-measurement-supply-new.active+.selected-unit-of-measurement-supply-new::after
 {
     transform: rotateX(180deg) translateY(50%);
 }
 
 .options-iten::-webkit-scrollbar,
-.options-unit-of-measurement-product-new::-webkit-scrollbar
+.options-unit-of-measurement-supply-new::-webkit-scrollbar
 {
     width: 0.375rem;
 }
 
 .options-iten::-webkit-scrollbar-thumb,
-.options-unit-of-measurement-product-new::-webkit-scrollbar-thumb
+.options-unit-of-measurement-supply-new::-webkit-scrollbar-thumb
 {
     background-color: #ccc;
     border-radius: 0 6px 6px 0;
 }
 
 .option-iten,
-.option-unit-of-measurement-product-new
+.option-unit-of-measurement-supply-new
 {
     display: block;
     padding: 12px;
@@ -124,7 +124,7 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .option-iten:hover,
-.option-unit-of-measurement-product-new:hover
+.option-unit-of-measurement-supply-new:hover
 {
     background-color: var(--select-color-opcion-hover);
     border-radius: 15px;
@@ -198,11 +198,11 @@ label.text-check:hover {
     cursor: pointer;
 }
 
-.div-new-product {
+.div-new-supply {
     margin-top: 4vh;
 }
 
-.butthon-new-product {
+.butthon-new-supply {
     background-color: #6d6d6d;
     color: white;
     padding: 1.3vh 4vh;
@@ -212,7 +212,7 @@ label.text-check:hover {
     font-family: cursive;
 }
 
-.butthon-new-product:hover {
+.butthon-new-supply:hover {
     background-color: #f04343;
 
 }
@@ -435,7 +435,7 @@ img#preview-image {
 .input-measure-option:checked+.label-measure-option:hover {
     background-color: #45a049;
 }
-.new-product-select{
+.new-supply-select{
     height: 6vh;
     padding: 6px 2vh;
     display: flex;
@@ -444,10 +444,13 @@ img#preview-image {
     align-content: center;
     justify-content: flex-start;
 }
-.options-unit-of-measurement-product-new.active{
+.options-unit-of-measurement-supply-new.active{
     max-height: 18vh;
 }
-
+.supply-unit{
+    padding: 10px 20px;
+    height: 100%;
+}
 @media (max-width: 992px) {
     label.label-input-data.mobile-label {
         font-size: 0.8rem;
@@ -468,7 +471,7 @@ img#preview-image {
         padding: 10px;
     }
 
-    .butthon-new-product,
+    .butthon-new-supply,
     label.text-check {
         font-family: serif;
         font-size: 1rem;
@@ -516,7 +519,7 @@ img#preview-image {
         padding: 10px;
     }
 
-    .butthon-new-product,
+    .butthon-new-supply,
     label.text-check {
         font-family: serif;
         font-size: 0.7rem;
@@ -581,18 +584,18 @@ img#preview-image {
         padding: 10px 25px;
         font-size: 0.8rem;
     }
-    .new-product-select{
+    .new-supply-select{
         height: 4.5vh;
         font-size: 0.7rem;
         border: 2px solid var(--color-input-background-border);
         border-radius: 10px;
 
     }
-   .selected-unit-of-measurement-product-new::after{
+   .selected-unit-of-measurement-supply-new::after{
         width: 1rem;
         height: 1rem;
     }
-   .option-unit-of-measurement-product-new {
+   .option-unit-of-measurement-supply-new {
         padding: 10px;
         border-radius: 4px;
         font-size: 0.6rem;

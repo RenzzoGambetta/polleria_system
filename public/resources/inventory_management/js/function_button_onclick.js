@@ -25,7 +25,7 @@ async function addItems() {
 
 
     Swal.fire({
-        title: '<h1 class="title">Agregar producto</h1>',
+        title: '<h1 class="title">Agregar supplyo</h1>',
         html: htmlContent,
         showCloseButton: true,
         showCancelButton: true,
@@ -37,34 +37,34 @@ async function addItems() {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            //const product = document.querySelector('input[name="product"]:checked');
+            //const supply = document.querySelector('input[name="supply"]:checked');
             const supplier = document.querySelector('input[name="supplier_id"]:checked');
-            //const productId = product ? product.value : null;
+            //const supplyId = supply ? supply.value : null;
             const supplierId = supplier ? supplier.value : null;
-            //const productName = product ? product.nextElementSibling.textContent : null;
+            //const supplyName = supply ? supply.nextElementSibling.textContent : null;
 
-            const productName = document.getElementsByName('product_name')[0]?.value || null;
-            const productId = parseInt(document.getElementsByName('id_product_name')[0]?.value) || null;
+            const supplyName = document.getElementsByName('supply_name')[0]?.value || null;
+            const supplyId = parseInt(document.getElementsByName('id_supply_name')[0]?.value) || null;
             const price = parseFloat(document.getElementById('price-data').value) || 0;
             const quantity = parseFloat(document.getElementById('quantity-data').value) || 1;
             const save_option = document.getElementById('checkbox-preference-input').checked;
 
             const item = {
-                id: productId,
-                name: productName,
+                id: supplyId,
+                name: supplyName,
                 price_per_unit: price,
                 quantity: quantity
             };
-            if (save_option & productId != null) {
-                anchorProduct(productId, supplierId)
+            if (save_option & supplyId != null) {
+                anchorsupply(supplyId, supplierId)
             }
-            if (productId != null) {
+            if (supplyId != null) {
                 addTableBodyAboveReference(item);
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "No seleccionastes un producto o no esta escrito bien",
+                    text: "No seleccionastes un supplyo o no esta escrito bien",
                 });
             }
 
@@ -72,8 +72,8 @@ async function addItems() {
         }
     });
 
-    const apiUrl = '/list_of_products';
-    new SearchBox('No se encuntro el producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-product', apiUrl, 5, 0);
+    const apiUrl = '/list_of_supplys';
+    new SearchBox('No se encuntro el supplyo...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-supply', apiUrl, 5, 0);
     //fetchRoles();
     //selectorIten(".selected-iten", ".options-iten", ".option-iten");
     revertStyleDefaultAlert();
@@ -84,13 +84,13 @@ async function addItems() {
     });
 
 }
-async function newProduct() {
+async function newSupply() {
 
-    var url = URL_TEMPLATE + "new_product_alert_template.html";
+    var url = URL_TEMPLATE + "new_supply_alert_template.html";
     const htmlContent = await loadHtmlFromFile(url);
 
     Swal.fire({
-        title: '<h1 class="title">Registrar nuevo producto</h1>',
+        title: '<h1 class="title">Registrar nuevo supplyo</h1>',
         html: htmlContent,
         showCloseButton: true,
         showCancelButton: true,
@@ -102,9 +102,9 @@ async function newProduct() {
     }).then(async (result) => {
         if (result.isConfirmed) {
 
-            const newProductName = document.getElementsByName('name_new_product')[0]?.value || null;
-            const newProductQuantity = document.getElementsByName('quantity_new_product')[0]?.value || null;
-            const newProductPrice = document.getElementsByName('price_new_product')[0]?.value || null;
+            const newsupplyName = document.getElementsByName('name_new_supply')[0]?.value || null;
+            const newsupplyQuantity = document.getElementsByName('quantity_new_supply')[0]?.value || null;
+            const newsupplyPrice = document.getElementsByName('price_new_supply')[0]?.value || null;
 
             const isStock = document.getElementsByName('is_stock')[0]?.checked || false;
             const saveOption = document.getElementsByName('save_option')[0]?.checked || false;
@@ -113,24 +113,24 @@ async function newProduct() {
             const measurementSystemValue = measurementSystem ? measurementSystem.value : null;
 
             const data = {
-                name: newProductName,
+                name: newsupplyName,
                 unit_measure: measurementSystemValue,
                 is_stockable: isStock,
                 save_option: saveOption,
             };
-            if (newProductName != null & newProductQuantity != null & newProductPrice != null & measurementSystemValue != null) {
-                const result = await querySearchGet("/register_new_product", data);
+            if (newsupplyName != null & newsupplyQuantity != null & newsupplyPrice != null & measurementSystemValue != null) {
+                const result = await querySearchGet("/register_new_supply", data);
                 if (result.response === true) {
                     const item = {
                         id: result.id,
                         name: result.name,
-                        price_per_unit: newProductPrice,
-                        quantity: newProductQuantity
+                        price_per_unit: newsupplyPrice,
+                        quantity: newsupplyQuantity
                     };
                     addTableBodyAboveReference(item);
                     quickAlert("success", "Se registro exitosamente", "Listo")
                 } else {
-                    quickAlert("error", "No seleccionastes un producto o no esta escrito bien", "Oops...")
+                    quickAlert("error", "No seleccionastes un supplyo o no esta escrito bien", "Oops...")
                 }
             } else {
                 quickAlert("error", "Dejastes algunos campos vacíos", "Oops...")
@@ -141,7 +141,7 @@ async function newProduct() {
             console.log("Se canselo el registro")
         }
     });
-    selectorIten(".selected-unit-of-measurement-product-new", ".options-unit-of-measurement-product-new", ".option-unit-of-measurement-product-new");
+    selectorIten(".selected-unit-of-measurement-supply-new", ".options-unit-of-measurement-supply-new", ".option-unit-of-measurement-supply-new");
     $(document).ready(function () {
         $('#checkbox-preference-input').change(function () {
             updateLabelColor();
@@ -180,7 +180,7 @@ function updateLabelColor() {
         $('label.text-adapt-item').css('color', 'green');
     }
 }
-function deleteProductRow(id) {
+function deletesupplyRow(id) {
 
     var rowId = 'idRow' + id;
     var row = document.getElementById(rowId);
@@ -361,15 +361,15 @@ function supplierConsultation(id) {
     var supplierId = id;
     removeAllTableBodies();
 
-    fetch(`/supplier_product_list?id=${supplierId}`)
+    fetch(`/supplier_supply_list?id=${supplierId}`)
         .then(response => response.json())
         .then(data => {
 
-            const items = data.map(product => ({
-                id: product.id,
-                name: product.name,
-                price_per_unit: product.price_per_unit,
-                quantity: product.quantity
+            const items = data.map(supply => ({
+                id: supply.id,
+                name: supply.name,
+                price_per_unit: supply.price_per_unit,
+                quantity: supply.quantity
             }));
             items.forEach(item => {
                 addTableBodyAboveReference(item);
@@ -385,15 +385,15 @@ function supplierConsultation(id) {
 }
 
 function toggleDisplay() {
-    var listDataProduct = document.querySelector('.list-data-product');
+    var listDatasupply = document.querySelector('.list-data-supply');
     var buttonElement = document.querySelector('.element-option');
     var buttonClear = document.querySelector('.clear-option');
     var buttonRegister = document.querySelector('.register-option');
     var buttonCancel = document.querySelector('.cancel-option');
     var filter = document.querySelector('.filter');
 
-    if (listDataProduct) {
-        listDataProduct.style.display = 'inline-table';
+    if (listDatasupply) {
+        listDatasupply.style.display = 'inline-table';
         buttonElement.style.display = 'flex';
         buttonRegister.style.display = 'flex';
         if (buttonClear) {
@@ -408,15 +408,15 @@ function toggleDisplay() {
     }
 }
 function reverseToggleDisplay() {
-    var listDataProduct = document.querySelector('.list-data-product');
+    var listDatasupply = document.querySelector('.list-data-supply');
     var buttonElement = document.querySelector('.element-option');
     var buttonRegister = document.querySelector('.register-option');
     var buttonClear = document.querySelector('.clear-option');
     var buttonCancel = document.querySelector('.cancel-option');
     var filter = document.querySelector('.filter');
 
-    if (listDataProduct) {
-        listDataProduct.style.display = 'none';
+    if (listDatasupply) {
+        listDatasupply.style.display = 'none';
         buttonElement.style.display = 'none';
         buttonRegister.style.display = 'none';
         if (buttonClear) {
@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* funcion remplasada por search_box_template
 
 function fetchRoles() {
-    const url = '/list_of_products';
+    const url = '/list_of_supplys';
     fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -469,17 +469,17 @@ function fetchRoles() {
 
             container.innerHTML = '';
 
-            data.forEach(product => {
+            data.forEach(supply => {
                 const label = document.createElement('label');
-                label.setAttribute('for', product.name);
+                label.setAttribute('for', supply.name);
                 label.classList.add('option-iten');
                 const input = document.createElement('input');
                 input.setAttribute('type', 'radio');
-                input.setAttribute('id', product.name);
-                input.setAttribute('name', 'product');
-                input.setAttribute('value', product.id);
+                input.setAttribute('id', supply.name);
+                input.setAttribute('name', 'supply');
+                input.setAttribute('value', supply.id);
                 const span = document.createElement('span');
-                span.textContent = product.name;
+                span.textContent = supply.name;
                 label.appendChild(input);
                 label.appendChild(span);
                 container.appendChild(label);
@@ -488,9 +488,9 @@ function fetchRoles() {
         .catch(error => console.error('Error al obtener los productos:', error));
 }
 */
-function anchorProduct(productId, supplierId) {
+function anchorsupply(supplyId, supplierId) {
 
-    const url = '/anchor_product_provider?productId=' + productId + '&supplierId=' + supplierId;
+    const url = '/anchor_supply_provider?supplyId=' + supplyId + '&supplierId=' + supplierId;
 
     fetch(url)
         .then(response => {

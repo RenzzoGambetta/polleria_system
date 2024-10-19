@@ -3,7 +3,7 @@ $(document).ready(function() {
         updateLabelColor();
     });
 });
-selectorItenandAnimation('selected-unit-of-measurement-product-new', 'options-unit-of-measurement-product-new', 'option-unit-of-measurement-product-new', 'sub-title-div','option-unit-of-measurement-product-new');
+selectorItenandAnimation('selected-unit-of-measurement-supply-new', 'options-unit-of-measurement-supply-new', 'option-unit-of-measurement-supply-new', 'sub-title-div','option-unit-of-measurement-supply-new');
 
 
 $(function() {

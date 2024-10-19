@@ -5,11 +5,11 @@
 <link rel="stylesheet" href="{{ asset($InventoryRegisterMobile) }}">
 <link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
 <link rel="stylesheet" href="{{ asset($CheckboxAnimation) }}">
-<link rel="stylesheet" href="{{ asset($RegisterNewProduct) }}">
+<link rel="stylesheet" href="{{ asset($RegisterNewsupply) }}">
 
 <div class="header">
     <div class="left">
-        <h1 class="title-reducer">Registro nuevo producto</h1>
+        <h1 class="title-reducer">Registro nuevo supplyo</h1>
         <ul class="breadcrumb">
 
             <a href="{{ route('inventory') }}" class="pagina">
@@ -19,7 +19,7 @@
                 /
             </li>
             <a href="{{ route('show_panel_register_entry') }}" class="active">
-                Nuevo producto
+                Nuevo supplyo
             </a>
 
         </ul>
@@ -30,9 +30,9 @@
     $comment = 'Comentario';
 
 @endphp
-<form id="myForm" action="{{ route('register_product_entry') }}" method="POST">
+<form id="myForm" action="{{ route('register_supply_entry') }}" method="POST">
     @csrf
-    <div class="conteiner-new-product">
+    <div class="conteiner-new-supply">
         <div class="conteiner-01">
             <div class="frame-01">
 
@@ -51,34 +51,34 @@
                         </div>
                     </div>
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
-                        <div class="select-unit-of-measurement-product-new">
+                        <div class="select-unit-of-measurement-supply-new">
                             <div class="sub-title-div">
                                 <label for="sub-title-select-01" class="sub-title-select">Unidad medida</label>
                             </div>
-                            <div class="options-unit-of-measurement-product-new">
-                                <label for="kg" class="option-unit-of-measurement-product-new">
+                            <div class="options-unit-of-measurement-supply-new">
+                                <label for="kg" class="option-unit-of-measurement-supply-new">
                                     <input type="radio" name="measurement_system" id="kg" value="kg" />
                                     <span> kilo.</span>
                                 </label>
-                                <label for="g" class="option-unit-of-measurement-product-new">
+                                <label for="g" class="option-unit-of-measurement-supply-new">
                                     <input type="radio" id="g" name="measurement_system" value="g" />
                                     <span>gramo.</span>
                                 </label>
-                                <label for="l" class="option-unit-of-measurement-product-new">
+                                <label for="l" class="option-unit-of-measurement-supply-new">
                                     <input type="radio" id="l" name="measurement_system" value="l" />
                                     <span>litro.</span>
                                 </label>
-                                <label for="ml" class="option-unit-of-measurement-product-new">
+                                <label for="ml" class="option-unit-of-measurement-supply-new">
                                     <input type="radio" id="ml" name="measurement_system" value="ml" />
                                     <span>mililitro.</span>
                                 </label>
-                                <label for="ud" class="option-unit-of-measurement-product-new">
+                                <label for="ud" class="option-unit-of-measurement-supply-new">
                                     <input type="radio" id="ud" name="measurement_system" value="ud" />
                                     <span>unidad.</span>
                                 </label>
                             </div>
 
-                            <div class="selected-unit-of-measurement-product-new new-product-select">Selecciona una medida</div>
+                            <div class="selected-unit-of-measurement-supply-new new-supply-select">Selecciona una medida</div>
                         </div>
                     </div>
                 </div>
@@ -106,8 +106,8 @@
                     </div>
                 </div>
                 <div class="buttom-select">
-                    <button type="button" class="button-option-new-product cancel-btn" onclick="exit()">Cancelar</button>
-                    <button type="submit" class="button-option-new-product register-or-edit">Registrar</button>
+                    <button type="button" class="button-option-new-supply cancel-btn" onclick="exit()">Cancelar</button>
+                    <button type="submit" class="button-option-new-supply register-or-edit">Registrar</button>
                 </div>
             </div>
             <div class="frame-02">
@@ -148,7 +148,7 @@
     </div>
 </form>
 <script src="{{ asset($OptionSelector) }}"></script>
-<script src="{{ asset($NewProductAction) }}"></script>
+<script src="{{ asset($NewsupplyAction) }}"></script>
 
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

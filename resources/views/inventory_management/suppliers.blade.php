@@ -50,11 +50,17 @@
 
                 @foreach ($Suppliers as $Suplier)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $Suplier->person->dni }}</td>
+                        <td>{{ $Suplier->person->firstname }} {{ $Suplier->person->lastname }}</td>
+                        <td>
+                            @if ($Suplier->person  && $Suplier->person->phone )
+                                {{ $Suplier->person->phone  }}
+                            @else
+                                <span></span>
+                            @endif
+                        </td>
                         <td>-------</td>
-                        <td>-------</td>
-                        <td>-------</td>
-                        <td>-------</td>
+                        <td><button type="button" class="btn-clasic">Eitar</button></td>
                     </tr>
                 @endforeach
             </tbody>

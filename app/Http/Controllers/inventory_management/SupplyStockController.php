@@ -4,11 +4,13 @@ namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\Supplier;
 use App\Models\Supply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
-class ProductStockController extends Controller
+class SupplyStockController extends Controller
 {
     protected $NavigationEntry = [
         'seccion' => 3,
@@ -25,20 +27,34 @@ class ProductStockController extends Controller
 
         $Navigation = $this->NavigationEntry;
 
-        return view('inventory_management.product_stock_entry', compact('Navigation'));
-
+        return view('inventory_management.supply_stock_entry', compact('Navigation'));
     }
     public function showPanelRegisterOutput()
     {
 
         $Navigation = $this->NavigationOutput;
 
-        return view('inventory_management.product_stock_output', compact('Navigation'));
-
+        return view('inventory_management.supply_stock_output', compact('Navigation'));
     }
-    public function supplierProductList(Request $request)
+    public function suppliersupplyList(Request $request)
     {
 
+        $idData = validator::make(
+            $request->all(),
+            [
+                'id' => 'required|size:5',
+            ]
+        );
+
+        $id = $request->input('id');
+        /*
+        $produc = DB::table('supplies')
+        ->join('supplier_supplies', 'supplies.id', '=', 'supplier_supplies.supplies_id')
+        ->where('supplier_supplies.supplier_id', $id)
+        ->select('supplies.*', 'supplier_supplies.note')
+        ->get();
+
+*/
         $idData = validator::make(
             $request->all(),
             [
@@ -202,16 +218,16 @@ class ProductStockController extends Controller
             ];
         }
 
-        // Devuelve los productos como una respuesta JSON
         return response()->json($produc);
     }
-    public function listOfProducts()
+    public function listOfsupplys()
     {
 
-        $product = Supply::all();
-        return response()->json($product);
+        $supply = Supply::all();
+        return response()->json($supply);
     }
-    public function registerNewProduct(Request $request){
+    public function registerNewsupply(Request $request)
+    {
 
         $name = $request->input('name');
         $unit_measure = $request->input('unit_measure');
@@ -219,7 +235,7 @@ class ProductStockController extends Controller
         $save_option = $request->input('save_option');
 
 
-        if($name != "null" & $unit_measure != "null"){
+        if ($name != "null" & $unit_measure != "null") {
             $reply = [
                 'id' => 22,
                 'name' => $name,
@@ -228,7 +244,7 @@ class ProductStockController extends Controller
                 'save_option' => $save_option,
                 'response' => true
             ];
-        }else{
+        } else {
             $reply = [
                 'response' => false
             ];
@@ -236,30 +252,30 @@ class ProductStockController extends Controller
 
         return response()->json($reply);
     }
-    public function anchorProductProvider(Request $request)
+    public function anchorsupplyProvider(Request $request)
     {
         $idData = validator::make(
             $request->all(),
             [
                 'supplierId' => 'required',
-                'productId' => 'required',
+                'supplyId' => 'required',
             ]
         );
 
-        $productId = $request->input('productId');
+        $supplyId = $request->input('supplyId');
         $supplierId = $request->input('supplierId');
-        if($productId != "null"){
+        if ($supplyId != "null") {
             $reply = [
 
-                'producto' => $productId,
+                'supplyo' => $supplyId,
                 'provedor' => $supplierId,
                 'mensage' => 'Totos los productos fueron registrados con exito'
 
             ];
-        }else{
+        } else {
             $reply = [
 
-                'producto' => $productId,
+                'supplyo' => $supplyId,
                 'provedor' => $supplierId,
                 'mensage' => 'El registro no se pude realizar'
 
@@ -267,9 +283,8 @@ class ProductStockController extends Controller
         }
 
         return response()->json($reply);
-
     }
-    public function registerProductEntry(Request $request)
+    public function registersupplyEntry(Request $request)
     {
 
 

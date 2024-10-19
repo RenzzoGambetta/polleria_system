@@ -9,7 +9,7 @@
 
 <div class="header">
     <div class="left">
-        <h1>Inventario</h1>
+        <h1>Movimientos</h1>
         <ul class="breadcrumb">
 
             <a href="{{ route('inventory') }}" class="active">
@@ -38,10 +38,10 @@
         <table>
             <thead>
                 <tr>
-                    <th>Producto</th>
+                    <th>Productos</th>
                     <th>Movimiento</th>
-                    <th>Marca</th>
-                    <th>Provedor</th>
+                    <th>Cantidad</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -49,8 +49,8 @@
 
                 @foreach ($Movement as $Movements)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>-------</td>
+                        <td>{{ $Movements->supply->name }}</td>
+                        <td></td>
                         <td>-------</td>
                         <td>-------</td>
                         <td>-------</td>

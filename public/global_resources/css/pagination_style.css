@@ -234,3 +234,11 @@ li a#centra:hover,
         display: none;
     }
 }
+.btn-clasic{
+    padding: 10px 20px;
+    background-color: #591185;
+    color: white;
+    border-radius: 10px;
+    border: 0px;
+
+}

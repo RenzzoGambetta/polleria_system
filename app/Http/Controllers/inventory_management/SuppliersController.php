@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -13,25 +14,28 @@ class SuppliersController extends Controller
         'sub_seccion' => 3.4,
         'color' => 34
     ];
-    public function showSuppliersList(){
-        $Suppliers = User::paginate(6);
+    public function showSuppliersList()
+    {
+        $Suppliers = Supplier::paginate(10);
         $Navigation = $this->Navigation;
         return view('inventory_management.suppliers', compact('Navigation', 'Suppliers'));
     }
 
-    public function showSuppliersRegisterAndEdit(){
+    public function showSuppliersRegisterAndEdit()
+    {
 
         $Navigation = $this->Navigation;
         $reply = 1;
-        if($reply = 1){
+        if ($reply = 1) {
             $Data = [
-                'option'=> 'Registro',
+                'option' => 'Registro',
             ];
         }
 
         return view('inventory_management.register_and_edit_suppliers', compact('Navigation', 'Data'));
     }
-    public function newSupplierRegistrationFast(Request $request){
+    public function newSupplierRegistrationFast(Request $request)
+    {
 
         $companyName = $request->input('company_name');
         $documentNumber = $request->input('document_number');
@@ -39,7 +43,7 @@ class SuppliersController extends Controller
 
 
 
-        if($companyName != "null" & $documentNumber != "null" & $phone != "null"){
+        if ($companyName != "null" & $documentNumber != "null" & $phone != "null") {
             $reply = [
                 'id' => 222,
                 'company_name' => $companyName,
@@ -47,7 +51,7 @@ class SuppliersController extends Controller
                 'phone' => $phone,
                 'response' => true
             ];
-        }else{
+        } else {
             $reply = [
                 'response' => false
             ];
@@ -57,19 +61,16 @@ class SuppliersController extends Controller
     }
     public function listOfSuppliers()
     {
-         $Suppliers = [
-        ['id' => 1, 'name' => 'Distribuciones Morales'],
-        ['id' => 2, 'name' => 'Servicios Martínez'],
-        ['id' => 3, 'name' => 'Comercial López'],
-        ['id' => 4, 'name' => 'Suministros García'],
-        ['id' => 5, 'name' => 'Productos Fernández'],
-        ['id' => 6, 'name' => 'Importaciones Pérez'],
-        ['id' => 7, 'name' => 'Logística Gómez'],
-        ['id' => 8, 'name' => 'Ventas Ruiz'],
-        ['id' => 9, 'name' => 'Comercial Ortega'],
-        ['id' => 10, 'name' => 'Proveedores Sánchez'],
-    ];
-        return response()->json($Suppliers);
-    }
+        $Suppliers = Supplier::all();
+        $data = [];
 
+        foreach ($Suppliers as $supplier) {
+            $data[] = [
+                'id' => $supplier->id,
+                'name' => $supplier->person->firstname,
+            ];
+        }
+
+        return response()->json($data);
+    }
 }
