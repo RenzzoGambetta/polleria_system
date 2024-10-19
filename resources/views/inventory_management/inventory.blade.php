@@ -53,8 +53,8 @@
                         <td>{{ $Inventories->name }}</td>
                         <td>{{ $Inventories->stock }}</td>
                         <td>
-                            @if ($Inventories->brands && $Inventories->brands->name)
-                                {{ $Inventories->brands->name }}
+                            @if ($Inventories->brand && $Inventories->brand->name)
+                                {{ $Inventories->brand->name }}
                             @else
                                 <span>no registrado</span>
                             @endif
