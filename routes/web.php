@@ -49,6 +49,7 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/list_of_supplys', [SupplyStockController::class,'listOfsupplys'])->name('list_of_supplys');
     Route::get('/anchor_supply_provider', [SupplyStockController::class,'anchorsupplyProvider'])->name('anchor_supply_provider');
     Route::post('/register_supply_entry', [SupplyStockController::class,'registersupplyEntry'])->name('register_supply_entry');
+    Route::get('/query_supply_data', [SupplyStockController::class,'querySupplyData'])->name('query_supply_data');
     Route::get('/suppliers', [SuppliersController::class,'showSuppliersList'])->name('suppliers');
     Route::get('/new_supplier_registration_fast', [SuppliersController::class,'newSupplierRegistrationFast'])->name('new_supplier_registration_fast');
     Route::get('/suppliers_register_and_edit', [SuppliersController::class,'showSuppliersRegisterAndEdit'])->name('suppliers_register_and_edit');

@@ -118,7 +118,7 @@
                 <table class="list-data-supply">
                     <thead>
                         <tr>
-                            <th class="field-size movile-style-th">supplyo</th>
+                            <th class="field-size movile-style-th">Producto</th>
                             <th class="data-entry movile-style-th">Unidad</th>
                             <th class="data-entry movile-style-th">C/Unitario</th>
                             <th class="data-entry movile-style-th">C/Total</th>
@@ -162,9 +162,9 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            newSupply()
-        });
+       // $(document).ready(function() {
+       //     newSupply()
+      //  });
     </script>
     <div class="options-button">
         <div class="sub-input-02">

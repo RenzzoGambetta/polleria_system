@@ -52,6 +52,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $NewsupplyAction = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'new_supply_action.js');
             $view->with('NewsupplyAction', $NewsupplyAction);
+
+            $FuctionButtonOutput = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'fuction_button_output.js');
+            $view->with('FuctionButtonOutput', $FuctionButtonOutput);
         });
     }
 }

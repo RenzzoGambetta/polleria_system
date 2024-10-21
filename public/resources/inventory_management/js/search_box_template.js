@@ -208,6 +208,7 @@ class SearchBox {
                 reverseToggleDisplay();
             }
         }
+        
     }
 
 }

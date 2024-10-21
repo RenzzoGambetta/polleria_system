@@ -291,4 +291,20 @@ class SupplyStockController extends Controller
 
         return response()->json($request);
     }
+    public function querySupplyData(Request $request){
+
+        $id = $request->input('id');
+
+        $item = DB::table('supplies')
+            ->select('id', 'name', 'unit', 'stock')
+            ->where('id', $id)
+            ->first();
+
+
+        if ($item) {
+            return response()->json($item);
+        } else {
+            return response()->json(['error' => 'Item no encontrado'], 404);
+        }
+    }
 }

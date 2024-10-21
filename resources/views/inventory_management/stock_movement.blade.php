@@ -3,8 +3,9 @@
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
-<div class="btn-mobile mobile">
-    <a href="{{ route('show_panel_register_entry') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+<link rel="stylesheet" href="{{ asset($StockMovement) }}">
+<div class="mobile-option">
+<a href="#1"  title="Nueva Salida" class="a-arrow arrow-down"><i class='bx bxs-downvote bx-rotate-180'></i></a><a href="#2" title="Nueva Entrada" class="a-arrow arrow-up"><i class='bx bxs-downvote ' ></i></a>
 </div>
 
 <div class="header">
@@ -33,7 +34,8 @@
         <div class="header">
             <i class='bx bx-receipt'></i>
             <h3>Lista</h3>
-            <a href="{{ route('show_panel_register_entry') }}" class="desktop"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
+
+            <div class="btn-optin desktop"><a href="{{ route('show_panel_register_output') }}"  title="Nueva Salida" class="a-arrow arrow-down"><i class='bx bxs-downvote bx-rotate-180'></i></a><a href="{{ route('show_panel_register_entry') }}" title="Nueva Entrada" class="a-arrow arrow-up"><i class='bx bxs-downvote ' ></i></a></div>
         </div>
         <table>
             <thead>

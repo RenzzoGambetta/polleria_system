@@ -25,7 +25,7 @@ async function addItems() {
 
 
     Swal.fire({
-        title: '<h1 class="title">Agregar supplyo</h1>',
+        title: '<h1 class="title">Agregar Suministro</h1>',
         html: htmlContent,
         showCloseButton: true,
         showCancelButton: true,
@@ -56,7 +56,8 @@ async function addItems() {
                 quantity: quantity
             };
             if (save_option & supplyId != null) {
-                anchorsupply(supplyId, supplierId)
+                var rpta = anchorsupply(supplyId, supplierId);
+                console.log(rpta);
             }
             if (supplyId != null) {
                 addTableBodyAboveReference(item);
@@ -73,7 +74,7 @@ async function addItems() {
     });
 
     const apiUrl = '/list_of_supplys';
-    new SearchBox('No se encuntro el supplyo...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-supply', apiUrl, 5, 0);
+    new SearchBox('No se encuntro el producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-supply', apiUrl, 5, 0);
     //fetchRoles();
     //selectorIten(".selected-iten", ".options-iten", ".option-iten");
     revertStyleDefaultAlert();
