@@ -21,13 +21,17 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+     private static array $usernames = ['adminJunior', 'cashier1', 'kitchen1', 'waiter1', 'waiter2'];
+
     public function definition(): array
     {
+        $username = array_shift(self::$usernames);
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'username' => $username,
             'password' => static::$password ??= Hash::make('password'),
+            'commentary' => '',
             'remember_token' => Str::random(10),
         ];
     }

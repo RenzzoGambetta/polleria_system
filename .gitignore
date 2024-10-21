@@ -3,9 +3,9 @@
 /public/build
 /public/hot
 /public/storage
+/resources/views/temp
 /storage/*.key
 /vendor
-.env
 .env.backup
 .env.production
 .phpactor.json

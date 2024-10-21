@@ -1,0 +1,236 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+form .form-input select {
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--filtrado);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+
+}
+
+
+
+form .form-input button {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+    margin-top: 0px;
+}
+
+#filtrado {
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+    display: block;
+}
+
+.form-input {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    height: 36px;
+    margin-bottom: 30px;
+}
+
+.activo {
+    color: var(--primary);
+
+}
+
+.sub-link {
+    color: var(--dark);
+
+}
+
+
+.paginacion ul {
+    padding: 0;
+    margin: 0;
+}
+
+.paginacion li {
+    margin: 0;
+}
+
+.paginacion a,
+.paginacion span {
+    padding: 8px 12px;
+}
+
+.paginacion a:hover {
+    background-color: #ddd;
+}
+
+.paginacion .active {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.paginacion svg {
+    width: 20px;
+    height: 20px;
+}
+
+.paginacion nav {
+    border-radius: 30px;
+    background-color: #ddd;
+
+}
+
+.paginacion nav::before {
+    display: none;
+}
+
+.paginacion p {
+    display: none;
+}
+
+.pagina {
+    color: rgb(101, 101, 101);
+}
+
+.pagination_nu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination_nu li {
+    margin-right: 5px;
+}
+
+
+.paginacion {
+
+    margin-top: 20px;
+    text-align: center;
+    width: 80vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.paginacion ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.paginacion li {
+    margin-right: 5px;
+}
+
+#centra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#border {
+    color: var(--dark);
+    width: 50px;
+    height: 50px;
+    background-color: #3498db;
+    border-radius: 20px;
+    position: relative;
+    perspective: 500px;
+    box-shadow: 5px 5px 15px var(--button-enfoque);
+}
+
+#border:hover,
+#border_ac:hover {
+    background-color: #3498db00;
+}
+
+.page-link {
+    color: var(--dark);
+}
+
+#nu_text,
+#nu_text_ac {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+}
+
+
+#nu_text:hover {
+    background-color: #118513;
+    border-radius: 20px;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px var(--button-enfoque);
+}
+
+#nu_text_ac:hover {
+    background-color: rgb(211, 4, 4);
+    border-radius: 20px;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px var(--button-enfoque);
+}
+
+#border_ac {
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    background-color: #118513;
+    border-radius: 20px;
+    position: relative;
+    perspective: 500px;
+    box-shadow: 5px 5px 15px var(--button-enfoque);
+
+}
+
+li a#centra:hover,
+.paginacion a#icon_paginacion:hover {
+    background-color: rgba(0, 123, 255, 0);
+    color: #118513;
+
+}
+
+@media (max-width: 992px) {
+    .paginacion {
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        font-size: 10px;
+    }
+    #border_ac,#border {
+        width: 30px;
+        height: 30px;
+        border-radius: 11px;
+    }
+    .icon-pagination {
+        display: none;
+    }
+}

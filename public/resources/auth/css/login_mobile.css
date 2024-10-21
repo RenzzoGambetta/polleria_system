@@ -50,7 +50,7 @@ button {
 body {
     width: 100%;
     height: 100vh;
-    background-image: url('../image/Llamas_Movil.jpg');
+    background-image: url('../image/fire_bg_image.jpg');
     background-repeat: no-repeat;
     background-color: red;
     background-size: 130%;
@@ -167,7 +167,7 @@ body {
 #logo {
     height: 20%;
 }
-#formulario{
+#form{
     width: 100%;
     height: 250px;
     display: flex;
