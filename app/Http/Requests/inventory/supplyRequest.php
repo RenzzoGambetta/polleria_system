@@ -28,7 +28,7 @@ class supplyRequest extends FormRequest
             'is_stockable' => 'bool',
             'stock' => 'integer',
             'unit' => 'string|required|max:15',
-            'note' => 'string|max>255'
+            'note' => 'string|max:255'
         ];
     }
 }

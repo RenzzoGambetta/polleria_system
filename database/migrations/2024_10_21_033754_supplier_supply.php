@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('supplier_supply', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lounge_id');
-            $table->foreign('lounge_id')->references('id')->on('lounges');
-            $table->char('code', 4);
-            $table->boolean('status')->default(false);
+            $table->unsignedBigInteger('supplier_id');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->unsignedBigInteger('supply_id');
+            $table->foreign('supply_id')->references('id')->on('supplies')->onDelete('restrict');
+            $table->string('note', 255)->nullable();
             $table->timestamps();
-            $table->unique(['lounge_id', 'code'], 'unique_code_lounge');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tables');
+        //
     }
 };
