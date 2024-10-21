@@ -22,4 +22,20 @@ class Supplier extends Model
     {
         return $this->hasMany(InventoryReceipt::class, 'supplier_id');
     }
+
+    public function supplies()
+    {
+        return $this->belongsToMany(Supply::class)
+                    ->withPivot('note')
+                    ->withTimestamps();
+    }
+
+    public function updateRelatedSupplies($suppliesIdAndNoteArray)
+    {
+        return $this->supplies()->sync($suppliesIdAndNoteArray);
+        //FORMATO DE DATOS: [ 
+        //     $supplyId1 => ['note' => 'nota 1' ],c
+        //     $supplyId2 => ['note' => 'nota 2' ]
+        //     ]
+    }
 }
