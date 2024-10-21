@@ -23,4 +23,11 @@ class Supply extends Model
     {
         return $this->hasMany(InventoryReceiptDetails::class, 'supply_id');
     }
+
+    public function suppliers()
+    {
+        return $this->belongsToMany(Supply::class)
+                    ->withPivot('note')
+                    ->withTimestamps();
+    }
 }
