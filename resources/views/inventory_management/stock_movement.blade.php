@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 <link rel="stylesheet" href="{{ asset($StockMovement) }}">
 <div class="mobile-option">
-<a href="#1"  title="Nueva Salida" class="a-arrow arrow-down"><i class='bx bxs-downvote bx-rotate-180'></i></a><a href="#2" title="Nueva Entrada" class="a-arrow arrow-up"><i class='bx bxs-downvote ' ></i></a>
+<a href="{{ route('show_panel_register_output') }}"  title="Nueva Salida" class="a-arrow arrow-down"><i class='bx bxs-downvote bx-rotate-180'></i></a><a href="{{ route('show_panel_register_entry') }}" title="Nueva Entrada" class="a-arrow arrow-up"><i class='bx bxs-downvote ' ></i></a>
 </div>
 
 <div class="header">

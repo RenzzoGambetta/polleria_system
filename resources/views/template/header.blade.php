@@ -66,6 +66,15 @@
                     </ul>
                 </li>
 
+                <li class="{{ ($Navigation['seccion'] ?? null) == 4 ? 'sub active' : 'sub' }}">
+                    <a href="{{ route('menu') }}" class="{{ ($Navigation['seccion'] ?? null) == 4 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 40 ? 'nav_select' : '' }}"><i class='fi fi-rr-plate-eating bx-adjustment-icon'></i>Menu</a>
+                    <ul class="sub">
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 4.1 ? 'active' : '' }}">
+                            <a href="{{ route('category_carte') }}" id="{{ ($Navigation['color'] ?? null) == 41 ? 'nav_select' : '' }}"><i class='fi fi-rs-recipe-book bx-adjustment-icon'></i>Carta</a>
+                        </li>
+
+                    </ul>
+                </li>
                 <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
                     <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='fi fi-sr-module bx-adjustment-icon'></i>Modulo 2</a>
                 </li>

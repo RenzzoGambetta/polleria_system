@@ -182,14 +182,14 @@ form .form-input button {
 #nu_text:hover {
     background-color: #118513;
     border-radius: 20px;
-    transform: translateY(-5px);
+    transform: translateY(-0px);
     box-shadow: 0 5px 10px var(--button-enfoque);
 }
 
 #nu_text_ac:hover {
     background-color: rgb(211, 4, 4);
     border-radius: 20px;
-    transform: translateY(-5px);
+    transform: translateY(-0px);
     box-shadow: 0 5px 10px var(--button-enfoque);
 }
 

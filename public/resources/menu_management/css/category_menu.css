@@ -1,0 +1,9 @@
+.sortable-placeholder {
+    background-color: #f0f0f0;
+    visibility: visible !important;
+    height: 40px;
+}
+
+#sortable tr {
+    transition: background-color 0.3s;
+}

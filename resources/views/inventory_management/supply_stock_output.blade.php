@@ -94,14 +94,7 @@
                     </thead>
 
                     <tbody class="list-inten" id="puntoClave">
-                        <td></td>
-                        <td></td>
-                        <td class="name-iten total-price-and-unit">Total -></td>
-                        <td class="total-price-and-unit">
-                            <div class="aling-center-displey">
-                                <div class="text-aling-preci">s/<span id="total-price">0</span></div>
-                            </div>
-                        </td>
+                        
                     </tbody>
 
                 </table>

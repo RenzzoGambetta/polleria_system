@@ -296,7 +296,7 @@ class SupplyStockController extends Controller
         $id = $request->input('id');
 
         $item = DB::table('supplies')
-            ->select('id', 'name', 'unit', 'stock')
+            ->select('id', 'name', 'unit', 'stock','CostoUniario')
             ->where('id', $id)
             ->first();
 

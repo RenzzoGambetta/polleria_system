@@ -87,6 +87,15 @@ class Resource_Path_Css extends ServiceProvider
 
             $OuputSupply = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'ouput_supply.css');
             $view->with('OuputSupply', $OuputSupply);
+
+            $MenuTable = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'menu_table.css');
+            $view->with('MenuTable', $MenuTable);
+
+            $MenuRegisterAndEdit = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'menu_register_and_edit.css');
+            $view->with('MenuRegisterAndEdit', $MenuRegisterAndEdit);
+
+            $CategoryMenu = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'category_menu.css');
+            $view->with('CategoryMenu', $CategoryMenu);
         });
     }
 }

@@ -9,6 +9,8 @@ use App\Http\Controllers\user_management\RoleController;
 use App\Http\Controllers\inventory_management\InventoryController;
 use App\Http\Controllers\inventory_management\SupplyStockController;
 use App\Http\Controllers\inventory_management\SuppliersController;
+use App\Http\Controllers\menu_management\MenuController;
+
 use App\Http\Controllers\temp\EfectController;
 
 
@@ -42,6 +44,9 @@ use App\Http\Controllers\temp\EfectController;
 
     //Inventario
     Route::get('/inventory', [InventoryController::class,'showInventoryList'])->name('inventory');
+    Route::get('/show_list_inventory_movements', [InventoryController::class,'showListInventoryMovements'])->name('show_list_inventory_movements');
+    Route::get('/new_supply_inventory', [InventoryController::class,'newsupplyInventory'])->name('new_supply_inventory');
+    //Suministros
     Route::get('/show_panel_register_entry', [SupplyStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
     Route::get('/register_new_supply', [SupplyStockController::class,'registerNewsupply'])->name('register_new_supply');
     Route::get('/show_panel_register_output', [SupplyStockController::class,'showPanelRegisterOutput'])->name('show_panel_register_output');
@@ -50,12 +55,16 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/anchor_supply_provider', [SupplyStockController::class,'anchorsupplyProvider'])->name('anchor_supply_provider');
     Route::post('/register_supply_entry', [SupplyStockController::class,'registersupplyEntry'])->name('register_supply_entry');
     Route::get('/query_supply_data', [SupplyStockController::class,'querySupplyData'])->name('query_supply_data');
+    //Provedores
     Route::get('/suppliers', [SuppliersController::class,'showSuppliersList'])->name('suppliers');
     Route::get('/new_supplier_registration_fast', [SuppliersController::class,'newSupplierRegistrationFast'])->name('new_supplier_registration_fast');
     Route::get('/suppliers_register_and_edit', [SuppliersController::class,'showSuppliersRegisterAndEdit'])->name('suppliers_register_and_edit');
-    Route::get('/show_list_inventory_movements', [InventoryController::class,'showListInventoryMovements'])->name('show_list_inventory_movements');
-    Route::get('/new_supply_inventory', [InventoryController::class,'newsupplyInventory'])->name('new_supply_inventory');
     Route::get('/list_of_suppliers', [SuppliersController::class,'listOfSuppliers'])->name('list_of_suppliers');
+//--> Modulo de gestion de Menu
+    //Menu
+    Route::get('/menu', [MenuController::class,'showMenuList'])->name('menu');
+    Route::get('/registro_menu', [MenuController::class,'newMenuAndEdit'])->name('registro_menu');
+    Route::get('/category_carte', [MenuController::class,'categoryCarte'])->name('category_carte');
 
 //--> Home
 

@@ -38,7 +38,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>supplyo</th>
+                    <th>Producto</th>
                     <th>Stock</th>
                     <th>Marca</th>
                     <th>Codigo</th>
