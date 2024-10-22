@@ -15,4 +15,13 @@ class MenuItem extends Model
     {
         return $this->belongsTo(MenuCategory::class);
     }
+
+    public function comboDetails() 
+    {
+        if ($this->is_combo == false) return;
+
+        return $this->belongsToMany(MenuItem::class, 'combo_item_details')
+                    ->withPivot('item_quantity')
+                    ->withTimestamps();
+    }
 }

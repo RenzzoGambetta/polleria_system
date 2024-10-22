@@ -19,7 +19,7 @@ class Supply extends Model
         return $this->hasOne(Brand::class);
     }
 
-    public function InventoryReceiptDetails() : HasMany
+    public function inventoryReceiptDetails() : HasMany
     {
         return $this->hasMany(InventoryReceiptDetails::class, 'supply_id');
     }
