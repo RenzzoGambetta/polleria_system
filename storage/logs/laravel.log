@@ -10513,3 +10513,11 @@ Did you mean one of these?
 #58 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\fer\\\\De...')
 #59 {main}
 "} 
+[2024-10-23 03:02:08] local.ERROR: Maximum execution time of 60 seconds exceeded {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:414)
+[stacktrace]
+#0 {main}
+"} 
+[2024-10-23 03:27:24] local.ERROR: Maximum execution time of 60 seconds exceeded {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:407)
+[stacktrace]
+#0 {main}
+"} 

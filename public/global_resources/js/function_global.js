@@ -5,22 +5,20 @@ function urlGet(url, datos = null) {
     }
     window.location.href = url;
 }
-function consultDataUrl(url, datosObj) {
-    const params = new URLSearchParams(datosObj).toString();
-    const fullUrl = `${url}?${params}`;
-    return fetch(fullUrl, {
-        method: 'GET'
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta');
-            }
-            return response.json();
-        })
-        .then(data => {
-            return data;
-        })
-        .catch(error => {
-            console.error('Error en la solicitud:', error);
-        });
+async function consultDataUrl(url, datosObj) {
+    const queryParams = new URLSearchParams(datosObj).toString();
+    const ref = url + `?${queryParams}`;
+
+    try {
+        const response = await fetch(ref);
+        if (!response.ok) {
+            throw new Error('Error en la solicitud: ' + response.statusText);
+        }
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Error:', error);
+        return false;
+    }
 }

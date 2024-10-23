@@ -24,6 +24,7 @@
         </ul>
     </div>
 </div>
+@csrf
 
 <div class="conteiner-header-data">
     <div class="div-primary-conteiner-01">
