@@ -17,7 +17,7 @@
     <a href="{{ route('menu') }}?filt=combo" class="combo-filt {{ ($Data['butthon'] ?? null) == 1 ? 'active-btn' : '' }}">Combo</a>
 </div>
 <div class="new-item">
-    <a href="{{ route('registro_menu') }}">+</a>
+    <a class="a-navegation-and-action-data" href="{{ route('registro_menu') }}">+</a>
 </div>
 <div class="conteiner-total">
     <div class="bottom-data">

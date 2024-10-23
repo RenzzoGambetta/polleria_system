@@ -494,8 +494,7 @@ button.option.new-supplier:hover {
     margin-top: 24px;
     border-radius: 20px;
     background: var(--grey);
-    box-shadow: -5px -5px 15px #0d0e10,
-        5px 5px 15px #33383e;
+    box-shadow: var(--neumorphism-div);
     margin-right: 5vh;
     display: flex;
     justify-content: center;

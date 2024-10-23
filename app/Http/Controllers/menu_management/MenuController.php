@@ -67,9 +67,15 @@ class MenuController extends Controller
     public function categoryCarte()
     {
         $Navigation = $this->NavigationMenu;
-        $Category = MenuCategory::paginate(3);
+        $Category = MenuCategory::orderBy('display_order')->get();
         return view('menu_management.category_carte', compact('Navigation','Category'));
         //return response()->json($Menu);
+
+    }
+    public function newMenuCategories(Request $request)
+    {
+        
+        //return response()->json($);
 
     }
 }

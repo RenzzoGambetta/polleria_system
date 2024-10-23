@@ -170,10 +170,12 @@ div#loader-supplier, div#loader {
     font-size: 24px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .new-item a:hover {
     background-color: rgb(201, 64, 0);
+    cursor: pointer;
 }
 .menu-item-combo span.limit-data {
     display: block;

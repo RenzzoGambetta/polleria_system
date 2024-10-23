@@ -65,6 +65,7 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/menu', [MenuController::class,'showMenuList'])->name('menu');
     Route::get('/registro_menu', [MenuController::class,'newMenuAndEdit'])->name('registro_menu');
     Route::get('/category_carte', [MenuController::class,'categoryCarte'])->name('category_carte');
+    Route::get('/new_menu_categories', [MenuController::class,'newMenuCategories'])->name('new_menu_categories');
 
 //--> Home
 

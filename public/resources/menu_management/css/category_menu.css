@@ -5,5 +5,144 @@
 }
 
 #sortable tr {
-    transition: background-color 0.3s;
+    transition: background-color 02s;
+}
+
+.new-item .a-navegation-and-action-data.retain-data {
+    border: 0px;
+
+}
+
+i.fi.fi-ss-floppy-disk-pen {
+    display: flex;
+}
+
+.new-item .a-navegation-and-action-data.retain-data {
+    background-color: green;
+    cursor: pointer;
+}
+
+.new-item .a-navegation-and-action-data.retain-data:hover {
+    background-color: rgb(2, 118, 2);
+    cursor: pointer;
+}
+
+.content main .bottom-data .orders table tbody tr {
+    cursor: move;
+}
+
+.content main .bottom-data .orders table th.Order {
+    width: 50px;
+}
+
+.content main .bottom-data .orders table tr td:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteiner-header-data {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.div-primary-conteiner-02 {
+    width: 30%;
+    margin-top: 24px;
+    min-width: 40vh;
+
+}
+
+.div-primary-conteiner-01 {
+    width: 70%;
+}
+
+.dub-block-002 {
+    display: flex;
+    width: 90%;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    border-radius: 13px;
+    background: var(--gray);
+    box-shadow: var(--neumorphism-div);
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.order-number {
+    width: 20%;
+}
+
+.order-name {
+    width: 80%;
+}
+
+.frame001 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    margin: 30px 20px;
+    width: calc(100% - 40px);
+}
+
+h1.sub-title {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    font-weight: normal;
+    color: #f95300;
+}
+
+input#name {
+    text-align: left;
+    font-weight: normal;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.dub-block-002 span.limit-data {
+    display: block;
+    height: 3px;
+    background-color: #7373735c;
+    margin: 15px 0 0 0;
+    width: 100%;
+}
+
+.new-item {
+    display: none;
+}
+
+.btn-cancel-data,
+.btn-register-data {
+    padding: 5px 0;
+    width: 40%;
+    border: 0px;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.btn-register-data {
+    background-color: green;
+    border-radius: 0 10px 10px 0;
+}
+
+.btn-cancel-data {
+    background-color: red;
+    border-radius: 10px 0 0 10px;
+}
+
+.frame002 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align-content: center;
 }

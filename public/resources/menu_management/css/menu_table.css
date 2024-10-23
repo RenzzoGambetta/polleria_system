@@ -75,7 +75,7 @@ th.title {
     z-index: 100;
 }
 
-.new-item a {
+.new-item .a-navegation-and-action-data {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +90,7 @@ th.title {
     transition: background-color 0.3s;
 }
 
-.new-item a:hover {
+.new-item .a-navegation-and-action-data:hover {
     background-color: #ba5700;
 }
 @media (min-width: 992px) {
@@ -122,7 +122,7 @@ th.title {
         margin: 0px -10px;
 
     }
-    .new-item a{
+    .new-item .a-navegation-and-action-data{
         border-radius: 0px;
         width: 100%;
     }

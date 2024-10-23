@@ -39,27 +39,28 @@
     --input_data: #ffccab;
     --input_select: #ffefde;
     --button-enfoque: rgba(0, 0, 0, 0.31);
-    --logo_color:#bb0000;
+    --logo_color: #bb0000;
     --filtered: rgb(189, 189, 189);
-    --title-categories:rgb(234 96 96);
-    --input-color-name:rgb(255, 255, 255);
-    --btn-plus-list:#4a9b32;
+    --title-categories: rgb(234 96 96);
+    --input-color-name: rgb(255, 255, 255);
+    --btn-plus-list: #4a9b32;
     --imput-efect-transiccion: #eee;
     --imput-efect-transiccion-focus: #00af0d;
     --label-efect-transiccion-focus: #0a3500;
     --calendar-icon-color: invert(32%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(85%) contrast(88%);
-    --select-color-opcion:#ffffff;
-    --color-input-background-border:#b5b5b5;
-    --select-color-opcion-label:#0083f7;
-    --select-color-opcion-hover:#e1f7ff;
+    --select-color-opcion: #ffffff;
+    --color-input-background-border: #b5b5b5;
+    --select-color-opcion-label: #0083f7;
+    --select-color-opcion-hover: #e1f7ff;
     --svg-color-loader: #d52b0a;
-    --input-background-supplies:#d1f7bc;
-    --input-background-supplies-focus:#ace7f3;
-    --edit-icon-color:#673399;
-    --delate-icon-color:#bb0000;
-    --loader-color-list:#fdc170;
+    --input-background-supplies: #d1f7bc;
+    --input-background-supplies-focus: #ace7f3;
+    --edit-icon-color: #673399;
+    --delate-icon-color: #bb0000;
+    --loader-color-list: #fdc170;
     --select-color-opcion-alert: #dfdfdf;
-
+    --seelct-move: #f2b770;
+    --neumorphism-div: -5px 5px 10px #5f5f5f, 5px -5px 10px #ffffff;
 }
 
 
@@ -86,24 +87,25 @@ body.dark {
     --button-enfoque: rgba(255, 255, 255, 0.2);
     --logo_color: #ff7800;
     --filtered: rgb(112, 112, 112);
-    --title-categories:rgb(251 154 46);
-    --input-color-name:#353c49;
-    --btn-plus-list:#1b7700;
+    --title-categories: rgb(251 154 46);
+    --input-color-name: #353c49;
+    --btn-plus-list: #1b7700;
     --imput-efect-transiccion: #25252c;
     --imput-efect-transiccion-focus: #00830a;
     --label-efect-transiccion-focus: #36ff07;
     --calendar-icon-color: invert(50%) sepia(91%) saturate(516%) hue-rotate(66deg) brightness(105%) contrast(102%);
-    --select-color-opcion:#36363b;
-    --select-color-opcion-label:#8697d5;
-    --color-input-background-border:#515151;
-    --select-color-opcion-hover:#27273b;
+    --select-color-opcion: #36363b;
+    --select-color-opcion-label: #8697d5;
+    --color-input-background-border: #515151;
+    --select-color-opcion-hover: #27273b;
     --svg-color-loader: #a50000;
-    --input-background-supplies:#28282f;
-    --input-background-supplies-focus:#263f4b;
-    --edit-icon-color:#420081;
-    --delate-icon-color:#af1c22;
-    --loader-color-list:#5f361c;
+    --input-background-supplies: #28282f;
+    --input-background-supplies-focus: #263f4b;
+    --edit-icon-color: #420081;
+    --delate-icon-color: #af1c22;
+    --loader-color-list: #5f361c;
     --select-color-opcion-alert: #36363b;
-
+    --seelct-move: #b50000;
+    --neumorphism-div: 5px 5px 10px #18181d, -5px -5px 10px #32323b;
 
 }

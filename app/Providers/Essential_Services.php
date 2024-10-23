@@ -35,6 +35,9 @@ class Essential_Services extends ServiceProvider
 
             $view->with('AlertSrc', 'https://cdn.jsdelivr.net/npm/sweetalert2@11');
 
+            //Drag and drop
+
+            $view->with('DragAndDrop', 'https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
 
         });
     }

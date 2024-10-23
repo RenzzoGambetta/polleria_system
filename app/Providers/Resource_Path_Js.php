@@ -18,6 +18,9 @@ class Resource_Path_Js extends ServiceProvider
             //$N1 = $fpFunc->Global_Resource(Folder_Path::JS, 'n1.js');
             //$view->with('N1', $N1);
 
+            $FunctionGlobal = $fpFunc->Global_Resource(Folder_Path::JS, 'function_global.js');
+            $view->with('FunctionGlobal', $FunctionGlobal);
+
             //Resources
 
             $Efect = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::JS, 'efect.js');
@@ -55,6 +58,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $FuctionButtonOutput = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'fuction_button_output.js');
             $view->with('FuctionButtonOutput', $FuctionButtonOutput);
+
+            $OrderTable = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'order_table.js');
+            $view->with('OrderTable', $OrderTable);
         });
     }
 }
