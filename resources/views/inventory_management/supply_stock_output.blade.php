@@ -85,16 +85,14 @@
                         <tr>
                             <th class="field-size movile-style-th">Producto</th>
                             <th class="data-entry movile-style-th">Unidad</th>
-                            <th class="data-entry movile-style-th">C/Unitario</th>
                             <th class="data-entry movile-style-th">Unidad medida</th>
-                            <th class="data-entry movile-style-th">Sub Total</th>
                             <th class="data-button movile-style-th">Opciones</th>
 
                         </tr>
                     </thead>
 
                     <tbody class="list-inten" id="puntoClave">
-                        
+
                     </tbody>
 
                 </table>

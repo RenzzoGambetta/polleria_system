@@ -220,7 +220,7 @@ class SupplyStockController extends Controller
 
         return response()->json($produc);
     }
-    public function listOfsupplys()
+    public function listOfSupplys()
     {
 
         $supply = Supply::all();
@@ -296,7 +296,7 @@ class SupplyStockController extends Controller
         $id = $request->input('id');
 
         $item = DB::table('supplies')
-            ->select('id', 'name', 'unit', 'stock','CostoUniario')
+            ->select('id', 'name', 'unit', 'stock')
             ->where('id', $id)
             ->first();
 

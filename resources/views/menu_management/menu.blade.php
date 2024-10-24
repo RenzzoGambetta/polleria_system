@@ -53,7 +53,7 @@
                                     </div>
                                 @endif
                             </td>
-                            <td><button type="button" class="btn-clasic">Eitar</button></td>
+                            <td><button type="button" class="btn-clasic" onclick="urlGet('{{ route('registro_menu') }}',{'option':{{ $Menus->id }}})">Eitar</button></td>
                         </tr>
                     @endforeach
                 </tbody>

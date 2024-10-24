@@ -61,6 +61,12 @@ class Resource_Path_Js extends ServiceProvider
 
             $OrderTable = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'order_table.js');
             $view->with('OrderTable', $OrderTable);
+
+            $newLabelData = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'new_label_data.js');
+            $view->with('newLabelData', $newLabelData);
+
+            $newMenuAndEdit = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'new_menu_and_edit.js');
+            $view->with('newMenuAndEdit', $newMenuAndEdit);
         });
     }
 }

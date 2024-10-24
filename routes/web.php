@@ -67,6 +67,11 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/category_carte', [MenuController::class,'categoryCarte'])->name('category_carte');
     Route::get('/new_menu_categories', [MenuController::class,'newMenuCategories'])->name('new_menu_categories');
     Route::post('/edit_to_order_categori', [MenuController::class,'editToOrderCategori'])->name('edit_to_order_categori');
+    Route::get('/list_of_item', [MenuController::class,'listOfItem'])->name('list_of_item');
+    Route::get('/list_of_category', [MenuController::class,'listOfCategory'])->name('list_of_category');
+    Route::get('/filt_item_data', [MenuController::class,'filtItemData'])->name('filt_item_data');
+    Route::get('/edit_new_menu', [MenuController::class,'editNewMenu'])->name('edit_new_menu');
+    Route::get('/register_new_menu', [MenuController::class,'registerNewMenu'])->name('register_new_menu');
 
 //--> Home
 

@@ -49,7 +49,7 @@
                                     <td class="order">{{ $Categories->display_order }}</td>
                                     <td>{{ $Categories->name }}</td>
                                     <td>2</td>
-                                    <td><button type="button" class="btn-clasic">Editar</button></td>
+                                    <td><button type="button" class="btn-clasic" >Editar</button></td>
                                 </tr>
                             @endforeach
                         </tbody>

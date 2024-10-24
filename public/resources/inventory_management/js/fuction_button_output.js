@@ -25,7 +25,6 @@ async function addSupply() {
                     let htmlContent = template
                         .replaceAll('{{id}}', result.id)
                         .replace('{{name}}', result.name)
-                        .replace('{{price_total}}', "calculando")
                         .replace('{{quantity}}', 1)
                         .replace('{{unit}}', result.unit);
 

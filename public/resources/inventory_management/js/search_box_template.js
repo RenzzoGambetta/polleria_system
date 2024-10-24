@@ -34,7 +34,7 @@ class SearchBox {
                 this.loaderElement.hide();
                 this.inputElement.show();
                 this.labelElement.show();
-                console.log(data);
+                //console.log(data);
             })
             .catch(error => {
                 console.error('Error fetching all items:', error);
@@ -202,13 +202,13 @@ class SearchBox {
     specialOperatingCondition(data1){
         if(this.specialOperations == 1){
             if(data1 != null ){
-                console.log(data1)
+                //console.log(data1)
                 supplierConsultation(data1);
             }else{
                 reverseToggleDisplay();
             }
         }
-        
+
     }
 
 }

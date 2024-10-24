@@ -5,8 +5,10 @@ namespace App\Http\Controllers\menu_management;
 use App\Http\Controllers\Controller;
 use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
+use App\Models\Supply;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use PHPUnit\Runner\Extension\Extension;
 
 class MenuController extends Controller
 {
@@ -15,7 +17,7 @@ class MenuController extends Controller
         'sub_seccion' => 4.0,
         'color' => 40
     ];
-    protected $NavigationMenu = [
+    protected $NavigationCart = [
         'seccion' => 4,
         'sub_seccion' => 4.1,
         'color' => 41
@@ -50,25 +52,64 @@ class MenuController extends Controller
     }
     public function newMenuAndEdit(Request $request)
     {
-        $direction = $request->input('direction');
+        try {
 
-        if ($direction == "menu") {
-            $Navigation = $this->NavigationMenu;
-        } else {
-            $Navigation = $this->Navigation;
+            $direction = $request->input('direction');
+            $option = $request->input('option');
+
+            $Data=[
+                'Title' =>'Nuevo plato o bebida',
+                'Toggle' => true,
+                'SubTitle' => 'Conjunto que conforma un plato o bebida',
+                'Input' => 'Suministro',
+            ];
+            if ($direction == "cart") {
+                $Navigation = $this->NavigationCart;
+                $Data['UrlCancel'] = 'category_carte';
+            } else {
+                $Navigation = $this->Navigation;
+                if ($option != null) {
+                    $ComboItem = MenuItem::where('id', $option)->first();
+                    $Data=[
+                        'Title' =>($ComboItem->is_combo == 1) ? 'Editador de Combo' : 'Editador de Plato o Bebida',
+                        'UrlCancel' => 'menu',
+                        'Toggle' => false,
+                        'SubTitle' => 'Conjunto que conforma un Combo',
+                        'Input' => 'Item',
+                    ];
+                    return view('menu_management.new_menu_and_edit', compact('Navigation', 'ComboItem', 'Data'));
+                }
+                $Data['UrlCancel'] = 'menu';
+            }
+            return view('menu_management.new_menu_and_edit', compact('Navigation', 'Data'));
+
+        } catch (Extension $e) {
+            return abort(404);
         }
-        return view('menu_management.new_menu_and_edit', compact('Navigation'));
-        //return response()->json($Menu);
-
     }
+    public function filtItemData(Request $request)
+    {
+        $id = $request->input('id'); //1
+        $combo = $request->input('combo'); //0
 
+        if ($combo == 0) {
+            $item = Supply::select('id', 'stock as quantity', 'name')->get();
+        } else if ($combo == 1) {
+
+            //Consulta sql a la tabla combo_item_details
+            $item = DB::table('combo_item_details as cid')
+                ->join('supplies as s', 'cid.item_id', '=', 's.id')
+                ->select('cid.combo_id as id', 's.name as name', 'cid.item_quantity as quantity')
+                ->where('cid.combo_id', $id)
+                ->get();
+        }
+        return response()->json($item);
+    }
     public function categoryCarte()
     {
-        $Navigation = $this->NavigationMenu;
+        $Navigation = $this->NavigationCart;
         $Category = MenuCategory::orderBy('display_order')->get();
         return view('menu_management.category_carte', compact('Navigation', 'Category'));
-        //return response()->json($Menu);
-
     }
     public function newMenuCategories(Request $request)
     {
@@ -101,7 +142,8 @@ class MenuController extends Controller
             'response' => true
         ]);
     }
-    public function editToOrderCategori(Request $request){
+    public function editToOrderCategori(Request $request)
+    {
         // Obtener los datos enviados como objeto
         $data = $request->all(); // Esto debería recibir el objeto con ids y display_order
 
@@ -118,5 +160,23 @@ class MenuController extends Controller
 
         // Devolver una respuesta JSON
         return response()->json($data);
+    }
+    public function listOfItem()
+    {
+        $item = MenuItem::select('id', 'name')->where('is_combo', 0)->get();
+        return response()->json($item);
+    }
+    public function listOfCategory()
+    {
+        $item = MenuCategory::select('id', 'name')->get();
+        return response()->json($item);
+    }
+    public function editNewMenu(Request $request)
+    {
+        return response()->json($request);
+    }
+    public function registerNewMenu(Request $request)
+    {
+        return response()->json($request);
     }
 }

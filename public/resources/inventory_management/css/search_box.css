@@ -20,7 +20,7 @@ input#search-supplier {
     font-size: 16px;
 
 }
-
+.suggestions-category,
 .suggestions-supplier,
 .suggestions {
 
@@ -36,6 +36,7 @@ input#search-supplier {
     z-index: 1;
 }
 
+.suggestions-category.open,
 .suggestions-supplier.open,
 .suggestions.open {
     max-height: 250px;
@@ -66,7 +67,7 @@ input#search-supplier {
     text-align: left;
     left: 1vh;
 }
-
+#id-category,
 #id-supplier,
 #id-supply {
     display: none;

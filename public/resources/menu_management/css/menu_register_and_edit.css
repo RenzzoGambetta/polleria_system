@@ -100,13 +100,14 @@
     display: flex;
     margin-top: 20px;
 }
-
+.btn-action-edit,
 .btn-action-cancel,
 .btn-action-register {
     padding: 10px 10%;
     width: 47%;
     color: white;
     border: 0px;
+    cursor: pointer;
 }
 
 .btn-navegation {
@@ -120,9 +121,13 @@
     background-color: red;
     border-radius: 10px 0 0 10px;
 }
+.btn-action-edit,
 .btn-action-register{
     background-color: green;
     border-radius: 0 10px 10px 0;
+}
+.btn-action-edit{
+    background-color: rgb(207, 141, 0);
 }
 #search-label-supplier, #search-label {
     left: 0px;
@@ -192,4 +197,61 @@ div#loader-supplier, div#loader {
 .title-combo {
     margin-bottom: 25px;
     margin-top: 10px;
+}
+
+.etiqueta-combo {
+    display: inline-block;
+    background-color: #75757529;
+    color: var(--dark);
+    padding: 11px 25px;
+    margin: 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    position: relative;
+    box-shadow: -5px 3px 5px rgb(255 255 255 / 20%);
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+
+.eliminar-etiqueta {
+    background-color: #d13030;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    cursor: pointer;
+}
+
+.eliminar-etiqueta:hover {
+    background-color: darkred;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.conteiner-etiker {
+    margin: 20px;
+}
+input#id-item {
+    display: none;
+}
+.effect-5:focus+label.label-input-data, .effect-5:not(:placeholder-shown)+label.label-input-data {
+    background-color: var(--imput-efect-transiccion);
+}
+
+.search-container.categort-conteiner {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+label#search-label-category {
+    left: 15px;
 }
