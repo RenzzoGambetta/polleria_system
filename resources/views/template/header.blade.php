@@ -75,12 +75,15 @@
 
                     </ul>
                 </li>
-                <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
-                    <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='fi fi-sr-module bx-adjustment-icon'></i>Modulo 2</a>
-                </li>
 
-                <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
-                    <a class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='fi fi-sr-module bx-adjustment-icon'></i>Modulo 3</a>
+                <li class="{{ ($Navigation['seccion'] ?? null) == 5 ? 'sub active' : 'sub' }}">
+                    <a href="{{ route('menu') }}" class="{{ ($Navigation['seccion'] ?? null) == 5 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 50 ? 'nav_select' : '' }}"><i class='fi fi-rs-customize-computer bx-adjustment-icon'></i>Mesa</a>
+                    <ul class="sub">
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 4.1 ? 'active' : '' }}">
+                            <a href="{{ route('category_carte') }}" id="{{ ($Navigation['color'] ?? null) == 41 ? 'nav_select' : '' }}"><i class='fi fi-rs-recipe-book bx-adjustment-icon'></i>Carta</a>
+                        </li>
+
+                    </ul>
                 </li>
 
             </ul>
