@@ -137,8 +137,8 @@
                         <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
 
                             <div class="search-container categort-conteiner">
-                                <input type="number" id="id-category" name="id_category_name" value="{{ $ComboItem->category_id ?? '' }}">
-                                <input type="text" id="search-category" name="category_name" class="search-box input-iten effect-5 no-spinner alert-style search-category" placeholder=" " autocomplete="off" value="{{ $ComboItem->category->name ?? '' }}">
+                                <input type="number" id="id-category" name="id_category_name" value="{{ $ComboItem->category_id ?? '' }}{{ $Data['idCategory'] ?? ''}}">
+                                <input type="text" id="search-category" name="category_name" class="search-box input-iten effect-5 no-spinner alert-style search-category" placeholder=" " autocomplete="off" value="{{ $ComboItem->category->name ?? '' }}{{ $Data['nameCategory'] ??''}}">
                                 <label for="search-category" id="search-label-category" class="label-input-data mobile-label">Categoria</label>
                                 <div id="suggestions" class="suggestions-category"></div>
                                 <div id="loader-category" class="loader-section">
@@ -154,7 +154,7 @@
                         </div>
                     </div>
                     <div class="btn-navegation">
-                        <button type="button" class="btn-action-cancel" onclick="urlGet('{{ route($Data['UrlCancel']) }}')">Cancelar</button>
+                        <button type="button" class="btn-action-cancel" onclick="urlGet('{{ route($Data['UrlCancel']) }}{{ $Data['UrlComplement'] ?? ''}}')">Cancelar</button>
                         <button type="submit" class="{{ $Data['Toggle'] ? 'btn-action-register' : 'btn-action-edit' }}">{{ $Data['Toggle'] ? 'Agregar' : 'Editar' }}</button>
                     </div>
                 </div>

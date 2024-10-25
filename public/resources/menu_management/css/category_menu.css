@@ -146,3 +146,11 @@ input#name {
     flex-direction: row;
     align-content: center;
 }
+button.btn-clasic.view-item {
+    width: calc(100% - 200px);
+    background-color: #002c89;
+    max-width: 300px;
+}
+button.btn-clasic.view-item {
+    background-color: #032774;
+}

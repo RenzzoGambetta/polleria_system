@@ -49,7 +49,10 @@
                                     <td class="order">{{ $Categories->display_order }}</td>
                                     <td>{{ $Categories->name }}</td>
                                     <td>2</td>
-                                    <td><button type="button" class="btn-clasic" >Editar</button></td>
+                                    <td>
+                                        <button type="button" class="btn-clasic" >Editar</button>
+                                        <button type="button" class="btn-clasic view-item" onclick="urlGet('{{ route('show_order_item') }}',{'category_id':{{ $Categories->id }}})">Ver Item</button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

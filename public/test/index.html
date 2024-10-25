@@ -1,117 +1,137 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Custom Date and Time Picker Using HTML, CSS, and JavaScript - BYTEWEBSTER</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="./style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Drag and Drop con Sortable.js</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container-item {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+        }
+        .item-data {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .item-data:hover {
+            transform: scale(1.05);
+        }
+        .item-data img {
+            width: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            user-select: none;
+            pointer-events: none;
+        }
+        .item-data-info {
+            padding: 10px;
+            text-align: center;
+        }
+        .item-data h2 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .item-data p {
+            margin: 5px 0;
+        }
+        .item-data .price {
+            color: green;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .item-data .quantity {
+            color: #555;
+            font-size: 0.9em;
+        }
+        .order-number {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
+    <div class="container-item" id="container">
+        <!-- Producto 1 -->
+        <div class="item-data" data-order="1">
+            <span class="order-number">1</span>
+            <img src="https://via.placeholder.com/200x150" alt="Producto 1" draggable="false">
+            <div class="item-data-info">
+                <h2>Producto 1</h2>
+                <p>Descripción: Producto de ejemplo.</p>
+                <p class="quantity">Cantidad: 3</p>
+                <p class="price">Precio: S/. 25.00</p>
+            </div>
+        </div>
 
-<button>fecha</button>
-<div class="app-container" ng-app="dateTimeApp" ng-controller="dateTimeCtrl as ctrl" ng-cloak>
+        <!-- Producto 2 -->
+        <div class="item-data" data-order="2">
+            <span class="order-number">2</span>
+            <img src="https://via.placeholder.com/200x150" alt="Producto 2" draggable="false">
+            <div class="item-data-info">
+                <h2>Producto 2</h2>
+                <p>Descripción: Otro producto de ejemplo.</p>
+                <p class="quantity">Cantidad: 1</p>
+                <p class="price">Precio: S/. 15.00</p>
+            </div>
+        </div>
 
-	<div date-picker
-		 datepicker-title="Seleccionar Fecha"
-		 picktime="true"
-		 pickdate="true"
-		 pickpast="false"
-		 mondayfirst="false"
-		 custom-message=""
-		 selecteddate="ctrl.selected_date"
-		 updatefn="ctrl.updateDate(newdate)">
+        <!-- Producto 3 -->
+        <div class="item-data" data-order="3">
+            <span class="order-number">3</span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f_ev7LbLu3v5vymXR7nQCWdjjz9zDh_a6w&s" alt="Producto 3" draggable="false">
+            <div class="item-data-info">
+                <h2>Producto 3</h2>
+                <p>Descripción: Producto con más características.</p>
+                <p class="quantity">Cantidad: 5</p>
+                <p class="price">Precio: S/. 40.00</p>
+            </div>
+        </div>
+    </div>
 
-		<div class="datepicker"
-			 ng-class="{
-				'am': timeframe == 'am',
-				'pm': timeframe == 'pm',
-				'compact': compact
-			}">
-			<div class="datepicker-header">
-				<div class="datepicker-title" ng-if="datepicker_title">{{ datepickerTitle }}</div>
-				<div class="datepicker-subheader">{{ customMessage }} {{ selectedDay }}, {{ localdate.getDate() }} de {{ monthNames[localdate.getMonth()] }} del {{ localdate.getFullYear() }}</div>
-			</div>
-			<div class="datepicker-calendar">
-				<div class="calendar-header">
-					<div class="goback" ng-click="moveBack()" ng-if="pickdate">
-						<svg width="30" height="30">
-							<path fill="none" stroke="#0DAD83" stroke-width="3" d="M19,6 l-9,9 l9,9"/>
-						</svg>
-					</div>
-					<div class="current-month-container">{{ currentViewDate.getFullYear() }} {{ currentMonthName() }}</div>
-					<div class="goforward" ng-click="moveForward()" ng-if="pickdate">
-						<svg width="30" height="30">
-							<path fill="none" stroke="#0DAD83" stroke-width="3" d="M11,6 l9,9 l-9,9" />
-						</svg>
-					</div>
-				</div>
-				<div class="calendar-day-header">
-					<span ng-repeat="day in days" class="day-label">{{ day.short }}</span>
-				</div>
-				<div class="calendar-grid" ng-class="{false: 'no-hover'}[pickdate]">
-					<div
-						ng-class="{'no-hover': !day.showday}"
-						ng-repeat="day in month"
-						class="datecontainer"
-						ng-style="{'margin-left': calcOffset(day, $index)}"
-						track by $index>
-						<div class="datenumber" ng-class="{'day-selected': day.selected }" ng-click="selectDate(day)">
-							{{ day.daydate }}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="timepicker" ng-if="picktime == 'true'">
-				<div ng-class="{'am': timeframe == 'am', 'pm': timeframe == 'pm' }">
-					<div class="timepicker-container-outer" selectedtime="time" timetravel>
-						<div class="timepicker-container-inner">
-							<div class="timeline-container" ng-mousedown="timeSelectStart($event)" sm-touchstart="timeSelectStart($event)">
-								<div class="current-time">
-									<div class="actual-time">{{ time }}</div>
-								</div>
-								<div class="timeline">
-								</div>
-								<div class="hours-container">
-									<div class="hour-mark" ng-repeat="hour in getHours() track by $index"></div>
-								</div>
-							</div>
-							<div class="display-time">
-								<div class="decrement-time" ng-click="adjustTime('decrease')">
-									<svg width="24" height="24">
-										<path stroke="white" stroke-width="2" d="M8,12 h8"/>
-									</svg>
-								</div>
-								<div class="time" ng-class="{'time-active': edittime.active}">
-									<input type="text" class="time-input" ng-model="edittime.input" ng-keydown="changeInputTime($event)" ng-focus="edittime.active = true; edittime.digits = [];" ng-blur="edittime.active = false"/>
-									<div class="formatted-time">{{ edittime.formatted }}</div>
-								</div>
-								<div class="increment-time" ng-click="adjustTime('increase')">
-									<svg width="24" height="24">
-										<path stroke="white" stroke-width="2" d="M12,7 v10 M7,12 h10"/>
-									</svg>
-								</div>
-							</div>
-							<div class="am-pm-container">
-								<div class="am-pm-button" ng-click="changetime('am');">am</div>
-								<div class="am-pm-button" ng-click="changetime('pm');">pm</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+    <!-- Sortable.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
-			<div class="buttons-container">
-				<div class="cancel-button">CANCEL</div>
-				<div class="save-button">SAVE</div>
-			</div>
+    <script>
+        // Inicializa Sortable en el contenedor
+        const container = document.getElementById('container');
 
-		</div>
-	</div>
-</div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
-<script  src="./script.js"></script>
+        Sortable.create(container, {
+            animation: 150, // Animación suave durante el drag-and-drop
+            onEnd: function (evt) {
+                updateOrderNumbers(); // Actualiza los números de orden después de cambiar
+            }
+        });
+
+        function updateOrderNumbers() {
+            const items = container.querySelectorAll('.item-data');
+            items.forEach((item, index) => {
+                const orderNumber = item.querySelector('.order-number');
+                orderNumber.textContent = index + 1;
+                item.setAttribute('data-order', index + 1);
+            });
+        }
+    </script>
 </body>
 </html>

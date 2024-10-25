@@ -56,22 +56,28 @@ class MenuController extends Controller
 
             $direction = $request->input('direction');
             $option = $request->input('option');
+            $id = $request->input('id');
 
-            $Data=[
-                'Title' =>'Nuevo plato o bebida',
+            $Data = [
+                'Title' => 'Nuevo plato o bebida',
                 'Toggle' => true,
                 'SubTitle' => 'Conjunto que conforma un plato o bebida',
                 'Input' => 'Suministro',
             ];
             if ($direction == "cart") {
                 $Navigation = $this->NavigationCart;
-                $Data['UrlCancel'] = 'category_carte';
+                $Data['UrlCancel'] = 'show_order_item';
+                $Data['UrlComplement'] = '?category_id='.$id;
+                $Category = MenuCategory::where('id', $id)->first();
+                $Data['idCategory'] = $Category->id;
+                $Data['nameCategory'] = $Category->name;
+
             } else {
                 $Navigation = $this->Navigation;
                 if ($option != null) {
                     $ComboItem = MenuItem::where('id', $option)->first();
-                    $Data=[
-                        'Title' =>($ComboItem->is_combo == 1) ? 'Editador de Combo' : 'Editador de Plato o Bebida',
+                    $Data = [
+                        'Title' => ($ComboItem->is_combo == 1) ? 'Editador de Combo' : 'Editador de Plato o Bebida',
                         'UrlCancel' => 'menu',
                         'Toggle' => false,
                         'SubTitle' => 'Conjunto que conforma un Combo',
@@ -82,7 +88,6 @@ class MenuController extends Controller
                 $Data['UrlCancel'] = 'menu';
             }
             return view('menu_management.new_menu_and_edit', compact('Navigation', 'Data'));
-
         } catch (Extension $e) {
             return abort(404);
         }
@@ -144,21 +149,15 @@ class MenuController extends Controller
     }
     public function editToOrderCategori(Request $request)
     {
-        // Obtener los datos enviados como objeto
-        $data = $request->all(); // Esto debería recibir el objeto con ids y display_order
-
-        // Iterar sobre el array para actualizar cada registro
+        $data = $request->all();
         foreach ($data as $id => $display_order) {
-            // Encontrar el registro por id y actualizar su display_order
-            $category = MenuCategory::find($id); // Reemplaza con tu modelo
+            $category = MenuCategory::find($id);
 
             if ($category) {
                 $category->display_order = $display_order;
-                $category->save(); // Guardar los cambios
+                $category->save();
             }
         }
-
-        // Devolver una respuesta JSON
         return response()->json($data);
     }
     public function listOfItem()
@@ -178,5 +177,40 @@ class MenuController extends Controller
     public function registerNewMenu(Request $request)
     {
         return response()->json($request);
+    }
+    public function showOrderItem(Request $request)
+    {
+        try {
+
+            $idCategory = $request->input('category_id');
+            $CategoryData = MenuCategory::where('id', $idCategory)->first();
+
+            if ($CategoryData == null) {
+                return abort(404);
+            }
+
+            $Data = [
+                'Title' => $CategoryData->name,
+                'Id' => $idCategory,
+            ];
+            $Navigation = $this->NavigationCart;
+            $Item = MenuItem::orderBy('display_order')->where('category_id', $idCategory)->get();
+            return view('menu_management.item_order', compact('Navigation', 'Item', 'Data'));
+        } catch (Extension $e) {
+            return abort(404);
+        }
+    }
+    public function editToOrderItem(Request $request)
+    {
+        $data = $request->all();
+        foreach ($data as $id => $display_order) {
+            $item = MenuItem::find($id);
+
+            if ($item) {
+                $item->display_order = $display_order;
+                $item->save();
+            }
+        }
+        return response()->json($data);
     }
 }

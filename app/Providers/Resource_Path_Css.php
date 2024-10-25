@@ -96,6 +96,10 @@ class Resource_Path_Css extends ServiceProvider
 
             $CategoryMenu = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'category_menu.css');
             $view->with('CategoryMenu', $CategoryMenu);
+
+            $ItemOrder = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'item_order.css');
+            $view->with('ItemOrder', $ItemOrder);
+
         });
     }
 }
