@@ -72,12 +72,14 @@
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 4.1 ? 'active' : '' }}">
                             <a href="{{ route('category_carte') }}" id="{{ ($Navigation['color'] ?? null) == 41 ? 'nav_select' : '' }}"><i class='fi fi-rs-recipe-book bx-adjustment-icon'></i>Carta</a>
                         </li>
-
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 4.2 ? 'active' : '' }}">
+                            <a href="{{ route('show_drawing_table') }}" id="{{ ($Navigation['color'] ?? null) == 42 ? 'nav_select' : '' }}"><i class='fi fi-ss-table-pivot bx-adjustment-icon'></i>Mesas</a>
+                        </li>
                     </ul>
                 </li>
 
                 <li class="{{ ($Navigation['seccion'] ?? null) == 5 ? 'sub active' : 'sub' }}">
-                    <a href="{{ route('menu') }}" class="{{ ($Navigation['seccion'] ?? null) == 5 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 50 ? 'nav_select' : '' }}"><i class='fi fi-rs-customize-computer bx-adjustment-icon'></i>Mesa</a>
+                    <a href="{{ route('menu') }}" class="{{ ($Navigation['seccion'] ?? null) == 5 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 50 ? 'nav_select' : '' }}"><i class='fi fi-rs-customize-computer bx-adjustment-icon'></i>Configuracion</a>
                     <ul class="sub">
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 4.1 ? 'active' : '' }}">
                             <a href="{{ route('category_carte') }}" id="{{ ($Navigation['color'] ?? null) == 41 ? 'nav_select' : '' }}"><i class='fi fi-rs-recipe-book bx-adjustment-icon'></i>Carta</a>
