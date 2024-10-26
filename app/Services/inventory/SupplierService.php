@@ -4,6 +4,7 @@ namespace App\Services\inventory;
 
 use App\Models\Person;
 use App\Models\Supplier;
+use App\Models\Supply;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -89,4 +90,54 @@ class SupplierService
         }
     }
 
+    public function getSupplyDTOBySupplierId(int $id) {
+        $supplier = Supplier::find($id);
+
+        if (!$supplier) return 'No se encontró un proveedor con ese id';
+
+        $supplies = $supplier->supplies()->get();
+
+        if (!$supplies) return 'No hay suministros para este proveedor';
+
+        $suppliesDTO = [];
+
+        foreach ($supplies as $s) 
+        {
+            $lastDetail = $s->inventoryReceiptDetails()->orderBy('updated_at', 'desc')->first(['price', 'quantity']);
+            
+            $suppliesDTO[] = [
+                'id' => $s->id,
+                'code' => $s->code,
+                'name' => $s->name,
+                'lastPrice' => $lastDetail ? $lastDetail->price : null,
+                'lastQuantity' => $lastDetail ? $lastDetail->quantity : null,
+            ];
+
+            return $suppliesDTO;
+        }
+    }
+
+    public function getAllSupplierDTO() 
+    {
+        $supplies = Supplier::all();
+        $suppleisDTO = [];
+
+        foreach ($supplies as $e) {
+            $suppleisDTO[] = $this->mapSupplierToDTO($e);
+        }
+
+        return $suppleisDTO;
+    }
+
+    //Mapper
+    private function mapSupplierToDTO(Supplier $supplier) 
+    {
+        $supplierDTO = [
+            'id' => $supplier->id,
+            'ruc' => $supplier->person->dni,
+            'name' => $supplier->person->firstname .' '.$supplier->person->lastname
+        ];
+
+        return $supplierDTO;
+    }
 }
