@@ -10,7 +10,7 @@ use App\Http\Controllers\inventory_management\InventoryController;
 use App\Http\Controllers\inventory_management\SupplyStockController;
 use App\Http\Controllers\inventory_management\SuppliersController;
 use App\Http\Controllers\menu_management\MenuController;
-
+use App\Http\Controllers\menu_management\TableController;
 use App\Http\Controllers\temp\EfectController;
 
 
@@ -74,6 +74,7 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/edit_new_menu', [MenuController::class,'editNewMenu'])->name('edit_new_menu');
     Route::get('/register_new_menu', [MenuController::class,'registerNewMenu'])->name('register_new_menu');
     Route::get('/show_order_item', [MenuController::class,'showOrderItem'])->name('show_order_item');
+    Route::get('/show_drawing_table', [TableController::class,'showDrawingTable'])->name('show_drawing_table');
 
 //--> Home
 
