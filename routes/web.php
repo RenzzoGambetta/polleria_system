@@ -50,10 +50,10 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/show_panel_register_entry', [SupplyStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
     Route::get('/register_new_supply', [SupplyStockController::class,'registerNewsupply'])->name('register_new_supply');
     Route::get('/show_panel_register_output', [SupplyStockController::class,'showPanelRegisterOutput'])->name('show_panel_register_output');
-    Route::get('/supplier_supply_list', [SupplyStockController::class,'suppliersupplyList'])->name('supplier_supply_list');
+    Route::get('/supplier_supply_list', [SupplyStockController::class,'supplierSupplyList'])->name('supplier_supply_list');
     Route::get('/list_of_supplys', [SupplyStockController::class,'listOfsupplys'])->name('list_of_supplys');
-    Route::get('/anchor_supply_provider', [SupplyStockController::class,'anchorsupplyProvider'])->name('anchor_supply_provider');
-    Route::post('/register_supply_entry', [SupplyStockController::class,'registersupplyEntry'])->name('register_supply_entry');
+    Route::get('/anchor_supply_provider', [SupplyStockController::class,'anchorSupplyProvider'])->name('anchor_supply_provider');
+    Route::post('/register_supply_entry', [SupplyStockController::class,'registerSupplyEntry'])->name('register_supply_entry');
     Route::get('/query_supply_data', [SupplyStockController::class,'querySupplyData'])->name('query_supply_data');
     //Provedores
     Route::get('/suppliers', [SuppliersController::class,'showSuppliersList'])->name('suppliers');

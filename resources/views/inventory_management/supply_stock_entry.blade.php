@@ -44,7 +44,7 @@
                     <div class="lateralside-content sub-block-01">
 
                         <div class="search-container">
-                            <input type="number" id="id-supplier" name="id_supplier_name">
+                            <input type="number" id="id-supplier" name="supplier_id">
                             <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
                             <label for="search-supplier" id="search-label-supplier" class="label-input-data mobile-label main-panel">Seleccione el provedor</label>
                             <div id="suggestions" class="suggestions-supplier"></div>
@@ -63,11 +63,11 @@
 
                     <div class="lateralside-content sub-block-02">
                         <div class="input-group input-dimensions">
-                            <input type="text" name="document" id="document" class="input-iten effect-5 date-icon" placeholder=" " value="">
+                            <input type="text" name="document" id="voucher_type_id" class="input-iten effect-5 date-icon" placeholder=" " value="">
                             <label for="document">Documento</label>
                         </div>
                         <div class="input-group input-dimensions">
-                            <input type="text" name="typeFacture" id="typeFacture" class="input-iten effect-5 date-icon" placeholder=" " value="">
+                            <input type="text" name="payment_type" id="typeFacture" class="input-iten effect-5 date-icon" placeholder=" " value="">
                             <label for="typeFacture">Tipo</label>
                         </div>
 
@@ -79,19 +79,24 @@
 
                     <div class="dub-block-001">
                         <div class="col-3 input-effect date-time">
-                            <input type="date" name="date" id="dateTime" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
+                            <input type="date" name="issuance_date" id="dateTime" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
                             <label for="dateTime">Fecha de emision</label>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="col-3 input-effect date-time">
+                            <input type="date" name="expiration_date" id="dateTimeEnd" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
+                            <label for="dateTimeEnd">Fecha de vencimiento</label>
                             <span class="focus-border"></span>
                         </div>
                     </div>
                     <div class="dub-block-002">
                         <div class="col-3 input-effect data-series">
-                            <input type="text" name="series" id="series" class="effect-16" placeholder=" " value="">
+                            <input type="text" name="voucher_serie" id="series" class="effect-16" placeholder=" " value="">
                             <label for="series">Serie</label>
                             <span class="focus-border"></span>
                         </div>
                         <div class="col-3 input-effect data-numeric">
-                            <input class="effect-16" type="text" name="numeric" id="numeric" placeholder="" value="">
+                            <input class="effect-16" type="text" name="correlative_numer" id="numeric" placeholder="" value="">
                             <label for="numeric">Numero</label>
                             <span class="focus-border"></span>
                         </div>
@@ -102,7 +107,7 @@
             </div>
             <div class="input-data-form-numeric">
                 <div class="wave-group input-dimensions comment">
-                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input" value="" placeholder=" "></textarea>
+                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="commentary" id="comment-input" value="" placeholder=" "></textarea>
                     <label class="label">
                         @foreach (str_split($comment) as $index => $char)
                             <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>

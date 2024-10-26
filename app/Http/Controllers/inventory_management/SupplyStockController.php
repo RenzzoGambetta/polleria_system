@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\inventory\inventoryReceiptRequest;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\Supply;
@@ -10,6 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
+
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Exception;
 class SupplyStockController extends Controller
 {
     protected $NavigationEntry = [
@@ -36,7 +41,7 @@ class SupplyStockController extends Controller
 
         return view('inventory_management.supply_stock_output', compact('Navigation'));
     }
-    public function suppliersupplyList(Request $request)
+    public function supplierSupplyList(Request $request)
     {
 
         $idData = validator::make(
@@ -252,7 +257,7 @@ class SupplyStockController extends Controller
 
         return response()->json($reply);
     }
-    public function anchorsupplyProvider(Request $request)
+    public function anchorSupplyProvider(Request $request)
     {
         $idData = validator::make(
             $request->all(),
@@ -284,12 +289,34 @@ class SupplyStockController extends Controller
 
         return response()->json($reply);
     }
-    public function registersupplyEntry(Request $request)
+    public function registerSupplyEntry(inventoryReceiptRequest  $request)
     {
 
+        try {
 
 
-        return response()->json($request);
+            // Responde con éxito en JSON
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Inventory receipt created successfully!',
+                'data' => $request
+            ], 201);
+
+        } catch (ValidationException $e) {
+            // Captura los errores de validación específicos
+            return response()->json([
+                'status' => 'error',
+                'errors' => $e->validator->errors()
+            ], 422);
+
+        } catch (Exception $e) {
+            // Captura cualquier otro tipo de error
+            return response()->json([
+                'status' => 'error',
+                'message' => 'An unexpected error occurred.',
+                'details' => $e->getMessage()  // Puedes eliminar este campo en producción
+            ], 500);
+        }
     }
     public function querySupplyData(Request $request){
 
