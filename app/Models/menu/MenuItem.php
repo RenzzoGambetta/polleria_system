@@ -2,6 +2,7 @@
 
 namespace App\Models\menu;
 
+use App\Models\Supply;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +23,13 @@ class MenuItem extends Model
 
         return $this->belongsToMany(MenuItem::class, 'combo_item_details')
                     ->withPivot('item_quantity')
+                    ->withTimestamps();
+    }
+
+    public function supplyDetails()
+    {
+        return $this->belongsToMany(Supply::class, 'menu_supply_details')
+                    ->withPivot('supply_quantity')
                     ->withTimestamps();
     }
 }

@@ -90,7 +90,8 @@ class SupplierService
         }
     }
 
-    public function getSupplyDTOBySupplierId(int $id) {
+    public function getSupplyDTOBySupplierId(int $id) 
+    {
         $supplier = Supplier::find($id);
 
         if (!$supplier) return 'No se encontró un proveedor con ese id';

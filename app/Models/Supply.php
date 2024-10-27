@@ -30,4 +30,11 @@ class Supply extends Model
                     ->withPivot('note')
                     ->withTimestamps();
     }
+
+    public function menuItemDetails()
+    {
+        return $this->belongsToMany(Supply::class, 'menu_supply_details')
+                    ->withPivot('supply_quantity')
+                    ->withTimestamps();
+    }
 }
