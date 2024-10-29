@@ -17,6 +17,11 @@ class MenuItem extends Model
         return $this->belongsTo(MenuCategory::class);
     }
 
+    public function cookingPlace()
+    {
+        return $this->belongsTo(CookingPlace::class);
+    }
+
     public function comboDetails() 
     {
         if ($this->is_combo == false) return;

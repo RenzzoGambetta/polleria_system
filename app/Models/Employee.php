@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 use App\Models\Person;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Employee extends Person
 {
@@ -13,9 +14,9 @@ class Employee extends Person
     protected $table = 'employees';
     protected $fillable = ['user_id', 'person_id', 'address', 'nationality'];
 
-    public function user(): BelongsTo
+    public function user(): HasOne
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 
     public function person(): BelongsTo

@@ -4,10 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Employee;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -49,8 +49,13 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function employee(): HasOne
+    public function employee(): BelongsTo
     {
-        return $this->hasOne(Employee::class);
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class);
     }
 }

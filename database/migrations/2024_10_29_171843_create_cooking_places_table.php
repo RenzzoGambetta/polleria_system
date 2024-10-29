@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('cooking_places', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('person_id');
-            $table->foreign('person_id')->references('id')->on('persons');
-            $table->string('address')->nullable();
-            $table->string('nationality')->nullable();
+            $table->string('name', 60);
+            $table->string('description', 255);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('cooking_places');
     }
 };
