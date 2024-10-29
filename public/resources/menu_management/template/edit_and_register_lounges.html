@@ -1,0 +1,20 @@
+<h3>{{title}} sala</h3>
+<label for="room-name">Nombre de la sala <samp class="mandatory-sign">*</samp></label>
+<input type="text" id="room-name" placeholder="Salón" name="nameLounge" value="{{name}}">
+
+<label for="room-name">Direccion <samp class="mandatory-sign">*</samp></label>
+<input type="text" id="room-name" placeholder="Salón" name="addressLounge" value="{{address}}">
+
+<div class="div-compact">
+    <div class="frame-div">
+        <label for="room-name">Codigo <samp class="mandatory-sign">*</samp></label>
+        <input type="text" id="room-name" placeholder="Salón"  name="codeLounge" value="{{code}}">
+    </div>
+    <div class="frame-div">
+        <label for="room-name">Priso <samp class="mandatory-sign">*</samp></label>
+        <input type="number" id="room-name" placeholder="Salón"  name="floorLounge" value="{{floor}}">
+    </div>
+</div>
+<input type="number" style="display: none;" name="idLounge" value="{{id}}">
+<button class="btn-{{classButtonClear}}" onclick="{{classButtonClear}}LoungeAction()">Eliminar</button>
+<button class="btn-{{classButton}}" onclick="{{classButton}}LoungeAction()">{{button}}</button>

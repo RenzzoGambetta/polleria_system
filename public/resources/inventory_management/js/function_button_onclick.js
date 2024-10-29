@@ -341,7 +341,7 @@ function addTableBodyAboveReference(item) {
             let htmlContent = template
                 .replaceAll('{{id}}', item.id)
                 .replace('{{name}}', item.name)
-                .replace('{{price_total}}', item.price_per_unit * item.quantity)
+                .replace('{{price_total}}',  (item.price_per_unit * item.quantity) % 1 === 0 ? (item.price_per_unit * item.quantity).toFixed(0) : (item.price_per_unit * item.quantity).toFixed(2))
                 .replace('{{price_per_unit}}', item.price_per_unit)
                 .replace('{{quantity}}', item.quantity);
 

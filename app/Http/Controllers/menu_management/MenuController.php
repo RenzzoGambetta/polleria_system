@@ -30,18 +30,18 @@ class MenuController extends Controller
 
         if ($filt == "combo") {
             $Data = [
-                'butthon' => 1,
+                'button' => 1,
             ];
 
             $Menu = MenuItem::where('is_combo', 1)->paginate(6)->appends($Url);
         } else if ($filt == "menu") {
             $Data = [
-                'butthon' => 2,
+                'button' => 2,
             ];
             $Menu = MenuItem::where('is_combo', 0)->paginate(6)->appends($Url);
         } else {
             $Data = [
-                'butthon' => 3,
+                'button' => 3,
             ];
             $Menu = MenuItem::paginate(8);
         }

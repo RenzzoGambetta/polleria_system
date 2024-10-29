@@ -67,6 +67,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $newMenuAndEdit = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'new_menu_and_edit.js');
             $view->with('newMenuAndEdit', $newMenuAndEdit);
+
+            $tableEditAndRegister = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'table-edit-and-register.js');
+            $view->with('tableEditAndRegister', $tableEditAndRegister);
         });
     }
 }

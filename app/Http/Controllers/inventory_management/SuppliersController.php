@@ -67,7 +67,7 @@ class SuppliersController extends Controller
         foreach ($Suppliers as $supplier) {
             $data[] = [
                 'id' => $supplier->id,
-                'name' => "2200!".$supplier->person->firstname,
+                'name' => $supplier->person->dni."|".$supplier->person->firstname,
             ];
         }
 

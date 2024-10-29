@@ -12,9 +12,9 @@
 </div>
 
 <div class="action-btn-filt">
-    <a href="{{ route('menu') }}?filt=1" class="not-filt {{ ($Data['butthon'] ?? null) == 3 ? 'active-btn' : '' }}">Todo</a>
-    <a href="{{ route('menu') }}?filt=menu" class="uno-produc-filt {{ ($Data['butthon'] ?? null) == 2 ? 'active-btn' : '' }}">Normal</a>
-    <a href="{{ route('menu') }}?filt=combo" class="combo-filt {{ ($Data['butthon'] ?? null) == 1 ? 'active-btn' : '' }}">Combo</a>
+    <a href="{{ route('menu') }}?filt=1" class="not-filt {{ ($Data['button'] ?? null) == 3 ? 'active-btn' : '' }}">Todo</a>
+    <a href="{{ route('menu') }}?filt=menu" class="uno-produc-filt {{ ($Data['button'] ?? null) == 2 ? 'active-btn' : '' }}">Normal</a>
+    <a href="{{ route('menu') }}?filt=combo" class="combo-filt {{ ($Data['button'] ?? null) == 1 ? 'active-btn' : '' }}">Combo</a>
 </div>
 <div class="new-item">
     <a class="a-navegation-and-action-data" href="{{ route('registro_menu') }}">+</a>

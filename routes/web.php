@@ -75,6 +75,14 @@ use App\Http\Controllers\temp\EfectController;
     Route::get('/register_new_menu', [MenuController::class,'registerNewMenu'])->name('register_new_menu');
     Route::get('/show_order_item', [MenuController::class,'showOrderItem'])->name('show_order_item');
     Route::get('/show_drawing_table', [TableController::class,'showDrawingTable'])->name('show_drawing_table');
+    Route::get('/tables-list-data', [TableController::class,'tablesListData'])->name('tables-list-data');
+    Route::get('/lounge_data_edit', [TableController::class,'loungeDataEdit'])->name('lounge_data_edit');
+    Route::post('/edit_lounge', [TableController::class,'editLounge'])->name('edit_lounge');
+    Route::post('/new_lounge', [TableController::class,'newLounge'])->name('new_lounge');
+    Route::post('/delate_lounge', [TableController::class,'delateLounge'])->name('delate_lounge');
+    Route::post('/delate_table', [TableController::class,'delateTable'])->name('delate_table');
+    Route::post('/edit_table', [TableController::class,'editTable'])->name('edit_table');
+    Route::post('/new_table', [TableController::class,'newTable'])->name('new_table');
 
 //--> Home
 

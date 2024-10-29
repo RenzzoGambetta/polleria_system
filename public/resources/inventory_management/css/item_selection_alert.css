@@ -27,6 +27,8 @@ div:where(.swal2-container).swal2-noanimation {
 }
 /*Combox animation index*/
 .select-iten,
+.select-document,
+.select-type-credit-and-cash,
 .select-unit-of-measurement-supply-new
 {
     position: relative;
@@ -35,6 +37,8 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .selected-iten,
+.selected-document,
+.selected-type-credit-and-cash,
 .selected-unit-of-measurement-supply-new
 {
     background-color: transparent;
@@ -48,12 +52,16 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .selected-iten::after,
+.selected-document::after,
+.selected-type-credit-and-cash::after,
 .selected-unit-of-measurement-supply-new::after
 {
     top: 50%;
 }
 
 .selected-iten::after,
+.selected-document::after,
+.selected-type-credit-and-cash::after,
 .selected-unit-of-measurement-supply-new::after
 {
     content: "";
@@ -71,6 +79,8 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .options-iten,
+.options-document,
+.options-type-credit-and-cash,
 .options-unit-of-measurement-supply-new
 {
     position: absolute;
@@ -86,6 +96,8 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .options-iten.active,
+.options-document.active,
+.options-type-credit-and-cash.active,
 .options-unit-of-measurement-supply-new.active
 {
     max-height: 200px;
@@ -93,21 +105,28 @@ div:where(.swal2-container).swal2-noanimation {
     overflow-y: scroll;
     z-index: 1;
     padding: 12px;
+    border-radius: 8px;
 }
 
 .options-iten.active+.selected-iten::after,
+.options-document.active+.selected-document::after,
+.options-type-credit-and-cash.active+.selected-type-credit-and-cash::after,
 .options-unit-of-measurement-supply-new.active+.selected-unit-of-measurement-supply-new::after
 {
     transform: rotateX(180deg) translateY(50%);
 }
 
 .options-iten::-webkit-scrollbar,
+.options-document::-webkit-scrollbar,
+.options-type-credit-and-cash::-webkit-scrollbar,
 .options-unit-of-measurement-supply-new::-webkit-scrollbar
 {
     width: 0.375rem;
 }
 
 .options-iten::-webkit-scrollbar-thumb,
+.options-document::-webkit-scrollbar-thumb,
+.options-type-credit-and-cash::-webkit-scrollbar-thumb,
 .options-unit-of-measurement-supply-new::-webkit-scrollbar-thumb
 {
     background-color: #ccc;
@@ -115,6 +134,8 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .option-iten,
+.option-document,
+.option-type-credit-and-cash,
 .option-unit-of-measurement-supply-new
 {
     display: block;
@@ -124,10 +145,43 @@ div:where(.swal2-container).swal2-noanimation {
 }
 
 .option-iten:hover,
+.option-document:hover,
+.option-type-credit-and-cash:hover,
 .option-unit-of-measurement-supply-new:hover
 {
     background-color: var(--select-color-opcion-hover);
     border-radius: 15px;
+}
+
+.sub-title-select-type,
+.sub-title-select-document
+{
+
+    font-size: 14px;
+    transition: 0.3s;
+    color: var(--label-efect-transiccion-focus);
+    background-color: var(--imput-efect-transiccion);
+    margin-left: 20px;
+
+}
+
+.sub-title-div-type,
+.sub-title-div-document
+{
+    margin-top: -12px;
+    height: 0px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.focus-select {
+    border: 2.5px solid var(--imput-efect-transiccion-focus);
+}
+
+.highlight {
+    background-color: var(--select-color-opcion-hover);
+    border-radius: 15px;
+    cursor: pointer;
 }
 /*Combox animation end*/
 
@@ -202,7 +256,7 @@ label.text-check:hover {
     margin-top: 4vh;
 }
 
-.butthon-new-supply {
+.button-new-supply {
     background-color: #6d6d6d;
     color: white;
     padding: 1.3vh 4vh;
@@ -212,7 +266,7 @@ label.text-check:hover {
     font-family: cursive;
 }
 
-.butthon-new-supply:hover {
+.button-new-supply:hover {
     background-color: #f04343;
 
 }
@@ -451,6 +505,11 @@ img#preview-image {
     padding: 10px 20px;
     height: 100%;
 }
+.entry-data{
+    padding: 10px 20px;
+    height: 100%;
+    margin-top: 14px;
+}
 @media (max-width: 992px) {
     label.label-input-data.mobile-label {
         font-size: 0.8rem;
@@ -471,7 +530,7 @@ img#preview-image {
         padding: 10px;
     }
 
-    .butthon-new-supply,
+    .button-new-supply,
     label.text-check {
         font-family: serif;
         font-size: 1rem;
@@ -519,7 +578,7 @@ img#preview-image {
         padding: 10px;
     }
 
-    .butthon-new-supply,
+    .button-new-supply,
     label.text-check {
         font-family: serif;
         font-size: 0.7rem;

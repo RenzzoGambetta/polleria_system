@@ -7,6 +7,7 @@ use App\Http\Requests\inventory\inventoryReceiptRequest;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\Supply;
+use App\Models\VoucherType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -31,8 +32,9 @@ class SupplyStockController extends Controller
     {
 
         $Navigation = $this->NavigationEntry;
+        $Voucher = VoucherType::select('id', 'name')->get();
 
-        return view('inventory_management.supply_stock_entry', compact('Navigation'));
+        return view('inventory_management.supply_stock_entry', compact('Navigation','Voucher'));
     }
     public function showPanelRegisterOutput()
     {
@@ -44,184 +46,25 @@ class SupplyStockController extends Controller
     public function supplierSupplyList(Request $request)
     {
 
-        $idData = validator::make(
-            $request->all(),
-            [
-                'id' => 'required|size:5',
-            ]
-        );
-
-        $id = $request->input('id');
-        /*
-        $produc = DB::table('supplies')
-        ->join('supplier_supplies', 'supplies.id', '=', 'supplier_supplies.supplies_id')
-        ->where('supplier_supplies.supplier_id', $id)
-        ->select('supplies.*', 'supplier_supplies.note')
+        $produc = DB::table('supplier_supply')
+        ->join('supplies', 'supplier_supply.supply_id', '=', 'supplies.id')
+        ->leftJoin('inventory_receipt_details', function ($join) {
+            $join->on('inventory_receipt_details.supply_id', '=', 'supplies.id')
+                ->whereRaw('inventory_receipt_details.id = (
+                    SELECT id FROM inventory_receipt_details AS ird
+                    WHERE ird.supply_id = supplies.id
+                    ORDER BY ird.created_at DESC
+                    LIMIT 1
+                )');
+        })
+        ->where('supplier_supply.supplier_id', $request->id)
+        ->select(
+            'supplies.id',
+            'supplies.name',
+            DB::raw('COALESCE(inventory_receipt_details.quantity, 1) AS quantity'),
+            DB::raw('COALESCE(inventory_receipt_details.price, 0) AS price_per_unit')
+        )
         ->get();
-
-*/
-        $idData = validator::make(
-            $request->all(),
-            [
-                'id' => 'required|size:5',
-            ]
-        );
-
-        $id = $request->input('id');
-        if ($id == 1) {
-            $produc = [
-                [
-                    'id' => 1,
-                    'name' => 'Pollo entero',
-                    'quantity' => 100,
-                    'price_per_unit' => 12.00
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Papas',
-                    'quantity' => 500, // en kilogramos
-                    'price_per_unit' => 1.50 // en moneda local
-                ],
-            ];
-        } else if ($id == 2) {
-            $produc = [
-                [
-                    'id' => 5,
-                    'name' => 'Pimienta',
-                    'quantity' => 20, // en kilogramos
-                    'price_per_unit' => 5.00 // en moneda local
-                ],
-                [
-                    'id' => 6,
-                    'name' => 'Ajo',
-                    'quantity' => 100, // en kilogramos
-                    'price_per_unit' => 4.00 // en moneda local
-                ],
-                [
-                    'id' => 7,
-                    'name' => 'Ají panca',
-                    'quantity' => 80, // en kilogramos
-                    'price_per_unit' => 6.00 // en moneda local
-                ]
-            ];
-        } else if ($id == 3) {
-            $produc = [
-                [
-                    'id' => 9,
-                    'name' => 'Culantro',
-                    'quantity' => 50, // en manojos
-                    'price_per_unit' => 2.00 // en moneda local
-                ],
-                [
-                    'id' => 10,
-                    'name' => 'Vinagre',
-                    'quantity' => 150, // en litros
-                    'price_per_unit' => 2.50 // en moneda local
-                ]
-            ];
-        } else if ($id == 4) {
-            $produc = [
-                [
-                    'id' => 4,
-                    'name' => 'Sal',
-                    'quantity' => 50, // en kilogramos
-                    'price_per_unit' => 0.50 // en moneda local
-                ],
-                [
-                    'id' => 5,
-                    'name' => 'Pimienta',
-                    'quantity' => 20, // en kilogramos
-                    'price_per_unit' => 5.00 // en moneda local
-                ],
-                [
-                    'id' => 6,
-                    'name' => 'Ajo',
-                    'quantity' => 100, // en kilogramos
-                    'price_per_unit' => 4.00 // en moneda local
-                ],
-                [
-                    'id' => 7,
-                    'name' => 'Ají panca',
-                    'quantity' => 80, // en kilogramos
-                    'price_per_unit' => 6.00 // en moneda local
-                ],
-                [
-                    'id' => 8,
-                    'name' => 'Comino',
-                    'quantity' => 30, // en kilogramos
-                    'price_per_unit' => 7.00 // en moneda local
-                ],
-                [
-                    'id' => 9,
-                    'name' => 'Culantro',
-                    'quantity' => 50, // en manojos
-                    'price_per_unit' => 2.00 // en moneda local
-                ]
-            ];
-        } else {
-            $produc = [
-                [
-                    'id' => 1,
-                    'name' => 'Pollo entero',
-                    'quantity' => 100, // en unidades
-                    'price_per_unit' => 12.00 // en moneda local
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Papas',
-                    'quantity' => 500, // en kilogramos
-                    'price_per_unit' => 1.50 // en moneda local
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'Aceite vegetal',
-                    'quantity' => 200, // en litros
-                    'price_per_unit' => 3.00 // en moneda local
-                ],
-                [
-                    'id' => 4,
-                    'name' => 'Sal',
-                    'quantity' => 50, // en kilogramos
-                    'price_per_unit' => 0.50 // en moneda local
-                ],
-                [
-                    'id' => 5,
-                    'name' => 'Pimienta',
-                    'quantity' => 20, // en kilogramos
-                    'price_per_unit' => 5.00 // en moneda local
-                ],
-                [
-                    'id' => 6,
-                    'name' => 'Ajo',
-                    'quantity' => 100, // en kilogramos
-                    'price_per_unit' => 4.00 // en moneda local
-                ],
-                [
-                    'id' => 7,
-                    'name' => 'Ají panca',
-                    'quantity' => 80, // en kilogramos
-                    'price_per_unit' => 6.00 // en moneda local
-                ],
-                [
-                    'id' => 8,
-                    'name' => 'Comino',
-                    'quantity' => 30, // en kilogramos
-                    'price_per_unit' => 7.00 // en moneda local
-                ],
-                [
-                    'id' => 9,
-                    'name' => 'Culantro',
-                    'quantity' => 50, // en manojos
-                    'price_per_unit' => 2.00 // en moneda local
-                ],
-                [
-                    'id' => 10,
-                    'name' => 'Vinagre',
-                    'quantity' => 150, // en litros
-                    'price_per_unit' => 2.50 // en moneda local
-                ]
-            ];
-        }
 
         return response()->json($produc);
     }

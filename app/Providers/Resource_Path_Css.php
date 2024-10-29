@@ -100,6 +100,9 @@ class Resource_Path_Css extends ServiceProvider
             $ItemOrder = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'item_order.css');
             $view->with('ItemOrder', $ItemOrder);
 
+            $TableEditAndRegister = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'table_edit_and_register.css');
+            $view->with('TableEditAndRegister', $TableEditAndRegister);
+
         });
     }
 }

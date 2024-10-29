@@ -62,14 +62,44 @@
                     </div>
 
                     <div class="lateralside-content sub-block-02">
-                        <div class="input-group input-dimensions">
-                            <input type="text" name="document" id="voucher_type_id" class="input-iten effect-5 date-icon" placeholder=" " value="">
-                            <label for="document">Documento</label>
+
+                        <div class="select-document">
+                            <div class="sub-title-div-document">
+                                <label for="sub-title-select-01" class="sub-title-select-document">Documento</label>
+                            </div>
+
+                            <div class="options-document">
+
+                                @foreach ($Voucher as $Type)
+                                <label for="{{ $Type->name }}" class="option-document">
+                                    <input type="radio" name="voucher_type_id" id="{{ $Type->name }}" value="{{ $Type->id }}" />
+                                    <span>{{ $Type->name }}</span>
+                                </label>
+                                @endforeach
+                            </div>
+
+                            <div class="selected-document new-supply-select entry-data">Documento</div>
                         </div>
-                        <div class="input-group input-dimensions">
-                            <input type="text" name="payment_type" id="typeFacture" class="input-iten effect-5 date-icon" placeholder=" " value="">
-                            <label for="typeFacture">Tipo</label>
+
+                        <div class="select-type-credit-and-cash">
+                            <div class="sub-title-div-type">
+                                <label for="sub-title-select-01" class="sub-title-select-type">Tipo</label>
+                            </div>
+
+                            <div class="options-type-credit-and-cash">
+                                <label for="credit" class="option-type-credit-and-cash">
+                                    <input type="radio" name="payment_type" id="credit" value="credito" />
+                                    <span>Credito</span>
+                                </label>
+                                <label for="cash" class="option-type-credit-and-cash">
+                                    <input type="radio" id="cash" name="payment_type" value="contado" />
+                                    <span>Contado</span>
+                                </label>
+                            </div>
+
+                            <div class="selected-type-credit-and-cash new-supply-select entry-data">Tipo</div>
                         </div>
+
 
                     </div>
 
@@ -84,7 +114,7 @@
                             <span class="focus-border"></span>
                         </div>
                         <div class="col-3 input-effect date-time">
-                            <input type="date" name="expiration_date" id="dateTimeEnd" class="effect-16" placeholder=" " value="{{ date('Y-m-d') }}">
+                            <input type="date" name="expiration_date" id="dateTimeEnd" class="effect-16" placeholder=" ">
                             <label for="dateTimeEnd">Fecha de vencimiento</label>
                             <span class="focus-border"></span>
                         </div>
@@ -188,6 +218,13 @@
     const apiUrl = '/list_of_suppliers';
     new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier', apiUrl, 5, 1);
 </script>
+<script>
+    // selectorIten(".selected-unit-of-measurement-supply-new", ".options-unit-of-measurement-supply-new", ".option-unit-of-measurement-supply-new");
+
+    selectorItenandAnimation('selected-type-credit-and-cash', 'options-type-credit-and-cash', 'option-type-credit-and-cash', 'sub-title-div-type','option-type-credit-and-cash');
+    selectorItenandAnimation('selected-document', 'options-document', 'option-document', 'sub-title-div-document','option-document');
+
+ </script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>
