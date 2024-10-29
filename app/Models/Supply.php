@@ -19,7 +19,7 @@ class Supply extends Model
         return $this->hasOne(Brand::class);
     }
 
-    public function InventoryReceiptDetails() : HasMany
+    public function inventoryReceiptDetails() : HasMany
     {
         return $this->hasMany(InventoryReceiptDetails::class, 'supply_id');
     }
@@ -28,6 +28,13 @@ class Supply extends Model
     {
         return $this->belongsToMany(Supply::class)
                     ->withPivot('note')
+                    ->withTimestamps();
+    }
+
+    public function menuItemDetails()
+    {
+        return $this->belongsToMany(Supply::class, 'menu_supply_details')
+                    ->withPivot('supply_quantity')
                     ->withTimestamps();
     }
 }
