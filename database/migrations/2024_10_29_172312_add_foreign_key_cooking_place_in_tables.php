@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('menu_items', function (Blueprint $table) {
-            $table->unsignedBigInteger('cooking_place_id')->after('category_id');
+            $table->unsignedBigInteger('cooking_place_id')->nullable()->after('category_id');
             $table->foreign('cooking_place_id')->references('id')->on('cooking_places');
         });
 
         Schema::table('roles', function (Blueprint $table) {
-            $table->unsignedBigInteger('cooking_place_id')->after('id');
+            $table->unsignedBigInteger('cooking_place_id')->nullable()->after('id');
             $table->foreign('cooking_place_id')->references('id')->on('cooking_places');
         });
     }
@@ -28,10 +28,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('menu_items', function (Blueprint $table) {
+            $table->dropForeign(['cooking_place_id']);
             $table->dropColumn('cooking_place_id');
         });
 
         Schema::table('roles', function (Blueprint $table) {
+            $table->dropForeign(['cooking_place_id']);
             $table->dropColumn('cooking_place_id');
         });
     }

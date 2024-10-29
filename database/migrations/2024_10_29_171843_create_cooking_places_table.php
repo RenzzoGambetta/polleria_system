@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cooking_places', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60);
-            $table->string('description', 255);
+            $table->string('description', 255)->nullable();
             $table->timestamps();
         });
     }

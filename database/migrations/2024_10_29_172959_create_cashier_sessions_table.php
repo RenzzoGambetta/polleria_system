@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->decimal('opening_balance', 8, 2);
             $table->timestamp('cash_open_at');
-            $table->timestamp('cash_close_at');
-            $table->string('note', 255);
+            $table->timestamp('cash_close_at')->nullable();
+            $table->string('note', 255)->nu;
             $table->timestamps();
         });
 
