@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,12 +16,10 @@ class supplierFactory extends Factory
      * @return array<string, mixed>
      */
 
-    private static $incrementPersonId = 11;
-
     public function definition(): array
     {
         return [
-            'person_id' => self::$incrementPersonId++,
+            'person_id' => Person::factory(),
             'address' => $this->faker->address,
         ];
     }

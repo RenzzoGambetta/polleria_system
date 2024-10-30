@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\Permission;
 use App\Models\Supplier;
 use App\Models\Brand;
+use App\Models\Client;
 use App\Models\InventoryReceipt;
 use App\Models\InventoryReceiptDetails;
 use App\Models\Supply;
@@ -38,6 +39,7 @@ class DatabaseSeeder extends Seeder
         // Truncate the tables for each model
         DB::table('users')->truncate();
         DB::table('employees')->truncate();
+        DB::table('clients')->truncate();
         DB::table('roles')->truncate();
         DB::table('permissions')->truncate();
         DB::table('role_permission')->truncate();
@@ -57,9 +59,9 @@ class DatabaseSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         User::factory(5)->create();
-        Person::factory(25)->create();
-        Employee::factory(9)->create();
-        // Supplier::factory(9)->create();
+        Employee::factory(10)->create();
+        Client::factory(10)->create();
+        Supplier::factory(10)->create();
         Brand::factory(5)->create();
         Supply::factory(10)->create();
         VoucherType::factory()->createDefault();
