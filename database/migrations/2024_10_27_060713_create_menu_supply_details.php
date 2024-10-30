@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('supplier_supply', function (Blueprint $table) {
+        Schema::create('menu_supply_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('supplier_id');
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->unsignedBigInteger('item_id');
+            $table->foreign('item_id')->references('id')->on('menu_items');
             $table->unsignedBigInteger('supply_id');
-            $table->foreign('supply_id')->references('id')->on('supplies')->onDelete('restrict');
-            $table->string('note', 255)->nullable();
+            $table->foreign('supply_id')->references('id')->on('supplies');
+            $table->unsignedTinyInteger('supply_quantity');
             $table->timestamps();
+            $table->unique(['item_id', 'supply_id'], 'unique_combo_item');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supplier_supply');
+        Schema::dropIfExists('menu_supply_details');
     }
 };

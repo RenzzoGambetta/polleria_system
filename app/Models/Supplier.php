@@ -34,7 +34,7 @@ class Supplier extends Model
     {
         return $this->supplies()->sync($suppliesIdAndNoteArray);
         //FORMATO DE DATOS: [ 
-        //     $supplyId1 => ['note' => 'nota 1' ],c
+        //     $supplyId1 => ['note' => 'nota 1' ],
         //     $supplyId2 => ['note' => 'nota 2' ]
         //     ]
     }

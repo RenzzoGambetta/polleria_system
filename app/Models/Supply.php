@@ -22,7 +22,11 @@ class Supply extends Model
         return $this->belongsTo(Brand::class);
     }
 
+<<<<<<< HEAD
     public function InventoryReceiptDetails(): HasMany
+=======
+    public function inventoryReceiptDetails() : HasMany
+>>>>>>> origin/module/backend-menu
     {
         return $this->hasMany(InventoryReceiptDetails::class, 'supply_id');
     }
@@ -31,6 +35,13 @@ class Supply extends Model
     {
         return $this->belongsToMany(Supply::class)
                     ->withPivot('note')
+                    ->withTimestamps();
+    }
+
+    public function menuItemDetails()
+    {
+        return $this->belongsToMany(Supply::class, 'menu_supply_details')
+                    ->withPivot('supply_quantity')
                     ->withTimestamps();
     }
 }

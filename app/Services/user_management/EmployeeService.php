@@ -25,11 +25,12 @@ class EmployeeService
                 'email' => $data['email'],
             ]);
 
-            $employee = Employee::create([
-                'person_id' => $person->id,
+            $employee = new Employee([
                 'address' => $data['address'],
                 'nationality' => $data['nationality'],
             ]);
+
+            $person->employee()->save($employee);
 
             DB::commit();
            return true;
@@ -49,9 +50,7 @@ class EmployeeService
                 'nationality' => $data['nationality'],
             ]);
 
-            $person_id = $employee->person_id;
-            $person = Person::first($person_id);
-            $person->update([
+            $employee->person->update([
                 'dni' => $data['dni'],
                 'firstname' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],

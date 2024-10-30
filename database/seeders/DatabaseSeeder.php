@@ -16,8 +16,9 @@ use App\Models\VoucherType;
 use App\Models\menu\Lounge;
 use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
+use App\Models\menu\Table as MenuTable;
 use App\Models\Table;
-use Database\Factories\TableFactory;
+use Database\Factories\Menu\TableFactory as MenuTableFactory;
 use Database\Factories\UserPermissionFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -82,7 +83,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($lounges as $lounge) {
             for ($i = 0; $i < 10; $i++) {
-                Table::create((new TableFactory())->newWithCode($lounge->id, $i));
+                MenuTable::create((new MenuTableFactory())->newWithCode($lounge->id, $i));
             }
         }
         
