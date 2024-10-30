@@ -22,11 +22,7 @@ class Supply extends Model
         return $this->belongsTo(Brand::class);
     }
 
-<<<<<<< HEAD
-    public function InventoryReceiptDetails(): HasMany
-=======
     public function inventoryReceiptDetails() : HasMany
->>>>>>> origin/module/backend-menu
     {
         return $this->hasMany(InventoryReceiptDetails::class, 'supply_id');
     }

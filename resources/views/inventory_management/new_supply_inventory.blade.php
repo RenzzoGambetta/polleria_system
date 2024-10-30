@@ -9,7 +9,7 @@
 
 <div class="header">
     <div class="left">
-        <h1 class="title-reducer">Registro nuevo supplyo</h1>
+        <h1 class="title-reducer">Registro nuevo suministro</h1>
         <ul class="breadcrumb">
 
             <a href="{{ route('inventory') }}" class="pagina">

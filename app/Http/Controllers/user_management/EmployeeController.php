@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Exception;
-use App\Utils\LogHelper;
 use App\Services\IdentificationDocumentService;
 use App\Services\user_management\EmployeeService;
 use App\Http\Requests\user_management\EmployeeRequest;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 class EmployeeController extends Controller
 {

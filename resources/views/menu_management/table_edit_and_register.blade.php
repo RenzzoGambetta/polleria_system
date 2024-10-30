@@ -34,14 +34,6 @@
                 <span class="span-data-table">Añadir nueva mesa</span>
             </div>
         </div>
-
-        <div class="table-item table-data">
-            <div class="table-info">
-                <i class="fi fi-ss-trash"></i>
-                <span class="span-data-table">Mesa 1</span>
-            </div>
-            <span class="status"><i class="fi fi-rr-angle-right"></i></span>
-        </div>
     </div>
 
     <div class="edit-panel" id="puntoClave">
@@ -53,25 +45,3 @@
 <script src="{{ asset($tableEditAndRegister) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
-<!------------------------------------------------------------>
-<!--
-     <h3>Registrar sala</h3>
-        <label for="room-name">Nombre de la sala <samp class="mandatory-sign">*</samp></label>
-        <input type="text" id="room-name" placeholder="Salón" name="nameLounge" value="">
-
-        <label for="room-name">Direccion <samp class="mandatory-sign">*</samp></label>
-        <input type="text" id="room-name" placeholder="Salón" name="addressLounge" value="">
-
-        <div class="div-compact">
-            <div class="frame-div">
-                <label for="room-name">Codigo <samp class="mandatory-sign">*</samp></label>
-                <input type="text" id="room-name" placeholder="Salón" name="codeLounge" value="">
-            </div>
-            <div class="frame-div">
-                <label for="room-name">Priso <samp class="mandatory-sign">*</samp></label>
-                <input type="text" id="room-name" placeholder="Salón" name="floorLounge" value="">
-            </div>
-        </div>
-        <input type="number" style="display: none;" name="idLounge" value="0">
-        <button class="btn-new" onclick="newLoungeAction()">Agregar</button>
--->

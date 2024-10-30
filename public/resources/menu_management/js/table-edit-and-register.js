@@ -122,6 +122,8 @@ async function addLounges(id) {
             ID_SELECT = id;
         })
         .catch(error => console.error('Error loading template:', error));
+        $('.conteiner-table').show();
+
 }
 function newLoungeAction() {
     dataInputLounge('/new_lounge', 3);
@@ -302,25 +304,32 @@ document.getElementById('tables-list').addEventListener('click', function (event
 });
 function dataInputTable(url, option) {
 
-
-    const data = {
-        code: document.getElementsByName('codeTable')[0]?.value || '',
-        id: document.getElementsByName('idTable')[0]?.value || 0,
-        lounge_id: ID_SELECT,
-        token: document.querySelector('input[name="_token"]').value
-    };
-    //console.log(data);
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': data.token
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.json())
-        .then(result => alert(result, option, data, 'table'), addTable(null))
-        .catch(error => console.error('Error:', error));
+    if(ID_SELECT != null){
+        const data = {
+            code: document.getElementsByName('codeTable')[0]?.value || '',
+            id: document.getElementsByName('idTable')[0]?.value || 0,
+            lounge_id: ID_SELECT,
+            token: document.querySelector('input[name="_token"]').value
+        };
+        //console.log(data);
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': data.token
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(result => alert(result, option, data, 'table'), addTable(null))
+            .catch(error => console.error('Error:', error));
+    }else{
+        Swal.fire({
+            title: "Opps..",
+            text: "Seleccione una sala o cree una",
+            icon: "error"
+        });
+    }
 }
 
 
