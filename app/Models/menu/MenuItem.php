@@ -2,6 +2,7 @@
 
 namespace App\Models\menu;
 
+use App\Models\order\OrderDetail;
 use App\Models\Supply;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,11 @@ class MenuItem extends Model
     use HasFactory;
 
     protected $fillable = ['category_id', 'name', 'price', 'is_combo', 'display_order', 'image'];
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 
     public function category()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\order\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,5 +15,10 @@ class VoucherType extends Model
     public function inventoryReceipts()
     {
         return $this->hasMany(InventoryReceipt::class, 'voucher_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'voucher_id');
     }
 }
