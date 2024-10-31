@@ -1,0 +1,455 @@
+.checkbox-wrapper-35 .switch {
+    display: none;
+  }
+
+  .checkbox-wrapper-35 .switch + label {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: var(--dark);
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .checkbox-wrapper-35 .switch + label::before,
+    .checkbox-wrapper-35 .switch + label::after {
+    content: '';
+    display: block;
+  }
+
+  .checkbox-wrapper-35 .switch + label::before {
+    background-color: #909192;
+    border-radius: 500px;
+    height: 15px;
+    margin-right: 8px;
+    -webkit-transition: background-color 0.125s ease-out;
+    transition: background-color 0.125s ease-out;
+    width: 25px;
+  }
+
+  .checkbox-wrapper-35 .switch + label::after {
+    background-color: #fff;
+    border-radius: 13px;
+    box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05), 0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
+    height: 13px;
+    left: 1px;
+    position: absolute;
+    top: 1px;
+    -webkit-transition: -webkit-transform 0.125s ease-out;
+    transition: -webkit-transform 0.125s ease-out;
+    transition: transform 0.125s ease-out;
+    transition: transform 0.125s ease-out, -webkit-transform 0.125s ease-out;
+    width: 13px;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-text {
+    display: block;
+    margin-right: .3em;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-toggletext {
+    display: block;
+    font-weight: bold;
+    height: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 20px;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-unchecked,
+    .checkbox-wrapper-35 .switch + label .switch-x-checked {
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+    transition: opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+    transition: transform 0.125s ease-out, opacity 0.125s ease-out;
+    transition: transform 0.125s ease-out, opacity 0.125s ease-out, -webkit-transform 0.125s ease-out;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-unchecked {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-checked {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    width: 20px;
+  }
+
+  .checkbox-wrapper-35 .switch + label .switch-x-hiddenlabel {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label::before {
+    background-color: #ffb500;
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label::after {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  .checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+
+  /*------ Settings ------*/
+.container-supplier {
+    --color: #a5a5b0;
+    --size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: var(--size);
+    user-select: none;
+    fill: var(--color);
+  }
+
+  .container-supplier .lock-open{
+    position: absolute;
+    animation: keyframes-fill .5s;
+    fill: green;
+  }
+
+  .container-supplier .lock {
+    position: absolute;
+    display: none;
+    animation: keyframes-fill .5s;
+    fill: red;
+  }
+
+  /* ------ On check event ------ */
+  .container-supplier input:checked ~ .lock-open {
+    display: none;
+  }
+
+  .container-supplier input:checked ~ .lock {
+    display: block;
+  }
+
+  /* ------ Hide the default checkbox ------ */
+  .container-supplier input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* ------ Animation ------ */
+  @keyframes keyframes-fill {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  .adapt-item{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+  label.text-adapt-item{
+      left: 20px;
+      color: red;
+      font-weight: bold;
+  }
+  label.text-adapt-item:hover{
+      color: red;
+      left: 20px;
+}
+
+
+.container-btn-animation {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .label-btn-animation {
+    background-color: transparent;
+    border: 2px solid rgb(2, 131, 0);
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 5px;
+    position: relative;
+  }
+
+  .label-btn-animation::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    width: 8px;
+    height: 8px;
+    transition: all 0.4s ease;
+    border-radius: 100%;
+    margin: auto;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .label-btn-animation .input {
+    display: none;
+  }
+
+  .label-btn-animation .title {
+    font-size: 17px;
+    color: #fff;
+    transition: all 0.4s ease;
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    text-align: center;
+  }
+
+  .label-btn-animation .title:last-child {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .label-btn-animation .circle {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color: rgb(34, 147, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease;
+    position: relative;
+    box-shadow: 0 0 0 0 rgb(255, 255, 255);
+    overflow: hidden;
+  }
+
+  .label-btn-animation .circle .icon {
+    color: #fff;
+    width: 30px;
+    position: absolute;
+    top: 55%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+  }
+
+  .label-btn-animation .circle .square {
+    aspect-ratio: 1;
+    width: 15px;
+    border-radius: 2px;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+  }
+
+  .label-btn-animation .circle::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #7b0000;
+    width: 100%;
+    height: 0;
+    transition: all 0.4s ease;
+  }
+
+  .label-btn-animation:has(.input:checked) {
+    width: 57px;
+    animation: installed 0.4s ease 3.5s forwards;
+  }
+
+  .label-btn-animation:has(.input:checked)::before {
+    animation: rotate 3s ease-in-out 0.4s forwards;
+  }
+
+  .label-btn-animation .input:checked + .circle {
+    animation:
+      pulse 1s forwards,
+      circleDelete 0.2s ease 3.5s forwards;
+    rotate: 180deg;
+  }
+
+  .label-btn-animation .input:checked + .circle::before {
+    animation: installing 3s ease-in-out forwards;
+  }
+
+  .label-btn-animation .input:checked + .circle .icon {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .label-btn-animation .input:checked ~ .circle .square {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .label-btn-animation .input:checked ~ .title {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .label-btn-animation .input:checked ~ .title:last-child {
+    animation: showInstalledMessage 0.4s ease 3.5s forwards;
+  }
+
+  @keyframes pulse {
+    0% {
+      scale: 0.95;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    70% {
+      scale: 1;
+      box-shadow: 0 0 0 16px rgba(255, 0, 0, 0);
+    }
+    100% {
+      scale: 0.95;
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+
+  @keyframes installing {
+    from {
+      height: 0;
+    }
+    to {
+      height: 100%;
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(-90deg) translate(27px) rotate(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    99% {
+      transform: rotate(270deg) translate(27px) rotate(270deg);
+      opacity: 1;
+      visibility: visible;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @keyframes installed {
+    100% {
+      border-color: rgb(174, 35, 35);
+    }
+  }
+
+  @keyframes circleDelete {
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @keyframes showInstalledMessage {
+    100% {
+      opacity: 1;
+      visibility: visible;
+      right: 56px;
+    }
+  }
+  .div-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+.container-btn-animation {
+    margin-left: 12px;
+}
+p.title {
+    left: 7%;
+    top: 10%;
+}
+.circle-red {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color: rgb(147, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease;
+    position: relative;
+    box-shadow: 0 0 0 0 rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+.input-number-style {
+    width: 12vh;
+    padding: 15px 0;
+    height: auto;
+    border-radius: 10px;
+}
+.button-icon-dimensions {
+    height: auto;
+    width: auto;
+    border-radius: 18px ;
+    border: none;
+    cursor: pointer;
+    padding: 8px 30px;
+}
+.style-adicon-adaptation {
+    font-size: 1.4rem;
+    color: white;
+}
+.content main .bottom-data .orders table td {
+    padding: 10px 0;
+}
+tbody.list-inten {
+    height: auto;
+}

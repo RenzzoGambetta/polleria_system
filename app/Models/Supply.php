@@ -8,15 +8,18 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Brand;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Supply extends Model
 {
     use HasFactory;
 
     protected $fillable = ['brand_id', 'code', 'name', 'is_stockable', 'stock', 'unit', 'note'];
 
-    public function brand() : HasOne
+
+    public function brand(): BelongsTo
     {
-        return $this->hasOne(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 
     public function inventoryReceiptDetails() : HasMany

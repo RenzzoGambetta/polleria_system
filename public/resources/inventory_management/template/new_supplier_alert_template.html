@@ -1,0 +1,129 @@
+<style>
+    div:where(.swal2-container).swal2-center>.swal2-popup {
+        grid-column: 2;
+        grid-row: 2;
+        place-self: center center;
+        height: 50vh;
+        width: 90vh;
+    }
+
+
+
+    h2#swal2-title {
+        height: 0vh;
+        padding: 0px;
+    }
+
+    div#swal2-html-container {
+        height: 25vh;
+        padding: 0px 20px;
+        overflow: hidden;
+        padding-top: 2vh;
+    }
+
+    div:where(.swal2-container) div:where(.swal2-actions) {
+        display: flex;
+        z-index: 1;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        height: 1vh;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        color: #eb6400;
+        font-family: cursive;
+    }
+
+    .division-select-iten,
+    .ruc-and-dni-and-phone-data-splitting {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+    }
+
+    .lateralside-content.sub-block-02.alert-style-div {
+        width: 100%;
+    }
+
+    div.message-of-knowledge,
+    .input-group.input-dimensions.alert-style-div-input {
+        margin: 0px 1vh;
+    }
+
+    .effect-5+label.label-input-data {
+        left: 2vh;
+    }
+
+    button.swal2-cancel.swal2-styled {
+        background-color: red;
+        width: 45%;
+        border-radius: 1.5vh;
+    }
+
+    button.swal2-confirm.swal2-styled {
+        background-color: #016d08;
+        width: 45%;
+        border-radius: 1.5vh;
+    }
+
+    div.message-of-knowledge span {
+        font-size: 0.9rem;
+    }
+    .alert-input-03 {
+        margin-top: 2%;
+    }
+    @media (max-width: 992px) {
+
+        .division-select-iten,
+        .ruc-and-dni-and-phone-data-splitting {
+            height: 8vh;
+        }
+
+        div.message-of-knowledge span {
+            font-size: 0.5rem;
+        }
+
+        .input-group.input-dimensions.alert-style-div-input,
+        div.message-of-knowledge {
+            margin: 0 0.5vh;
+        }
+    }
+</style>
+<header>
+    <div class="lateralside-content sub-block-02 alert-style-div alert-input-03">
+        <div class="input-group input-dimensions alert-style-div-input">
+            <input type="text" id="company-name-data" name="company_name"
+                class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+            <label for="company-name-data" class="label-input-data mobile-label">Seudonimo de la empresa</label>
+        </div>
+    </div>
+    <div class="ruc-and-dni-and-phone-data-splitting">
+        <div class="lateralside-content sub-block-02 alert-style-div alert-input-03">
+            <div class="input-group input-dimensions alert-style-div-input">
+                <input type="number" id="document-number-data" name="document_number"
+                    class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                <label for="document-number-data" class="label-input-data mobile-label">Ruc o Dni</label>
+            </div>
+        </div>
+        <div class="lateralside-content sub-block-02 alert-style-div alert-input-03">
+            <div class="input-group input-dimensions alert-style-div-input">
+                <input type="number" id="phone-data" name="phone" class="input-iten effect-5 no-spinner alert-style"
+                    placeholder=" ">
+                <label for="phone-data" class="label-input-data mobile-label ">Celular</label>
+            </div>
+        </div>
+    </div>
+    <div class="message-of-knowledge">
+        <span>Este modo de registro optimiza el tiempo de registro pero recuerda validar todos los datos de la enpresa
+            en provedores</span>
+    </div>
+</header>

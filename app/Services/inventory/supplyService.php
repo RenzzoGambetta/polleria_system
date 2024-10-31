@@ -65,8 +65,8 @@ class supplyService
         $brandId = $supply->brand_id;
         $brand = Brand::first($brandId);
 
-        $productListByBrand = $brand->suppliers;
-        if ($productListByBrand > 1) {
+        $supplyListByBrand = $brand->suppliers;
+        if ($supplyListByBrand > 1) {
             throw new Exception("La marca está relacionado con otros insumos");
         }
 
@@ -81,7 +81,7 @@ class supplyService
             DB::rollBack();
             return $e;
         }
-    } 
+    }
 
     public function getBrand(string $name) {
         $brand = Brand::firstOrCreate([

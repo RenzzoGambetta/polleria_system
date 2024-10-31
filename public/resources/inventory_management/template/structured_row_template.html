@@ -1,0 +1,54 @@
+<tr class="movile-style-tr-get" id="idRow{{id}}">
+    <td class="name-iten">
+        <div class="name-aling-text"><span>{{name}}</span></div>
+        <input type="text" name="supply_ids[]" value="{{id}}" class="hidden-input">
+    </td>
+    <td class="data-entry">
+        <input type="number" name="quantities[]" id="quantity_{{id}}"
+            class="quantity-input no-spinner input-number-style" value="{{quantity}}">
+    </td>
+    <td class="data-entry">
+        <input type="number" name="prices[]" class="price-input no-spinner input-number-style"
+            value="{{price_per_unit}}" step="0.01">
+    </td>
+    <td class="data-entry">
+        <input type="number" name="total_prices[]" class="price-input-total no-spinner input-number-style"
+            value="{{price_total}}" step="0.01">
+    </td>
+    <td class="data-button">
+        <!--
+            <button class="button-icon-dimensions edit-color">
+                <div class="icon-calibration">
+                    <i class="fi fi-sc-pencil style-adicon-adaptation"></i>
+                </div>
+            </button>
+        -->
+       <div class="div-btn">
+        <button type="button" class="button-icon-dimensions delate-color" onclick="deletesupplyRow('{{id}}')">
+            <div class="icon-calibration">
+                <i class="fi fi-sr-trash style-adicon-adaptation"></i>
+            </div>
+        </button>
+        <div class="container-btn-animation">
+            <label class="label-btn-animation">
+                <input type="checkbox" class="input" checked/>
+                <span class="circle">
+                    <i class="fi fi-br-link-alt icon"></i>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M12 19V5m0 14-4-4m4 4 4-4"></path>
+                    </svg>
+                    <div class="square">
+
+                    </div>
+                </span>
+
+                <p class="title">
+                    <span class="circle-red">
+                        <i class="fi fi-br-link-slash-alt"></i>
+                    </span>
+                </p>
+            </label>
+        </div>
+       </div>
+    </td>
+</tr>

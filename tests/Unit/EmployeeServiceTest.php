@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Employee;
 use App\Models\Person;
-use App\Services\user_managment\EmployeeService;
+use App\Services\user_management\EmployeeService;
 use Exception;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;

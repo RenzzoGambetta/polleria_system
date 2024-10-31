@@ -1,0 +1,8 @@
+<h3>{{title}} mesa</h3>
+<label for="room-name">Codigo <samp class="mandatory-sign">*</samp></label>
+<input type="text" id="room-name" placeholder="4 digitos" name="codeTable" value="{{code}}">
+
+<input type="number" style="display: none;" name="idTable" value="{{id}}">
+
+<button class="btn-{{classButtonClear}}" onclick="{{classButtonClear}}TableAction()">Eliminar</button>
+<button class="btn-{{classButton}}" onclick="{{classButton}}TableAction()">{{button}}</button>

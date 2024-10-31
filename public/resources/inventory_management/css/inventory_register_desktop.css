@@ -1,0 +1,544 @@
+.content main .header .left h1.title-reducer {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+
+.input-dimensions {
+    width: 100%;
+    margin: 0px 1vh;
+
+}
+
+.icon-option {
+    font-size: 25px;
+    padding-right: 10px;
+}
+
+.comment {
+    width: 50%;
+    height: 100%;
+}
+
+.left {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.active {
+    color: var(--primary);
+}
+
+.pagina {
+    color: rgb(101, 101, 101);
+}
+
+.sub-input-01 {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+}
+
+.sub-input-02 {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.button-opcion-form {
+
+    padding: 5px 30px;
+    border: 2px solid var(--grey);
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cancel-option {
+    background-color: #830606;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.clear-option {
+    background-color: #5e17a1;
+}
+
+.element-option {
+    background-color: #334099;
+}
+
+.register-option {
+    background-color: #12691b;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.block-02 {
+    width: 100%;
+    height: 100%;
+}
+
+.block-01 {
+    width: 100%;
+    height: 100%;
+}
+
+.block-02 {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    align-items: center;
+    width: 95%;
+}
+
+input.input.effect-4.comment,
+textarea.input.effect-4.comment {
+    height: 100%;
+}
+
+.wave-group.input-dimensions.comment {
+    width: 100%;
+}
+
+.lateralside-content {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    height: 50%;
+    margin-top: 6%;
+
+}
+
+/*Estilos de imput*/
+.wave-group {
+    position: relative;
+
+}
+
+.wave-group .input,
+.input-iten {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: 2px solid var(--color-input-background-border);
+    background: transparent;
+    padding: 10px 20PX;
+    border-radius: 10px;
+    color: var(--dark);
+}
+
+.wave-group .input:focus,
+.input-iten {
+    outline: none;
+}
+
+.wave-group .label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 10px;
+    display: flex;
+}
+
+.wave-group .label-char {
+    transition: 0.15s ease all;
+    transition-delay: calc(var(--index) * 0.025s);
+    background-color: var(--imput-efect-transiccion);
+    border-radius: 10px;
+}
+
+.wave-group .input:focus~label .label-char,
+.wave-group .input:required~label .label-char {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: var(--label-efect-transiccion-focus);
+}
+
+.wave-group .input:not(:placeholder-shown)~label .label-char {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: var(--label-efect-transiccion-focus);
+}
+
+/* Effect 5 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.effect-5+label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #ccc;
+    transition: 0.4s;
+}
+
+.effect-5:focus,
+.effect-4:focus {
+    width: 100%;
+    border: 2.5px solid var(--imput-efect-transiccion-focus);
+
+}
+
+.effect-5:focus+label,
+.effect-5:not(:placeholder-shown)+label {
+    top: 0;
+    left: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+    color: var(--label-efect-transiccion-focus);
+    background-color: var(--imput-efect-transiccion);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: var(--calendar-icon-color);
+    opacity: 1;
+}
+
+
+label input[type="radio"] {
+    display: none;
+}
+
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-number-style {
+    border: 0;
+    background-color: var(--input-background-supplies);
+    text-align: center;
+    height: 5vh;
+    width: 50%;
+    color: var(--dark);
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.input-number-style:focus {
+    background: var(--input-background-supplies-focus);
+}
+
+.data-entry {
+    width: 25%;
+}
+
+.content main .bottom-data .orders table th.data-entry,
+.content main .bottom-data .orders table th.data-button,
+.data-entry {
+    text-align: center;
+}
+
+button.accion-style-button {
+    height: 5vh;
+    width: 20%;
+    max-width: 6vh;
+    border: 0px;
+    cursor: pointer;
+
+}
+
+.plus-button {
+    border-radius: 0px;
+    border-top-right-radius: 1.5vh;
+    border-bottom-right-radius: 1.5vh;
+    background-color: #12691b;
+}
+
+.less-button {
+    border-radius: 0px;
+    border-top-left-radius: 1.5vh;
+    border-bottom-left-radius: 1.5vh;
+    background-color: var(--danger);
+}
+
+.icon-color-adaptation {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-align: center;
+    font-style: normal;
+}
+
+.content main .bottom-data .orders table td {
+    padding: 1vh 0;
+
+}
+
+.content main .bottom-data .orders table tbody tr {
+    cursor: default;
+    transition: none;
+}
+
+
+body::-webkit-scrollbar {
+    width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+
+}
+
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+td.data-button {
+    text-align: center;
+}
+
+.button-icon-dimensions {
+    height: 5vh;
+    width: 6vh;
+    border-radius: 1.5vh;
+    border: none;
+    cursor: pointer;
+
+}
+
+.edit-color {
+    background-color: var(--edit-icon-color);
+}
+
+.delate-color {
+    background-color: var(--delate-icon-color);
+}
+
+tbody.list-inten {
+    height: 8vh;
+}
+
+.style-adicon-adaptation {
+    font-size: 2.5vh;
+    color: white;
+}
+
+.icon-calibration {
+    margin-top: 0.8vh;
+}
+
+.content main .bottom-data .orders table tr td:first-child.name-iten {
+    display: table-cell;
+    padding: 1vh 0;
+}
+
+.name-aling-text {
+    font-style: italic;
+}
+
+.total-price-and-unit {
+    font-weight: bold;
+    text-align: center;
+}
+
+.text-aling-unit,
+.text-aling-preci {
+    background-color: #ed3f00;
+    height: 5vh;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border-radius: 5vh;
+    max-width: calc(50% + 12vh);
+    width: 90%;
+    color: #fff;
+}
+
+.aling-center-displey {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.double-space {
+    padding-left: 0.5vh;
+}
+
+.content main .bottom-data .orders table tbody#puntoClave tr:hover {
+    background-color: transparent;
+}
+
+.content main .bottom-data .orders table {
+    display: none;
+}
+
+
+.filter {
+    height: 30vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+
+.element-option,
+.register-option {
+    display: none;
+}
+
+.border-style-right {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.hidden-input {
+    display: none;
+}
+
+button.option.new-supplier {
+    width: 100%;
+    border: 0px;
+    border-radius: 15px;
+    background-color: #4d4d4d24;
+    text-align: justify;
+    font-size: 1rem;
+    color: #fd7700;
+}
+
+button.option.new-supplier:hover {
+    width: 100%;
+    border: 0px;
+    border-radius: 15px;
+    background-color: #9704049c;
+    text-align: justify;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.effect-5:focus+label.label-input-data.main-panel,
+.effect-5:not(:placeholder-shown)+label.label-input-data.main-panel {
+    background-color: var(--imput-efect-transiccion);
+}
+
+.input-data-form-numeric {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    width: 95%;
+    margin-bottom: 5%;
+}
+
+.effect-5.date-icon+label {
+    left: 15px;
+}
+
+.col-3.input-effect.date-time {
+    width: 100%;
+}
+
+
+.conteiner-principal {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.input-data-form {
+
+    margin-top: 24px;
+    border-radius: 20px;
+    background: var(--grey);
+    box-shadow: var(--neumorphism-div);
+    margin-right: 5vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.dub-block-001,
+.dub-block-002 {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.dub-block-001 {
+    margin-top: 14%;
+}
+
+.dub-block-002 {
+    margin-top: 8%;
+}
+
+.col-3.input-effect.data-series {
+    width: 35%;
+}
+
+.col-3.input-effect.data-numeric {
+    width: 75%;
+}
+
+.options-button {
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 2;
+    width: calc(100% - 233px);
+    background-color: var(--grey);
+    left: 230px;
+}
+
+@media (max-width: 768px) {}

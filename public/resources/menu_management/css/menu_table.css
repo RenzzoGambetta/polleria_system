@@ -1,0 +1,129 @@
+.div-combo {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-div-combo-true {
+    border-radius: 20px;
+    background-color: #d55702;
+    padding: 3px 30px;
+    color: white;
+}
+
+.sub-div-combo-false {
+    border-radius: 20px;
+    background-color: #054eb7;
+    padding: 3px 30px;
+    color: white;
+}
+
+th,
+td {
+    text-align-last: center;
+}
+
+th.title {
+
+    text-align-last: left;
+}
+
+.content main .bottom-data>div {
+    border-radius: 10px
+}
+.action-btn-filt {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.not-filt,
+.uno-produc-filt,
+.combo-filt{
+    padding: 10px 5%;
+    border: 0px;
+    color: white;
+    background-color: #717171fc;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.not-filt{
+    border-radius: 10px 0 0 10px;
+}
+
+.combo-filt{
+    border-radius: 0 10px 10px 0;
+}
+
+.not-filt:hover,
+.uno-produc-filt:hover,
+.combo-filt:hover{
+    padding: 10px 5%;
+    border: 0px;
+    color: white;
+    background-color: #c50000fc;
+    transform: scale(1.05);
+}
+.active-btn{
+    background-color: #c50000fc;
+}
+
+.new-item {
+    position: fixed;
+    z-index: 100;
+}
+
+.new-item .a-navegation-and-action-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #ff7700;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.new-item .a-navegation-and-action-data:hover {
+    background-color: #ba5700;
+}
+@media (min-width: 992px) {
+    .new-item {
+        right: 40px;
+    }
+}
+@media (max-width: 992px) {
+    .content main .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-gap: 16px;
+        flex-wrap: wrap;
+        height: 60px;
+        margin-top: -60px;
+        margin-bottom: 20px;
+    }
+    .conteiner-total {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-bottom: 90px;
+    }
+    .new-item {
+        position: fixed;
+        z-index: 100;
+        bottom: 0px;
+        width: 100%;
+        margin: 0px -10px;
+
+    }
+    .new-item .a-navegation-and-action-data{
+        border-radius: 0px;
+        width: 100%;
+    }
+}

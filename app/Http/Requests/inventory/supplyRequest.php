@@ -22,13 +22,14 @@ class supplyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand_name' => 'string|max:50',
-            'code' => 'string|required|max:15',
+            'brand_name' => 'string|max:50|nullable',
+            'code' => 'string|max:15|nullable',
             'name' => 'string|required|max:100',
             'is_stockable' => 'bool',
             'stock' => 'integer',
             'unit' => 'string|required|max:15',
-            'note' => 'string|max:255'
+            'note' => 'string|max:255|nullable'
         ];
     }
+
 }

@@ -182,14 +182,14 @@ form .form-input button {
 #nu_text:hover {
     background-color: #118513;
     border-radius: 20px;
-    transform: translateY(-5px);
+    transform: translateY(-0px);
     box-shadow: 0 5px 10px var(--button-enfoque);
 }
 
 #nu_text_ac:hover {
     background-color: rgb(211, 4, 4);
     border-radius: 20px;
-    transform: translateY(-5px);
+    transform: translateY(-0px);
     box-shadow: 0 5px 10px var(--button-enfoque);
 }
 
@@ -233,4 +233,12 @@ li a#centra:hover,
     .icon-pagination {
         display: none;
     }
+}
+.btn-clasic{
+    padding: 10px 20px;
+    background-color: #591185;
+    color: white;
+    border-radius: 10px;
+    border: 0px;
+    cursor: pointer;
 }

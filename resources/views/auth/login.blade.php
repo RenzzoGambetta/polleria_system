@@ -16,7 +16,8 @@
 
 
     <!--JS & jQuery-->
-    <script src="{{ $JquerySrc }}" integrity="{{$JqueryIntegrity}}" crossorigin="{{$JqueryCrossorigin}}"></script>
+    <script src="{{ asset($JquerySrc) }}"></script>
+   
 
 </head>
 
