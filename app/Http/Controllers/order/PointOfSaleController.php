@@ -27,7 +27,7 @@ class PointOfSaleController extends Controller
     public function showCashierSessions(Request $request)
     {
         $Lounge = Lounge::all();
-        $option=true ;
+        $option=true;
 
         if($option){
             $Data =[

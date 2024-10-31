@@ -19,7 +19,7 @@
                 /
             </li>
             <a href="{{ route('show_panel_register_entry') }}" class="active">
-                Nuevo supplyo
+                Nuevo suministro
             </a>
 
         </ul>
@@ -30,7 +30,7 @@
     $comment = 'Comentario';
 
 @endphp
-<form id="myForm" action="{{ route('register_supply_entry') }}" method="POST">
+<form id="myForm" action="{{ route('register_new_supply_complete') }}" method="POST">
     @csrf
     <div class="conteiner-new-supply">
         <div class="conteiner-01">
@@ -46,7 +46,7 @@
                 <div class="input-data-number">
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                         <div class="input-group input-dimensions alert-style-div-input alert-input">
-                            <input type="number" id="code-data" name="code" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                            <input type="text" id="code-data" name="code" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
                             <label for="code-data" class="label-input-data mobile-label">Codigo</label>
                         </div>
                     </div>
@@ -57,23 +57,23 @@
                             </div>
                             <div class="options-unit-of-measurement-supply-new">
                                 <label for="kg" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" name="measurement_system" id="kg" value="kg" />
+                                    <input type="radio" name="unit" id="kg" value="kg" />
                                     <span> kilo.</span>
                                 </label>
                                 <label for="g" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="g" name="measurement_system" value="g" />
+                                    <input type="radio" id="g" name="unit" value="g" />
                                     <span>gramo.</span>
                                 </label>
                                 <label for="l" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="l" name="measurement_system" value="l" />
+                                    <input type="radio" id="l" name="unit" value="l" />
                                     <span>litro.</span>
                                 </label>
                                 <label for="ml" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="ml" name="measurement_system" value="ml" />
+                                    <input type="radio" id="ml" name="unit" value="ml" />
                                     <span>mililitro.</span>
                                 </label>
                                 <label for="ud" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="ud" name="measurement_system" value="ud" />
+                                    <input type="radio" id="ud" name="unit" value="ud" />
                                     <span>unidad.</span>
                                 </label>
                             </div>
@@ -85,7 +85,7 @@
                 <div class="input-data-number">
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                         <div class="checkbox-wrapper-35">
-                            <input name="is_stock" id="switch-data" type="checkbox" class="switch" value="true" checked>
+                            <input name="is_stockable" id="switch-data" type="checkbox" class="switch" value="true" checked>
                             <label for="switch-data">
                                 <span class="switch-x-toggletext">
                                     <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked:
@@ -134,7 +134,7 @@
         <div class="conteiner-02">
             <div class="input-data-form-numeric">
                 <div class="wave-group input-dimensions comment">
-                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input" value="" placeholder=" "></textarea>
+                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input" value="" placeholder=" "></textarea>
                     <label class="label">
                         @foreach (str_split($comment) as $index => $char)
                             <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>

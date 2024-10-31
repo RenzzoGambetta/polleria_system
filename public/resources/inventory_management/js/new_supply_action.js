@@ -19,7 +19,7 @@ $(function() {
 let listo = false;
 $('input').on('input change', function() {
     const nombre = $('input[name="name"]').val().trim();
-    const sistema = $('input[name="measurement_system"]:checked').val();
+    const sistema = $('input[name="unit"]:checked').val();
     if (nombre && sistema && !listo) {
         $('.register-or-edit').css('display', 'block');
         $('.cancel-btn').css({

@@ -50,6 +50,7 @@ use App\Http\Controllers\temp\EfectController;
     //Suministros
     Route::get('/show_panel_register_entry', [SupplyStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
     Route::get('/register_new_supply', [SupplyStockController::class,'registerNewsupply'])->name('register_new_supply');
+    Route::post('/register_new_supply_complete', [SupplyStockController::class,'registerNewSupplyComplete'])->name('register_new_supply_complete');
     Route::get('/show_panel_register_output', [SupplyStockController::class,'showPanelRegisterOutput'])->name('show_panel_register_output');
     Route::get('/supplier_supply_list', [SupplyStockController::class,'supplierSupplyList'])->name('supplier_supply_list');
     Route::get('/list_of_supplys', [SupplyStockController::class,'listOfsupplys'])->name('list_of_supplys');
