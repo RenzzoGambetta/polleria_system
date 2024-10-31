@@ -1,0 +1,128 @@
+.left {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.container-item {
+    width: calc(100% - 100px);
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 30px;
+}
+
+.item-data {
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    max-width: 350px;
+    cursor: all-scroll;
+}
+
+.item-data:hover {
+    transform: scale(1.05);
+}
+
+.item-data img {
+    height: 150px;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.item-data-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.item-data h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.item-data p {
+    margin: 5px 0;
+}
+
+.item-data .price {
+    color: green;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.item-data .quantity {
+    color: #555;
+    font-size: 0.9em;
+}
+
+.order-number {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: #716b6b;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 0.8em;
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+.dragging {
+    background-color: rgb(209, 209, 209) !important;
+}
+
+.oreden-btn,
+.new-item-btn {
+    padding: 10px 35px;
+    border: 0px;
+    color: white;
+    width: 30%;
+    max-width: 400px;
+    cursor: pointer;
+}
+
+.option-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.oreden-btn {
+    border-radius: 0 10px 10px 0;
+    background-color: #88807a;
+}
+
+.new-item-btn {
+    border-radius: 10px 0 0 10px;
+    background-color: green;
+}
+
+.swal2-popup.swal2-modal.swal2-loading.swal2-show {
+    background-color: var(--grey);
+    color: var(--dark);
+    width: 60%;
+    max-width: 700px;
+    border-radius: 20px;
+    height: 230px;
+}
+
+div:where(.swal2-container) {
+    z-index: 2001;
+}
+div:where(.swal2-container) div:where(.swal2-timer-progress-bar) {
+    background: rgb(222 102 29);
+}

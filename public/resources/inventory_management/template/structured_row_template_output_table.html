@@ -1,0 +1,24 @@
+<tr class="movile-style-tr-get" id="idRow{{id}}">
+    <td class="name-iten">
+        <div class="name-aling-text"><span>{{name}}</span></div>
+        <input type="text" name="id[]" value="{{id}}" class="hidden-input">
+    </td>
+    <td class="data-entry">
+        <input type="number" name="quantity[]" id="quantity_{{id}}" class="quantity-input no-spinner input-number-style input-output-data" value="{{quantity}}" required>
+    </td>
+
+    <td class="data-entry">
+        <div class="name-aling-text div-unit-data">
+            <div class="unit-data">
+                <span>{{unit}}</span>
+            </div>
+        </div>
+      </td>
+    <td class="data-button">
+        <button type="button" class="button-icon-dimensions delate-color" onclick="deletesupplyRow('{{id}}')">
+            <div class="icon-calibration">
+                <i class="fi fi-sr-trash style-adicon-adaptation"></i>
+            </div>
+        </button>
+    </td>
+</tr>

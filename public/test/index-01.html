@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Mesas</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 70%;
+            padding: 20px;
+        }
+
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tabs-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tabs-container button {
+            background-color: #f0c04a;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .add-room-btn {
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .scroll-btn.left {
+            left: 0;
+        }
+
+        .scroll-btn.right {
+            right: 160px;
+        }
+
+        .tables-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .table-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .table-item .table-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-item .table-info img {
+            width: 20px;
+            cursor: pointer;
+        }
+
+        .status {
+            background-color: #eee;
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        .edit-panel {
+            width: 30%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 1px solid #ddd;
+        }
+
+        .edit-panel h3 {
+            margin-top: 0;
+        }
+
+        .edit-panel label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .edit-panel input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .edit-panel button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="scroll-btn left" onmousedown="startAutoScroll(-1, true)" onmouseup="stopAutoScroll()"
+                onmouseout="stopAutoScroll()">‹</button>
+            <div class="tabs-container" id="tabs-container">
+                <button>Sala principal</button>
+                <button>Terraza</button>
+                <button>Salón VIP</button>
+                <button>Sala de juegos</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona exterior</button>
+                <button>Zona privada</button>
+                <!-- Agrega más tabs según sea necesario -->
+            </div>
+            <button class="scroll-btn right" onmousedown="startAutoScroll(1, true)" onmouseup="stopAutoScroll()"
+                onmouseout="stopAutoScroll()">›</button>
+            <button class="add-room-btn">Agregar sala</button>
+        </div>
+
+        <div class="tables-list">
+            <div class="table-item">
+                <div class="table-info">
+                    <img src="https://img.icons8.com/material-outlined/24/000000/delete-sign.png" alt="Eliminar">
+                    <span>Añadir nueva mesa</span>
+                </div>
+            </div>
+
+            <div class="table-item">
+                <div class="table-info">
+                    <img src="https://img.icons8.com/material-outlined/24/000000/delete-sign.png" alt="Eliminar">
+                    <span>Mesa 1</span>
+                </div>
+                <span class="status">Cerrada</span>
+            </div>
+
+            <!-- Agrega más elementos de mesa aquí según sea necesario -->
+
+        </div>
+    </div>
+
+    <div class="edit-panel">
+        <h3>Editar sala</h3>
+        <label for="room-name">Nombre de la sala*</label>
+        <input type="text" id="room-name" placeholder="Salón">
+        <button>Guardar</button>
+    </div>
+
+    <script>
+        let scrollInterval;
+
+        function startAutoScroll(direction) {
+            const tabsContainer = document.getElementById('tabs-container');
+            scrollInterval = setInterval(() => {
+                tabsContainer.scrollLeft += direction * 500;
+            }, 10); // Ajusta la velocidad del desplazamiento aquí
+        }
+
+        function stopAutoScroll() {
+            clearInterval(scrollInterval);
+        }
+    </script>
+</body>
+
+</html>

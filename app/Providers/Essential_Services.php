@@ -16,9 +16,7 @@ class Essential_Services extends ServiceProvider
         View::composer('*', function ($view) use ($fpFunc) {
             //Jquery
 
-            $view->with('JquerySrc', 'https://code.jquery.com/jquery-3.6.0.min.js');
-            $view->with('JqueryIntegrity', 'sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=');
-            $view->with('JqueryCrossorigin', 'anonymous');
+            $view->with('JquerySrc', 'global_resources/js/jquery-3.7.1.js');
 
             //Language
 
@@ -33,6 +31,13 @@ class Essential_Services extends ServiceProvider
             $view->with('HeaderPanel', 'template.header');
             $view->with('FooterPanel', 'template.footer');
 
+            //Alert
+
+            $view->with('AlertSrc', 'https://cdn.jsdelivr.net/npm/sweetalert2@11');
+
+            //Drag and drop
+
+            $view->with('DragAndDrop', 'https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
 
         });
     }

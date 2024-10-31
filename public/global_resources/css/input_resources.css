@@ -1,0 +1,179 @@
+:focus {
+    outline: none;
+}
+
+.col-3 {
+    float: left;
+    width: 100%;
+    margin: 0px 1vh;
+    position: relative;
+}
+
+input.effect-16 {
+
+
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    background: transparent;
+    padding: 10px;
+    height: 50%;
+    color: var(--dark);
+}
+
+.effect-16 {
+    border: 0;
+    padding: 4px 0;
+    border-bottom: 2px solid var(--color-input-background-border);
+    background-color: transparent;
+}
+
+.effect-16~.focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--imput-efect-transiccion-focus);
+    transition: 0.4s;
+}
+
+.effect-16:focus~.focus-border,
+.has-content.effect-16~.focus-border {
+    width: 100%;
+    transition: 0.4s;
+}
+
+.effect-16~label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 9px;
+    color: #8b8b8b;
+    transition: 0.3s;
+    letter-spacing: 0.5px;
+}
+
+.effect-16:focus~label,
+.has-content.effect-16~label {
+    top: -1.5vh;
+    font-size: 12px;
+    color: var(--label-efect-transiccion-focus);
+    transition: 0.3s;
+}
+
+.effect-16:not(:placeholder-shown) + label {
+    top: -1.5vh;
+    transition: 0.3s;
+    font-size: 12px;
+    background-color: transparent;
+    color: var(--label-efect-transiccion-focus);
+
+  }
+
+/*Estilos de imput*/
+.wave-group {
+    position: relative;
+
+}
+
+.wave-group .input,
+.input-iten {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: 2px solid var(--color-input-background-border);
+    background: transparent;
+    padding: 10px 20PX;
+    border-radius: 10px;
+    color: var(--dark);
+}
+
+.wave-group .input:focus,
+.input-iten {
+    outline: none;
+}
+
+.wave-group .label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 10px;
+    display: flex;
+}
+
+.wave-group .label-char {
+    transition: 0.15s ease all;
+    transition-delay: calc(var(--index) * 0.025s);
+    background-color: var(--imput-efect-transiccion);
+    border-radius: 10px;
+}
+
+.wave-group .input:focus~label .label-char,
+.wave-group .input:required~label .label-char {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: var(--label-efect-transiccion-focus);
+}
+
+.wave-group .input:not(:placeholder-shown)~label .label-char {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: var(--label-efect-transiccion-focus);
+}
+
+/* Effect 5 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.effect-5+label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #8b8b8b;
+    transition: 0.4s;
+}
+
+.effect-5:focus,
+.effect-4:focus {
+    width: 100%;
+    border: 2.5px solid var(--imput-efect-transiccion-focus);
+
+}
+
+.effect-5:focus+label,
+.effect-5:not(:placeholder-shown)+label {
+    top: 0;
+    left: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+    color: var(--label-efect-transiccion-focus);
+    background-color: var(--imput-efect-transiccion);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: var(--calendar-icon-color);
+    opacity: 1;
+}

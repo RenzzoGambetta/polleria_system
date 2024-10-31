@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Drag and Drop con Sortable.js</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container-item {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+        }
+        .item-data {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .item-data:hover {
+            transform: scale(1.05);
+        }
+        .item-data img {
+            width: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            user-select: none;
+            pointer-events: none;
+        }
+        .item-data-info {
+            padding: 10px;
+            text-align: center;
+        }
+        .item-data h2 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .item-data p {
+            margin: 5px 0;
+        }
+        .item-data .price {
+            color: green;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .item-data .quantity {
+            color: #555;
+            font-size: 0.9em;
+        }
+        .order-number {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-item" id="container">
+        <!-- Producto 1 -->
+        <div class="item-data" data-order="1">
+            <span class="order-number">1</span>
+            <img src="https://via.placeholder.com/200x150" alt="Producto 1" draggable="false">
+            <div class="item-data-info">
+                <h2>Producto 1</h2>
+                <p>Descripción: Producto de ejemplo.</p>
+                <p class="quantity">Cantidad: 3</p>
+                <p class="price">Precio: S/. 25.00</p>
+            </div>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="item-data" data-order="2">
+            <span class="order-number">2</span>
+            <img src="https://via.placeholder.com/200x150" alt="Producto 2" draggable="false">
+            <div class="item-data-info">
+                <h2>Producto 2</h2>
+                <p>Descripción: Otro producto de ejemplo.</p>
+                <p class="quantity">Cantidad: 1</p>
+                <p class="price">Precio: S/. 15.00</p>
+            </div>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="item-data" data-order="3">
+            <span class="order-number">3</span>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8f_ev7LbLu3v5vymXR7nQCWdjjz9zDh_a6w&s" alt="Producto 3" draggable="false">
+            <div class="item-data-info">
+                <h2>Producto 3</h2>
+                <p>Descripción: Producto con más características.</p>
+                <p class="quantity">Cantidad: 5</p>
+                <p class="price">Precio: S/. 40.00</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sortable.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+    <script>
+        // Inicializa Sortable en el contenedor
+        const container = document.getElementById('container');
+
+        Sortable.create(container, {
+            animation: 150, // Animación suave durante el drag-and-drop
+            onEnd: function (evt) {
+                updateOrderNumbers(); // Actualiza los números de orden después de cambiar
+            }
+        });
+
+        function updateOrderNumbers() {
+            const items = container.querySelectorAll('.item-data');
+            items.forEach((item, index) => {
+                const orderNumber = item.querySelector('.order-number');
+                orderNumber.textContent = index + 1;
+                item.setAttribute('data-order', index + 1);
+            });
+        }
+    </script>
+</body>
+</html>

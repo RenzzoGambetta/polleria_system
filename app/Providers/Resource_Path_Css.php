@@ -28,6 +28,10 @@ class Resource_Path_Css extends ServiceProvider
 
             $ColorNightAndDay = $fpFunc->Global_Resource(Folder_Path::CSS, 'color_night_and_day.css');
             $view->with('ColorNightAndDay', $ColorNightAndDay);
+
+
+            $InputResources = $fpFunc->Global_Resource(Folder_Path::CSS, 'input_resources.css');
+            $view->with('InputResources', $InputResources);
             //Resources
 
             $LoginMobile = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::CSS, 'login_mobile.css');
@@ -42,17 +46,72 @@ class Resource_Path_Css extends ServiceProvider
             $TemplateDesktop = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'template_desktop.css');
             $view->with('TemplateDesktop', $TemplateDesktop);
 
-            //$EmployeeRecordMobile = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::CSS, 'employee_record_mobile.css');
-            //$view->with('EmployeeRecordMobile', $EmployeeRecordMobile);
+            //$EmployeeRecordMobile = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_mobile.css');
+            //$view->with('EmployeeRecordMobile', $EmployeeRecordMobile);loading_style
 
-            $EmployeeRecordDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::CSS, 'employee_record_desktop.css');
+            $EmployeeRecordDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_desktop.css');
             $view->with('EmployeeRecordDesktop', $EmployeeRecordDesktop);
 
-            $RoleRegisterDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGMENT, Folder_Path::CSS, 'style_role_register_desktop.css');
+            $LoadFragment = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'load_fragment.css');
+            $view->with('LoadFragment', $LoadFragment);
+
+            $RoleRegisterDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'style_role_register_desktop.css');
             $view->with('RoleRegisterDesktop', $RoleRegisterDesktop);
 
             $IconReferen = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'icon_referen.css');
             $view->with('IconReferen', $IconReferen);
+
+            $InventoryRegisterDesktop = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'inventory_register_desktop.css');
+            $view->with('InventoryRegisterDesktop', $InventoryRegisterDesktop);
+
+            $InventoryRegisterMobile = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'inventory_register_mobile.css');
+            $view->with('InventoryRegisterMobile', $InventoryRegisterMobile);
+
+            $ItemSelectionAlert = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'item_selection_alert.css');
+            $view->with('ItemSelectionAlert', $ItemSelectionAlert);
+
+            $CheckboxAnimation = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'checkbox_animation.css');
+            $view->with('CheckboxAnimation', $CheckboxAnimation);
+
+            $LoadingStyle = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'loading_style.css');
+            $view->with('LoadingStyle', $LoadingStyle);
+
+            $SearchBox = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'search_box.css');
+            $view->with('SearchBox', $SearchBox);
+
+            $RegisterNewsupply = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'register_new_supply.css');
+            $view->with('RegisterNewsupply', $RegisterNewsupply);
+
+            $StockMovement = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'stock_movement.css');
+            $view->with('StockMovement', $StockMovement);
+
+            $OuputSupply = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'ouput_supply.css');
+            $view->with('OuputSupply', $OuputSupply);
+
+            $MenuTable = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'menu_table.css');
+            $view->with('MenuTable', $MenuTable);
+
+            $MenuRegisterAndEdit = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'menu_register_and_edit.css');
+            $view->with('MenuRegisterAndEdit', $MenuRegisterAndEdit);
+
+            $CategoryMenu = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'category_menu.css');
+            $view->with('CategoryMenu', $CategoryMenu);
+
+            $ItemOrder = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'item_order.css');
+            $view->with('ItemOrder', $ItemOrder);
+
+            $TableEditAndRegister = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'table_edit_and_register.css');
+            $view->with('TableEditAndRegister', $TableEditAndRegister);
+
+            $pointModify = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'point_modify.css');
+            $view->with('pointModify', $pointModify);
+
+            $loaderOrder = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'loader.css');
+            $view->with('loaderOrder', $loaderOrder);
+
+            $openingClosingDesignStyle = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'opening_closing_design.css');
+            $view->with('openingClosingDesignStyle', $openingClosingDesignStyle);
+
         });
     }
 }

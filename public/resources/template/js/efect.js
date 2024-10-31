@@ -1,32 +1,28 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const links = document.querySelectorAll('.submenu-toggle');
+$(document).ready(function() {
+    const links = $('.submenu-toggle');
 
-    links.forEach(link => {
-        link.addEventListener('click', function (event) {
-            if (this.id === 'accion') {
-                links.forEach(l => {
-                    if (l.classList.contains('inav')) {
-                        l.classList.remove('inav');
-                        l.classList.add('acti');
+    links.each(function() {
+        $(this).on('click', function(event) {
+            if ($(this).attr('id') === 'accion') {
+                links.each(function() {
+                    if ($(this).hasClass('inac')) {
+                        $(this).removeClass('inac').addClass('acti');
                     }
                 });
                 return;
             }
 
-            if (this.classList.contains('acti')) {
+            if ($(this).hasClass('acti')) {
                 event.preventDefault();
             }
 
-            links.forEach(l => {
-                if (l.classList.contains('inav')) {
-                    l.classList.remove('inav');
-                    l.classList.add('acti');
+            links.each(function() {
+                if ($(this).hasClass('inac')) {
+                    $(this).removeClass('inac').addClass('acti');
                 }
             });
 
-            this.classList.remove('acti');
-            this.classList.add('inav');
+            $(this).removeClass('acti').addClass('inac');
         });
     });
 });
-

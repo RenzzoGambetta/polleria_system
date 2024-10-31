@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Design</title>
+    <style>
+        .container-table-data {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            background-color: #fff8e1;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-table-data {
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .icon-table {
+            color: #e53935;
+            font-size: 20px;
+        }
+
+        .item-detail-client {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff8e1;
+            padding: 8px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .item-details {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .label-able {
+            background-color: #ffc107;
+            color: #fff;
+            font-size: 12px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .price-detail {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .footer-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #6d6d6d;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .continue-button {
+            background-color: #e53935;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .arrow-detail {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table-data">
+        <div class="header-table-data">
+            <span>PISO 1 - Mesa: mesa1</span>
+            <span class="icon-table">👤</span>
+        </div>
+        <div class="item-detail-client">
+            <div class="item-details">
+                <span>INCA KOLA</span>
+                <span class="label-able">1L</span>
+                <p>1 Unidad(es) en S/ 6.50 | Unidad</p>
+            </div>
+            <div class="price-detail">S/ 6.50</div>
+        </div>
+        <div class="footer-total">
+            <span>S/ 6.50</span>
+            <div class="button-container">
+                <button class="continue-button">
+                    Continuar
+                    <span class="arrow-detail">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
