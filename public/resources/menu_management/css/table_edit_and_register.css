@@ -56,8 +56,8 @@ span.limit-not-margin {
     padding: 10px 20px;
     cursor: pointer;
     flex-shrink: 0;
-    border-radius: 15px;
-    color: var(--dark);
+    border-radius: 8px;
+    color:var(--dark);
 }
 
 .add-room-btn {
@@ -105,24 +105,20 @@ i.fi.fi-bs-add {
 .scroll-btn.left {
     left: 0;
     font-size: 2.2rem;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
 }
 
 .scroll-btn.right {
     right: 200px;
     font-size: 2.2rem;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
 }
 
 .table-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1c1c22;
+    background-color: var(--table-item-background-color);
     padding: 20px;
-    border: 3px solid #19191a;
+    border:var(--table-item-border);
     border-radius: 11px;
     color: var(--dark);
 }
@@ -148,8 +144,8 @@ i.fi.fi-bs-add {
 .edit-panel {
     width: 600px;
     padding: 20px;
-    background-color: #1c1c22;
-    border: 1px solid #19191a;
+    background-color: var(--edit-panel-background-color);
+    border: var(--edit-panel-border);
     max-width: 30%;
     border-radius: 15px;
     height: 100%;
@@ -171,9 +167,9 @@ i.fi.fi-bs-add {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
-    border: 1px solid #25252c;
+    border: var(--edit-panel-input-border);
     border-radius: 5px;
-    background-color: #25252c;
+    background-color:var( --edit-panel-input-background-color);
     color: var(--dark);
 }
 
@@ -234,7 +230,7 @@ i.fi.fi-bs-add.table-add {
 }
 
 .button.active {
-    background-color: #6b00b3;
+    background-color:var(--button-active-background-color);
     /* Color al activarse */
 }
 

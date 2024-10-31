@@ -15,6 +15,7 @@ class Folder_Path
     public const USER_MANAGEMENT = "user_management";
     public const INVENTORY_MANAGEMENT = "inventory_management";
     public const MENU_MANAGEMENT = "menu_management";
+    public const ORDER = "order";
 
     // Carpetas integradas en Hijos
     public const CSS = "css";

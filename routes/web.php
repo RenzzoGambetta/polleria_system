@@ -11,6 +11,7 @@ use App\Http\Controllers\inventory_management\SupplyStockController;
 use App\Http\Controllers\inventory_management\SuppliersController;
 use App\Http\Controllers\menu_management\MenuController;
 use App\Http\Controllers\menu_management\TableController;
+use App\Http\Controllers\order\PointOfSaleController;
 use App\Http\Controllers\temp\EfectController;
 
 
@@ -83,6 +84,11 @@ use App\Http\Controllers\temp\EfectController;
     Route::post('/delate_table', [TableController::class,'delateTable'])->name('delate_table');
     Route::post('/edit_table', [TableController::class,'editTable'])->name('edit_table');
     Route::post('/new_table', [TableController::class,'newTable'])->name('new_table');
+
+//--> Order
+    //PointOfSale
+    Route::get('/point_of_sale', [PointOfSaleController::class,'showPointOfSale'])->name('point_of_sale');
+    Route::get('/cashier_sessions', [PointOfSaleController::class,'showCashierSessions'])->name('cashier_sessions');
 
 //--> Home
 

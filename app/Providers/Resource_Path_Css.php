@@ -103,6 +103,15 @@ class Resource_Path_Css extends ServiceProvider
             $TableEditAndRegister = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::CSS, 'table_edit_and_register.css');
             $view->with('TableEditAndRegister', $TableEditAndRegister);
 
+            $pointModify = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'point_modify.css');
+            $view->with('pointModify', $pointModify);
+
+            $loaderOrder = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'loader.css');
+            $view->with('loaderOrder', $loaderOrder);
+
+            $openingClosingDesignStyle = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'opening_closing_design.css');
+            $view->with('openingClosingDesignStyle', $openingClosingDesignStyle);
+
         });
     }
 }

@@ -23,7 +23,7 @@ class TableController extends Controller
     }
     public function tablesListData(Request $request)
     {
-        $Tables = Table::select('id', 'code as name')->where('lounge_id', $request->id)->get();
+        $Tables = Table::select('id', 'code as name', 'status')->where('lounge_id', $request->id)->get();
         return response()->json($Tables);
     }
     public function loungeDataEdit(Request $request)

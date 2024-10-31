@@ -78,6 +78,16 @@
                     </ul>
                 </li>
 
+                <li class="{{ ($Navigation['seccion'] ?? null) == 6 ? 'sub active' : 'sub' }}">
+                    <a href="{{ route('point_of_sale') }}" class="{{ ($Navigation['seccion'] ?? null) == 6 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 60 ? 'nav_select' : '' }}"><i class='fi fi-rs-cash-register bx-adjustment-icon'></i>Caja</a>
+                    <ul class="sub">
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 6.1 ? 'active' : '' }}">
+                            <a href="{{ route('cashier_sessions') }}" id="{{ ($Navigation['color'] ?? null) == 61 ? 'nav_select' : '' }}"><i class='fi fi-ss-marketplace-alt bx-adjustment-icon'></i>Apertura y siere</a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <li class="{{ ($Navigation['seccion'] ?? null) == 5 ? 'sub active' : 'sub' }}">
                     <a href="{{ route('menu') }}" class="{{ ($Navigation['seccion'] ?? null) == 5 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 50 ? 'nav_select' : '' }}"><i class='fi fi-rs-customize-computer bx-adjustment-icon'></i>Configuracion</a>
                     <ul class="sub">

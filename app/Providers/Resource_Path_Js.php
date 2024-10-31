@@ -68,8 +68,14 @@ class Resource_Path_Js extends ServiceProvider
             $newMenuAndEdit = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'new_menu_and_edit.js');
             $view->with('newMenuAndEdit', $newMenuAndEdit);
 
-            $tableEditAndRegister = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'table-edit-and-register.js');
+            $tableEditAndRegister = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'table_edit_and_register.js');
             $view->with('tableEditAndRegister', $tableEditAndRegister);
+
+            $pointOfSale = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'point_of_sale.js');
+            $view->with('pointOfSale', $pointOfSale);
+
+            $openingClosingDesignFunction = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'opening_closing_design.js');
+            $view->with('openingClosingDesignFunction', $openingClosingDesignFunction);
         });
     }
 }
