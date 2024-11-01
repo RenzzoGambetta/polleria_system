@@ -41,6 +41,10 @@
                         <input type="text" id="name-data" name="name" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
                         <label for="name-data" class="label-input-data mobile-label">Nombre</label>
                     </div>
+                    <div class="input-group input-dimensions alert-style-div-input alert-input">
+                        <input type="text" id="brand_name-data" name="brand_name" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                        <label for="brand_name-data" class="label-input-data mobile-label">Provedor</label>
+                    </div>
                 </div>
 
                 <div class="input-data-number">
