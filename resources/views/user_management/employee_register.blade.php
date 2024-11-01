@@ -72,11 +72,11 @@
                 <div class="form-step form-step-active">
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="text" id="name_input" class="effect-4" name="name" placeholder=" " required value="{{ session()->has('data') && session('data')['name'] !== null ? session('data')['name'] : '' }}" />
+                            <input type="text" id="name_input" class="effect-4" name="name" placeholder=" " required value="{{ old('name') }}" />
                             <label for="Nombre">*Nombre</label>
                         </div>
                         <div class="input-group col-md-6" id="div_frame_dni_input">
-                            <input type="number" id="frame_dni_input" class="effect-4" name="dni" placeholder=" " required value="{{ session()->has('data') && session('data')['dni'] !== null ? session('data')['dni'] : '' }}">
+                            <input type="number" id="frame_dni_input" class="effect-4" name="dni" placeholder=" " required value="{{ old('dni') }}">
                             <label for="Dni">*DNI</label>
                             <div id="busqueda">
                                 <h1 id="lupa"><i class="bx bxs-file-find" id="iten"></i></h1>
@@ -86,11 +86,11 @@
                     </div>
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="text" id="paternal_surname_input" class="effect-4" name="paternal_surname" placeholder=" " required value="{{ session()->has('data') && session('data')['paternal_surname'] !== null ? session('data')['paternal_surname'] : '' }}" />
+                            <input type="text" id="paternal_surname_input" class="effect-4" name="paternal_surname" placeholder=" " required value="{{ old('paternal_surname') }}" />
                             <label for="Paterno">*Apellido Paterno</label>
                         </div>
                         <div class="input-group col-md-6">
-                            <input type="text" id="maternal_surname_input" class="effect-4" name="maternal_surname" placeholder=" " required value="{{ session()->has('data') && session('data')['maternal_surname'] !== null ? session('data')['maternal_surname'] : '' }}" />
+                            <input type="text" id="maternal_surname_input" class="effect-4" name="maternal_surname" placeholder=" " required value="{{ old('maternal_surname') }}" />
                             <label for="Materno">*Apellido Materno</label>
                         </div>
                     </div>
@@ -105,24 +105,24 @@
                         <div class="select">
                             <div class="generos">
                                 <label class="genero">
-                                    <input type="radio" id="Hombre" name="gender" value="male" />
+                                    <input type="radio" id="Hombre" name="gender" value="1" />
                                     <span> Hombre </span>
                                 </label>
 
                                 <label class="genero">
-                                    <input type="radio" id="Mujer" name="gender" value="feminine" />
+                                    <input type="radio" id="Mujer" name="gender" value="0" />
                                     <span> Mujer </span>
                                 </label>
                             </div>
                             <div class="posgenero">Genero <i class='bx bxs-eject bx-rotate-180'></i></div>
                         </div>
                         <div class="input-group col-md-6 one">
-                            <input type="Date" id="fechaNacimiento" class="effect-4" name="birthdate" placeholder=" " required value="{{ session()->has('data') && session('data')['birthdate'] !== null ? session('data')['birthdate'] : '' }}"/>
+                            <input type="Date" id="fechaNacimiento" class="effect-4" name="birthdate" placeholder=" " required value="{{ old('birthdate') }}"/>
                             <label for="fechaNacimiento">*Fecha de Nacimiento</label>
                         </div>
                     </div>
                     <div class="input-group col-md-6 one unique">
-                        <input type="text" id="nacionalidad" class="effect-4" name="nationality" placeholder=" " required value="{{ session()->has('data') && session('data')['nationality'] !== null ? session('data')['nationality'] : '' }}"/>
+                        <input type="text" id="nacionalidad" class="effect-4" name="nationality" placeholder=" " required value="{{ old('nationality') }}"/>
                         <label for="nacionalidad">*Nacionalidad</label>
                     </div>
 
@@ -134,16 +134,16 @@
                 <div class="form-step">
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="number" id="Telefono" class="effect-4" name="phone" placeholder=" " required value="{{ session()->has('data') && session('data')['phone'] !== null ? session('data')['phone'] : '' }}"/>
+                            <input type="number" id="Telefono" class="effect-4" name="phone" placeholder=" " required value="{{ old('phone') }}"/>
                             <label for="Telefono">*Telefono</label>
                         </div>
                         <div class="input-group col-md-6 one">
-                            <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " required value="{{ session()->has('data') && session('data')['email'] !== null ? session('data')['email'] : '' }}"/>
+                            <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " required value="{{ old('email') }}"/>
                             <label for="Correo">*Correo</label>
                         </div>
                     </div>
                     <div class="input-group col-md-6 one unique">
-                        <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " required value="{{ session()->has('data') && session('data')['address'] !== null ? session('data')['address'] : '' }}"/>
+                        <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " required value="{{ old('address') }}"/>
                         <label for="Direccion">*Direccion</label>
                     </div>
 

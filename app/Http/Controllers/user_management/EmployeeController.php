@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Lang;
 use App\Services\IdentificationDocumentService;
 use App\Services\user_management\EmployeeService;
 use App\Http\Requests\user_management\EmployeeRequest;
 use Illuminate\Support\Facades\Validator;
+
 class EmployeeController extends Controller
 {
     protected $identificationDocumentService;
@@ -46,20 +48,21 @@ class EmployeeController extends Controller
     {
 
         $personData = validator::make(
-        $request->all(), [
-        'dni' => 'required|size:8',
-        ]);
+            $request->all(),
+            [
+                'dni' => 'required|size:8',
+            ]
+        );
 
         $dni = $request->input('dni');
-        $sms = "El Dni solo resivido contiene ". strlen((string) abs($dni)) .  " digitos en ves de 8";
+        $sms = "El Dni solo resivido contiene " . strlen((string) abs($dni)) .  " digitos en ves de 8";
 
-        if ($personData->fails()){
-          return response()->json(['error' => $sms], 400);
+        if ($personData->fails()) {
+            return response()->json(['error' => $sms], 400);
         }
 
         $response = $this->identificationDocumentService->fetchDataByDni($dni);
-        if (is_array($response))
-        {
+        if (is_array($response)) {
             return response()->json(['data' => $response], 200);
         }
         return response()->json(['error' => $response], 400);
@@ -67,19 +70,23 @@ class EmployeeController extends Controller
     public function create_employee_record(EmployeeRequest $request)
     {
         try {
+<<<<<<< HEAD
             
             $response = $this->employeeService->createEmployee( $request->validated());
+=======
+            $response = $this->employeeService->createEmployee($request->validated());
+>>>>>>> origin/develop
 
-            if ($response === true) {
-                return redirect()->route('employeer')->with('success', 'Empleado creado exitosamente');
-            } else {
-                $fechaHoraActual = date("Y-m-d H:i:s");
-                $Ms = $fechaHoraActual . ' No se puede crear el registro. El error es -> ' . $response;
-                return response()->json(['error' => $Ms], 400);
+            if ($response) {
+                return redirect()->route('employeer')->with('Ms', 'Empleado creado exitosamente');
             }
+            return redirect()->route('employeer_register')
+                ->withInput()
+                ->with('Ms', 'Ocurrió un error al crear el empleado');
         } catch (Exception $e) {
-            $response = "Completa los campos";
-            return redirect()->route('employeer_register')->with('Ms', $response);
+            return redirect()->route('employeer_register')
+                ->withInput()
+                ->with('Ms', 'Ocurrió un error, puede ser que el Dni ya se encuentre registrado');
         }
     }
 }
