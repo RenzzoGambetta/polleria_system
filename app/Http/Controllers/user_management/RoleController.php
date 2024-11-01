@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\user_management\RoleRequest;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -14,6 +17,13 @@ class RoleController extends Controller
         'sub_seccion' => 2.2,
         'color' => 22
     ];
+    /*
+    protected $roleService;
+    public function __construct( roleService $roleService)
+    {
+        $this->roleService = $roleService;
+    }
+    */
     public function show_position_list()
     {
         $Navigation = $this->Navigation;
@@ -29,26 +39,33 @@ class RoleController extends Controller
         $Navigation = $this->Navigation;
         return view('user_management.role_register', compact('Navigation','Permissions','Categories'));
     }
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        // Validar la solicitud
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'permissions' => 'array', // Asegura que 'permissions' sea un array
-            'permissions.*' => 'integer|exists:permissions,id', // Valida que cada elemento sea un entero existente en la tabla 'permissions'
-        ]);
 
-        // Obtener el nombre del rol
-        $name = $request->input('name');
+        DB::beginTransaction();
 
-        // Obtener los IDs de los permisos seleccionados
-        $permissionIds = $request->input('permissions', []);
+        try {
 
-        // Retornar la respuesta en formato JSON
-        return response()->json([
-            'name' => $name,
-            'selected_permissions' => $permissionIds,
-        ]);
+            $role = Role::create(['name' => $request->input('name')]);
+
+            if ($role) {
+
+                foreach ($request->input('permissions') as $permissionId) {
+                    DB::table('role_permission')->insert([
+                        'role_id' => $role->id,
+                        'permission_id' => $permissionId,
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return response()->json(['message' => 'Rol y permisos asignados correctamente.'], 201);
+
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->route('employeer_register')->with('Ms', 'Error al asignar el rol y permisos.');
+        }
     }
 }
 

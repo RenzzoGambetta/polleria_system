@@ -1,42 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const previousButton = document.querySelector('.button-opcion.previous');
+    function updateCategoryCheckboxes() {
+        document.querySelectorAll('.sub-rol').forEach(subRoleContainer => {
+            const categoryCheckboxId = subRoleContainer.getAttribute('data-category-id');
+            const categoryCheckbox = document.getElementById(categoryCheckboxId);
+            const anyPermissionChecked = subRoleContainer.querySelector('input[type="checkbox"]:checked') !== null;
 
-    if (previousButton) {
-        previousButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            window.history.back();
+            categoryCheckbox.checked = anyPermissionChecked;
         });
     }
-});
-
-    document.addEventListener('DOMContentLoaded', function() {
-        function updateCategoryCheckboxes() {
-            document.querySelectorAll('.sub-rol').forEach(subRoleContainer => {
-                const categoryCheckbox = subRoleContainer.previousElementSibling.querySelector('input[type="checkbox"]');
-                const anyPermissionChecked = subRoleContainer.querySelector('input[type="checkbox"]:checked');
-                categoryCheckbox.checked = !!anyPermissionChecked;
-            });
-        }
-
-        // Manejar la selección/deselección de categorías
-        document.querySelectorAll('.checkbox-1 input[type="checkbox"]').forEach(categoryCheckbox => {
-            categoryCheckbox.addEventListener('change', function() {
-                const categoryId = this.id;
-                const permissionsContainer = document.querySelector(`#${categoryId}.sub-rol`);
-                if (permissionsContainer) {
-                    permissionsContainer.querySelectorAll('input[type="checkbox"]').forEach(permissionCheckbox => {
-                        permissionCheckbox.checked = categoryCheckbox.checked;
-                    });
-                }
-            });
+    document.querySelectorAll('.category-checkbox').forEach(categoryCheckbox => {
+        categoryCheckbox.addEventListener('change', function () {
+            const categoryId = this.id;
+            const permissionsContainer = document.querySelector(`.sub-rol[data-category-id="${categoryId}"]`);
+            if (permissionsContainer) {
+                permissionsContainer.querySelectorAll('input[type="checkbox"]').forEach(permissionCheckbox => {
+                    permissionCheckbox.checked = categoryCheckbox.checked;
+                });
+            }
+            updateCategoryCheckboxes();
         });
-
-        // Manejar la selección/deselección de permisos
-        document.querySelectorAll('.sub-rol input[type="checkbox"]').forEach(permissionCheckbox => {
-            permissionCheckbox.addEventListener('change', updateCategoryCheckboxes);
-        });
-
-        // Inicializar el estado de los checkboxes de categoría
-        updateCategoryCheckboxes();
     });
-
+    document.querySelectorAll('.permission-checkbox').forEach(permissionCheckbox => {
+        permissionCheckbox.addEventListener('change', function () {
+            updateCategoryCheckboxes();
+        });
+    });
+    updateCategoryCheckboxes();
+});

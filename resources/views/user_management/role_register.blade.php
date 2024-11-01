@@ -42,24 +42,23 @@
         <div class="title_categories_primary">Permisos</div>
         <div class="input-group">
             <div class="check container">
-                @foreach ($Categories as $categories => $permissionGroup)
-                    <div id="dimensions" class="apo">
+                @foreach ($Categories as $category => $permissionGroup)
+                    <div class="apo" id="dimensions-{{ $category }}">
                         <div class="checkbox checkbox-1">
-                            <input type="checkbox" id="{{ $categories }}" />
-                            <label for="{{ $categories }}" class="title_categories">{{ $categories }}</label>
+                            <input type="checkbox" id="category_{{ $category }}" class="category-checkbox" />
+                            <label for="category_{{ $category }}" class="title_categories">{{ $category }}</label>
                         </div>
-                        <div id="{{ $categories }}" class="sub-rol">
+                        <div class="sub-rol" data-category-id="category_{{ $category }}">
                             @foreach ($permissionGroup as $permission)
                                 <div class="checkbox checkbox-1">
-                                    <input type="checkbox" id="C_{{ $permission->name }}" name="permissions[]" value="{{ $permission->id }}" />
-                                    <label for="C_{{ $permission->name }}" class="sub_categories">{{ $permission->name }}</label>
+                                    <input type="checkbox" id="permission_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}" class="permission-checkbox" />
+                                    <label for="permission_{{ $permission->id }}" class="sub_categories">{{ $permission->name }}</label>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 @endforeach
             </div>
-
         </div>
     </div>
 </form>
