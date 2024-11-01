@@ -85,7 +85,7 @@
                 <div class="input-data-number">
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                         <div class="checkbox-wrapper-35">
-                            <input name="is_stockable" id="switch-data" type="checkbox" class="switch" value="true" checked>
+                            <input name="is_stockable" id="switch-data" type="checkbox" class="switch" checked>
                             <label for="switch-data">
                                 <span class="switch-x-toggletext">
                                     <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked:

@@ -15,24 +15,27 @@ class supplyService
         DB::beginTransaction();
 
         try {
-            $brandName = $data['brand_name'];
-            $brand = $this->getBrand($brandName);
-
+            if (isset($data['brand_name'])) {
+                $brandName = $data['brand_name'];
+                $brand = $this->getBrand($brandName);
+                $data['brand_id'] = $brand->id;
+            }
+            
             $supply = Supply::create([
-                'brand_id' => $brand->id,
-                'code' => $data['code'],
+                'brand_id' => isset($data['brand_id']) ? $data['brand_id'] : null,
+                'code' => isset($data['code']) ? $data['code'] : null,
                 'name' => $data['name'],
-                'is_stockable' => $data['is_stockable'],
-                'stock' => $data['stock'],
-                'unit' => $data['unit'],
-                'note' => $data['note'],
+                'is_stockable' => isset($data['is_stockable']) ? true : false,
+                'stock' => isset($data['stock']) ? $data['stock'] : null,
+                'unit' => isset($data['unit']) ? $data['unit'] : null,
+                'note' => isset($data['note']) ? $data['note'] : null,
             ]);
 
             DB::commit();
             return $supply;
         } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            throw $e;
         }
     }
 
@@ -40,17 +43,20 @@ class supplyService
         DB::beginTransaction();
 
         try {
-            $brandName = $data['brand_name'];
-            $brand = $this->getBrand($brandName);
+            if (isset($data['brand_name'])) {
+                $brandName = $data['brand_name'];
+                $brand = $this->getBrand($brandName);
+                $data['brand_id'] = $brand->id;
+            }
 
             $supply->update([
-                'brand_id' => $brand->id,
-                'code' => $data['code'],
+                'brand_id' => isset($data['brand_id']) ? $data['brand_id'] : null,
+                'code' => isset($data['code']) ? $data['code'] : null,
                 'name' => $data['name'],
-                'is_stockable' => $data['is_stockable'],
-                'stock' => $data['stock'],
-                'unit' => $data['unit'],
-                'note' => $data['note'],
+                'is_stockable' => isset($data['is_stockable']) ? true : false,
+                'stock' => isset($data['stock']) ? $data['stock'] : null,
+                'unit' => isset($data['unit']) ? $data['unit'] : null,
+                'note' => isset($data['note']) ? $data['note'] : null,
             ]);
 
             DB::commit();
@@ -63,10 +69,10 @@ class supplyService
 
     public function deleteSupplyAndBrand(Supply $supply) {
         $brandId = $supply->brand_id;
-        $brand = Brand::first($brandId);
+        $brand = Brand::find($brandId);
 
         $supplyListByBrand = $brand->suppliers;
-        if ($supplyListByBrand > 1) {
+        if ($supplyListByBrand->count() > 1) {
             throw new Exception("La marca está relacionado con otros insumos");
         }
 

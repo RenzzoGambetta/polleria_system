@@ -24,13 +24,16 @@ class LoungeService
         $lounge = Lounge::create([
            'code' => $data['code'],
            'name' => $data['name'],
-           'floor' => (isset($data['floor'])) ? $data['floor'] : 1,
+           'floor' => isset($data['floor']) ? $data['floor'] : 1,
            'address' => $data['address']
         ]);
         
         $tables = [];
-        for ($i=1; $i < $tableQuantity + 1; $i++) { 
-            $tables[] = [ 'code' => $i ];
+        $prefix = isset($data['prefix_code_tables']) ? $data['prefix_code_tables'] : false;
+        for ($i=1; $i < $tableQuantity + 1; $i++) {
+            $code = $i;
+            if ($prefix) $code = $prefix . $i;
+            $tables[] = [ 'code' => $code ];
         }
 
         $lounge->tables()->createMany($tables);

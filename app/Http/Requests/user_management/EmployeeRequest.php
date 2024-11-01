@@ -2,15 +2,13 @@
 
 namespace App\Http\Requests\user_management;
 
+use App\Http\Requests\util_request\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class EmployeeRequest extends FormRequest
+class EmployeeRequest extends BaseRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
@@ -24,30 +22,16 @@ class EmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dni' => 'required',
+            'dni' => 'required|size:8',
             'name' => 'required|string|max:50',
-            'paternal_surname' => 'required|string|max:50',
-            'maternal_surname' => 'required|string|max:50',
+            'paternal_surname' => 'required|string|max:40',
+            'maternal_surname' => 'required|string|max:40',
             'birthdate' => 'required|date',
-            'gender' => 'nullable',
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email',
+            'gender' => 'nullable|boolean',
+            'phone' => 'required|string|max:20|',
+            'email' => 'required|email|',
             'address' => 'required|string|max:255',
             'nationality' => 'required|string|max:255',
         ];
-    }
-
-    /**
-     * Handle a failed validation attempt.
-     *
-     * @param Validator $validator
-     * @return void
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        $errors = "Completa el campo obligatorio";
-        throw new HttpResponseException(
-            redirect()->back()->with('Ms', $errors)->withErrors($validator->errors())->withInput()
-        );
     }
 }

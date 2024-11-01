@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Requests\menu;
+namespace App\Http\Requests\inventory;
 
 use App\Http\Requests\util_request\BaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
-class LoungeRequest extends BaseRequest
+class BrandRequest extends BaseRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
         return true;
@@ -20,11 +22,8 @@ class LoungeRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'code' => 'size:4|unique:lounges,code',
-            'name' => 'required|string|max:75',
-            'floor' => 'integer|between:1,255',
-            'address' => 'string|max:255',
-            'prefix_code_tables' => 'string|max:2' 
+            'name' => 'required|string|max:50|unique:brands,name',
+            'description' => 'string|max:255|nullable'
         ];
     }
 }

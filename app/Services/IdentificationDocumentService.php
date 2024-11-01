@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\Person;
 use App\Utils\LogHelper;
 use Exception;
+
+use function PHPUnit\Framework\returnSelf;
 
 class IdentificationDocumentService
 {
@@ -11,6 +14,10 @@ class IdentificationDocumentService
     public function __construct(){}
 
     public function fetchDataByDni(string $dni) {
+        $dataFromDatabase = $this->fetchDataByDniFromDatabase($dni);
+
+        if ($dataFromDatabase) return $dataFromDatabase;
+
         $curl = curl_init();
         $token = 'apis-token-6589.NnIufFSz2PuR-lFExEz0OOuf9NVcnLcm';
         $urldni = 'https://api.apis.net.pe/v2/reniec/dni?numero=';
@@ -46,7 +53,7 @@ class IdentificationDocumentService
                 ];
                 return $data;
             } else {
-                return "No se pudo encontrar el dni en el sistema";
+                return "No se pudo encontrar el dni en el sistema de la Reniec";
             }
         }
         catch (Exception $e) {
@@ -95,6 +102,21 @@ class IdentificationDocumentService
             return $errorMessage;
 
         }
+    }
+
+    private function fetchDataByDniFromDatabase(string $dni) {
+        $person = Person::where('dni', $dni)->first();
+
+        if (!$person) return false;
+
+        $data = [
+            'name' => $person->firstname,
+            'paternal_surname' => strrchr($person->lastname, ' ',true), 
+            'maternal_surname' => strrchr($person->lastname, ' '),
+            'dni' => $dni
+        ];
+
+        return $data;
     }
 
 }

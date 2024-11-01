@@ -2,13 +2,11 @@
 
 namespace App\Http\Requests\order;
 
+use App\Http\Requests\util_request\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CashierSessionRequest extends FormRequest
+class CashierSessionRequest extends BaseRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;

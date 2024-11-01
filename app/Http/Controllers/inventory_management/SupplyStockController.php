@@ -110,28 +110,23 @@ public function __construct(supplyService $supplyService)
 
         return response()->json($reply);
     }
-    public function registerNewSupplyComplete(Request $request)
+    public function registerNewSupplyComplete(supplyRequest $request)
     {
         try {
+            $validator = $request->validated();
 
-            $request->merge(['is_stockable' => $request->input('is_stockable') === 'true']);
-            $supplyRequest = new supplyRequest();
-            $validator = Validator::make($request->all(), $supplyRequest->rules());
+            // if ($validator->fails()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Hay errores en los datos ingresados.',
+            //         'errors' => $validator->errors()
+            //     ], 422);
+            // }
 
-            if ($validator->fails()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Hay errores en los datos ingresados.',
-                    'errors' => $validator->errors()
-                ], 422);
-            }
-
-            $response = $this->supplyService->createSupply($validator->validated());
+            $response = $this->supplyService->createSupply($validator);
             if($response){
                 return redirect()->route('inventory');
             }
-
-
         } catch (Exception $e) {
 
             return response()->json([
