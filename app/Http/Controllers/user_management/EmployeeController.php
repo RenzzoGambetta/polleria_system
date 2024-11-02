@@ -70,12 +70,7 @@ class EmployeeController extends Controller
     public function create_employee_record(EmployeeRequest $request)
     {
         try {
-<<<<<<< HEAD
-            
-            $response = $this->employeeService->createEmployee( $request->validated());
-=======
             $response = $this->employeeService->createEmployee($request->validated());
->>>>>>> origin/develop
 
             if ($response) {
                 return redirect()->route('employeer')->with('Ms', 'Empleado creado exitosamente');

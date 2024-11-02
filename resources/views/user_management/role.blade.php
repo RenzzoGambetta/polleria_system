@@ -1,8 +1,24 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
+<script src="{{ asset($FunctionGlobal) }}"></script>
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
+
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message')}}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10}})
+    </script>
+@endif
 
 <div class="btn-mobile mobile">
     <a href="{{ route('role_register') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>

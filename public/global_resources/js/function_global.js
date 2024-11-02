@@ -22,3 +22,18 @@ async function consultDataUrl(url, datosObj) {
         return false;
     }
 }
+function timeAlert(time) {
+    let timeLeft = time;
+    const timerElement = $('#timer');
+    const alertContainer = $('.container-aler');
+
+    const countdown = setInterval(function() {
+        timeLeft--;
+        timerElement.text(timeLeft + 's');
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            alertContainer.fadeOut(1000);
+        }
+    }, 2000);
+}

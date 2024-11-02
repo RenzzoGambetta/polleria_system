@@ -71,7 +71,8 @@
     --table-color-item:#5f5f5f;
     --table-color-sub-total:#555555;
     --item-detail-client-hover:#f6bc828a;
-
+    --color-alert-error-and-response:#ffa2a2;
+    --color-alert-success-and-response:rgb(170 255 161);
 }
 
 
@@ -128,4 +129,6 @@ body.dark {
     --table-color-item:#cccccc;
     --table-color-sub-total:#d5d5d5;
     --item-detail-client-hover:#6743008a;
+    --color-alert-error-and-response:#a50000;
+    --color-alert-success-and-response:rgb(10, 100, 0);
 }

@@ -37,7 +37,7 @@ class RoleController extends Controller
         $Permissions = Permission::all();
 
         $Navigation = $this->Navigation;
-        return view('user_management.role_register', compact('Navigation','Permissions','Categories'));
+        return view('user_management.role_register', compact('Navigation', 'Permissions', 'Categories'));
     }
     public function store(RoleRequest $request)
     {
@@ -60,12 +60,16 @@ class RoleController extends Controller
 
             DB::commit();
 
-            return response()->json(['message' => 'Rol y permisos asignados correctamente.'], 201);
-
+            return redirect()->route('position')->withInput()->with([
+                'Message' => 'Rol y permisos asignados correctamente.',
+                'Type' => 'success'
+            ]);
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->route('employeer_register')->with('Ms', 'Error al asignar el rol y permisos.');
+            return redirect()->route('role_register')->withInput()->with([
+                'Message' => 'Error al asignar el rol y permisos.',
+                'Type' => 'error'
+            ]);
         }
     }
 }
-

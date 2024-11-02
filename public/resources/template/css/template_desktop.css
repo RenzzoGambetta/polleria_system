@@ -646,6 +646,50 @@ a.profile {
     background-size: 50% 50%, cover;
 }
 
+.alert-error-and-response {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 10px 10px 25px 10px;
+    color: var(--dark);
+    user-select: none;
+    font-size: 0.8rem;
+    flex-direction: column;
+}
+
+.container-aler {
+    height: 0px;
+    position: relative;
+}
+
+.message-title-and-timer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px 0px 20px;
+}
+
+.container-aler {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.alert-error-and-response.success {
+    background-color: var(--color-alert-success-and-response);
+}
+
+.alert-error-and-response.error {
+    background-color: var(--color-alert-error-and-response);
+}
+
 @media screen and (max-width: 768px) {
     .sidebar {
         width: 200px;
