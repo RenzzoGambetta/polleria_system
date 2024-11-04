@@ -29,7 +29,7 @@ class CashierSessionService
     {
         $cashierSession = CashierSession::find($idCashierSession)->first();
 
-        if (!$cashierSession) return 'No se encontró ninguna sesion con ese id';
+        if (!$cashierSession) throw new Exception('No se encontró ninguna sesion con ese id');
 
         try {
             $cashierSession['cash_open_at'] = now();
