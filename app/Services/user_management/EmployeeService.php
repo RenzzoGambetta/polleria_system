@@ -16,6 +16,7 @@ class EmployeeService
         DB::beginTransaction();
         try {
             $person = Person::create([
+                'gender' =>   $data['gender'] ?? 1,
                 'dni' => $data['dni'],
                 'firstname' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
@@ -64,7 +65,7 @@ class EmployeeService
             return $employee;
          } catch (Exception $e) {
             DB::rollBack();
-            throw $e; 
+            throw $e;
          }
     }
 
