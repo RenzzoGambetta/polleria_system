@@ -4,6 +4,7 @@ namespace App\Http\Controllers\order;
 
 use App\Http\Controllers\Controller;
 use App\Models\menu\Lounge;
+use App\Services\order\CashierSessionService;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,12 @@ class PointOfSaleController extends Controller
         'sub_seccion' => 6.1,
         'color' => 61
     ];
+    protected $cashierSessionService;
+    public function __construct(CashierSessionService $cashierSessionService)
+    {
+        $this->cashierSessionService = $cashierSessionService;
+    }
+
     public function showPointOfSale(Request $request)
     {
         $Lounge = Lounge::all();
@@ -29,7 +36,7 @@ class PointOfSaleController extends Controller
     }
     public function showCashierSessions(Request $request)
     {
-
+        //solo esta echo las consultas para la apertura global, ay que modificar para una apertura por usuario
         if (DB::table('cashier_sessions')->count() > 0) {
             $option = DB::table('cashier_sessions')
                 ->latest('id')
@@ -55,7 +62,7 @@ class PointOfSaleController extends Controller
                 ->first();
 
             $format = $this->formatDateInSpanish($specs->cash_open_at);
-            //return response()->json($format);
+
             return view('order.cashier_sessions', compact('Navigation', 'Data', 'specs', 'format'));
         } else {
 
@@ -75,35 +82,38 @@ class PointOfSaleController extends Controller
     public function registerSessionCashBox(Request $request)
     {
         $user = Auth::user();
-        $note = $request->note ?? ' ';
-
 
         if ($request->opening_balance !== null && $request->employee_id !== null) {
-            DB::table('cashier_sessions')->insert([
+
+            $data = [
                 'user_id' => $user->id,
                 'employee_id' => $request->employee_id,
                 'opening_balance' => $request->opening_balance,
-                'cash_open_at' => now(),
-                'cash_close_at' => null,
-                'note' => $note,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+                'note' => $request->note
+            ];
+            $response = $this->cashierSessionService->openCashRegister($data);
 
             return redirect()->route('cashier_sessions')->withInput()->with([
-                'Message' => 'Se aperturó la caja satisfactoriamente.',
+                'Message' =>'Se aperturó la caja satisfactoriamente.',
                 'Type' => 'success'
             ]);
         }
-        if($request->user_id != null){
-            
+        if($request->id != null){
+            $response = $this->cashierSessionService->closeCashRegister($request->id, $request->note);
+
+            return redirect()->route('cashier_sessions')->withInput()->with([
+                'Message' => 'Se cerro la caja satisfactoriamente.',
+                'Type' => 'success'
+            ]);
         }
 
         return redirect()->route('cashier_sessions')->withInput()->with([
-            'Message' => 'Verifica bien los datos.',
+            'Message' => $response ?? 'Verifica bien los datos.',
             'Type' => 'error'
         ]);
     }
+
+    //se puede toamar como servisio
     private function formatDateInSpanish($dateTime)
     {
         $date = new DateTime($dateTime);

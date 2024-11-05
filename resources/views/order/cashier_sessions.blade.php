@@ -54,7 +54,7 @@
             <div class="notification-box">
                 <p><span class="user-name">{{ $specs->name }}</span> abrió la caja anteriormente.</p>
                 <p class="box-details">
-                    APERTURA: {{ $specs->cash_open_at }}1 | S/ {{ $specs->opening_balance }}
+                    APERTURA: {{ $specs->cash_open_at }} | S/ {{ $specs->opening_balance }}
                 </p>
             </div>
             <div class="cash-register-main-container clouse">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="cash-register-closing-section">
-                    <input value="{{ Auth::user()->id }}" name="user_id" style="display: none">
+                    <input value="{{$specs->id }}" name="id" style="display: none">
                     <button class="cash-register-close-button">Cerrar caja</button>
                 </div>
             </div>
@@ -109,7 +109,7 @@
         <div class="div-note">
         @endif
             <div class="wave-group input-dimensions comment">
-                <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input" placeholder=" ">{{ old('note') }}</textarea>
+                <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="255" name="note" id="comment-input" placeholder=" ">{{ old('note') }}{{ $specs->note ?? "" }}</textarea>
                 <label class="label">
                     @foreach (str_split($comment) as $index => $char)
                         <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
