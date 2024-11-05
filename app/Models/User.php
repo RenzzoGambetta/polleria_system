@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Employee;
+use App\Models\order\CashierSession;
+use App\Models\order\Order;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -19,6 +22,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role_id',
+        'employee_id',
         'username',
         'password',
     ];
@@ -57,5 +62,15 @@ class User extends Authenticatable
     public function role(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function cashierSessions(): HasMany
+    {
+        return $this->hasMany(CashierSession::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'waiter_id');
     }
 }

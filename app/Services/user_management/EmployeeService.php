@@ -20,14 +20,15 @@ class EmployeeService
                 'dni' => $data['dni'],
                 'firstname' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
-                'birthdate' => $data['birthdate'],
-                'phone' => $data['phone'],
-                'email' => $data['email'],
+                'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
+                'gender' => isset($data['gender']) ? $data['gender'] : 0,
+                'phone' => isset($data['phone']) ? $data['phone'] : null,
+                'email' => isset($data['email']) ? $data['email'] : null,
             ]);
 
             $employee = new Employee([
-                'address' => $data['address'],
-                'nationality' => $data['nationality'],
+                'address' => isset($data['address']) ? $data['address'] : null,
+                'nationality' => isset($data['nationality']) ? $data['nationality'] : null,
             ]);
 
             $person->employee()->save($employee);
@@ -46,18 +47,18 @@ class EmployeeService
         DB::beginTransaction();
         try {
             $employee->update([
-                'address' => $data['address'],
-                'nationality' => $data['nationality'],
+                'address' => isset($data['address']) ? $data['address'] : null,
+                'nationality' => isset($data['nationality']) ? $data['nationality'] : null,
             ]);
 
             $employee->person->update([
                 'dni' => $data['dni'],
                 'firstname' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
-                'birthdate' => $data['birthdate'],
-                'gender' => $data['gender'] == 'male' ? 0 : 1,
-                'phone' => $data['phone'],
-                'email' => $data['email'],
+                'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
+                'gender' => isset($data['gender']) ? $data['gender'] : 0,
+                'phone' => isset($data['phone']) ? $data['phone'] : null,
+                'email' => isset($data['email']) ? $data['email'] : null,
             ]);
 
             DB::commit();

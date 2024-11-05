@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\inventory;
+namespace App\Http\Requests\order;
 
 use App\Http\Requests\util_request\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class supplyRequest extends BaseRequest
+class CashierSessionRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -20,14 +20,9 @@ class supplyRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'brand_name' => 'string|max:50|nullable',
-            'code' => 'string|max:15|nullable',
-            'name' => 'required|string|max:100',
-            'is_stockable' => 'string|nullable',
-            'stock' => 'integer|nullable',
-            'unit' => 'required|string|max:15|nullable',
-            'note' => 'string|max:255|nullable'
+            'user_id' => 'required|integer|exists:users,id',
+            'employee_id' => 'required|integer|exists:employee,id',
+            'opening_balance' => 'required|decimal:2|max_digits:8',
         ];
     }
-
 }

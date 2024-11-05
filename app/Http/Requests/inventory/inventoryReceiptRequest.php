@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\inventory;
 
+use App\Http\Requests\util_request\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class inventoryReceiptRequest extends FormRequest
+class inventoryReceiptRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +23,15 @@ class inventoryReceiptRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'voucher_type_id' => 'integer|required',
-            'voucher_serie' => 'string|required|max:4',
-            'correlative_numer' => 'string|required|digits:8',
-            'supplier_ruc' => 'string|required',
-            'issuance_date' => 'date|required',
-            'expiration_date' => 'date|nullable|after_or_equal:issuance_date',
-            'total_amount' => 'decimal:2|required|min:0',
+            'voucher_type_id' => 'required|integer',
+            'voucher_serie' => 'required|string|max:4',
+            'correlative_numer' => 'required|string|digits:8',
+            'supplier_id' => 'required|integer',
+            'issuance_date' => 'required|date',
+            'expiration_date' => 'date|after_or_equal:issuance_date|nullable',
+            'total_amount' => 'required|decimal:2|min:0',
             'payment_type' => 'required|in:contado,credito',
-            'commentary' => 'string|max:255',
+            'commentary' => 'string|max:255|nullable',
             'supply_ids' => 'required|array',
             'supply_ids.*' => 'integer|exists:supplies,id',
             'prices' => 'required|array',
@@ -39,8 +40,8 @@ class inventoryReceiptRequest extends FormRequest
             'quantities.*' => 'numeric|min:1',
             'total_prices' => 'required|array',
             'total_prices.*' => 'decimal:2|min:0',
-            'notes' => 'array',
-            'notes.*' => 'string|max:255',
+            'notes' => 'array|nullable',
+            'notes.*' => 'string|max:255|nullable',
         ];
     }
 }

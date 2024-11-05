@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\order\CashierSession;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 use App\Models\Person;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Employee extends Person
@@ -22,5 +24,10 @@ class Employee extends Person
     public function person(): BelongsTo
     {
         return $this->belongsTo(Person::class);
+    }
+
+    public function cashierSessions(): HasMany
+    {
+        return $this->hasMany(CashierSession::class);
     }
 }

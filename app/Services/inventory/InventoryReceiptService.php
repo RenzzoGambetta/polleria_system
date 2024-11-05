@@ -32,7 +32,7 @@ class InventoryReceiptService
                 'expiration_date' => $data['expiration_date'],
                 'total_amount' => $data['total_amount'],
                 'payment_type' => $data['payment_type'],
-                'commentary' => $data['commentary'],
+                'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
             ]);
 
             for ($i = 0; $i < count($supplyIds); $i++) {
@@ -74,7 +74,7 @@ class InventoryReceiptService
                 'expiration_date' => $data['expiration_date'],
                 'total_amount' => $data['total_amount'],
                 'payment_type' => $data['payment_type'],
-                'commentary' => $data['commentary'],
+                'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
             ]);
 
             $receipt->details()->delete();
@@ -110,15 +110,5 @@ class InventoryReceiptService
             DB::rollBack();
             return $e;
         }
-    }
-
-    public function fetchSupplierByRuc(string $ruc) {
-        $supplier = Supplier::first($ruc);
-        return $supplier;
-    }
-
-    public function fetchVoucherById(int $id) {
-        $voucher_type = VoucherType::first($id);
-        return $voucher_type;
     }
 }
