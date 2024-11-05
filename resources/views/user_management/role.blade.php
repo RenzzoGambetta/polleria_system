@@ -1,7 +1,7 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
-<script src="{{ asset($FunctionGlobal) }}"></script>
+
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 

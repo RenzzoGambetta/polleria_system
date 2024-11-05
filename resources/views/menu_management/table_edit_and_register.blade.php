@@ -41,7 +41,7 @@
     </div>
 
 </div>
-<script src="{{ asset($FunctionGlobal) }}"></script>
+
 <script src="{{ asset($tableEditAndRegister) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

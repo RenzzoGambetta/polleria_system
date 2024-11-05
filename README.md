@@ -39,15 +39,15 @@
 ## _Base de datos_
 >_Base de Datos MySQL_
 ```php
-u813402209_polleria_data
+flowfer_pelleria
 ```
 >_Usuario MySQL_
 ```php
-u813402209_polleria_name
+flowfer
 ```
 >_Nombre de host / IP_
 ```php
-193.203.166.20
+mysql-flowfer.alwaysdata.net
 ```
 >_Usuario password_
 ```php

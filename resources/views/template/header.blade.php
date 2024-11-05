@@ -14,6 +14,7 @@
     <link rel='stylesheet' href="{{ asset($IconReferen) }}">
 
     <script src="{{ asset($JquerySrc) }}"></script>
+    <script src="{{ asset($FunctionGlobal) }}"></script>
 
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 
