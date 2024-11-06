@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\menu_management;
 
 use App\Http\Controllers\Controller;
+use App\Models\menu\CookingPlace;
 use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
 use App\Models\Supply;
@@ -211,6 +212,11 @@ class MenuController extends Controller
                 $item->save();
             }
         }
+        return response()->json($data);
+    }
+    public function listOfCookingPlace()
+    {
+        $data = CookingPlace::select('id', 'name')->get();
         return response()->json($data);
     }
 }

@@ -1,0 +1,43 @@
+.input-group,
+.select {
+    margin: 0.8rem 0;
+}
+
+.container-data-supplier {
+    padding: 50px;
+    background-color: var(--edit-panel-background-color);
+    margin-top: 50px;
+    border-radius: 10px;
+    max-width: 1000px;
+    width: 100%;
+}
+.input-group .effect-4 {
+    border: 2px solid #ccc;
+    border-radius: 0.25rem;
+    background-color: var(--edit-panel-background-color);
+}
+
+.selected,
+.select-box,
+.posemployer,
+.posrole,
+.posgenero,
+.poscargo,
+.input-group .effect-4:focus+label,
+.input-group .effect-4:not(:placeholder-shown)+label,
+.input-group .effect-4:focus,
+.input-group .effect-4+label{
+    background-color: var(--edit-panel-background-color);
+}
+.form-container
+{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+}
+.btns-group.btn-navegation-form-3frem {
+    margin-top: 50px;
+}

@@ -129,16 +129,24 @@
 
                 <script>
                     var id = {{ $ComboItem->id ?? 'null' }};
-                    var combo = {{ $ComboItem->is_combo ?? 'null' }};
                 </script>
+                @if ($ComboItem->is_combo ?? 0 == 1)
+                    <script>
+                        const apiUrl = '/list_of_item';
+                    </script>
+                @else
+                    <script>
+                        const apiUrl = '/list_of_supplys';
+                    </script>
+                @endif
 
                 <div class="frame-02-conteiner-02">
                     <div class="price-and-quantity">
                         <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
 
                             <div class="search-container categort-conteiner">
-                                <input type="number" id="id-category" name="id_category_name" value="{{ $ComboItem->category_id ?? '' }}{{ $Data['idCategory'] ?? ''}}">
-                                <input type="text" id="search-category" name="category_name" class="search-box input-iten effect-5 no-spinner alert-style search-category" placeholder=" " autocomplete="off" value="{{ $ComboItem->category->name ?? '' }}{{ $Data['nameCategory'] ??''}}">
+                                <input type="number" id="id-category" name="category_id" value="{{ $ComboItem->category_id ?? '' }}{{ $Data['idCategory'] ?? '' }}">
+                                <input type="text" id="search-category" name="category_name" class="search-box input-iten effect-5 no-spinner alert-style search-category" placeholder=" " autocomplete="off" value="{{ $ComboItem->category->name ?? '' }}{{ $Data['nameCategory'] ?? '' }}">
                                 <label for="search-category" id="search-label-category" class="label-input-data mobile-label">Categoria</label>
                                 <div id="suggestions" class="suggestions-category"></div>
                                 <div id="loader-category" class="loader-section">
@@ -153,8 +161,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="cooking-place">
+                        <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
+
+                            <div class="search-container categort-conteiner">
+                                <input type="number" id="id-cooking-place" name="cooking_place_id" value="{{ $ComboItem->category_id ?? '' }}{{ $Data['idCategory'] ?? '' }}">
+                                <input type="text" id="search-cooking-place" name="cooking_place_name" class="search-box input-iten effect-5 no-spinner alert-style search-cooking-place" placeholder=" " autocomplete="off" value="">
+                                <label for="search-cooking-place" id="search-label-cooking-place" class="label-input-data mobile-label">Lugar preparacion</label>
+                                <div id="suggestions" class="suggestions-cooking-place"></div>
+                                <div id="loader-cooking-place" class="loader-section">
+                                    <div class="loading">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="btn-navegation">
-                        <button type="button" class="btn-action-cancel" onclick="urlGet('{{ route($Data['UrlCancel']) }}{{ $Data['UrlComplement'] ?? ''}}')">Cancelar</button>
+                        <button type="button" class="btn-action-cancel" onclick="urlGet('{{ route($Data['UrlCancel']) }}{{ $Data['UrlComplement'] ?? '' }}')">Cancelar</button>
                         <button type="submit" class="{{ $Data['Toggle'] ? 'btn-action-register' : 'btn-action-edit' }}">{{ $Data['Toggle'] ? 'Agregar' : 'Editar' }}</button>
                     </div>
                 </div>
@@ -166,7 +194,9 @@
 <script src="{{ asset($OptionSelector) }}"></script>
 <script src="{{ asset($newLabelData) }}"></script>
 <script src="{{ asset($newMenuAndEdit) }}"></script>
-
+<script>
+    new SearchBox('No se encuntra la area...', '.search-cooking-place', '#search-cooking-place', '#search-label-cooking-place', '.suggestions-cooking-place', '#loader-cooking-place', '#id-cooking-place', '/list_of_cooking_place', 5, 0);
+</script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <style>
+        /* Estilos globales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+        }
+
+        /* Contenedor del formulario */
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #242424;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .form-container h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .form-container p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo de cada grupo de campo */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #333;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .form-group input::placeholder {
+            color: #888;
+        }
+
+        /* Estilo para el checkbox y texto */
+        .form-group .checkbox-container {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .form-group .checkbox-container input {
+            margin-right: 8px;
+        }
+
+        /* Estilo del botón */
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Crea tu cuenta gratis</h2>
+    <p>Ingresa la siguiente información para registrarte.</p>
+
+    <form action="/submit" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre <span style="color: red;">*</span></label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="apellido">Apellido <span style="color: red;">*</span></label>
+            <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Correo electrónico <span style="color: red;">*</span></label>
+            <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña <span style="color: red;">*</span></label>
+            <input type="password" id="password" name="password" placeholder="Ingresa una contraseña" required>
+        </div>
+
+        <div class="form-group checkbox-container">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">Al seleccionar esta casilla aceptas nuestro aviso de privacidad y los términos y condiciones</label>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Registrarte">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+

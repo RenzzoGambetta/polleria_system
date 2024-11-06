@@ -34,32 +34,7 @@ class SupplierService
             return $e;
         }
     }
-/*    public function createSupplierFast(array $data) {
-        DB::beginTransaction();
 
-        try {
-            $person = Person::create([
-                'dni' => $data['dni'],
-                'firstname' => $data['name'],
-                'lastname' => $data['name'] ,
-                'gender' => $data['gender'] == 'male' ? 0 : 1,
-                'phone' => $data['phone'],
-            ]);
-
-            $supplier = Supplier::create([
-                'person_id' => $person->id,
-                'address' => $data['address'],
-
-            ]);
-
-            DB::commit();
-            return $supplier;
-        }
-        catch (Exception $e) {
-            DB::rollBack();
-            return $e;
-        }
-    }*/
     public function updateSupplier(Supplier $supplier, array $data) {
         DB::beginTransaction();
 

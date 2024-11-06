@@ -1,7 +1,14 @@
 <div class="table-item table-data" style="background-color:--status;" data-id="{{id}}">
-    <div class="table-info">
-        <i class="fi fi-sr-order-history"></i>
-        <span class="span-data">Mesa</span><span class="span-data-table" id="spma_{{id}}">{{code}}</span>
+    <i class="fi fi-sr-order-history"></i>
+    <div class="container-secription-table">
+        <div class="table-info">
+            <span class="span-data">Mesa</span><span class="span-data-table" id="spma_{{id}}">{{code}}</span>
+        </div>
+        <span class="status"><i class="fi fi-rr-angle-right"></i></span>
     </div>
-    <span class="status"><i class="fi fi-rr-angle-right"></i></span>
+    <div class="time-table-client" style="display:--is-visible;">
+        <i class="fi fi-br-time-forward"></i>
+        <span>19 min</span>
+    </div>
+    <span style="display: none;" id="status" data-id="{{option}}"></span>
 </div>

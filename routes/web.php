@@ -77,6 +77,8 @@ use App\Http\Controllers\temp\EfectController;
         Route::get('/edit_new_menu', [MenuController::class,'editNewMenu'])->name('edit_new_menu');
         Route::get('/register_new_menu', [MenuController::class,'registerNewMenu'])->name('register_new_menu');
         Route::get('/show_order_item', [MenuController::class,'showOrderItem'])->name('show_order_item');
+        Route::get('/list_of_cooking_place', [MenuController::class,'listOfCookingPlace'])->name('list_of_cooking_place');
+        //Mesas
         Route::get('/show_drawing_table', [TableController::class,'showDrawingTable'])->name('show_drawing_table');
         Route::get('/tables-list-data', [TableController::class,'tablesListData'])->name('tables-list-data');
         Route::get('/lounge_data_edit', [TableController::class,'loungeDataEdit'])->name('lounge_data_edit');
