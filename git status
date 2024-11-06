@@ -1,0 +1,874 @@
+[33mcommit f7f993af683808532090310dbe13c4a92826f4f0[m[33m ([m[1;36mHEAD -> [m[1;32mmodule/backend-order[m[33m, [m[1;31morigin/module/backend-order[m[33m)[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Mon Nov 4 15:49:02 2024 -0500
+
+    servicio de detalles de pedido de una mesa
+
+[33mcommit 80a03c0fdaa130abb2f259ca39c2f6fdac3ee6df[m[33m ([m[1;32mfix-merge[m[33m)[m
+Merge: 62f6ad0 0593d6c
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Mon Nov 4 12:51:36 2024 -0500
+
+    Resolucion de conflictos para combinar backend-order con develop
+
+[33mcommit 62f6ad0fd9900939a673f79d680a22554cc9c5da[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Fri Nov 1 14:26:45 2024 -0500
+
+    revision y modificacion de los request
+
+[33mcommit 0593d6c4cb22d49ccca2b464425e01c804dd5c74[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Oct 31 19:54:08 2024 -0500
+
+    registro de empleaodos y uso de old{]
+
+[33mcommit 1dcfad65ad26e95c2bfb362477d27900c43ff64b[m
+Merge: f8c7518 e7bc7c9
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Thu Oct 31 11:57:27 2024 -0500
+
+    implementacion de migraciones y fabricas de los modelos marca, proveedor e insumo
+
+[33mcommit e7bc7c96adbde4ff875672711b42fdec934f35cd[m[33m ([m[1;32mmain[m[33m)[m
+Merge: 170e6c4 71f202c
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Oct 31 11:49:04 2024 -0500
+
+    Merge branch 'module/frontend-order' into develop
+
+[33mcommit 71f202cc46ed0f7fae6e47ab242ca4403aeb7fb0[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Oct 31 11:48:15 2024 -0500
+
+    conexion a la base de datos de suministros
+
+[33mcommit 9ff35ff1d6096ccf69271ff1f2f4cb5a307e7caa[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Wed Oct 30 23:13:30 2024 -0500
+
+    mesas y apertura y sierre decaja
+
+[33mcommit 8d7a65294def810a5b9937e9227cab20c13e0bc1[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Wed Oct 30 14:22:03 2024 -0500
+
+    Solucion de errores de escritura de errores
+
+[33mcommit f8c751809955f6deb0dabec49a364bca59e85c5e[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Wed Oct 30 13:57:44 2024 -0500
+
+    modelo de las entidades pedidos y detalle de pedidos
+
+[33mcommit d071bee6e5e9b961d9c1924aeb4c2da9cbfe7390[m
+Merge: a05f321 753a3b8
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Wed Oct 30 11:58:31 2024 -0500
+
+    Merge remote-tracking branch 'origin/module/backend-menu' into module/frontend-menu
+
+[33mcommit 59d28cb13a244d93db1c3a863513784233cf3e75[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Wed Oct 30 11:57:23 2024 -0500
+
+    Implementacion de entidad cliente
+
+[33mcommit 3546c8f56f55d29b616b17ba8c3a4a8017413945[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 29 14:13:12 2024 -0500
+
+    Servicio e implementación  de sesion de cajero
+
+[33mcommit 170e6c4baf539b0694cbc4ae40d0a9d2fc0ed143[m
+Merge: 7ae8c0f 753a3b8
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Tue Oct 29 13:11:30 2024 -0500
+
+    Merge pull request #18 from RenzzoGambetta/module/backend-menu
+
+[33mcommit 753a3b840ca47c459578891fdf9024e55ddc4645[m[33m ([m[1;31morigin/module/backend-menu[m[33m, [m[1;32mmodule/backend-menu[m[33m)[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 29 13:10:15 2024 -0500
+
+    Implementacion de lugar de preparacion o para cocinar
+
+[33mcommit a05f3211f99ce0e2e9a6f2ba52e6bd68ba170471[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Oct 28 22:10:02 2024 -0500
+
+    Integracion de espacio que se basa de salas y mesas
+
+[33mcommit 374097ce7803ece5d0a325c4212022314c951029[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Sun Oct 27 01:29:08 2024 -0500
+
+    Implementacion de la tabla para suministros relacionados a los items del menu
+
+[33mcommit f5dc4ba761eb26931531a0c49acf0bf9ccfcf05e[m
+Merge: 6e86edc 010a71b
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sat Oct 26 17:46:32 2024 -0500
+
+    Merge branch 'module/frontend-menu' of https://github.com/RenzzoGambetta/polleria_system into module/frontend-menu
+
+[33mcommit 6e86edc0dc2058ab4ff52415c72217f6d535be4f[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sat Oct 26 17:46:28 2024 -0500
+
+    modificacion en menu
+
+[33mcommit c1399565a3acd3db913c0785134461a4ea171689[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Sat Oct 26 16:27:03 2024 -0500
+
+    servicio de proveedor para obtener DTOs para las vistas
+
+[33mcommit 010a71b8b0efb38dfb3a92cf5610bd8d7bb2061b[m
+Author: FerFlower <Diegoquispeapaza45@gmail.com>
+Date:   Sat Oct 26 10:38:48 2024 -0500
+
+    creacion de mesas
+
+[33mcommit 44e1567f4810d8185ca69872505fe4ff852ad1c1[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Oct 24 20:49:55 2024 -0500
+
+    mesa
+
+[33mcommit e02e257f053876f687d0bf3f66ee242f82d22641[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Oct 24 20:34:39 2024 -0500
+
+    formato ordenador concluido menu pero sin conexion en el controlador a la base de datos
+
+[33mcommit e1118846200ac9fcc4183bd4771fa8c04ad6972c[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Wed Oct 23 22:13:58 2024 -0500
+
+    carta en vista de computadora terminado
+
+[33mcommit 8bc7e2fb2191d05b89ef5f575e6c99a9eb4444f0[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Oct 22 23:07:40 2024 -0500
+
+    nuevas funcionalidades de drop and drap
+
+[33mcommit 16a80934e3a33eaca1c55749a500df1e79a74408[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Oct 22 20:18:02 2024 -0500
+
+    categoria menu
+
+[33mcommit bed1fb2ead500946942205f8a4e23a4343241f55[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Oct 22 12:03:00 2024 -0500
+
+    inplementacion de platos y bebidas y combos
+
+[33mcommit 2d92919e8707e578fb2794afb3cb00431e834c37[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 22 09:21:58 2024 -0500
+
+    Servicio de salones con mesas y diseño de datos del menu y combos
+
+[33mcommit 4fb73c0843a06eaa5700ae37844aac2e6b1d2c7c[m
+Merge: 212c296 bf94bc1
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Oct 21 10:58:01 2024 -0500
+
+    Merge remote-tracking branch 'origin/module/backend-menu' into module/frontend-inventory-management
+
+[33mcommit 212c296e9aa81c371491c7a493642fa69e26fc15[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Oct 21 10:57:03 2024 -0500
+
+    inplementacion de funcionalidades de enlistado y busqueda de datos de productos en entrada de suministros
+
+[33mcommit 7ae8c0f2457491e81399c271677aec5317724faa[m
+Merge: 40c8d66 bf94bc1
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Mon Oct 21 10:43:19 2024 -0500
+
+    Merge pull request #17 tabla pivot entre proveedor y suminstro
+    
+    tabla pivot entre proveedor y suminstro
+
+[33mcommit bf94bc165a738bfcc3dd66d0f85e0c7e6846e63d[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Mon Oct 21 10:37:52 2024 -0500
+
+    implementacion data pivot proveedor y suministro
+
+[33mcommit b8a6458775bd904c208fc6769596908a675a8d40[m
+Author: FerFlower <Diegoquispeapaza45@gmail.com>
+Date:   Sat Oct 19 12:02:39 2024 -0500
+
+    sustitusion de nobre productos a suministro
+
+[33mcommit 51fb63b13384692cb390462beaa416d0b6dfab56[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Oct 18 20:44:22 2024 -0500
+
+    algunas modificacines
+
+[33mcommit 37d9670d86e1e9b91111f653544498e70852c9ec[m
+Merge: b7278a4 ca9f512
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Oct 18 18:15:08 2024 -0500
+
+    Merge remote-tracking branch 'origin/module/backend-menu' into module/frontend-inventory-management
+
+[33mcommit b7278a4c5d35793dd53fca2b39c2a6411ff412d1[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Oct 18 18:14:24 2024 -0500
+
+    fin de la vista de registro de producto con diseño de ordenador
+
+[33mcommit ca9f512a4fd97950975ebe5a6be4e102a4839e84[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 15 19:51:10 2024 -0500
+
+    Implementacion de modelos y factories de Menu item y categoria
+
+[33mcommit 4836d6cafd8f9d45fa0ed226ffe3aa92853aa18b[m[33m ([m[1;32mmodule/backend-inventory-managment[m[33m)[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 15 17:40:36 2024 -0500
+
+    Servicio de ingreso de mercaderia implementado
+
+[33mcommit c4b8da2360f72c7fd9276f71c1a71c2632ae8b72[m
+Merge: ee99c10 40c8d66
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 15 13:09:43 2024 -0500
+
+    Merge branch 'main' into module/backend-inventory-managment
+
+[33mcommit 40c8d66e7adf0744c2ee54e7a1840bacade7f30a[m
+Merge: cf2cc9e 2814861
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Tue Oct 15 12:57:25 2024 -0500
+
+    Merge pull request #15 from RenzzoGambetta/module/backend-menu
+    
+    Modulo de menu con las entidades de mesas y salones
+
+[33mcommit cde98e27e60d4d1d981e9be42cbe983b2d1ba36e[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Oct 11 20:49:50 2024 -0500
+
+    modificacion en entrada de productos nuevos input con estilos: numero, tipo, documetno, fehca y hora
+
+[33mcommit 4144f3253de607588c132dcc2dae3f65ae5bf63c[m
+Merge: 0402453 2814861
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Oct 10 18:56:28 2024 -0500
+
+    Merge remote-tracking branch 'origin/module/backend-menu' into module/frontend-inventory-management
+
+[33mcommit 2814861d7fd869543651a58b4e673857fd5c321a[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Wed Oct 9 18:58:03 2024 -0500
+
+    implementacion de modelo y fabrica de las entidades salones y mesas
+
+[33mcommit dbfb91a12353fd8957de8dad2677523eee956f47[m[33m ([m[1;31morigin/module/backend-inventory[m[33m)[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 8 12:41:39 2024 -0500
+
+    implementacion de modelo y fabrica de la entidad detalles de la entrada de mercaderia
+
+[33mcommit 040245347c6e0ab29b3369867689f6a2fe7f4f48[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Oct 8 00:32:43 2024 -0500
+
+    fin de modificacion de combobox a search
+
+[33mcommit 6c0850f33a762de9a20f1f9f77a9b0b5b4376c61[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Mon Oct 7 20:21:47 2024 -0500
+
+    Creacion de la migracion y fabrica de las entidades entrada de mercaderia y tipo de comprobante
+
+[33mcommit 8b921653a60059c20675c105f76e23f993027752[m[33m ([m[1;32mtempBranch[m[33m)[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 1 01:57:42 2024 -0500
+
+    implementacion de migraciones y fabricas de los modelos marca, proveedor e insumo
+
+[33mcommit a7cde985d5714d3545720e794feff76ea8941e60[m
+Merge: f9bea80 cf2cc9e
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Sun Oct 6 21:45:18 2024 -0500
+
+    Merge branch 'develop' of https://github.com/RenzzoGambetta/polleria_system
+
+[33mcommit cf2cc9e22e1cbb42530c12e9f3596ff58efc1656[m
+Merge: 7512e0b 209fac8
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Sun Oct 6 21:44:12 2024 -0500
+
+    Merge pull request #14 from RenzzoGambetta/module/backend-inventory
+    
+    Salve los archivos del modulo de inventario
+
+[33mcommit 209fac8e5c4465f60d3c50e3c5564bb1fdbd057d[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 1 12:13:25 2024 -0500
+
+    implementacion del servicio de proveedores
+
+[33mcommit a07c194a7225eca1487182eac324e9c39566f2a0[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 1 13:00:13 2024 -0500
+
+    servicio de insumos
+
+[33mcommit 7512e0b43cfba5352f8c321d2aaffcd3bd743406[m
+Merge: e7a7dd8 14afb93
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Sun Oct 6 21:06:41 2024 -0500
+
+    Merge la implementacion de las entidades proveedores e insumos (pull request #13)
+    
+    Merge la implementacion de las entidades proveedores e insumos
+
+[33mcommit 14afb93a5dcefea37672a0fc48cc771acd43df1e[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Sun Oct 6 20:48:07 2024 -0500
+
+    recuperacion de los commits
+
+[33mcommit ee99c108b0bb39f7fbbc701e3ec783859760c49a[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Sun Oct 6 20:48:07 2024 -0500
+
+    implementacion de requests de proveedores e insumos
+
+[33mcommit 9ff2e11ddf776fe47864123b633a69780370ced9[m[33m ([m[1;31morigin/module/frontend-inventory-management[m[33m)[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sat Oct 5 00:22:35 2024 -0500
+
+    implementacion de vista de salida y movimientos
+
+[33mcommit 29eb70812fc4efad1d0dd7e5484de1aeb9eb89db[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 1 13:00:13 2024 -0500
+
+    implementacion del servicio de insumos
+
+[33mcommit d3683f858e71c874b09457fd4296040f4d7a5f2c[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 1 12:13:25 2024 -0500
+
+    implementacion del servicio de proveedores
+
+[33mcommit 6b50f5ac655346dd8d30219776452ff14906cca5[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Oct 1 01:57:42 2024 -0500
+
+    implementacion de migraciones y fabricas de los modelos marca, proveedor e insumo
+
+[33mcommit e7697c0c29b8d03d28606c44b165a415e6337a55[m[33m ([m[1;32mmodule/backend-user-managment[m[33m)[m
+Merge: f9bea80 e7a7dd8
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Sep 24 14:39:46 2024 -0500
+
+    Merge branch 'develop' of https://github.com/RenzzoGambetta/polleria_system into module/backend-user-managment
+
+[33mcommit e7a7dd839e82a62fb867c25bc82c19e007ee5e9e[m
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Tue Sep 24 14:13:14 2024 -0500
+
+    Implementación de método para actualizar los  permisos dentro del modelo Role (#12)
+    
+    * implementacion de Request y Servicio de empleados
+    
+    * Creacion de las fabricas de los permisos y roles
+    
+    * creacion de requests para roles y permisos
+    
+    * implementación de método para actualizar los permisos dentro del modelo Role
+
+[33mcommit f9bea80fea15f1647c9ac2be949facf11b238929[m[33m ([m[1;31morigin/module/backend-user-managment[m[33m)[m
+Merge: d027325 ae0c0fb
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Sep 24 14:10:13 2024 -0500
+
+    modificaciones en controlador de empleados para coincidir con el repositorio remoto
+
+[33mcommit ae0c0fb454d9f8c6bdb41f89116c51b0b4a42296[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Sep 24 13:56:20 2024 -0500
+
+    implementación de método para actualizar los permisos dentro del modelo Role
+
+[33mcommit db801bb4e6ed503e9f44c2c8f6198ff1ede8d1af[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sun Sep 22 11:50:57 2024 -0500
+
+    Mejora en menu de navegacion
+
+[33mcommit 786ec105bef1c80fb830e187f6beac9890d88f91[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sat Sep 21 20:53:18 2024 -0500
+
+    mejora en modo movile  entrada de inventario
+
+[33mcommit 1ab9baa500edcde7bffa1bf08453d2abf5893a02[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Sep 20 20:12:55 2024 -0500
+
+    provedore y lista
+
+[33mcommit 214364072ee6265cd1b85c3b18829236f107f319[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Sep 19 14:33:19 2024 -0500
+
+    implemetnacion de alerta de nuevo producto de inventario
+
+[33mcommit 8c756010046434b38613dc31c9a94ae969091972[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Sep 16 22:24:21 2024 -0500
+
+    culminacion de la alerta de agregado de inventario y registro de  entrada de productos
+
+[33mcommit 4e656f4a48d61fd94703f814102feb471d6dce01[m
+Author: Diego Fernando <117221271+FerFlower@users.noreply.github.com>
+Date:   Sun Sep 8 15:44:07 2024 -0500
+
+    Add files via upload
+
+[33mcommit 1b9d54a2a938dd7ae141239b52a4a213aa07fb4d[m
+Author: Diego Fernando <117221271+FerFlower@users.noreply.github.com>
+Date:   Sun Sep 8 15:43:22 2024 -0500
+
+    Add files via upload
+
+[33mcommit be2fa21680c32b7c797b12c0d41b1bcd793bacd3[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Sep 6 06:08:53 2024 -0500
+
+    implementacion de efectos de js para los botone en elm movil
+
+[33mcommit c0fc2e0586503e0c710b26d88de772d317b9a99d[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Wed Sep 4 19:32:59 2024 -0500
+
+    adaptacion de modo movile en el registro de entrada de inventario
+
+[33mcommit 9d6c118669119878a30a9f1722e3f4988fec0d59[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Sep 3 19:14:58 2024 -0500
+
+    modificacion en estilkos para el movile
+
+[33mcommit 46be1c048b558eedb295cac8d48a15e0b9160b04[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Sep 3 12:47:17 2024 -0500
+
+    seleccion de provedores
+
+[33mcommit 27943e5004b8ad71ab75ec5fc10d7e2f5eacb5f7[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Sep 2 19:55:32 2024 -0500
+
+    implementacion de aumento de productos en cadena
+
+[33mcommit aea0d59a8efc45903e145df1fe64a22d6a417d2d[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Sep 2 10:03:04 2024 -0500
+
+    inplementacion de input en el registro de con estilos de ordenador y js de incrementos de precio y sumatoria
+
+[33mcommit 57c6d978aea4d51bc36c5dc5d66c811f1ac6a615[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sun Aug 25 16:34:37 2024 -0500
+
+    camvios de loader
+
+[33mcommit 00d355388348dd00b3cb75b1679c43094c0faff8[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sun Aug 25 12:39:59 2024 -0500
+
+    Inplementacion de alertas en inventario
+
+[33mcommit af132d3c626494211832394d93862bb76024b9ad[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sat Aug 17 20:31:42 2024 -0500
+
+    Inplementacion de registro de inventario y funcionalidades de provedores
+
+[33mcommit cc52764270090b22b3308f4c84a794da6d5f4f34[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Aug 16 22:04:04 2024 -0500
+
+    Correccion ortograficas y inicios del la vista de inventario
+
+[33mcommit d027325012e09f1f24d8663c2e1a656d3aa9a8d2[m[33m ([m[1;31morigin/module/fronted-auth[m[33m)[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sun Aug 11 11:27:42 2024 -0500
+
+    Se completó el área de registro de usuarios con la implementación del proceso de creación de cuentas y mejora de estilos.
+
+[33mcommit d9dcb7af3fe37e2684b50ae5fcf0e397e8739625[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sun Aug 11 08:36:33 2024 -0500
+
+    Se concluye la modificación del modo 'mobile', ajustando los estilos de ubicación y superposición, y adaptando las fuentes y tamaños para mejorar la experiencia del usuario
+
+[33mcommit 1d7323451d1f5c1a17d5e576306fa3aef99679b1[m
+Merge: 69453e6 3c4bda3
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:55:45 2024 -0500
+
+    Combinación de cambios del area de frontend
+
+[33mcommit 69453e6fe746d3f44f188bc53636aca651c0de85[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:50:01 2024 -0500
+
+    Realización de múltiples cambios y ajustes en el módulo de gestión de usuarios, así como en fragmentos de Laravel.
+
+[33mcommit a07138cca0b2cbcc7807bd31f351b430fce10bde[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:49:23 2024 -0500
+
+    Realización de múltiples cambios y ajustes en el módulo de gestión de usuarios, así como en fragmentos de Laravel.
+
+[33mcommit 3c4bda3b614f59ba73246ce81c9f07d85d4e4460[m[33m ([m[1;31morigin/module/fronted-user-managment[m[33m)[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:48:20 2024 -0500
+
+    Realización de múltiples cambios y ajustes en el módulo de gestión de usuarios, así como en fragmentos de Laravel.
+
+[33mcommit b38361bf24969a20e37e039b3eac6365aed6238f[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:39:32 2024 -0500
+
+    mejora
+
+[33mcommit 996fc34f7b970039729800e212939f97a10115cd[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:34:17 2024 -0500
+
+    modificacion de user
+
+[33mcommit 8926e492c3dd4167492dd7890cc4f9b7a4527deb[m
+Merge: add03ba 9925ece
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:21:09 2024 -0500
+
+    Merge branch 'develop' into module/fronted-user-managment
+
+[33mcommit add03baa9f8fd33a6994afdff000a5b7c18ed5e9[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:19:31 2024 -0500
+
+    modelo
+
+[33mcommit 5d56acac7df0b100c37277249f003c4a1a7b0a7b[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Thu Aug 8 02:14:25 2024 -0500
+
+    Realización de múltiples cambios y ajustes en el módulo de gestión de usuarios, así como en fragmentos de Laravel.
+
+[33mcommit 75c1275fcd2d66a9df3c40246ad1c537a37f63ee[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Mon Aug 5 01:37:15 2024 -0500
+
+    creacion de requests para roles y permisos
+
+[33mcommit 1f6df5fe6c062fa886d841908ddba777da1ec0e8[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Jul 30 23:12:17 2024 -0500
+
+    Creacion de las fabricas de los permisos y roles
+
+[33mcommit be3834e20550b27a6a11ccf8b497f05bb6281f41[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Jul 30 21:24:50 2024 -0500
+
+    implementacion de Request y Servicio de empleados
+
+[33mcommit 9925ece5f3cbad7534dd32148961fb36dfa0cf6b[m
+Merge: 138981d e4af4b0
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Sun Jul 28 17:46:47 2024 -0500
+
+    Merge pull request #11 RenzzoG Avance del sistema a gerente de la polleria
+    
+    Presentacion de avance del sistema a gerente de la polleria
+
+[33mcommit e4af4b00b5af6eeb1781ffc66785774ebe453460[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Fri Jul 26 17:02:33 2024 -0500
+
+    presentacion de avance del sistema a gerente de la polleria
+
+[33mcommit af5342b4c83e8b493dce775d77df52cfa6a9cfea[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Jul 23 18:52:51 2024 -0500
+
+    listo_para comvinar
+
+[33mcommit 138981ded2a2b706e04b319b777a25fe28491ec0[m
+Merge: dea9172 a71ce2a
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Tue Jul 23 18:37:05 2024 -0500
+
+    Merge pull request #10 from RenzzoGambetta/module/fronted-user-managment
+    
+    Module/fronted user managment
+
+[33mcommit dea91729cbecc27f6dd87a904d99afd37302341c[m
+Merge: 6666d73 0f962e0
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Tue Jul 23 18:36:23 2024 -0500
+
+    Merge pull request #9 from RenzzoGambetta/module/backend-user-managment
+    
+    servicio de empleado y creacion de modelos role y permiso
+
+[33mcommit a71ce2a512f86f3ad6d72aa8cf56569b52fc15fa[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Jul 23 18:34:57 2024 -0500
+
+    avanse de hoy
+
+[33mcommit 0f962e040b2b63b5c50ea6ff8eb1e02dafb95d3d[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Jul 23 18:32:00 2024 -0500
+
+    creacion de los modelos, migracion y fabricas de Rol y Permiso
+
+[33mcommit 261a77b9b67f125d9be40ef209b5dec4769925ec[m
+Merge: 30b78f9 cb2014d
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Jul 23 17:57:16 2024 -0500
+
+    Merge remote-tracking branch 'origin/module/backend-user-managment' into module/fronted-user-managment
+
+[33mcommit cb2014db99c4df9759d1fd37365f53f0a8ab6f35[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Jul 23 17:49:43 2024 -0500
+
+    Servicio de empleado
+
+[33mcommit 30b78f922da47d49298d7f933bd5f032d635289b[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Jul 23 17:29:03 2024 -0500
+
+    modificacion de algunos datos
+
+[33mcommit 1eb19e094c7fea4b98057c3e4e5f4e56f657cb12[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Tue Jul 23 17:07:47 2024 -0500
+
+    Inplementaicon de los roles de los usuarios
+
+[33mcommit d0ce45bf31e6b2bed60e16ef7572536ecc6af3f7[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Jul 23 14:38:13 2024 -0500
+
+    Metodo para crear nuevo empleado mediante servicio v1
+
+[33mcommit 6666d7381d258f526751dcbbcb2086bed2dd38a3[m
+Merge: e204e18 8e94c95
+Author: Diego Fernando <117221271+FerFlower@users.noreply.github.com>
+Date:   Tue Jul 23 12:22:10 2024 -0500
+
+    Merge pull request #8 from RenzzoGambetta/module/backend-user-managment
+    
+    Pull Request de la implementacion del service de la reniec
+
+[33mcommit 8e94c958456f0065b942dc13f9db532e79c592e9[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Jul 23 03:08:34 2024 -0500
+
+    abstraccion de nuevo servicio para traer los datos de la reniec
+
+[33mcommit 28157c0eb55297888421607cc51f87c8214e8ee6[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Tue Jul 23 02:06:12 2024 -0500
+
+    creacion de los modelos, migraciones y factories de person y employee
+
+[33mcommit 735875c97bf224e34bf173de479b5dc3441530f7[m
+Merge: 23d5aa5 e204e18
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Sat Jul 20 16:37:24 2024 -0500
+
+    Merge branch 'develop' of https://github.com/RenzzoGambetta/polleria_system
+
+[33mcommit 23d5aa5942e136ad3d6d21bd7a89bcf9dd7445cd[m
+Merge: d259dbd 150a8fe
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Sat Jul 20 16:35:35 2024 -0500
+
+    Merge branch 'main' of https://github.com/RenzzoGambetta/polleria_system
+
+[33mcommit e204e18d8fc868e593037244f8984f609b10d206[m
+Merge: 8c75620 58148f0
+Author: Diego Fernando <117221271+FerFlower@users.noreply.github.com>
+Date:   Mon Jul 15 19:51:32 2024 -0500
+
+    Merge pull request #6 from RenzzoGambetta/module/fronted-user-managment
+    
+    Sierre del area de "Fronted" del 15/07/24
+
+[33mcommit 58148f087e83ce80c04146ace2efd235b5040ed0[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Jul 15 19:41:46 2024 -0500
+
+    Finalisacion de transformacion de vistas y sierre
+
+[33mcommit 9ff612fc9e67e82b4593ea17ac6fd21bae0f6e20[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Mon Jul 15 19:29:15 2024 -0500
+
+    Mejora en los archivos faltantes
+
+[33mcommit 2b1b34c5a862c508084aaa2a3162c3ab721a39c9[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sun Jul 14 20:32:34 2024 -0500
+
+    Correccion de errores de css
+
+[33mcommit 89ab7c8bbc2b04bddcc788057498b1d8690eeefd[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Sun Jul 14 20:17:50 2024 -0500
+
+    llamado a traves de variable la url de css de todas las vistas
+
+[33mcommit 8c7562076803617929feedb92d23ccd050e3b67e[m
+Merge: 0e652ae bb5b7df
+Author: Diego Fernando <117221271+FerFlower@users.noreply.github.com>
+Date:   Fri Jul 12 22:43:42 2024 -0500
+
+    Sierre del area de "Fronted" del 12/07/24
+
+[33mcommit bb5b7df3e528e8c8f19f4298aa45efc9afe81159[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 22:21:19 2024 -0500
+
+    Vinculacion con la api de la Reniec y mejoraen en los efectos
+
+[33mcommit 83142b520fb0a08e757ec90fd9fc3d6179d8af93[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 20:01:33 2024 -0500
+
+    Modificaciones en las funciones y renombramiento
+
+[33mcommit a474bf19b75d857436e42a47d3c6460bd2e0f83a[m
+Merge: 34b2e7d 0497c13
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 19:44:11 2024 -0500
+
+    Merge branch 'module/fronted-user-managment' into module/fronted-auth
+
+[33mcommit 0497c1372423e2681ccfbbe1ebedba756c51a7d3[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 19:42:08 2024 -0500
+
+    Estilos de registro terminado
+
+[33mcommit 73336c77c2bd491424dd51e8203a0ad807020b74[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 18:46:10 2024 -0500
+
+    correccion de errores
+
+[33mcommit 61cf61fe2a88a22ef9f05f22bf277ee091fa44dd[m
+Merge: 3bff26c fb206b9
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 18:31:20 2024 -0500
+
+    Merge branch 'module/fronted-user-managment' of https://github.com/RenzzoGambetta/polleria_system into module/fronted-user-managment
+
+[33mcommit 3bff26c3f5a40e21587a2981aa6f61b3af08c9eb[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 18:14:45 2024 -0500
+
+    Implementacion de registro
+
+[33mcommit a838d36a011a2c81abac52c37837df6fa24e63d8[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 13:54:26 2024 -0500
+
+    Camvios de estilos y efectos - avance incomplto
+
+[33mcommit fb206b9791f9ba003499c2fde3eb8d735e28713a[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 18:14:45 2024 -0500
+
+    Implementacion de registro
+
+[33mcommit 0e652aee1afd2f884172c15b3a88bd1fd421ae8b[m
+Merge: b7c9813 d259dbd
+Author: Renzzogt <79660484+RenzzoGambetta@users.noreply.github.com>
+Date:   Fri Jul 12 18:03:14 2024 -0500
+
+    Merge pull request #3 from RenzzoGambetta/module/backend-auth
+    
+    Agregar funcionalidades login y register en el backend
+
+[33mcommit d259dbd6e9537062f948b0dfe2be2bb7a60c57a7[m[33m ([m[1;31morigin/module/login[m[33m, [m[1;31morigin/module/backend-auth[m[33m, [m[1;32mmodule/backend-auth[m[33m)[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Fri Jul 12 17:41:42 2024 -0500
+
+    implementacion de login terminado
+
+[33mcommit 905dd7895fccd7188962023e59eb5f6707da8eb6[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Fri Jul 12 16:28:46 2024 -0500
+
+    implementacion completa de funcionalidad de registro de usuarios
+
+[33mcommit 34b2e7d550ec0aff6d11c2d3554a61630b66fa0e[m
+Merge: 292e117 150a8fe
+Author: Diego Fernando <117221271+FerFlower@users.noreply.github.com>
+Date:   Fri Jul 12 13:57:22 2024 -0500
+
+    Merge pull request #2 from RenzzoGambetta/main
+    
+    Nuevas modificaciones en el area de estilos y avance
+
+[33mcommit 150a8fefa1de57f30d0551a64b4c6925e38802c1[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Fri Jul 12 13:54:26 2024 -0500
+
+    Camvios de estilos y efectos - avance incomplto
+
+[33mcommit 627dba2bc70653ddbdfdd172f1a5fafcb03f670a[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Fri Jul 12 13:00:48 2024 -0500
+
+    Remover columna nombre de tabla users
+
+[33mcommit fb48a6b2cd298d9360295d51c634714dc953be92[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Fri Jul 12 01:22:05 2024 -0500
+
+    creacion de tabla users y otras tablas por defecto de laravel con migraciones
+
+[33mcommit 49d58402b06c39641fd4bc0a84a3aad0b2cc1a73[m
+Merge: b7c9813 292e117
+Author: Diego Fernando <117221271+FerFlower@users.noreply.github.com>
+Date:   Thu Jul 11 00:03:24 2024 -0500
+
+    Merge pull request #1 from RenzzoGambetta/module/fronted-auth
+    
+    Modificacion en readme V1.0.0
+
+[33mcommit 292e117888006fb49c04f94277388055bc01ba35[m
+Author: FerFlower <diegoquispeapaza45@gmail.com>
+Date:   Wed Jul 10 23:59:29 2024 -0500
+
+    Modificacion en readme V1.0.0
+
+[33mcommit b7c9813d284c7f05f1a918b93c838f4651a03323[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Renzzo Gambetta <renzzoagt.u@gmail.com>
+Date:   Wed Jul 10 23:43:47 2024 -0500
+
+    reinicio de historial
