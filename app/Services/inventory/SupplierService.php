@@ -7,12 +7,12 @@ use App\Models\Supplier;
 use App\Models\Supply;
 use Exception;
 use Illuminate\Support\Facades\DB;
-
 class SupplierService
 {
     public function __construct(){}
 
-    public function createSupplier(array $data) {
+    public function createFastSupplier(array $data)
+    {
         DB::beginTransaction();
 
         try {
@@ -35,7 +35,38 @@ class SupplierService
         }
     }
 
-    public function updateSupplier(Supplier $supplier, array $data) {
+    public function createSupplier(array $data)
+    {
+        DB::beginTransaction();
+
+        try {
+            $person = Person::create([
+                'dni' => $data['ruc'],
+                'firstname' => $data['name'],
+                'lastname' =>'awd',
+                'birthdate' => $data['birthdate'],
+                'gender' => $data['gender'] == 'male' ? 0 : 1,
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+            ]);
+
+            $supplier = Supplier::create([
+                'person_id' => $person->id,
+                'address' => $data['address'],
+
+            ]);
+
+            DB::commit();
+            return $supplier;
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            return $e;
+        }
+    }
+
+    public function updateSupplier(Supplier $supplier, array $data)
+    {
         DB::beginTransaction();
 
         try {

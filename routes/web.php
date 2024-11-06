@@ -63,6 +63,7 @@ use App\Http\Controllers\temp\EfectController;
         Route::get('/new_supplier_registration_fast', [SuppliersController::class,'newSupplierRegistrationFast'])->name('new_supplier_registration_fast');
         Route::get('/suppliers_register_and_edit', [SuppliersController::class,'showSuppliersRegisterAndEdit'])->name('suppliers_register_and_edit');
         Route::get('/list_of_suppliers', [SuppliersController::class,'listOfSuppliers'])->name('list_of_suppliers');
+        Route::post('/new_supplier_registration', [SuppliersController::class,'newSupplierRegistration'])->name('new_supplier_registration');
     //--> Modulo de gestion de Menu
         //Menu
         Route::get('/menu', [MenuController::class,'showMenuList'])->name('menu');

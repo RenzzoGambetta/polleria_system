@@ -44,7 +44,7 @@
     </div>
 </div>
 
-<form method="post" class="form-container" ction="{{ route('create_employee_record') }}">
+<form method="POST" class="form-container" action="{{ route('new_supplier_registration') }}">
     @csrf
 
     <!-- Steps -->
@@ -81,12 +81,6 @@
                 <label for="fechaNacimiento">*Fecha de Nacimiento</label>
             </div>
         </div>
-
-        <div class="input-group col-md-6 one unique">
-            <input type="text" id="nacionalidad" class="effect-4" name="nationality" placeholder=" " required maxlength="255" value="{{ old('nationality', $Supply->nationality ?? '') }}"/>
-            <label for="nacionalidad">*Nacionalidad</label>
-        </div>
-
         <div class="row">
             <div class="input-group col-md-6">
                 <input type="text" id="Telefono" class="effect-4" name="phone" placeholder=" " required maxlength="20" value="{{ old('phone', $Supply->phone ?? '') }}"/>

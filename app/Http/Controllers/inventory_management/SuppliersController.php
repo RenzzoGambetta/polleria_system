@@ -54,21 +54,16 @@ class SuppliersController extends Controller
         if ($companyName != "null" & $documentNumber != "null" & $phone != "null") {
 
             $data = $request->validated();
-            $response = $this->supplierService->createSupplier($data);
+            $response = $this->supplierService->createFastSupplier($data);
+            $response["response"] = true;
 
-            $reply = [
-                'company_name' => $companyName,
-                'document_number' => $documentNumber,
-                'phone' => $phone,
-                'response' => true
-            ];
         } else {
-            $reply = [
+            $response = [
                 'response' => false
             ];
         }
 
-        return response()->json($reply);
+        return response()->json($response);
     }
     public function listOfSuppliers()
     {
@@ -88,5 +83,6 @@ class SuppliersController extends Controller
 
         $data = $request->validated();
         $response = $this->supplierService->createSupplier($data);
+        return response()->json($response);
     }
 }
