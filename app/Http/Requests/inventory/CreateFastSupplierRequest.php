@@ -5,8 +5,11 @@ namespace App\Http\Requests\inventory;
 use App\Http\Requests\util_request\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class supplierRequest extends BaseRequest
+class CreateFastSupplierRequest extends BaseRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     */
     public function authorize(): bool
     {
         return true;
@@ -22,12 +25,7 @@ class supplierRequest extends BaseRequest
         return [
             'ruc' => 'required|size:8',
             'name' => 'required|string|max:50',
-            'birthdate' => 'required|date',
-            'gender' => 'nullable|boolean',
-            'phone' => 'required|string|max:20|',
-            'email' => 'required|email|',
-            'address' => 'required|string|max:255',
-            'nationality' => 'required|string|max:255',
+            'phone' => 'required|string', 
         ];
     }
 }

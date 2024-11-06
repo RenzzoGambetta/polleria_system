@@ -11,25 +11,25 @@ use Illuminate\Support\Facades\DB;
 class SupplierService
 {
     public function __construct(){}
+
+    public function createFastSupplier(array $data) 
+    {
+
+    }
     
-    public function createSupplier(array $data) {
+    public function createSupplier(array $data) 
+    {
         DB::beginTransaction();
 
         try {
             $person = Person::create([
-                'dni' => $data['dni'],
+                'dni' => $data['ruc'],
                 'firstname' => $data['name'],
-                'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
-                'birthdate' => $data['birthdate'],
-                'gender' => $data['gender'] == 'male' ? 0 : 1,
                 'phone' => $data['phone'],
-                'email' => $data['email'],
             ]);
 
             $supplier = Supplier::create([
                 'person_id' => $person->id,
-                'address' => $data['address'],
-
             ]);
 
             DB::commit();
@@ -41,7 +41,8 @@ class SupplierService
         }
     }
 
-    public function updateSupplier(Supplier $supplier, array $data) {
+    public function updateSupplier(Supplier $supplier, array $data) 
+    {
         DB::beginTransaction();
 
         try {
@@ -94,11 +95,11 @@ class SupplierService
     {
         $supplier = Supplier::find($id);
 
-        if (!$supplier) return 'No se encontró un proveedor con ese id';
+        if (!$supplier) throw new Exception('No se encontró un proveedor con ese id');
 
         $supplies = $supplier->supplies()->get();
 
-        if (!$supplies) return 'No hay suministros para este proveedor';
+        if (!$supplies) throw new Exception('No hay suministros para este proveedor');
 
         $suppliesDTO = [];
 
