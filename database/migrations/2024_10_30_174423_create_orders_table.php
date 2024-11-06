@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('client_id')->nullable();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->unsignedBigInteger('table_id');
             $table->foreign('table_id')->references('id')->on('tables');
@@ -21,15 +21,15 @@ return new class extends Migration
             $table->foreign('cashier_session_id')->references('id')->on('cashier_sessions');
             $table->unsignedBigInteger('waiter_id');
             $table->foreign('waiter_id')->references('id')->on('users');
-            $table->unsignedBigInteger('voucher_id');
+            $table->unsignedBigInteger('voucher_id')->nullable();
             $table->foreign('voucher_id')->references('id')->on('voucher_types');
-            $table->string('voucher_serie', 4);
-            $table->char('correlative_number', 8);
-            $table->date('issuance_date');
+            $table->string('voucher_serie', 4)->nullable();
+            $table->char('correlative_number', 8)->nullable();
+            $table->date('issuance_date')->nullable();
             $table->date('expiration_date')->nullable();
             $table->enum('payment_type', ['contado', 'credito'])->default('contado');
             $table->enum('payment_method', ['efectivo', 'debito', 'credito', 'yape', 'plin'])->default('efectivo');
-            $table->decimal('total_amount', 8 ,2);
+            $table->decimal('total_amount', 8 ,2)->nullable();
             $table->enum('status', ['pendiente', 'preparacion', 'terminado', 'en espera', 'pagado', 'completado', 'cancelado', 'reembolsado'])->default('pendiente');
             $table->boolean('is_delibery');
             $table->string('commentary', 255)->nullable();

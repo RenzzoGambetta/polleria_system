@@ -14,11 +14,6 @@ class SupplierService
 
     public function createFastSupplier(array $data) 
     {
-
-    }
-    
-    public function createSupplier(array $data) 
-    {
         DB::beginTransaction();
 
         try {
@@ -30,6 +25,36 @@ class SupplierService
 
             $supplier = Supplier::create([
                 'person_id' => $person->id,
+            ]);
+
+            DB::commit();
+            return $supplier;
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            return $e;
+        }
+    }
+    
+    public function createSupplier(array $data) 
+    {
+        DB::beginTransaction();
+
+        try {
+            $person = Person::create([
+                'dni' => $data['ruc'],
+                'firstname' => $data['name'],
+                'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
+                'birthdate' => $data['birthdate'],
+                'gender' => $data['gender'] == 'male' ? 0 : 1,
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+            ]);
+
+            $supplier = Supplier::create([
+                'person_id' => $person->id,
+                'address' => $data['address'],
+
             ]);
 
             DB::commit();

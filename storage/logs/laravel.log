@@ -18071,3 +18071,80 @@ Cookie: XSRF-TOKEN=y2hlyJrd9R7q02aMdEV8sSAcBbaQyhnSAva58mfy; laravel_session=ec4
 #35 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\fer\\\\De...')
 #36 {main}
 "} 
+[2024-11-06 21:49:48] local.ERROR: The "--refresh" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--refresh\" option does not exist. at C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php:220)
+[stacktrace]
+#0 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php(149): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('refresh', NULL)
+#1 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php(82): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption('--refresh')
+#2 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php(71): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('--refresh', true)
+#3 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\Input.php(53): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Command\\Command.php(238): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#5 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#6 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(1047): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(316): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\MigrateCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1198): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#12 {main}
+"} 
+[2024-11-06 21:49:52] local.ERROR: The "-r" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"-r\" option does not exist. at C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php:122)
+[stacktrace]
+#0 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php(104): Symfony\\Component\\Console\\Input\\ArgvInput->parseShortOptionSet('refresh')
+#1 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php(84): Symfony\\Component\\Console\\Input\\ArgvInput->parseShortOption('-refresh')
+#2 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\ArgvInput.php(71): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken('-refresh', true)
+#3 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Input\\Input.php(53): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Command\\Command.php(238): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#5 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#6 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(1047): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(316): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\MigrateCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1198): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#12 {main}
+"} 
+[2024-11-06 21:50:19] local.ERROR: Command "migration" is not defined.
+
+Did you mean one of these?
+    make:migration
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migration\" is not defined.
+
+Did you mean one of these?
+    make:migration
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status at C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php:702)
+[stacktrace]
+#0 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(258): Symfony\\Component\\Console\\Application->find('migration')
+#1 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1198): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#5 {main}
+"} 
+[2024-11-06 21:50:27] local.ERROR: There are no commands defined in the "migration" namespace.
+
+Did you mean this?
+    migrate {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"migration\" namespace.
+
+Did you mean this?
+    migrate at C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php:636)
+[stacktrace]
+#0 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(685): Symfony\\Component\\Console\\Application->findNamespace('migration')
+#1 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(258): Symfony\\Component\\Console\\Application->find('migration:refre...')
+#2 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1198): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 C:\\Users\\renzz\\Documents\\Senati\\Semestre6\\practicas\\laravel\\System_Polleria_Software\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#6 {main}
+"} 
