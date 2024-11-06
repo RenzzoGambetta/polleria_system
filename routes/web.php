@@ -47,6 +47,7 @@ use App\Http\Controllers\temp\EfectController;
         Route::get('/inventory', [InventoryController::class,'showInventoryList'])->name('inventory');
         Route::get('/show_list_inventory_movements', [InventoryController::class,'showListInventoryMovements'])->name('show_list_inventory_movements');
         Route::get('/new_supply_inventory', [InventoryController::class,'newsupplyInventory'])->name('new_supply_inventory');
+        Route::get('/delete_new_supply_complete', [InventoryController::class,'deleteNewSupplyComplete'])->name('delete_new_supply_complete');
         //Suministros
         Route::get('/show_panel_register_entry', [SupplyStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
         Route::get('/register_new_supply', [SupplyStockController::class,'registerNewsupply'])->name('register_new_supply');
@@ -88,6 +89,7 @@ use App\Http\Controllers\temp\EfectController;
 
     //--> Order
         //PointOfSale
+        Route::get('/list_employeer', [PointOfSaleController::class,'listEmployeer'])->name('list_employeer');
         Route::get('/point_of_sale', [PointOfSaleController::class,'showPointOfSale'])->name('point_of_sale');
         Route::get('/cashier_sessions', [PointOfSaleController::class,'showCashierSessions'])->name('cashier_sessions');
         Route::post('/register_session_cash_box', [PointOfSaleController::class,'registerSessionCashBox'])->name('register_session_cash_box');

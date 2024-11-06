@@ -28,8 +28,8 @@ class CashierSessionService
 
     public function closeCashRegister(int $idCashierSession, string $noteEdit)
     {
-        //$cashierSession = CashierSession::find($idCashierSession)->first();
-        $cashierSession = CashierSession::where('id', $idCashierSession)->latest()->first(); // se modifico para que se edite el ultimo del id
+        $cashierSession = CashierSession::find($idCashierSession)->first();
+        //$cashierSession = CashierSession::where('id', $idCashierSession)->latest()->first(); // se modifico para que se edite el ultimo del id
 
         if (!$cashierSession) throw new Exception('No se encontró ninguna sesion con ese id');
 

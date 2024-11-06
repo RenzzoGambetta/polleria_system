@@ -1,4 +1,4 @@
-function selectorItenandAnimation(selectedClass, optionsClass, optionClass, subTitleDivClass) {
+function selectorItenandAnimation(selectedClass, optionsClass, optionClass, subTitleDivClass,selectOptionId = null) {
     const $selected = $(`.${selectedClass}`);
     const $options = $(`.${optionsClass}`);
     const $optionList = $(`.${optionClass}`);
@@ -98,6 +98,20 @@ function selectorItenandAnimation(selectedClass, optionsClass, optionClass, subT
     $optionList.on('mouseleave', function () {
         $(this).removeClass('highlight');
     });
+
+    if(selectOptionId != null) {
+
+        const $option = $(`#${selectOptionId}`);
+
+        if ($option.length) {
+            selectOption($option.closest('label'));
+            const optionText = $option.siblings('span').text(); 
+            $selected.text(optionText);
+            $option.prop('checked', true);
+        } else {
+            console.warn(`No se encontró una opción con el id: ${selectOptionId}`);
+        }
+    }
 }
 
 function selectorIten(select, option, listOption) {

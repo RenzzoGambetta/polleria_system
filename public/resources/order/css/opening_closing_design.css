@@ -210,3 +210,18 @@ a.sub-link {
 .div-note.clouse{
     width: 790px;
 }
+.search-container.cash-register-amount-container {
+    margin: 0px;
+    border-radius: 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+input#search-supplier {
+    border-radius: 0px;
+}
+div#loader-supplier {
+    height: 20px;
+}

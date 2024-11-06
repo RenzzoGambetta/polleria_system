@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\order;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\order\CashierSessionRequest;
+use App\Models\Employee;
 use App\Models\menu\Lounge;
 use App\Services\order\CashierSessionService;
 use DateTime;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -36,11 +39,13 @@ class PointOfSaleController extends Controller
     }
     public function showCashierSessions(Request $request)
     {
-        //solo esta echo las consultas para la apertura global, ay que modificar para una apertura por usuario
-        if (DB::table('cashier_sessions')->count() > 0) {
+        $user = Auth::user();
+
+        if (DB::table('cashier_sessions')->where('user_id', $user->id)->count() > 0) {
             $option = DB::table('cashier_sessions')
-                ->latest('id')
-                ->value('cash_close_at') === null;
+                ->where('user_id', $user->id)
+                ->whereNull('cash_close_at')
+                ->exists();
         } else {
             $option = false;
         }
@@ -55,6 +60,7 @@ class PointOfSaleController extends Controller
                 'Option' => true
             ];
             $specs = DB::table('cashier_sessions')
+                ->where('user_id', $user->id)
                 ->join('employees', 'cashier_sessions.employee_id', '=', 'employees.id')
                 ->join('persons', 'employees.person_id', '=', 'persons.id')
                 ->select('cashier_sessions.*', 'persons.firstname as name')
@@ -81,38 +87,49 @@ class PointOfSaleController extends Controller
     }
     public function registerSessionCashBox(Request $request)
     {
-        $user = Auth::user();
+        try {
+            $user = Auth::user();
 
-        if ($request->opening_balance !== null && $request->employee_id !== null) {
+            if ($request->filled(['opening_balance', 'employee_id'])) {
 
-            $data = [
-                'user_id' => $user->id,
-                'employee_id' => $request->employee_id,
-                'opening_balance' => $request->opening_balance,
-                'note' => $request->note
-            ];
-            $response = $this->cashierSessionService->openCashRegister($data);
+                $request['user_id'] = $user->id;
+
+                $validatedData = $request->validate((new CashierSessionRequest)->rules()); //validacion de CashierSessionRequest
+
+                $response = $this->cashierSessionService->openCashRegister($validatedData);
+
+                return redirect()->route('cashier_sessions')->withInput()->with([
+                    'Message' => 'Se aperturó la caja satisfactoriamente.',
+                    'Type' => 'success'
+                ]);
+            }
+            if ($request->id != null) {
+                $response = $this->cashierSessionService->closeCashRegister($request->id, $request->note);
+
+                return redirect()->route('cashier_sessions')->withInput()->with([
+                    'Message' => 'Se cerro la caja satisfactoriamente.',
+                    'Type' => 'success'
+                ]);
+            }
 
             return redirect()->route('cashier_sessions')->withInput()->with([
-                'Message' =>'Se aperturó la caja satisfactoriamente.',
-                'Type' => 'success'
+                'Message' => $response ?? 'Verifica bien los datos.',
+                'Type' => 'error'
             ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error en la validación de los datos',
+                'errors' => $e // Devuelve los mensajes de error
+            ], 422);
         }
-        if($request->id != null){
-            $response = $this->cashierSessionService->closeCashRegister($request->id, $request->note);
-
-            return redirect()->route('cashier_sessions')->withInput()->with([
-                'Message' => 'Se cerro la caja satisfactoriamente.',
-                'Type' => 'success'
-            ]);
-        }
-
-        return redirect()->route('cashier_sessions')->withInput()->with([
-            'Message' => $response ?? 'Verifica bien los datos.',
-            'Type' => 'error'
-        ]);
     }
-
+    public function listEmployeer(){
+        $data = Employee::select('employees.id', 'persons.firstname as name')
+        ->join('persons', 'employees.person_id', '=', 'persons.id')
+        ->get();
+        return response()->json($data);
+    }
     //se puede toamar como servisio
     private function formatDateInSpanish($dateTime)
     {

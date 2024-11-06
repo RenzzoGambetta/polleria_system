@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{ asset($InputResources) }}">
 <link rel="stylesheet" href="{{ asset($TableEditAndRegister) }}">
 <link rel="stylesheet" href="{{ asset($openingClosingDesignStyle) }}">
+<link rel="stylesheet" href="{{ asset($SearchBox) }}">
+<link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
 
 @if (session()->has('Message'))
     <div class="container-aler">
@@ -87,13 +89,25 @@
                 </div>
                 <div class="cash-register-closing-section">
                     <div class="cash-register-amount-group">
-                        <input value="1" name="employee_id" style="display: none">
+                        <input value="1" name="employee_id" style="display: none" required>
                         <label class="cash-register-amount-label">EMPLEADO ENCARGADO</label>
-                        <div class="cash-register-amount-container">
-                            <input type="text" class="cash-register-amount-input" placeholder="Jose" name="employe" value="{{ old('employe') }}">
+                        <div class="search-container cash-register-amount-container">
+                            <input type="number" id="id-supplier" name="supplier_id" style="display: none" value="{{ old('supplier_id') }}">
+                            <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style cash-register-amount-input" placeholder="Jose" autocomplete="off" value="{{ old('employe') }}">
+                            <div id="suggestions" class="suggestions-supplier"></div>
+                            <div id="loader-supplier" class="loader-section">
+                                <div class="loading">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
                         </div>
                         <p class="cash-register-amount-note">(*) Valida que el empleado este registrado.</p>
                     </div>
+
                     <div class="cash-register-amount-group">
                         <label class="cash-register-amount-label">INGRESE MONTO DE APERTURA</label>
                         <div class="cash-register-amount-container">
@@ -120,6 +134,11 @@
     </div>
 
 </form>
+<script src="{{ asset($SearchBoxTemplate) }}"></script>
+<script>
+    const apiUrl = '/list_employeer';
+    new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier', apiUrl, 5, 0);
+</script>
 
 <script src="{{ asset($openingClosingDesignFunction) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->

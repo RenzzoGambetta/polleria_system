@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
 <link rel="stylesheet" href="{{ asset($CheckboxAnimation) }}">
 <link rel="stylesheet" href="{{ asset($SearchBox) }}">
+<link rel="stylesheet" href="{{ asset($SupplyEntry) }}">
 
 <div class="header">
     <div class="left">
@@ -58,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <button type="button" class="button-new-supplier" onclick="newSupplierRegistrationFast()">+</button>
                     </div>
 
                     <div class="lateralside-content sub-block-02">
@@ -196,11 +197,6 @@
 
         </div>
     </div>
-    <script>
-       // $(document).ready(function() {
-       //     newSupply()
-      //  });
-    </script>
     <div class="options-button">
         <div class="sub-input-02">
             <button type="button" class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
@@ -217,12 +213,8 @@
 <script>
     const apiUrl = '/list_of_suppliers';
     new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier', apiUrl, 5, 1);
-</script>
-<script>
-    // selectorIten(".selected-unit-of-measurement-supply-new", ".options-unit-of-measurement-supply-new", ".option-unit-of-measurement-supply-new");
-
-    selectorItenandAnimation('selected-type-credit-and-cash', 'options-type-credit-and-cash', 'option-type-credit-and-cash', 'sub-title-div-type','option-type-credit-and-cash');
-    selectorItenandAnimation('selected-document', 'options-document', 'option-document', 'sub-title-div-document','option-document');
+    selectorItenandAnimation('selected-type-credit-and-cash', 'options-type-credit-and-cash', 'option-type-credit-and-cash', 'sub-title-div-type');
+    selectorItenandAnimation('selected-document', 'options-document', 'option-document');
 
  </script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
