@@ -16,7 +16,7 @@ class Essential_Services extends ServiceProvider
         View::composer('*', function ($view) use ($fpFunc) {
             //Jquery
 
-            $view->with('JquerySrc', 'global_resources/js/jquery-3.7.1.js');
+            $view->with('JquerySrc', 'plugin/js/jquery-3.7.1.js');
 
             //Language
 
@@ -24,7 +24,8 @@ class Essential_Services extends ServiceProvider
 
             //Boxicons
 
-            $view->with('Boxicons', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+            //$view->with('Boxicons', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+            $view->with('Boxicons', 'plugin/css/boxicons.css');//descargar
 
             //Includes
 
@@ -33,11 +34,14 @@ class Essential_Services extends ServiceProvider
 
             //Alert
 
-            $view->with('AlertSrc', 'https://cdn.jsdelivr.net/npm/sweetalert2@11');
+            //$view->with('AlertSrc', 'https://cdn.jsdelivr.net/npm/sweetalert2@11');
+            //$view->with('AlertSrc', 'global_resources/js/sweetalert2.all.min.js');
+            $view->with('AlertSrc', 'plugin/js/sweetalert2.all.js');
 
             //Drag and drop
 
-            $view->with('DragAndDrop', 'https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
+            //$view->with('DragAndDrop', 'https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
+            $view->with('DragAndDrop', 'plugin/js/sortable.min.js');
 
         });
     }

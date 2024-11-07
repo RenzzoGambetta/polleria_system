@@ -1,0 +1,644 @@
+/*!
+*   _____       _             __                 _____                               ______ _       _   _
+*  |_   _|     | |           / _|               |_   _|                             |  ____| |     | | (_)
+*    | |  _ __ | |_ ___ _ __| |_ __ _  ___ ___    | |  ___ ___  _ __  ___   ______  | |__  | | __ _| |_ _  ___ ___  _ __
+*    | | | '_ \| __/ _ \ '__|  _/ _` |/ __/ _ \   | | / __/ _ \| '_ \/ __| |______| |  __| | |/ _` | __| |/ __/ _ \| '_ \
+*   _| |_| | | | ||  __/ |  | || (_| | (_|  __/  _| || (_| (_) | | | \__ \          | |    | | (_| | |_| | (_| (_) | | | |
+*  |_____|_| |_|\__\___|_|  |_| \__,_|\___\___| |_____\___\___/|_| |_|___/          |_|    |_|\__,_|\__|_|\___\___/|_| |_|
+*
+*                         UIcons 2.5.1 - https://www.flaticon.com/uicons/interface-icons
+*/
+@font-face {
+    font-family: "uicons-solid-chubby";
+    src: url("../../font/2.5.1.V/uicons-solid-chubby.woff2") format("woff2"),
+    url("../../font/2.5.1.V/uicons-solid-chubby.woff") format("woff"),
+    url("../../font/2.5.1.V/uicons-solid-chubby.eot#iefix") format("embedded-opentype");
+    font-display: swap;
+}
+
+    i[class^="fi-sc-"]:before, i[class*=" fi-sc-"]:before, span[class^="fi-sc-"]:before, span[class*="fi-sc-"]:before {
+font-family: uicons-solid-chubby !important;
+font-style: normal;
+font-weight: normal !important;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+        .variable-selector-00:before {
+    content: "\fe00";
+    }
+        .variable-selector-01:before {
+    content: "\fe01";
+    }
+        .variable-selector-02:before {
+    content: "\fe02";
+    }
+        .variable-selector-03:before {
+    content: "\fe03";
+    }
+        .variable-selector-04:before {
+    content: "\fe04";
+    }
+        .variable-selector-05:before {
+    content: "\fe05";
+    }
+        .variable-selector-06:before {
+    content: "\fe06";
+    }
+        .variable-selector-07:before {
+    content: "\fe07";
+    }
+        .variable-selector-08:before {
+    content: "\fe08";
+    }
+        .variable-selector-09:before {
+    content: "\fe09";
+    }
+        .variable-selector-0a:before {
+    content: "\fe0a";
+    }
+        .variable-selector-0b:before {
+    content: "\fe0b";
+    }
+        .variable-selector-0c:before {
+    content: "\fe0c";
+    }
+        .variable-selector-0d:before {
+    content: "\fe0d";
+    }
+        .variable-selector-0e:before {
+    content: "\fe0e";
+    }
+        .variable-selector-0f:before {
+    content: "\fe0f";
+    }
+        .combining-half-marks-00:before {
+    content: "\fe20";
+    }
+        .combining-half-marks-01:before {
+    content: "\fe21";
+    }
+        .combining-half-marks-02:before {
+    content: "\fe22";
+    }
+        .combining-half-marks-03:before {
+    content: "\fe23";
+    }
+        .combining-half-marks-04:before {
+    content: "\fe24";
+    }
+        .combining-half-marks-05:before {
+    content: "\fe25";
+    }
+        .combining-half-marks-06:before {
+    content: "\fe26";
+    }
+        .combining-half-marks-07:before {
+    content: "\fe27";
+    }
+        .combining-half-marks-08:before {
+    content: "\fe28";
+    }
+        .combining-half-marks-09:before {
+    content: "\fe29";
+    }
+        .combining-half-marks-0a:before {
+    content: "\fe2a";
+    }
+        .combining-half-marks-0b:before {
+    content: "\fe2b";
+    }
+        .combining-half-marks-0c:before {
+    content: "\fe2c";
+    }
+        .combining-half-marks-0d:before {
+    content: "\fe2d";
+    }
+        .combining-half-marks-0e:before {
+    content: "\fe2e";
+    }
+        .combining-half-marks-0f:before {
+    content: "\fe2f";
+    }
+        .zero-width-no-break-space-0f:before {
+    content: "\feff";
+    }
+        .fi-sc-ambulance:before {
+    content: "\f101";
+    }
+        .fi-sc-backpack:before {
+    content: "\f102";
+    }
+        .fi-sc-band-aid:before {
+    content: "\f103";
+    }
+        .fi-sc-baseball-alt:before {
+    content: "\f104";
+    }
+        .fi-sc-baseball:before {
+    content: "\f105";
+    }
+        .fi-sc-basketball-hoop:before {
+    content: "\f106";
+    }
+        .fi-sc-basketball:before {
+    content: "\f107";
+    }
+        .fi-sc-bell-school:before {
+    content: "\f108";
+    }
+        .fi-sc-bell:before {
+    content: "\f109";
+    }
+        .fi-sc-biking-mountain:before {
+    content: "\f10a";
+    }
+        .fi-sc-biking:before {
+    content: "\f10b";
+    }
+        .fi-sc-bold:before {
+    content: "\f10c";
+    }
+        .fi-sc-book-alt:before {
+    content: "\f10d";
+    }
+        .fi-sc-book:before {
+    content: "\f10e";
+    }
+        .fi-sc-bookmark:before {
+    content: "\f10f";
+    }
+        .fi-sc-bow-arrow:before {
+    content: "\f110";
+    }
+        .fi-sc-bowling-ball:before {
+    content: "\f111";
+    }
+        .fi-sc-bowling-pins:before {
+    content: "\f112";
+    }
+        .fi-sc-boxing-glove:before {
+    content: "\f113";
+    }
+        .fi-sc-briefcase:before {
+    content: "\f114";
+    }
+        .fi-sc-calendar:before {
+    content: "\f115";
+    }
+        .fi-sc-camera:before {
+    content: "\f116";
+    }
+        .fi-sc-chess-bishop:before {
+    content: "\f117";
+    }
+        .fi-sc-chess-board:before {
+    content: "\f118";
+    }
+        .fi-sc-chess-clock-alt:before {
+    content: "\f119";
+    }
+        .fi-sc-chess-clock:before {
+    content: "\f11a";
+    }
+        .fi-sc-chess-king-alt:before {
+    content: "\f11b";
+    }
+        .fi-sc-chess-king:before {
+    content: "\f11c";
+    }
+        .fi-sc-chess-knight-alt:before {
+    content: "\f11d";
+    }
+        .fi-sc-chess-knight:before {
+    content: "\f11e";
+    }
+        .fi-sc-chess-pawn-alt:before {
+    content: "\f11f";
+    }
+        .fi-sc-chess-pawn:before {
+    content: "\f120";
+    }
+        .fi-sc-chess-piece:before {
+    content: "\f121";
+    }
+        .fi-sc-chess-queen-alt:before {
+    content: "\f122";
+    }
+        .fi-sc-chess-queen:before {
+    content: "\f123";
+    }
+        .fi-sc-chess-rook-alt:before {
+    content: "\f124";
+    }
+        .fi-sc-chess-rook:before {
+    content: "\f125";
+    }
+        .fi-sc-chess:before {
+    content: "\f126";
+    }
+        .fi-sc-clip:before {
+    content: "\f127";
+    }
+        .fi-sc-club:before {
+    content: "\f128";
+    }
+        .fi-sc-compress:before {
+    content: "\f129";
+    }
+        .fi-sc-copy-alt:before {
+    content: "\f12a";
+    }
+        .fi-sc-credit-card:before {
+    content: "\f12b";
+    }
+        .fi-sc-cricket:before {
+    content: "\f12c";
+    }
+        .fi-sc-crown:before {
+    content: "\f12d";
+    }
+        .fi-sc-curling:before {
+    content: "\f12e";
+    }
+        .fi-sc-cursor-text:before {
+    content: "\f12f";
+    }
+        .fi-sc-diamond:before {
+    content: "\f130";
+    }
+        .fi-sc-dice-alt:before {
+    content: "\f131";
+    }
+        .fi-sc-dice-d10:before {
+    content: "\f132";
+    }
+        .fi-sc-dice-d12:before {
+    content: "\f133";
+    }
+        .fi-sc-dice-d20:before {
+    content: "\f134";
+    }
+        .fi-sc-dice-d4:before {
+    content: "\f135";
+    }
+        .fi-sc-dice-d6:before {
+    content: "\f136";
+    }
+        .fi-sc-dice-d8:before {
+    content: "\f137";
+    }
+        .fi-sc-dice-four:before {
+    content: "\f138";
+    }
+        .fi-sc-dice-one:before {
+    content: "\f139";
+    }
+        .fi-sc-dice-six:before {
+    content: "\f13a";
+    }
+        .fi-sc-dice-three:before {
+    content: "\f13b";
+    }
+        .fi-sc-dice-two:before {
+    content: "\f13c";
+    }
+        .fi-sc-dice:before {
+    content: "\f13d";
+    }
+        .fi-sc-diploma:before {
+    content: "\f13e";
+    }
+        .fi-sc-disk:before {
+    content: "\f13f";
+    }
+        .fi-sc-doctor:before {
+    content: "\f140";
+    }
+        .fi-sc-dollar:before {
+    content: "\f141";
+    }
+        .fi-sc-dreidel:before {
+    content: "\f142";
+    }
+        .fi-sc-edit:before {
+    content: "\f143";
+    }
+        .fi-sc-euro:before {
+    content: "\f144";
+    }
+        .fi-sc-expand:before {
+    content: "\f145";
+    }
+        .fi-sc-eye-dropper:before {
+    content: "\f146";
+    }
+        .fi-sc-field-hockey:before {
+    content: "\f147";
+    }
+        .fi-sc-fill:before {
+    content: "\f148";
+    }
+        .fi-sc-film:before {
+    content: "\f149";
+    }
+        .fi-sc-football:before {
+    content: "\f14a";
+    }
+        .fi-sc-forward:before {
+    content: "\f14b";
+    }
+        .fi-sc-game-board-alt:before {
+    content: "\f14c";
+    }
+        .fi-sc-gift:before {
+    content: "\f14d";
+    }
+        .fi-sc-glasses:before {
+    content: "\f14e";
+    }
+        .fi-sc-globe-alt:before {
+    content: "\f14f";
+    }
+        .fi-sc-golf-ball:before {
+    content: "\f150";
+    }
+        .fi-sc-golf-club:before {
+    content: "\f151";
+    }
+        .fi-sc-graduation-cap:before {
+    content: "\f152";
+    }
+        .fi-sc-guitar:before {
+    content: "\f153";
+    }
+        .fi-sc-gym:before {
+    content: "\f154";
+    }
+        .fi-sc-headphones:before {
+    content: "\f155";
+    }
+        .fi-sc-headset:before {
+    content: "\f156";
+    }
+        .fi-sc-heart:before {
+    content: "\f157";
+    }
+        .fi-sc-hiking:before {
+    content: "\f158";
+    }
+        .fi-sc-hockey-mask:before {
+    content: "\f159";
+    }
+        .fi-sc-hockey-puck:before {
+    content: "\f15a";
+    }
+        .fi-sc-hockey-sticks:before {
+    content: "\f15b";
+    }
+        .fi-sc-ice-skate:before {
+    content: "\f15c";
+    }
+        .fi-sc-infinity:before {
+    content: "\f15d";
+    }
+        .fi-sc-italic:before {
+    content: "\f15e";
+    }
+        .fi-sc-kite:before {
+    content: "\f15f";
+    }
+        .fi-sc-lasso:before {
+    content: "\f160";
+    }
+        .fi-sc-layers:before {
+    content: "\f161";
+    }
+        .fi-sc-letter-case:before {
+    content: "\f162";
+    }
+        .fi-sc-link:before {
+    content: "\f163";
+    }
+        .fi-sc-list:before {
+    content: "\f164";
+    }
+        .fi-sc-luchador:before {
+    content: "\f165";
+    }
+        .fi-sc-megaphone:before {
+    content: "\f166";
+    }
+        .fi-sc-microphone-alt:before {
+    content: "\f167";
+    }
+        .fi-sc-microphone:before {
+    content: "\f168";
+    }
+        .fi-sc-money:before {
+    content: "\f169";
+    }
+        .fi-sc-music-alt:before {
+    content: "\f16a";
+    }
+        .fi-sc-music:before {
+    content: "\f16b";
+    }
+        .fi-sc-network:before {
+    content: "\f16c";
+    }
+        .fi-sc-opacity:before {
+    content: "\f16d";
+    }
+        .fi-sc-palette:before {
+    content: "\f16e";
+    }
+        .fi-sc-pause:before {
+    content: "\f16f";
+    }
+        .fi-sc-pencil:before {
+    content: "\f170";
+    }
+        .fi-sc-pennant:before {
+    content: "\f171";
+    }
+        .fi-sc-picture:before {
+    content: "\f172";
+    }
+        .fi-sc-ping-pong:before {
+    content: "\f173";
+    }
+        .fi-sc-play:before {
+    content: "\f174";
+    }
+        .fi-sc-portrait:before {
+    content: "\f175";
+    }
+        .fi-sc-pound:before {
+    content: "\f176";
+    }
+        .fi-sc-presentation:before {
+    content: "\f177";
+    }
+        .fi-sc-puzzle-piece:before {
+    content: "\f178";
+    }
+        .fi-sc-quote-right:before {
+    content: "\f179";
+    }
+        .fi-sc-racquet:before {
+    content: "\f17a";
+    }
+        .fi-sc-rec:before {
+    content: "\f17b";
+    }
+        .fi-sc-receipt:before {
+    content: "\f17c";
+    }
+        .fi-sc-record-vinyl:before {
+    content: "\f17d";
+    }
+        .fi-sc-rectangle-horizontal:before {
+    content: "\f17e";
+    }
+        .fi-sc-rectangle-panoramic:before {
+    content: "\f17f";
+    }
+        .fi-sc-rectangle-vertical:before {
+    content: "\f180";
+    }
+        .fi-sc-rewind:before {
+    content: "\f181";
+    }
+        .fi-sc-rhombus:before {
+    content: "\f182";
+    }
+        .fi-sc-rings-wedding:before {
+    content: "\f183";
+    }
+        .fi-sc-rugby-helmet:before {
+    content: "\f184";
+    }
+        .fi-sc-rugby:before {
+    content: "\f185";
+    }
+        .fi-sc-running:before {
+    content: "\f186";
+    }
+        .fi-sc-scale:before {
+    content: "\f187";
+    }
+        .fi-sc-school-bus:before {
+    content: "\f188";
+    }
+        .fi-sc-school:before {
+    content: "\f189";
+    }
+        .fi-sc-scissors:before {
+    content: "\f18a";
+    }
+        .fi-sc-settings-sliders:before {
+    content: "\f18b";
+    }
+        .fi-sc-shopping-bag:before {
+    content: "\f18c";
+    }
+        .fi-sc-shuttlecock:before {
+    content: "\f18d";
+    }
+        .fi-sc-skating:before {
+    content: "\f18e";
+    }
+        .fi-sc-ski-jump:before {
+    content: "\f18f";
+    }
+        .fi-sc-skiing-nordic:before {
+    content: "\f190";
+    }
+        .fi-sc-skiing:before {
+    content: "\f191";
+    }
+        .fi-sc-sledding:before {
+    content: "\f192";
+    }
+        .fi-sc-snowboarding:before {
+    content: "\f193";
+    }
+        .fi-sc-spade:before {
+    content: "\f194";
+    }
+        .fi-sc-speaker:before {
+    content: "\f195";
+    }
+        .fi-sc-stethoscope:before {
+    content: "\f196";
+    }
+        .fi-sc-stop:before {
+    content: "\f197";
+    }
+        .fi-sc-swimmer:before {
+    content: "\f198";
+    }
+        .fi-sc-sword:before {
+    content: "\f199";
+    }
+        .fi-sc-target:before {
+    content: "\f19a";
+    }
+        .fi-sc-tennis:before {
+    content: "\f19b";
+    }
+        .fi-sc-test-tube:before {
+    content: "\f19c";
+    }
+        .fi-sc-text-check:before {
+    content: "\f19d";
+    }
+        .fi-sc-text:before {
+    content: "\f19e";
+    }
+        .fi-sc-thumbtack:before {
+    content: "\f19f";
+    }
+        .fi-sc-ticket:before {
+    content: "\f1a0";
+    }
+        .fi-sc-tool-crop:before {
+    content: "\f1a1";
+    }
+        .fi-sc-tooth:before {
+    content: "\f1a2";
+    }
+        .fi-sc-treatment:before {
+    content: "\f1a3";
+    }
+        .fi-sc-trophy:before {
+    content: "\f1a4";
+    }
+        .fi-sc-underline:before {
+    content: "\f1a5";
+    }
+        .fi-sc-vector-alt:before {
+    content: "\f1a6";
+    }
+        .fi-sc-vector:before {
+    content: "\f1a7";
+    }
+        .fi-sc-video-camera:before {
+    content: "\f1a8";
+    }
+        .fi-sc-volleyball:before {
+    content: "\f1a9";
+    }
+        .fi-sc-volume:before {
+    content: "\f1aa";
+    }
+        .fi-sc-whistle:before {
+    content: "\f1ab";
+    }
+        .fi-sc-yen:before {
+    content: "\f1ac";
+    }

@@ -1,7 +1,7 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
-<script src="{{ $AlertSrc }}"></script>
+<script src="{{ asset($AlertSrc) }}"></script>
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
 <link rel="stylesheet" href="{{ asset($InputResources) }}">
 <link rel="stylesheet" href="{{ asset($TableEditAndRegister) }}">
