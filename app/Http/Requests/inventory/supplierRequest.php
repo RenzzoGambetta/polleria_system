@@ -23,11 +23,10 @@ class supplierRequest extends BaseRequest
             'ruc' => 'required|size:8',
             'name' => 'required|string|max:50',
             'birthdate' => 'required|date',
-            'gender' => 'nullable|boolean',
+            'gender' => 'nullable|string',
             'phone' => 'required|string|max:20|',
             'email' => 'required|email|',
             'address' => 'required|string|max:255',
-            'nationality' => 'required|string|max:255',
         ];
     }
 }

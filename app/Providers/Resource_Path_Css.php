@@ -73,6 +73,12 @@ class Resource_Path_Css extends ServiceProvider
             $CheckboxAnimation = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'checkbox_animation.css');
             $view->with('CheckboxAnimation', $CheckboxAnimation);
 
+            $SupplyEntry = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'supply_entry.css');
+            $view->with('SupplyEntry', $SupplyEntry);
+
+            $SuppierEditAndRegister = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'suppier_edit_and_register.css');
+            $view->with('SuppierEditAndRegister', $SuppierEditAndRegister);
+
             $LoadingStyle = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'loading_style.css');
             $view->with('LoadingStyle', $LoadingStyle);
 

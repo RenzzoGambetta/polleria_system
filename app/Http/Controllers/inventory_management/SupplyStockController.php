@@ -33,7 +33,7 @@ class SupplyStockController extends Controller
     ];
     protected $supplyService;
 
-public function __construct(supplyService $supplyService)
+    public function __construct(supplyService $supplyService)
     {
         $this->supplyService = $supplyService;
     }
@@ -48,9 +48,7 @@ public function __construct(supplyService $supplyService)
     }
     public function showPanelRegisterOutput()
     {
-
         $Navigation = $this->NavigationOutput;
-
         return view('inventory_management.supply_stock_output', compact('Navigation'));
     }
     public function supplierSupplyList(Request $request)
@@ -114,26 +112,26 @@ public function __construct(supplyService $supplyService)
     {
         try {
             $validator = $request->validated();
-
-            // if ($validator->fails()) {
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => 'Hay errores en los datos ingresados.',
-            //         'errors' => $validator->errors()
-            //     ], 422);
-            // }
-
+            if ($request->filled(['id_edit_stock'])) {
+                $response = $this->supplyService->updateSupply($request->id_edit_stock,$validator);
+                return redirect()->route('inventory')->with([
+                    'Message' => 'Se edito el suministro satisfactoriamente.',
+                    'Type' => 'success'
+                ]);
+            }
             $response = $this->supplyService->createSupply($validator);
-            if($response){
-                return redirect()->route('inventory');
+            if ($response) {
+                return redirect()->route('inventory')->with([
+                    'Message' => 'Se registro el suministro satisfactoriamente.',
+                    'Type' => 'success'
+                ]);
             }
         } catch (Exception $e) {
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Ocurrió un error inesperado.',
-                'error' => $e->getMessage()
-            ], 500);
+            return redirect()->route('new_supply_inventory')->withInput()->with([
+                'Message' => 'No se pudo registrar el suminsitro.',
+                'Type' => 'error'
+            ]);
         }
     }
     public function anchorSupplyProvider(Request $request)
@@ -171,10 +169,8 @@ public function __construct(supplyService $supplyService)
     public function registerSupplyEntry(inventoryReceiptRequest  $request)
     {
         try {
-            // Obtener los datos validados directamente desde el Request
-            $data = $request->validated();
 
-            // Crear la entrada en la base de datos
+            $data = $request->validated();
             $entry = InventoryReceiptRequest::create($data);
 
             return response()->json([

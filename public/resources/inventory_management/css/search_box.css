@@ -3,8 +3,9 @@
     width: 100%;
     margin: 0px 1vh
 }
-input#search-supplier {
-}
+
+input#search-supplier {}
+
 .search-box-supplier:focus,
 .search-box:focus {
     width: 100%;
@@ -20,7 +21,9 @@ input#search-supplier {
     font-size: 16px;
 
 }
+
 .suggestions-category,
+.suggestions-cooking-place,
 .suggestions-supplier,
 .suggestions {
 
@@ -37,6 +40,7 @@ input#search-supplier {
 }
 
 .suggestions-category.open,
+.suggestions-cooking-place.open,
 .suggestions-supplier.open,
 .suggestions.open {
     max-height: 250px;
@@ -67,7 +71,9 @@ input#search-supplier {
     text-align: left;
     left: 1vh;
 }
+
 #id-category,
+#id-cooking-place,
 #id-supplier,
 #id-supply {
     display: none;
@@ -86,6 +92,7 @@ div#loader {
 #search-label {
     left: 15px;
 }
+
 .loading {
     height: 100%;
 }

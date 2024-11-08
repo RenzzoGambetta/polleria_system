@@ -1,8 +1,24 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
+
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($RoleRegisterDesktop) }}">
+
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message')}}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10}})
+    </script>
+@endif
 
 <div class="header">
     <div class="left">
@@ -22,6 +38,7 @@
         </ul>
     </div>
 </div>
+
 <form action="{{ route('role_register_store') }}" method="POST">
     @csrf
     <div class="name-input container">
@@ -29,37 +46,35 @@
         <div id="dimensions name-input">
             <input type="submit" class="button-opcion previous" value="Cancelar">
             <div class="input-group name-input">
-                <input type="text" id="name" class="effect-1" name="name" placeholder="Nombre de Rol" value="" />
+                <input type="text" id="name" class="effect-1" name="name" placeholder="Nombre de Rol" value="{{ old('name') }}" />
                 <span class="border"></span>
             </div>
             <input type="submit" class="button-opcion next" value="Registrar">
         </div>
 
     </div>
-
     <div class="input-group">
 
         <div class="title_categories_primary">Permisos</div>
         <div class="input-group">
             <div class="check container">
-                @foreach ($Categories as $categories => $permissionGroup)
-                    <div id="dimensions" class="apo">
+                @foreach ($Categories as $category => $permissionGroup)
+                    <div class="apo" id="dimensions-{{ $category }}">
                         <div class="checkbox checkbox-1">
-                            <input type="checkbox" id="{{ $categories }}" />
-                            <label for="{{ $categories }}" class="title_categories">{{ $categories }}</label>
+                            <input type="checkbox" id="category_{{ $category }}" class="category-checkbox" />
+                            <label for="category_{{ $category }}" class="title_categories">{{ $category }}</label>
                         </div>
-                        <div id="{{ $categories }}" class="sub-rol">
+                        <div class="sub-rol" data-category-id="category_{{ $category }}">
                             @foreach ($permissionGroup as $permission)
                                 <div class="checkbox checkbox-1">
-                                    <input type="checkbox" id="C_{{ $permission->name }}" name="permissions[]" value="{{ $permission->id }}" />
-                                    <label for="C_{{ $permission->name }}" class="sub_categories">{{ $permission->name }}</label>
+                                    <input type="checkbox" id="permission_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}" class="permission-checkbox" />
+                                    <label for="permission_{{ $permission->id }}" class="sub_categories">{{ $permission->name }}</label>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 @endforeach
             </div>
-
         </div>
     </div>
 </form>

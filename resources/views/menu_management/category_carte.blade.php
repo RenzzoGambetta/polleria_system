@@ -86,7 +86,7 @@
     </div>
 </div>
 
-<script src="{{ $DragAndDrop }}"></script>
+<script src="{{ asset($DragAndDrop) }}"></script>
 <script src="{{ asset($OrderTable) }}"></script>
 
 <!--Pie de pagina como plantilla de todo el panel de control-->

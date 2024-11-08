@@ -3,6 +3,22 @@
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
+
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message')}}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10}})
+    </script>
+@endif
+
 <div class="btn-mobile mobile">
     <a href="{{ route('new_supply_inventory') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
 </div>
@@ -66,7 +82,7 @@
                                 <span></span>
                             @endif
                         </td>
-                        <td><button type="button" class="btn-clasic">Eitar</button></td>
+                        <td><a class="btn-clasic" href="{{ route('new_supply_inventory').'?id='.$Inventories->id}}">Eitar</a></td>
                     </tr>
                 @endforeach
             </tbody>

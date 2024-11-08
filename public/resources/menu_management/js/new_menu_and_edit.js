@@ -1,4 +1,4 @@
-const apiUrl = (combo === 0) ? '/list_of_supplys' : '/list_of_item';
+
 let searchBox = shortenRequest(apiUrl);
 new SearchBox('No se encuntra la categoria...', '.search-category', '#search-category', '#search-label-category', '.suggestions-category', '#loader-category', '#id-category', '/list_of_category', 5, 0);
 

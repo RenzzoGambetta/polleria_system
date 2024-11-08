@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class supplyService
 {
-    public function __construct(){}
+    public function __construct() {}
 
-    public function createSupply(array $data) {
+    public function createSupply(array $data)
+    {
         DB::beginTransaction();
 
         try {
@@ -20,7 +21,7 @@ class supplyService
                 $brand = $this->getBrand($brandName);
                 $data['brand_id'] = $brand->id;
             }
-            
+
             $supply = Supply::create([
                 'brand_id' => isset($data['brand_id']) ? $data['brand_id'] : null,
                 'code' => isset($data['code']) ? $data['code'] : null,
@@ -39,10 +40,15 @@ class supplyService
         }
     }
 
-    public function updateSupply(Supply $supply, array $data) {
+    public function updateSupply(int $id, array $data)
+    {
         DB::beginTransaction();
 
         try {
+
+            // Buscar el suministro por su ID
+            $supply = Supply::findOrFail($id);
+
             if (isset($data['brand_name'])) {
                 $brandName = $data['brand_name'];
                 $brand = $this->getBrand($brandName);
@@ -67,7 +73,8 @@ class supplyService
         }
     }
 
-    public function deleteSupplyAndBrand(Supply $supply) {
+    public function deleteSupplyAndBrand(Supply $supply)
+    {
         $brandId = $supply->brand_id;
         $brand = Brand::find($brandId);
 
@@ -89,7 +96,8 @@ class supplyService
         }
     }
 
-    public function getBrand(string $name) {
+    public function getBrand(string $name)
+    {
         $brand = Brand::firstOrCreate([
             'name' => $name,
         ]);

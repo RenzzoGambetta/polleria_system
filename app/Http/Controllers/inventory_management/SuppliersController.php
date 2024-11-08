@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\inventory\supplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Services\inventory\SupplierService;
 
 class SuppliersController extends Controller
 {
@@ -14,6 +16,12 @@ class SuppliersController extends Controller
         'sub_seccion' => 3.4,
         'color' => 34
     ];
+    protected $supplierService;
+
+    public function __construct(SupplierService $supplierService)
+    {
+        $this->supplierService = $supplierService;
+    }
     public function showSuppliersList()
     {
         $Suppliers = Supplier::paginate(10);
@@ -44,20 +52,18 @@ class SuppliersController extends Controller
 
 
         if ($companyName != "null" & $documentNumber != "null" & $phone != "null") {
-            $reply = [
-                'id' => 222,
-                'company_name' => $companyName,
-                'document_number' => $documentNumber,
-                'phone' => $phone,
-                'response' => true
-            ];
+
+            $data = $request->validated();
+            $response = $this->supplierService->createFastSupplier($data);
+            $response["response"] = true;
+
         } else {
-            $reply = [
+            $response = [
                 'response' => false
             ];
         }
 
-        return response()->json($reply);
+        return response()->json($response);
     }
     public function listOfSuppliers()
     {
@@ -72,5 +78,11 @@ class SuppliersController extends Controller
         }
 
         return response()->json($data);
+    }
+    public function newSupplierRegistration(supplierRequest $request){
+
+        $data = $request->validated();
+        $response = $this->supplierService->createSupplier($data);
+        return response()->json($response);
     }
 }

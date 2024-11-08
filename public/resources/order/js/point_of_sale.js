@@ -30,10 +30,13 @@ async function loadTableData(id, text = null) {
         fetch(url)
             .then(response => response.text())
             .then(template => {
-                var color = data.status === 1 ? '#f95f5f85': '#26f9276e';
+                var color = data.status === 1 ? '#f95f5f85' : '#26f9276e';
+                var isVisible = data.status === 1 ? 'block' : 'none';
                 let htmlContent = template
                     .replaceAll('{{code}}', data.name)
                     .replaceAll('--status', color)
+                    .replaceAll('--is-visible', isVisible)
+                    .replace('{{option}}', data.status)
                     .replaceAll('{{id}}', data.id);
 
                 tablesList.insertAdjacentHTML('beforeend', htmlContent);
@@ -113,8 +116,6 @@ function dataInputLounge(url, option) {
 async function addTable(id, code = null) {
     var url = URL_TEMPLATE + "select_to_table.html";
 
-
-
     fetch(url)
         .then(response => response.text())
         .then(template => {
@@ -154,15 +155,25 @@ async function addTable(id, code = null) {
 
 
 
-document.getElementById('tables-list').addEventListener('click', function (event) {
+$('.tables-list').on('click', function(event) {
+    const target = $(event.target).closest('.table-item.table-data');
+    const codeElement = target.find('.span-data-table');
 
-    const target = event.target.closest('.table-item.table-data');
-    const codeElement = target ? target.querySelector('.span-data-table') : null;
+    if (target.length && codeElement.length) {
+        const tableId = target.data('id');
+        const codeData = codeElement.text();
 
-    if (target && codeElement) {
-        const tableId = target.getAttribute('data-id');
-        const codeData = codeElement.textContent;
-        addTable(tableId, codeData)
+        // Busca el elemento `status` dentro del `target` específico clickeado y extrae su `data-id`
+        const statusElement = target.find('#status');
+        const dataIdValue = statusElement.data('id');
 
+        console.log('Id: ' + tableId + '\nCode: ' + codeData + '\nEstado de Mesa: ' + dataIdValue);
+        if(dataIdValue == 0){
+            addTable(tableId, codeData);
+        }if(dataIdValue == 1){
+
+        }
     }
 });
+
+

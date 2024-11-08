@@ -60,7 +60,7 @@
                         <td>{{ $List_->person->firstname ?? 'No registrado' }}</td>
                         <td>{{ $List_->person->lastname ?? 'No registrado' }}</td>
                         <td>{{ $List_->person->phone ?? 'No registrado' }}</td>
-                        <td>{{ $List_->awd ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->birthdate ?? 'No registrado' }}</td>
                         <td>{{ $List_->awd ?? 'No registrado' }}</td>
 
                     </tr>

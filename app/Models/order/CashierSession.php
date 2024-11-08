@@ -10,7 +10,7 @@ class CashierSession extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'employee_id', 'opening_balance', 'cash_open_at', 'cash_close_at'];
+    protected $fillable = ['user_id', 'employee_id','note', 'opening_balance', 'cash_open_at', 'cash_close_at']; //se asigno nota
 
     function user()
     {

@@ -1,4 +1,4 @@
-@import url('https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css');
+/*Online
 @import url('https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-straight/css/uicons-solid-straight.css');
 @import url('https://cdn-uicons.flaticon.com/2.5.1/uicons-bold-rounded/css/uicons-bold-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-chubby/css/uicons-solid-chubby.css');
@@ -6,4 +6,16 @@
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css');
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css');
-@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');*/
+
+/*2.5.1*/
+@import url('../icon/2.5.1.V/uicons-solid-rounded.css');
+@import url('../icon/2.5.1.V/uicons-solid-straight.css');
+@import url('../icon/2.5.1.V/uicons-bold-rounded.css');
+@import url('../icon/2.5.1.V/uicons-solid-chubby.css');
+/*2.6.0*/
+@import url('../icon/2.6.0.V/uicons-bold-straight.css');
+@import url('../icon/2.6.0.V/uicons-regular-straight.css');
+@import url('../icon/2.6.0.V/uicons-solid-rounded.css');
+@import url('../icon/2.6.0.V/uicons-solid-straight.css');
+@import url('../icon/2.6.0.V/uicons-regular-rounded.css');

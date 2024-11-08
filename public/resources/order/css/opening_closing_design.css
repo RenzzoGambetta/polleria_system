@@ -196,3 +196,32 @@ a.sub-link {
 .cash-register-close-button.lock{
     background-color: rgb(0, 141, 0);
 }
+.wave-group.input-dimensions.comment {
+    margin-top: 20px;
+    height: 70px;
+}
+.div-note {
+    width: 890px;
+    display: flex;
+}
+.cash-register-main-container.clouse {
+    padding: 60px 20px;
+}
+.div-note.clouse{
+    width: 790px;
+}
+.search-container.cash-register-amount-container {
+    margin: 0px;
+    border-radius: 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+input#search-supplier {
+    border-radius: 0px;
+}
+div#loader-supplier {
+    height: 20px;
+}

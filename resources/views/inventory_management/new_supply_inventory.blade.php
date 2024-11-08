@@ -7,6 +7,21 @@
 <link rel="stylesheet" href="{{ asset($CheckboxAnimation) }}">
 <link rel="stylesheet" href="{{ asset($RegisterNewsupply) }}">
 
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error' }}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10 }}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message') }}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10 }})
+    </script>
+@endif
+
 <div class="header">
     <div class="left">
         <h1 class="title-reducer">Registro nuevo suministro</h1>
@@ -38,19 +53,19 @@
 
                 <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                     <div class="input-group input-dimensions alert-style-div-input alert-input">
-                        <input type="text" id="name-data" name="name" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                        <input type="text" id="name-data" name="name" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ old('name', $Supply->name ?? '') }}">
                         <label for="name-data" class="label-input-data mobile-label">Nombre</label>
                     </div>
                     <div class="input-group input-dimensions alert-style-div-input alert-input">
-                        <input type="text" id="brand_name-data" name="brand_name" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
-                        <label for="brand_name-data" class="label-input-data mobile-label">Provedor</label>
+                        <input type="text" id="brand_name-data" name="brand_name" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ old('brand_name', $Supply->brandName ?? '') }}">
+                        <label for="brand_name-data" class="label-input-data mobile-label">Marca</label>
                     </div>
                 </div>
 
                 <div class="input-data-number">
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                         <div class="input-group input-dimensions alert-style-div-input alert-input">
-                            <input type="text" id="code-data" name="code" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                            <input type="text" id="code-data" name="code" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ old('code', $Supply->code ?? '') }}">
                             <label for="code-data" class="label-input-data mobile-label">Codigo</label>
                         </div>
                     </div>
@@ -89,7 +104,7 @@
                 <div class="input-data-number">
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                         <div class="checkbox-wrapper-35">
-                            <input name="is_stockable" id="switch-data" type="checkbox" class="switch" checked>
+                            <input name="is_stockable" id="switch-data" type="checkbox" class="switch" {{ old('is_stockable', $Supply->is_stockable ?? '') == 1 ? 'checked' : '' }}>
                             <label for="switch-data">
                                 <span class="switch-x-toggletext">
                                     <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked:
@@ -104,14 +119,26 @@
                     </div>
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                         <div class="input-group input-dimensions alert-style-div-input alert-input">
-                            <input type="number" id="stock-data" name="stock" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" ">
+                            <input type="number" id="stock-data" name="stock" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ old('stock', $Supply->stock ?? '') }}">
                             <label for="stock-data" class="label-input-data mobile-label">Stock</label>
                         </div>
                     </div>
                 </div>
                 <div class="buttom-select">
-                    <button type="button" class="button-option-new-supply cancel-btn" onclick="exit()">Cancelar</button>
-                    <button type="submit" class="button-option-new-supply register-or-edit">Registrar</button>
+                    @if ($Supply->isEdit ?? false)
+                        <script>
+                            const OptionId = '{{ $Supply->unit }}';
+                        </script>
+                        <input type="text" name='id_edit_stock' value="{{$Supply->id}}" style="display: none">
+                        <button type="button" class="button-option-new-supply cancel-btn" onclick="urlGet('{{ route('delete_new_supply_complete') }}',{id:{{$Supply->id}}})">Eliminar</button>
+                        <button type="submit" class="button-option-new-supply register-or-edit">Editar</button>
+                    @else
+                        <script>
+                            const OptionId = null;
+                        </script>
+                        <button type="button" class="button-option-new-supply cancel-btn" onclick="exit()">Cancelar</button>
+                        <button type="submit" class="button-option-new-supply register-or-edit">Registrar</button>
+                    @endif
                 </div>
             </div>
             <div class="frame-02">
@@ -130,7 +157,7 @@
                     <div class="text" id="text-preview">
                         <span>Subir una imagen</span>
                     </div>
-                    <input id="file" type="file" accept="image/*" onchange="previewImage(event)" style="display:none;">
+                    <input id="file" type="file" accept="image/*" onchange="previewImage(event)" style="display:none;" name="image" value="{{ old('image', $Supply->image ?? '') }}">
                 </label>
 
             </div>
@@ -138,7 +165,7 @@
         <div class="conteiner-02">
             <div class="input-data-form-numeric">
                 <div class="wave-group input-dimensions comment">
-                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input" value="" placeholder=" "></textarea>
+                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input" value="" placeholder=" ">{{ old('note', $Supply->note ?? '') }}</textarea>
                     <label class="label">
                         @foreach (str_split($comment) as $index => $char)
                             <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
@@ -153,7 +180,6 @@
 </form>
 <script src="{{ asset($OptionSelector) }}"></script>
 <script src="{{ asset($NewsupplyAction) }}"></script>
-
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

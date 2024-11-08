@@ -1,0 +1,18 @@
+.search-container {
+    position: relative;
+    width: 100%;
+    margin: 0px 0 0 1vh;
+}
+
+.button-new-supplier {
+    margin-right: 1vh;
+    padding: 13px;
+    background-color: #ff6f00c7;
+    border-radius: 0 10px 10px 0;
+    border: 2px solid var(--color-input-background-border);
+    font-weight: bold;
+    color: var(--dark);
+}
+.search-box-supplier, .search-box {
+    border-radius: 10px 0 0 10px;
+}

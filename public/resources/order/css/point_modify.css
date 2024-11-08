@@ -35,7 +35,7 @@ div#puntoClave {
 
 .tables-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
     width: 100%;
     margin: 0px;
@@ -209,6 +209,19 @@ div#puntoClave {
     padding-top: 5px;
     font-style: italic;
 }
+
 .modify-estyle {
     user-select: none;
+}
+
+.container-secription-table {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.table-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
