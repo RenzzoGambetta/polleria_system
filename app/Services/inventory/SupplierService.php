@@ -32,7 +32,7 @@ class SupplierService
         }
         catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            throw $e;
         }
     }
 

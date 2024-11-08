@@ -533,8 +533,8 @@ async function newSupplierRegistrationFast() {
             const phone = document.getElementsByName('phone')[0]?.value || null;
 
             const dataCompact = {
-                company_name: companyName,
-                document_number: documentNumber,
+                name: companyName,//company_name
+                ruc: documentNumber,//document_number
                 phone: phone,
             };
 

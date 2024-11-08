@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\inventory\CreateFastSupplierRequest;
 use App\Http\Requests\inventory\supplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\inventory\SupplierService;
+use Exception;
 
 class SuppliersController extends Controller
 {
@@ -42,28 +44,18 @@ class SuppliersController extends Controller
 
         return view('inventory_management.register_and_edit_suppliers', compact('Navigation', 'Data'));
     }
-    public function newSupplierRegistrationFast(Request $request)
+    public function newSupplierRegistrationFast(CreateFastSupplierRequest $request)
     {
-
-        $companyName = $request->input('company_name');
-        $documentNumber = $request->input('document_number');
-        $phone = $request->input('phone');
-
-
-
-        if ($companyName != "null" & $documentNumber != "null" & $phone != "null") {
-
+        try {
             $data = $request->validated();
             $response = $this->supplierService->createFastSupplier($data);
-            $response["response"] = true;
-
-        } else {
-            $response = [
-                'response' => false
+            $Mesage["response"] = true;
+        } catch (Exception $e) {
+            $Mesage = [
+                'response' => $e
             ];
         }
-
-        return response()->json($response);
+        return response()->json($Mesage);
     }
     public function listOfSuppliers()
     {
@@ -73,13 +65,14 @@ class SuppliersController extends Controller
         foreach ($Suppliers as $supplier) {
             $data[] = [
                 'id' => $supplier->id,
-                'name' => $supplier->person->document_number ." | ". $supplier->person->name,
+                'name' => $supplier->person->document_number . " | " . $supplier->person->name,
             ];
         }
 
         return response()->json($data);
     }
-    public function newSupplierRegistration(supplierRequest $request){
+    public function newSupplierRegistration(supplierRequest $request)
+    {
 
         $data = $request->validated();
         $response = $this->supplierService->createSupplier($data);
