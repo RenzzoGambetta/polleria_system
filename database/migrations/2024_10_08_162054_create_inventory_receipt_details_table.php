@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supply_id');
             $table->foreign('supply_id')->references('id')->on('supplies');
             $table->decimal('price', 8, 2);
-            $table->decimal('discount', 8, 2);
+            $table->decimal('discount', 8, 2)->default(0);
             $table->integer('quantity');
             $table->decimal('total_amount', 8, 2);
             $table->string('note', 255)->nullable();

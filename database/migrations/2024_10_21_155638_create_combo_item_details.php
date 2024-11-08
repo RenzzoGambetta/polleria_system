@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('combo_item_details');
         Schema::create('combo_item_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('combo_id');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees');
-            $table->decimal('opening_balance', 8, 2);
+            $table->decimal('opening_balance', 8, 2)->default(0.0);
             $table->timestamp('cash_open_at');
             $table->timestamp('cash_close_at')->nullable();
             $table->string('note', 255)->nullable();
@@ -25,9 +25,9 @@ return new class extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id')->after('id');
+            $table->unsignedBigInteger('role_id')->after('id')->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->unsignedBigInteger('employee_id')->after('role_id');
+            $table->unsignedBigInteger('employee_id')->after('role_id')->nullable();
             $table->foreign('employee_id')->references('id')->on('employees');
         });
     }

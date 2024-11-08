@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('menu_categories');
             $table->string('name', 124);
             $table->decimal('price', 8, 2);

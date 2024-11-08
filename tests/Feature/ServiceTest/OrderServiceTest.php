@@ -82,6 +82,7 @@ class OrderServiceTest extends TestCase
         ], $result[1]);
     }
 
+    //TESTEO INCOMPLETO (CODIGO CON ERROR)
     public function test_it_add_details_to_order() 
     {
         //Creamos identidades reales

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('supply_id')->references('id')->on('supplies');
             $table->unsignedTinyInteger('supply_quantity');
             $table->timestamps();
-            $table->unique(['item_id', 'supply_id'], 'unique_combo_item');
+            $table->unique(['item_id', 'supply_id'], 'unique_supply_menu_item');
         });
     }
 

@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('address', 255);
             $table->timestamps();
         });
+
+        Schema::table('permissions', function (Blueprint $table) {
+            $table->unsignedBigInteger('lounge_id')->nullable()->after('id');
+            $table->foreign('lounge_id')->references('id')->on('lounges');
+        });
     }
 
     /**
@@ -27,5 +32,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('lounges');
+
+        Schema::table('permissions', function (Blueprint $table) {
+            $table->dropForeign(['lounge_id']);
+            $table->dropColumn('lounge_id');
+        });
     }
 };

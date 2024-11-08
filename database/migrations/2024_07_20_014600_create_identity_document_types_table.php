@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('identity_document_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('category', 50)->nullable();
+            $table->string('name', 100);
+            $table->string('abbreviation', 15);
+            $table->unsignedTinyInteger('digit_length');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('identity_document_types');
     }
 };
