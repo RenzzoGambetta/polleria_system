@@ -86,27 +86,16 @@ class SupplyStockController extends Controller
     public function registerNewsupply(Request $request)
     {
 
-        $name = $request->input('name');
-        $unit_measure = $request->input('unit_measure');
-        $is_stockable = $request->input('is_stockable');
-        $save_option = $request->input('save_option');
-
-
-        if ($name != "null" & $unit_measure != "null") {
-            $reply = [
-                'id' => 22,
-                'name' => $name,
-                'unit_measure' => $unit_measure,
-                'is_stockable' => $is_stockable,
-                'save_option' => $save_option,
-                'response' => true
-            ];
+        $validator = $request->toArray();
+        $validator['unit'] = $request->unit_measure;
+        if ($request->name != "null" & $request->unit != "null") {
+            $reply = $this->supplyService->createSupply($validator);
+            $reply['response'] = true;
         } else {
             $reply = [
                 'response' => false
             ];
         }
-
         return response()->json($reply);
     }
     public function registerNewSupplyComplete(supplyRequest $request)

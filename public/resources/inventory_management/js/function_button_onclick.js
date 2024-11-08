@@ -121,6 +121,7 @@ async function newSupply() {
             };
             if (newsupplyName != null & newsupplyQuantity != null & newsupplyPrice != null & measurementSystemValue != null) {
                 const result = await querySearchGet("/register_new_supply", data);
+                console.log(result);
                 if (result.response === true) {
                     const item = {
                         id: result.id,
@@ -136,7 +137,7 @@ async function newSupply() {
             } else {
                 quickAlert("error", "Dejastes algunos campos vacíos", "Oops...")
             }
-
+            sumOfPrices();
         }
         else if (result.isDismissed) {
             console.log("Se canselo el registro")
