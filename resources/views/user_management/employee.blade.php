@@ -56,12 +56,12 @@
                 @foreach ($List as $List_)
                     <tr>
 
-                        <td>{{ $List_->person->dni ?? 'No registrado' }}</td>
-                        <td>{{ $List_->person->firstname ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->document_number ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->name ?? 'No registrado' }}</td>
                         <td>{{ $List_->person->lastname ?? 'No registrado' }}</td>
                         <td>{{ $List_->person->phone ?? 'No registrado' }}</td>
                         <td>{{ $List_->person->birthdate ?? 'No registrado' }}</td>
-                        <td>{{ $List_->awd ?? 'No registrado' }}</td>
+                        <td>{{ $List_->person->employee->user->name ?? 'No vinculado' }}</td>
 
                     </tr>
                 @endforeach

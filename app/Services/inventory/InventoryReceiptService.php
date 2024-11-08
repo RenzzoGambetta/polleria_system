@@ -2,6 +2,7 @@
 
 namespace App\Services\inventory;
 
+use App\Models\finance\Voucher;
 use App\Models\InventoryReceipt;
 use App\Models\Supplier;
 use App\Models\VoucherType;
@@ -14,36 +15,40 @@ class InventoryReceiptService
     public function __construct(){}
 
     public function createInventoryReceipt(array $data) {
-        $supplyIds = $data['supply_ids'];
-        $supplyPrices = $data['prices'];
-        $supplyQuantities = $data['quantities'];
-        $supplyTotalPrices = $data['total_prices'];
-        $supplyNotes = $data['notes'];
-
         DB::beginTransaction();
 
         try {
-            $currentReceipt = InventoryReceipt::create([
-                'voucher_id' => $data['voucher_type_id'],
-                'voucher_serie' => $data['voucher_serie'],
+            $voucher = Voucher::create([
+                'voucher_serie_id' => $data['voucher_type_id'] == 1 ? 1 : 2,
                 'correlative_number' => $data['correlative_number'],
-                'supplier_ruc' => $data['supplier_ruc'],
                 'issuance_date' => $data['issuance_date'],
                 'expiration_date' => $data['expiration_date'],
-                'total_amount' => $data['total_amount'],
                 'payment_type' => $data['payment_type'],
+            ]);
+
+            $currentReceipt = new InventoryReceipt([
+                'supplier_id' => $data['supplier_id'],
+                'incoming_date' => $data['issuance_date'],
                 'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
             ]);
 
-            for ($i = 0; $i < count($supplyIds); $i++) {
+            $voucher->inventoryReceipt()->save($currentReceipt);
+
+            $receiptTotalAmount = 0.0;
+            for ($i = 0; $i < count($data['supply_ids']); $i++) {
                 $currentReceipt->details()->create([
-                    'supply_id' => $supplyIds[$i],
-                    'price' => $supplyPrices[$i],
-                    'quantity' => $supplyQuantities[$i],
-                    'total_amount' => $supplyTotalPrices[$i],
-                    'note' => $supplyNotes[$i],
+                    'supply_id' => $data['supply_ids'][$i],
+                    'price' => $data['prices'][$i],
+                    'quantity' => $data['quantities'][$i],
+                    'total_amount' => $data['total_prices'][$i],
+                    'note' => $data['notes'][$i],
                 ]);
+
+                $receiptTotalAmount += $data['total_prices'][$i];
             }
+
+            $currentReceipt->update(['total_amount' => $receiptTotalAmount]);
+            $voucher->update(['total_amount' => $receiptTotalAmount]);
 
             DB::commit();
             return $currentReceipt;

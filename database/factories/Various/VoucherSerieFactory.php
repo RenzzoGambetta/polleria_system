@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Various;
 
+use App\Models\various\VoucherSerie;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,25 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class VoucherSerieFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = VoucherSerie::class;
+
     public function definition(): array
     {
+        static $index = 0;
+
+        // Valores por defecto en la base de datos
+        $voucherSeries = [
+            ['voucher_type_id' => 1, 'serie_number' => 'B001', 'last_correlative_number' => 0],
+            ['voucher_type_id' => 2, 'serie_number' => 'F001', 'last_correlative_number' => 0],
+        ];
+
+        $vs = $voucherSeries[$index];
+        $index++;
+
         return [
-            //
+            'voucher_type_id' => $vs['voucher_type_id'],
+            'serie_number' => $vs['serie_number'],
+            'last_correlative_number' => $vs['last_correlative_number'],
         ];
     }
 }

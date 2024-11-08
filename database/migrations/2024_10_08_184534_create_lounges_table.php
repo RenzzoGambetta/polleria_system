@@ -31,11 +31,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lounges');
-
         Schema::table('permissions', function (Blueprint $table) {
             $table->dropForeign(['lounge_id']);
             $table->dropColumn('lounge_id');
         });
+        Schema::dropIfExists('lounges');
     }
 };

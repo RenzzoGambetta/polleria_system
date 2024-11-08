@@ -27,7 +27,7 @@ class supplyService
                 'code' => isset($data['code']) ? $data['code'] : null,
                 'name' => $data['name'],
                 'is_stockable' => isset($data['is_stockable']) ? true : false,
-                'stock' => isset($data['stock']) ? $data['stock'] : null,
+                'stock' => isset($data['stock']) ? $data['stock'] : 0,
                 'unit' => isset($data['unit']) ? $data['unit'] : null,
                 'note' => isset($data['note']) ? $data['note'] : null,
             ]);

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\finance\Voucher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,13 +12,9 @@ class InventoryReceipt extends Model
 
     protected $fillable = [
         'voucher_id',
-        'voucher_serie',
-        'correlative_number',
         'supplier_id',
-        'issuance_date',
-        'expiration_date',
         'total_amount',
-        'payment_type',
+        'incoming_date',
         'commentary',
     ];
 
@@ -26,9 +23,9 @@ class InventoryReceipt extends Model
         return $this->hasMany(InventoryReceiptDetails::class, 'receipt_id');
     }
 
-    public function voucherType()
+    public function voucher()
     {
-        return $this->belongsTo(VoucherType::class, 'voucher_id');
+        return $this->belongsTo(Voucher::class, 'voucher_id');
     }
 
     public function supplier()

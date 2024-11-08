@@ -20,11 +20,11 @@ class LoungeRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'code' => 'size:4|unique:lounges,code',
+            'code' => 'string|size:4|unique:lounges,code',
             'name' => 'required|string|max:75',
-            'floor' => 'integer|between:1,255',
+            'floor' => 'string',
             'address' => 'string|max:255',
-            'prefix_code_tables' => 'string|max:2' 
+            // 'prefix_code_tables' => 'string|max:2' 
         ];
     }
 }

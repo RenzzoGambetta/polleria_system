@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\menu_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\menu\LoungeRequest;
 use App\Models\menu\Lounge;
 use App\Models\menu\Table;
+use App\Services\menu\LoungeService;
 use Illuminate\Http\Request;
 use Exception;
+use PhpParser\Node\Stmt\Return_;
 
 class TableController extends Controller
 {
@@ -31,23 +34,22 @@ class TableController extends Controller
         $Lounge = Lounge::where('id', $request->id)->first();
         return response()->json($Lounge);
     }
-    public function newLounge(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'code' => 'required|string|max:10',
-            'floor' => 'required|string|max:10'
-        ]);
 
+    /*
+    * CAMBIAR EL REQUEST POR LOUNGE REQUEST
+    */
+    public function newLounge(Request $request)
+    {   
         try {
             // Crear una nueva instancia de Lounge y almacenar en $lounge
-            $lounge = Lounge::create([
-                'name' => $validatedData['name'],
-                'address' => $validatedData['address'],
-                'code' => $validatedData['code'],
-                'floor' => $validatedData['floor']
+            $validator = $request->validate([
+                'code' => 'string|size:4|unique:lounges,code',
+                'name' => 'required|string|max:75',
+                'floor' => 'string',
+                'address' => 'string|max:255',
             ]);
+            $loungeService = new LoungeService();
+            $lounge = $loungeService->createLounge($validator);
 
             // Retornar el ID del nuevo registro junto con el resultado
             return response()->json([

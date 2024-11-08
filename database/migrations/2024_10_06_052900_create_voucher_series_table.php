@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('voucher_type_id');
             $table->foreign('voucher_type_id')->references('id')->on('voucher_types');
-            $table->char('serie_number', 4);
-            $table->unsignedInteger('last_correlative_number')->default(0);
+            $table->char('serie_number', 4)->unique();
+            $table->unsignedInteger('last_correlative_number');
             $table->timestamps();
         });
     }

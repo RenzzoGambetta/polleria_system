@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('document_type')->nullable();
-            $table->foreign('document_type')->references('id')->on('identity_document_types');
+            $table->unsignedBigInteger('document_type_id')->nullable();
+            $table->foreign('document_type_id')->references('id')->on('identity_document_types');
             $table->string('document_number', 20)->nullable();
             $table->string('name', 50);
             $table->string('lastname', 80)->nullable();

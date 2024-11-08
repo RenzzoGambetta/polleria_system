@@ -8,7 +8,8 @@ use App\Http\Requests\inventory\supplyRequest;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\Supply;
-use App\Models\VoucherType;
+use App\Models\various\VoucherType;
+use App\Services\inventory\InventoryReceiptService;
 use App\Services\inventory\supplyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -166,12 +167,13 @@ class SupplyStockController extends Controller
 
         return response()->json($reply);
     }
-    public function registerSupplyEntry(inventoryReceiptRequest  $request)
+    public function registerSupplyEntry(Request $request)
     {
         try {
 
-            $data = $request->validated();
-            $entry = InventoryReceiptRequest::create($data);
+            $data = $request->validate();
+            $inventoryReceiptService = new InventoryReceiptService();
+            $entry = $inventoryReceiptService->createInventoryReceipt($data);
 
             return response()->json([
                 'success' => true,

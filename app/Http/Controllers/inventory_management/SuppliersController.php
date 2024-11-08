@@ -73,7 +73,7 @@ class SuppliersController extends Controller
         foreach ($Suppliers as $supplier) {
             $data[] = [
                 'id' => $supplier->id,
-                'name' => $supplier->person->dni."|".$supplier->person->firstname,
+                'name' => $supplier->person->document_number ." | ". $supplier->person->name,
             ];
         }
 
@@ -83,6 +83,6 @@ class SuppliersController extends Controller
 
         $data = $request->validated();
         $response = $this->supplierService->createSupplier($data);
-        return response()->json($response);
+        return redirect()->route('suppliers');
     }
 }

@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('voucher_serie_id');
             $table->foreign('voucher_serie_id')->references('id')->on('voucher_series');
-            $table->unsignedInteger('correlative_number', 8);
+            $table->unsignedInteger('correlative_number');
             $table->date('issuance_date');
             $table->date('expiration_date')->nullable();
             $table->decimal('total_amount', 8 ,2)->default(0.0);

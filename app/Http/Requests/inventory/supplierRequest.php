@@ -20,13 +20,13 @@ class supplierRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'ruc' => 'required|size:8',
+            'ruc' => 'required|size:11|unique:persons,document_number',
             'name' => 'required|string|max:50',
-            'birthdate' => 'required|date',
-            'gender' => 'nullable|string',
-            'phone' => 'required|string|max:20|',
-            'email' => 'required|email|',
-            'address' => 'required|string|max:255',
+            'birthdate' => 'date|nullable',
+            'gender' => 'string|nullable',
+            'phone' => 'string|max:20|nullable',
+            'email' => 'email|nullable',
+            'address' => 'string|max:255|nullable',
         ];
     }
 }

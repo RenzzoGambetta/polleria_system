@@ -16,14 +16,14 @@ class EmployeeService
         DB::beginTransaction();
         try {
             $person = Person::create([
-                'gender' =>   $data['gender'] ?? 1,
-                'dni' => $data['dni'],
-                'firstname' => $data['name'],
+                'document_type' => 1,
+                'document_number' => $data['dni'],
+                'name' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
                 'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
                 'gender' => isset($data['gender']) ? $data['gender'] : 0,
                 'phone' => isset($data['phone']) ? $data['phone'] : null,
-                'email' => isset($data['email']) ? $data['email'] : null,
+                'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);
 
             $employee = new Employee([
@@ -52,13 +52,13 @@ class EmployeeService
             ]);
 
             $employee->person->update([
-                'dni' => $data['dni'],
+                'document_number' => $data['dni'],
                 'firstname' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
                 'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
                 'gender' => isset($data['gender']) ? $data['gender'] : 0,
                 'phone' => isset($data['phone']) ? $data['phone'] : null,
-                'email' => isset($data['email']) ? $data['email'] : null,
+                'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);
 
             DB::commit();
