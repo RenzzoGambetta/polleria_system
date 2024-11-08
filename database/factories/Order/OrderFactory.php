@@ -21,16 +21,16 @@ class OrderFactory extends Factory
             'cashier_session_id' => CashierSession::factory(),
             'waiter_id' => User::factory(),
             'voucher_id' => $this->faker->numberBetween(1, 2),
-            'voucher_serie' => $this->faker->text(4),
+            'voucher_serie' => '0001',
             'correlative_number' => $this->faker->numerify('######'),
             'issuance_date' => $this->faker->date(),
             'expiration_date' => $this->faker->optional()->date(),
             'payment_type' => $this->faker->randomElement(['contado', 'credito']),
             'payment_method' => $this->faker->randomElement(['efectivo', 'debito', 'credito', 'yape', 'plin']),
-            'total_amount' => $this->faker->decimal(8, 2),
+            'total_amount' => $this->faker->randomFloat(2, 1, 100),
             'status' => $this->faker->randomElement(['pendiente', 'preparacion', 'terminado', 'en espera', 'pagado', 'completado', 'cancelado', 'reembolsado']),
             'is_delibery' => $this->faker->boolean(),
-            'commentary' => $this->faker->optional()->text(255),
+            'commentary' => '',
         ];
     }
 }

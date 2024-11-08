@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('opening_balance', 8, 2);
             $table->timestamp('cash_open_at');
             $table->timestamp('cash_close_at')->nullable();
-            $table->string('note', 255)->nu;
+            $table->string('note', 255)->nullable();
             $table->timestamps();
         });
 

@@ -54,6 +54,60 @@ class OrderService
         }
     }
 
+    public function addDetailsToOrder($orderId, array $data)
+    {
+        $order = Order::findOrFail($orderId);
+
+        DB::beginTransaction();
+
+        try {
+            for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
+                $order->detail()->create([
+                    'supply_id' => $data['menu_item_ids'][$i],
+                    'price' => $data['prices'][$i],
+                    'quantity' => $data['quantities'][$i],
+                    'total_amount' => $data['total_prices'][$i],
+                    'is_delibery' => $data['is_delibery_details'][$i],
+                    'note' => $data['notes'][$i],
+                ]);
+            }
+
+            DB::commit();
+            return $order;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function updateOnlyOrderDetails($orderId, array $data)
+    {
+        $order = Order::findOrFail($orderId);
+
+        DB::beginTransaction();
+
+        try {
+            $order->details()->delete();
+
+            for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
+                $order->details()->create([
+                    'supply_id' => $data['menu_item_ids'][$i],
+                    'price' => $data['prices'][$i],
+                    'quantity' => $data['quantities'][$i],
+                    'total_amount' => $data['total_prices'][$i],
+                    'is_delibery' => $data['is_delibery_details'][$i],
+                    'note' => $data['notes'][$i],
+                ]);
+            }
+
+            DB::commit();
+            return $order;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
     public function updateOrderWithDetails($orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
@@ -126,6 +180,20 @@ class OrderService
         return $orderDetailDTO;
     }
 
+    private function addEveryDetailToOrder(Order $order, array $data) 
+    {
+        for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
+            $order->details()->create([
+                'supply_id' => $data['menu_item_ids'][$i],
+                'price' => $data['prices'][$i],
+                'quantity' => $data['quantities'][$i],
+                'total_amount' => $data['total_prices'][$i],
+                'is_delibery' => $data['is_delibery_details'][$i],
+                'note' => $data['notes'][$i],
+            ]);
+        }
+    }
+    
     private function mapOrderDetailToDTO(OrderDetail $od) 
     {
         $orderDetailDTO = [
