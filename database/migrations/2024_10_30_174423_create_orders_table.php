@@ -22,16 +22,10 @@ return new class extends Migration
             $table->unsignedBigInteger('waiter_id');
             $table->foreign('waiter_id')->references('id')->on('users');
             $table->unsignedBigInteger('voucher_id')->nullable();
-            $table->foreign('voucher_id')->references('id')->on('voucher_types');
-            $table->string('voucher_serie', 4)->nullable();
-            $table->char('correlative_number', 8)->nullable();
-            $table->date('issuance_date')->nullable();
-            $table->date('expiration_date')->nullable();
-            $table->enum('payment_type', ['contado', 'credito'])->default('contado');
-            $table->enum('payment_method', ['efectivo', 'debito', 'credito', 'yape', 'plin'])->default('efectivo');
+            $table->foreign('voucher_id')->references('id')->on('vouchers');
             $table->decimal('total_amount', 8 ,2)->nullable();
             $table->enum('status', ['pendiente', 'preparacion', 'terminado', 'en espera', 'pagado', 'completado', 'cancelado', 'reembolsado'])->default('pendiente');
-            $table->boolean('is_delibery');
+            $table->boolean('is_delibery')->default(false);
             $table->string('commentary', 255)->nullable();
             $table->timestamps();
         });

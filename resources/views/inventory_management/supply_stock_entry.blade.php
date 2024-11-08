@@ -47,7 +47,7 @@
                         <div class="search-container">
                             <input type="number" id="id-supplier" name="supplier_id">
                             <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
-                            <label for="search-supplier" id="search-label-supplier" class="label-input-data mobile-label main-panel">Seleccione el provedor</label>
+                            <label for="search-supplier" id="search-label-supplier" class="label-input-data mobile-label main-panel">Seleccione el proveedor</label>
                             <div id="suggestions" class="suggestions-supplier"></div>
                             <div id="loader-supplier" class="loader-section">
                                 <div class="loading">
@@ -127,7 +127,7 @@
                             <span class="focus-border"></span>
                         </div>
                         <div class="col-3 input-effect data-numeric">
-                            <input class="effect-16" type="text" name="correlative_numer" id="numeric" placeholder="" value="">
+                            <input class="effect-16" type="number" name="correlative_numer" id="numeric" placeholder="">
                             <label for="numeric">Numero</label>
                             <span class="focus-border"></span>
                         </div>
@@ -155,9 +155,9 @@
                     <thead>
                         <tr>
                             <th class="field-size movile-style-th">Producto</th>
-                            <th class="data-entry movile-style-th">Unidad</th>
-                            <th class="data-entry movile-style-th">C/Unitario</th>
-                            <th class="data-entry movile-style-th">C/Total</th>
+                            <th class="data-entry movile-style-th">Cantidad</th>
+                            <th class="data-entry movile-style-th">P.U.</th>
+                            <th class="data-entry movile-style-th">Precio Total</th>
                             <th class="data-button movile-style-th">Opciones</th>
 
                         </tr>
@@ -190,7 +190,7 @@
                             <circle class="back" cx="17" cy="17" r="14"></circle>
                             <circle class="front" cx="17" cy="17" r="14"></circle>
                         </svg>
-                        <div class="text" data-text="Esperando a que seleccione un provedor"></div>
+                        <div class="text" data-text="Esperando a que seleccione un proveedor"></div>
                     </div>
                 </div>
             </div>

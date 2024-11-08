@@ -14,15 +14,11 @@ return new class extends Migration
         Schema::create('inventory_receipts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('voucher_id');
-            $table->foreign('voucher_id')->references('id')->on('voucher_types');
-            $table->string('voucher_serie', 4);
-            $table->char('correlative_number', 8);
+            $table->foreign('voucher_id')->references('id')->on('vouchers');
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
-            $table->date('issuance_date');
-            $table->date('expiration_date')->nullable();
-            $table->decimal('total_amount', 8 ,2);
-            $table->enum('payment_type', ['contado', 'credito'])->default('contado');
+            $table->decimal('total_amount', 8 ,2)->default(0.0);
+            $table->date('incoming_date')->nullable();
             $table->string('commentary', 255)->nullable();
             $table->timestamps();
         });

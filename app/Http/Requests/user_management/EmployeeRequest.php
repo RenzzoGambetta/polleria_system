@@ -22,16 +22,16 @@ class EmployeeRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'dni' => 'required|size:8',
+            'dni' => 'required|size:8|unique:persons,document_number',
             'name' => 'required|string|max:50',
             'paternal_surname' => 'required|string|max:40',
             'maternal_surname' => 'required|string|max:40',
             'birthdate' => 'required|date',
-            'gender' => 'nullable|boolean',
-            'phone' => 'required|string|max:20|',
-            'email' => 'required|email|',
-            'address' => 'required|string|max:255',
-            'nationality' => 'required|string|max:255',
+            'gender' => 'boolean|nullable',
+            'phone' => 'string|max:20|nullable',
+            'email' => 'email|nullable',
+            'address' => 'string|max:255|nullable',
+            'nationality' => 'string|max:255|nullable',
         ];
     }
 }

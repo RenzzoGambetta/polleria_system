@@ -105,12 +105,12 @@ class IdentificationDocumentService
     }
 
     private function fetchDataByDniFromDatabase(string $dni) {
-        $person = Person::where('dni', $dni)->first();
+        $person = Person::where('document_number', $dni)->first();
 
         if (!$person) return false;
 
         $data = [
-            'name' => $person->firstname,
+            'name' => $person->name,
             'paternal_surname' => strrchr($person->lastname, ' ',true), 
             'maternal_surname' => strrchr($person->lastname, ' '),
             'dni' => $dni

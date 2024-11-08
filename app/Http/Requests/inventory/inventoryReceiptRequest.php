@@ -24,12 +24,11 @@ class inventoryReceiptRequest extends BaseRequest
     {
         return [
             'voucher_type_id' => 'required|integer',
-            'voucher_serie' => 'required|string|max:4',
-            'correlative_numer' => 'required|string|digits:8',
+            'voucher_serie' => 'required|string|max:5',
+            'correlative_numer' => 'required|string',
             'supplier_id' => 'required|integer',
             'issuance_date' => 'required|date',
             'expiration_date' => 'date|after_or_equal:issuance_date|nullable',
-            'total_amount' => 'required|decimal:2|min:0',
             'payment_type' => 'required|in:contado,credito',
             'commentary' => 'string|max:255|nullable',
             'supply_ids' => 'required|array',

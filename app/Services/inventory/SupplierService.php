@@ -17,8 +17,9 @@ class SupplierService
 
         try {
             $person = Person::create([
-                'dni' => $data['ruc'],
-                'firstname' => $data['name'],
+                'document_type_id' => 2,
+                'document_number' => $data['ruc'],
+                'name' => $data['name'],
                 'phone' => $data['phone'],
             ]);
 
@@ -41,18 +42,18 @@ class SupplierService
 
         try {
             $person = Person::create([
-                'dni' => $data['ruc'],
-                'firstname' => $data['name'],
-                'lastname' =>'awd',
-                'birthdate' => $data['birthdate'],
-                'gender' => $data['gender'] == 'male' ? 0 : 1,
-                'phone' => $data['phone'],
-                'email' => $data['email'],
+                'document_type_id' => 2,
+                'document_number' => $data['ruc'],
+                'name' => $data['name'],
+                'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
+                'gender' => isset($data['phone']) && $data['gender'] == 'male' ? 0 : 1,
+                'phone' => isset($data['phone']) ? $data['phone'] : null,
+                'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);
 
             $supplier = Supplier::create([
                 'person_id' => $person->id,
-                'address' => $data['address'],
+                'address' => isset($data['address']) ? $data['address'] : null,
 
             ]);
 
@@ -71,20 +72,19 @@ class SupplierService
 
         try {
             $supplier->update([
-                'address' => $data['address'],
+                'address' => isset($data['address']) ? $data['address'] : null,
             ]);
 
             $personId = $supplier->person_id;
             $person = Person::first($personId);
 
             $person->update([
-                'dni' => $data['dni'],
-                'firstname' => $data['name'],
-                'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
-                'birthdate' => $data['birthdate'],
-                'gender' => $data['gender'] == 'male' ? 0 : 1,
-                'phone' => $data['phone'],
-                'email' => $data['email'],
+                'document_number' => $data['ruc'],
+                'name' => $data['name'],
+                'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
+                'gender' => isset($data['phone']) && $data['gender'] == 'male' ? 0 : 1,
+                'phone' => isset($data['phone']) ? $data['phone'] : null,
+                'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);
 
             DB::commit();
