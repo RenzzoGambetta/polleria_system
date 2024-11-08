@@ -181,7 +181,7 @@ div#puntoClave {
 }
 
 #data-item-client {
-    max-height: 70vh;
+    max-height: 65vh;
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -219,9 +219,79 @@ div#puntoClave {
     flex-direction: row;
     align-items: center;
 }
+
 .table-item {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+
+.option-to-nav-table {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100%);
+}
+
+.arrow.top {
+    transform: rotate(180deg);
+}
+
+span.limit-not-margin.to-top {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+samp.span-select-table.select-lounge {
+    margin-top: 70px;
+}
+
+.arrow.top {
+    height: 100%;
+    margin-top: 15px;
+    margin-right: 30px;
+}
+
+span.limit-data.top-spam {
+    margin: 0;
+}
+
+span.limit-data {
+    width: calc(100% - 80px);
+}
+
+.scroll-btn {
+    height: 110%;
+}
+.scroll-btn.right {
+
+    border-radius: 0 10px 10px 0;
+}
+.scroll-btn.left {
+
+    border-radius: 10px 0 0 10px;
+}
+.option-to-refresh-and-nex-to-style-order {
+    width: 100px;
+    height: 100%;
+    background-color: red;
+}
+
+.option-to-nav-table-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+.option-to-refresh-and-nex-to-style-order {
+    width: 20%;
+    min-width: 250px;
+    height: 80px;
+    background-color: red;
+    margin-bottom: 15px;
+}
+/*Buscar un popup para las opciones*/
+/*https://freefrontend.com/css-modal-windows/*/
