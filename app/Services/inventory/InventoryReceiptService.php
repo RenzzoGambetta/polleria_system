@@ -20,7 +20,7 @@ class InventoryReceiptService
         try {
             $voucher = Voucher::create([
                 'voucher_serie_id' => $data['voucher_type_id'] == 1 ? 1 : 2,
-                'correlative_number' => $data['correlative_number'],
+                'correlative_number' => (int) $data['correlative_number'],
                 'issuance_date' => $data['issuance_date'],
                 'expiration_date' => $data['expiration_date'],
                 'payment_type' => $data['payment_type'],
@@ -38,10 +38,10 @@ class InventoryReceiptService
             for ($i = 0; $i < count($data['supply_ids']); $i++) {
                 $currentReceipt->details()->create([
                     'supply_id' => $data['supply_ids'][$i],
-                    'price' => $data['prices'][$i],
+                    'price' => floatval($data['prices'][$i]),
                     'quantity' => $data['quantities'][$i],
-                    'total_amount' => $data['total_prices'][$i],
-                    'note' => $data['notes'][$i],
+                    'total_amount' => floatval($data['total_prices'][$i]),
+                    'note' => $data['notes'][$i] ?? null,
                 ]);
 
                 $receiptTotalAmount += $data['total_prices'][$i];
@@ -50,11 +50,14 @@ class InventoryReceiptService
             $currentReceipt->update(['total_amount' => $receiptTotalAmount]);
             $voucher->update(['total_amount' => $receiptTotalAmount]);
 
+            $inventoryReceipt = $voucher->inventoryReceipt;
+            $inventoryReceipt->update(['total_amount' => $receiptTotalAmount]);
+
             DB::commit();
-            return $currentReceipt;
+            return $inventoryReceipt;
         } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            throw $e;
         }
     }
 

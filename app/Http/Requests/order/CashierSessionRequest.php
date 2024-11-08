@@ -22,7 +22,7 @@ class CashierSessionRequest extends BaseRequest
         return [
             'user_id' => 'required|integer|exists:users,id',
             'employee_id' => 'required|integer|exists:employees,id',
-            'opening_balance' => 'required|numeric|regex:/^\d{1,6}(\.\d{1,2})?$/',  //La regla decimal:2|max_digits:8 no es válida en Laravel
+            'opening_balance' => 'required|numeric|regex:/^\d{1,6}(\.\d{1,2})?$/',
             'note' => 'nullable|string|max:255',
         ];
     }

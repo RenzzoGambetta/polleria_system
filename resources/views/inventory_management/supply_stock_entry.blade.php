@@ -127,11 +127,11 @@
                             <span class="focus-border"></span>
                         </div>
                         <div class="col-3 input-effect data-numeric">
-                            <input class="effect-16" type="number" name="correlative_numer" id="numeric" placeholder="">
+                            <input class="effect-16" type="number" name="correlative_number" id="numeric" placeholder="">
                             <label for="numeric">Numero</label>
                             <span class="focus-border"></span>
                         </div>
-
+b
                     </div>
 
                 </div>

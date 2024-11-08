@@ -50,8 +50,8 @@
 
                 @foreach ($Suppliers as $Suplier)
                     <tr>
-                        <td>{{ $Suplier->person->dni }}</td>
-                        <td>{{ $Suplier->person->firstname }} {{ $Suplier->person->lastname }}</td>
+                        <td>{{ $Suplier->person->document_number }}</td>
+                        <td>{{ $Suplier->person->name }} {{ $Suplier->person->lastname }}</td>
                         <td>
                             @if ($Suplier->person  && $Suplier->person->phone )
                                 {{ $Suplier->person->phone  }}

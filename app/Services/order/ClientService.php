@@ -16,18 +16,19 @@ class ClientService
         DB::beginTransaction();
         try {
             $person = Person::create([
-                'dni' => $data['dni'],
-                'firstname' => $data['name'],
+                'document_type' => 1,
+                'document_number' => $data['dni'],
+                'name' => $data['name'],
                 'lastname' => $data['lastname'],
-                'birthdate' => $data['birthdate'],
-                'gender' => $data['gender'] == 'male' ? 0 : 1,
-                'phone' => $data['phone'],
-                'email' => $data['email'],
+                'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
+                'gender' => isset($data['gender']) ? $data['gender'] : 0,
+                'phone' => isset($data['phone']) ? $data['phone'] : null,
+                'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);
 
             $client = new Client([
-                'address' => $data['address'],
-                'type' => $data['type'],
+                'address' => isset($data['address']) ? $data['address'] : null,
+                'nationality' => isset($data['nationality']) ? $data['nationality'] : null,
             ]);
 
             $person->client()->save($client);
@@ -45,18 +46,18 @@ class ClientService
         DB::beginTransaction();
         try {
             $client->update([
-                'address' => $data['address'],
-                'type' => $data['type'],
+                'address' => isset($data['address']) ? $data['address'] : null,
+                'nationality' => isset($data['nationality']) ? $data['nationality'] : null,
             ]);
 
             $client->person->update([
-                'dni' => $data['dni'],
-                'firstname' => $data['name'],
-                'lastname' => $data['lastname'],
-                'birthdate' => $data['birthdate'],
-                'gender' => $data['gender'] == 'male' ? 0 : 1,
-                'phone' => $data['phone'],
-                'email' => $data['email'],
+                'document_number' => $data['dni'],
+                'name' => $data['name'],
+                'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
+                'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
+                'gender' => isset($data['gender']) ? $data['gender'] : 0,
+                'phone' => isset($data['phone']) ? $data['phone'] : null,
+                'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);
 
             DB::commit();

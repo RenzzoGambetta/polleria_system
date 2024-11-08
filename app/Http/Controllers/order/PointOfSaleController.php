@@ -63,7 +63,7 @@ class PointOfSaleController extends Controller
                 ->where('user_id', $user->id)
                 ->join('employees', 'cashier_sessions.employee_id', '=', 'employees.id')
                 ->join('persons', 'employees.person_id', '=', 'persons.id')
-                ->select('cashier_sessions.*', 'persons.firstname as name')
+                ->select('cashier_sessions.*', 'persons.name as name')
                 ->orderBy('cashier_sessions.id', 'desc')
                 ->first();
 
@@ -125,7 +125,7 @@ class PointOfSaleController extends Controller
         }
     }
     public function listEmployeer(){
-        $data = Employee::select('employees.id', 'persons.firstname as name')
+        $data = Employee::select('employees.id', 'persons.name as name')
         ->join('persons', 'employees.person_id', '=', 'persons.id')
         ->get();
         return response()->json($data);
