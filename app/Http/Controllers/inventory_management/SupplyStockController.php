@@ -156,11 +156,11 @@ class SupplyStockController extends Controller
 
         return response()->json($reply);
     }
-    public function registerSupplyEntry(Request $request)
+    public function registerSupplyEntry(inventoryReceiptRequest $request)
     {
+        // return $request;
         try {
-
-            $data = $request->validate();
+            $data = $request->validated();
             $inventoryReceiptService = new InventoryReceiptService();
             $entry = $inventoryReceiptService->createInventoryReceipt($data);
 

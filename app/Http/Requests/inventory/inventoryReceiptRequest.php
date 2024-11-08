@@ -25,7 +25,7 @@ class inventoryReceiptRequest extends BaseRequest
         return [
             'voucher_type_id' => 'required|integer',
             'voucher_serie' => 'required|string|max:5',
-            'correlative_numer' => 'required|string',
+            'correlative_number' => 'required|string',
             'supplier_id' => 'required|integer',
             'issuance_date' => 'required|date',
             'expiration_date' => 'date|after_or_equal:issuance_date|nullable',
@@ -34,11 +34,11 @@ class inventoryReceiptRequest extends BaseRequest
             'supply_ids' => 'required|array',
             'supply_ids.*' => 'integer|exists:supplies,id',
             'prices' => 'required|array',
-            'prices.*' => 'decimal:2|min:0',
+            'prices.*' => 'string',
             'quantities' => 'required|array',
             'quantities.*' => 'numeric|min:1',
             'total_prices' => 'required|array',
-            'total_prices.*' => 'decimal:2|min:0',
+            'total_prices.*' => 'string',
             'notes' => 'array|nullable',
             'notes.*' => 'string|max:255|nullable',
         ];
