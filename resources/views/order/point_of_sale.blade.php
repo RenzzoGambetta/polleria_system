@@ -39,10 +39,47 @@
         <span class="limit-data limit-not-margin to-top"></span>
     </div>
     <div class="option-to-refresh-and-nex-to-style-order">
-
+        <button class="option-to-table" title="Ver mas opciones del sistema" onclick="optionTablePlus()"><i class="fi fi-sr-circle-ellipsis-vertical"></i></button>
+        <button class="counter-next" title="Es para gestionar pedidos en el mostrador">Mostrador<i class="fi fi-br-angle-small-right"></i></button>
     </div>
 </div>
 @csrf
+<script>
+   $('.counter-next').on('click', function() {
+    var container = $('.option-to-refresh-and-nex-to-style-order');
+    var navTable = $('.option-to-nav-table');
+
+    // Animación para el botón
+    $(this).fadeOut(200, function() {
+        // Alternar la posición (izquierda/derecha) del botón
+        if ($(this).hasClass('right')) {
+            $(this).removeClass('right').addClass('left');
+            container.prepend($(this));  // Mover el botón a la izquierda
+        } else {
+            $(this).removeClass('left').addClass('right');
+            container.append($(this));  // Mover el botón a la derecha
+        }
+
+        // Animación para mostrar el botón después de moverlo
+        $(this).fadeIn(200);
+    });
+
+    // Animación para el contenedor .option-to-nav-table
+    navTable.fadeOut(200, function() {
+        // Alternar la posición del contenedor de la tabla (invertir la dirección)
+        if (navTable.css('flex-direction') === 'row') {
+            navTable.css('flex-direction', 'row-reverse'); // Invertir la dirección
+        } else {
+            navTable.css('flex-direction', 'row'); // Restaurar dirección original
+        }
+
+        // Animación para mostrar el contenedor después de moverlo
+        navTable.fadeIn(200);
+    });
+});
+
+
+</script>
 <div class="modify-estyle">
     <div class="sale-and-table">
 

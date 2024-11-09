@@ -273,11 +273,7 @@ span.limit-data {
 
     border-radius: 10px 0 0 10px;
 }
-.option-to-refresh-and-nex-to-style-order {
-    width: 100px;
-    height: 100%;
-    background-color: red;
-}
+
 
 .option-to-nav-table-container {
     display: flex;
@@ -290,8 +286,58 @@ span.limit-data {
     width: 20%;
     min-width: 250px;
     height: 80px;
-    background-color: red;
     margin-bottom: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
 }
 /*Buscar un popup para las opciones*/
 /*https://freefrontend.com/css-modal-windows/*/
+button.counter-next {
+    height: 70%;
+    width: 70%;
+    border-radius: 15px;
+    background-color: #ff0000d1;
+    border: 0px;
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button.option-to-table {
+    height: 100%;
+    border: none;
+    font-size: 3rem;
+    max-width: 30%;
+    background-color: transparent;
+    color: var(--dark-color-i-option-ellipsis);
+    transition: color 0.3s ease;
+
+}
+i.fi.fi-sr-circle-ellipsis-vertical {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+}
+i.fi.fi-br-angle-small-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 20px;
+    font-size: 2rem;
+    padding-left: 20px;
+}
+button.option-to-table:hover{
+    color: var(--dark-color-i-option-ellipsis-hover);
+
+}
+button.counter-next:hover{
+    background-color:var(--dark-color-counter-next-hover);
+}

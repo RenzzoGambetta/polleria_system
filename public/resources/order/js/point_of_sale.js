@@ -162,8 +162,6 @@ $('.tables-list').on('click', function(event) {
     if (target.length && codeElement.length) {
         const tableId = target.data('id');
         const codeData = codeElement.text();
-
-        // Busca el elemento `status` dentro del `target` específico clickeado y extrae su `data-id`
         const statusElement = target.find('#status');
         const dataIdValue = statusElement.data('id');
 
@@ -177,3 +175,36 @@ $('.tables-list').on('click', function(event) {
 });
 
 
+async function optionTablePlus(){
+    var url = URL_TEMPLATE + "option_plus.html";
+    const htmlContent = await loadHtmlFromFile(url);
+    Swal.fire({
+        title: null,
+        icon: null,
+        html:htmlContent,
+        showCloseButton: false,
+        showCancelButton: false,
+        focusConfirm: false,
+        didOpen: () => {
+            $('.swal2-actions').css('display', 'none');
+            $('div:where(.swal2-container)').css('z-index', 2001);
+            $('div:where(.swal2-container) div:where(.swal2-popup)').css('padding', '0px');
+            $('div:where(.swal2-container) .swal2-html-container').css({
+                'padding': '1em',
+                'display': 'flex'
+            });
+        }
+      });
+}
+async function loadHtmlFromFile(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo HTML');
+        }
+        return await response.text();
+    } catch (error) {
+        console.error(error);
+        return '';
+    }
+}
