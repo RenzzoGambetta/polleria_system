@@ -11,6 +11,7 @@ class InventoryReceiptDetails extends Model
 
     protected $fillable = [
         'receipt_id',
+        'issue_id',
         'supply_id',
         'price',
         'discount',
@@ -23,6 +24,12 @@ class InventoryReceiptDetails extends Model
     {
         return $this->belongsTo(InventoryReceipt::class, 'receipt_id');
     }
+
+    public function inventoryIssue()
+    {
+        return $this->belongsTo(InventoryIssue::class, 'inssue_id');
+    }
+
 
     public function supply()
     {

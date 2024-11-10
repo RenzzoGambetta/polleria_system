@@ -61,13 +61,8 @@ class InventoryReceiptService
         }
     }
 
-    public function updateInventoryReceipt(int $receiptId, array $data) {
-        $supplyIds = $data['supply_ids'];
-        $supplyPrices = $data['prices'];
-        $supplyQuantities = $data['quantities'];
-        $supplyTotalPrices = $data['total_prices'];
-        $supplyNotes = $data['notes'];
-
+    public function updateInventoryReceipt(int $receiptId, array $data) 
+    {
         DB::beginTransaction();
 
         try {
@@ -86,13 +81,13 @@ class InventoryReceiptService
             ]);
 
             $receipt->details()->delete();
-            for ($i = 0; $i < count($supplyIds); $i++) {
+            for ($i = 0; $i < count($data['supply_ids']); $i++) {
                 $receipt->details()->create([
-                    'supply_id' => $supplyIds[$i],
-                    'price' => $supplyPrices[$i],
-                    'quantity' => $supplyQuantities[$i],
-                    'total_amount' => $supplyTotalPrices[$i],
-                    'note' => $supplyNotes[$i],
+                    'supply_id' => $data['supply_ids'][$i],
+                    'price' => $data['prices'][$i],
+                    'quantity' => $data['quantities'][$i],
+                    'total_amount' => $data['total_prices'][$i],
+                    'note' => $data['notes'][$i],
                 ]);
             }
 
