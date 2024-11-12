@@ -131,7 +131,6 @@
                             <label for="numeric">Numero</label>
                             <span class="focus-border"></span>
                         </div>
-b
                     </div>
 
                 </div>

@@ -22,16 +22,9 @@
         timeAlert({{ session('Time') ?? 10}})
     </script>
 @endif
-
-<div class="header">
-    <div class="left">
-        <h1 id="title">Punto de Venta</h1>
-    </div>
-</div>
-@csrf
-<div class="modify-estyle">
-    <div class="sale-and-table">
-        <span class="limit-data"></span>
+<div class="option-to-nav-table-container">
+    <div class="option-to-nav-table">
+        <span class="limit-data top-spam"></span>
         <div class="salas-conteiner">
             <div class="conteiner-salas-btn">
                 <button class="scroll-btn left" onmousedown="startAutoScroll(-1, true)" onmouseup="stopAutoScroll()" onmouseout="stopAutoScroll()">‹</button>
@@ -43,7 +36,53 @@
                 <button class="scroll-btn right" onmousedown="startAutoScroll(1, true)" onmouseup="stopAutoScroll()" onmouseout="stopAutoScroll()">›</button>
             </div>
         </div>
-        <span class="limit-data limit-not-margin"></span>
+        <span class="limit-data limit-not-margin to-top"></span>
+    </div>
+    <div class="option-to-refresh-and-nex-to-style-order">
+        <button class="option-to-table" title="Ver mas opciones del sistema" onclick="optionTablePlus()"><i class="fi fi-sr-circle-ellipsis-vertical"></i></button>
+        <button class="counter-next" title="Es para gestionar pedidos en el mostrador">Mostrador<i class="fi fi-br-angle-small-right"></i></button>
+    </div>
+</div>
+@csrf
+<script>
+   $('.counter-next').on('click', function() {
+    var container = $('.option-to-refresh-and-nex-to-style-order');
+    var navTable = $('.option-to-nav-table');
+
+    // Animación para el botón
+    $(this).fadeOut(200, function() {
+        // Alternar la posición (izquierda/derecha) del botón
+        if ($(this).hasClass('right')) {
+            $(this).removeClass('right').addClass('left');
+            container.prepend($(this));  // Mover el botón a la izquierda
+        } else {
+            $(this).removeClass('left').addClass('right');
+            container.append($(this));  // Mover el botón a la derecha
+        }
+
+        // Animación para mostrar el botón después de moverlo
+        $(this).fadeIn(200);
+    });
+
+    // Animación para el contenedor .option-to-nav-table
+    navTable.fadeOut(200, function() {
+        // Alternar la posición del contenedor de la tabla (invertir la dirección)
+        if (navTable.css('flex-direction') === 'row') {
+            navTable.css('flex-direction', 'row-reverse'); // Invertir la dirección
+        } else {
+            navTable.css('flex-direction', 'row'); // Restaurar dirección original
+        }
+
+        // Animación para mostrar el contenedor después de moverlo
+        navTable.fadeIn(200);
+    });
+});
+
+
+</script>
+<div class="modify-estyle">
+    <div class="sale-and-table">
+
         <div class="conteiner-table">
             <div class="tables-list" id="tables-list">
 
@@ -53,12 +92,12 @@
 
     <div class="edit-panel" id="puntoClave">
         <div class="text-select-direction sale-div">
-            <div class="arrow">
+            <div class="arrow top">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <samp class="span-select-table">
+            <samp class="span-select-table select-lounge">
                 Seleccione una Sala <samp style="color: red">*</samp>
             </samp>
         </div>

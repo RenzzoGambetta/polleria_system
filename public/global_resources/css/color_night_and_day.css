@@ -73,6 +73,12 @@
     --item-detail-client-hover:#f6bc828a;
     --color-alert-error-and-response:#ffa2a2;
     --color-alert-success-and-response:rgb(170 255 161);
+    --dark-color-i-option-ellipsis:#3b3b3b82;
+    --dark-color-i-option-ellipsis-hover:#383737;
+    --dark-color-counter-next-hover:#ff7700;
+    --button-icon-option-multi-factory:#c3c3c3;
+    --alert-background-color-button-option-multi-fatory:#cdcdcde0;
+    --backgraund-color-font-alert:rgb(255 255 255 / 78%);
 }
 
 
@@ -131,4 +137,11 @@ body.dark {
     --item-detail-client-hover:#6743008a;
     --color-alert-error-and-response:#a50000;
     --color-alert-success-and-response:rgb(10, 100, 0);
+    --dark-color-i-option-ellipsis:#c3c3c3a3;
+    --dark-color-i-option-ellipsis-hover:#e6e6e6f6;
+    --dark-color-counter-next-hover:#ff5b00d1;
+    --button-icon-option-multi-factory:#333333;
+    --alert-background-color-button-option-multi-fatory:#454545bd;
+    --backgraund-color-font-alert:rgb(26 26 30 / 69%);
+
 }
