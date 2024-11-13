@@ -9,15 +9,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class InventoryIssueFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            
+            'outgoing_date' => $this->faker->date(),
+            'reason' => $this->faker->optional->sentence(),
         ];
     }
 }

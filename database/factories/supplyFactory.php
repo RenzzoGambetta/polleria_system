@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class supplyFactory extends Factory
         $units = ['und', 'kg', 'lt', 'bls', 'cja'];
 
         return [
-            'brand_id' => $this->faker->numberBetween(1, 5),
+            'brand_id' => Brand::factory(),
             'code' => $this->faker->unique()->ean8(),
             'name' => $this->faker->word,
             'is_stockable' => $this->faker->boolean,

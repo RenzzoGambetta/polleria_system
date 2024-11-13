@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\InventoryIssue;
 use App\Models\InventoryReceipt;
 use App\Models\Supply;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -11,15 +12,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class InventoryReceiptDetailsFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
             'receipt_id' => InventoryReceipt::factory(),
+            'issue_id' => InventoryIssue::factory(),
             'supply_id' => Supply::factory(),
             'price' => $this->faker->randomFloat(2, 1, 100),
             'discount' => $this->faker->randomFloat(2, 0, 50),
@@ -29,5 +26,25 @@ class InventoryReceiptDetailsFactory extends Factory
             },
             'note' => $this->faker->optional()->sentence(10),
         ];
+    }
+
+    public function receipt(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'receipt_id' => InventoryReceipt::factory(),
+                'issue_id' => null,
+            ];
+        });
+    }
+
+    public function issue(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'receipt_id' => null,
+                'issue_id' => InventoryIssue::factory(),
+            ];
+        });
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('inventory_issues', function (Blueprint $table) {
             $table->id();
             $table->date('outgoing_date');
-            $table->string('reason', 255);
+            $table->string('reason', 255)->nullable();
             $table->timestamps();
         });
 

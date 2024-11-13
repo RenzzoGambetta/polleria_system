@@ -8,6 +8,7 @@ use App\Models\InventoryReceiptDetails;
 use App\Models\Supply;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Services\inventory\InventoryDTOService;
 
 class InventoryController extends Controller
 {
@@ -23,7 +24,6 @@ class InventoryController extends Controller
     ];
     public function showInventoryList()
     {
-
         $Inventory = Supply::paginate(10);
         $Navigation = $this->Navigationsupply;
         return view('inventory_management.inventory', compact('Navigation', 'Inventory'));
@@ -44,8 +44,10 @@ class InventoryController extends Controller
 
     public function showListInventoryMovements()
     {
-
-        $Movement = InventoryReceiptDetails::paginate(10);
+        $InventoryDTOService = new InventoryDTOService();
+        $Movement = $InventoryDTOService->getLatestInventoryMovementsDto();
+        return $Movement;
+        // $Movement = InventoryReceiptDetails::paginate(10);
         $Navigation = $this->NavigationMovement;
         return view('inventory_management.stock_movement', compact('Navigation', 'Movement'));
     }
