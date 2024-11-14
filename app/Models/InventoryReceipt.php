@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\finance\Voucher;
+use App\Models\inventory\InventoryMovementDetail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +21,7 @@ class InventoryReceipt extends Model
 
     public function details() 
     {
-        return $this->hasMany(InventoryReceiptDetails::class, 'receipt_id');
+        return $this->hasMany(InventoryMovementDetail::class, 'receipt_id');
     }
 
     public function voucher()

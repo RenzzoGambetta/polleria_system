@@ -9,18 +9,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PersonFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-
     public function definition(): array
     {
         return [
-            'dni' => $this->faker->unique()->numerify('########'),
-            'firstname' => $this->faker->firstName,
+            'document_type_id' => $this->faker->numberBetween(1, 2),
+            'document_number' => $this->faker->unique()->numerify('########'),
+            'name' => $this->faker->firstName,
             'lastname' => $this->faker->lastName,
+            'company_name' => null,
             'birthdate' => $this->faker->date(),
             'gender' => $this->faker->boolean,
             'phone' => $this->faker->numerify('##########'),

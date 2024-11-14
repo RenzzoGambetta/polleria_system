@@ -57,10 +57,10 @@ class SupplyStockController extends Controller
 
         $produc = DB::table('supplier_supply')
             ->join('supplies', 'supplier_supply.supply_id', '=', 'supplies.id')
-            ->leftJoin('inventory_receipt_details', function ($join) {
-                $join->on('inventory_receipt_details.supply_id', '=', 'supplies.id')
-                    ->whereRaw('inventory_receipt_details.id = (
-                    SELECT id FROM inventory_receipt_details AS ird
+            ->leftJoin('inventory_movement_details', function ($join) {
+                $join->on('inventory_movement_details.supply_id', '=', 'supplies.id')
+                    ->whereRaw('inventory_movement_details.id = (
+                    SELECT id FROM inventory_movement_details AS ird
                     WHERE ird.supply_id = supplies.id
                     ORDER BY ird.created_at DESC
                     LIMIT 1
@@ -70,8 +70,8 @@ class SupplyStockController extends Controller
             ->select(
                 'supplies.id',
                 'supplies.name',
-                DB::raw('COALESCE(inventory_receipt_details.quantity, 1) AS quantity'),
-                DB::raw('COALESCE(inventory_receipt_details.price, 0) AS price_per_unit')
+                DB::raw('COALESCE(inventory_movement_details.quantity, 1) AS quantity'),
+                DB::raw('COALESCE(inventory_movement_details.price, 0) AS price_per_unit')
             )
             ->get();
 

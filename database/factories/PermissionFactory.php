@@ -21,7 +21,7 @@ class PermissionFactory extends Factory
     {
 
         return [
-            'name' => 'permission' . self::$increment++,
+            'name' => $this->faker->word() . self::$increment++,
             'category' => $this->faker->randomElement(['admin', 'ventas', 'pedidos', 'cocina']),
         ];
     }

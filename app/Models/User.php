@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function cashierSessions(): HasMany

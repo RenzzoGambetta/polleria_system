@@ -135,7 +135,7 @@ function validarFormulario(event) {
         return;
     }
 
-    if (!validarSeleccion(msTxt, msRrDiv, 'employer_id', 'Debes seleccionar un empleado.') ||
+    if (!validarSeleccion(msTxt, msRrDiv, 'employee_id', 'Debes seleccionar un empleado.') ||
         !validarSeleccion(msTxt, msRrDiv, 'role_id', 'Debes seleccionar un rol.')) {
         activarRetroceso();
         event.preventDefault(); return;

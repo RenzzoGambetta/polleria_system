@@ -69,8 +69,8 @@
                             <div class="employers">
                                 @foreach ($Employee as $Employee_)
                                 <label class="employer">
-                                    <input type="radio" id="{{ $Employee_->id ?? 'not_id' }}" name="employer_id" value="{{ $Employee_->id ?? 'not_id' }}" />
-                                    <span> {{ $Employee_->person->firstname ?? 'No registrado' }} </span>
+                                    <input type="radio" id="{{ $Employee_->id ?? 'not_id' }}" name="employee_id" value="{{ $Employee_->id ?? 'not_id' }}" />
+                                    <span> {{ $Employee_->person->name ?? 'No registrado' }} </span>
                                 </label>
                                 @endforeach
 
@@ -102,16 +102,16 @@
                 <div class="form-step">
 
                     <div class="input-group col-md-6 one unique">
-                        <input type="text" id="user_name" class="effect-4" name="user_name" placeholder=" " required />
+                        <input type="text" id="user_name" class="effect-4" name="username" placeholder=" " required />
                         <label for="user_name">*Nombre de Usuario</label>
                     </div>
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="password" id="password_primary" class="effect-4" name="password_primary" placeholder=" " required />
+                            <input type="password" id="password_primary" class="effect-4" name="password" placeholder=" " required />
                             <label for="password_primary">*Contraseña</label>
                         </div>
                         <div class="input-group col-md-6 one">
-                            <input type="password" id="password_repeat" class="effect-4" name="password_repeat" placeholder=" " required />
+                            <input type="password" id="password_repeat" class="effect-4" name="password_confirmation" placeholder=" " required />
                             <label for="password_repeat">*Repita la Contraseña</label>
                         </div>
                     </div>

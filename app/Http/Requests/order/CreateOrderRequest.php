@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\order;
 
+use App\Http\Requests\util_request\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateOrderRequest extends FormRequest
+class CreateOrderRequest extends BaseRequest
 {
     public function authorize(): bool
     {

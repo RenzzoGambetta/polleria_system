@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Brand;
+use App\Models\inventory\InventoryMovementDetail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,9 +23,9 @@ class Supply extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function inventoryReceiptDetails() : HasMany
+    public function inventoryMovementDetails() : HasMany
     {
-        return $this->hasMany(InventoryReceiptDetails::class, 'supply_id');
+        return $this->hasMany(InventoryMovementDetail::class, 'supply_id');
     }
 
     public function suppliers()
