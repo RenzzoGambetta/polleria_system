@@ -5,7 +5,7 @@ namespace App\Http\Requests\user_management;
 use App\Http\Requests\util_request\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleRequest extends BaseRequest
+class CreateRoleRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -21,6 +21,8 @@ class RoleRequest extends BaseRequest
     {
         return [
             'name' => 'required|max:50|unique:roles,name',
+            'permissions' => 'required|array',
+            'permissions.*' => 'integer|exists:permissions,id',
         ];
     }
 }

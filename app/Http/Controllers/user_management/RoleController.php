@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\user_management\RoleRequest;
+use App\Http\Requests\user_management\CreateRoleRequest;
 use App\Models\Role;
 use App\Models\Permission;
+use App\Services\user_management\RoleService;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -17,13 +18,14 @@ class RoleController extends Controller
         'sub_seccion' => 2.2,
         'color' => 22
     ];
-    /*
+    
     protected $roleService;
-    public function __construct( roleService $roleService)
+
+    public function __construct(RoleService $roleService)
     {
         $this->roleService = $roleService;
     }
-    */
+    
     public function show_position_list()
     {
         $Navigation = $this->Navigation;
@@ -39,33 +41,21 @@ class RoleController extends Controller
         $Navigation = $this->Navigation;
         return view('user_management.role_register', compact('Navigation', 'Permissions', 'Categories'));
     }
-    public function store(RoleRequest $request)
+    public function store(CreateRoleRequest $request)
     {
-
-        DB::beginTransaction();
-
+        /*
+        *   Implementacion temporal de la creación de roles, modifica la logica.
+        */
         try {
-
-            $role = Role::create(['name' => $request->input('name')]);
-
-            if ($role) {
-
-                foreach ($request->input('permissions') as $permissionId) {
-                    DB::table('role_permission')->insert([
-                        'role_id' => $role->id,
-                        'permission_id' => $permissionId,
-                    ]);
-                }
-            }
-
-            DB::commit();
+            $role = $this->roleService->createRoleAndAssignPermissions($request->validated()); 
 
             return redirect()->route('position')->withInput()->with([
                 'Message' => 'Rol y permisos asignados correctamente.',
                 'Type' => 'success'
             ]);
         } catch (Exception $e) {
-            DB::rollback();
+            return $e;
+
             return redirect()->route('role_register')->withInput()->with([
                 'Message' => 'Error al asignar el rol y permisos.',
                 'Type' => 'error'
