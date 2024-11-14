@@ -13,8 +13,7 @@ use App\Http\Controllers\menu_management\MenuController;
 use App\Http\Controllers\menu_management\TableController;
 use App\Http\Controllers\order\PointOfSaleController;
 use App\Http\Controllers\temp\EfectController;
-
-
+use App\Http\Controllers\test\testController;
 
 //--> Modulo de autentificacion
 
@@ -95,7 +94,11 @@ use App\Http\Controllers\temp\EfectController;
         Route::get('/list_employeer', [PointOfSaleController::class,'listEmployeer'])->name('list_employeer');
         Route::get('/point_of_sale', [PointOfSaleController::class,'showPointOfSale'])->name('point_of_sale');
         Route::get('/cashier_sessions', [PointOfSaleController::class,'showCashierSessions'])->name('cashier_sessions');
+        Route::get('/assigned_waiter', [PointOfSaleController::class,'assignedWaiter'])->name('assigned_waiter');
         Route::post('/register_session_cash_box', [PointOfSaleController::class,'registerSessionCashBox'])->name('register_session_cash_box');
+        Route::get('/client_data_filt', [PointOfSaleController::class,'clientDataFilt'])->name('client_data_filt');
+        Route::get('/new_order_client', [PointOfSaleController::class,'newOrderClient'])->name('new_order_client');
+        Route::get('/list_item_filt_category', [PointOfSaleController::class,'listItemFiltCategory'])->name('list_item_filt_category');
 
     //--> Home
 
@@ -105,4 +108,8 @@ use App\Http\Controllers\temp\EfectController;
 
         Route::get('/switch_theme_', [EfectController::class, 'switch_theme']);
         Route::get('/update_menu_state', [EfectController::class, 'updateMenuState']);
+
+    //-- testing view
+        Route::get('/view-test', [testController::class, 'viewTest']);
+
     });

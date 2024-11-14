@@ -118,6 +118,9 @@ class Resource_Path_Css extends ServiceProvider
             $openingClosingDesignStyle = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'opening_closing_design.css');
             $view->with('openingClosingDesignStyle', $openingClosingDesignStyle);
 
+            $newOrder = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'new_order.css');
+            $view->with('newOrder', $newOrder);
+
         });
     }
 }

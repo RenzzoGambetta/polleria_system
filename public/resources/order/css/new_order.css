@@ -1,0 +1,84 @@
+.list_category_item {
+    min-width: 170px;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--backgraund-color-category-option);
+    border-radius: 15px;
+}
+
+button.button-Category {
+    transition: background-color 0.3s ease;
+    transition: color 0.5s ease;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid var(--backgraund-color-category-option-border);
+    background-color: var(--backgraund-color-category-option);
+    color: var(--dark);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.button-Category:hover {
+
+    background-color: var(--backgraund-color-category-option-select);
+    color: red;
+}
+
+.item-data img {
+    height: 130px;
+    /* Altura fija */
+    width: 100%;
+    /* Ocupa el 100% del ancho disponible */
+    object-fit: cover;
+    /* La imagen ocupará todo el espacio del contenedor sin perder proporción */
+    display: block;
+    margin: 0 auto;
+}
+
+.sale-and-table {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: calc(80% - 170px);
+    margin: 0 20px;
+}
+
+div#puntoClave {
+    max-width: none;
+    min-width: 35%;
+}
+
+.list_category_item {
+    max-height: 90vh;
+    /* Limita la altura máxima al 100% de la ventana */
+    overflow-y: auto;
+    /* Habilita el desplazamiento vertical si el contenido excede la altura máxima */
+    padding-right: 10px;
+    direction: rtl; /* Agrega un pequeño espacio a la derecha para evitar que el scroll se pegue al borde */
+}.list_category_item > * {
+    direction: ltr;
+}
+
+/* Estilos para la barra de desplazamiento en WebKit (Chrome, Safari) */
+.list_category_item::-webkit-scrollbar {
+    width: 5px; /* Ancho muy delgado de la barra de desplazamiento */
+}
+
+.list_category_item::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Color oscuro y semi-transparente */
+    border-radius: 5px;
+}
+
+.list_category_item::-webkit-scrollbar-track {
+    background: transparent; /* Fondo transparente */
+}
+
+/* Estilos para la barra de desplazamiento en Firefox */
+.list_category_item {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
