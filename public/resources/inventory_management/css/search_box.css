@@ -7,13 +7,15 @@
 input#search-supplier {}
 
 .search-box-supplier:focus,
-.search-box:focus {
+.search-box:focus,
+.search-box-data-client:focus {
     width: 100%;
     border: 2.5px solid var(--imput-efect-transiccion-focus);
 }
 
 .search-box-supplier,
-.search-box {
+.search-box,
+.search-box-data-client {
     width: 100%;
     border-radius: 10px;
     border: 2px solid var(--color-input-background-border);
@@ -25,7 +27,8 @@ input#search-supplier {}
 .suggestions-category,
 .suggestions-cooking-place,
 .suggestions-supplier,
-.suggestions {
+.suggestions,
+.suggestions-client {
 
     position: absolute;
     top: calc(100% + 4px);
@@ -42,7 +45,8 @@ input#search-supplier {}
 .suggestions-category.open,
 .suggestions-cooking-place.open,
 .suggestions-supplier.open,
-.suggestions.open {
+.suggestions.open,
+.suggestions-client.open {
     max-height: 250px;
     opacity: 1;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -89,7 +93,8 @@ div#loader {
 }
 
 #search-label-supplier,
-#search-label {
+#search-label,#search-label-client
+ {
     left: 15px;
 }
 
@@ -104,7 +109,8 @@ div#loader-supplier {
 @media (max-width: 992px) {
 
     .search-box-supplier,
-    .search-box {
+    .search-box,
+        .search-box-data-client {
         font-size: 0.7rem;
     }
 

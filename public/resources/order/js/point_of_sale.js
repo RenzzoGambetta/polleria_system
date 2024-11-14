@@ -119,12 +119,10 @@ async function addTable(id, code = null) {
     fetch(url)
         .then(response => response.text())
         .then(template => {
-            // Reemplaza los datos dinámicos en la plantilla principal
             let htmlContent = template
                 .replaceAll('{{lounge}}', NAME_SELECT)
                 .replaceAll('{{table}}', code);
 
-            // Plantilla para cada item
             let itemTemplate = `
                 <div class="item-detail-client">
                     <div class="item-details">
@@ -136,26 +134,43 @@ async function addTable(id, code = null) {
                 </div>
             `;
 
-            // Genera 30 items dinámicamente y los agrega al contenedor
             let itemsContent = '';
             for (let i = 0; i < 30; i++) {
                 itemsContent += itemTemplate;
             }
 
-            // Inserta el contenido generado de items en la plantilla principal
             htmlContent = htmlContent.replace('<div id="data-item-client">', `<div id="data-item-client">${itemsContent}`);
 
             const referenceElement = document.getElementById('puntoClave');
-            referenceElement.innerHTML = ''; // Limpia el contenido actual
-            referenceElement.innerHTML = htmlContent; // Inserta el nuevo contenido
+            referenceElement.innerHTML = '';
+            referenceElement.innerHTML = htmlContent;
+        })
+        .catch(error => console.error('Error loading template:', error));
+}
+
+async function newOrderForTheCounter(id, code = null) {
+    var url = URL_TEMPLATE + "new_order_counter.html";
+
+    fetch(url)
+        .then(response => response.text())
+        .then(template => {
+
+            let htmlContent = template
+                .replaceAll('{{lounge}}', NAME_SELECT)
+                .replaceAll('{{table}}', code)
+                .replaceAll('{{id}}', id);
+
+            const referenceElement = document.getElementById('puntoClave');
+            referenceElement.innerHTML = '';
+            referenceElement.innerHTML = htmlContent;
+            new SearchBox('No se encuntro el Producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-waiter', '/assigned_waiter', 5, 0);
+            new SearchBoxClient('No se encuntro el Cliente...', '.search-box-data-client', '#search-client', '#search-label-client', '.suggestions-client', '#id-waiter-client', '/client_data_filt', 5, 0);
         })
         .catch(error => console.error('Error loading template:', error));
 }
 
 
-
-
-$('.tables-list').on('click', function(event) {
+$('.tables-list').on('click', function (event) {
     const target = $(event.target).closest('.table-item.table-data');
     const codeElement = target.find('.span-data-table');
 
@@ -165,23 +180,23 @@ $('.tables-list').on('click', function(event) {
         const statusElement = target.find('#status');
         const dataIdValue = statusElement.data('id');
 
-        console.log('Id: ' + tableId + '\nCode: ' + codeData + '\nEstado de Mesa: ' + dataIdValue);
-        if(dataIdValue == 0){
+        //console.log('Id: ' + tableId + '\nCode: ' + codeData + '\nEstado de Mesa: ' + dataIdValue);
+        if (dataIdValue == 1) {
             addTable(tableId, codeData);
-        }if(dataIdValue == 1){
-
+        } if (dataIdValue == 0) {
+            window.location.href = url;
         }
     }
 });
 
 
-async function optionTablePlus(){
+async function optionTablePlus() {
     var url = URL_TEMPLATE + "option_plus.html";
     const htmlContent = await loadHtmlFromFile(url);
     Swal.fire({
         title: null,
         icon: null,
-        html:htmlContent,
+        html: htmlContent,
         showCloseButton: false,
         showCancelButton: false,
         focusConfirm: false,
@@ -194,7 +209,7 @@ async function optionTablePlus(){
                 'display': 'flex'
             });
         }
-      });
+    });
 }
 async function loadHtmlFromFile(url) {
     try {
@@ -206,5 +221,57 @@ async function loadHtmlFromFile(url) {
     } catch (error) {
         console.error(error);
         return '';
+    }
+}
+
+$('.counter-next').on('click', function () {
+    var container = $('.option-to-refresh-and-nex-to-style-order');
+    var navTable = $('.option-to-nav-table-container');
+    var textButton = $('.counter-next');
+
+
+    $(this).fadeOut(200, function () {
+        if ($(this).hasClass('right')) {
+            $(this).removeClass('right').addClass('left');
+            textButton.html('Mostrador<i class="fi fi-br-angle-small-right"></i>');
+            container.append($(this));
+        } else {
+            $(this).removeClass('left').addClass('right');
+            textButton.html('<i class="fi fi-br-angle-small-left"></i>Mesas');
+            container.prepend($(this));
+        }
+        $(this).fadeIn(200);
+    });
+
+    navTable.fadeOut(200, function () {
+
+        if (navTable.css('flex-direction') === 'row') {
+            navTable.css('flex-direction', 'row-reverse');
+        } else {
+            navTable.css('flex-direction', 'row');
+        }
+
+        navTable.fadeIn(200);
+    });
+});
+ 
+function newOrderToClient(id){
+
+    const nameOfInput = ["number_people", "id_user", "user_name", "id_person", "document_and_name_to_person"];
+    const valueOfInput = {};
+    nameOfInput.forEach(name => {
+        valueOfInput[name] = $(`input[name="${name}"]`).val();
+    });
+
+    if(valueOfInput.number_people == null){
+        console.log("nulo");
+    }
+    if(valueOfInput.id_user != null){
+        console.log(valueOfInput.user_name);
+    }else{
+        $('input[name="supply_name"]').css('border', '2px solid rgb(157, 22, 22)');
+    }
+    if(valueOfInput.id_person != null){
+        console.log(valueOfInput.document_and_name_to_person);
     }
 }

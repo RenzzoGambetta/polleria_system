@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\order\CashierSessionRequest;
 use App\Models\Employee;
 use App\Models\menu\Lounge;
+use App\Models\menu\MenuCategory;
+use App\Models\menu\MenuItem;
+use App\Models\Person;
+use App\Models\User;
 use App\Services\order\CashierSessionService;
 use DateTime;
 use Exception;
@@ -124,10 +128,11 @@ class PointOfSaleController extends Controller
             ], 422);
         }
     }
-    public function listEmployeer(){
+    public function listEmployeer()
+    {
         $data = Employee::select('employees.id', 'persons.name as name')
-        ->join('persons', 'employees.person_id', '=', 'persons.id')
-        ->get();
+            ->join('persons', 'employees.person_id', '=', 'persons.id')
+            ->get();
         return response()->json($data);
     }
     //se puede toamar como servisio
@@ -169,5 +174,59 @@ class PointOfSaleController extends Controller
             'date' => $formattedDate,
             'time' => $formattedTime
         ];
+    }
+    public function assignedWaiter()
+    {
+        $Waiter = User::select('username as name', 'id')->get();
+        return response()->json($Waiter);
+    }
+    public function clientDataFilt(Request $request)
+    {
+        $query = $request->input('query');
+        $limit = $request->input('limit', 5);
+        $offset = $request->input('offset', 0);
+
+        // Inicializamos la consulta de búsqueda básica
+        $personsQuery = Person::query();
+
+        // Verificamos si el query contiene un RUC o DNI en formato Ruc:XXXX|nombre o Dni:XXXX|nombre
+        if (preg_match('/^(ruc|dni):(\d+)\|(.+)$/', $query, $matches)) {
+            $documentType = $matches[1];  // Tipo de documento (Ruc o Dni)
+            $documentNumber = $matches[2];
+            $name = $matches[3];
+
+            // Filtrar tanto por número de documento como por nombre
+            $personsQuery->where('document_number', 'like', "%$documentNumber%")
+                ->where('name', 'like', "%$name%");
+        } else {
+            // Si no está en el formato específico, buscar por nombre o documento
+            $personsQuery->where('name', 'like', "%$query%")
+                ->orWhere('document_number', 'like', "%$query%");
+        }
+
+        // Ejecutar la consulta con límites y offset
+        $persons = $personsQuery->skip($offset)
+            ->take($limit)
+            ->get();
+
+        // Formatear los resultados
+        $formattedPersons = $persons->map(function ($person) {
+            $prefix = strlen($person->document_number) == 11 ? 'Ruc:' : 'Dni:';
+            return [
+                'id' => $person->id,
+                'name' => $prefix . $person->document_number . '|' . $person->name
+            ];
+        });
+
+        return response()->json(['items' => $formattedPersons]);
+    }
+    public function newOrderClient(Request $request){
+        $Navigation = $this->NavigationPonit;
+        $Category = MenuCategory::select('name', 'id')->get();
+        return view('order.new_order_client', compact('Navigation','Category'));
+    }
+    public function listItemFiltCategory(Request $request){
+        $Item = MenuItem::where('category_id' ,$request->id)->select('name', 'id','display_order','price')->get();
+        return response()->json($Item);
     }
 }

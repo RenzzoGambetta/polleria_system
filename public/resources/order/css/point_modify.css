@@ -265,10 +265,12 @@ span.limit-data {
 .scroll-btn {
     height: 110%;
 }
+
 .scroll-btn.right {
 
     border-radius: 0 10px 10px 0;
 }
+
 .scroll-btn.left {
 
     border-radius: 10px 0 0 10px;
@@ -282,6 +284,7 @@ span.limit-data {
     width: 100%;
     height: auto;
 }
+
 .option-to-refresh-and-nex-to-style-order {
     width: 20%;
     min-width: 250px;
@@ -292,6 +295,7 @@ span.limit-data {
     align-items: center;
     flex-direction: row;
 }
+
 /*Buscar un popup para las opciones*/
 /*https://freefrontend.com/css-modal-windows/*/
 button.counter-next {
@@ -309,6 +313,7 @@ button.counter-next {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 button.option-to-table {
     height: 100%;
     border: none;
@@ -319,12 +324,23 @@ button.option-to-table {
     transition: color 0.3s ease;
 
 }
+
 i.fi.fi-sr-circle-ellipsis-vertical {
     display: flex;
     height: 100%;
     align-items: center;
     cursor: pointer;
 }
+
+i.fi.fi-br-angle-small-left {
+    padding-right: 20px;
+}
+
+i.fi.fi-br-angle-small-right {
+    padding-left: 20px;
+}
+
+i.fi.fi-br-angle-small-left,
 i.fi.fi-br-angle-small-right {
     display: flex;
     align-items: center;
@@ -332,12 +348,108 @@ i.fi.fi-br-angle-small-right {
     flex-direction: row;
     width: 20px;
     font-size: 2rem;
-    padding-left: 20px;
 }
-button.option-to-table:hover{
+
+button.option-to-table:hover {
     color: var(--dark-color-i-option-ellipsis-hover);
 
 }
-button.counter-next:hover{
-    background-color:var(--dark-color-counter-next-hover);
+
+button.counter-next:hover {
+    background-color: var(--dark-color-counter-next-hover);
+}
+
+.edit-panel label {
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    left: 10px;
+}
+
+.edit-panel input[type="number"],
+.edit-panel input[type="text"] {
+    margin-bottom: 0px
+}
+
+.effect-16:focus~label,
+.has-content.effect-16~label {
+    left: 5px;
+}
+
+.effect-16:not(:placeholder-shown)+label {
+    left: 0;
+}
+
+#id-waiter {
+    display: none;
+}
+
+div#assign-table-and-waiter {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.sub-frame-01 {
+    display: flex;
+}
+
+.search-container {
+    margin-top: 30px;
+}
+
+.effect-5:focus+label.label-input-data,
+.effect-5:not(:placeholder-shown)+label.label-input-data {
+    background-color: transparent;
+    top: -10px
+}
+
+.edit-panel input[type="number"],
+.edit-panel input[type="text"] {
+    padding: 10px 20PX;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.continue-button-order:hover {
+    background-color: rgb(0, 114, 11);
+}
+
+.continue-button-order {
+    transition: background-color 0.3s ease;
+    background-color: rgb(46, 52, 46);
+}
+
+.data-client {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1.sub-title-client {
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+div#suggestions {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.new-client-conteiner {
+    margin-top: 20px;
+    padding: 0 10px;
+}
+.new-client-conteiner button{
+    transition: background-color 0.3s ease;
+    background-color: #424242;
+}
+.new-client-conteiner button:hover{
+    background-color: #fb4300;
 }

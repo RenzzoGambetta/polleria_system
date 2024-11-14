@@ -5,21 +5,23 @@
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
 <link rel="stylesheet" href="{{ asset($InputResources) }}">
 <link rel="stylesheet" href="{{ asset($TableEditAndRegister) }}">
-<link rel="stylesheet" href="{{ asset($pointModify) }}">
 <link rel="stylesheet" href="{{ asset($loaderOrder) }}">
+<link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
+<link rel="stylesheet" href="{{ asset($SearchBox) }}">
+<link rel="stylesheet" href="{{ asset($pointModify) }}">
 
 @if (session()->has('Message'))
     <div class="container-aler">
-        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error' }}">
             <div class="message-title-and-timer">
                 <span class="tilte-alert">Mensaje:</span>
-                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10 }}s</span>
             </div>
-            <span class="text-alert">{{ session('Message')}}</span>
+            <span class="text-alert">{{ session('Message') }}</span>
         </div>
     </div>
     <script>
-        timeAlert({{ session('Time') ?? 10}})
+        timeAlert({{ session('Time') ?? 10 }})
     </script>
 @endif
 <div class="option-to-nav-table-container">
@@ -44,42 +46,6 @@
     </div>
 </div>
 @csrf
-<script>
-   $('.counter-next').on('click', function() {
-    var container = $('.option-to-refresh-and-nex-to-style-order');
-    var navTable = $('.option-to-nav-table');
-
-    // Animación para el botón
-    $(this).fadeOut(200, function() {
-        // Alternar la posición (izquierda/derecha) del botón
-        if ($(this).hasClass('right')) {
-            $(this).removeClass('right').addClass('left');
-            container.prepend($(this));  // Mover el botón a la izquierda
-        } else {
-            $(this).removeClass('left').addClass('right');
-            container.append($(this));  // Mover el botón a la derecha
-        }
-
-        // Animación para mostrar el botón después de moverlo
-        $(this).fadeIn(200);
-    });
-
-    // Animación para el contenedor .option-to-nav-table
-    navTable.fadeOut(200, function() {
-        // Alternar la posición del contenedor de la tabla (invertir la dirección)
-        if (navTable.css('flex-direction') === 'row') {
-            navTable.css('flex-direction', 'row-reverse'); // Invertir la dirección
-        } else {
-            navTable.css('flex-direction', 'row'); // Restaurar dirección original
-        }
-
-        // Animación para mostrar el contenedor después de moverlo
-        navTable.fadeIn(200);
-    });
-});
-
-
-</script>
 <div class="modify-estyle">
     <div class="sale-and-table">
 
@@ -89,8 +55,8 @@
             </div>
         </div>
     </div>
-
     <div class="edit-panel" id="puntoClave">
+
         <div class="text-select-direction sale-div">
             <div class="arrow top">
                 <span></span>
@@ -115,8 +81,10 @@
         </div>
     </div>
 </div>
-
-
+</div>
+<script>const url = "{{route('new_order_client')}}";</script>
+<script src="{{ asset($SearchBoxTemplate) }}"></script>
+<script src="{{ asset($searchBoxDataCliene) }}"></script>
 <script src="{{ asset($pointOfSale) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

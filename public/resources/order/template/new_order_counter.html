@@ -1,0 +1,57 @@
+<div class="container-table-data">
+    <div class="table-data">
+        <div class="header-table-data">
+            <span>{{lounge}} - Mesa: {{table}}</span>
+            <span class="icon-table"><i class="fi fi-sr-journal-alt"></i></span>
+        </div>
+        <div id="assign-table-and-waiter">
+            <div class="dub-block-002">
+                <div class="col-3 input-effect">
+                    <input type="number" name="number_people" id="person" class="effect-16" placeholder=" ">
+                    <label for="person">Numero de personas</label>
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="sub-frame-01">
+                <div class="search-container">
+                    <input type="number" id="id-waiter" name="id_user">
+                    <input type="text" id="search" name="user_name" class="search-box input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
+                    <label for="search" id="search-label" class="label-input-data mobile-label">Asigna el mozo *</label>
+                    <div id="suggestions" class="suggestions"></div>
+                    <div id="loader" class="loader-section">
+                        <div class="loading">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="data-client">
+                <h1 class="sub-title-client">Datos de cliente</h1>
+                <div class="sub-frame-01">
+                    <div class="search-container">
+                        <input type="number" id="id-waiter-client" name="id_person" style="display: none">
+                        <input type="text" id="search-client" name="document_and_name_to_person" class="search-box-data-client input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
+                        <label for="search-client" id="search-label-client" class="label-input-data mobile-label">Busca cliente</label>
+                
+                        <div id="suggestions" class="suggestions-client">
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="new-client-conteiner">
+                    <button onclick="newOrderToClient({{id}})"><i class="fi fi-ss-user-add"></i> Nuevo cliente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-total">
+        <button class="continue-button-order">
+            Continuar Pedidos
+            <span class="arrow-detail">→</span>
+        </button>
+    </div>
+</div>

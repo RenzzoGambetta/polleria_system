@@ -76,6 +76,12 @@ class Resource_Path_Js extends ServiceProvider
 
             $openingClosingDesignFunction = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'opening_closing_design.js');
             $view->with('openingClosingDesignFunction', $openingClosingDesignFunction);
+
+            $searchBoxDataCliene = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'search_box_data_cliene.js');
+            $view->with('searchBoxDataCliene', $searchBoxDataCliene);
+            
+            $orderFunction = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'order_function.js');
+            $view->with('orderFunction', $orderFunction);
         });
     }
 }

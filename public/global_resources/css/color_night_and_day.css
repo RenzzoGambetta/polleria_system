@@ -79,6 +79,10 @@
     --button-icon-option-multi-factory:#c3c3c3;
     --alert-background-color-button-option-multi-fatory:#cdcdcde0;
     --backgraund-color-font-alert:rgb(255 255 255 / 78%);
+    --backgraund-color-category-option:#fff;
+    --backgraund-color-category-option-select:#b5b5ff;
+    --backgraund-color-category-option-border:#b3b3b3;
+
 }
 
 
@@ -143,5 +147,8 @@ body.dark {
     --button-icon-option-multi-factory:#333333;
     --alert-background-color-button-option-multi-fatory:#454545bd;
     --backgraund-color-font-alert:rgb(26 26 30 / 69%);
+    --backgraund-color-category-option:#1a1a23;
+    --backgraund-color-category-option-select:#282870;
+    --backgraund-color-category-option-border:#d5d4d4;
 
 }

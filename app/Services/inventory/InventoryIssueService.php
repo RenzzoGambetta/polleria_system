@@ -16,16 +16,16 @@ class InventoryIssueService
 
         try {
             $currentIssue = InventoryIssue::create([
-                'outgoing_date' => $data['outgoing_date'],
-                'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
+                'outgoing_date' => now(),
+                'commentary' => isset($data['comment']) ?? null,
             ]);
 
-            for ($i = 0; $i < count($data['supply_ids']); $i++) {
+            for ($i = 0; $i < count($data['id']); $i++) {
                 $currentIssue->details()->create([
-                    'supply_id' => $data['supply_ids'][$i],
-                    'price' => floatval($data['prices'][$i]),
-                    'quantity' => $data['quantities'][$i],
-                    'total_amount' => floatval($data['total_prices'][$i]),
+                    'supply_id' => $data['id'][$i],
+                    'price' => 0.0,
+                    'quantity' => $data['quantity'][$i],
+                    'total_amount' => 0.0,
                     'note' => $data['notes'][$i] ?? null,
                 ]);
             };
