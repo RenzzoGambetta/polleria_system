@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Inventory;
 
 use App\Models\InventoryIssue;
 use App\Models\InventoryReceipt;
@@ -8,9 +8,9 @@ use App\Models\Supply;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\InventoryReceiptDetails>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\inventory\InventoryMovementDetail>
  */
-class InventoryReceiptDetailsFactory extends Factory
+class InventoryMovementDetailFactory extends Factory
 {
     public function definition(): array
     {

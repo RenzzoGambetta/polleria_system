@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('inventory_receipt_details', function (Blueprint $table) {
+        Schema::table('inventory_movement_details', function (Blueprint $table) {
             $table->unsignedBigInteger('issue_id')->nullable()->after('receipt_id');
             $table->foreign('issue_id')->references('id')->on('inventory_issues');
         });
@@ -29,7 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('inventory_receipt_details', function (Blueprint $table) {
+        Schema::table('inventory_movement_details', function (Blueprint $table) {
             $table->dropForeign(['issue_id']);
             $table->dropColumn('issue_id');
         });

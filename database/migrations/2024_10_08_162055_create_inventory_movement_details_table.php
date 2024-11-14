@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventory_receipt_details', function (Blueprint $table) {
+        Schema::create('inventory_movement_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('receipt_id')->nullable();
             $table->foreign('receipt_id')->references('id')->on('inventory_receipts');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventory_receipt_details');
+        Schema::dropIfExists('inventory_movement_details');
     }
 };

@@ -129,7 +129,7 @@ class SupplierService
 
         foreach ($supplies as $s)
         {
-            $lastDetail = $s->inventoryReceiptDetails()->orderBy('updated_at', 'desc')->first(['price', 'quantity']);
+            $lastDetail = $s->inventoryMovementDetail()->orderBy('updated_at', 'desc')->first(['price', 'quantity']);
 
             $suppliesDTO[] = [
                 'id' => $s->id,

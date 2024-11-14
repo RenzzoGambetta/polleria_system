@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\inventory;
 
+use App\Models\InventoryIssue;
+use App\Models\InventoryReceipt;
+use App\Models\Supply;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryReceiptDetails extends Model
+class InventoryMovementDetail extends Model
 {
     use HasFactory;
 
@@ -29,7 +32,6 @@ class InventoryReceiptDetails extends Model
     {
         return $this->belongsTo(InventoryIssue::class, 'inssue_id');
     }
-
 
     public function supply()
     {

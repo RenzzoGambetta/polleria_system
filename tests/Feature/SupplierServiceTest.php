@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\inventory\InventoryMovementDetail;
 use App\Models\InventoryReceipt;
-use App\Models\InventoryReceiptDetails;
 use App\Models\Supplier;
 use App\Models\Supply;
-use App\Models\VoucherType;
+use App\Models\various\VoucherType;
 use App\Services\inventory\SupplierService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -66,7 +66,7 @@ class SupplierServiceTest extends TestCase
         ]);
 
 
-        InventoryReceiptDetails::create([
+        InventoryMovementDetail::create([
             'receipt_id' => 1,
             'supply_id' => $supplies->id,
             'price' => 10.00,
@@ -76,7 +76,7 @@ class SupplierServiceTest extends TestCase
             'note' => 'First detail',
         ]);
 
-        InventoryReceiptDetails::create([
+        InventoryMovementDetail::create([
             'receipt_id' => 2,
             'supply_id' => $supplies->id,
             'price' => 12.00,

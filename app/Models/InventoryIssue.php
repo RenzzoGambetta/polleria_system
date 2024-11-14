@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\inventory\InventoryMovementDetail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,6 @@ class InventoryIssue extends Model
 
     public function details()
     {
-        return $this->hasMany(InventoryReceiptDetails::class, 'inssue_id');
+        return $this->hasMany(InventoryMovementDetail::class, 'inssue_id');
     }
 }

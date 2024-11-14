@@ -10,8 +10,8 @@ use App\Models\Permission;
 use App\Models\Supplier;
 use App\Models\Brand;
 use App\Models\Client;
+use App\Models\inventory\InventoryMovementDetail;
 use App\Models\InventoryReceipt;
-use App\Models\InventoryReceiptDetails;
 use App\Models\Supply;
 use App\Models\VoucherType;
 use App\Models\menu\Lounge;
@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
         Supplier::factory(10)->create();
         Brand::factory(5)->create();
         Supply::factory(10)->create();
-        InventoryReceiptDetails::factory(10)->create();
+        InventoryMovementDetail::factory(10)->create();
 
         MenuCategory::factory(4)->create()->each(function ($category) {
             $qty = rand(1, 5);

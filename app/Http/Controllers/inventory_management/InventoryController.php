@@ -4,7 +4,6 @@ namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use App\Models\InventoryReceiptDetails;
 use App\Models\Supply;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -44,10 +43,14 @@ class InventoryController extends Controller
 
     public function showListInventoryMovements()
     {
+        /*
+        *   Implementacion temporal del servicio de movimeintos, implementa tu logica propia
+        */
+
         $InventoryDTOService = new InventoryDTOService();
         $Movement = $InventoryDTOService->getLatestInventoryMovementsDto();
         return $Movement;
-        // $Movement = InventoryReceiptDetails::paginate(10);
+        
         $Navigation = $this->NavigationMovement;
         return view('inventory_management.stock_movement', compact('Navigation', 'Movement'));
     }
