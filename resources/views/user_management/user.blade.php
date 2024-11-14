@@ -39,9 +39,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nombre</th>
+                    <th>Nombre Usuario</th>
                     <th>Rol</th>
-                    <th>User name</th>
+                    <th>Empleado</th>
                     <th>Acceso</th>
                     <th>Estado</th>
                 </tr>
@@ -52,8 +52,8 @@
                 @foreach ($Users as $user)
                     <tr>
                         <td>{{ $user->username ?? 'No registrado' }}</td>
-                        <td>-------</td>
-                        <td>-------</td>
+                        <td>{{ $user->role->name ?? 'No registrado' }}</td>
+                        <td>{{ $user->employee->person->name ?? 'No registrado' }}</td>
                         <td>-------</td>
                         <td>-------</td>
                     </tr>

@@ -13,7 +13,7 @@ class TestSeeder extends Seeder
 {
     public function run(): void
     {
-        $roles = Role::factory(3)->create();
+        $roles = Role::factory(4)->create();
         $permissions = Permission::factory(6)->create();
 
         $roles->each(function ($role) use ($permissions) {

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\user_management\CreateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Services\user_management\UserService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
@@ -34,14 +37,18 @@ class UserController extends Controller
         return view('user_management.user_register', compact( 'Navigation', 'Role', 'Employee'));
 
     }
-    public function store(Request $request): JsonResponse
+    public function store(CreateUserRequest $request)
     {
-        $data = $request->only(['employer_id', 'role_id', 'user_name', 'password_primary', 'password_repeat']);
+        /*
+        *   Modifica la logica como tu sabes, esta implementacion es temporal
+        */
 
-        return response()->json([
-            'success' => true,
-            'data' => $data,
-        ]);
+        $userService = new UserService();
+        $user = $userService->createUser($request->validated());
+
+        if (!$user) throw new Exception('No se pudo crear el usuario');
+
+        return redirect()->route('user');
     }
     public function show_home_list()
     {
