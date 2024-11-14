@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->boolean('is_combo')->default(false);
             $table->unsignedTinyInteger('display_order')->default(0);
+            $table->string('commentary', 255)->nullable();
             //falta columna para la imagen
             $table->timestamps();
         });

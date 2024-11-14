@@ -48,7 +48,7 @@
                             <label for="name-data" class="label-input-data mobile-label">Nombre</label>
                         </div>
                         <div class="input-group input-dimensions alert-style-div-input alert-input">
-                            <input type="number" id="code-data" name="code" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ $ComboItem->price ?? '' }}">
+                            <input type="number" step=".01" id="code-data" name="price" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ $ComboItem->price ?? '' }}">
                             <label for="code-data" class="label-input-data mobile-label">Precio</label>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                                 <i class="fi fi-rr-exchange-alt"></i>
                             </div>
                             <div class="col-3 input-effect data-numeric">
-                                <input class="effect-16 quantity-data-input" type="number" name="quantity" id="quantity" placeholder="" title="Coloca la cantidad que se usa o ofrese">
+                                <input class="effect-16 quantity-data-input" type="number" step=".01" name="quantity" id="quantity" placeholder="" title="Coloca la cantidad que se usa o ofrese">
                                 <label for="quantity">Cantidad</label>
                                 <span class="focus-border"></span>
                             </div>
@@ -190,6 +190,16 @@
         </div>
     </div>
 </form>
+ <!-- Muestra los errores de validación -->
+ @if ($errors->any())
+ <div style="color: red;">
+     <ul>
+         @foreach ($errors->all() as $error)
+             <li>{{ $error }}</li>
+         @endforeach
+     </ul>
+ </div>
+@endif
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($OptionSelector) }}"></script>
 <script src="{{ asset($newLabelData) }}"></script>
