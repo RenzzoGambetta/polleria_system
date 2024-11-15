@@ -19,9 +19,7 @@
             <li>
                 /
             </li>
-            <a class="pagina">
-                {{ __('Lista de :from al :to de un total de :total   ', ['from' => $Movement->firstItem(), 'to' => $Movement->lastItem(), 'total' => $Movement->total()]) }}
-            </a>
+           
 
         </ul>
     </div>
@@ -40,22 +38,20 @@
         <table>
             <thead>
                 <tr>
-                    <th>Productos</th>
-                    <th>Movimiento</th>
-                    <th>Cantidad</th>
-                    <th></th>
+                    <th>Provedor</th>
+                    <th>Dia</th>
+                    <th>Tipo</th>
+                    <th>total_amount</th>
                 </tr>
             </thead>
 
             <tbody>
-
                 @foreach ($Movement as $Movements)
                     <tr>
-                        <td>{{ $Movements->supply->name }}</td>
-                        <td></td>
-                        <td>-------</td>
-                        <td>-------</td>
-                        <td>-------</td>
+                        <td>{{ $Movements['proveedor'] }}</td>
+                        <td>{{ $Movements['date'] }}</td>
+                        <td>{{ $Movements['type'] }}</td>
+                        <td>{{ $Movements['total_amount'] }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -64,11 +60,7 @@
     </div>
 </div>
 
-<section class="paginacion">
-    {{ $Movement->onEachSide(1)->links('pagination::custom') }}
-    {{ $Movement->onEachSide(1)->links('pagination::numeros') }}
-    {{ $Movement->onEachSide(1)->links('pagination::anterior') }}
-</section>
+
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>
