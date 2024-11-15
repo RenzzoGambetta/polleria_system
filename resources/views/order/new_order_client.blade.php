@@ -35,7 +35,7 @@
            <button class="button-Category" title="Categoria de {{$Categories->name}}" onclick="loadTableDataItem({{$Categories->id}})">
                <span>{{$Categories->name}}</span>
            </button>
-
+           <span id="data" style="display: none" x:sale="{{$Data['sale']}}" x:code="{{$Data['code']}}"></span>
         @endforeach
     </div>
     <div class="sale-and-table">
@@ -49,6 +49,7 @@
     <div class="edit-panel" id="puntoClave">
 
         <div class="container-select-table">
+
             <h1 class="select-point-sale">{{$Data['sale']}} - Mesa: {{$Data['code']}}</h1>
             <div class="loader">
                 <div class="loaderMiniContainer">

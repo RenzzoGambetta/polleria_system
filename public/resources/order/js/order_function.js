@@ -38,7 +38,9 @@ document.getElementById('tables-list').addEventListener('click', event => {
         const name = item.querySelector('h2').innerText; // Texto del <h2>
         const rawPrice = item.querySelector('#price').innerText; // Texto del precio, por ejemplo: "S/. 50.00"
         const price = parseFloat(rawPrice.replace(/[^0-9.]/g, '')).toFixed(2); // Convertir y redondear a dos decimales
-
+        var saleElement = document.querySelector('#data');
+        var saleValue = saleElement.getAttribute('x:sale');
+        var codeValue = saleElement.getAttribute('x:code');
         // Verificar si el ítem ya existe en el arreglo
         const existingItem = selectedItems.find(entry => entry.id === id);
 
@@ -52,7 +54,7 @@ document.getElementById('tables-list').addEventListener('click', event => {
 
         // Imprimir todos los elementos seleccionados
         console.log(`Todos los seleccionados:`, selectedItems);
-        addTableItem(id, 'code', 'sale')
+        addTableItem(id, codeValue, saleValue)
     }
 });
 
