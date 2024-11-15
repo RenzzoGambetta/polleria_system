@@ -68,7 +68,7 @@ form .form-input button {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    max-height: 20vh;
+    /*max-height: 20vh;*/
     overflow: auto;
     /* Permite el scroll si el contenido excede los 20vh */
 }
