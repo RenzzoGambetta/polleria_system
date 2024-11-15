@@ -49,8 +49,8 @@ class InventoryController extends Controller
 
         $InventoryDTOService = new InventoryDTOService();
         $Movement = $InventoryDTOService->getLatestInventoryMovementsDto();
-        return $Movement;
-        
+
+       // return response()->json($Movement);
         $Navigation = $this->NavigationMovement;
         return view('inventory_management.stock_movement', compact('Navigation', 'Movement'));
     }
