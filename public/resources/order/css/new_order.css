@@ -82,3 +82,9 @@ div#puntoClave {
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
+.item-data {
+    background-color: var( --item-data-order-new-option-list);
+}
+.item-data h2 {
+    color: var(--dark);
+}

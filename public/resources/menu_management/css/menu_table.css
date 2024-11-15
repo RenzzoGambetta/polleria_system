@@ -71,8 +71,9 @@ th.title {
 }
 
 .new-item {
-    position: fixed;
-    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    height: 0px;
 }
 
 .new-item .a-navegation-and-action-data {
@@ -88,6 +89,7 @@ th.title {
     font-size: 24px;
     box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
     transition: background-color 0.3s;
+    z-index: 1;
 }
 
 .new-item .a-navegation-and-action-data:hover {
@@ -96,6 +98,7 @@ th.title {
 @media (min-width: 992px) {
     .new-item {
         right: 40px;
+        margin-right: 10px;
     }
 }
 @media (max-width: 992px) {
@@ -108,6 +111,7 @@ th.title {
         height: 60px;
         margin-top: -60px;
         margin-bottom: 20px;
+        margin-right: 0px;
     }
     .conteiner-total {
         display: flex;
@@ -115,6 +119,7 @@ th.title {
         padding-bottom: 90px;
     }
     .new-item {
+        display: table;
         position: fixed;
         z-index: 100;
         bottom: 0px;

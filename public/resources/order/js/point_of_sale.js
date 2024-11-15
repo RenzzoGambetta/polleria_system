@@ -180,11 +180,11 @@ $('.tables-list').on('click', function (event) {
         const statusElement = target.find('#status');
         const dataIdValue = statusElement.data('id');
 
-        //console.log('Id: ' + tableId + '\nCode: ' + codeData + '\nEstado de Mesa: ' + dataIdValue);
+        //console.log('Id: ' + tableId + '\nCode: ' + codeData + '\nEstado de Mesa: ' + dataIdValue+ '\nEstado de sala: ' + NAME_SELECT);
         if (dataIdValue == 1) {
             addTable(tableId, codeData);
         } if (dataIdValue == 0) {
-            window.location.href = url;
+            window.location.href = url+'?id='+tableId+'&code='+codeData+'&sale='+NAME_SELECT;
         }
     }
 });
@@ -254,7 +254,7 @@ $('.counter-next').on('click', function () {
         navTable.fadeIn(200);
     });
 });
- 
+
 function newOrderToClient(id){
 
     const nameOfInput = ["number_people", "id_user", "user_name", "id_person", "document_and_name_to_person"];

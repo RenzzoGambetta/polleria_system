@@ -35,7 +35,7 @@
            <button class="button-Category" title="Categoria de {{$Categories->name}}" onclick="loadTableDataItem({{$Categories->id}})">
                <span>{{$Categories->name}}</span>
            </button>
-           
+
         @endforeach
     </div>
     <div class="sale-and-table">
@@ -48,28 +48,33 @@
     </div>
     <div class="edit-panel" id="puntoClave">
 
-        <div class="text-select-direction sale-div">
-            <div class="arrow top">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <samp class="span-select-table select-lounge">
-                Seleccione una Sala <samp style="color: red">*</samp>
-            </samp>
-        </div>
-        <div class="loader">
-            <div class="loaderMiniContainer">
-                <div class="barContainer">
-                    <span class="bar"></span>
-                    <span class="bar bar2"></span>
+        <div class="container-select-table">
+            <h1 class="select-point-sale">{{$Data['sale']}} - Mesa: {{$Data['code']}}</h1>
+            <div class="loader">
+                <div class="loaderMiniContainer">
+                    <div class="barContainer">
+                        <span class="bar"></span>
+                        <span class="bar bar2"></span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 101 114" class="svgIcon">
+                        <circle stroke-width="7" stroke="black" transform="rotate(36.0692 46.1726 46.1727)" r="29.5497"
+                            cy="46.1727" cx="46.1726"></circle>
+                        <line stroke-width="7" stroke="black" y2="111.784" x2="97.7088" y1="67.7837" x1="61.7089"></line>
+                    </svg>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 101 114" class="svgIcon">
-                    <circle stroke-width="7" stroke="black" transform="rotate(36.0692 46.1726 46.1727)" r="29.5497" cy="46.1727" cx="46.1726"></circle>
-                    <line stroke-width="7" stroke="black" y2="111.784" x2="97.7088" y1="67.7837" x1="61.7089"></line>
-                </svg>
+            </div>
+            <div class="text-select-direction">
+                <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <samp class="span-select-table">
+                    Selecciona un Categoria y un Item <samp style="color: red">*</samp>
+                </samp>
             </div>
         </div>
+
     </div>
 </div>
 </div>

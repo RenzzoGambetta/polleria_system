@@ -108,7 +108,7 @@ class PointOfSaleController extends Controller
                 ]);
             }
             if ($request->id != null) {
-                $response = $this->cashierSessionService->closeCashRegister($request->id, $request->note);
+                $response = $this->cashierSessionService->closeCashRegister($request->id, $request->note ?? ' ');
 
                 return redirect()->route('cashier_sessions')->withInput()->with([
                     'Message' => 'Se cerro la caja satisfactoriamente.',
@@ -220,13 +220,23 @@ class PointOfSaleController extends Controller
 
         return response()->json(['items' => $formattedPersons]);
     }
-    public function newOrderClient(Request $request){
+    public function newOrderClient(Request $request)
+    {
         $Navigation = $this->NavigationPonit;
         $Category = MenuCategory::select('name', 'id')->get();
-        return view('order.new_order_client', compact('Navigation','Category'));
+        if ($request->id == null | $request->code == null | $request->sale == null) {
+            return response()->json(['mesage' => 'No se puede accesdeder sin datos']);
+        }
+        $Data = [
+            'id' => $request->id,
+            'code' => $request->code,
+            'sale' => $request->sale
+        ];
+        return view('order.new_order_client', compact('Navigation', 'Category', 'Data'));
     }
-    public function listItemFiltCategory(Request $request){
-        $Item = MenuItem::where('category_id' ,$request->id)->select('name', 'id','display_order','price')->get();
+    public function listItemFiltCategory(Request $request)
+    {
+        $Item = MenuItem::where('category_id', $request->id)->select('name', 'id', 'display_order', 'price')->get();
         return response()->json($Item);
     }
 }

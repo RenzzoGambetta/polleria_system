@@ -38,9 +38,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Provedor</th>
                     <th>Dia</th>
                     <th>Tipo</th>
+                    <th>Provedor</th>
                     <th>total_amount</th>
                 </tr>
             </thead>
@@ -48,9 +48,9 @@
             <tbody>
                 @foreach ($Movement as $Movements)
                     <tr>
-                        <td>{{ $Movements['proveedor'] }}</td>
                         <td>{{ $Movements['date'] }}</td>
                         <td>{{ $Movements['type'] }}</td>
+                        <td>{{ $Movements['proveedor'] ?? '------'}}</td>
                         <td>{{ $Movements['total_amount'] }}</td>
                     </tr>
                 @endforeach
