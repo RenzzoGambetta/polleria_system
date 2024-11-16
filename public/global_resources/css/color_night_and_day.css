@@ -83,6 +83,7 @@
     --backgraund-color-category-option-select:#b5b5ff;
     --backgraund-color-category-option-border:#b3b3b3;
     --item-data-order-new-option-list:white;
+    --table-color-hover:#dcdcdc;
 }
 
 
@@ -151,5 +152,6 @@ body.dark {
     --backgraund-color-category-option-select:#282870;
     --backgraund-color-category-option-border:#d5d4d4;
     --item-data-order-new-option-list:#462712;
+    --table-color-hover:#121219;
 
 }

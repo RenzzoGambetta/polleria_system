@@ -453,3 +453,7 @@ div#suggestions {
 .new-client-conteiner button:hover{
     background-color: #fb4300;
 }
+div#add-table-item:hover {
+    transition: background-color 1s;
+    background-color: var(--table-color-hover);
+}

@@ -257,7 +257,7 @@ div#add-table-item {
 
 div#add-table-item:hover {
     transition: background-color 1s;
-    background-color: #121219;
+    background-color: var(--table-color-hover);
 }
 
 .edit-panel button.btn-clear {

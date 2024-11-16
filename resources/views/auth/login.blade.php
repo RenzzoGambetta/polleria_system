@@ -17,7 +17,7 @@
 
     <!--JS & jQuery-->
     <script src="{{ asset($JquerySrc) }}"></script>
-   
+
 
 </head>
 
@@ -44,8 +44,8 @@
                 <div class="box">
 
                     @csrf
-                    <input type="text" name="username" id="username" placeholder="Usuario" value="Pablo_caja" required>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" value="password123" required>
+                    <input type="text" name="username" id="username" placeholder="Usuario" required>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" required>
 
                     <button>Ingresar</button>
 

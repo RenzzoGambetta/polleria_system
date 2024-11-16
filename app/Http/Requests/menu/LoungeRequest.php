@@ -3,7 +3,6 @@
 namespace App\Http\Requests\menu;
 
 use App\Http\Requests\util_request\BaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
 class LoungeRequest extends BaseRequest
 {
@@ -20,11 +19,11 @@ class LoungeRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'code' => 'string|size:4|unique:lounges,code',
+            'code' => 'string|unique:lounges,code',
             'name' => 'required|string|max:75',
             'floor' => 'string',
             'address' => 'string|max:255',
-            // 'prefix_code_tables' => 'string|max:2' 
+            // 'prefix_code_tables' => 'string|max:2'
         ];
     }
 }

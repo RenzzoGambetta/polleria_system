@@ -31,7 +31,7 @@
         <div class="table-item" id="add-table-item">
             <div class="table-info">
                 <i class="fi fi-bs-add table-add"></i>
-                <span class="span-data-table">Añadir nueva mesa</span>
+                <span class="span-data-table">Añadir o eliminar mesas</span>
             </div>
         </div>
     </div>
