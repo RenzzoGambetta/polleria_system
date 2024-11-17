@@ -34,7 +34,10 @@ use App\Http\Controllers\test\testController;
         Route::get('/employeer', [EmployeeController::class,'show_employeer_list'])->name('employeer');
         Route::get('/employeer_register', [EmployeeController::class,'show_employeer_register'])->name('employeer_register');
         Route::get('/fetch_person_data', [EmployeeController::class,'fetch_person_data'])->name('fetch_person_data');
+        Route::get('/data_employer_block', [EmployeeController::class,'showDataemployerBlock'])->name('data_employer_block');
         Route::post('/create_employee_record', [EmployeeController::class,'create_employee_record'])->name('create_employee_record');
+        Route::post('/edit_employee_record', [EmployeeController::class,'editEmployeeRecord'])->name('edit_employee_record');
+        Route::post('/employeer_delete', [EmployeeController::class,'deleteEmployeeRecord'])->name('employeer_delete');
         //Roles
         Route::get('/position', [RoleController::class,'show_position_list'])->name('position');
         Route::get('/role_register', [RoleController::class,'show_role_register'])->name('role_register');

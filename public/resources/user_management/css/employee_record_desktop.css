@@ -172,6 +172,51 @@ i.style-button-plus {
     background-color: var(--btn-plus-list);
     margin-top: 4px;
 }
+
+.content main .bottom-data .orders table tr td:first-child {
+    display: table-cell;
+    grid-gap: 12px;
+    padding-left: 6px;
+}
+
+.content main .bottom-data .orders table td.option {
+    padding: 5px 0;
+    width: 230px;
+}
+
+.button-option-employee {
+    height: 40px;
+    width: 70px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-option-employee.clear {
+    background-color: rgb(209 0 0);
+    margin-right: 5px;
+}
+
+.button-option-employee.clear {
+    background-color: rgb(209 0 0);
+}
+
+.button-option-employee.edit {
+    background-color: rgb(190 135 0);
+    margin-right: 5px;
+}
+
+.button-option-employee.view {
+    background-color: rebeccapurple;
+}
+
+.option-table {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
 @media (max-width: 992px) {
 
 

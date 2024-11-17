@@ -142,7 +142,8 @@ function clearLoungeAction() {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, eliminar!",
-        cancelButtonText: "Cancelar"
+        cancelButtonText: "Cancelar",
+        didOpen: urlPostDeleteStyle
     }).then((result) => {
         if (result.isConfirmed) {
             dataInputLounge('/delate_lounge', 1);
@@ -183,7 +184,8 @@ function alert(result, option, data, action) {
         Swal.fire({
             title: "Listo..",
             text: "Accion exitosa",
-            icon: "success"
+            icon: "success",
+            didOpen: urlPostDeleteStyle
         }).then((res) => {
             if (res.isConfirmed) {
                 if (action == 'lounge') {
@@ -201,7 +203,7 @@ function alert(result, option, data, action) {
                 loadTableData(ID_SELECT, 1);
                 deleteTableItemById(data.id)
             } else if (option == 3) {
-               // loadTableData(ID_SELECT, 1)
+                // loadTableData(ID_SELECT, 1)
             } else if (option == 2) {
                 $('#spma_' + data.id).text(data.code);
             }
@@ -222,7 +224,8 @@ function alert(result, option, data, action) {
         Swal.fire({
             title: "Opps..",
             text: "Tuvimos un error",
-            icon: "error"
+            icon: "error",
+            didOpen: urlPostDeleteStyle
         });
     }
 }
@@ -294,7 +297,8 @@ function clearTableAction() {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, eliminar!",
-        cancelButtonText: "Cancelar"
+        cancelButtonText: "Cancelar",
+        didOpen: urlPostDeleteStyle
     }).then((result) => {
         if (result.isConfirmed) {
             dataInputTable('/delate_table', 1);
@@ -339,7 +343,8 @@ function dataInputTable(url, option) {
             Swal.fire({
                 title: "Opps..",
                 text: "Seleccione una sala o cree una",
-                icon: "error"
+                icon: "error",
+                didOpen: urlPostDeleteStyle
             });
         }
     } catch (e) {

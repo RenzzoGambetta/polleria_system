@@ -13,6 +13,8 @@ class IdentificationDocumentService
 
     public function __construct(){}
 
+    //*Ingresa a la pagina de https://apis.net.pe/ y prueva usar la forma natiba de laravel
+
     public function fetchDataByDni(string $dni) {
         $dataFromDatabase = $this->fetchDataByDniFromDatabase($dni);
 
@@ -111,7 +113,7 @@ class IdentificationDocumentService
 
         $data = [
             'name' => $person->name,
-            'paternal_surname' => strrchr($person->lastname, ' ',true), 
+            'paternal_surname' => strrchr($person->lastname, ' '),
             'maternal_surname' => strrchr($person->lastname, ' '),
             'dni' => $dni
         ];
