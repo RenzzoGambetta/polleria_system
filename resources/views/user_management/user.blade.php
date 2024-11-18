@@ -39,11 +39,10 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nombre Usuario</th>
+                    <th>Usuario</th>
                     <th>Rol</th>
                     <th>Empleado</th>
-                    <th>Acceso</th>
-                    <th>Estado</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
 
@@ -54,8 +53,17 @@
                         <td>{{ $user->username ?? 'No registrado' }}</td>
                         <td>{{ $user->role->name ?? 'No registrado' }}</td>
                         <td>{{ $user->employee->person->name ?? 'No registrado' }}</td>
-                        <td>-------</td>
-                        <td>-------</td>
+                        <td class="option">
+                            <button class="button-option-employee clear" title="Eliminar el empleado" onclick="urlPostDelete('{{route('employeer_delete')}}',{id : {{$user->id}}}, '¿Estás seguro?', 'Este ítem será permanentemente eliminado.')">
+                                <i class="fi fi-sr-trash option-table"></i>
+                            </button>
+                            <button class="button-option-employee edit" onclick="urlGet('{{route('user_register')}}',{id : {{$user->id}}, action:'edit'})" title="Editar datos empleado">
+                                <i class="fi fi-sr-user-pen option-table" ></i>
+                            </button>
+                            <button class="button-option-employee view" onclick="urlGet('{{route('data_employer_block')}}',{id : {{$user->id}}})" title="Visualizar los datos del empleado">
+                                <i class="fi fi-ss-eye option-table"></i>
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -69,6 +77,9 @@
     {{ $Users->onEachSide(1)->links('pagination::numeros') }}
     {{ $Users->onEachSide(1)->links('pagination::anterior') }}
 </section>
+
+<script src="{{ asset($AlertSrc) }}"></script>
+
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

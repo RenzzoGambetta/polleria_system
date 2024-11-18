@@ -26,16 +26,27 @@ class UserController extends Controller
         $Users = User::paginate(6);
         $Navigation = $this->Navigation;
         return view('user_management.user', compact('Navigation', 'Users'));
-
     }
 
-    public function showUserNewRegister()
+    public function showUserNewRegister(Request $Data)
     {
-        $Employee = Employee::all();
         $Role = Role::all();
-        $Navigation = $this->Navigation;
-        return view('user_management.user_register', compact( 'Navigation', 'Role', 'Employee'));
+        $Employee = Employee::all();
 
+        $Navigation = $this->Navigation;
+
+        if ($Data->action == 'edit') {
+            $Info = User::with(['employee', 'employee.person'])->find($Data->id);
+            $Info['title'] = 'Editar Usuario';
+            $Info['text_password'] = 'Escriva la nueva contraseña';
+            $Info['text_repeat_password'] = 'Repita la nueva Contraseña';
+            $Info['text_info_password'] = 'Solo rellene este campo si desea modificar la contraseña';
+        } else {
+            $Info['title'] = 'Nuevo usuario';
+            $Info['text_password'] = '*Contraseña';
+            $Info['text_repeat_password'] = '*Repita la Contraseña';
+        }
+        return view('user_management.user_register', compact('Navigation', 'Role', 'Employee','Info'));
     }
     public function store(CreateUserRequest $request)
     {
@@ -60,7 +71,5 @@ class UserController extends Controller
         ];
         $List = Employee::paginate(6);
         return view('user_management.employee', compact('Navigation', 'List'));
-
     }
-
 }
