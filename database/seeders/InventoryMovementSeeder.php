@@ -12,6 +12,6 @@ class InventoryMovementSeeder extends Seeder
     {
         InventoryMovementDetail::factory()->count(5)->receipt()->create();
 
-        // InventoryMovementDetail::factory()->count(5)->issue()->create();
+        InventoryMovementDetail::factory()->count(5)->issue()->create();
     }
 }

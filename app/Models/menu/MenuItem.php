@@ -11,7 +11,7 @@ class MenuItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category_id', 'name', 'price', 'is_combo', 'display_order', 'image'];
+    protected $fillable = ['category_id', 'cooking_place_id', 'name', 'price', 'is_combo', 'display_order', 'image'];
 
     public function orderDetails()
     {
@@ -39,7 +39,7 @@ class MenuItem extends Model
 
     public function supplyDetails()
     {
-        return $this->belongsToMany(Supply::class, 'menu_supply_details')
+        return $this->belongsToMany(Supply::class, 'menu_supply_details', 'item_id')
                     ->withPivot('supply_quantity')
                     ->withTimestamps();
     }

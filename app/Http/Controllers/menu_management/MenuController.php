@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\menu_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\menu\MenuItemRequest;
 use App\Models\menu\CookingPlace;
 use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
 use App\Models\Supply;
+use App\Services\menu\MenuItemService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Runner\Extension\Extension;
@@ -175,9 +178,22 @@ class MenuController extends Controller
     {
         return response()->json($request);
     }
-    public function registerNewMenu(Request $request)
+    public function registerNewMenu(MenuItemRequest $request)
     {
-        return response()->json($request);
+        /*
+        *   Implementacion temporal de la creacion de nuevos items del menu, modifical con tu logica
+        */
+
+        $menuItemService = new MenuItemService();
+        try {
+            $menuItem = $menuItemService->createMenuItem($request->validated());
+
+            return redirect()->route('menu');
+        } catch (Exception $e) {
+            return $e;
+        }
+        
+        return $request->validated();
     }
     public function showOrderItem(Request $request)
     {
