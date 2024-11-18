@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="red"> <!-- Cambia el color a negro, por ejemplo -->
+    <link rel="manifest" href="{{ asset($JsonApp) }}">
+
     <title>D'Brazza</title>
 
     <!--Icono-->
@@ -20,7 +23,9 @@
 
 
 </head>
+<style>
 
+</style>
 <body>
     <div id="container">
         <div class="banner">
@@ -55,6 +60,17 @@
 
         </div>
     </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('{{ asset($JsApp) }}')
+                .then(function(registration) {
+                    console.log('Service Worker registrado con éxito:', registration);
+                })
+                .catch(function(error) {
+                    console.error('Error al registrar el Service Worker:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>

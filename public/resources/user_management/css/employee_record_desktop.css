@@ -194,29 +194,53 @@ i.style-button-plus {
 
 .button-option-employee.clear {
     background-color: rgb(209 0 0);
+    transition: background-color 0.3s ease;
     margin-right: 5px;
-}
-
-.button-option-employee.clear {
-    background-color: rgb(209 0 0);
 }
 
 .button-option-employee.edit {
     background-color: rgb(190 135 0);
+    transition: background-color 0.3s ease;
     margin-right: 5px;
 }
 
 .button-option-employee.view {
     background-color: rebeccapurple;
+    transition: background-color 0.3s ease;
+}
+.button-option-employee.clear:hover {
+    background-color: rgb(76, 0, 0);
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
 }
 
+.button-option-employee.edit:hover {
+    background-color: #634700;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+.button-option-employee.view:hover {
+    background-color: rgb(50, 0, 91);
+    transition: background-color 0.3s ease;
+}
+.form-step.form-step-active.user-section {
+    margin-top: 50px;
+}
 .option-table {
     color: #ffffff;
     display: flex;
     justify-content: center;
     font-size: 1.2rem;
 }
-
+.content main .bottom-data .orders table tbody tr {
+    cursor: initial;
+}
+.select.one{
+    width: 100%;
+}
+.button-register{
+    width: 100%;
+}
 @media (max-width: 992px) {
 
 
