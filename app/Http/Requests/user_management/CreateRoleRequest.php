@@ -19,10 +19,20 @@ class CreateRoleRequest extends BaseRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|max:50|unique:roles,name',
-            'permissions' => 'required|array',
-            'permissions.*' => 'integer|exists:permissions,id',
-        ];
+        if ($this->id != null) {
+            return [
+                'name' => 'required|max:50', // buscar la forma de manejarlo de otra formaque sea unico pero sin contar el que ya esta
+                'permissions' => 'required|array',
+                'permissions.*' => 'integer|exists:permissions,id',
+
+            ];
+        } else {
+            return [
+                'name' => 'required|max:50|unique:roles,name',
+                'permissions' => 'required|array',
+                'permissions.*' => 'integer|exists:permissions,id',
+
+            ];
+        }
     }
 }

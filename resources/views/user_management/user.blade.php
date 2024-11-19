@@ -4,6 +4,21 @@
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message')}}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10}})
+    </script>
+@endif
+
 <div class="btn-mobile mobile">
     <a href="{{ route('user_register') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
 </div>
@@ -54,7 +69,7 @@
                         <td>{{ $user->role->name ?? 'No registrado' }}</td>
                         <td>{{ $user->employee->person->name ?? 'No registrado' }}</td>
                         <td class="option">
-                            <button class="button-option-employee clear" title="Eliminar el empleado" onclick="urlPostDelete('{{route('employeer_delete')}}',{id : {{$user->id}}}, '¿Estás seguro?', 'Este ítem será permanentemente eliminado.')">
+                            <button class="button-option-employee clear" title="Eliminar el empleado" onclick="urlPostDelete('{{route('user_delete')}}',{id : {{$user->id}}}, '¿Estás seguro?', 'Este ítem será permanentemente eliminado.')">
                                 <i class="fi fi-sr-trash option-table"></i>
                             </button>
                             <button class="button-option-employee edit" onclick="urlGet('{{route('user_register')}}',{id : {{$user->id}}, action:'edit'})" title="Editar datos empleado">

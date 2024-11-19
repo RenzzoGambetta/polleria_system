@@ -19,12 +19,20 @@ class CreateUserRequest extends BaseRequest
      */
     public function rules(): array
     {
-        return [
-            'username' => 'required|string|max:32|unique:users,username',
-            'password' => 'required|string|max:100',
-            'password_confirmation' => 'required|string|max:100|same:password',
-            'role_id' => 'integer|nullable|exists:roles,id',
-            'employee_id' => 'integer|nullable|exists:employees,id',
-        ];
+        if ($this->id != null) {
+            return [
+                'username' => 'required|string|max:32',
+                'role_id' => 'integer|nullable|exists:roles,id',
+                'employee_id' => 'integer|nullable|exists:employees,id',
+            ];
+        } else {
+            return [
+                'username' => 'required|string|max:32|unique:users,username',
+                'password' => 'required|string|max:100',
+                'password_confirmation' => 'required|string|max:100|same:password',
+                'role_id' => 'integer|nullable|exists:roles,id',
+                'employee_id' => 'integer|nullable|exists:employees,id',
+            ];
+        }
     }
 }

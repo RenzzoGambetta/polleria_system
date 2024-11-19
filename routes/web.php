@@ -30,6 +30,8 @@ use App\Http\Controllers\test\testController;
         Route::get('/user', [UserController::class,'show_user_list'])->name('user');
         Route::get('/user_register', [UserController::class,'showUserNewRegister'])->name('user_register');
         Route::post('/user_register_store', [UserController::class,'store'])->name('user_register_store');
+        Route::post('/user_edit', [UserController::class,'editUser'])->name('user_edit');
+        Route::post('/user_delete', [UserController::class,'deleteUser'])->name('user_delete');
         //Empleados
         Route::get('/employeer', [EmployeeController::class,'show_employeer_list'])->name('employeer');
         Route::get('/employeer_register', [EmployeeController::class,'show_employeer_register'])->name('employeer_register');
@@ -42,6 +44,9 @@ use App\Http\Controllers\test\testController;
         Route::get('/position', [RoleController::class,'show_position_list'])->name('position');
         Route::get('/role_register', [RoleController::class,'show_role_register'])->name('role_register');
         Route::post('/role_register_store', [RoleController::class,'store'])->name('role_register_store');
+        Route::post('/role_edit', [RoleController::class,'editRole'])->name('role_edit');
+        Route::post('/role_delete', [RoleController::class,'deleteRole'])->name('role_delete');
+        Route::post('/new_extension_role', [RoleController::class,'newExtensionRole'])->name('new_extension_role');
 
     //--> Modulo de gestion de inventario
 

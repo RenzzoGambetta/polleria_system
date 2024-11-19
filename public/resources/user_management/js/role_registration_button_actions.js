@@ -27,3 +27,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     updateCategoryCheckboxes();
 });
+function cancelRole() {
+
+    Swal.fire({
+        title: "Estas seguro",
+        text: 'Se olvidara toda la los camvios actuales',
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, olvidar!",
+        cancelButtonText: "Cancelar",
+        didOpen: urlPostDeleteStyle
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.history.back();
+            return;
+        }
+    });
+}

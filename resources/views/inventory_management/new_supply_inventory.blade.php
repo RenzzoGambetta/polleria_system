@@ -24,7 +24,7 @@
 
 <div class="header">
     <div class="left">
-        <h1 class="title-reducer">Registro nuevo suministro</h1>
+        <h1 class="title-reducer">{{$Supply['title']}}</h1>
         <ul class="breadcrumb">
 
             <a href="{{ route('inventory') }}" class="pagina">
@@ -75,26 +75,12 @@
                                 <label for="sub-title-select-01" class="sub-title-select">Unidad medida</label>
                             </div>
                             <div class="options-unit-of-measurement-supply-new">
-                                <label for="kg" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" name="unit" id="kg" value="kg" />
-                                    <span> kilo.</span>
-                                </label>
-                                <label for="g" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="g" name="unit" value="g" />
-                                    <span>gramo.</span>
-                                </label>
-                                <label for="l" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="l" name="unit" value="l" />
-                                    <span>litro.</span>
-                                </label>
-                                <label for="ml" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="ml" name="unit" value="ml" />
-                                    <span>mililitro.</span>
-                                </label>
-                                <label for="ud" class="option-unit-of-measurement-supply-new">
-                                    <input type="radio" id="ud" name="unit" value="ud" />
-                                    <span>unidad.</span>
-                                </label>
+                                @foreach ($UnitOptions as $unit)
+                                    <label for="{{ $unit[0] }}" class="option-unit-of-measurement-supply-new">
+                                        <input type="radio" name="unit" id="{{ $unit[0] }}" value="{{ $unit[0] }}" />
+                                        <span>{{ $unit[1] }}.</span>
+                                    </label>
+                                @endforeach
                             </div>
 
                             <div class="selected-unit-of-measurement-supply-new new-supply-select">Selecciona una medida</div>
@@ -129,8 +115,8 @@
                         <script>
                             const OptionId = '{{ $Supply->unit }}';
                         </script>
-                        <input type="text" name='id_edit_stock' value="{{$Supply->id}}" style="display: none">
-                        <button type="button" class="button-option-new-supply cancel-btn" onclick="urlGet('{{ route('delete_new_supply_complete') }}',{id:{{$Supply->id}}})">Eliminar</button>
+                        <input type="text" name='id_edit_stock' value="{{ $Supply->id }}" style="display: none">
+                        <button type="button" class="button-option-new-supply cancel-btn" onclick="urlGet('{{ route('delete_new_supply_complete') }}',{id:{{ $Supply->id }}})">Eliminar</button>
                         <button type="submit" class="button-option-new-supply register-or-edit">Editar</button>
                     @else
                         <script>
