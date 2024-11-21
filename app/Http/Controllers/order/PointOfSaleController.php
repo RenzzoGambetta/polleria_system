@@ -239,4 +239,34 @@ class PointOfSaleController extends Controller
         $Item = MenuItem::where('category_id', $request->id)->select('name', 'id', 'display_order', 'price')->get();
         return response()->json($Item);
     }
+    public function listTakeawayOrders(){
+
+        //Datos de prueva para los pedidos de mostrador
+        $nombres = [
+            'Juan Pérez', 'María López', 'Carlos Rivera', 'Ana García', 'Luis Torres',
+            'Sofía Martínez', 'Miguel Vega', 'Laura Morales', 'Fernando Ruiz', 'Paola Castillo',
+            'Ricardo Flores', 'Claudia Gómez', 'Diego Sánchez', 'Andrea Valdez', 'Josefina Ramos',
+            'Martín Suárez', 'Rosa Medina', 'Alberto Vargas', 'Camila Silva', 'Daniel Ortega',
+            'Patricia Muñoz', 'Javier Paredes', 'Carmen Herrera', 'Roberto Castro', 'Lucía Guzmán',
+            'Manuel Delgado', 'Lorena Salas', 'Gabriel Torres', 'Sara Morales', 'Iván Rojas',
+            'Estela Fernández', 'Oscar Navarro', 'Elsa Ponce', 'Héctor Domínguez', 'Julia Quintana',
+            'Ramiro Espinoza', 'Mónica León', 'Victor Soto', 'Isabel Vega', 'Cristina Montes',
+            'Pedro Aguilar', 'Ángel Palma', 'Clara Esteban', 'Francisco Arce', 'Valeria Reyes',
+            'Santiago Peña', 'Tania Vargas', 'Leonardo Mendoza', 'Verónica Flores', 'Natalia Fuentes'
+        ];
+
+        $pedidos = [];
+
+        for ($i = 1; $i <= 50; $i++) {
+            $pedidos[] = [
+                'id' => $i,
+                'order' => 'ORD-' . str_pad($i, 3, '0', STR_PAD_LEFT),
+                'date' => \Carbon\Carbon::create(2024, 11, 20, 14, 0, 0)->addMinutes(rand(0, 360))->format('Y-m-d H:i:s'),
+                'client' => $nombres[array_rand($nombres)],
+                'total' => round(rand(100, 1000) + rand(0, 99) / 100, 2), // Valores entre 100.00 y 1000.99
+            ];
+        }
+        // Retornar los datos como JSON
+        return response()->json($pedidos);
+    }
 }

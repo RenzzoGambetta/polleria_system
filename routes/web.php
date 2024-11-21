@@ -107,6 +107,7 @@ use App\Http\Controllers\test\testController;
         Route::get('/client_data_filt', [PointOfSaleController::class,'clientDataFilt'])->name('client_data_filt');
         Route::get('/new_order_client', [PointOfSaleController::class,'newOrderClient'])->name('new_order_client');
         Route::get('/list_item_filt_category', [PointOfSaleController::class,'listItemFiltCategory'])->name('list_item_filt_category');
+        Route::get('/list_takeaway_orders', [PointOfSaleController::class,'listTakeawayOrders'])->name('list_takeaway_orders');
 
     //--> Home
 

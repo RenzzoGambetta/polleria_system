@@ -123,11 +123,7 @@ class RoleController extends Controller
     {
         try {
 
-            $role = Role::find($request->id);
-
-            //*quitar el omentario cuando se complete el servisio para editar
-            $response = true;
-            //$response = $this->roleService->updateRole($request->validated(), $role);
+            $response = $this->roleService->updatesRoleAndAssignPermissions($request->id,$request->validated());
 
             if ($response) {
                 return redirect()->route('position')->with([
@@ -146,6 +142,7 @@ class RoleController extends Controller
                 ->withInput()
                 ->with([
                     'Message' => 'Error al asignar el rol.',
+                    'Console' => $e->getMessage(),
                     'Type' => 'error'
                 ]);
         }
@@ -154,10 +151,7 @@ class RoleController extends Controller
     {
         try {
 
-            $role = Role::find($request->id);
-            //*quitar el omentario cuando se complete el servisio para eliminar
-            $response = true;
-            //$response = $this->roleService->deleteRole($role);
+            $response = $this->roleService->deleteRoleAndRelatedPermissions($request->id);
 
             if ($response) {
                 return redirect()->route('position')->with([
@@ -171,7 +165,8 @@ class RoleController extends Controller
             ]);
         } catch (Exception $e) {
             return redirect()->route('position')->with([
-                'Message' => 'No se pudo elimino el rol.',
+                'Message' => 'No se pudo eliminar el rol por un problema interno.',
+                'Console' => $e->getMessage(),
                 'Type' => 'error'
             ]);
         }

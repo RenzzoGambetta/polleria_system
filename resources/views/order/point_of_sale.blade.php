@@ -2,6 +2,7 @@
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
 <script src="{{ asset($AlertSrc) }}"></script>
+<link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
 <link rel="stylesheet" href="{{ asset($InputResources) }}">
 <link rel="stylesheet" href="{{ asset($TableEditAndRegister) }}">
@@ -42,7 +43,7 @@
     </div>
     <div class="option-to-refresh-and-nex-to-style-order">
         <button class="option-to-table" title="Ver mas opciones del sistema" onclick="optionTablePlus()"><i class="fi fi-sr-circle-ellipsis-vertical"></i></button>
-        <button class="counter-next" title="Es para gestionar pedidos en el mostrador">Mostrador<i class="fi fi-br-angle-small-right"></i></button>
+        <button class="counter-next" title="Es para gestionar pedidos en el mostrador" onclick="listTakeawayOrder()">Mostrador<i class="fi fi-br-angle-small-right"></i></button>
     </div>
 </div>
 @csrf
@@ -53,6 +54,35 @@
             <div class="tables-list" id="tables-list">
 
             </div>
+        </div>
+        <div class="list-delivery-order bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <button class="button-option-table-oreder-takeaway order" title="Hordenes para entregar"><i class="fi fi-sr-bell-concierge center-icon"></i></button>
+                    <button class="button-option-table-oreder-takeaway status" title="Estado de ordenes pendientes"><i class="fi fi-sr-grill center-icon"></i></button>
+                    <button class="button-option-table-oreder-takeaway history" title="Historial de hordenes"><i class="fi fi-br-time-twenty-four center-icon"></i></button>
+
+
+                </div>
+
+                <table style="display: table">
+                    <thead>
+                        <tr>
+                            <th>Nº Orden</th>
+                            <th>Cliente</th>
+                            <th>Tiempo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="tr-td-key-point">
+
+                    </tbody>
+                </table>
+                <div class="pagination-container"></div>
+
+            </div>
+
         </div>
     </div>
     <div class="edit-panel" id="puntoClave">
@@ -82,10 +112,13 @@
     </div>
 </div>
 </div>
-<script>const url = "{{route('new_order_client')}}";</script>
+<script>
+    const url = "{{ route('new_order_client') }}";
+</script>
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($searchBoxDataCliene) }}"></script>
 <script src="{{ asset($pointOfSale) }}"></script>
+<script src="{{ asset($TableOrderTakeaway) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

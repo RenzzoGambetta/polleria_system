@@ -19,6 +19,7 @@
         timeAlert({{ session('Time') ?? 10}})
     </script>
 @endif
+@csrf
 
 <div class="btn-mobile mobile">
     <a href="{{ route('role_register') }}"><i class='fi fi-sr-multiple style-button-plus' id="Mas"> Nuevo</i></a>
@@ -72,13 +73,13 @@
                         <td>{{ $rol->id ?? 'No registrado' }}</td>
                         <td>{{ $rol->name ?? 'No registrado' }}</td>
                         <td class="option">
-                            <button class="button-option-employee clear" title="Eliminar el empleado" onclick="urlPostDelete('{{route('user_delete')}}',{id : {{$rol->id}}}, '¿Estás seguro?', 'Este ítem será permanentemente eliminado.')">
+                            <button class="button-option-employee clear" title="Eliminar el rol" onclick="urlPostDelete('{{route('role_delete')}}',{id : {{$rol->id}}}, '¿Estás seguro?', 'Este ítem será permanentemente eliminado.')">
                                 <i class="fi fi-sr-trash option-table"></i>
                             </button>
-                            <button class="button-option-employee edit" onclick="urlGet('{{route('role_register')}}',{id : {{$rol->id}}, action:'edit'})" title="Editar datos empleado">
+                            <button class="button-option-employee edit" onclick="urlGet('{{route('role_register')}}',{id : {{$rol->id}}, action:'edit'})" title="Editar datos rol">
                                 <i class="fi fi-sr-user-pen option-table" ></i>
                             </button>
-                            <button class="button-option-employee view" onclick="urlGet('{{route('data_employer_block')}}',{id : {{$rol->id}}})" title="Visualizar los datos del empleado">
+                            <button class="button-option-employee view" onclick="urlGet('{{route('data_employer_block')}}',{id : {{$rol->id}}})" title="Visualizar los datos del rol">
                                 <i class="fi fi-ss-eye option-table"></i>
                             </button>
                         </td>
@@ -96,6 +97,7 @@
     {{ $Roles->onEachSide(1)->links('pagination::numeros') }}
     {{ $Roles->onEachSide(1)->links('pagination::anterior') }}
 </section>
+<script src="{{ asset($AlertSrc) }}"></script>
 
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

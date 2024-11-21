@@ -457,3 +457,62 @@ div#add-table-item:hover {
     transition: background-color 1s;
     background-color: var(--table-color-hover);
 }
+.content main .list-delivery-order.bottom-data {
+    margin-top: 0px;
+
+}
+
+button.pagination-button {
+    width: 50px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #6300ff;
+    height: 40px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+    margin-left: 0.5vh ;
+    margin-right: 0.5vh ;
+}
+button.pagination-button.active {
+    background-color: #0059ff;
+}
+button.pagination-button:hover{
+    background-color:#0059ff ;
+}
+button.pagination-button.active:hover {
+    background-color: #f41400;
+}
+button.pagination-button.disabled:hover {
+    background-color: #f41400;
+
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+.content main .bottom-data .header {
+    display: flex;
+    justify-content: flex-start;
+}
+.center-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.button-option-table-oreder-takeaway {
+    transition: background-color 0.3s ease;
+    height: 48px;
+    width: 50px;
+    margin: 0;
+    border-radius: 100%;
+    color: #ffffff;
+    border: none;
+    background-color: #ff5700;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+button.button-option-table-oreder-takeaway:hover {
+    background-color: #ff0000;
+}

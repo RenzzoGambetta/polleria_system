@@ -46,6 +46,7 @@ async function loadTableData(id, text = null) {
 
     highlightButton(id);
     addLounges(id, text);
+    $('.content main .list-delivery-order.bottom-data').css('display', 'none');
 
 }
 
@@ -223,7 +224,7 @@ async function loadHtmlFromFile(url) {
         return '';
     }
 }
-
+/*Codigo para efecto de efecto en caso de varios mostradores
 $('.counter-next').on('click', function () {
     var container = $('.option-to-refresh-and-nex-to-style-order');
     var navTable = $('.option-to-nav-table-container');
@@ -254,7 +255,7 @@ $('.counter-next').on('click', function () {
         navTable.fadeIn(200);
     });
 });
-
+*/
 function newOrderToClient(id){
 
     const nameOfInput = ["number_people", "id_user", "user_name", "id_person", "document_and_name_to_person"];
