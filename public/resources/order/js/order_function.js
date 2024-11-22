@@ -69,32 +69,53 @@ async function addTableItem(id, code, sale) {
                 .replaceAll('{{table}}', code)
                 .replaceAll('{{total}}', calculateTotal());
 
-
             let itemsContent = '';
 
             selectedItems.forEach(item => {
                 itemsContent += `
-                <div class="item-detail-client">
+                <div class="item-detail-client" id="item-${item.id}">
                     <div class="item-details">
                         <span>${item.name}</span>
                         <span class="label-able">Id:${item.id}</span>
                         <p class="p-sub-text">${item.quantity} Unidad(es) en s/ ${item.price} </p>
                     </div>
                     <div class="price-detail">s/ ${item.price * item.quantity}</div>
+
+                    <div class="hover-message-item">
+                        ¡Nuevo mensaje para mostrar!
+                    </div>
                 </div>
-            `;
+                `;
             });
-
-
 
             htmlContent = htmlContent.replace('<div id="data-item-client">', `<div id="data-item-client">${itemsContent}`);
 
             const referenceElement = document.getElementById('puntoClave');
             referenceElement.innerHTML = '';
             referenceElement.innerHTML = htmlContent;
+
+            // Aquí agregamos el evento hover para los elementos generados dinámicamente
+            $('.item-detail-client').hover(
+                function() {
+                    // Al pasar el mouse (mouseenter)
+                    $(this).find('.hover-message-item').css({
+                        opacity: 1,
+                        visibility: 'visible',
+                        backgroundColor: 'rgba(107, 43, 43, 0.9)'
+                    });
+                },
+                function() {
+                    // Al quitar el mouse (mouseleave)
+                    $(this).find('.hover-message-item').css({
+                        opacity: 0,
+                        visibility: 'hidden'
+                    });
+                }
+            );
         })
         .catch(error => console.error('Error loading template:', error));
 }
+
 function calculateTotal() {
     const total = selectedItems.reduce((sum, item) => {
         const itemTotal = item.quantity * parseFloat(item.price.replace('S/.', '').trim());
