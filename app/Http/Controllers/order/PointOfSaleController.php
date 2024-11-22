@@ -135,7 +135,10 @@ class PointOfSaleController extends Controller
             ->get();
         return response()->json($data);
     }
-    //se puede toamar como servisio
+
+    /*
+        Convertir a cervisio
+    */
     private function formatDateInSpanish($dateTime)
     {
         $date = new DateTime($dateTime);
@@ -220,6 +223,7 @@ class PointOfSaleController extends Controller
 
         return response()->json(['items' => $formattedPersons]);
     }
+    /*Fin*/
     public function newOrderClient(Request $request)
     {
         $Navigation = $this->NavigationPonit;

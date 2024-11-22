@@ -113,8 +113,8 @@ class IdentificationDocumentService
 
         $data = [
             'name' => $person->name,
-            'paternal_surname' => strrchr($person->lastname, ' '),
-            'maternal_surname' => strrchr($person->lastname, ' '),
+            'paternal_surname' => strstr($person->lastname, ' ',true),
+            'maternal_surname' => strstr($person->lastname, ' '),
             'dni' => $dni
         ];
 
