@@ -1,19 +1,17 @@
 const URL_TEMPLATE = "/resources/order/template/";
-const selectedItems = []; // Array para guardar los datos seleccionados
+const selectedItems = [];
 
 async function loadTableDataItem(id, text = null) {
     const tablesList = document.getElementById('tables-list');
     const tableData = await consultDataUrl("/list_item_filt_category", { 'id': id });
     const url = URL_TEMPLATE + "item_frame.html";
 
-    // Eliminar los elementos previos
     tablesList.innerHTML = '';
 
     tableData.forEach(data => {
         fetch(url)
             .then(response => response.text())
             .then(template => {
-                // Reemplazar los valores en la plantilla
                 let htmlContent = template
                     .replaceAll('{{id}}', data.id)
                     .replace('{{name}}', data.name)
@@ -24,39 +22,46 @@ async function loadTableDataItem(id, text = null) {
                         "https://chewinghappiness.com/wp-content/uploads/elementor/thumbs/Pollo-a-la-braza-1-1-q8niykr5rij1m5l9rmbufgj2tsi010f6hp22hmt3xs.jpg"
                     );
 
-                // Insertar el contenido generado
                 tablesList.insertAdjacentHTML('beforeend', htmlContent);
             })
             .catch(error => console.error('Error loading template:', error));
     });
 }
 
-document.getElementById('tables-list').addEventListener('click', event => {
+document.getElementById('tables-list').addEventListener('click', async (event) => {
     const item = event.target.closest('.item-data');
-    if (item) {
-        const id = item.id; // ID del elemento
-        const name = item.querySelector('h2').innerText; // Texto del <h2>
-        const rawPrice = item.querySelector('#price').innerText; // Texto del precio, por ejemplo: "S/. 50.00"
-        const price = parseFloat(rawPrice.replace(/[^0-9.]/g, '')).toFixed(2); // Convertir y redondear a dos decimales
-        var saleElement = document.querySelector('#data');
-        var saleValue = saleElement.getAttribute('x:sale');
-        var codeValue = saleElement.getAttribute('x:code');
-        // Verificar si el ítem ya existe en el arreglo
+    if (!item) return;
+
+    const id = item.id || "0";
+    const name = item.querySelector('h2')?.innerText || "Sin nombre";
+    const rawPrice = item.querySelector('#price')?.innerText || "0";
+    const price = parseFloat(rawPrice.replace(/[^0-9.]/g, '') || "0").toFixed(2);
+
+    const saleElement = document.querySelector('#data');
+    const saleValue = saleElement?.getAttribute('x:sale') || "0";
+    const codeValue = saleElement?.getAttribute('x:code') || "Sin código";
+
+    const data = await alertSelectItem();
+    if (data && data.result) {
         const existingItem = selectedItems.find(entry => entry.id === id);
 
         if (existingItem) {
-            // Si el ítem ya existe, incrementar su cantidad
-            existingItem.quantity += 1;
+            existingItem.quantity += parseInt(data.quantity, 10);
         } else {
-            // Si el ítem no existe, agregarlo con cantidad inicial de 1
-            selectedItems.push({ id, name, price, quantity: 1 });
+            selectedItems.push({ id, name, price, quantity: parseInt(data.quantity, 10) });
         }
-
-        // Imprimir todos los elementos seleccionados
-        console.log(`Todos los seleccionados:`, selectedItems);
-        addTableItem(id, codeValue, saleValue)
+        /*else{
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                selectedItems.push({ id, name, price, quantity: 1 });
+            }
+        }*/
+        console.log("Todos los seleccionados:", selectedItems);
+        await addTableItem(id, codeValue, saleValue);
     }
 });
+
 
 async function addTableItem(id, code, sale) {
     var url = URL_TEMPLATE + "select_to_table.html";
@@ -70,7 +75,6 @@ async function addTableItem(id, code, sale) {
                 .replaceAll('{{total}}', calculateTotal());
 
             let itemsContent = '';
-
             selectedItems.forEach(item => {
                 itemsContent += `
                 <div class="item-detail-client" id="item-${item.id}">
@@ -93,19 +97,16 @@ async function addTableItem(id, code, sale) {
             const referenceElement = document.getElementById('puntoClave');
             referenceElement.innerHTML = '';
             referenceElement.innerHTML = htmlContent;
-
-            // Aquí agregamos el evento hover para los elementos generados dinámicamente
+            console.log('Completado');
             $('.item-detail-client').hover(
-                function() {
-                    // Al pasar el mouse (mouseenter)
+                function () {
                     $(this).find('.hover-message-item').css({
                         opacity: 1,
                         visibility: 'visible',
                         backgroundColor: 'rgba(107, 43, 43, 0.9)'
                     });
                 },
-                function() {
-                    // Al quitar el mouse (mouseleave)
+                function () {
                     $(this).find('.hover-message-item').css({
                         opacity: 0,
                         visibility: 'hidden'
@@ -123,4 +124,54 @@ function calculateTotal() {
     }, 0);
 
     return total;
+}
+
+async function alertSelectItem(data = null) {
+    const url = `${URL_TEMPLATE}order_item_select.html`;
+    const htmlContent = await loadHtmlFromFile(url);
+
+    return Swal.fire({
+        html: htmlContent,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Agregar",
+        didOpen: (popup) => {
+            if (typeof urlPostDeleteStyle === 'function') {
+                urlPostDeleteStyle(popup);
+            }
+            $(popup).find('.swal2-close').css('display', 'block');
+
+            if (data) {
+                $(popup).find('input[name="quantity-item"]').val(data.quantity);
+                $(popup).find('#is-delivery').prop('checked', data.isDelivery);
+                $(popup).find('#comment-input').val(data.note);
+            }
+        },
+        preConfirm: () => {
+            const quantity = $('input[name="quantity-item"]').val();
+            const isDelivery = $('#is-delivery').is(':checked');
+            const note = $('#comment-input').val();
+
+            if (!quantity || isNaN(quantity) || quantity <= 0) {
+                Swal.showValidationMessage("Por favor, ingresa una cantidad válida.");
+                return false;
+            }
+
+            return {
+                quantity: parseInt(quantity, 10),
+                isDelivery,
+                note
+            };
+        }
+    }).then((result) => {
+        if (result.isConfirmed && result.value) {
+            return {
+                result: true,
+                ...result.value
+            };
+        } else {
+            return { result: false };
+        }
+    });
 }

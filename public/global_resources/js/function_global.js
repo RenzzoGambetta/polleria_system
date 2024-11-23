@@ -90,3 +90,15 @@ function urlPostDelete(url, datos = null, text, subText) {
         }
     });
 }
+async function loadHtmlFromFile(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Error al cargar el archivo HTML');
+        }
+        return await response.text();
+    } catch (error) {
+        console.error(error);
+        return '';
+    }
+}

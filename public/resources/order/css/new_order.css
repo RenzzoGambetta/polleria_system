@@ -28,11 +28,8 @@ button.button-Category:hover {
 
 .item-data img {
     height: 130px;
-    /* Altura fija */
     width: 100%;
-    /* Ocupa el 100% del ancho disponible */
     object-fit: cover;
-    /* La imagen ocupará todo el espacio del contenedor sin perder proporción */
     display: block;
     margin: 0 auto;
 }
@@ -54,30 +51,27 @@ div#puntoClave {
 
 .list_category_item {
     max-height: 90vh;
-    /* Limita la altura máxima al 100% de la ventana */
     overflow-y: auto;
-    /* Habilita el desplazamiento vertical si el contenido excede la altura máxima */
     padding-right: 10px;
-    direction: rtl; /* Agrega un pequeño espacio a la derecha para evitar que el scroll se pegue al borde */
+    direction: rtl;
 }.list_category_item > * {
     direction: ltr;
 }
 
-/* Estilos para la barra de desplazamiento en WebKit (Chrome, Safari) */
+
 .list_category_item::-webkit-scrollbar {
-    width: 5px; /* Ancho muy delgado de la barra de desplazamiento */
+    width: 5px;
 }
 
 .list_category_item::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2); /* Color oscuro y semi-transparente */
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
 
 .list_category_item::-webkit-scrollbar-track {
-    background: transparent; /* Fondo transparente */
+    background: transparent;
 }
 
-/* Estilos para la barra de desplazamiento en Firefox */
 .list_category_item {
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
@@ -88,18 +82,17 @@ div#puntoClave {
 .item-data h2 {
     color: var(--dark);
 }
-/* Estilo general de item-detail-client */
+
 .item-detail-client {
     position: relative;
     transition: background-color 0.3s ease;
 }
 
-/* Estilo del mensaje oculto */
 .hover-message-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute; /* Posicionar el mensaje dentro de su contenedor */
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -110,8 +103,8 @@ div#puntoClave {
     font-weight: bold;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    opacity: 0; /* Inicialmente oculto */
-    visibility: hidden; /* No visible por defecto */
+    opacity: 0;
+    visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
     height: 100%;
     width: 100%;

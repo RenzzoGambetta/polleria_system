@@ -224,18 +224,7 @@ function revertSelectionChanges() {
     subTitleDiv.style.opacity = "0";
     selected.innerHTML = 'Seleccionar un provedor';
 }
-async function loadHtmlFromFile(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Error al cargar el archivo HTML');
-        }
-        return await response.text();
-    } catch (error) {
-        console.error(error);
-        return '';
-    }
-}
+
 function sumOfPrices() {
     const priceInputs = document.querySelectorAll('.price-input-total');
     let total = 0;
