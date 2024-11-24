@@ -1,7 +1,7 @@
 <style>
     .swal2-popup.swal2-modal.swal2-show {
         width: 700px;
-        height: 400px;
+        height: 450px;
     }
 
     fieldset {
@@ -115,6 +115,47 @@
     button.swal2-cancel.swal2-styled.swal2-default-outline {
         width: 40%;
     }
+
+    div#swal2-validation-message {
+        display: flex;
+        height: 45px;
+        background-color: #ff000057;
+        border-radius: 10px;
+        margin: 0px 40px;
+    }
+
+    .wave-group {
+        position: relative;
+    }
+
+    .close-button {
+        position: absolute;
+        bottom: calc(100% - 45px);
+        right: 6px;
+        background-color: #f4433600;
+        color: red;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        height: 35px;
+        transition: background-color 0.3s ease;
+        transition: color 0.3s ease;
+    }
+
+    .close-button:hover {
+        background-color: #da0000b1;
+        color: white;
+    }
+
+    textarea#comment-input {
+        padding: 10px 40px 10px 20px;
+    }
+
+    i.fi.fi-sr-broom {
+        font-size: 1.2rem;
+    }
 </style>
 <div class="frame-data-alert">
     <div class="quantity-and-delivery">
@@ -139,17 +180,12 @@
             <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input"
                 value="" placeholder=" "></textarea>
             <label class="label">
-                <span style="--index: 1" class="label-char">C</span>
+                <span style="--index: 1" class="label-char">N</span>
                 <span style="--index: 2" class="label-char">o</span>
-                <span style="--index: 3" class="label-char">m</span>
-                <span style="--index: 4" class="label-char">e</span>
-                <span style="--index: 5" class="label-char">n</span>
-                <span style="--index: 6" class="label-char">t</span>
-                <span style="--index: 7" class="label-char">a</span>
-                <span style="--index: 8" class="label-char">r</span>
-                <span style="--index: 9" class="label-char">i</span>
-                <span style="--index: 10" class="label-char">o</span>
+                <span style="--index: 3" class="label-char">t</span>
+                <span style="--index: 4" class="label-char">a</span>
             </label>
+            <button class="close-button" onclick="clearComentDataAlert()"><i class="fi fi-sr-broom"></i></button>
         </div>
     </div>
 </div>

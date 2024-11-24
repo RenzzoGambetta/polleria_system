@@ -1,5 +1,6 @@
 const URL_TEMPLATE = "/resources/order/template/";
 const selectedItems = [];
+let idArrayCounter = selectedItems.length > 0 ? selectedItems[selectedItems.length - 1].id_array + 1 : 1;
 
 async function loadTableDataItem(id, text = null) {
     const tablesList = document.getElementById('tables-list');
@@ -41,23 +42,21 @@ document.getElementById('tables-list').addEventListener('click', async (event) =
     const saleValue = saleElement?.getAttribute('x:sale') || "0";
     const codeValue = saleElement?.getAttribute('x:code') || "Sin código";
 
-    const data = await alertSelectItem();
+    const data = await alertSelectItem({
+        quantity: 1,
+        isDelivery: false,
+        note: selectedItems.filter(entry => entry.id === id).at(-1)?.note || null
+    });
+
     if (data && data.result) {
-        const existingItem = selectedItems.find(entry => entry.id === id);
+        const existingItem = selectedItems.find(entry => entry.id === id && entry.note === data.note && entry.isDelivery === data.isDelivery);
 
         if (existingItem) {
             existingItem.quantity += parseInt(data.quantity, 10);
         } else {
-            selectedItems.push({ id, name, price, quantity: parseInt(data.quantity, 10) });
+            selectedItems.push({ idArray: idArrayCounter++, id, name, price, quantity: parseInt(data.quantity, 10), note: data.note, isDelivery: data.isDelivery });
         }
-        /*else{
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                selectedItems.push({ id, name, price, quantity: 1 });
-            }
-        }*/
-        console.log("Todos los seleccionados:", selectedItems);
+
         await addTableItem(id, codeValue, saleValue);
     }
 });
@@ -77,7 +76,7 @@ async function addTableItem(id, code, sale) {
             let itemsContent = '';
             selectedItems.forEach(item => {
                 itemsContent += `
-                <div class="item-detail-client" id="item-${item.id}">
+                <div class="item-detail-client" id="item-${item.idArray}">
                     <div class="item-details">
                         <span>${item.name}</span>
                         <span class="label-able">Id:${item.id}</span>
@@ -175,3 +174,10 @@ async function alertSelectItem(data = null) {
         }
     });
 }
+$(document).ready(function () {
+    alertSelectItem();
+});
+function clearComentDataAlert() {
+    $('#comment-input').val('');
+}
+
