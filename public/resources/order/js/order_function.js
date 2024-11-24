@@ -125,6 +125,7 @@ function calculateTotal() {
     return total;
 }
 
+//agregar funcionalidad si el comentario es = a uno ya existente que se estoquee o si el deliveri es igual con el mismo sentido si son diferentes tipos que se muestre como diferente o separado
 async function alertSelectItem(data = null) {
     const url = `${URL_TEMPLATE}order_item_select.html`;
     const htmlContent = await loadHtmlFromFile(url);
