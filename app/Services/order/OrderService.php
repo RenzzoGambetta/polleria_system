@@ -13,7 +13,7 @@ class OrderService
 {
     public function __construct() {}
 
-    public function createOrderWithDetails(array $data) 
+    public function createOrderWithDetails(array $data)
     {
         $table = Table::find($data['table_id']);
 
@@ -24,16 +24,16 @@ class OrderService
 
         try {
             $order = Order::create([
-                'table_id' => $table,
+                'table_id' => $data['table_id'], // se cambio el table a $data['table_id']
                 'cashier_session_id' => 1,
                 'waiter_id' => $data['waiter_id'],
                 'is_delibery' => $data['is_delibery'],
                 'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
             ]);
-    
+
             for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
                 $order->details()->create([
-                    'supply_id' => $data['menu_item_ids'][$i],
+                    'menu_item_id' => $data['menu_item_ids'][$i], // se cambio el supply_id a menu_item_id
                     'price' => $data['prices'][$i],
                     'quantity' => $data['quantities'][$i],
                     'total_amount' => $data['total_prices'][$i],
@@ -45,10 +45,10 @@ class OrderService
             $table->update([
                 'status' => true,
             ]);
-    
+
             DB::commit();
             return $order;
-        } catch  (Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             throw $e;
         }
@@ -163,9 +163,11 @@ class OrderService
             throw $e;
         }
     }
-    
-    public function getAllOrderDetailsOfTable(int $tableId) 
+
+    public function getAllOrderDetailsOfTable(int $tableId)
     {
+        //Por tema de tiempo tome la desision de comentar el original y poner uno generico ;v el de avajo esta mas simplificado pero complejo, arregla el original
+        /*
         $table = Table::find($tableId);
 
         if (!$table) throw new Exception("No se encontro ninguna mesa con el ID");
@@ -178,9 +180,17 @@ class OrderService
         }
 
         return $orderDetailDTO;
+        */
+        $table = Table::find($tableId);
+        if (!$table) return false;
+
+        $order = $table->orders()->latest()->first();
+        if (!$order) return false;
+
+        return $order->details->map(fn($od) => $this->mapOrderDetailToDTO($od))->toArray();
     }
 
-    private function addEveryDetailToOrder(Order $order, array $data) 
+    private function addEveryDetailToOrder(Order $order, array $data)
     {
         for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
             $order->details()->create([
@@ -193,15 +203,17 @@ class OrderService
             ]);
         }
     }
-    
-    private function mapOrderDetailToDTO(OrderDetail $od) 
+
+    private function mapOrderDetailToDTO(OrderDetail $od)
     {
         $orderDetailDTO = [
             'id' => $od->id,
             'name' => $od->item->name,
             'price' => $od->item->price,
             'quantity' => $od->quantity,
-            'total_price' => $od->total_amount
+            'total_price' => $od->total_amount,
+            'is_delibery' => $od->is_delibery,
+            'note' => $od->note
         ];
 
         return $orderDetailDTO;

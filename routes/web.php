@@ -88,7 +88,7 @@ use App\Http\Controllers\test\testController;
         Route::get('/list_of_cooking_place', [MenuController::class,'listOfCookingPlace'])->name('list_of_cooking_place');
         //Mesas
         Route::get('/show_drawing_table', [TableController::class,'showDrawingTable'])->name('show_drawing_table');
-        Route::get('/tables-list-data', [TableController::class,'tablesListData'])->name('tables-list-data');
+        Route::get('/tables_list_data', [TableController::class,'tablesListData'])->name('tables_list_data');
         Route::get('/lounge_data_edit', [TableController::class,'loungeDataEdit'])->name('lounge_data_edit');
         Route::post('/edit_lounge', [TableController::class,'editLounge'])->name('edit_lounge');
         Route::post('/new_lounge', [TableController::class,'newLounge'])->name('new_lounge');
@@ -108,6 +108,9 @@ use App\Http\Controllers\test\testController;
         Route::get('/new_order_client', [PointOfSaleController::class,'newOrderClient'])->name('new_order_client');
         Route::get('/list_item_filt_category', [PointOfSaleController::class,'listItemFiltCategory'])->name('list_item_filt_category');
         Route::get('/list_takeaway_orders', [PointOfSaleController::class,'listTakeawayOrders'])->name('list_takeaway_orders');
+        Route::post('/create_order_client', [PointOfSaleController::class,'createOrderClient'])->name('create_order_client');
+        Route::get('/list_order_details_table', [PointOfSaleController::class,'allOrderDetailsOfTable'])->name('list_order_details_table');
+        Route::get('/payment_service', [PointOfSaleController::class,'showPaymentService'])->name('payment_service');
     //--> Home
 
         Route::get('/home', [UserController::class,'show_home_list'])->name('home');

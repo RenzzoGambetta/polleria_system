@@ -689,7 +689,9 @@ a.profile {
 .alert-error-and-response.error {
     background-color: var(--color-alert-error-and-response);
 }
-
+.container-aler {
+    z-index: 100;
+}
 @media screen and (max-width: 768px) {
     .sidebar {
         width: 200px;

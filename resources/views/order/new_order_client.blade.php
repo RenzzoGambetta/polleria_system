@@ -34,7 +34,7 @@
             <button class="button-Category" title="Categoria de {{ $Categories->name }}" onclick="loadTableDataItem({{ $Categories->id }})">
                 <span>{{ $Categories->name }}</span>
             </button>
-            <span id="data" style="display: none" x:sale="{{ $Data['sale'] }}" x:code="{{ $Data['code'] }}"></span>
+            <span id="data" style="display: none" x:sale="{{ $Data['sale'] }}" x:code="{{ $Data['code'] }}" x:id="{{ $Data['id'] }}"></span>
         @endforeach
     </div>
     <div class="sale-and-table">

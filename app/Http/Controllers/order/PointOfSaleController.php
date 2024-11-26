@@ -4,6 +4,7 @@ namespace App\Http\Controllers\order;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\order\CashierSessionRequest;
+use App\Http\Requests\order\CreateOrderRequest;
 use App\Models\Employee;
 use App\Models\menu\Lounge;
 use App\Models\menu\MenuCategory;
@@ -11,6 +12,7 @@ use App\Models\menu\MenuItem;
 use App\Models\Person;
 use App\Models\User;
 use App\Services\order\CashierSessionService;
+use App\Services\order\OrderService;
 use DateTime;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,9 +32,11 @@ class PointOfSaleController extends Controller
         'color' => 61
     ];
     protected $cashierSessionService;
-    public function __construct(CashierSessionService $cashierSessionService)
+    protected $orderService;
+    public function __construct(CashierSessionService $cashierSessionService, OrderService $orderService)
     {
         $this->cashierSessionService = $cashierSessionService;
+        $this->orderService = $orderService;
     }
 
     public function showPointOfSale(Request $request)
@@ -40,6 +44,17 @@ class PointOfSaleController extends Controller
         $Lounge = Lounge::all();
         $Navigation = $this->NavigationPonit;
         return view('order.point_of_sale', compact('Navigation', 'Lounge'));
+    }
+    public function showPaymentService(Request $request)
+    {
+        $Items = $this->orderService->getAllOrderDetailsOfTable($request->id);
+        $Item = [];
+        for ($i = 0; $i < 10; $i++) {
+            $Item = array_merge($Item, $Items);
+        }
+
+        $Navigation = $this->NavigationPonit;
+        return view('order.payment_customer_order', compact('Navigation','Item'));
     }
     public function showCashierSessions(Request $request)
     {
@@ -326,7 +341,7 @@ class PointOfSaleController extends Controller
                         $color = '#53008dbd';
                         break;
                     default:
-                    $color = '#53008dbd';
+                        $color = '#53008dbd';
                         break;
                 }
                 $pedidos[] = [
@@ -353,7 +368,7 @@ class PointOfSaleController extends Controller
                         $color = '#53008dbd';
                         break;
                     default:
-                    $color = '#53008dbd';
+                        $color = '#53008dbd';
                         break;
                 }
                 $pedidos[] = [
@@ -369,5 +384,52 @@ class PointOfSaleController extends Controller
         }
 
         return response()->json($pedidos);
+    }
+    public function createOrderClient(Request $request)
+    {
+        $requestFilt = [
+            'table_id' => (int) $request->table_id,
+            'waiter_id' => (int) $request->waiter_id,
+            'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
+            'commentary' => $request->commentary ?? '',
+            'menu_item_ids' => array_map('intval', $request->menu_item_ids),
+            'prices' => array_map('floatval', $request->prices),
+            'quantities' => array_map('intval', $request->quantities),
+            'total_prices' => array_map('floatval', $request->total_prices),
+            'is_delibery_details' => array_map(function ($value) {
+                return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+            }, $request->is_delibery_details),
+            'notes' => $request->notes ?? [],
+        ];
+        //return response()->json($requestFilt);
+
+        try {
+            $response = $this->orderService->createOrderWithDetails($requestFilt);
+
+            return redirect()->route('point_of_sale')->withInput()->with([
+                'Message' => 'Se aperturó la caja satisfactoriamente.',
+                'Type' => 'success'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error en la validación de los datos',
+                'errors' => $e
+            ], 422);
+        }
+    }
+    public function allOrderDetailsOfTable(Request $Data)
+    {
+        try {
+            $response = $this->orderService->getAllOrderDetailsOfTable($Data->id);
+            return response()->json($response);
+
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error en la validación de los datos',
+                'errors' => $e
+            ], 422);
+        }
     }
 }

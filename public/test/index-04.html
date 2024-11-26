@@ -1,0 +1,21 @@
+<div class="item-detail-client" id="item-${item.idArray}">
+    <div class="item-details">
+        <span>${item.name}</span>
+        <span class="label-able">Id:${item.id}</span>
+        <p class="p-sub-text">${item.quantity} Unidad(es) en s/ ${item.price} </p>
+        <p class="p-sub-text">Nota: </p>
+    </div>
+    <div class="price-detail">s/ ${item.price * item.quantity}</div>
+
+    <div class="hover-message-item">
+        <div class="div-input-data-cuantity-product">
+            <button class="option-sum-lis-quantity">-</button>
+            <input type="number" class="quantity-product-list" id="quantity-product-edit" value="${item.quantity}">
+            <button class="option-sum-lis-quantity">+</button>
+        </div>
+        <div class="button-option-list-product">
+            <button class="button-edit-list"><i class="fi fi-sr-pencil center-icon"></i></button>
+            <button class="button-delate-list"><i class="fi fi-sr-trash center-icon"></i></button>
+        </div>
+    </div>
+</div>

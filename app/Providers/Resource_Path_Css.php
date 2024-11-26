@@ -124,6 +124,8 @@ class Resource_Path_Css extends ServiceProvider
             $newOrder = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'new_order.css');
             $view->with('newOrder', $newOrder);
 
+            $paymentCustomer = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'payment_customer.css');
+            $view->with('paymentCustomer', $paymentCustomer);
         });
     }
 }

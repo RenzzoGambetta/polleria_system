@@ -88,6 +88,84 @@ div#puntoClave {
     transition: background-color 0.3s ease;
 }
 
+.button-edit-list,
+.button-delate-list{
+    height: 100%;
+    width: 50%;
+    border: none;
+    background-color: black;
+    color: white;
+    transition: background-color 0.3s ease;
+    font-size: 1.2rem;
+    border-radius: 20px;
+}
+.button-option-list-product {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 80%;
+    width: 60%;
+    min-width: 100px;
+}
+.div-input-data-cuantity-product {
+    width: 40%;
+    display: flex;
+}
+.edit-panel button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+input.quantity-product-list {
+    width: 60px;
+    text-align: center;
+}
+input.quantity-product-edit:focus {
+    background-color: var(--dark-option-input-data-quantity-product);
+}
+.button-edit-list:hover{
+    background-color: rgb(249, 183, 0);
+}
+
+.button-delate-list:hover{
+    background-color: rgb(231, 0, 0);
+}
+button.option-sum-lis-quantity,
+button.option-min-lis-quantity {
+    transition: background-color 0.3s ease;
+    margin: 0;
+}
+button.option-sum-lis-quantity:hover{
+    background-color: rgb(20, 136, 0);
+}
+button.option-min-lis-quantity:hover{
+    background-color: rgb(219, 0, 0);
+}
+.p-sub-text {
+    padding-top: 5px;
+    font-style: italic;
+}
+.item-details.list-text-quantity{
+    color: var(--dark);
+}
+.p-sub-text.list-text-quantity{
+    color: var(--dark);
+}
+
+i.fi.fi-ss-user-pen.center-icon {
+    margin-right: 5px;
+}
+div#puntoClave {
+    min-height: 90vh;
+}
+.container-table-data {
+    min-height: calc(90vh - 44px);
+}
 .hover-message-item {
     display: flex;
     align-items: center;
@@ -106,6 +184,7 @@ div#puntoClave {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
-    height: 100%;
     width: 100%;
+    height: calc(100% - 2px);
+    margin: 1px 0;
 }

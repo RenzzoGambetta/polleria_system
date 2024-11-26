@@ -20,7 +20,7 @@ function stopAutoScroll() {
 
 async function loadTableData(id, text = null) {
     const tablesList = document.getElementById('tables-list');
-    const tableData = await consultDataUrl("/tables-list-data", { 'id': id });
+    const tableData = await consultDataUrl("/tables_list_data", { 'id': id });
     var url = URL_TEMPLATE + "frame_table.html";
 
     tablesList.querySelectorAll('.table-item.table-data').forEach(element => element.remove());
@@ -67,7 +67,7 @@ function highlightButton(activeId) {
 //lounges
 async function addLounges(id, text) {
     var url = URL_TEMPLATE + "select_to_lounges.html";
-    const tableData = await consultDataUrl("/tables-list-data", { 'id': id });
+    const tableData = await consultDataUrl("/tables_list_data", { 'id': id });
 
     fetch(url)
         .then(response => response.text())
@@ -112,39 +112,72 @@ function dataInputLounge(url, option) {
 
 }
 //table
+function calculateTotal(selectedItems) {
+    const total = selectedItems.reduce((sum, item) => {
+        const itemTotal = item.quantity * parseFloat(item.price.replace('S/.', '').trim());
+        return sum + itemTotal;
+    }, 0);
 
+    return total;
+}
 
 async function addTable(id, code = null) {
-    var url = URL_TEMPLATE + "select_to_table.html";
+    var url = URL_TEMPLATE + "select_to_table_view.html";
+    const tableDataList = await consultDataUrl("/list_order_details_table", { 'id': id });
 
     fetch(url)
         .then(response => response.text())
         .then(template => {
             let htmlContent = template
                 .replaceAll('{{lounge}}', NAME_SELECT)
+                .replaceAll('{{total}}', calculateTotal(tableDataList))
+                .replaceAll('{{id}}', id)
                 .replaceAll('{{table}}', code);
 
-            let itemTemplate = `
-                <div class="item-detail-client">
-                    <div class="item-details">
-                        <span>INCA KOLA</span>
-                        <span class="label-able">1L</span>
-                        <p class="p-sub-text">1 Unidad(es) en S/ 6.50 | Unidad</p>
-                    </div>
-                    <div class="price-detail">S/ 6.50</div>
-                </div>
-            `;
-
             let itemsContent = '';
-            for (let i = 0; i < 30; i++) {
-                itemsContent += itemTemplate;
-            }
+            tableDataList.forEach(item => {
+                let optionProduct = item.is_delibery === 1 ? 'Delivery' : 'Mesa';
+                let colorOptionProduct = item.is_delibery === 1 ? '#720000b3' : '#0030c2b3';
+                itemsContent += `
+                    <div class="item-detail-client" id="item-${item.id}">
+                        <div class="item-details">
+                            <span>${item.name}</span>
+                            <span class="label-able" style="background-color:${colorOptionProduct};">${optionProduct}</span>
+                            <p class="p-sub-text list-text-quantity" id="text-info-data-${item.id}">${item.quantity} Unidad(es) en s/ ${item.price} </p>
+                            <p class="p-sub-note">Nota: ${item.note ? item.note.length > 30 ? item.note.substring(0, 30) + "..." : item.note : "sin nota"}</p>
+                        </div>
+                        <div class="price-detail" id="sub-total-price-${item.id}">s/ ${item.total_price}</div>
+
+                        <div class="hover-message-item">
+                           <div class="option-item-selec-list-table">
+                                <button class="button-edit-list-table" onclick="editItemList(${item.id})"><i class="fi fi-sr-pencil center-icon"></i></button>
+                                <button class="button-delate-list-table" onclick="deleteItemList(${item.id})"><i class="fi fi-sr-trash center-icon"></i></button>
+                            </div>
+                        </div>
+                    </div>
+            `;
+            })
 
             htmlContent = htmlContent.replace('<div id="data-item-client">', `<div id="data-item-client">${itemsContent}`);
 
             const referenceElement = document.getElementById('puntoClave');
             referenceElement.innerHTML = '';
             referenceElement.innerHTML = htmlContent;
+            $('.item-detail-client').hover(
+                function () {
+                    $(this).find('.hover-message-item').css({
+                        opacity: 1,
+                        visibility: 'visible',
+                        backgroundColor: 'var(--color-item-selct-hover-product-table)'
+                    });
+                },
+                function () {
+                    $(this).find('.hover-message-item').css({
+                        opacity: 0,
+                        visibility: 'hidden'
+                    });
+                }
+            );
         })
         .catch(error => console.error('Error loading template:', error));
 }
@@ -165,7 +198,6 @@ async function newOrderForTheCounter(id, code = null) {
             referenceElement.innerHTML = '';
             referenceElement.innerHTML = htmlContent;
             new SearchBox('No se encuntro el Producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-waiter', '/assigned_waiter', 5, 0);
-            new SearchBoxClient('No se encuntro el Cliente...', '.search-box-data-client', '#search-client', '#search-label-client', '.suggestions-client', '#id-waiter-client', '/client_data_filt', 5, 0);
         })
         .catch(error => console.error('Error loading template:', error));
 }
@@ -185,7 +217,7 @@ $('.tables-list').on('click', function (event) {
         if (dataIdValue == 1) {
             addTable(tableId, codeData);
         } if (dataIdValue == 0) {
-            window.location.href = url+'?id='+tableId+'&code='+codeData+'&sale='+NAME_SELECT;
+            window.location.href = url + '?id=' + tableId + '&code=' + codeData + '&sale=' + NAME_SELECT;
         }
     }
 });
@@ -256,7 +288,7 @@ $('.counter-next').on('click', function () {
     });
 });
 */
-function newOrderToClient(id){
+function newOrderToClient(id) {
 
     const nameOfInput = ["number_people", "id_user", "user_name", "id_person", "document_and_name_to_person"];
     const valueOfInput = {};
@@ -264,15 +296,15 @@ function newOrderToClient(id){
         valueOfInput[name] = $(`input[name="${name}"]`).val();
     });
 
-    if(valueOfInput.number_people == null){
+    if (valueOfInput.number_people == null) {
         console.log("nulo");
     }
-    if(valueOfInput.id_user != null){
+    if (valueOfInput.id_user != null) {
         console.log(valueOfInput.user_name);
-    }else{
+    } else {
         $('input[name="supply_name"]').css('border', '2px solid rgb(157, 22, 22)');
     }
-    if(valueOfInput.id_person != null){
+    if (valueOfInput.id_person != null) {
         console.log(valueOfInput.document_and_name_to_person);
     }
 }

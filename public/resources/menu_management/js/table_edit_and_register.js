@@ -20,7 +20,7 @@ function stopAutoScroll() {
 async function loadTableData(id, option = null) {
     const tablesList = document.getElementById('tables-list');
     const addTableItem = document.getElementById('add-table-item');
-    const tableData = await consultDataUrl("/tables-list-data", { 'id': id });
+    const tableData = await consultDataUrl("/tables_list_data", { 'id': id });
     var url = URL_TEMPLATE + "frame_table.html";
 
     tablesList.querySelectorAll('.table-item.table-data').forEach(element => element.remove());

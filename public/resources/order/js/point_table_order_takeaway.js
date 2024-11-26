@@ -32,10 +32,11 @@ async function listOrdersHistory() {
 }
 
 async function functionActionbutonPost(url) {
+    $('.list-delivery-order.bottom-data').show();
+    $('.conteiner-table').hide();
+
     result = await consultDataUrl('/list_takeaway_orders', { type: url });
     resultFilt = result;
-    $('.content main .list-delivery-order.bottom-data').css('display', 'block');
-    $('.conteiner-table').css('display', 'none');
     $('.button-option-table-oreder-takeaway').css('background-color', '#ff5700');
     goToPage(1);
     $('#search-data').val('');
@@ -226,7 +227,7 @@ async function addOrder(option) {
             referenceElement.innerHTML = htmlContent;
         })
         .catch(error => console.error('Error loading template:', error));
-    $('.conteiner-table').show();
+    $('.conteiner-table').hide();
 
     $(document).on('click', '#button-div-option-new-order', function () {
         console.log('Se presionó Agregar');

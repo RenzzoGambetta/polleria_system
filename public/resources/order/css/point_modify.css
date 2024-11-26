@@ -133,10 +133,9 @@ div#puntoClave {
 }
 
 .label-able {
-    background-color: #757575ab;
     color: #fff;
     font-size: 12px;
-    padding: 2px 4px;
+    padding: 4px 20px;
     border-radius: 4px;
     margin-left: 8px;
 }
@@ -459,7 +458,7 @@ div#add-table-item:hover {
 }
 .content main .list-delivery-order.bottom-data {
     margin-top: 0px;
-
+    display: none;
 }
 
 button.pagination-button {
@@ -688,3 +687,113 @@ i.fi.fi-sr-layer-plus {
     position: relative;
 }
 
+.edit-panel button.icon-table {
+    width: 20%;
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    background-color: #c50000;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.edit-panel button.icon-table:hover {
+    background-color: #ff3300;
+}
+
+
+.edit-panel .item-detail-client {
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+.edit-panel .button-container-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.edit-panel button.option-view-coment,
+.edit-panel button.option-edit-list-order {
+    width: 100px;
+    height: 50px;
+    margin-right: 10px;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease;
+}
+.edit-panel button.continue-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 1rem;
+    background-color: #237500;
+    transition: background-color 0.3s ease;
+}
+i.fi.fi-br-money-transfer-coin-arrow.center-icon {
+    margin-right: 10px;
+}
+span#price-item-data-total-product {
+    margin-left: 10px;
+}
+i.fi.fi-ss-user-pen.center-icon {
+    margin-right: 5px;
+}
+.button-edit-list-table,
+.button-delate-list-table{
+    width: 100%;
+    margin: 0 5px;
+    height: 100%;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease;
+}
+.option-item-selec-list-table {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+.hover-message-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: calc(100% - 100px);
+    transform: translate(-50%, -50%);
+    padding: 20px 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+    height: calc(100% - 2px);
+    width: 200px;
+    margin: 1px 0;
+}
+.edit-panel .button-edit-list-table:hover{
+    background-color: rgb(249, 183, 0) ;
+}
+.edit-panel .button-delate-list-table:hover{
+    background-color: rgb(203, 0, 0) ;
+}
+.edit-panel .option-edit-list-order:hover{
+    background-color: rgb(249, 183, 0);
+}
+.edit-panel .option-view-coment:hover{
+    background-color: rgb(0, 57, 215);
+}
+.edit-panel .option-edit-list-order{
+    background-color: rgb(104, 76, 0);
+    transition: background-color 0.3s ease;
+}
+.edit-panel .option-view-coment{
+    background-color: rgb(41, 52, 81);
+    transition: background-color 0.3s ease;
+}
+.edit-panel button.continue-button:hover{
+    background-color: #195300;
+}
