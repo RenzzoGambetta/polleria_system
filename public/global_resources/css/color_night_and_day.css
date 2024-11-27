@@ -88,7 +88,8 @@
     --color-item-selct-hover-product-table:#f2d3b3;
     --backgraund-color-table-and-frame:#fff;
     --border-color-table-order-list-end:1px solid #ddd;
-
+    --document-type-background-color:#ffb81f96;
+    --payment-section-background-color:#00b8124d;
 }
 
 
@@ -162,4 +163,6 @@ body.dark {
     --color-item-selct-hover-product-table:#443110;
     --backgraund-color-table-and-frame:#181a1e;
     --border-color-table-order-list-end:1px solid #6b6b6b;
+    --document-type-background-color:#474747;
+    --payment-section-background-color:#474747;
 }

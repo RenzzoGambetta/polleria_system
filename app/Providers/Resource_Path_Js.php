@@ -85,6 +85,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $TableOrderTakeaway = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'point_table_order_takeaway.js');
             $view->with('TableOrderTakeaway', $TableOrderTakeaway);
+            
+            $paymentCostomerFunctioAndCalc = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'payment_costomer_functio_and_calc.js');
+            $view->with('paymentCostomerFunctioAndCalc', $paymentCostomerFunctioAndCalc);
         });
     }
 }

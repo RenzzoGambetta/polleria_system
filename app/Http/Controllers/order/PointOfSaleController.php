@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\menu\Lounge;
 use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
+use App\Models\menu\Table;
 use App\Models\Person;
 use App\Models\User;
 use App\Services\order\CashierSessionService;
@@ -47,14 +48,12 @@ class PointOfSaleController extends Controller
     }
     public function showPaymentService(Request $request)
     {
-        $Items = $this->orderService->getAllOrderDetailsOfTable($request->id);
-        $Item = [];
-        for ($i = 0; $i < 10; $i++) {
-            $Item = array_merge($Item, $Items);
-        }
-
+        $Item = $this->orderService->getAllOrderDetailsOfTable($request->id);
+        $Data = Table::where('id', $request->id)->first();
         $Navigation = $this->NavigationPonit;
-        return view('order.payment_customer_order', compact('Navigation','Item'));
+        $Data['sub_total'] = array_sum(array_column($Item, 'total_price'));
+        
+        return view('order.payment_customer_order', compact('Navigation','Item','Data'));
     }
     public function showCashierSessions(Request $request)
     {

@@ -126,6 +126,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $paymentCustomer = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'payment_customer.css');
             $view->with('paymentCustomer', $paymentCustomer);
+
+            $radioButtonOptionStyle = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'button_option_style.css');
+            $view->with('radioButtonOptionStyle', $radioButtonOptionStyle);
         });
     }
 }

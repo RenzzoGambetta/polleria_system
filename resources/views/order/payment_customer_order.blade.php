@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{ asset($ItemOrder) }}">
 <link rel="stylesheet" href="{{ asset($newOrder) }}">
 <link rel="stylesheet" href="{{ asset($openingClosingDesignStyle) }}">
+<link rel="stylesheet" href="{{ asset($radioButtonOptionStyle) }}">
 <link rel="stylesheet" href="{{ asset($paymentCustomer) }}">
 
 @if (session()->has('Message'))
@@ -28,9 +29,10 @@
         timeAlert({{ session('Time') ?? 10 }})
     </script>
 @endif
-
+<script>let items = @json($Item);</script>
+ 
 @csrf
-<div class="header-item">DETALLE PEDIDO</div>
+<div class="header-item">Resumen de pedido de {{$Data->lounge->name}} mesa: {{$Data->code}}</div>
 <div class="container-item-data">
     <div class="left-panel">
         <div class="frame-table-item">
@@ -47,7 +49,7 @@
                         <tr class="tr-data-item-order" id="id-{{ $item['id'] }}">
                             <td class="frame-nemeric-item">{{ $item['quantity'] }}</td>
                             <td class="product-name">{{ $item['name'] }}<span class="tag" style="background-color: {{ $item['is_delibery'] === 1 ? '#720000b3' : '#0030c2b3' }}">{{ $item['is_delibery'] === 1 ? 'Delivery' : 'Mesa' }}</span></td>
-                            <td>{{ $item['total_price'] }}</td>
+                            <td>s/ <span>{{ $item['total_price'] }}</span></td>
                         </tr>
                     @endforeach
 
@@ -57,37 +59,51 @@
         <div class="totals">
             <div class="total-row">
                 <span>Sub Total</span>
-                <span>S/ 28.50</span>
+                <span>S/ <span>{{$Data['sub_total']}}</span></span>
             </div>
             <div class="total-row">
-                <span>Cortesía / Descuento</span>
+                <span>Cortesía / Descuento (no integrado)</span>
                 <span>S/ 0.00</span>
             </div>
             <div class="total-row">
-                <span>Comisión delivery</span>
+                <span>Comisión delivery (no integrado)</span>
                 <span>S/ 0.00</span>
             </div>
             <div class="total-row final-total">
                 <span>TOTAL</span>
-                <span>S/ 28.50</span>
+                <span>S/ <span>{{$Data['sub_total']}}</span></span>
             </div>
         </div>
     </div>
 
     <div class="right-panel">
         <div class="document-type">
-            TIPO DE DOCUMENTO
+            <h1 class="sub-title-client">Tipo de Documento</h1>
+
             <div class="doc-buttons">
-                <button class="doc-button active">BOLETA</button>
-                <button class="doc-button">FACTURA</button>
-                <button class="doc-button">NOTA DE VENTA</button>
+                <div class="frame-option-t-type-payment">
+                    <label class="particles-checkbox-container">
+                        <input type="radio" class="particles-checkbox" name="toggle" checked>
+                        <span class="star-item-border"><i class="fi fi-ss-point-of-sale-bill center-icon"></i>Boleta</span>
+                    </label>
+
+                    <label class="particles-checkbox-container">
+                        <input type="radio" class="particles-checkbox" name="toggle">
+                        <span><i class="fi fi-sr-calculator-bill center-icon"></i>Factura</span>
+                    </label>
+
+                    <label class="particles-checkbox-container">
+                        <input type="radio" class="particles-checkbox" name="toggle">
+                        <span class="end-item-border"><i class="fi fi-sr-receipt center-icon"></i>Nota de Venta</span>
+                    </label>
+                </div>
             </div>
         </div>
 
         <div class="data-client">
             <h1 class="sub-title-client">Datos de cliente</h1>
             <div class="sub-frame-01">
-                <button class="new-client-data"><i class="fi fi-ss-user-add center-icon"></i></button>
+                <button class="new-client-data" onclick="newRegisterClientData()"><i class="fi fi-ss-user-add center-icon"></i></button>
                 <div class="search-container">
                     <input type="number" id="id-waiter-client" name="id_person" style="display: none">
                     <input type="text" id="search-client" name="document_and_name_to_person" class="search-box-data-client input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
@@ -97,47 +113,82 @@
 
                     </div>
                 </div>
-                <button class="clear-client-data"><i class="fi fi-sr-broom center-icon"></i></button>
+                <button class="clear-client-data" onclick="clearOptionDataClient()"><i class="fi fi-sr-broom center-icon"></i></button>
             </div>
 
         </div>
 
-        <div class="payment-section">
-            FORMAS DE PAGO
-            <div class="payment-type">EFECTIVO</div>
+        <div class="payment-section" id="button-option-type-payment">
+            <h1 class="sub-title-client">Forma de Pago</h1>
+            <div class="doc-buttons">
+                <div class="multi-button">
+                    <input type="hidden" name="input-type-payment" value="efectivo">
+                    <input type="hidden" name="input-sub-type-payment" value="">
+                    <input type="hidden" name="input-type-payment-group" value="1">
+                    <button class="button-type-payment active" onclick="selectOptionTypePayment('efectivo',1)" id="efectivo"> <span>Efectivo</span> <i class="fi fi-rs-coins center-icon"></i> </button>
+                    <button class="button-type-payment" onclick="selectOptionTypePayment('yape',2)" id="yape"> <span>Yape</span> <i class="fi fi-ss-comment-dollar center-icon"></i> </button>
+                    <button class="button-type-payment" onclick="selectOptionTypePayment('plin',2)" id="plin"> <span>Plin</span> <i class="fi fi-ss-comment-dollar center-icon"></i> </button>
+                    <button class="button-type-payment" onclick="selectOptionTypePayment('t-debito',2)" id="t-debito"> <span>T.Debito</span> <i class="fi fi-sr-credit-card center-icon"></i> </button>
+                    <button class="button-type-payment" onclick="selectOptionTypePayment('t-credito',2)" id="t-credito"> <span>T.Credito</span> <i class="fi fi-sr-credit-card center-icon"></i> </button>
+                </div>  
+                <button class="multi-option-pyment" title="Combinar con otro metodo de pago" onclick="combinePaymentType()" id="combine-type-payment-button"><i class="fi fi-bs-arrows-repeat center-icon"></i></button>
+            </div>
         </div>
-        <div class="amount-input">
+        <div class="amount-input" id="frame-efectivo-type">
             <div class="mount-calc-data">
                 <div class="motorcycle-received-customer">
                     <div class="cash-register-amount-group">
-                        <label class="cash-register-amount-label">INGRESE MONTO</label>
+                        <label class="cash-register-amount-label" id="sub-title-efectivo-mount">INGRESE MONTO</label>
                         <div class="cash-register-amount-container">
                             <span class="cash-register-currency-symbol">S/</span>
-                            <input type="text" class="cash-register-amount-input" placeholder="0.00" name="opening_balance" value="{{ old('opening_balance') }}" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46">
+                            <input type="text" class="cash-register-amount-input" placeholder="{{$Data['sub_total']}}" name="input-total-payment" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46">
+                        </div>
+                    </div>
+                </div>
+                <div class="motorcycle-received-customer" id="type-data-form-sub-payment" style="display: none">
+                    <div class="cash-register-amount-group">
+                        <label class="cash-register-amount-label">Monto de <span id="sub-title-type-payment-option">yape</span></label>
+                        <div class="cash-register-amount-container">
+                            <span class="cash-register-currency-symbol">S/</span>
+                            <input type="text" class="cash-register-amount-input input-option-2" placeholder="0" name="input-payment-option-2" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46">
                         </div>
                     </div>
                 </div>
                 <div class="total-amount-service">
                     <span class="sub-title-count-service">MONTO TOTAL</span>
-                    <span class="sub-price-count-service">S/ 28.50</span>
+                    <span class="sub-price-count-service">S/ <span id="primary-total-payment">{{$Data['sub_total']}}</span></span>
                 </div>
                 <div class="total-amount-change">
                     <span class="sub-title-count-service">VUELTO</span>
-                    <span style="color: green;" class="sub-price-count-service">S/ 0.00</span>
+                    <span style="color: green;" class="sub-price-count-service">S/ <span id="return-money-client">0.00</span></span>
                 </div>
             </div>
         </div>
+        <div class="loader-option-combine" style="display: none" id="loader-option-combine-payment">
+            <div class="card-option-payment">
+                <div class="loader-option-payment">
+                  <p>Puedes combinar con </p>
+                  <div class="words-option-payment">
+                      <span class="word-option-payment">Yape</span>
+                      <span class="word-option-payment">Plin</span>
+                      <span class="word-option-payment">T.Debito</span>
+                      <span class="word-option-payment">T.Credito</span>
+                      <span class="word-option-payment">Yape</span>
+                  </div>
+                </div>
+              </div>              
+        </div>
 
-        <div>
+        <div id="frame-efectivo-fast">
             <h1 class="sub-title-client">Pago Efectivo Rapido</h1>
 
             <div class="quick-amounts">
-                <button type="button" class="amount-button selected"><i class="fi fi-sr-hand-holding-usd  center-icon"></i> s/ 21118.50</button>
-                <button type="button" class="amount-button"><i class="fi fi-sr-coins center-icon"></i> s/ 10</button>
-                <button type="button" class="amount-button"><i class="fi fi-sr-coins center-icon"></i> s/ 20</button>
-                <button type="button" class="amount-button"><i class="fi fi-sr-coins center-icon"></i> s/ 50</button>
-                <button type="button" class="amount-button"><i class="fi fi-sr-coins center-icon"></i> s/ 100</button>
-                <button type="button" class="amount-button"><i class="fi fi-sr-coins center-icon"></i> s/ 200</button>
+                <button type="button" class="amount-button selected" data-amount="{{$Data['sub_total']}}"><i class="fi fi-sr-hand-holding-usd center-icon"></i> s/ <span>{{$Data['sub_total']}}</span></button>
+                <button type="button" class="amount-button" data-amount="10"><i class="fi fi-sr-coins center-icon"></i> s/ 10</button>
+                <button type="button" class="amount-button" data-amount="20"><i class="fi fi-sr-coins center-icon"></i> s/ 20</button>
+                <button type="button" class="amount-button" data-amount="50"><i class="fi fi-sr-coins center-icon"></i> s/ 50</button>
+                <button type="button" class="amount-button" data-amount="100"><i class="fi fi-sr-coins center-icon"></i> s/ 100</button>
+                <button type="button" class="amount-button" data-amount="200"><i class="fi fi-sr-coins center-icon"></i> s/ 200</button>
             </div>
         </div>
     </div>
@@ -147,11 +198,11 @@
     <button class="action-button back">Volver</button>
     <button class="action-button accept">ACEPTAR</button>
 </div>
+<script src="{{ asset($AlertSrc) }}"></script>
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($searchBoxDataCliene) }}"></script>
-<script>
-    new SearchBoxClient('No se encuntro el Cliente...', '.search-box-data-client', '#search-client', '#search-label-client', '.suggestions-client', '#id-waiter-client', '/client_data_filt', 5, 0);
-</script>
+<script src="{{ asset($paymentCostomerFunctioAndCalc) }}"></script>
+
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>
