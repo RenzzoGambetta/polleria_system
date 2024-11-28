@@ -3,6 +3,7 @@
 namespace App\Models\finance;
 
 use App\Models\InventoryReceipt;
+use App\Models\order\Order;
 use App\Models\various\PaymentMethod;
 use App\Models\various\VoucherSerie;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,6 @@ class Voucher extends Model
         'expiration_date',
         'total_amount',
         'payment_type',
-        'payment_method_id',
         'commentary',
     ];
 
@@ -28,13 +28,19 @@ class Voucher extends Model
         return $this->hasOne(InventoryReceipt::class);
     }
 
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function paymentDetails() 
+    {
+        return $this->hasMany(VoucherPaymentDetail::class);
+    }
+
     public function voucherSerie() 
     {
         return $this->belongsTo(VoucherSerie::class);
     }
-
-    public function paymentMethod() 
-    {
-        return $this->belongsTo(PaymentMethod::class);
-    }
+    
 }

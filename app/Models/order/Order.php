@@ -3,9 +3,9 @@
 namespace App\Models\order;
 
 use App\Models\Client;
+use App\Models\finance\Voucher;
 use App\Models\menu\Table;
 use App\Models\User;
-use App\Models\VoucherType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -58,8 +58,8 @@ class Order extends Model
         return $this->belongsTo(User::class, 'waiter_id');
     }
 
-    public function voucherType()
+    public function voucher()
     {
-        return $this->belongsTo(VoucherType::class, 'voucher_id');
+        return $this->belongsTo(Voucher::class, 'voucher_id');
     }
 }
