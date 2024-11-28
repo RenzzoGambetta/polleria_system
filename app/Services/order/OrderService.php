@@ -61,16 +61,7 @@ class OrderService
         DB::beginTransaction();
 
         try {
-            for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
-                $order->detail()->create([
-                    'supply_id' => $data['menu_item_ids'][$i],
-                    'price' => $data['prices'][$i],
-                    'quantity' => $data['quantities'][$i],
-                    'total_amount' => $data['total_prices'][$i],
-                    'is_delibery' => $data['is_delibery_details'][$i],
-                    'note' => $data['notes'][$i],
-                ]);
-            }
+            $this->addEveryDetailToOrder($order, $data);
 
             DB::commit();
             return $order;
@@ -89,16 +80,7 @@ class OrderService
         try {
             $order->details()->delete();
 
-            for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
-                $order->details()->create([
-                    'supply_id' => $data['menu_item_ids'][$i],
-                    'price' => $data['prices'][$i],
-                    'quantity' => $data['quantities'][$i],
-                    'total_amount' => $data['total_prices'][$i],
-                    'is_delibery' => $data['is_delibery_details'][$i],
-                    'note' => $data['notes'][$i],
-                ]);
-            }
+            $this->addEveryDetailToOrder($order, $data);
 
             DB::commit();
             return $order;
@@ -123,16 +105,7 @@ class OrderService
 
             $order->details()->delete();
 
-            for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
-                $order->details()->create([
-                    'supply_id' => $data['menu_item_ids'][$i],
-                    'price' => $data['prices'][$i],
-                    'quantity' => $data['quantities'][$i],
-                    'total_amount' => $data['total_prices'][$i],
-                    'is_delibery' => $data['is_delibery_details'][$i],
-                    'note' => $data['notes'][$i],
-                ]);
-            }
+            $this->addEveryDetailToOrder($order, $data);
 
             DB::commit();
             return $order;

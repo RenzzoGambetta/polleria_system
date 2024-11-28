@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('person_id')->references('id')->on('persons');
             $table->string('address', 255)->nullable();
             $table->string('type', 100)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
