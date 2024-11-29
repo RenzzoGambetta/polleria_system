@@ -12,6 +12,7 @@ use App\Http\Controllers\inventory_management\SuppliersController;
 use App\Http\Controllers\menu_management\MenuController;
 use App\Http\Controllers\menu_management\TableController;
 use App\Http\Controllers\order\PointOfSaleController;
+use App\Http\Controllers\order\MozoController;
 use App\Http\Controllers\temp\EfectController;
 use App\Http\Controllers\test\testController;
 
@@ -111,6 +112,13 @@ use App\Http\Controllers\test\testController;
         Route::post('/create_order_client', [PointOfSaleController::class,'createOrderClient'])->name('create_order_client');
         Route::get('/list_order_details_table', [PointOfSaleController::class,'allOrderDetailsOfTable'])->name('list_order_details_table');
         Route::get('/payment_service', [PointOfSaleController::class,'showPaymentService'])->name('payment_service');
+        Route::post('/fetch_client_data', [PointOfSaleController::class,'fetchClientData'])->name('fetch_client_data');
+        Route::post('/register_new_person_data_base', [PointOfSaleController::class,'registerNewPersonDataBase'])->name('register_new_person_data_base');
+        Route::post('/register_express_data_client', [PointOfSaleController::class,'registerExpressDataClient'])->name('register_express_data_client');
+    
+    //--> Mozo
+        Route::get('/mozo', [MozoController::class,'showPanelMozo'])->name('mozo');
+        
     //--> Home
 
         Route::get('/home', [UserController::class,'show_home_list'])->name('home');

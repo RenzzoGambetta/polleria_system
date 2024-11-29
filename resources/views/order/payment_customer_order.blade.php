@@ -29,6 +29,16 @@
         timeAlert({{ session('Time') ?? 10 }})
     </script>
 @endif
+<div id="alert-container" class="container-aler" style="display: none;">
+    <div class="alert-error-and-response error">
+        <div class="message-title-and-timer">
+            <span class="tilte-alert">Mensaje:</span>
+            <span class="sub-title-time" id="timer">10s</span>
+        </div>
+        <span class="text-alert" id="alert-message">Este es un mensaje de prueba.</span>
+    </div>
+</div>
+
 <script>let items = @json($Item);</script>
  
 @csrf
@@ -66,7 +76,7 @@
                 <span>S/ 0.00</span>
             </div>
             <div class="total-row">
-                <span>Comisión delivery (no integrado)</span>
+                <span>Adicionales / Extras (no integrado)</span>
                 <span>S/ 0.00</span>
             </div>
             <div class="total-row final-total">
@@ -83,17 +93,17 @@
             <div class="doc-buttons">
                 <div class="frame-option-t-type-payment">
                     <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle" checked>
+                        <input type="radio" class="particles-checkbox" name="toggle" value="boleta" checked>
                         <span class="star-item-border"><i class="fi fi-ss-point-of-sale-bill center-icon"></i>Boleta</span>
                     </label>
 
                     <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle">
+                        <input type="radio" class="particles-checkbox" name="toggle" value="factura">
                         <span><i class="fi fi-sr-calculator-bill center-icon"></i>Factura</span>
                     </label>
 
                     <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle">
+                        <input type="radio" class="particles-checkbox" name="toggle" value="nota">
                         <span class="end-item-border"><i class="fi fi-sr-receipt center-icon"></i>Nota de Venta</span>
                     </label>
                 </div>
@@ -110,7 +120,7 @@
                     <label for="search-client" id="search-label-client" class="label-input-data mobile-label">Busca cliente</label>
 
                     <div id="suggestions" class="suggestions-client">
-
+                        <div class="no-suggestions">Escrive Dni / Ruc o Nombre del Cliente...</div>
                     </div>
                 </div>
                 <button class="clear-client-data" onclick="clearOptionDataClient()"><i class="fi fi-sr-broom center-icon"></i></button>

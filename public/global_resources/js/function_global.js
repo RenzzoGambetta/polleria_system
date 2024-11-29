@@ -22,6 +22,32 @@ async function consultDataUrl(url, datosObj) {
         return false;
     }
 }
+async function consultDataPost(url, datosObj) {
+    try {
+
+        const csrfToken = document.querySelector('input[name="_token"]').value;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify(datosObj)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la solicitud: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error('Error:', error);
+        return false;
+    }
+}
+
 function timeAlert(time) {
     let timeLeft = time;
     const timerElement = $('#timer');

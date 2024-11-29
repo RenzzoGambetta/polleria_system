@@ -46,6 +46,9 @@ class Resource_Path_Css extends ServiceProvider
             $TemplateDesktop = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'template_desktop.css');
             $view->with('TemplateDesktop', $TemplateDesktop);
 
+            $MozoStylePanel = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'mozo_style_panel.css');
+            $view->with('MozoStylePanel', $MozoStylePanel);
+
             //$EmployeeRecordMobile = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_mobile.css');
             //$view->with('EmployeeRecordMobile', $EmployeeRecordMobile);loading_style
 
@@ -129,6 +132,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $radioButtonOptionStyle = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'button_option_style.css');
             $view->with('radioButtonOptionStyle', $radioButtonOptionStyle);
+        
+            $TableMozoPanel = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'table_mozo_panel.css');
+            $view->with('TableMozoPanel', $TableMozoPanel);
         });
     }
 }

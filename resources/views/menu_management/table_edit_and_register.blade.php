@@ -18,7 +18,7 @@
         <button class="scroll-btn left" onmousedown="startAutoScroll(-1, true)" onmouseup="stopAutoScroll()" onmouseout="stopAutoScroll()">‹</button>
         <div class="tabs-container" id="tabs-container">
             @foreach ($Lounge as $Lounges)
-                <button class="button" id="button_{{ $Lounges->id }}" onclick="loadTableData({{ $Lounges->id }})">{{ $Lounges->name }}</button>
+                <button class="button button-data-lounges" id="button_{{ $Lounges->id }}" onclick="loadTableData({{ $Lounges->id }})">{{ $Lounges->name }}</button>
             @endforeach
         </div>
         <button class="scroll-btn right" onmousedown="startAutoScroll(1, true)" onmouseup="stopAutoScroll()" onmouseout="stopAutoScroll()">›</button>

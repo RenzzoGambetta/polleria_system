@@ -34,7 +34,7 @@ class ClientService
             $person->client()->save($client);
 
             DB::commit();
-           return true;
+           return $person; //lo modifique por que nesesitaba el id
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

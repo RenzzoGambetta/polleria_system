@@ -12,7 +12,9 @@ use App\Models\menu\MenuItem;
 use App\Models\menu\Table;
 use App\Models\Person;
 use App\Models\User;
+use App\Services\IdentificationDocumentService;
 use App\Services\order\CashierSessionService;
+use App\Services\order\ClientService;
 use App\Services\order\OrderService;
 use DateTime;
 use Exception;
@@ -52,8 +54,8 @@ class PointOfSaleController extends Controller
         $Data = Table::where('id', $request->id)->first();
         $Navigation = $this->NavigationPonit;
         $Data['sub_total'] = array_sum(array_column($Item, 'total_price'));
-        
-        return view('order.payment_customer_order', compact('Navigation','Item','Data'));
+
+        return view('order.payment_customer_order', compact('Navigation', 'Item', 'Data'));
     }
     public function showCashierSessions(Request $request)
     {
@@ -202,41 +204,50 @@ class PointOfSaleController extends Controller
         $query = $request->input('query');
         $limit = $request->input('limit', 5);
         $offset = $request->input('offset', 0);
-
-        // Inicializamos la consulta de búsqueda básica
+        $typeFacture = $request->input('type');
+    
+        // Inicializamos la consulta del modelo `Person`
         $personsQuery = Person::query();
-
-        // Verificamos si el query contiene un RUC o DNI en formato Ruc:XXXX|nombre o Dni:XXXX|nombre
+    
+        // Filtrar por `document_type_id` si el tipo de factura es 'factura'
+        if ($typeFacture === 'factura') {
+            $personsQuery->where('document_type_id', 2);
+        }
+    
+        // Verificar si el query contiene un formato específico Ruc:XXXX|nombre o Dni:XXXX|nombre
         if (preg_match('/^(ruc|dni):(\d+)\|(.+)$/', $query, $matches)) {
-            $documentType = $matches[1];  // Tipo de documento (Ruc o Dni)
+            $documentType = $matches[1];  // Ruc o Dni
             $documentNumber = $matches[2];
             $name = $matches[3];
-
-            // Filtrar tanto por número de documento como por nombre
+    
+            // Filtrar tanto por documento como por nombre
             $personsQuery->where('document_number', 'like', "%$documentNumber%")
-                ->where('name', 'like', "%$name%");
+                         ->where('name', 'like', "%$name%");
         } else {
-            // Si no está en el formato específico, buscar por nombre o documento
-            $personsQuery->where('name', 'like', "%$query%")
-                ->orWhere('document_number', 'like', "%$query%");
+            // Búsqueda genérica por nombre o documento
+            $personsQuery->where(function ($subQuery) use ($query) {
+                $subQuery->where('name', 'like', "%$query%")
+                         ->orWhere('document_number', 'like', "%$query%");
+            });
         }
-
-        // Ejecutar la consulta con límites y offset
+    
+        // Aplicar límites y ejecutar la consulta
         $persons = $personsQuery->skip($offset)
-            ->take($limit)
-            ->get();
-
-        // Formatear los resultados
+                                 ->take($limit)
+                                 ->get();
+    
+        // Formatear resultados
         $formattedPersons = $persons->map(function ($person) {
-            $prefix = strlen($person->document_number) == 11 ? 'Ruc:' : 'Dni:';
+            $prefix =  $person->document_type_id == 2 ? 'Ruc:' : 'Dni:';
             return [
                 'id' => $person->id,
                 'name' => $prefix . $person->document_number . '|' . $person->name
             ];
         });
-
+    
         return response()->json(['items' => $formattedPersons]);
     }
+
     /*Fin*/
     public function newOrderClient(Request $request)
     {
@@ -422,13 +433,132 @@ class PointOfSaleController extends Controller
         try {
             $response = $this->orderService->getAllOrderDetailsOfTable($Data->id);
             return response()->json($response);
-
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Error en la validación de los datos',
                 'errors' => $e
             ], 422);
+        }
+    }
+    public function fetchClientData(Request $Data)
+    {
+        try {
+            if ($Data->type == 'dni') {
+                $response = (new IdentificationDocumentService())->fetchDataByDni($Data->document);
+                $response['status'] = true;
+            } else if ($Data->type == 'ruc') {
+                $response = (new IdentificationDocumentService())->fetchDataByRuc($Data->document);
+                $response['status'] = true;
+            } else {
+                $respnser = [
+                    'status' => false
+                ];
+            }
+            return response()->json($response);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false
+            ]);
+        }
+    }
+    public function registerNewPersonDataBase(Request $Data)
+    {
+        try {
+            $DataFilt = $Data->toArray();
+            $DataFilt['dni'] = $Data->document;
+
+            if ($Data->option == 'create') {
+                $response = (new ClientService())->createClient($DataFilt);
+
+                if (isset($response['document_number']) && isset($response['id']) && isset($response['name'])) {
+                    $prefix = strlen($response['document_number']) === 11 ? 'Ruc:' : 'Dni:';
+                    return response()->json([
+                        'id' => $response['id'],
+                        'name_compact' => $prefix . $response['document_number'] . '|' . $response['name'],
+                        'status' => true
+                    ]);
+                }
+                return response()->json([
+                    'status' => false,
+                    'data' => $response
+                ]);
+            }
+            return response()->json([
+                'status' => false,
+                'data' => $DataFilt
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'error' => $e->getMessage(),
+                'data' => $Data->toArray()
+            ]);
+        }
+    }
+    public function registerExpressDataClient(Request $Data)
+    {
+        try {
+            // Validar tipo de documento
+            if ($Data->type === 'dni') {
+                $responseClient = (new IdentificationDocumentService())->fetchDataByDni($Data->document);
+            } elseif ($Data->type === 'ruc') {
+                $responseClient = (new IdentificationDocumentService())->fetchDataByRuc($Data->document);
+            } else {
+                return response()->json(['status' => false, 'message' => 'Tipo de documento no válido.']);
+            }
+            return $this->registerFastDataClient($responseClient, $Data->toArray());
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Error inesperado en el servidor.',
+                'error' => env('APP_DEBUG') ? $e->getMessage() : null,
+            ]);
+        }
+    }
+    private function registerFastDataClient(array $responseClient, array $Data)
+    {
+        if (isset($responseClient['response']) && $responseClient['response'] === true) {
+            $responseRegister = [];
+
+            if ($Data['type'] === 'dni') {
+                if (isset($responseClient['dni'], $responseClient['name'], $responseClient['paternal_surname'], $responseClient['maternal_surname'])) {
+                    $DataFilt = [
+                        'dni' => $responseClient['dni'], //se modifico a dni
+                        'name' => $responseClient['name'],
+                        'lastname' => trim(($responseClient['paternal_surname'] ?? '') . ' ' . ($responseClient['maternal_surname'] ?? '')),
+                    ];
+                    $responseRegister = (new ClientService())->createClient($DataFilt);
+                } else {
+                    return ['status' => false, 'message' => 'Información incompleta para el DNI.'];
+                }
+            } elseif ($Data['type'] === 'ruc') {
+                // Verificar si las claves necesarias existen en la respuesta pendiente 
+                if (isset($responseClient['numeroDocumento'], $responseClient['nombre'], $responseClient['razonSocial'], $responseClient['viaNombre'])) {
+                    $DataFilt = [
+                        'document_number' => $responseClient['numeroDocumento'],
+                        'name' => $responseClient['nombre'] ?? $responseClient['razonSocial'],
+                        'lastname' => $responseClient['viaNombre'],
+                    ];
+                } else {
+                    return ['status' => false, 'message' => 'Información incompleta para el RUC.'];
+                }
+            }
+
+            if (isset($responseRegister['document_number']) && isset($responseRegister['id']) && isset($responseRegister['name'])) {
+                $prefix = strlen($responseRegister['document_number']) === 11 ? 'RUC:' : 'DNI:';
+
+                return [
+                    'status' => true,
+                    'response' => true,
+                    'id' => $responseRegister['id'],
+                    'name_compact' => $prefix . $responseRegister['document_number'] . ' | ' . $responseRegister['name'],
+                ];
+            } else {
+                return ['status' => false, 'message' => 'Error al registrar cliente.'];
+            }
+        } else {
+            return $responseClient;
         }
     }
 }

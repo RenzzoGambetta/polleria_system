@@ -90,7 +90,7 @@ class EmployeeController extends Controller
         if (is_array($response)) {
             return response()->json(['data' => $response], 200);
         }
-        return response()->json(['error' => $response], 400);
+        return response()->json(['error' => $response['message']], 400);
     }
     public function create_employee_record(EmployeeRequest $request)
     {

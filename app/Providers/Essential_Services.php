@@ -31,6 +31,7 @@ class Essential_Services extends ServiceProvider
 
             $view->with('HeaderPanel', 'template.header');
             $view->with('FooterPanel', 'template.footer');
+            $view->with('HeaderMozo', 'template.header_mozo');
 
             //Alert
 

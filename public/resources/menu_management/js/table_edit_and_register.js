@@ -52,14 +52,8 @@ async function loadTableData(id, option = null) {
 
 
 function highlightButton(activeId) {
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(button => {
-        if (button.onclick.toString().includes(activeId)) {
-            button.classList.add('active');
-        } else {
-            button.classList.remove('active');
-        }
-    });
+    $('.button-data-lounges').removeClass('active');
+    $(`#button_${activeId}`).addClass('active');
 }
 
 function addButton(loungeId, loungeName) {

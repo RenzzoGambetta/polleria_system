@@ -1,0 +1,260 @@
+<style>
+    .swal2-popup.swal2-modal.swal2-show {
+        width: 95%;
+        max-width: 900px;
+    }
+
+    .effect-16~label {
+        width: auto;
+        cursor: text;
+    }
+
+    .data-optional.to-client {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        border-left: 2px solid #898989;
+    }
+
+    .data-primary-to-client {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+    }
+
+    .frame-data-client {
+        display: flex;
+        width: 100%;
+        border-top: 2px solid #89898986;
+        border-bottom: 2px solid #89898986;
+        align-items: flex-start;
+    }
+
+    div#swal2-html-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .col-3.input-effect.data-series {
+        width: calc(100% - 80px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin: 20px 40px;
+        font-size: 1rem;
+    }
+
+    .data-client-frame {
+        font-size: 1rem;
+    }
+
+    .radio-input input {
+        display: none;
+    }
+
+    .radio-input {
+        --container_width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        background-color: #bcbcbc;
+        color: #000000ac;
+        width: var(--container_width);
+        overflow: hidden;
+        border: 1px solid rgba(53, 52, 52, 0.226);
+    }
+
+    .radio-input label {
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        font-weight: 600;
+        letter-spacing: -1px;
+        font-size: 14px;
+        transition: background-color 0.5s ease;
+    }
+
+    .selection {
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: calc(var(--container_width) / 2);
+        z-index: 0;
+        left: 0;
+        top: 0;
+        transition: .15s ease;
+    }
+
+    .radio-input label:has(input:checked) {
+        color: #fff;
+    }
+
+    .radio-input label:has(input:checked)~.selection {
+        background-color: rgb(11 117 223);
+        display: inline-block;
+    }
+    .radio-input label:nth-child(1):has(input:checked)~.selection {
+        transform: translateX(calc(var(--container_width) * 0/2));
+    }
+
+    .radio-input label:nth-child(2):has(input:checked)~.selection {
+        transform: translateX(calc(var(--container_width) * 2/2));
+    }
+
+    .type-gender-option-client {
+        font-size: 12px;
+        background-color: transparent;
+        color: var(--label-efect-transiccion-focus);
+        text-align: justify;
+        margin-bottom: 10px;
+    }
+
+    .option-date-and-phone {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    .col-3.input-effect.data-series.lef {
+        margin-left: 10px;
+    }
+
+    .col-3.input-effect.data-series.right {
+        margin-right: 10px;
+    }
+
+    .title-option-cliente {
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+    }
+
+    .sub-title-data-primary-to-client,
+    .sub-title-data-optional-to-client {
+        background-color: #007c19;
+        padding: 10px 0;
+        font-size: 1rem;
+        border-radius: 0 0 10px 10px;
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    .sub-title-data-optional-to-client {
+        background-color: #7c0000;
+    }
+
+    .document-type-frame {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    button.seach-document-to-data {
+        margin: 20px 40px;
+        margin-left: 0px;
+        width: 60px;
+        border-radius: 10px;
+        background-color: #7f00a2;
+        border: 0px;
+        color: white;
+        font-size: 1.3rem;
+        cursor: pointer;
+        height: 45px;
+        transition: background-color 0.5s ease;
+    }
+
+    button.seach-document-to-data:hover {
+        background-color: #af00df;
+    }
+    .radio-input label:hover,
+    .radio-input label:has(input:checked):hover{
+        background-color: #ffffffd3;
+        color: black;
+    }
+    .swal2-actions {
+    width: 100%;
+}button.swal2-confirm.swal2-styled.swal2-default-outline {
+    width: 50%;
+}button.swal2-cancel.swal2-styled.swal2-default-outline {
+    width: 45%;
+}
+</style>
+<div class="container-data-client">
+    <div class="title-option-cliente">
+        <H1>Registrar Cliente</H1>
+    </div>
+    <div class="frame-data-client">
+        <div class="data-primary-to-client">
+            <div class="sub-title-data-primary-to-client">
+                Datos principales
+            </div>
+            <div class="document-type-frame">
+                <div class="col-3 input-effect data-series right">
+                    <input type="number" name="document_number_client" id="document_number_client"
+                        class="effect-16 data-client-frame" placeholder=" " value="" max="99999999999"
+                        oninput="limitInputLength(this, 11,true)">
+                    <label for="document_number_client" id="text-data-document">DNI / RUC</label>
+                    <span class="focus-border"></span>
+                </div>
+                <button class="seach-document-to-data" onclick="documentSearchApi()"><i class="fi fi-br-search center-icon"></i></button>
+            </div>
+            <div class="col-3 input-effect data-series">
+                <input type="text" name="firstname_client" id="firstname_client" class="effect-16 data-client-frame"
+                    placeholder=" " value="">
+                <label for="firstname_client">Nombres</label>
+                <span class="focus-border"></span>
+            </div>
+            <div class="col-3 input-effect data-series" id="div-lastname-client-alert">
+                <input type="text" name="lastname_client" id="lastname_client" class="effect-16 data-client-frame"
+                    placeholder=" " value="">
+                <label for="lastname_client">Apellidos</label>
+                <span class="focus-border"></span>
+            </div>
+        </div>
+        <div class="data-optional to-client">
+            <div class="sub-title-data-optional-to-client">
+                Datos opcionales
+            </div>
+            <div class="option-date-and-phone">
+                <div class="col-3 input-effect data-series right" id="birthdate-client-data">
+                    <input type="date" name="birthdate_client" id="birthdate_client" class="effect-16 data-client-frame"
+                        placeholder=" " value="">
+                    <label for="birthdate_client">Fecha de nacimiento</label>
+                    <span class="focus-border"></span>
+                </div>
+                <div class="col-3 input-effect data-series lef" id="phone-client-data-frame">
+                    <input type="number" name="phone_client" id="phone_client" class="effect-16 data-client-frame"
+                        placeholder=" " value="" value="" max="99999999" oninput="limitInputLength(this, 9)">
+                    <label for="phone_client">Telefono</label>
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="col-3 input-effect data-series">
+                <input type="email" name="email_client" id="email_client" class="effect-16 data-client-frame"
+                    placeholder=" " value="">
+                <label for="email_client">Correo electronico</label>
+                <span class="focus-border"></span>
+            </div>
+            <div class="col-3 input-effect data-series" id="gender-option-client-data">
+                <span class="type-gender-option-client">Tipo de genero</span>
+                <div class="radio-input">
+                    <label>
+                        <input value="0" name="gender_client" id="value-1" type="radio">
+                        <span>Hombre</span>
+                    </label>
+                    <label>
+                        <input value="1" name="gender_client" id="value-2" type="radio">
+                        <span>Mujer</span>
+                    </label>
+                    <span class="selection"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
