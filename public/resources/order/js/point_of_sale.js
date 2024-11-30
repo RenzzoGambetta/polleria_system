@@ -168,7 +168,7 @@ async function addTable(id, code = null) {
                     $(this).find('.hover-message-item').css({
                         opacity: 1,
                         visibility: 'visible',
-                        backgroundColor: 'var(--color-item-selct-hover-product-table)'
+                        background: 'var(--color-item-selct-hover-product-table)'
                     });
                 },
                 function () {
