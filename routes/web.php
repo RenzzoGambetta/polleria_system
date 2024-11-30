@@ -118,6 +118,7 @@ use App\Http\Controllers\test\testController;
     
     //--> Mozo
         Route::get('/mozo', [MozoController::class,'showPanelMozo'])->name('mozo');
+        Route::get('/table_to_mozo', [MozoController::class,'shoqwPanelToTableData'])->name('table_to_mozo');
         
     //--> Home
 

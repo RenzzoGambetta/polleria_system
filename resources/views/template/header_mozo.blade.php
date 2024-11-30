@@ -29,13 +29,17 @@
                 <img src="{{ asset($CompanyLogoIcon) }}" alt="Icono" id="logo_icon">
                 <div class="logo-name"><span>D'Brazza</span></div>
             </a>
-
             <ul class="side-menu">
-                @foreach ($Data as $item)
-                    <li class="{{ ($item->id ?? null) == $Option['id'] ? 'active' : '' }}">
-                        <a href="{{ route('mozo') }}?lounge_id={{ $item->id}}" class="{{ ($item->id ?? null) == $Option['id'] ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-label'></i> {{$item->name}}</a>
-                    </li>
-                @endforeach
+                <li class="{{ ($Navigation['seccion'] ?? null) == 10 ? 'sub active' : 'sub' }}">
+                    <a href="{{ route('mozo') }}" class="{{ ($Navigation['seccion'] ?? null) == 10 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 100 ? 'nav_select' : '' }}" title="Todas las salas"><i class='fi fi-sr-table-pivot bx-adjustment-icon'></i>Salas</a>
+                    <ul class="sub">
+                        @foreach ($Data as $item)
+                            <li class="{{ ($item->id ?? null) == $Option['id'] ? 'active' : '' }}" title="{{$item->name}}">
+                                <a href="{{ route('table_to_mozo') }}?lounge_id={{ $item->id }}" id="{{ ($item->id ?? null) == $Option['id'] ? 'nav_select' : '' }}"><i class='bx bxs-label'></i> {{ $item->name }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
 
             </ul>
 

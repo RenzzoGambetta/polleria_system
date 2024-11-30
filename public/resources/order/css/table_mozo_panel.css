@@ -31,7 +31,22 @@
     align-items: center;
     flex-direction: row;
 }
-
+.tables-list-tomozo{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 160px));
+    gap: 1rem;
+    padding: 0rem;
+    justify-content: center;
+}
+.table-item.table-data{
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.container-secription-table {
+    display: flex;
+}
 @media screen and (max-width: 768px) {
     span.span-data-table {
         font-size: 0.8rem;
@@ -54,5 +69,15 @@
         height: 30px;
         margin-top: -55px;
         margin-bottom: 15px;
+    }
+    .time-table-client {
+        font-size: 0.8rem;
+    }
+    .data-info-table-sub-name .span-data-table,
+    .data-info-table-sub-name .span-data {
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        font-style: normal;
     }
 }

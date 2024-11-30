@@ -87,7 +87,10 @@ class Resource_Path_Js extends ServiceProvider
             $view->with('TableOrderTakeaway', $TableOrderTakeaway);
             
             $paymentCostomerFunctioAndCalc = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'payment_costomer_functio_and_calc.js');
-            $view->with('paymentCostomerFunctioAndCalc', $paymentCostomerFunctioAndCalc);
+            $view->with('paymentCostomerFunctioAndCalc', $paymentCostomerFunctioAndCalc); 
+
+            $tableMozoPanelFuction = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'table_mozo_panel.js');
+            $view->with('tableMozoPanelFuction', $tableMozoPanelFuction);
         });
     }
 }
