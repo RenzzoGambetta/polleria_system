@@ -34,6 +34,9 @@ class Resource_Path_Css extends ServiceProvider
             $view->with('InputResources', $InputResources);
             //Resources
 
+            $StyleDocument = $fpFunc->Resource(Folder_Path::DOCUMENT, Folder_Path::CSS, 'style_document.css');
+            $view->with('StyleDocument', $StyleDocument);
+
             $LoginMobile = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::CSS, 'login_mobile.css');
             $view->with('LoginMobile', $LoginMobile);
 

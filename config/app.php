@@ -124,4 +124,6 @@ return [
     ],
 
 
+    'Pdf' => Barryvdh\DomPDF\Facade\Pdf::class,
+
 ];

@@ -131,8 +131,8 @@ use App\Http\Controllers\test\testController;
         Route::get('/update_menu_state', [EfectController::class, 'updateMenuState']);
 
     //-- testing view
-        Route::get('/view-test', [testController::class, 'viewTestV0']);
-        Route::get('/view-test', [testController::class, 'viewTestV1']);
-        Route::get('/view-test', [testController::class, 'generarPDF']);
+        Route::get('/view-test-v0', [testController::class, 'viewTestV0']);
+        Route::get('/view-test-v1', [testController::class, 'viewTestV1']);
+        Route::get('/view-test-pdf', [testController::class, 'generarPDF']);
 
     });

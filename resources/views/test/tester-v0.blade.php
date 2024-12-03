@@ -1,76 +1,112 @@
 <!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boleta</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
-            margin: 0;
-            padding: 0;
-            width: 80mm;
-        }
-
-        .ticket {
-            padding: 10px;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .bold {
-            font-weight: bold;
-        }
-
-        .line {
-            border-top: 1px dashed #000;
-            margin: 5px 0;
-        }
-    </style>
-</head>
+<html>
+<link rel="stylesheet" href="{{ asset($StyleDocument) }}">
 
 <body>
     <div class="ticket">
-        <p class="center bold">Mi Restaurante</p>
-        <p class="center">RUC: 12345678901</p>
-        <p class="center">Av. Ejemplo 123</p>
-        <p class="center">Tel: 987654321</p>
-        <div class="line"></div>
-        <p>Fecha: {{ $datos['fecha'] ?? '' }}</p>
-        <p>Cliente: {{ $datos['cliente'] ?? '' }}</p>
-        <div class="line"></div>
-        <table style="width: 100%;">
-            <thead>
+        <div class="image-document-icon">
+            <img src="{{ asset($DocumentLogo) }}" alt="D'BRAZZA DORADA">
+        </div>
+        <div class="center bold title capital">D'Brazza dorada</div>
+        <div class="center">RUC: 20612460401</div>
+        <div class="center">Alfonso Ugarte III ET Mz. A5 Lt:11</div>
+        <div class="center">Tel: 948447099</div>
+        <hr>
+        <div class="type-document-data">
+            <span class="type-docuemt capital">Boleta de ventan electronica</span>
+            <span class="number-document capital">Ba02-00003895</span>
+        </div>
+        <hr>
+        <div class="document-client-and-origin">
+            <div class="moment-to-order">
+                <span class="date-order">FECHA : 26/12/2024</span>
+                <span class="time-order">HORA : 04:41:12 PM</span>
+            </div>
+            <div class="attention-type">
+                ATENCION :<span class="area-of-attention"> Preimera 1 - Mesa : 2</span>
+            </div>
+            <div>CLIENTE: {{ $datos['cliente'] }}</div>
+            <div>DNI: 71571704</div>
+        </div>
+        <hr style="margin-bottom: 0">
+        <div class="table-data-order">
+            <table>
                 <tr>
-                    <th style="text-align: left;">Cant</th>
-                    <th style="text-align: left;">Producto</th>
-                    <th style="text-align: right;">Precio</th>
+                    <th>PRODUCTO</th>
+                    <th class="right">CANT.</th>
+                    <th class="right">P.U.</th>
+                    <th class="right">IMP.</th>
                 </tr>
-            </thead>
-            <tbody>
-                @if (!empty($datos['items']))
-                    @foreach ($datos['items'] as $item)
-                        <tr>
-                            <td>{{ $item['cantidad'] ?? '' }}</td>
-                            <td>{{ $item['producto'] ?? '' }}</td>
-                            <td style="text-align: right;">S/ {{ number_format($item['precio'] ?? 0, 2) }}</td>
-                        </tr>
-                    @endforeach
-                @else
+            </table>
+            <hr style="margin: 0">
+            <table>
+                @foreach ($datos['items'] as $item)
                     <tr>
-                        <td colspan="3" style="text-align: center;">No hay datos disponibles</td>
+                        <td>{{ $item['producto'] }}</td>
+                        <td class="right">{{ $item['cantidad'] }}</td>
+                        <td class="right">5.00</td>
+                        <td class="right" class="right">{{ number_format($item['precio'], 2) }}</td>
                     </tr>
-                @endif
+                @endforeach
+            </table>
+            <hr>
 
-            </tbody>
-        </table>
-        <div class="line"></div>
-        <p style="text-align: right;">Total: S/ {{ $datos['total'] ?? '' }}</p>
-        <p class="center">¡Gracias por su compra!</p>
+            <table class="detalle">
+                <tr>
+                    <td>SUB TOTAL</td>
+                    <td class="right">22.00</td>
+                </tr>
+                <!--
+                 <tr>
+                    <td>DESCUENTO</td>
+                    <td class="right">0.00</td>
+                </tr>
+                -->
+
+                <tr>
+                    <td>OP. GRAVADA</td>
+                    <td class="right">20.00</td>
+                </tr>
+                <tr>
+                    <td>OP. EXONERADA</td>
+                    <td class="right">0.00</td>
+                </tr>
+                <tr>
+                    <td>I.G.V. 18%</td>
+                    <td class="right">2.00</td>
+                </tr>
+            </table>
+            <hr>
+            <table>
+                <tr class="total">
+                    <td>IMPORTE A PAGAR</td>
+                    <td class="right">22.00</td>
+                </tr>
+            </table>
+            <div class="inpor-total-text">
+                <span>SON: VENTIDOS CON 00/100 Soles</span>
+            </div>
+            <hr>
+            <table>
+                <tr>
+                    <td>EFECTIVO</td>
+                    <td class="right">22.00</td>
+                </tr>
+            </table>
+            <hr>
+            <table>
+                <tr>
+                    <td>PAGO CON</td>
+                    <td class="right">22.00</td>
+                </tr>
+                <tr>
+                    <td>VUELTO</td>
+                    <td class="right">0.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="center">¡Gracias por su compra!</div>
     </div>
 </body>
 
