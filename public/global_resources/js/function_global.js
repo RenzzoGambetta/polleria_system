@@ -6,22 +6,50 @@ function urlGet(url, datos = null) {
     window.location.href = url;
 }
 async function consultDataUrl(url, datosObj) {
-    const queryParams = new URLSearchParams(datosObj).toString();
-    const ref = url + `?${queryParams}`;
+    const requestId = Date.now();
+    this.currentRequestId = requestId;
+
+    const queryParams = new URLSearchParams(
+        Object.fromEntries(
+            Object.entries(datosObj).filter(([_, value]) => value !== null && value !== undefined)
+        )
+    ).toString();
+
+    const ref = `${url}?${queryParams}`;
+
+    const controller = new AbortController();
+    this.currentRequestController?.abort();
+    this.currentRequestController = controller;
 
     try {
-        const response = await fetch(ref);
-        if (!response.ok) {
-            throw new Error('Error en la solicitud: ' + response.statusText);
-        }
-        const data = await response.json();
-        return data;
+        const response = await fetch(ref, {
+            method: 'GET',
+            headers: { 'Connection': 'keep-alive' },
+            signal: controller.signal,
+        });
 
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        if (requestId !== this.currentRequestId) {
+            return null;
+        }
+
+        return data;
     } catch (error) {
-        console.error('Error:', error);
+        if (error.name === 'AbortError') {
+            console.warn('Solicitud abortada:', ref);
+        } else {
+            console.error('Error:', error.message || error);
+        }
         return false;
     }
 }
+
+
 async function consultDataPost(url, datosObj) {
     try {
 
@@ -128,3 +156,11 @@ async function loadHtmlFromFile(url) {
         return '';
     }
 }
+
+window.addEventListener('popstate', (event) => {
+    event.preventDefault(); 
+    Swal.close();
+    history.pushState(null, '', location.href);
+});
+
+history.pushState(null, '', location.href);

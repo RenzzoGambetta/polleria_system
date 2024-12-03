@@ -10,6 +10,7 @@ use App\Models\menu\Lounge;
 use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
 use App\Models\menu\Table;
+use App\Models\order\Order;
 use App\Models\Person;
 use App\Models\User;
 use App\Services\IdentificationDocumentService;
@@ -205,37 +206,37 @@ class PointOfSaleController extends Controller
         $limit = $request->input('limit', 5);
         $offset = $request->input('offset', 0);
         $typeFacture = $request->input('type');
-    
+
         // Inicializamos la consulta del modelo `Person`
         $personsQuery = Person::query();
-    
+
         // Filtrar por `document_type_id` si el tipo de factura es 'factura'
         if ($typeFacture === 'factura') {
             $personsQuery->where('document_type_id', 2);
         }
-    
+
         // Verificar si el query contiene un formato específico Ruc:XXXX|nombre o Dni:XXXX|nombre
         if (preg_match('/^(ruc|dni):(\d+)\|(.+)$/', $query, $matches)) {
             $documentType = $matches[1];  // Ruc o Dni
             $documentNumber = $matches[2];
             $name = $matches[3];
-    
+
             // Filtrar tanto por documento como por nombre
             $personsQuery->where('document_number', 'like', "%$documentNumber%")
-                         ->where('name', 'like', "%$name%");
+                ->where('name', 'like', "%$name%");
         } else {
             // Búsqueda genérica por nombre o documento
             $personsQuery->where(function ($subQuery) use ($query) {
                 $subQuery->where('name', 'like', "%$query%")
-                         ->orWhere('document_number', 'like', "%$query%");
+                    ->orWhere('document_number', 'like', "%$query%");
             });
         }
-    
+
         // Aplicar límites y ejecutar la consulta
         $persons = $personsQuery->skip($offset)
-                                 ->take($limit)
-                                 ->get();
-    
+            ->take($limit)
+            ->get();
+
         // Formatear resultados
         $formattedPersons = $persons->map(function ($person) {
             $prefix =  $person->document_type_id == 2 ? 'Ruc:' : 'Dni:';
@@ -244,7 +245,7 @@ class PointOfSaleController extends Controller
                 'name' => $prefix . $person->document_number . '|' . $person->name
             ];
         });
-    
+
         return response()->json(['items' => $formattedPersons]);
     }
 
@@ -252,7 +253,7 @@ class PointOfSaleController extends Controller
     public function newOrderClient(Request $request)
     {
         $Navigation = $this->NavigationPonit;
-        $Category = MenuCategory::select('name', 'id')->get();
+        $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
         if ($request->id == null | $request->code == null | $request->sale == null) {
             return response()->json(['mesage' => 'No se puede accesdeder sin datos']);
         }
@@ -399,7 +400,7 @@ class PointOfSaleController extends Controller
     {
         $requestFilt = [
             'table_id' => (int) $request->table_id,
-            'waiter_id' => (int) $request->waiter_id,
+            'waiter_id' => (int) Auth::user()->id,
             'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
             'commentary' => $request->commentary ?? '',
             'menu_item_ids' => array_map('intval', $request->menu_item_ids),
@@ -415,11 +416,17 @@ class PointOfSaleController extends Controller
 
         try {
             $response = $this->orderService->createOrderWithDetails($requestFilt);
-
-            return redirect()->route('point_of_sale')->withInput()->with([
-                'Message' => 'Se aperturó la caja satisfactoriamente.',
-                'Type' => 'success'
-            ]);
+            if($request->type != 'mozo'){
+                return redirect()->route('point_of_sale')->withInput()->with([
+                    'Message' => 'Se aperturó la caja satisfactoriamente.',
+                    'Type' => 'success'
+                ]);
+            }else{
+                return redirect()->route('table_to_mozo', ['lounge_id' => $request->lounge])->withInput()->with([
+                    'Message' => 'Se aperturó la caja satisfactoriamente.',
+                    'Type' => 'success'
+                ]);
+            }
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
@@ -432,7 +439,11 @@ class PointOfSaleController extends Controller
     {
         try {
             $response = $this->orderService->getAllOrderDetailsOfTable($Data->id);
-            return response()->json($response);
+            $order = Order::where('table_id', $Data->id)->first();
+            return response()->json([
+                'data' =>$response,
+                'messenger' => $order->commentary 
+            ]);
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',

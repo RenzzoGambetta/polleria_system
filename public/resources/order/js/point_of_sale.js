@@ -2,7 +2,7 @@ const URL_TEMPLATE = "/resources/order/template/";
 var ID_SELECT = 0;
 var NAME_SELECT = "";
 let scrollInterval;
-
+var messenger = '';
 $(document).ready(function () {
     $('.conteiner-table').hide();
 });
@@ -20,46 +20,45 @@ function stopAutoScroll() {
 
 async function loadTableData(id, text = null) {
     const tablesList = document.getElementById('tables-list');
-    const tableData = await consultDataUrl("/tables_list_data", { 'id': id });
-    var url = URL_TEMPLATE + "frame_table.html";
+    const tableData = await consultDataUrl("/tables_list_data", { id: id });
+    const url = `${URL_TEMPLATE}frame_table.html`;
+    $('#tables-list').empty();
 
-    tablesList.querySelectorAll('.table-item.table-data').forEach(element => element.remove());
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Error al cargar la plantilla: ${response.statusText}`);
+        }
+        const template = await response.text();
+        let allTablesHtml = tableData.map(data => {
+            const color = data.status === 1 ? '#f95f5f85' : '#26f9276e';
+            const isVisible = data.status === 1 ? 'block' : 'none';
 
+            return template
+                .replaceAll('{{code}}', data.name)
+                .replaceAll('--status', color)
+                .replaceAll('--is-visible', isVisible)
+                .replace('{{option}}', data.status)
+                .replaceAll('{{id}}', data.id);
+        }).join('');
 
-    tableData.forEach(data => {
-        fetch(url)
-            .then(response => response.text())
-            .then(template => {
-                var color = data.status === 1 ? '#f95f5f85' : '#26f9276e';
-                var isVisible = data.status === 1 ? 'block' : 'none';
-                let htmlContent = template
-                    .replaceAll('{{code}}', data.name)
-                    .replaceAll('--status', color)
-                    .replaceAll('--is-visible', isVisible)
-                    .replace('{{option}}', data.status)
-                    .replaceAll('{{id}}', data.id);
+        tablesList.insertAdjacentHTML('beforeend', allTablesHtml);
 
-                tablesList.insertAdjacentHTML('beforeend', htmlContent);
-            })
-            .catch(error => console.error('Error loading template:', error));
-    });
+    } catch (e) {
+        $('#tables-list').empty();
+        // console.error('Ocurrió un problema:', e);
+        return;
+    }
 
     highlightButton(id);
     addLounges(id, text);
     $('.content main .list-delivery-order.bottom-data').css('display', 'none');
-
 }
 
 
 function highlightButton(activeId) {
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(button => {
-        if (button.onclick.toString().includes(activeId)) {
-            button.classList.add('active');
-        } else {
-            button.classList.remove('active');
-        }
-    });
+    $('.button-data-lounges').removeClass('active');
+    $(`#button_${activeId}`).addClass('active');
 }
 
 
@@ -124,18 +123,18 @@ function calculateTotal(selectedItems) {
 async function addTable(id, code = null) {
     var url = URL_TEMPLATE + "select_to_table_view.html";
     const tableDataList = await consultDataUrl("/list_order_details_table", { 'id': id });
-
+    messenger = tableDataList.messenger;
     fetch(url)
         .then(response => response.text())
         .then(template => {
             let htmlContent = template
                 .replaceAll('{{lounge}}', NAME_SELECT)
-                .replaceAll('{{total}}', calculateTotal(tableDataList))
+                .replaceAll('{{total}}', calculateTotal(tableDataList.data))
                 .replaceAll('{{id}}', id)
                 .replaceAll('{{table}}', code);
 
             let itemsContent = '';
-            tableDataList.forEach(item => {
+            tableDataList.data.forEach(item => {
                 let optionProduct = item.is_delibery === 1 ? 'Delivery' : 'Mesa';
                 let colorOptionProduct = item.is_delibery === 1 ? '#720000b3' : '#0030c2b3';
                 itemsContent += `
@@ -307,4 +306,15 @@ function newOrderToClient(id) {
     if (valueOfInput.id_person != null) {
         console.log(valueOfInput.document_and_name_to_person);
     }
+}
+function noteOrderData() {
+
+    Swal.fire({
+        html: `<div style="font-size: 0.9rem;">${messenger}</div>`, 
+        didOpen: (popup) => {
+            if (typeof urlPostDeleteStyle === 'function') {
+                urlPostDeleteStyle(popup);
+            }
+        }
+    })
 }

@@ -91,6 +91,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $tableMozoPanelFuction = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'table_mozo_panel.js');
             $view->with('tableMozoPanelFuction', $tableMozoPanelFuction);
+
+            $orderReceptionMozo = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'order_reception_and_register.js');
+            $view->with('orderReceptionMozo', $orderReceptionMozo);
         });
     }
 }

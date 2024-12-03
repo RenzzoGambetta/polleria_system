@@ -119,6 +119,7 @@ use App\Http\Controllers\test\testController;
     //--> Mozo
         Route::get('/mozo', [MozoController::class,'showPanelMozo'])->name('mozo');
         Route::get('/table_to_mozo', [MozoController::class,'shoqwPanelToTableData'])->name('table_to_mozo');
+        Route::get('/order_to_client', [MozoController::class,'showPanelOrderMozo'])->name('order_to_client');
         
     //--> Home
 
@@ -130,6 +131,8 @@ use App\Http\Controllers\test\testController;
         Route::get('/update_menu_state', [EfectController::class, 'updateMenuState']);
 
     //-- testing view
-        Route::get('/view-test', [testController::class, 'viewTest']);
+        Route::get('/view-test', [testController::class, 'viewTestV0']);
+        Route::get('/view-test', [testController::class, 'viewTestV1']);
+        Route::get('/view-test', [testController::class, 'generarPDF']);
 
     });

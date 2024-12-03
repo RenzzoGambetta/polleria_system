@@ -4,6 +4,8 @@ namespace App\Http\Controllers\order;
 
 use App\Http\Controllers\Controller;
 use App\Models\menu\Lounge;
+use App\Models\menu\MenuCategory;
+use App\Models\menu\MenuItem;
 use App\Models\menu\Table;
 use Exception;
 use Illuminate\Http\Request;
@@ -25,6 +27,26 @@ class MozoController extends Controller
         ];
         $Lounge = Lounge::all();
         return view('order.mozo_panel', compact('Data', 'Option', 'Lounge', 'Navigation'));
+    }
+    public function showPanelOrderMozo(Request $request)
+    {
+        try{
+            $loungeData = Table::where('id', $request->id)->first();
+            $Option = [
+                'id' => $loungeData->lounge_id,
+                'lounge_id' => $loungeData->lounge_id,
+                'id_table' => $request->id
+            ];
+            //return response()->json($Option);
+            $Items = MenuItem::query()->select( 'category_id', 'id', 'name', 'price', 'is_combo', 'display_order')->orderBy('display_order')->get();
+            $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
+            $Data = $this->queryDataSaleOption(7,$loungeData->lounge_id);
+            $Navigation = $this->Navigation;
+    
+            return view('order.order_mozo_to_client', compact('Option',  'Navigation', 'Data','Category','Items'));
+        }catch(Exception $e){
+            return response()->json(['Text' => 'No se puede axederpor modificaciones en la URL', 'error' => $e->getMessage()]);
+        }
     }
     public function shoqwPanelToTableData(Request $request)
     {   

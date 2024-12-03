@@ -1,5 +1,7 @@
 var NAME_SELECT = "";
 const URL_TEMPLATE = "/resources/order/template/";
+var messenger = '';
+let htmlTemplateAlertCache;
 
 $('.tables-list-tomozo').on('click', function (event) {
     const target = $(event.target).closest('.table-item.table-data');
@@ -10,33 +12,31 @@ $('.tables-list-tomozo').on('click', function (event) {
     const loungeName = $('#title').text();
 
     console.log(`Id: ${tableId}\nCode: ${codeData}\nEstado de Mesa: ${statusId}\nEstado de sala: ${loungeName}`);
-    this.NAME_SELECT = loungeName;
+    NAME_SELECT = loungeName;
 
     if (statusId == 1) {
         addTable(tableId, codeData, loungeName);
     }
     if (statusId == 0) {
-        //window.location.href = url + '?id=' + tableId + '&code=' + codeData + '&sale=' + NAME_SELECT;
+        window.location.href = '/order_to_client' + '?id=' + tableId + '&code=' + codeData + '&sale=' + NAME_SELECT;
     }
 });
 
 async function addTable(id, code = null, lounge) {
     var url = URL_TEMPLATE + "select_to_table_view.html";
-    const tableDataList = await consultDataUrl("/list_order_details_table", {
-        'id': id
-    });
-
+    const tableDataList = await consultDataUrl("/list_order_details_table", { 'id': id });
+    messenger = tableDataList.messenger;
     fetch(url)
         .then(response => response.text())
         .then(template => {
             let htmlContent = template
                 .replaceAll('{{lounge}}', lounge)
-                .replaceAll('{{total}}', calculateTotal(tableDataList))
+                .replaceAll('{{total}}', calculateTotal(tableDataList.data))
                 .replaceAll('{{id}}', id)
                 .replaceAll('{{table}}', code);
 
             let itemsContent = '';
-            tableDataList.forEach(item => {
+            tableDataList.data.forEach(item => {
                 let optionProduct = item.is_delibery === 1 ? 'Delivery' : 'Mesa';
                 let colorOptionProduct = item.is_delibery === 1 ? '#720000b3' : '#0030c2b3';
                 itemsContent += `
@@ -49,9 +49,9 @@ async function addTable(id, code = null, lounge) {
                     </div>
                     <div class="price-detail" id="sub-total-price-${item.id}">s/ ${item.total_price}</div>
 
-                    <div class="hover-message-item">
+                    <div class="hover-message-item" style="display: ${item.note ? 'block' : 'none'};">
                        <div class="option-item-selec-list-table">
-                            <button class="button-note-list-table" onclick="noteItemList(${item.id})"><i class="fi fi-ss-memo center-icon"></i></button>
+                            <button class="button-note-list-table" onclick="noteOrderData('${item.note ?? ''}')"><i class="fi fi-ss-memo center-icon"></i></button>
                         </div>
                     </div>
                 </div>
@@ -68,6 +68,8 @@ async function addTable(id, code = null, lounge) {
 
             htmlContent = htmlContent.replace('<div id="data-item-client">', `<div id="data-item-client">${itemsContent}`);
 
+            htmlTemplateAlertCache = htmlContent;
+
             Swal.fire({
                 html: htmlContent,
                 showConfirmButton: false,
@@ -76,22 +78,18 @@ async function addTable(id, code = null, lounge) {
                     if (typeof urlPostDeleteStyle === 'function') {
                         urlPostDeleteStyle(popup);
                     }
-                    $('div#swal2-html-container').css('padding', '20px 0 0 0');
+                    $('div#swal2-html-container').css('padding', '13px 0 0 0');
                     $('.continue-button').remove();
                     $('.option-edit-list-order').remove();
                     $('.button-container-list').append('<button class="option-add-order-to-client" title="Agregar orden al cliente"><i class="fi fi-ss-shopping-cart-add center-icon"></i>Agregar</button>');
+                    $(popup).find('.swal2-close').css('display', 'block');
+                    $('div:where(.swal2-container).swal2-center > .swal2-popup').css('grid-row', '1');
 
                 },
                 preConfirm: () => {
 
                 }
-            }).then(async (result) => {
-                if (result.isConfirmed && result.value) {
-
-                } else {
-
-                }
-            });
+            })
 
             $('.item-detail-client').hover(
                 function () {
@@ -120,4 +118,57 @@ function calculateTotal(selectedItems) {
     }, 0);
 
     return total;
+}
+
+function noteOrderData(response = null) {
+    
+    var commentary = response == null ? messenger : response;
+
+    Swal.fire({
+        html: `<div style="font-size: 0.9rem;">${commentary}</div>`, // Ajusta el tamaño del texto
+        didOpen: (popup) => {
+            if (typeof urlPostDeleteStyle === 'function') {
+                urlPostDeleteStyle(popup);
+            }
+        },
+        willClose: () => {
+
+            Swal.fire({
+                html: htmlTemplateAlertCache,
+                showConfirmButton: false,
+                showCancelButton: false,
+                didOpen: (popup) => {
+                    if (typeof urlPostDeleteStyle === 'function') {
+                        urlPostDeleteStyle(popup);
+                    }
+                    $('div#swal2-html-container').css('padding', '13px 0 0 0');
+                    $('.continue-button').remove();
+                    $('.option-edit-list-order').remove();
+                    $('.button-container-list').append('<button class="option-add-order-to-client" title="Agregar orden al cliente"><i class="fi fi-ss-shopping-cart-add center-icon"></i>Agregar</button>');
+                    $(popup).find('.swal2-close').css('display', 'block');
+                    $('div:where(.swal2-container).swal2-center > .swal2-popup').css('grid-row', '1');
+
+                },
+                preConfirm: () => {
+
+                }
+            })
+
+            $('.item-detail-client').hover(
+                function () {
+                    $(this).find('.hover-message-item').css({
+                        opacity: 1,
+                        visibility: 'visible',
+                        background: 'var(--color-item-selct-hover-product-table)'
+                    });
+                },
+                function () {
+                    $(this).find('.hover-message-item').css({
+                        opacity: 0,
+                        visibility: 'hidden'
+                    });
+                }
+            );
+        }
+    });
 }

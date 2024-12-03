@@ -135,6 +135,9 @@ class Resource_Path_Css extends ServiceProvider
         
             $TableMozoPanel = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'table_mozo_panel.css');
             $view->with('TableMozoPanel', $TableMozoPanel);
+            
+            $orderReceptionToClient = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'order_reception_to_client.css');
+            $view->with('orderReceptionToClient', $orderReceptionToClient);
         });
     }
 }

@@ -134,12 +134,47 @@ button.option-edit-list-order {
 }
 .option-view-coment{
     background-color: rgb(102, 64, 255);
+    border-radius: 5px 0 0 5px;
     transition: background-color 0.3s ease;
 }
 .option-item-selec-list-table {
     display: flex;
     justify-content: flex-end;
 }
+button.option-add-order-to-client {
+    background-color: green;
+    border: none;
+    width: 60%;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    flex-direction: row;
+}
+button.option-add-order-to-client i.fi.fi-ss-shopping-cart-add.center-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+button.option-add-order-to-client:hover{
+    background-color: rgb(0, 67, 0);
+}
+
+.header-table-data {
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    user-select: none;
+    flex-direction: row-reverse;
+    margin-right: 80px;
+}
+
 @media screen and (max-width: 768px) {
     span.span-data-table {
         font-size: 0.8rem;
@@ -178,7 +213,7 @@ button.option-edit-list-order {
     }
     .icon-table {
         font-size: 0.8rem;
-        width: 150px;
+        width: 100px;
         height: 30px;
         border-radius: 10px;
     }
@@ -188,4 +223,17 @@ button.option-edit-list-order {
     .price-detail {
         font-size: 0.9rem;
     }
+}
+.container-table-data {
+    width: 100%;
+    background-color: transparent;
+    min-height: calc(90vh - 44px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#data-item-client {
+    max-height: 73vh;
+    overflow-y: auto;
+    padding-right: 10px;
 }

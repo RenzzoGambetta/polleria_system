@@ -29,7 +29,7 @@
         const itemId = $(this).attr('id');
         const idValue = itemId.replace('lounge_', '');
         if (idValue) {
-            window.location.href = `/mozo?lounge_id=${idValue}`;
+            window.location.href = `/table_to_mozo?lounge_id=${idValue}`;
         }
     });
 });
