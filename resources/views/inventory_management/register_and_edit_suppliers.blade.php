@@ -77,23 +77,23 @@
             </div>
 
             <div class="input-group col-md-6 one">
-                <input type="date" id="fechaNacimiento" class="effect-4" name="birthdate" placeholder=" " required value="{{ old('birthdate', $Supply->birthdate ?? '') }}"/>
+                <input type="date" id="fechaNacimiento" class="effect-4" name="birthdate" placeholder=" "  value="{{ old('birthdate', $Supply->birthdate ?? '') }}"/>
                 <label for="fechaNacimiento">*Fecha de Nacimiento</label>
             </div>
         </div>
         <div class="row">
             <div class="input-group col-md-6">
-                <input type="text" id="Telefono" class="effect-4" name="phone" placeholder=" " required maxlength="20" value="{{ old('phone', $Supply->phone ?? '') }}"/>
+                <input type="text" id="Telefono" class="effect-4" name="phone" placeholder=" "  maxlength="20" value="{{ old('phone', $Supply->phone ?? '') }}"/>
                 <label for="Telefono">*Teléfono</label>
             </div>
             <div class="input-group col-md-6 one">
-                <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " required value="{{ old('email', $Supply->email ?? '') }}"/>
+                <input type="email" id="Correo" class="effect-4" name="email" placeholder=" "  value="{{ old('email', $Supply->email ?? '') }}"/>
                 <label for="Correo">*Correo</label>
             </div>
         </div>
 
         <div class="input-group col-md-6 one unique">
-            <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " required maxlength="255" value="{{ old('address', $Supply->address ?? '') }}"/>
+            <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" "  maxlength="255" value="{{ old('address', $Supply->address ?? '') }}"/>
             <label for="Direccion">*Dirección</label>
         </div>
 
