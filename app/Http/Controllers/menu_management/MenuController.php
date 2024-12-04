@@ -177,16 +177,25 @@ class MenuController extends Controller
         $item = MenuCategory::select('id', 'name')->get();
         return response()->json($item);
     }
-    public function editNewMenu(Request $request)
+    public function editNewMenu(MenuItemRequest $request)
     {
-        return response()->json($request);
+
+        //return response()->json($request);
+        $menuItemService = new MenuItemService();
+        try {
+            $menuItem = $menuItemService->editMenuItem($request->id ,$request->validated());
+
+            return redirect()->route('menu');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
     public function registerNewMenu(MenuItemRequest $request)
     {
         /*
         *   Implementacion temporal de la creacion de nuevos items del menu, modifical con tu logica
         */
-        return response()->json($request);
+       
         $menuItemService = new MenuItemService();
         try {
             $menuItem = $menuItemService->createMenuItem($request->validated());

@@ -21,7 +21,7 @@ class MenuItemRequest extends FormRequest
         $rules = [
             'name' => 'required|string|max:124',
             'price' => 'required|decimal:0,2|min:0',
-            'is_combo' => 'intenger|between:0,1',
+            'is_combo' => 'integer|between:0,1',
             'category_id' => 'integer|nullable|exists:menu_categories,id',
             'cooking_place_id' => 'integer|nullable|exists:cooking_places,id',
             'comment' => 'string|max:255|nullable',
