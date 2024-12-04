@@ -30,7 +30,7 @@ class RoleController extends Controller
     {
         $Navigation = $this->Navigation;
 
-        $Roles = Role::paginate(6);
+        $Roles = Role::orderBy('created_at', 'desc')->paginate(10);
         return view('user_management.role', compact('Navigation', 'Roles'));
     }
     public function show_role_register(Request $Data)

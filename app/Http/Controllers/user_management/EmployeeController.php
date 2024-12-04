@@ -31,7 +31,7 @@ class EmployeeController extends Controller
 
     public function show_employeer_list()
     {
-        $List = Employee::with(['person', 'user'])->paginate(6);
+        $List = Employee::orderBy('created_at', 'desc')->with(['person', 'user'])->paginate(10);
 
         $Navigation = $this->Navigation;
 

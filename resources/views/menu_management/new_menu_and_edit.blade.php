@@ -36,7 +36,10 @@
             $comment = 'Comentario';
 
         @endphp
-
+        @if (!empty($ComboItem) && !empty($ComboItem->id))
+        <input type="hidden" name="id" value="{{$ComboItem->id}}">
+        <input type="hidden" name="is_combo" value="{{$ComboItem->is_combo}}">
+        @endif
         <div class="conteiner-new-supply">
             <div class="conteiner-01">
                 <div class="frame-01">

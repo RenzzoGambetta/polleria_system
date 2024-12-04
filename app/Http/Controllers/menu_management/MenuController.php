@@ -87,10 +87,13 @@ class MenuController extends Controller
                         'SubTitle' => 'Conjunto que conforma un Combo',
                         'Input' => 'Item',
                     ];
+
+
                     return view('menu_management.new_menu_and_edit', compact('Navigation', 'ComboItem', 'Data'));
                 }
                 $Data['UrlCancel'] = 'menu';
             }
+
             return view('menu_management.new_menu_and_edit', compact('Navigation', 'Data'));
         } catch (Extension $e) {
             return abort(404);
@@ -183,7 +186,7 @@ class MenuController extends Controller
         /*
         *   Implementacion temporal de la creacion de nuevos items del menu, modifical con tu logica
         */
-
+        return response()->json($request);
         $menuItemService = new MenuItemService();
         try {
             $menuItem = $menuItemService->createMenuItem($request->validated());

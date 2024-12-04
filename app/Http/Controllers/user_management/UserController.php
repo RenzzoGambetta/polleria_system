@@ -28,7 +28,7 @@ class UserController extends Controller
     public function show_user_list()
     {
 
-        $Users = User::orderBy('created_at', 'desc')->paginate(6);
+        $Users = User::orderBy('created_at', 'desc')->paginate(10);
         $Navigation = $this->Navigation;
         return view('user_management.user', compact('Navigation', 'Users'));
     }
