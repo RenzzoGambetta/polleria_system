@@ -1,0 +1,11 @@
+Abre el archivo php.ini (generalmente se encuentra en la carpeta de instalación de PHP).
+Descomenta (elimina el ; al inicio de la línea) la línea que dice:
+ini
+Copiar código
+extension=gd
+Guarda los cambios y reinicia tu servidor web (Apache, Nginx, o el servidor integrado de PHP).
+
+
+Windows:
+Descarga el binario desde wkhtmltopdf.org/downloads.html.
+Agrega el ejecutable a tu variable de entorno PATH.

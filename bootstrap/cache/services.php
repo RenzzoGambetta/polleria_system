@@ -29,10 +29,11 @@
     25 => 'Carbon\\Laravel\\ServiceProvider',
     26 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     27 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    28 => 'App\\Providers\\Essential_Services',
-    29 => 'App\\Providers\\Resource_Path_Css',
-    30 => 'App\\Providers\\Resource_Path_Image',
-    31 => 'App\\Providers\\Resource_Path_Js',
+    28 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
+    29 => 'App\\Providers\\Essential_Services',
+    30 => 'App\\Providers\\Resource_Path_Css',
+    31 => 'App\\Providers\\Resource_Path_Image',
+    32 => 'App\\Providers\\Resource_Path_Js',
   ),
   'eager' => 
   array (
@@ -50,10 +51,11 @@
     11 => 'Carbon\\Laravel\\ServiceProvider',
     12 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     13 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    14 => 'App\\Providers\\Essential_Services',
-    15 => 'App\\Providers\\Resource_Path_Css',
-    16 => 'App\\Providers\\Resource_Path_Image',
-    17 => 'App\\Providers\\Resource_Path_Js',
+    14 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
+    15 => 'App\\Providers\\Essential_Services',
+    16 => 'App\\Providers\\Resource_Path_Css',
+    17 => 'App\\Providers\\Resource_Path_Image',
+    18 => 'App\\Providers\\Resource_Path_Js',
   ),
   'deferred' => 
   array (

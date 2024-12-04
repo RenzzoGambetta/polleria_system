@@ -1,7 +1,11 @@
 const searchBox1 = new SearchBoxClient('No se encuntro el Cliente...', '.search-box-data-client', '#search-client', '#search-label-client', '.suggestions-client', '#id-waiter-client', '/client_data_filt', 5, 0);
 var quantityAlertLenghtDocument, totalPaymentClient, optionTypePayment = 'efectivo', optionTypePaymentGroup = 1, isActiveCombinePayment = false, isEfectivoOption = false;
 const URL_TEMPLATE = "/resources/order/template/";
-let timerInterval, typeFactureGlobal = 'boleta' ;
+const URL_TEMPLATE_TIKET = "/resources/document/template/";
+let timerInterval, typeFactureGlobal = 'boleta';
+let pdfData;
+let itemPaySelect = items;
+
 totalPaymentClientVal()
 
 $(document).ready(function () {
@@ -173,7 +177,7 @@ async function newRegisterClientData(data = null) {
                     }
                 });
 
-                if(typeFactureGlobal != 'factura'){
+                if (typeFactureGlobal != 'factura') {
                     $('#firstname_client').on('keydown', function (e) {
                         if (e.key === 'Enter') {
                             if (quantityAlertLenghtDocument == 11) {
@@ -183,19 +187,19 @@ async function newRegisterClientData(data = null) {
                             }
                         }
                     });
-    
+
                     setupEnterFocusChange('#lastname_client', '#', true)
                     setupEnterFocusChange('#birthdate_client', '#phone_client');
                     setupEnterFocusChange('#phone_client', '#email_client');
                     setupEnterFocusChange('#email_client', '#', true)
-                }else{
+                } else {
                     setupEnterFocusChange('#firstname_client', '#', true)
                     setupEnterFocusChange('#phone_client', '#email_client');
-                    setupEnterFocusChange('#email_client', '#', true);  
+                    setupEnterFocusChange('#email_client', '#', true);
                     $('#div-lastname-client-alert').hide();
                     $('#gender-option-client-data').hide();
                     $('#birthdate-client-data').hide();
-                    $('#phone-client-data-frame').css('margin','20px 40px');
+                    $('#phone-client-data-frame').css('margin', '20px 40px');
                     $('#text-data-document').text('RUC');
                 }
 
@@ -248,6 +252,7 @@ async function newRegisterClientData(data = null) {
     }).then(async (result) => {
         if (result.isConfirmed && result.value) {
             const data = await consultDataPost("/register_new_person_data_base", result.value);
+            console.log(data);
             if (data.status) {
                 $('input[name="id_person"]').val(data.id);
                 $('input[name="document_and_name_to_person"]').val(data.name_compact);
@@ -264,7 +269,7 @@ function limitInputLength(input, maxLength, documentLimit = false) {
         input.value = input.value.slice(0, maxLength);
     }
     if (documentLimit && typeFactureGlobal != 'factura') {
-        
+
         if (input.value.length == 11) { $("#div-lastname-client-alert").fadeOut(400); }
         else $("#div-lastname-client-alert").fadeIn(600);
         quantityAlertLenghtDocument = input.value.length;
@@ -305,11 +310,11 @@ async function documentSearchApi() {
     } else {
         $('#firstname_client').val('');
         $('#lastname_client').val('');
-        if(typeFactureGlobal == 'factura'){
+        if (typeFactureGlobal == 'factura') {
             Swal.showValidationMessage(
                 'El documento ingresado no coincide con el RUC (11 dígitos).'
             );
-        }else{
+        } else {
             Swal.showValidationMessage(
                 'El documento ingresado no coincide con los formatos de DNI (8 dígitos) o RUC (11 dígitos).'
             );
@@ -336,9 +341,9 @@ $('#search-client').on('focus', function () {
     $('#suggestions').addClass('open');
     searchBox1.setStatusDivOpen(1);
 });
-function autoCompletionDataInputField(id, name_compact){
-        $('input[name="id_person"]').val(id);
-        $('input[name="document_and_name_to_person"]').val(name_compact);
+function autoCompletionDataInputField(id, name_compact) {
+    $('input[name="id_person"]').val(id);
+    $('input[name="document_and_name_to_person"]').val(name_compact);
 }
 
 function showAlert(message = 'Mensaje de prueba', duration = 10) {
@@ -363,16 +368,279 @@ function showAlert(message = 'Mensaje de prueba', duration = 10) {
         $timerElement.text(`${timeLeft}s`);
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            $alertContainer.fadeOut(200); 
+            $alertContainer.fadeOut(200);
         }
     }, 1000);
 }
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $('input[name="toggle"]').on('change', function() {
+    $('input[name="toggle"]').on('change', function () {
         const selectedValue = $(this).val();
         typeFactureGlobal = selectedValue;
         searchBox1.setValueTypeFacture(typeFactureGlobal);
-       
+
     });
 });
+
+async function payBill() {
+
+    $('#pay-bill').fadeOut(100);
+    let timerInterval;
+    const nameClient = $('#search-client').val();
+    const idClient = $('#id-waiter-client').val() || 0;
+    const cashPaid = $('input[name="input-total-payment"]').val() || totalPaymentClient;
+    const anotherPaymentMethod = $('input[name="input-payment-option-2"]').val() || 0;
+    const primaryTotalPayment = parseFloat($('#primary-total-payment').text()) || 0;
+    const returnMoneyClient = parseFloat($('#return-money-client').text()) || 0;
+    const idTable = $('input[name="id_table"]').val();
+    Data = {
+        idTable: idTable,
+        optionPayment: optionTypePayment,
+        typeFacture: typeFactureGlobal,
+        nameClient: nameClient,
+        idClient: idClient,
+        cashPaid: cashPaid,
+        anotherPaymentMethod: anotherPaymentMethod,
+        primaryTotalPayment: primaryTotalPayment,
+        returnMoneyClient: returnMoneyClient,
+        items: itemPaySelect
+    }
+
+    try {
+        Swal.fire({
+            title: "Cargando...",
+            html: "<b></b> segundos restantes",
+            timer: 5000, // Ajusta el tiempo de carga si es necesario
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector('b');
+
+                if (timer) {
+                    timerInterval = setInterval(() => {
+                        if (timer) { // Verifica si el elemento sigue existiendo
+                            timer.textContent = `${Math.ceil(Swal.getTimerLeft() / 1000)} segundos restantes`;
+                        }
+                    }, 1000);
+                }
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        });
+
+
+        const Tiket = await consultDataPost('/tiket_cancel_client', Data);
+
+        if (!Tiket) {
+            throw new Error('No se pudieron obtener los datos del tiket.');
+        }
+
+        const { jsPDF } = window.jspdf;
+
+        const response = await fetch(URL_TEMPLATE_TIKET + "document-type-data-gender.html");
+        let templateHtml = await response.text();
+
+        templateHtml = replacePlaceholders(templateHtml, {
+            ruc: Tiket.dataCompany.ruc,
+            phone: Tiket.dataCompany.phone,
+            address: Tiket.dataCompany.address,
+            typeDocument: Tiket.dataDocument.typeDocument,
+            salesNumber: Tiket.dataDocument.salesNumber,
+            dateOfIssue: Tiket.dataDocument.dateOfIssue,
+            timeOfIssue: Tiket.dataDocument.timeOfIssue,
+            areaOfAttention: Tiket.dataDocument.areaOfAttention,
+            nameClient: Tiket.dataClient.nameClient,
+            documentClient: Tiket.dataClient.documentClient,
+            documentClientType: Tiket.dataClient.documentClientType,
+            optionPayment: Tiket.dataPayment.optionPayment,
+            typeFacture: Tiket.dataPayment.typeFacture,
+            cashPaid: Tiket.dataPayment.cashPaid || 0,
+            anotherPaymentMethod: Tiket.dataPayment.anotherPaymentMethod,
+            primaryTotalPayment: Tiket.dataPayment.primaryTotalPayment || 0,
+            totalPayment: Tiket.dataPayment.totalPayment || 0,
+            returnMoneyClient: Tiket.dataPayment.returnMoneyClient || 0,
+            textCashPaid: Tiket.dataPayment.textCashPaid,
+            opGravada: Tiket.dataPayment.opGravada || 0,
+            opExonerada: Tiket.dataPayment.opExonerada || 0,
+            igb: Tiket.dataPayment.igb || 0
+        });
+
+        const tableRows = Tiket.items.map(item => `
+            <tr>
+                <td>${item.name}</td>
+                <td class="right">${item.quantity}</td>
+                <td class="right">${item.price}</td>
+                <td class="right">${item.total_price}</td>
+            </tr>
+        `).join('');
+
+
+        templateHtml = templateHtml.replace(
+            '<tr id="items-all-data"></tr>',
+            tableRows
+        );
+
+        const container = document.querySelector('main');
+        if (!container) {
+            throw new Error('El contenedor con la clase "container-item-data" no existe en el DOM.');
+        }
+
+        const tempDiv = document.createElement('div');
+        tempDiv.classList.add('frame-tiket');
+        tempDiv.innerHTML = templateHtml;
+        container.appendChild(tempDiv);
+
+        const pdfWidth = 80;
+        const pdfHeight = tempDiv.offsetHeight * (pdfWidth / tempDiv.offsetWidth);
+
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: [pdfWidth, pdfHeight]
+        });
+
+        const canvas = await html2canvas(tempDiv, {
+            scale: 2,
+            useCORS: true
+        });
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+
+        container.removeChild(tempDiv);
+        // Generar blob del PDF
+        const pdfBlob = pdf.output('blob');
+        pdfData = {
+            pdf: pdfBlob,
+            title: Tiket.dataDocument.typeDocument
+        };
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+
+        // pdf.save(`D-Brazza-${Tiket.dataDocument.salesNumber}.pdf`); 
+
+        let htmlContent = `
+        <style>
+            .swal2-popup.swal2-modal.swal2-show {
+            width: 80%;
+            }
+            samp.title-alert-docuement {
+                font-size: 1.4rem;
+                font-family: monospace;
+            }
+            div#swal2-html-container {
+                margin-top: 13px;
+            }
+        </style>
+        
+        <samp  class="title-alert-docuement">${Tiket.dataDocument.typeDocument}</samp>
+        <iframe id="pdfFrame" src="" frameborder="1"></iframe>
+        <div class="button-action-alet-document">
+            <button class="print-ticket" onclick="printTicket()">Inprimir</button>
+            <button class="send-whatsapp">Envir whatsapp</button>
+            <button class="send-mail">Enviar Gmail</button>
+        </div>
+        `;
+        await Swal.fire({
+            html: htmlContent,
+            showConfirmButton: false,
+            showCancelButton: false,
+            didOpen: (popup) => {
+                if (typeof urlPostDeleteStyle === 'function') {
+                    urlPostDeleteStyle(popup);
+                }
+                $('div#swal2-html-container').css('padding', '13px 0 0 0');
+                $('.continue-button').remove();
+                $('.option-edit-list-order').remove();
+                $('.button-container-list').append('<button class="option-add-order-to-client" title="Agregar orden al cliente"><i class="fi fi-ss-shopping-cart-add center-icon"></i>Agregar</button>');
+                $(popup).find('.swal2-close').css('display', 'block');
+                $('div:where(.swal2-container).swal2-center > .swal2-popup').css('grid-row', '1');
+
+                const pdfFrame = document.getElementById('pdfFrame');
+                if (!pdfFrame) {
+                    throw new Error('El elemento #pdfFrame no se encontró en el DOM.');
+                }
+
+                // Asignar el URL al iframe
+                pdfFrame.src = pdfUrl;
+            },
+
+        })
+
+
+    } catch (error) {
+        console.error('Error al generar el PDF:', error);
+        alert('Hubo un error al generar el PDF. Revise la consola para más detalles.');
+    }
+
+    setTimeout(function () {
+        $('#remember-account').fadeIn(100);
+    })
+}
+
+
+function replacePlaceholders(template, data, defaultValue = 'Anónimo') {
+    for (const [key, value] of Object.entries(data)) {
+        template = template.replace(new RegExp(`{{${key}}}`, 'g'), value ?? defaultValue);
+    }
+    return template;
+}
+async function refrehtPdf() {
+
+    const pdfUrl = URL.createObjectURL(pdfData.pdf);
+    let htmlContent = `
+    <style>
+        .swal2-popup.swal2-modal.swal2-show {
+        width: 80%;
+        }
+        samp.title-alert-docuement {
+            font-size: 1.4rem;
+            font-family: monospace;
+        }
+        div#swal2-html-container {
+            margin-top: 13px;
+        }
+
+    </style>
+    
+    <samp  class="title-alert-docuement">${pdfData.title}</samp>
+    <div class="button-action-alet-document">
+        <button class="print-ticket" onclick="printTicket()">Inprimir</button>
+        <button class="send-whatsapp">Envir whatsapp</button>
+        <button class="send-mail">Enviar Gmail</button>
+    </div>
+    `;
+    await Swal.fire({
+        html: htmlContent,
+        showConfirmButton: false,
+        showCancelButton: false,
+        didOpen: (popup) => {
+            if (typeof urlPostDeleteStyle === 'function') {
+                urlPostDeleteStyle(popup);
+            }
+            $('div#swal2-html-container').css('padding', '13px 0 0 0');
+            $('.continue-button').remove();
+            $('.option-edit-list-order').remove();
+            $('.button-container-list').append('<button class="option-add-order-to-client" title="Agregar orden al cliente"><i class="fi fi-ss-shopping-cart-add center-icon"></i>Agregar</button>');
+            $(popup).find('.swal2-close').css('display', 'block');
+            $('div:where(.swal2-container).swal2-center > .swal2-popup').css('grid-row', '1');
+
+            const pdfFrame = document.getElementById('pdfFrame');
+            if (!pdfFrame) {
+                throw new Error('El elemento #pdfFrame no se encontró en el DOM.');
+            }
+
+            // Asignar el URL al iframe
+            pdfFrame.src = pdfUrl;
+        },
+
+    })
+
+}
+function printTicket(){
+    const pdfFrame = document.getElementById('pdfFrame');
+    if (pdfFrame) {
+        pdfFrame.contentWindow.print();
+    } else {
+        console.error('El elemento #pdfFrame no se encontró en el DOM.');
+    }
+}

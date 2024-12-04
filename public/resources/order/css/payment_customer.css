@@ -534,3 +534,76 @@ button.new-client-register-expres-button.register-ruc:hover{
 button.new-client-register-expres-button.register-dni:hover{
     background-color: rgb(1, 0, 0);
 }
+
+.frame-tiket {
+    position: fixed;
+    z-index: -999999;
+}
+#pdfFrame {
+    width: calc(100% - 40px);
+    height: 500px;
+    border: none;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+.button-action-alet-document {
+    width: 100%;
+    height: 40px;
+    margin: 20px 0;
+    display: flex;
+}
+button.print-ticket,
+button.send-whatsapp,
+button.send-mail {
+    width: 30%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 5px;
+    color: white;
+}
+button.print-ticket {
+    background-color: #0046ff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button.print-ticket:hover {
+    background: linear-gradient(to right, #0046ff, #0078ff);
+    transform: scale(1.05);
+}
+
+button.send-whatsapp {
+    background-color: #107100;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button.send-whatsapp:hover {
+    background: linear-gradient(to right, #107100, #24d324);
+    transform: scale(1.05);
+}
+
+button.send-mail {
+    background: #c85400;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button.send-mail:hover {
+    background: linear-gradient(to right, #c85400, #ff8f00);
+    transform: scale(1.05);
+}

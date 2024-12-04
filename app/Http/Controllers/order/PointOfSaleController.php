@@ -416,12 +416,12 @@ class PointOfSaleController extends Controller
 
         try {
             $response = $this->orderService->createOrderWithDetails($requestFilt);
-            if($request->type != 'mozo'){
+            if ($request->type != 'mozo') {
                 return redirect()->route('point_of_sale')->withInput()->with([
                     'Message' => 'Se aperturó la caja satisfactoriamente.',
                     'Type' => 'success'
                 ]);
-            }else{
+            } else {
                 return redirect()->route('table_to_mozo', ['lounge_id' => $request->lounge])->withInput()->with([
                     'Message' => 'Se aperturó la caja satisfactoriamente.',
                     'Type' => 'success'
@@ -441,8 +441,8 @@ class PointOfSaleController extends Controller
             $response = $this->orderService->getAllOrderDetailsOfTable($Data->id);
             $order = Order::where('table_id', $Data->id)->first();
             return response()->json([
-                'data' =>$response,
-                'messenger' => $order->commentary 
+                'data' => $response,
+                'messenger' => $order->commentary
             ]);
         } catch (Exception $e) {
             return response()->json([
@@ -570,6 +570,78 @@ class PointOfSaleController extends Controller
             }
         } else {
             return $responseClient;
+        }
+    }
+    public function tiketCancelClientOrder(Request $request)
+    {
+        try{
+            $data = $request->input();
+            $dataClient = Person::where('id',$request->idClient)->first();
+            $dataTable = Table::where('id', $request->idTable)->first();
+
+            $igb = round($data['primaryTotalPayment'] * 0.18, 2);
+
+            switch ($request->typeFacture) {
+                case 'boleta':
+                   $textTypeFacture = 'Boleta de venta electronica';
+                    break;
+                case 'factura':
+                    $textTypeFacture = 'Factura electronica';   
+                    break; 
+                case 'nota':
+                    $textTypeFacture = 'Nota de venta';       
+                        break;
+                default:
+                    $textTypeFacture = 'Nota simple';
+                    break;
+            }
+    
+    
+            $newArray = [
+                'dataCompany' => [
+                    'ruc' => 20612460401,
+                    'phone' => 948447099,
+                    'address' => 'Alfonso Ugarte III ET Mz. A5 Lt:11',
+                ],
+                'dataDocument' => [
+                    'typeDocument' => $textTypeFacture,
+                    'salesNumber' => 'BA02-00000938',
+                    'dateOfIssue' => '14/12/2024',
+                    'timeOfIssue' => '12:45:12',
+                    'areaOfAttention' => $dataTable->lounge->name . ' - Mesa : ' . $dataTable->code,
+                ],
+                'dataClient' => [
+                    'nameClient' => ($dataClient->name ?? '') .' .'. ($dataClient->lastname ?? ''),
+                    'documentClient' => ($dataClient->document_number ?? '00000000000'),
+                    'documentClientType' => $dataClient->document_type_id == 1 ? 'DNI' : 'RUC',
+                ],
+                'dataPayment' => [
+                    'optionPayment' => $data['optionPayment'],
+                    'typeFacture' => $data['typeFacture'],
+                    'cashPaid' => $data['cashPaid'],
+                    'anotherPaymentMethod' => $data['anotherPaymentMethod'],
+                    'primaryTotalPayment' => $data['primaryTotalPayment'],
+                    'totalPayment' => $data['primaryTotalPayment'],
+                    'returnMoneyClient' => $data['returnMoneyClient'],
+                    'textCashPaid' => 'VENTIDOS CON 00/100 Soles',
+                    'opGravada' => round( $data['primaryTotalPayment'] - $igb , 2),
+                    'opExonerada' => 0,
+                    'igb' => $igb,
+                ],
+                'items' => array_map(function ($item) {
+                    return [
+                        'id' => $item['id'],
+                        'name' => $item['name'],
+                        'price' => $item['price'],
+                        'quantity' => $item['quantity'],
+                        'total_price' => $item['total_price'],
+                    ];
+                }, $data['items']),
+            ];
+            
+            return response()->json($newArray);
+        }catch(Exception $e){
+            return response()->json($e->getMessage());
         }
     }
 }

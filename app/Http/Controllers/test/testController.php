@@ -5,7 +5,7 @@ namespace App\Http\Controllers\test;
 use App\Http\Controllers\Controller;
 use App\Models\menu\Lounge;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Spatie\Browsershot\Browsershot;
 
 class testController extends Controller
 {
@@ -47,7 +47,7 @@ class testController extends Controller
 
     public function generarPDF(Request $request)
     {
-        // Obtener los datos desde la URL
+        // Datos para la vista
         $datos = [
             'fecha' => $request->input('fecha', date('Y-m-d')),
             'cliente' => $request->input('cliente', 'Cliente Genérico'),
@@ -55,21 +55,28 @@ class testController extends Controller
             'total' => $request->input('total', 0),
         ];
 
-        // Cargar la vista y generar el PDF
-        $pdf = Pdf::loadView('test.tester-v0', compact('datos'))
-            ->setPaper([0, 0, 226.77, 1000], 'portrait')
-            ->setOption('isHtml5ParserEnabled', true)
-            ->setOption('isRemoteEnabled', true)
-            ->setOption('margin_top', 0)
-            ->setOption('margin_right', 0)
-            ->setOption('margin_bottom', 0)
-            ->setOption('margin_left', 0);
+        // Renderizar la vista Blade a HTML
+        $html = view('test.tester-v0', compact('datos'))->render();
 
+        // Ruta para guardar el PDF generado
+        $pdfPath = storage_path('app/public/boleta.pdf');
 
-        // Retornar el PDF como respuesta
-        return response($pdf->output(), 200)
-            ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'inline; filename="boleta.pdf"');
+        // Generar el PDF con Browsershot
+        Browsershot::html($html)
+            ->showBackground() // Asegura que los estilos con fondo se respeten
+            ->format('A4') // Formato base, se puede cambiar si necesitas otro
+            ->margins(0, 0, 0, 0) // Sin márgenes
+            ->setOption('width', 227) // Ancho del PDF en mm
+            ->setOption('height', 'auto') // Altura automática en función del contenido
+            ->setOption('printBackground', true) // Imprimir los fondos  
+            ->setOption('no-images', false)
+            ->savePdf($pdfPath);
+
+        // Retornar el PDF como respuesta para mostrarlo en un iframe o descargarlo
+        return response()->file($pdfPath, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="boleta.pdf"',
+        ]);
     }
     /*
     Fin del testeo

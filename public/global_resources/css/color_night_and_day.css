@@ -94,7 +94,7 @@
 
 
 body.dark {
-
+    --backgraund-color-table-and-frame:#181a1e;
     --select-hover-color: rgb(216, 216, 216);
     --select-color: #ffffff;
     --light: #181a1e;

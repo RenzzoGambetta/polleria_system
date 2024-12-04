@@ -39,10 +39,12 @@
     </div>
 </div>
 
-<script>let items = @json($Item);</script>
- 
+<script>
+    let items = @json($Item);
+</script>
+<input type="hidden" name="id_table" value="{{ $Data->id }}">
 @csrf
-<div class="header-item">Resumen de pedido de {{$Data->lounge->name}} mesa: {{$Data->code}}</div>
+<div class="header-item">Resumen de pedido de {{ $Data->lounge->name }} mesa: {{ $Data->code }}</div>
 <div class="container-item-data">
     <div class="left-panel">
         <div class="frame-table-item">
@@ -69,7 +71,7 @@
         <div class="totals">
             <div class="total-row">
                 <span>Sub Total</span>
-                <span>S/ <span>{{$Data['sub_total']}}</span></span>
+                <span>S/ <span>{{ $Data['sub_total'] }}</span></span>
             </div>
             <div class="total-row">
                 <span>Cortesía / Descuento (no integrado)</span>
@@ -81,7 +83,7 @@
             </div>
             <div class="total-row final-total">
                 <span>TOTAL</span>
-                <span>S/ <span>{{$Data['sub_total']}}</span></span>
+                <span>S/ <span>{{ $Data['sub_total'] }}</span></span>
             </div>
         </div>
     </div>
@@ -93,17 +95,17 @@
             <div class="doc-buttons">
                 <div class="frame-option-t-type-payment">
                     <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle" value="boleta" checked>
+                        <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="boleta" checked>
                         <span class="star-item-border"><i class="fi fi-ss-point-of-sale-bill center-icon"></i>Boleta</span>
                     </label>
 
                     <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle" value="factura">
+                        <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="factura">
                         <span><i class="fi fi-sr-calculator-bill center-icon"></i>Factura</span>
                     </label>
 
                     <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle" value="nota">
+                        <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="nota">
                         <span class="end-item-border"><i class="fi fi-sr-receipt center-icon"></i>Nota de Venta</span>
                     </label>
                 </div>
@@ -140,7 +142,7 @@
                     <button class="button-type-payment" onclick="selectOptionTypePayment('plin',2)" id="plin"> <span>Plin</span> <i class="fi fi-ss-comment-dollar center-icon"></i> </button>
                     <button class="button-type-payment" onclick="selectOptionTypePayment('t-debito',2)" id="t-debito"> <span>T.Debito</span> <i class="fi fi-sr-credit-card center-icon"></i> </button>
                     <button class="button-type-payment" onclick="selectOptionTypePayment('t-credito',2)" id="t-credito"> <span>T.Credito</span> <i class="fi fi-sr-credit-card center-icon"></i> </button>
-                </div>  
+                </div>
                 <button class="multi-option-pyment" title="Combinar con otro metodo de pago" onclick="combinePaymentType()" id="combine-type-payment-button"><i class="fi fi-bs-arrows-repeat center-icon"></i></button>
             </div>
         </div>
@@ -151,7 +153,7 @@
                         <label class="cash-register-amount-label" id="sub-title-efectivo-mount">INGRESE MONTO</label>
                         <div class="cash-register-amount-container">
                             <span class="cash-register-currency-symbol">S/</span>
-                            <input type="text" class="cash-register-amount-input" placeholder="{{$Data['sub_total']}}" name="input-total-payment" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46">
+                            <input type="text" class="cash-register-amount-input" placeholder="{{ $Data['sub_total'] }}" name="input-total-payment" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46">
                         </div>
                     </div>
                 </div>
@@ -166,7 +168,7 @@
                 </div>
                 <div class="total-amount-service">
                     <span class="sub-title-count-service">MONTO TOTAL</span>
-                    <span class="sub-price-count-service">S/ <span id="primary-total-payment">{{$Data['sub_total']}}</span></span>
+                    <span class="sub-price-count-service">S/ <span id="primary-total-payment">{{ $Data['sub_total'] }}</span></span>
                 </div>
                 <div class="total-amount-change">
                     <span class="sub-title-count-service">VUELTO</span>
@@ -177,23 +179,23 @@
         <div class="loader-option-combine" style="display: none" id="loader-option-combine-payment">
             <div class="card-option-payment">
                 <div class="loader-option-payment">
-                  <p>Puedes combinar con </p>
-                  <div class="words-option-payment">
-                      <span class="word-option-payment">Yape</span>
-                      <span class="word-option-payment">Plin</span>
-                      <span class="word-option-payment">T.Debito</span>
-                      <span class="word-option-payment">T.Credito</span>
-                      <span class="word-option-payment">Yape</span>
-                  </div>
+                    <p>Puedes combinar con </p>
+                    <div class="words-option-payment">
+                        <span class="word-option-payment">Yape</span>
+                        <span class="word-option-payment">Plin</span>
+                        <span class="word-option-payment">T.Debito</span>
+                        <span class="word-option-payment">T.Credito</span>
+                        <span class="word-option-payment">Yape</span>
+                    </div>
                 </div>
-              </div>              
+            </div>
         </div>
 
         <div id="frame-efectivo-fast">
             <h1 class="sub-title-client">Pago Efectivo Rapido</h1>
 
             <div class="quick-amounts">
-                <button type="button" class="amount-button selected" data-amount="{{$Data['sub_total']}}"><i class="fi fi-sr-hand-holding-usd center-icon"></i> s/ <span>{{$Data['sub_total']}}</span></button>
+                <button type="button" class="amount-button selected" data-amount="{{ $Data['sub_total'] }}"><i class="fi fi-sr-hand-holding-usd center-icon"></i> s/ <span>{{ $Data['sub_total'] }}</span></button>
                 <button type="button" class="amount-button" data-amount="10"><i class="fi fi-sr-coins center-icon"></i> s/ 10</button>
                 <button type="button" class="amount-button" data-amount="20"><i class="fi fi-sr-coins center-icon"></i> s/ 20</button>
                 <button type="button" class="amount-button" data-amount="50"><i class="fi fi-sr-coins center-icon"></i> s/ 50</button>
@@ -205,9 +207,13 @@
 </div>
 
 <div class="action-buttons">
-    <button class="action-button back">Volver</button>
-    <button class="action-button accept">ACEPTAR</button>
+    <button class="action-button back" id="remember-account" style="display: none" onclick="refrehtPdf()">Volver a ver</button>
+    <button class="action-button accept" id="pay-bill" onclick="payBill()">Pagar Cuenta</button>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 <script src="{{ asset($AlertSrc) }}"></script>
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($searchBoxDataCliene) }}"></script>
@@ -216,3 +222,4 @@
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>
+
