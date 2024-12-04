@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('gender')->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('email')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

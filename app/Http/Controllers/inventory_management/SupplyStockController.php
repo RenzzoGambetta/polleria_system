@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\inventory\InventoryIssueRequest;
 use App\Http\Requests\inventory\inventoryReceiptRequest;
 use App\Http\Requests\inventory\supplyRequest;
+use App\Models\InventoryIssue;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\Supply;
 use App\Models\various\VoucherType;
+use App\Services\inventory\InventoryIssueService;
 use App\Services\inventory\InventoryReceiptService;
 use App\Services\inventory\supplyService;
 use Illuminate\Http\Request;
@@ -158,17 +161,27 @@ class SupplyStockController extends Controller
     }
     public function registerSupplyEntry(inventoryReceiptRequest $request)
     {
-        // return $request;
         try {
             $data = $request->validated();
             $inventoryReceiptService = new InventoryReceiptService();
             $entry = $inventoryReceiptService->createInventoryReceipt($data);
 
+            return redirect()->route('show_panel_register_entry');
+        } catch (\Exception $e) {
             return response()->json([
-                'success' => true,
-                'message' => 'Entrada registrada exitosamente',
-                'data' => $entry
-            ], 201);
+                'success' => false,
+                'message' => 'Error al registrar la entrada: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+    public function registerSupplyOutput(InventoryIssueRequest $request)
+    {
+        try {
+            $data = $request->validated();
+            $inventoryIssueService = new InventoryIssueService();
+            $entry = $inventoryIssueService->createInventoryIssue($data);
+
+            return redirect()->route('show_panel_register_output');
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

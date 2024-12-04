@@ -65,6 +65,7 @@ use App\Http\Controllers\test\testController;
         Route::get('/list_of_supplys', [SupplyStockController::class,'listOfsupplys'])->name('list_of_supplys');
         Route::get('/anchor_supply_provider', [SupplyStockController::class,'anchorSupplyProvider'])->name('anchor_supply_provider');
         Route::post('/register_supply_entry', [SupplyStockController::class,'registerSupplyEntry'])->name('register_supply_entry');
+        Route::post('/register_supply_output', [SupplyStockController::class,'registerSupplyOutput'])->name('register_supply_output');
         Route::get('/query_supply_data', [SupplyStockController::class,'querySupplyData'])->name('query_supply_data');
         //Provedores
         Route::get('/suppliers', [SuppliersController::class,'showSuppliersList'])->name('suppliers');

@@ -24,7 +24,6 @@ return new class extends Migration
             $table->boolean('is_delibery')->default(false);
             $table->string('note', 100)->nullable();
             $table->timestamps();
-            $table->unique(['order_id', 'menu_item_id'], 'unique_order_menu_item');
         });
     }
 

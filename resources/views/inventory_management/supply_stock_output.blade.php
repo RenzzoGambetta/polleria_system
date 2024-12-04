@@ -31,7 +31,7 @@
     $comment = 'Razon';
 
 @endphp
-<form id="form-register-output" action="{{ route('register_supply_entry') }}" method="POST">
+<form id="form-register-output" action="{{ route('register_supply_output') }}" method="POST">
     @csrf
     <div class="output-supply-01">
         <div class="output-supply-sub-01">

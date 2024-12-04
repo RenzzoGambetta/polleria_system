@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('menu_categories');
             $table->string('name', 124);
             $table->decimal('price', 8, 2);
+            $table->decimal('delivery_price', 8, 2);
             $table->boolean('is_combo')->default(false);
             $table->unsignedTinyInteger('display_order')->default(0);
             $table->string('commentary', 255)->nullable();

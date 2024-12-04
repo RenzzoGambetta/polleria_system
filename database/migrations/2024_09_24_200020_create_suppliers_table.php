@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('person_id');
             $table->foreign('person_id')->references('id')->on('persons');
             $table->string('address')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

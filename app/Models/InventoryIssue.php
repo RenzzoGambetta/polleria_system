@@ -14,6 +14,6 @@ class InventoryIssue extends Model
 
     public function details()
     {
-        return $this->hasMany(InventoryMovementDetail::class, 'inssue_id');
+        return $this->hasMany(InventoryMovementDetail::class, 'issue_id');
     }
 }
