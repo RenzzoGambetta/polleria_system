@@ -54,6 +54,11 @@ class OrderService
         }
     }
 
+    // public function splitOrder() 
+    // {
+    //     return [$order1, $order2];
+    // }
+
     public function addDetailsToOrder($orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
@@ -90,7 +95,7 @@ class OrderService
         }
     }
 
-    public function updateOrderWithDetails($orderId, array $data)
+    public function updateOrderWithDetails(int $orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
 
@@ -98,7 +103,6 @@ class OrderService
 
         try {
             $order->update([
-                'waiter_id' => $data['waiter_id'],
                 'is_delibery' => $data['is_delibery'],
                 'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
             ]);
@@ -111,6 +115,21 @@ class OrderService
             return $order;
         } catch (Exception $e) {
             DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function cancelOrder(int $orderId, string $commentary) 
+    {
+        $order = Order::findOrFail($orderId);
+
+        if (!isset($commentary)) throw new Exception('Es obligatorio el motivo de cancelacion del pedido');
+        try {
+            $order->update([
+                'status' => 'cancelado',
+                'commentary' => $commentary,
+            ]);
+        } catch (Exception $e) {
             throw $e;
         }
     }
