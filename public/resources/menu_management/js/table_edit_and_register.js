@@ -20,7 +20,7 @@ function stopAutoScroll() {
 async function loadTableData(id, option = null) {
     const tablesList = document.getElementById('tables-list');
     const addTableItem = document.getElementById('add-table-item');
-    const tableData = await consultDataUrl("/tables-list-data", { 'id': id });
+    const tableData = await consultDataUrl("/tables_list_data", { 'id': id });
     var url = URL_TEMPLATE + "frame_table.html";
 
     tablesList.querySelectorAll('.table-item.table-data').forEach(element => element.remove());
@@ -52,14 +52,8 @@ async function loadTableData(id, option = null) {
 
 
 function highlightButton(activeId) {
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(button => {
-        if (button.onclick.toString().includes(activeId)) {
-            button.classList.add('active');
-        } else {
-            button.classList.remove('active');
-        }
-    });
+    $('.button-data-lounges').removeClass('active');
+    $(`#button_${activeId}`).addClass('active');
 }
 
 function addButton(loungeId, loungeName) {
@@ -142,7 +136,8 @@ function clearLoungeAction() {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, eliminar!",
-        cancelButtonText: "Cancelar"
+        cancelButtonText: "Cancelar",
+        didOpen: urlPostDeleteStyle
     }).then((result) => {
         if (result.isConfirmed) {
             dataInputLounge('/delate_lounge', 1);
@@ -183,7 +178,8 @@ function alert(result, option, data, action) {
         Swal.fire({
             title: "Listo..",
             text: "Accion exitosa",
-            icon: "success"
+            icon: "success",
+            didOpen: urlPostDeleteStyle
         }).then((res) => {
             if (res.isConfirmed) {
                 if (action == 'lounge') {
@@ -198,9 +194,10 @@ function alert(result, option, data, action) {
         });
         if (action == 'table') {
             if (option == 1) {
+                loadTableData(ID_SELECT, 1);
                 deleteTableItemById(data.id)
             } else if (option == 3) {
-                loadTableData(ID_SELECT, 1)
+                // loadTableData(ID_SELECT, 1)
             } else if (option == 2) {
                 $('#spma_' + data.id).text(data.code);
             }
@@ -221,24 +218,25 @@ function alert(result, option, data, action) {
         Swal.fire({
             title: "Opps..",
             text: "Tuvimos un error",
-            icon: "error"
+            icon: "error",
+            didOpen: urlPostDeleteStyle
         });
     }
 }
 //table
 
 document.getElementById('add-table-item').addEventListener('click', function () {
-    addTable(null)
+    addTable()
 });
 
-async function addTable(id, code = null) {
+async function addTable(id = null, quantity = null) {
     var url = URL_TEMPLATE + "edit_and_register_table.html";
     let result, data;
 
     if (id != null) {
         result = {
             id: id,
-            code: code
+            code: quantity
         };
         data = {
             title: 'Editar',
@@ -247,46 +245,59 @@ async function addTable(id, code = null) {
             classButtonClear: 'clear'
         };
     } else {
-        result = {
-            id: '0',
-            code: ''
-        };
         data = {
-            title: 'Registrar nueva',
+            title: 'Agregar o eliminar',
             button: 'Agregar',
             classButton: 'new',
-            classButtonClear: 'none'
+            classButtonClear: 'clear'
         };
+
+
+        fetch(url)
+            .then(response => response.text())
+            .then(template => {
+                let htmlContent = template
+                    .replaceAll('{{title}}', data.title)
+                    .replaceAll('{{button}}', data.button)
+                    .replaceAll('{{classButton}}', data.classButton)
+                    .replaceAll('{{classButtonClear}}', data.classButtonClear);
+
+
+                const referenceElement = document.getElementById('puntoClave');
+                referenceElement.innerHTML = '';
+                referenceElement.innerHTML = htmlContent;
+            })
+            .catch(error => console.error('Error loading template:', error));
     }
-
-    fetch(url)
-        .then(response => response.text())
-        .then(template => {
-            let htmlContent = template
-                .replaceAll('{{title}}', data.title)
-                .replaceAll('{{button}}', data.button)
-                .replaceAll('{{classButton}}', data.classButton)
-                .replaceAll('{{classButtonClear}}', data.classButtonClear)
-                .replaceAll('{{id}}', result.id)
-                .replaceAll('{{code}}', result.code);
-
-
-            const referenceElement = document.getElementById('puntoClave');
-            referenceElement.innerHTML = '';
-            referenceElement.innerHTML = htmlContent;
-        })
-        .catch(error => console.error('Error loading template:', error));
 }
 function newTableAction() {
     dataInputTable('/new_table', 3);
 }
-
+/*
 function editTableAction() {
     dataInputTable('/edit_table', 2);
 }
+*/
 
 function clearTableAction() {
-    dataInputTable('/delate_table', 1);
+    var quantity = document.getElementsByName('quantityTable')[0]?.value || 1;  // Asignar 1 si no hay valor
+    var textAlert = "Se eliminara " + quantity + ' mesa de la sala';
+    //console.log(textAlert);
+    Swal.fire({
+        title: "Estas seguro",
+        text: textAlert,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "Cancelar",
+        didOpen: urlPostDeleteStyle
+    }).then((result) => {
+        if (result.isConfirmed) {
+            dataInputTable('/delate_table', 1);
+        }
+    });
 
 }
 
@@ -306,8 +317,7 @@ function dataInputTable(url, option) {
     try {
         if (ID_SELECT != null) {
             const data = {
-                code: document.getElementsByName('codeTable')[0]?.value || '',
-                id: document.getElementsByName('idTable')[0]?.value || 0,
+                quantity: document.getElementsByName('quantityTable')[0]?.value || 1,
                 lounge_id: ID_SELECT,
                 token: document.querySelector('input[name="_token"]').value
             };
@@ -321,13 +331,14 @@ function dataInputTable(url, option) {
                 body: JSON.stringify(data)
             })
                 .then(response => response.json())
-                .then(result => alert(result, option, data, 'table'), addTable(null))
+                .then(result => alert(result, option, data, 'table'), addTable())
                 .catch(error => console.error('Error:', error));
         } else {
             Swal.fire({
                 title: "Opps..",
                 text: "Seleccione una sala o cree una",
-                icon: "error"
+                icon: "error",
+                didOpen: urlPostDeleteStyle
             });
         }
     } catch (e) {

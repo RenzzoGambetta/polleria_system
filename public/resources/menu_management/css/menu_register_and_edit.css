@@ -279,3 +279,6 @@ label#search-label-cooking-place,
 label#search-label-category {
     left: 15px;
 }
+.cooking-place {
+    margin-top: 25px;
+}

@@ -79,9 +79,21 @@ class Resource_Path_Js extends ServiceProvider
 
             $searchBoxDataCliene = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'search_box_data_cliene.js');
             $view->with('searchBoxDataCliene', $searchBoxDataCliene);
-            
+
             $orderFunction = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'order_function.js');
             $view->with('orderFunction', $orderFunction);
+
+            $TableOrderTakeaway = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'point_table_order_takeaway.js');
+            $view->with('TableOrderTakeaway', $TableOrderTakeaway);
+            
+            $paymentCostomerFunctioAndCalc = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'payment_costomer_functio_and_calc.js');
+            $view->with('paymentCostomerFunctioAndCalc', $paymentCostomerFunctioAndCalc); 
+
+            $tableMozoPanelFuction = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'table_mozo_panel.js');
+            $view->with('tableMozoPanelFuction', $tableMozoPanelFuction);
+
+            $orderReceptionMozo = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'order_reception_and_register.js');
+            $view->with('orderReceptionMozo', $orderReceptionMozo);
         });
     }
 }

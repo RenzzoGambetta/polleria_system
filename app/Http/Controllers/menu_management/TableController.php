@@ -10,6 +10,7 @@ use App\Services\menu\LoungeService;
 use Illuminate\Http\Request;
 use Exception;
 use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Log;
 
 class TableController extends Controller
 {
@@ -18,6 +19,12 @@ class TableController extends Controller
         'sub_seccion' => 4.2,
         'color' => 42
     ];
+    protected $loungeService;
+
+    public function __construct(LoungeService $loungeService)
+    {
+        $this->loungeService = $loungeService;
+    }
     public function showDrawingTable(Request $request)
     {
         $Lounge = Lounge::all();
@@ -35,26 +42,15 @@ class TableController extends Controller
         return response()->json($Lounge);
     }
 
-    /*
-    * CAMBIAR EL REQUEST POR LOUNGE REQUEST
-    */
-    public function newLounge(Request $request)
-    {   
+    public function newLounge(LoungeRequest $request)
+    {
         try {
-            // Crear una nueva instancia de Lounge y almacenar en $lounge
-            $validator = $request->validate([
-                'code' => 'string|size:4|unique:lounges,code',
-                'name' => 'required|string|max:75',
-                'floor' => 'string',
-                'address' => 'string|max:255',
-            ]);
-            $loungeService = new LoungeService();
-            $lounge = $loungeService->createLounge($validator);
 
-            // Retornar el ID del nuevo registro junto con el resultado
+            $lounge = $this->loungeService->createLounge($request->validated());
+
             return response()->json([
                 'result' => true,
-                'id' => $lounge->id // ID del nuevo lounge
+                'id' => $lounge->id
             ]);
         } catch (Exception $e) {
             return response()->json(['result' => false]);
@@ -96,14 +92,35 @@ class TableController extends Controller
     }
     public function delateTable(Request $request)
     {
-        try {
-            Table::where('id', $request->id)->delete();
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1',
+            'lounge_id' => 'required|integer|exists:lounges,id',
+        ]);
 
-            return response()->json(['result' => true]);
-        } catch (Exception $e) {
-            return response()->json(['result' => false]);
+        $quantity = $validated['quantity'];
+        $loungeId = $validated['lounge_id'];
+
+        try {
+
+            $tablesToDelete = Table::where('lounge_id', $loungeId)
+                ->orderBy('id', 'desc')
+                ->take($quantity)
+                ->get();
+
+            if ($tablesToDelete->isEmpty()) {
+                return response()->json(['result' => false, 'message' => 'No hay mesas para eliminar.']);
+            }
+
+            Table::whereIn('id', $tablesToDelete->pluck('id'))->delete();
+
+            return response()->json(['result' => true, 'message' => 'Mesas eliminadas correctamente.']);
+        } catch (\Throwable $e) {
+            Log::error('Error al eliminar mesas: ' . $e->getMessage());
+
+            return response()->json(['result' => false, 'message' => 'Hubo un error al eliminar las mesas.'], 500);
         }
     }
+    /*
     public function editTable(Request $request)
     {
         $validatedData = $request->validate([
@@ -120,25 +137,38 @@ class TableController extends Controller
             return response()->json(['result' => false]);
         }
     }
-
+*/
     public function newTable(Request $request)
     {
-        $validatedData = $request->validate([
-            'code' => 'required',
-            'lounge_id' => 'required',
 
+        $validated = $request->validate([
+            'quantity' => 'nullable|integer|min:1',
+            'lounge_id' => 'nullable|integer|exists:lounges,id',
         ]);
 
-        try {
-            Table::create([
-                'code' => $validatedData['code'],
-                'lounge_id' => $validatedData['lounge_id'],
-                'status' =>0
-            ]);
+        $quantity = $validated['quantity'] ?? 1;
+        $loungeId = $validated['lounge_id'] ?? 1;
 
+        try {
+            $lastTable = Table::where('lounge_id', $loungeId)
+                ->latest('id')
+                ->first();
+            $lastCode = $lastTable ? $lastTable->code : 0;
+            $tables = [];
+            for ($i = 0; $i < $quantity; $i++) {
+                $tables[] = [
+                    'code' => $lastCode + $i + 1,
+                    'lounge_id' => $loungeId,
+                    'status' => 0,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+            Table::insert($tables);
             return response()->json(['result' => true]);
-        } catch (Exception $e) {
-            return response()->json(['result' => false]);
+        } catch (\Throwable $e) {
+            Log::error('Error al crear tablas: ' . $e->getMessage());
+            return response()->json(['result' => false], 500);
         }
     }
 }

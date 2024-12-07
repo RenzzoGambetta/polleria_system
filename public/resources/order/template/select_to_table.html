@@ -1,17 +1,18 @@
+
 <div class="container-table-data">
     <div class="table-data">
         <div class="header-table-data">
             <span>{{lounge}} - Mesa: {{table}}</span>
-            <span class="icon-table">👤</span>
+            <button class="icon-table" title="Asignar datos del cliente"><i class="fi fi-ss-user-pen center-icon"></i> Datos</button>
         </div>
         <div id="data-item-client">
 
         </div>
     </div>
     <div class="footer-total">
-        <span>s/ {{total}}</span>
+        <span id="price-item-data-total-product">s/ {{total}}</span>
         <div class="button-container">
-            <button class="continue-button">
+            <button class="continue-button" onclick="sendSegmentedData()">
                 Continuar
                 <span class="arrow-detail">→</span>
             </button>

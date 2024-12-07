@@ -12,6 +12,7 @@ use App\Http\Controllers\inventory_management\SuppliersController;
 use App\Http\Controllers\menu_management\MenuController;
 use App\Http\Controllers\menu_management\TableController;
 use App\Http\Controllers\order\PointOfSaleController;
+use App\Http\Controllers\order\MozoController;
 use App\Http\Controllers\temp\EfectController;
 use App\Http\Controllers\test\testController;
 
@@ -30,15 +31,23 @@ use App\Http\Controllers\test\testController;
         Route::get('/user', [UserController::class,'show_user_list'])->name('user');
         Route::get('/user_register', [UserController::class,'showUserNewRegister'])->name('user_register');
         Route::post('/user_register_store', [UserController::class,'store'])->name('user_register_store');
+        Route::post('/user_edit', [UserController::class,'editUser'])->name('user_edit');
+        Route::post('/user_delete', [UserController::class,'deleteUser'])->name('user_delete');
         //Empleados
         Route::get('/employeer', [EmployeeController::class,'show_employeer_list'])->name('employeer');
         Route::get('/employeer_register', [EmployeeController::class,'show_employeer_register'])->name('employeer_register');
         Route::get('/fetch_person_data', [EmployeeController::class,'fetch_person_data'])->name('fetch_person_data');
+        Route::get('/data_employer_block', [EmployeeController::class,'showDataemployerBlock'])->name('data_employer_block');
         Route::post('/create_employee_record', [EmployeeController::class,'create_employee_record'])->name('create_employee_record');
+        Route::post('/edit_employee_record', [EmployeeController::class,'editEmployeeRecord'])->name('edit_employee_record');
+        Route::post('/employeer_delete', [EmployeeController::class,'deleteEmployeeRecord'])->name('employeer_delete');
         //Roles
         Route::get('/position', [RoleController::class,'show_position_list'])->name('position');
         Route::get('/role_register', [RoleController::class,'show_role_register'])->name('role_register');
         Route::post('/role_register_store', [RoleController::class,'store'])->name('role_register_store');
+        Route::post('/role_edit', [RoleController::class,'editRole'])->name('role_edit');
+        Route::post('/role_delete', [RoleController::class,'deleteRole'])->name('role_delete');
+        Route::post('/new_extension_role', [RoleController::class,'newExtensionRole'])->name('new_extension_role');
 
     //--> Modulo de gestion de inventario
 
@@ -81,7 +90,7 @@ use App\Http\Controllers\test\testController;
         Route::get('/list_of_cooking_place', [MenuController::class,'listOfCookingPlace'])->name('list_of_cooking_place');
         //Mesas
         Route::get('/show_drawing_table', [TableController::class,'showDrawingTable'])->name('show_drawing_table');
-        Route::get('/tables-list-data', [TableController::class,'tablesListData'])->name('tables-list-data');
+        Route::get('/tables_list_data', [TableController::class,'tablesListData'])->name('tables_list_data');
         Route::get('/lounge_data_edit', [TableController::class,'loungeDataEdit'])->name('lounge_data_edit');
         Route::post('/edit_lounge', [TableController::class,'editLounge'])->name('edit_lounge');
         Route::post('/new_lounge', [TableController::class,'newLounge'])->name('new_lounge');
@@ -100,7 +109,20 @@ use App\Http\Controllers\test\testController;
         Route::get('/client_data_filt', [PointOfSaleController::class,'clientDataFilt'])->name('client_data_filt');
         Route::get('/new_order_client', [PointOfSaleController::class,'newOrderClient'])->name('new_order_client');
         Route::get('/list_item_filt_category', [PointOfSaleController::class,'listItemFiltCategory'])->name('list_item_filt_category');
-
+        Route::get('/list_takeaway_orders', [PointOfSaleController::class,'listTakeawayOrders'])->name('list_takeaway_orders');
+        Route::post('/create_order_client', [PointOfSaleController::class,'createOrderClient'])->name('create_order_client');
+        Route::get('/list_order_details_table', [PointOfSaleController::class,'allOrderDetailsOfTable'])->name('list_order_details_table');
+        Route::get('/payment_service', [PointOfSaleController::class,'showPaymentService'])->name('payment_service');
+        Route::post('/fetch_client_data', [PointOfSaleController::class,'fetchClientData'])->name('fetch_client_data');
+        Route::post('/register_new_person_data_base', [PointOfSaleController::class,'registerNewPersonDataBase'])->name('register_new_person_data_base');
+        Route::post('/register_express_data_client', [PointOfSaleController::class,'registerExpressDataClient'])->name('register_express_data_client');
+        Route::post('/tiket_cancel_client', [PointOfSaleController::class,'tiketCancelClientOrder'])->name('tiket_cancel_client');
+    
+    //--> Mozo
+        Route::get('/mozo', [MozoController::class,'showPanelMozo'])->name('mozo');
+        Route::get('/table_to_mozo', [MozoController::class,'shoqwPanelToTableData'])->name('table_to_mozo');
+        Route::get('/order_to_client', [MozoController::class,'showPanelOrderMozo'])->name('order_to_client');
+        
     //--> Home
 
         Route::get('/home', [UserController::class,'show_home_list'])->name('home');
@@ -111,6 +133,8 @@ use App\Http\Controllers\test\testController;
         Route::get('/update_menu_state', [EfectController::class, 'updateMenuState']);
 
     //-- testing view
-        Route::get('/view-test', [testController::class, 'viewTest']);
+        Route::get('/view-test-v0', [testController::class, 'viewTestV0']);
+        Route::get('/view-test-v1', [testController::class, 'viewTestV1']);
+        Route::get('/view-test-pdf', [testController::class, 'generarPDF']);
 
     });

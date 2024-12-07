@@ -1,0 +1,219 @@
+<style>
+    .swal2-popup.swal2-modal.swal2-show {
+        width: 700px;
+        height: 450px;
+    }
+
+    fieldset {
+        border: none;
+        margin: 20px 1vh;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .custom-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 10px 20px;
+        border: 1px solid var(--color-input-background-border);
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        width: 100%;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .custom-checkbox:hover {
+        background-color: #1c9b00a0;
+    }
+
+    .custom-checkbox:has(input:checked) {
+        background-color: #2cb70085;
+    }
+
+
+
+    .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .custom-input {
+        width: 16px;
+        height: 16px;
+        border: 1px solid var(--color-input-background-border);
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .text-content .title {
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+
+    .quantity-and-delivery {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .comentary-frame-data {
+        display: flex;
+        margin-top: 10px;
+    }
+
+    textarea.input.effect-4.comment.data {
+        height: 100px;
+    }
+
+    .input-group.input-dimensions.alert-style-div-input.alert-input {
+        width: 200px;
+    }
+
+    .effect-5:focus+label,
+    .effect-5:not(:placeholder-shown)+label {
+        left: 10px;
+    }
+
+    .effect-5:focus+label.label-input-data,
+    .effect-5:not(:placeholder-shown)+label.label-input-data {
+        top: 0;
+        background-color: var(--light);
+    }
+
+    .wave-group .label-char {
+        background-color: var(--light);
+    }
+
+    i.fi.fi-rr-box-circle-check {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+    strong.title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .swal2-actions {
+        width: 100%;
+    }
+
+    button.swal2-confirm.swal2-styled.swal2-default-outline {
+        width: 50%;
+    }
+
+    button.swal2-cancel.swal2-styled.swal2-default-outline {
+        width: 40%;
+    }
+
+    div#swal2-validation-message {
+        display: flex;
+        height: 45px;
+        background-color: #ff000057;
+        border-radius: 10px;
+        margin: 0px 40px;
+    }
+
+    .wave-group {
+        position: relative;
+    }
+
+    .close-button {
+        position: absolute;
+        bottom: calc(100% - 45px);
+        right: 6px;
+        background-color: #f4433600;
+        color: red;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        height: 35px;
+        transition: background-color 0.3s ease;
+        transition: color 0.3s ease;
+    }
+
+    .close-button:hover {
+        background-color: #da0000b1;
+        color: white;
+    }
+
+    textarea#comment-input {
+        padding: 10px 40px 10px 20px;
+    }
+
+    i.fi.fi-sr-broom {
+        font-size: 1.2rem;
+    }
+    @media (max-width: 992px) {
+        .custom-checkbox:hover {
+            background-color: transparent;
+        }
+
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 10px;
+            border: 1px solid var(--color-input-background-border);
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .checkbox-wrapper {
+            display: none;
+        }
+        .wave-group .input, .input-iten{
+            font-size: 0.8rem;
+        }
+    }
+</style>
+<div class="frame-data-alert">
+    <div class="quantity-and-delivery">
+        <div class="input-group input-dimensions alert-style-div-input alert-input">
+            <input type="number" id="quantity-item-data" name="quantity-item"
+                class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="1">
+            <label for="quantity-item-data" class="label-input-data mobile-label">Cantidad</label>
+        </div>
+        <fieldset>
+            <label class="custom-checkbox" for="is-delivery">
+                <div class="checkbox-wrapper">
+                    <input id="is-delivery" class="custom-input" type="checkbox" />
+                </div>
+                <div class="text-content">
+                    <strong class="title"><i class="fi fi-rr-box-circle-check"></i> Para delivery o llevar </strong>
+                </div>
+            </label>
+        </fieldset>
+    </div>
+    <div class="comentary-frame-data">
+        <div class="wave-group input-dimensions comment data">
+            <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input"
+                value="" placeholder=" "></textarea>
+            <label class="label">
+                <span style="--index: 1" class="label-char">N</span>
+                <span style="--index: 2" class="label-char">o</span>
+                <span style="--index: 3" class="label-char">t</span>
+                <span style="--index: 4" class="label-char">a</span>
+            </label>
+            <button class="close-button" onclick="clearComentDataAlert()"><i class="fi fi-sr-broom"></i></button>
+        </div>
+    </div>
+</div>

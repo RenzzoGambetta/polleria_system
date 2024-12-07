@@ -36,7 +36,25 @@
             $comment = 'Comentario';
 
         @endphp
+        @if (!empty($ComboItem) && !empty($ComboItem->id))
+            <input type="hidden" name="id" value="{{ $ComboItem->id }}">
+            <input type="hidden" name="is_combo" value="{{ $ComboItem->is_combo }}">
 
+            <script>
+                var id = {{ $ComboItem->id ?? 'null' }};
+                var combo = {{ $ComboItem->is_combo ?? 'null' }};
+            </script>
+        @endif
+        
+        @if ($ComboItem->is_combo ?? 0 == 1)
+            <script>
+                const apiUrl = '/list_of_item';
+            </script>
+        @else
+            <script>
+                const apiUrl = '/list_of_supplys';
+            </script>
+        @endif
         <div class="conteiner-new-supply">
             <div class="conteiner-01">
                 <div class="frame-01">
@@ -127,19 +145,6 @@
                     </div>
                 </div>
 
-                <script>
-                    var id = {{ $ComboItem->id ?? 'null' }};
-                </script>
-                @if ($ComboItem->is_combo ?? 0 == 1)
-                    <script>
-                        const apiUrl = '/list_of_item';
-                    </script>
-                @else
-                    <script>
-                        const apiUrl = '/list_of_supplys';
-                    </script>
-                @endif
-
                 <div class="frame-02-conteiner-02">
                     <div class="price-and-quantity">
                         <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
@@ -190,15 +195,15 @@
         </div>
     </div>
 </form>
- <!-- Muestra los errores de validación -->
- @if ($errors->any())
- <div style="color: red;">
-     <ul>
-         @foreach ($errors->all() as $error)
-             <li>{{ $error }}</li>
-         @endforeach
-     </ul>
- </div>
+<!-- Muestra los errores de validación -->
+@if ($errors->any())
+    <div style="color: red;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($OptionSelector) }}"></script>

@@ -107,28 +107,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function verificarVariableID() {
+    var elemento = $('[name="id"]');
+
+    if (elemento.length > 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 function validarFormulario(event) {
     var user_name = document.getElementById('user_name').value.trim();
     var password_primary = document.getElementById('password_primary').value.trim();
     var password_repeat = document.getElementById('password_repeat').value.trim();
 
+
     const msRrDiv = document.querySelector('.ms_bx');
     const msTxt = msRrDiv.querySelector('.ms_txt');
 
     msRrDiv.classList.add('hide-element');
 
-    if (user_name === '' || password_primary === '' || password_repeat === '') {
+    if (user_name === '') {
         mostrarError(msTxt, msRrDiv, 'Todos los campos son obligatorios.');
         event.preventDefault();
         return;
     }
 
-    if (password_primary.length < 8) {
-        mostrarError(msTxt, msRrDiv, 'La contraseña debe tener al menos 8 caracteres.');
-        event.preventDefault();
-        return;
+
+    if (verificarVariableID()) {
+        if (password_primary.length < 8) {
+            mostrarError(msTxt, msRrDiv, 'La contraseña debe tener al menos 8 caracteres.');
+            event.preventDefault();
+            return;
+        } if (password_primary === '' || password_repeat === '') {
+            mostrarError(msTxt, msRrDiv, 'Todos los campos son obligatorios.');
+            event.preventDefault();
+            return;
+        }
     }
+
     if (password_primary !== password_repeat) {
         mostrarError(msTxt, msRrDiv, 'Las contraseñas no coinciden.');
         event.preventDefault();
@@ -165,4 +183,14 @@ function activarRetroceso() {
         updateFormSteps();
         updateProgressbar();
     });
+}
+function modifyRoleUser(urlModify,id) {
+
+    const selectedRole = document.querySelector('input[name="role_id"]:checked');
+
+    if (selectedRole) {
+        urlGet(urlModify, { id: selectedRole.value, action: 'modify', id_user: id });
+    } else {
+        alert('Por favor, selecciona un rol.');
+    }
 }

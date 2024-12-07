@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Details Panel</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      position: relative;
+    }
+
+    /* Button to open the panel */
+    .open-details-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    /* Table details panel */
+    .table-details-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background-color: #f8f9fa;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+      transition: width 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .table-details-panel.open {
+      width: 100%;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Close button */
+    .close-details-btn {
+      position: absolute;
+      top: 20px;
+      left: 10px;
+      background-color: #d9534f;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+    }
+
+    .table-info {
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #e9ecef;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <button class="open-details-btn" onclick="toggleTableDetails()">☰</button>
+    <div class="table-details-panel" id="tableDetailsPanel">
+      <button class="close-details-btn" onclick="toggleTableDetails()">←</button>
+      <h2>Table Information</h2>
+      <div class="table-info">Table 1: Details, status, etc.</div>
+      <div class="table-info">Table 2: Details, status, etc.</div>
+      <div class="table-info">Table 3: Details, status, etc.</div>
+      <!-- Add more tables as needed -->
+    </div>
+  </div>
+
+  <script>
+    function toggleTableDetails() {
+      const panel = document.getElementById('tableDetailsPanel');
+      panel.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<style>
+    .close-button {
+        position: absolute;
+        bottom: calc(100% - 45px);
+        right: 6px;
+        background-color: #f4433600;
+        color: red;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        height: 35px;
+        transition: background-color 0.3s ease;
+        transition: color 0.3s ease;
+    }
+
+    .close-button:hover {
+        background-color: #da0000b1;
+        color: white;
+    }
+
+    textarea#comment-input {
+        padding: 10px 40px 10px 20px;
+        font-size: 0.9rem;
+        height: 20vh;
+    }
+
+    i.fi.fi-sr-broom {
+        font-size: 1.2rem;
+    }
+
+    div#swal2-html-container {
+        padding: 20px 20px 0 20px;
+    }
+
+    .swal2-actions {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    button.swal2-cancel.swal2-styled.swal2-default-outline,
+    button.swal2-confirm.swal2-styled.swal2-default-outline {
+        width: calc(50% - 30px);
+    }
+</style>
+<div class="wave-group input-dimensions comment data">
+    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input"
+        placeholder=" "></textarea>
+    <label class="label">
+        <span style="--index: 1" class="label-char">N</span>
+        <span style="--index: 2" class="label-char">o</span>
+        <span style="--index: 3" class="label-char">t</span>
+        <span style="--index: 4" class="label-char">a</span>
+    </label>
+    <button class="close-button" onclick="clearComentDataAlert()">
+        <i class="fi fi-sr-broom"></i>
+    </button>
+</div>

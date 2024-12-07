@@ -21,6 +21,13 @@ class InventoryController extends Controller
         'sub_seccion' => 3.1,
         'color' => 31
     ];
+    protected $UnitOptions = [
+        ['kg', 'kilo'],
+        ['g', 'gramo'],
+        ['l', 'litro'],
+        ['ml', 'mililitro'],
+        ['ud', 'unidad']
+    ];
     public function showInventoryList()
     {
         $Inventory = Supply::paginate(10);
@@ -30,15 +37,20 @@ class InventoryController extends Controller
     public function newsupplyInventory(Request $request)
     {
         $Navigation = $this->Navigationsupply;
+        $UnitOptions = $this->UnitOptions;
 
         if ($request->filled(['id'])) {
 
             $Supply = Supply::where('id', $request->id)->first();
             $Supply['brandName']  = Brand::where('id', $Supply->brand_id)->value('name');
             $Supply['isEdit'] = true;
-            return  view('inventory_management.new_supply_inventory', compact('Navigation', 'Supply'));
+            $Supply['title'] = 'Editar suministro';
+
+        }else{
+            $Supply['title'] = 'Registro nuevo suministro';
+
         }
-        return view('inventory_management.new_supply_inventory', compact('Navigation'));
+        return view('inventory_management.new_supply_inventory', compact('Navigation','UnitOptions','Supply'));
     }
 
     public function showListInventoryMovements()
@@ -50,7 +62,7 @@ class InventoryController extends Controller
         $InventoryDTOService = new InventoryDTOService();
         $Movement = $InventoryDTOService->getLatestInventoryMovementsDto();
 
-       // return response()->json($Movement);
+        // return response()->json($Movement);
         $Navigation = $this->NavigationMovement;
         return view('inventory_management.stock_movement', compact('Navigation', 'Movement'));
     }

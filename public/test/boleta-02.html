@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generador de PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #generatePdfBtn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #pdfFrame {
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        .frame-tiket{
+            position: fixed;
+            z-index: -999;
+
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="generatePdfBtn">Generar PDF</button>
+        <iframe id="pdfFrame" src="" frameborder="1"></iframe>
+    </div>
+
+    <script>
+        // Cargar plantilla de boleta
+        async function loadTemplate() {
+            const response = await fetch("boleta-01.html");
+            return await response.text();
+        }
+
+        document.getElementById('generatePdfBtn').addEventListener('click', async () => {
+            // Importar jsPDF
+            const { jsPDF } = window.jspdf;
+
+            // Cargar plantilla
+            const templateHtml = await loadTemplate();
+
+            // Crear un div temporal para renderizar el HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.classList.add('frame-tiket');
+
+            tempDiv.innerHTML = templateHtml;
+            document.body.appendChild(tempDiv);
+
+            // Configurar PDF con anchura de 80mm
+            const pdfWidth = 80; // Ancho en mm
+            const pdfHeight = tempDiv.offsetHeight * (pdfWidth / tempDiv.offsetWidth); // Altura en mm
+
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: [pdfWidth, pdfHeight]
+            });
+
+            // Convertir a canvas y agregar al PDF
+            const canvas = await html2canvas(tempDiv, {
+                scale: 2,
+                useCORS: true
+            });
+            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+            // Remover div temporal
+            document.body.removeChild(tempDiv);
+
+            // Generar blob del PDF
+            const pdfBlob = pdf.output('blob');
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+
+            // Mostrar PDF en iframe
+            const pdfFrame = document.getElementById('pdfFrame');
+            pdfFrame.src = pdfUrl;
+        });
+    </script>
+</body>
+</html>

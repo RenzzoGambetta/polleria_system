@@ -87,10 +87,13 @@ class MenuController extends Controller
                         'SubTitle' => 'Conjunto que conforma un Combo',
                         'Input' => 'Item',
                     ];
+
+
                     return view('menu_management.new_menu_and_edit', compact('Navigation', 'ComboItem', 'Data'));
                 }
                 $Data['UrlCancel'] = 'menu';
             }
+
             return view('menu_management.new_menu_and_edit', compact('Navigation', 'Data'));
         } catch (Extension $e) {
             return abort(404);
@@ -102,7 +105,11 @@ class MenuController extends Controller
         $combo = $request->input('combo'); //0
 
         if ($combo == 0) {
-            $item = Supply::select('id', 'stock as quantity', 'name')->get();
+            $item = DB::table('menu_supply_details as msd')
+            ->join('supplies as s', 'msd.supply_id', '=', 's.id')
+            ->select('msd.supply_quantity as quantity', 'msd.supply_id as id', 's.name' )
+            ->where('item_id', $id)
+            ->get();
         } else if ($combo == 1) {
 
             //Consulta sql a la tabla combo_item_details
@@ -174,16 +181,23 @@ class MenuController extends Controller
         $item = MenuCategory::select('id', 'name')->get();
         return response()->json($item);
     }
-    public function editNewMenu(Request $request)
+    public function editNewMenu(MenuItemRequest $request)
     {
-        return response()->json($request);
+
+        //return response()->json($request);
+        $menuItemService = new MenuItemService();
+        try {
+            $menuItem = $menuItemService->editMenuItem($request->id ,$request->validated());
+
+            return redirect()->route('menu');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
     public function registerNewMenu(MenuItemRequest $request)
     {
-        /*
-        *   Implementacion temporal de la creacion de nuevos items del menu, modifical con tu logica
-        */
-
+        //return response()->json($request);
+       
         $menuItemService = new MenuItemService();
         try {
             $menuItem = $menuItemService->createMenuItem($request->validated());
@@ -193,7 +207,7 @@ class MenuController extends Controller
             return $e;
         }
         
-        return $request->validated();
+
     }
     public function showOrderItem(Request $request)
     {

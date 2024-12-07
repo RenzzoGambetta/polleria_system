@@ -31,6 +31,7 @@ class Essential_Services extends ServiceProvider
 
             $view->with('HeaderPanel', 'template.header');
             $view->with('FooterPanel', 'template.footer');
+            $view->with('HeaderMozo', 'template.header_mozo');
 
             //Alert
 
@@ -42,6 +43,11 @@ class Essential_Services extends ServiceProvider
 
             //$view->with('DragAndDrop', 'https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
             $view->with('DragAndDrop', 'plugin/js/sortable.min.js');
+
+
+            //JsonApp
+            $view->with('JsonApp', 'resources/auth/json/manifest.json');
+            $view->with('JsApp', 'resources/auth/js/sw.js');
 
         });
     }

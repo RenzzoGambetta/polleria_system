@@ -34,6 +34,9 @@ class Resource_Path_Image extends ServiceProvider
 
             $TempUserIcon = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::IMAGE, 'temp_user_icon.png');
             $view->with('TempUserIcon', $TempUserIcon);
+
+            $DocumentLogo = $fpFunc->Resource(Folder_Path::DOCUMENT, Folder_Path::IMAGE, 'logo.png');
+            $view->with('DocumentLogo', $DocumentLogo);
         });
     }
 }

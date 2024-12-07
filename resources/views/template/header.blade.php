@@ -84,7 +84,9 @@
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 6.1 ? 'active' : '' }}">
                             <a href="{{ route('cashier_sessions') }}" id="{{ ($Navigation['color'] ?? null) == 61 ? 'nav_select' : '' }}"><i class='fi fi-ss-marketplace-alt bx-adjustment-icon'></i>Apertura y siere</a>
                         </li>
-
+                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 6.2 ? 'active' : '' }}">
+                            <a href="{{ route('mozo') }}" id="{{ ($Navigation['color'] ?? null) == 62 ? 'nav_select' : '' }}"><i class='fi fi-ss-holding-hand-dinner bx-adjustment-icon'></i>Mozo</a>
+                        </li>
                     </ul>
                 </li>
 

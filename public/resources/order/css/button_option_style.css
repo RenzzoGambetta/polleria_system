@@ -1,0 +1,308 @@
+:root {
+    --cSize: 30px;
+    --cInactive: #232739;
+    --cActive: #991f1f;
+    --particleSize: 0px;
+    --cEasing: ease;
+    --cTiming: 0.5s;
+    --innerPaddingSize: 18px;
+}
+
+.particles-checkbox {
+    height: var(--cSize);
+    width: var(--cSize);
+    display: inline-flex;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all var(--cTiming) var(--cEasing);
+    margin: 2px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.particles-checkbox:focus {
+    outline: 0;
+}
+
+.particles-checkbox:checked {
+    background-color: var(--cActive);
+}
+
+.particles-checkbox:checked::after {
+    background-color: #ffffff;
+    height: calc(var(--cSize) * 0.3);
+    width: calc(var(--cSize) * 0.3);
+}
+
+.particles-checkbox:checked::before {
+    -webkit-animation: particleAnimate var(--cTiming) var(--cEasing) forwards;
+    animation: particleAnimate var(--cTiming) var(--cEasing) forwards;
+}
+
+.particles-checkbox:checked+span {
+    border-color: #204cd2a8;
+    color: white;
+    background: linear-gradient(135deg, rgba(32, 76, 210, 1), rgba(32, 76, 210, 0.8), rgba(32, 76, 210, 0.5));
+    font-weight: bold;
+}
+
+.particles-checkbox::before,
+.particles-checkbox::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: inherit;
+    height: 0px;
+    width: 0px;
+}
+
+.particles-checkbox::after {
+    transition: all var(--cTiming) var(--cEasing);
+}
+
+.particles-checkbox::before {
+    --particleSize: 4px;
+    height: var(--particleSize);
+    width: var(--particleSize);
+    z-index: 2;
+}
+
+@-webkit-keyframes particleAnimate {
+    0% {
+        box-shadow: 0px 0px 0px transparent, NaNpx NaNpx transparent, NaNpx NaNpx transparent, 0px 0px 0px transparent, NaNpx NaNpx transparent, NaNpx NaNpx transparent, 0px 0px 0px transparent, NaNpx NaNpx transparent, NaNpx NaNpx transparent;
+        transform: rotate(0turn);
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        box-shadow: 0px 0px 0px transparent, -2.23929px 19.87424px #f94144, -19.49856px -4.45042px #f94144, 6.60558px -18.87767px #f94144, 18.01938px 8.67767px #f94144, -10.64064px 16.93448px #f94144, -15.63663px -12.4698px #f94144, 14.14214px -14.14214px #f94144, 0px 0px 0px transparent, -25.98076px -15px #f9c74f, 15px 25.98076px #f9c74f, 0px -30px #f9c74f, 0px 0px 0px transparent, -28.51221px -14.5277px #ffd166, 18.80913px 25.88854px #ffd166, -5.0059px -31.60603px #ffd166, -9.88854px 30.43381px #ffd166, 22.62742px -22.62742px #ffd166;
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(0.5turn);
+    }
+}
+
+@keyframes particleAnimate {
+    0% {
+        box-shadow: 0px 0px 0px transparent, NaNpx NaNpx transparent, NaNpx NaNpx transparent, 0px 0px 0px transparent, NaNpx NaNpx transparent, NaNpx NaNpx transparent, 0px 0px 0px transparent, NaNpx NaNpx transparent, NaNpx NaNpx transparent;
+        transform: rotate(0turn);
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        box-shadow: 0px 0px 0px transparent, -2.23929px 19.87424px #f94144, -19.49856px -4.45042px #f94144, 6.60558px -18.87767px #f94144, 18.01938px 8.67767px #f94144, -10.64064px 16.93448px #f94144, -15.63663px -12.4698px #f94144, 14.14214px -14.14214px #f94144, 0px 0px 0px transparent, -25.98076px -15px #f9c74f, 15px 25.98076px #f9c74f, 0px -30px #f9c74f, 0px 0px 0px transparent, -28.51221px -14.5277px #ffd166, 18.80913px 25.88854px #ffd166, -5.0059px -31.60603px #ffd166, -9.88854px 30.43381px #ffd166, 22.62742px -22.62742px #ffd166;
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(0.5turn);
+    }
+}
+
+.particles-checkbox-container {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--cTiming) var(--cEasing);
+    width: 100%;
+    justify-content: center;
+}
+
+.particles-checkbox-container span {
+    border: 2px solid #7a7a7a;
+    padding: 10px;
+   /*   margin-left: 4px; 
+        border-radius: calc(var(--innerPaddingSize)* 0.5);
+        padding: 15px 14px;
+        padding-left: calc(var(--cSize) + var(--innerPaddingSize) + 10px); */
+    width: 100%;
+    color: var(--dark);
+    transition: all var(--cTiming) var(--cEasing);
+    transition: border-color 0.3s ease;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    background-color: var(--grey);
+}
+
+.particles-checkbox-container span:hover {
+    border-color: #577af3;
+    background-color: #d9dae1a8;
+}
+
+.particles-checkbox-container .particles-checkbox {
+    position: absolute;
+    left: var(--innerPaddingSize);
+}
+
+.link {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    display: inline-flex;
+    padding: 8px 16px;
+    color: #ffffff;
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: red;
+}
+.frame-option-t-type-payment {
+    display: flex;
+    width: 100%;
+}
+label input[type="radio"].particles-checkbox{
+    display: block;
+}
+
+.particles-checkbox-container span.star-item-border{
+    border-radius: 10px 0 0 10px;
+}
+.particles-checkbox-container span.end-item-border{
+    border-radius: 0 10px 10px 0;
+}
+.particles-checkbox:checked+span:hover {
+    background-color: #204cd2a8;
+}
+
+
+/*option*/
+.multi-button {
+    background-color: transparent;
+    border: none;
+    border-radius: 14px;
+    padding: 7px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+  
+.button-type-payment {
+    padding: 10px 17px;
+    font: 15px Ubuntu, sans-serif;
+    color: var(--dark);
+    cursor: pointer;
+    position: relative;
+    background-color: var(--grey);
+    border: 2px solid #7a7a7a;
+    width: 100%;
+    display: flex;  
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.button-type-payment span {
+    display: inline-block;
+    position: relative;
+    transition: padding-right 0.5s ease;
+    width: 100%;
+}
+
+.button-type-payment:hover span,
+.button-type-payment.active span {
+    padding-right: 30px; 
+    color: white;
+}
+
+.button-type-payment .center-icon {
+    position: absolute;
+    right: -25px; 
+    opacity: 0;
+    transition: opacity 0.5s ease, right 0.5s ease;
+}
+
+.button-type-payment:hover .center-icon,
+button.button-type-payment.active .center-icon{
+    right: calc(50% - 50px);
+    opacity: 1;
+    color: white;    
+    font-size: 1.5rem;
+}
+
+button#efectivo:hover,
+button.button-type-payment.active#efectivo {
+    background: linear-gradient(135deg, #19a300, #128800, #0f7700);
+}
+
+button#efectivo:hover .center-icon,
+button.button-type-payment.active#efectivo .center-icon{
+    right: calc(50% - 50px);
+    opacity: 1; 
+}
+
+button#yape:hover,
+button.button-type-payment.active#yape {
+    background: linear-gradient(135deg, #7a33d6, #5300a2, #3d0078); 
+}
+
+button#yape:hover .center-icon,
+button.button-type-payment.active#yape .center-icon{
+    right: calc(50% - 40px);
+    opacity: 1;
+}
+
+button#plin:hover,
+button.button-type-payment.active#plin {
+    background: linear-gradient(135deg, #33b9e6, #0099d5, #0074a3);
+}
+
+button#plin:hover .center-icon,
+button.button-type-payment.active#plin .center-icon{
+    right: calc(50% - 35px);
+    opacity: 1;
+}
+
+button#t-debito:hover,
+button.button-type-payment.active#t-debito {
+    background: linear-gradient(135deg, #4343d6, #030088, #020066);
+}
+
+button#t-credito:hover,
+button.button-type-payment.active#t-credito{
+    background: linear-gradient(135deg, #d64543, #9d0300, #6e0200);
+}
+
+button#t-credito {
+    border-radius: 0 10px 10px 0;
+
+}
+button#efectivo{
+    border-radius: 10px 0 0 10px;
+}
+
+#t-credito .center-icon {
+    position: absolute;
+    right: 2px;
+    opacity: 0;
+    transition: opacity 0.5s ease, right 0.5s ease;
+}
+#t-credito:hover span,
+button.button-type-payment.active#t-credito span{
+    padding-right: 30px; 
+    color: white;
+}
+#t-credito:hover .center-icon,
+button.button-type-payment.active#t-credito .center-icon{
+    right: calc(50% - 50px);
+    opacity: 1;
+    color: white;    
+    font-size: 1.5rem;
+}

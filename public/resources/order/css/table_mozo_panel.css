@@ -1,0 +1,239 @@
+.conteiner-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.table-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tables-list {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+    display: block;
+}
+
+.table-item {
+    padding: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.table-item .table-info {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.tables-list-tomozo{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 160px));
+    gap: 1rem;
+    padding: 0rem;
+    justify-content: center;
+}
+.table-item.table-data{
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.container-secription-table {
+    display: flex;
+}
+.item-details {
+    font-size: 0.7rem;
+    color: var(--table-color-item);
+    user-select: none;
+}
+.label-able {
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+.item-detail-client {
+    position: relative;
+    background-color: transparent;
+}
+.p-sub-center-data-order{
+    text-align: left;
+}
+.hover-message-item {
+    left: calc(100% - 70px);
+    width: 140px;
+}
+.button-edit-list-table, .button-delate-list-table, .button-note-list-table {
+    background-color: #747474;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.button-note-list-table {
+    background-color: #0020d5;
+    width: 80px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+.button-edit-list-table{
+    background-color: #ff9d00;
+}
+.button-delate-list-table{
+    background-color: #ff0000;
+}
+.hover-message-item {
+    background-color: transparent;
+}
+.icon-table:focus-visible{
+    border: none;
+}
+.icon-table {
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #e50000;
+    margin-right: 10px;
+    font-size: 1rem;
+    width: 160px;
+    height: 35px;
+    border-radius: 20px;
+}
+button.option-view-coment,
+button.option-edit-list-order {
+    width: 30%;
+    height: 50px;
+    margin-right: 0px;
+    font-size: 1.3rem;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+.button-container-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.option-edit-list-order:hover{
+    background-color: rgb(249, 183, 0);
+}
+.option-view-coment:hover{
+    background-color: rgb(0, 57, 215);
+}
+.option-edit-list-order{
+    background-color: rgb(255, 145, 0);
+    transition: background-color 0.3s ease;
+}
+.option-view-coment{
+    background-color: rgb(102, 64, 255);
+    border-radius: 5px 0 0 5px;
+    transition: background-color 0.3s ease;
+}
+.option-item-selec-list-table {
+    display: flex;
+    justify-content: flex-end;
+}
+button.option-add-order-to-client {
+    background-color: green;
+    border: none;
+    width: 60%;
+    border-radius: 0 5px 5px 0;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    flex-direction: row;
+}
+button.option-add-order-to-client i.fi.fi-ss-shopping-cart-add.center-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+button.option-add-order-to-client:hover{
+    background-color: rgb(0, 67, 0);
+}
+
+.header-table-data {
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    user-select: none;
+    flex-direction: row-reverse;
+    margin-right: 80px;
+}
+
+@media screen and (max-width: 768px) {
+    span.span-data-table {
+        font-size: 0.8rem;
+        font-weight: 500;
+        font-style: italic;
+    }
+    .table-item {
+        padding: 8px;
+    }
+    .table-item:hover{
+        background-color: var(--table-color-hover);
+        color: rgb(255, 136, 0);
+    }
+    .content main .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-gap: 16px;
+        flex-wrap: wrap;
+        height: 30px;
+        margin-top: -55px;
+        margin-bottom: 15px;
+    }
+    .time-table-client {
+        font-size: 0.8rem;
+    }
+    .data-info-table-sub-name .span-data-table,
+    .data-info-table-sub-name .span-data {
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        font-style: normal;
+    }
+    .button-edit-list-table, .button-delate-list-table {
+        margin: 0 2px;
+    }
+    .icon-table {
+        font-size: 0.8rem;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+    }
+    #data-item-client{
+        padding-right: 0px;
+    }
+    .price-detail {
+        font-size: 0.9rem;
+    }
+}
+.container-table-data {
+    width: 100%;
+    background-color: transparent;
+    min-height: calc(90vh - 44px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#data-item-client {
+    max-height: 73vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}

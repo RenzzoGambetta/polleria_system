@@ -83,11 +83,18 @@
     --backgraund-color-category-option-select:#b5b5ff;
     --backgraund-color-category-option-border:#b3b3b3;
     --item-data-order-new-option-list:white;
+    --table-color-hover:#dcdcdc;
+    --dark-option-input-data-quantity-product:rgb(206, 236, 255);
+    --color-item-selct-hover-product-table:linear-gradient(90deg, transparent, rgb(255 190 123),  #f8c28b,  rgb(254 179 102) );
+    --backgraund-color-table-and-frame:#fff;
+    --border-color-table-order-list-end:1px solid #ddd;
+    --document-type-background-color:#ffb81f96;
+    --payment-section-background-color:#00b8124d;
 }
 
 
 body.dark {
-
+    --backgraund-color-table-and-frame:#181a1e;
     --select-hover-color: rgb(216, 216, 216);
     --select-color: #ffffff;
     --light: #181a1e;
@@ -151,5 +158,11 @@ body.dark {
     --backgraund-color-category-option-select:#282870;
     --backgraund-color-category-option-border:#d5d4d4;
     --item-data-order-new-option-list:#462712;
-
+    --table-color-hover:#121219;
+    --dark-option-input-data-quantity-product:rgb(0, 83, 92);
+    --color-item-selct-hover-product-table:#443110;
+    --border-color-table-order-list-end:1px solid #6b6b6b;
+    --document-type-background-color:#474747;
+    --payment-section-background-color:#474747;
+    --color-item-selct-hover-product-table:linear-gradient(90deg, transparent, rgb(67 48 13), #9a3a00, rgb(255 124 0));
 }

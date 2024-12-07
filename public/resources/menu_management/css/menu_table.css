@@ -99,6 +99,7 @@ th.title {
     .new-item {
         right: 40px;
         margin-right: 10px;
+        position: absolute;
     }
 }
 @media (max-width: 992px) {

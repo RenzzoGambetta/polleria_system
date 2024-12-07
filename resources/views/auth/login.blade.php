@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="red"> <!-- Cambia el color a negro, por ejemplo -->
+    <link rel="manifest" href="{{ asset($JsonApp) }}">
+
     <title>D'Brazza</title>
 
     <!--Icono-->
@@ -17,10 +20,12 @@
 
     <!--JS & jQuery-->
     <script src="{{ asset($JquerySrc) }}"></script>
-   
+
 
 </head>
+<style>
 
+</style>
 <body>
     <div id="container">
         <div class="banner">
@@ -44,8 +49,8 @@
                 <div class="box">
 
                     @csrf
-                    <input type="text" name="username" id="username" placeholder="Usuario" value="Pablo_caja" required>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" value="password123" required>
+                    <input type="text" name="username" id="username" placeholder="Usuario" required>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" required>
 
                     <button>Ingresar</button>
 
@@ -55,6 +60,17 @@
 
         </div>
     </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('{{ asset($JsApp) }}')
+                .then(function(registration) {
+                    console.log('Service Worker registrado con éxito:', registration);
+                })
+                .catch(function(error) {
+                    console.error('Error al registrar el Service Worker:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>

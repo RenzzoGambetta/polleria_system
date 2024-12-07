@@ -33,6 +33,7 @@ async function addItems() {
         confirmButtonText: `<i id="alert_btn"> <span> Agregar</span></i> `,
         cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
         cancelButtonAriaLabel: "Thumbs down",
+        didOpen: urlPostDeleteStyle
 
     }).then((result) => {
         if (result.isConfirmed) {
@@ -66,6 +67,7 @@ async function addItems() {
                     icon: "error",
                     title: "Oops...",
                     text: "No seleccionastes un supplyo o no esta escrito bien",
+                    didOpen: urlPostDeleteStyle
                 });
             }
 
@@ -99,6 +101,7 @@ async function newSupply() {
         confirmButtonText: `<i id="alert_btn"> <span> Agregar</span></i> `,
         cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
         cancelButtonAriaLabel: "Thumbs down",
+        didOpen: urlPostDeleteStyle
 
     }).then(async (result) => {
         if (result.isConfirmed) {
@@ -156,6 +159,7 @@ function quickAlert(icon, text, title) {
         icon: icon,
         title: title,
         text: text,
+        didOpen: urlPostDeleteStyle
     });
 }
 async function querySearchGet(url, dataCompact) {
@@ -220,18 +224,7 @@ function revertSelectionChanges() {
     subTitleDiv.style.opacity = "0";
     selected.innerHTML = 'Seleccionar un provedor';
 }
-async function loadHtmlFromFile(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Error al cargar el archivo HTML');
-        }
-        return await response.text();
-    } catch (error) {
-        console.error(error);
-        return '';
-    }
-}
+
 function sumOfPrices() {
     const priceInputs = document.querySelectorAll('.price-input-total');
     let total = 0;
@@ -342,7 +335,7 @@ function addTableBodyAboveReference(item) {
             let htmlContent = template
                 .replaceAll('{{id}}', item.id)
                 .replace('{{name}}', item.name)
-                .replace('{{price_total}}',  (item.price_per_unit * item.quantity) % 1 === 0 ? (item.price_per_unit * item.quantity).toFixed(0) : (item.price_per_unit * item.quantity).toFixed(2))
+                .replace('{{price_total}}', (item.price_per_unit * item.quantity) % 1 === 0 ? (item.price_per_unit * item.quantity).toFixed(0) : (item.price_per_unit * item.quantity).toFixed(2))
                 .replace('{{price_per_unit}}', item.price_per_unit)
                 .replace('{{quantity}}', item.quantity);
 
@@ -524,6 +517,7 @@ async function newSupplierRegistrationFast() {
         confirmButtonText: `<i id="alert_btn"> <span> Agregar</span></i> `,
         cancelButtonText: `<i id="alert_btn"><span>Cancel</span></i>`,
         cancelButtonAriaLabel: "Thumbs down",
+        didOpen: urlPostDeleteStyle
 
 
     }).then(async (result) => {

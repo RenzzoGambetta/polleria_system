@@ -34,6 +34,9 @@ class Resource_Path_Css extends ServiceProvider
             $view->with('InputResources', $InputResources);
             //Resources
 
+            $StyleDocument = $fpFunc->Resource(Folder_Path::DOCUMENT, Folder_Path::CSS, 'style_document.css');
+            $view->with('StyleDocument', $StyleDocument);
+
             $LoginMobile = $fpFunc->Resource(Folder_Path::AUTH, Folder_Path::CSS, 'login_mobile.css');
             $view->with('LoginMobile', $LoginMobile);
 
@@ -46,6 +49,9 @@ class Resource_Path_Css extends ServiceProvider
             $TemplateDesktop = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'template_desktop.css');
             $view->with('TemplateDesktop', $TemplateDesktop);
 
+            $MozoStylePanel = $fpFunc->Resource(Folder_Path::TEMPLATE, Folder_Path::CSS, 'mozo_style_panel.css');
+            $view->with('MozoStylePanel', $MozoStylePanel);
+
             //$EmployeeRecordMobile = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'employee_record_mobile.css');
             //$view->with('EmployeeRecordMobile', $EmployeeRecordMobile);loading_style
 
@@ -54,6 +60,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $LoadFragment = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'load_fragment.css');
             $view->with('LoadFragment', $LoadFragment);
+
+            $DataEmployerBlock = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'data_employer_block.css');
+            $view->with('DataEmployerBlock', $DataEmployerBlock);
 
             $RoleRegisterDesktop = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'style_role_register_desktop.css');
             $view->with('RoleRegisterDesktop', $RoleRegisterDesktop);
@@ -121,6 +130,17 @@ class Resource_Path_Css extends ServiceProvider
             $newOrder = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'new_order.css');
             $view->with('newOrder', $newOrder);
 
+            $paymentCustomer = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'payment_customer.css');
+            $view->with('paymentCustomer', $paymentCustomer);
+
+            $radioButtonOptionStyle = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'button_option_style.css');
+            $view->with('radioButtonOptionStyle', $radioButtonOptionStyle);
+        
+            $TableMozoPanel = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'table_mozo_panel.css');
+            $view->with('TableMozoPanel', $TableMozoPanel);
+            
+            $orderReceptionToClient = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'order_reception_to_client.css');
+            $view->with('orderReceptionToClient', $orderReceptionToClient);
         });
     }
 }

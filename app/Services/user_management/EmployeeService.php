@@ -53,7 +53,7 @@ class EmployeeService
 
             $employee->person->update([
                 'document_number' => $data['dni'],
-                'firstname' => $data['name'],
+                'name' => $data['name'],
                 'lastname' => $data['paternal_surname'] . ' ' . $data['maternal_surname'],
                 'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
                 'gender' => isset($data['gender']) ? $data['gender'] : 0,
@@ -68,7 +68,11 @@ class EmployeeService
             throw $e;
          }
     }
-
+    /**
+     * Se esta enviando el emplado ya seleccionado solo falta la
+     * desision de como se tomala una eliminacion actualmente el
+     * 16/11/24 no funciona asta solucionar el problema
+     */
     public function deleteEmployee(Employee $employee)
     {
         DB::beginTransaction();
