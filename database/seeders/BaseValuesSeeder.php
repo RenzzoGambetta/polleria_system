@@ -23,7 +23,7 @@ class BaseValuesSeeder extends Seeder
 
         IdentityDocumentType::factory(2)->create();
         VoucherType::factory(2)->create();
-        VoucherSerie::factory(2)->create();
+        VoucherSerie::factory(4)->create();
         PaymentMethod::factory(5)->create();
     }
 }

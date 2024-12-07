@@ -3,6 +3,7 @@
 namespace App\Models\various;
 
 use App\Models\finance\Voucher;
+use App\Models\User;
 use App\Models\various\VoucherType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,5 +22,10 @@ class VoucherSerie extends Model
     public function voucherType() 
     {
         return $this->belongsTo(VoucherType::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_voucher_series');
     }
 }
