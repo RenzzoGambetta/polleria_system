@@ -23,7 +23,7 @@ class MenuItemRequest extends FormRequest
             'price' => 'required|decimal:0,2|min:0',
             'is_combo' => 'integer|between:0,1',
             'category_id' => 'integer|nullable|exists:menu_categories,id',
-            'cooking_place_id' => 'integer|nullable|exists:cooking_places,id',
+            'cooking_place_id' => 'nullable|integer|exists:cooking_places,id',  //se modifico el orden de la validacion 
             'comment' => 'string|max:255|nullable',
             //Nombres de variables funcionales pero incorrectas
             'quantity_item_compact' => 'array|nullable',

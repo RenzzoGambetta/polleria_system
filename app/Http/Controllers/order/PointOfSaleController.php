@@ -17,6 +17,7 @@ use App\Services\IdentificationDocumentService;
 use App\Services\order\CashierSessionService;
 use App\Services\order\ClientService;
 use App\Services\order\OrderService;
+use App\Services\order\PaymentService;
 use DateTime;
 use Exception;
 use Illuminate\Http\Request;
@@ -55,7 +56,6 @@ class PointOfSaleController extends Controller
         $Data = Table::where('id', $request->id)->first();
         $Navigation = $this->NavigationPonit;
         $Data['sub_total'] = array_sum(array_column($Item, 'total_price'));
-
         return view('order.payment_customer_order', compact('Navigation', 'Item', 'Data'));
     }
     public function showCashierSessions(Request $request)
@@ -574,6 +574,21 @@ class PointOfSaleController extends Controller
     }
     public function tiketCancelClientOrder(Request $request)
     {
+
+/*
+        $RegisterData = [
+            'voucher_serie_id' => 1,
+            'issuance_date' => new DateTime(),
+            'expiration_date' => new DateTime(),
+            'payment_type' => 'contado',
+            'commentary' => null,
+            'amounts' => [50.00, 30.00, 20.00],
+            'payment_methods' => 'efectivo',
+        ];
+
+        $responseRegister = (new PaymentService())->payOrder(1,$RegisterData);
+        return response()->json($responseRegister);
+*/
         try{
             $data = $request->input();
             $dataClient = Person::where('id',$request->idClient)->first();
