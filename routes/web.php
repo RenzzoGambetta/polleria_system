@@ -46,6 +46,7 @@ use App\Http\Controllers\test\testController;
         //Roles
         Route::get('/position', [RoleController::class,'show_position_list'])->name('position');
         Route::get('/role_register', [RoleController::class,'show_role_register'])->name('role_register');
+        Route::get('/data_role', [RoleController::class,'showRoleViewSelec'])->name('data_role');
         Route::post('/role_register_store', [RoleController::class,'store'])->name('role_register_store');
         Route::post('/role_edit', [RoleController::class,'editRole'])->name('role_edit');
         Route::post('/role_delete', [RoleController::class,'deleteRole'])->name('role_delete');

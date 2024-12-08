@@ -79,7 +79,7 @@
                             <button class="button-option-employee edit" onclick="urlGet('{{route('role_register')}}',{id : {{$rol->id}}, action:'edit'})" title="Editar datos rol">
                                 <i class="fi fi-sr-user-pen option-table" ></i>
                             </button>
-                            <button class="button-option-employee view" onclick="urlGet('{{route('data_employer_block')}}',{id : {{$rol->id}}})" title="Visualizar los datos del rol">
+                            <button class="button-option-employee view" onclick="urlGet('{{route('data_role')}}',{id : {{$rol->id}}})" title="Visualizar los datos del rol">
                                 <i class="fi fi-ss-eye option-table"></i>
                             </button>
                         </td>

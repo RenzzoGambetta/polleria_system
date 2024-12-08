@@ -45,9 +45,20 @@ class PointOfSaleController extends Controller
 
     public function showPointOfSale(Request $request)
     {
-        $Lounge = Lounge::all();
-        $Navigation = $this->NavigationPonit;
-        return view('order.point_of_sale', compact('Navigation', 'Lounge'));
+        $user = Auth::user();
+        
+        if (DB::table('cashier_sessions')->where('user_id', $user->id)->whereNull('cash_close_at')->exists()) {
+            $Lounge = Lounge::all();
+            $Navigation = $this->NavigationPonit;
+            return view('order.point_of_sale', compact('Navigation', 'Lounge'));
+        } else {
+            return redirect()->route('cashier_sessions')->with([
+                'Message' => 'Se recomienda abrir la caja para comensar con las ventas',
+                'Type' => 'error',
+                'Time' => 3,
+                'Redirect' => 'poin_of_sale'
+            ]);
+        }
     }
     public function showPaymentService(Request $request)
     {
@@ -108,6 +119,7 @@ class PointOfSaleController extends Controller
     }
     public function registerSessionCashBox(Request $request)
     {
+        //return response()->json($request);
         try {
             $user = Auth::user();
 
@@ -118,11 +130,18 @@ class PointOfSaleController extends Controller
                 $validatedData = $request->validate((new CashierSessionRequest)->rules()); //validacion de CashierSessionRequest
 
                 $response = $this->cashierSessionService->openCashRegister($validatedData);
-
-                return redirect()->route('cashier_sessions')->withInput()->with([
-                    'Message' => 'Se aperturó la caja satisfactoriamente.',
-                    'Type' => 'success'
-                ]);
+                if ($request->redirect == 'poin_of_sale') {
+                    return redirect()->route('point_of_sale')->with([
+                        'Message' => 'Se aperturó la caja satisfactoriamente.',
+                        'Type' => 'success',
+                        'Time' => 1
+                    ]);
+                } else {
+                    return redirect()->route('cashier_sessions')->with([
+                        'Message' => 'Se aperturó la caja satisfactoriamente.',
+                        'Type' => 'success'
+                    ]);
+                }
             }
             if ($request->id != null) {
                 $response = $this->cashierSessionService->closeCashRegister($request->id, $request->note ?? ' ');
@@ -418,19 +437,21 @@ class PointOfSaleController extends Controller
             $response = $this->orderService->createOrderWithDetails($requestFilt);
             if ($request->type != 'mozo') {
                 return redirect()->route('point_of_sale')->withInput()->with([
-                    'Message' => 'Se aperturó la caja satisfactoriamente.',
-                    'Type' => 'success'
+                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Type' => 'success',
+                    'Time' => 1
                 ]);
             } else {
                 return redirect()->route('table_to_mozo', ['lounge_id' => $request->lounge])->withInput()->with([
-                    'Message' => 'Se aperturó la caja satisfactoriamente.',
-                    'Type' => 'success'
+                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Type' => 'success',
+                    'Time' => 1
                 ]);
             }
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Error en la validación de los datos',
+                'message' => 'Error en el registro de la orden',
                 'errors' => $e
             ], 422);
         }
@@ -574,29 +595,29 @@ class PointOfSaleController extends Controller
     }
     public function tiketCancelClientOrder(Request $request)
     {
-        try{
+        try {
             $data = $request->input();
-            $dataClient = Person::where('id',$request->idClient)->first();
+            $dataClient = Person::where('id', $request->idClient)->first();
             $dataTable = Table::where('id', $request->idTable)->first();
 
             $igb = round($data['primaryTotalPayment'] * 0.18, 2);
 
             switch ($request->typeFacture) {
                 case 'boleta':
-                   $textTypeFacture = 'Boleta de venta electronica';
+                    $textTypeFacture = 'Boleta de venta electronica';
                     break;
                 case 'factura':
-                    $textTypeFacture = 'Factura electronica';   
-                    break; 
+                    $textTypeFacture = 'Factura electronica';
+                    break;
                 case 'nota':
-                    $textTypeFacture = 'Nota de venta';       
-                        break;
+                    $textTypeFacture = 'Nota de venta';
+                    break;
                 default:
                     $textTypeFacture = 'Nota simple';
                     break;
             }
-    
-    
+
+
             $newArray = [
                 'dataCompany' => [
                     'ruc' => 20612460401,
@@ -611,7 +632,7 @@ class PointOfSaleController extends Controller
                     'areaOfAttention' => $dataTable->lounge->name . ' - Mesa : ' . $dataTable->code,
                 ],
                 'dataClient' => [
-                    'nameClient' => ($dataClient->name ?? '') .' .'. ($dataClient->lastname ?? ''),
+                    'nameClient' => ($dataClient->name ?? '') . ' .' . ($dataClient->lastname ?? ''),
                     'documentClient' => ($dataClient->document_number ?? '00000000000'),
                     'documentClientType' => $dataClient->document_type_id == 1 ? 'DNI' : 'RUC',
                 ],
@@ -624,7 +645,7 @@ class PointOfSaleController extends Controller
                     'totalPayment' => $data['primaryTotalPayment'],
                     'returnMoneyClient' => $data['returnMoneyClient'],
                     'textCashPaid' => 'VENTIDOS CON 00/100 Soles',
-                    'opGravada' => round( $data['primaryTotalPayment'] - $igb , 2),
+                    'opGravada' => round($data['primaryTotalPayment'] - $igb, 2),
                     'opExonerada' => 0,
                     'igb' => $igb,
                 ],
@@ -638,9 +659,9 @@ class PointOfSaleController extends Controller
                     ];
                 }, $data['items']),
             ];
-            
+
             return response()->json($newArray);
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return response()->json($e->getMessage());
         }
     }

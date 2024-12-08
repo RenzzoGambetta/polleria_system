@@ -97,6 +97,10 @@ function urlPostDeleteStyle() {
     swalContainer.find('div:where(.swal2-popup)').css('background-color', 'var(--light)');
     swalContainer.find('h2:where(.swal2-title)').css('color', 'var(--dark)');
     swalContainer.find('.swal2-html-container').css('color', 'var(--dark)');
+    swalContainer.find('.swal2-success-circular-line-left').css('background-color', 'transparent');
+    swalContainer.find('.swal2-success-fix').css('background-color', 'transparent');
+    swalContainer.find('.swal2-success-circular-line-right').css('background-color', 'transparent');
+
 }
 
 function urlPostDelete(url, datos = null, text, subText) {
