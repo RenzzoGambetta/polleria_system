@@ -138,4 +138,23 @@ class UserController extends Controller
             ]);
         }
     }
+    public function showDataUserBlock(Request $Data)
+    {
+        $Info = User::with(['employee.person'])->find($Data->id);
+        $Info['title']='Usuario';
+        $Info['sub_title']='Datos de Usuario';
+        $Info['data']=$Data->id;
+        $Info['type']='user';
+        $Info['url']='data_user_block';
+
+        $Navigation = $this->Navigation;
+
+        return view('user_management.data_employer', compact('Navigation', 'Info'));
+    }
+
+    public function queryTokenDatabase(Request $Data){
+        $Info = User::select('remember_token as token')->where('id',$Data->id)->first();
+        return response()->json($Info);
+    }
+
 }

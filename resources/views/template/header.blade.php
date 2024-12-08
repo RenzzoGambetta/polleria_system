@@ -82,7 +82,7 @@
                     <a href="{{ route('point_of_sale') }}" class="{{ ($Navigation['seccion'] ?? null) == 6 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 60 ? 'nav_select' : '' }}"><i class='fi fi-rs-cash-register bx-adjustment-icon'></i>Caja</a>
                     <ul class="sub">
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 6.1 ? 'active' : '' }}">
-                            <a href="{{ route('cashier_sessions') }}" id="{{ ($Navigation['color'] ?? null) == 61 ? 'nav_select' : '' }}"><i class='fi fi-ss-marketplace-alt bx-adjustment-icon'></i>Apertura y siere</a>
+                            <a href="{{ route('cashier_sessions') }}" id="{{ ($Navigation['color'] ?? null) == 61 ? 'nav_select' : '' }}"><i class='fi fi-ss-marketplace-alt bx-adjustment-icon'></i>Apertura y sierre</a>
                         </li>
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 6.2 ? 'active' : '' }}">
                             <a href="{{ route('mozo') }}" id="{{ ($Navigation['color'] ?? null) == 62 ? 'nav_select' : '' }}"><i class='fi fi-ss-holding-hand-dinner bx-adjustment-icon'></i>Mozo</a>

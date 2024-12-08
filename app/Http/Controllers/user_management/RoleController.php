@@ -202,4 +202,40 @@ class RoleController extends Controller
                 ]);
         }
     }
+    public function showRoleViewSelec(Request $Data){
+
+        $Navigation = $this->Navigation;
+
+        $Categories = Permission::all()->groupBy('category');
+
+            $rolePermissions = DB::table('role_permission')
+                ->where('role_id', $Data->id)
+                ->pluck('permission_id')
+                ->toArray();
+
+            $Categories = $Categories->map(function ($permissions, $category) use ($rolePermissions) {
+                $hasChecked = false;
+                $permissions = $permissions->map(function ($permission) use ($rolePermissions, &$hasChecked) {
+                    $permission->checked = in_array($permission->id, $rolePermissions);
+                    if ($permission->checked) {
+                        $hasChecked = true;
+                    }
+                    return $permission;
+                });
+                return (object)[
+                    'permissions' => $permissions,
+                    'checked' => $hasChecked
+                ];
+            });
+
+                $Info = [
+                    'title' => 'Rol: ',
+                    'id' => $Data->id,
+                    'name' => Role::select('name')->where('id', $Data->id)->first() ?? ''
+                ];
+           
+       
+        //return response()->json($Categories);
+        return view('user_management.role_data', compact('Navigation',  'Categories', 'Info'));
+    }
 }

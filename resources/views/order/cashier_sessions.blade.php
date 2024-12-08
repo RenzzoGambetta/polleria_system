@@ -46,7 +46,7 @@
 </div>
 
 @php
-    $comment = 'Comentario';
+    $comment = 'Nota';
 @endphp
 
 <form action="{{ route('register_session_cash_box') }}" method="POST" class="cash-register-body">
@@ -57,6 +57,9 @@
                 <p><span class="user-name">{{ $specs->name }}</span> abrió la caja anteriormente.</p>
                 <p class="box-details">
                     APERTURA: {{ $specs->cash_open_at }} | S/ {{ $specs->opening_balance }}
+                </p>
+                <p>
+                    <span>Nota: </span>{{ $specs->note ?? '' }}
                 </p>
             </div>
             <div class="cash-register-main-container clouse">
@@ -71,66 +74,67 @@
                     </div>
                 </div>
                 <div class="cash-register-closing-section">
-                    <input value="{{$specs->id }}" name="id" style="display: none">
+                    <input value="{{ $specs->id }}" name="id" style="display: none">
                     <button class="cash-register-close-button">Cerrar caja</button>
                 </div>
             </div>
-        <div class="div-note clouse">
-        @else
-            <div class="cash-register-main-container">
-                <div class="cash-register-status-left">
-                    <div class="cash-register-lock-icon"><i class="fi fi fi-sr-lock color-icon-lock"></i></div>
-                    <div class="cash-register-status-info">
-                        <span class="cash-register-status-badge lock">Cerrado</span>
-                        <p class="cash-register-status-time">
-                            La caja actualmente esta cerrado <span class="cash-register-highlight cash-register-date">,Se abrira hoy?</span>
-                        </p>
+            <div class="div-note clouse">
+            @else
+                <div class="cash-register-main-container">
+                    <div class="cash-register-status-left">
+                        <div class="cash-register-lock-icon"><i class="fi fi fi-sr-lock color-icon-lock"></i></div>
+                        <div class="cash-register-status-info">
+                            <span class="cash-register-status-badge lock">Cerrado</span>
+                            <p class="cash-register-status-time">
+                                La caja actualmente esta cerrado <span class="cash-register-highlight cash-register-date">,Se abrira hoy?</span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="cash-register-closing-section">
-                    <div class="cash-register-amount-group">
-                        <input value="1" name="employee_id" style="display: none" required>
-                        <label class="cash-register-amount-label">EMPLEADO ENCARGADO</label>
-                        <div class="search-container cash-register-amount-container">
-                            <input type="number" id="id-supplier" name="supplier_id" style="display: none" value="{{ old('supplier_id') }}">
-                            <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style cash-register-amount-input" placeholder="Jose" autocomplete="off" value="{{ old('employe') }}">
-                            <div id="suggestions" class="suggestions-supplier"></div>
-                            <div id="loader-supplier" class="loader-section">
-                                <div class="loading">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
+                    <div class="cash-register-closing-section">
+                        <div class="cash-register-amount-group">
+                            <label class="cash-register-amount-label">EMPLEADO ENCARGADO</label>
+                            <input type="hidden" name="redirect" value="{{session('Redirect') ?? 'sessions'}}">
+                            <div class="search-container cash-register-amount-container">
+                                <input type="number" id="id-supplier" name="employee_id" style="display: none" value="{{ old('supplier_id') }}">
+                                <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style cash-register-amount-input" placeholder="Jose" autocomplete="off" value="{{ old('employe') }}" required>
+                                <div id="suggestions" class="suggestions-supplier"></div>
+                                <div id="loader-supplier" class="loader-section">
+                                    <div class="loading">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="cash-register-amount-note">(*) Valida que el empleado este registrado.</p>
                         </div>
-                        <p class="cash-register-amount-note">(*) Valida que el empleado este registrado.</p>
-                    </div>
 
-                    <div class="cash-register-amount-group">
-                        <label class="cash-register-amount-label">INGRESE MONTO DE APERTURA</label>
-                        <div class="cash-register-amount-container">
-                            <span class="cash-register-currency-symbol">S/</span>
-                            <input type="text" class="cash-register-amount-input" placeholder="0.00" name="opening_balance" value="{{ old('opening_balance') }}" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46">
+                        <div class="cash-register-amount-group">
+                            <label class="cash-register-amount-label">INGRESE MONTO DE APERTURA</label>
+                            <div class="cash-register-amount-container">
+                                <span class="cash-register-currency-symbol">S/</span>
+                                <input type="text" class="cash-register-amount-input" placeholder="0.00" name="opening_balance" value="{{ old('opening_balance')}}" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46" required >
+                            </div>
+                            <p class="cash-register-amount-note">(*) Considerar solo dinero en efectivo.</p>
                         </div>
-                        <p class="cash-register-amount-note">(*) Considerar solo dinero en efectivo.</p>
-                    </div>
 
-                    <button class="cash-register-close-button lock">Abrir Caja</button>
+                        <button class="cash-register-close-button lock">Abrir Caja</button>
+                    </div>
                 </div>
-            </div>
-        <div class="div-note">
+                <div class="div-note">
+                    
         @endif
-            <div class="wave-group input-dimensions comment">
-                <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="255" name="note" id="comment-input" placeholder=" ">{{ old('note') }}{{ $specs->note ?? "" }}</textarea>
-                <label class="label">
-                    @foreach (str_split($comment) as $index => $char)
-                        <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
-                    @endforeach
-                </label>
-            </div>
+        <div class="wave-group input-dimensions comment">
+            <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="255" name="note" id="comment-input" placeholder=" ">{{ old('note') }}</textarea>
+            <label class="label">
+                @foreach (str_split($comment) as $index => $char)
+                    <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
+                @endforeach
+            </label>
         </div>
+    </div>
     </div>
 
 </form>

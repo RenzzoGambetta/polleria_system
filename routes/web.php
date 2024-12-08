@@ -24,15 +24,17 @@ use App\Http\Controllers\test\testController;
     Route::post('/login', [LoginController::class,'login']);
     Route::get('/register', [RegisterController::class,'show'])->name('register');
     Route::post('/register', [RegisterController::class,'register']);
-    Route::middleware('auth')->group(function () {
+    Route::middleware( 'auth')->group(function () {
     //--> Modulo de Empleados
 
         //Usuarios
+        Route::get('/data_user_block', [UserController::class,'showDataUserBlock'])->name('data_user_block');
         Route::get('/user', [UserController::class,'show_user_list'])->name('user');
         Route::get('/user_register', [UserController::class,'showUserNewRegister'])->name('user_register');
         Route::post('/user_register_store', [UserController::class,'store'])->name('user_register_store');
         Route::post('/user_edit', [UserController::class,'editUser'])->name('user_edit');
-        Route::post('/user_delete', [UserController::class,'deleteUser'])->name('user_delete');
+        Route::post( '/user_delete', [UserController::class,'deleteUser'])->name('user_delete');
+        Route::post( '/data_toket_query', [UserController::class,'queryTokenDatabase'])->name('data_toket_query');
         //Empleados
         Route::get('/employeer', [EmployeeController::class,'show_employeer_list'])->name('employeer');
         Route::get('/employeer_register', [EmployeeController::class,'show_employeer_register'])->name('employeer_register');
@@ -44,6 +46,7 @@ use App\Http\Controllers\test\testController;
         //Roles
         Route::get('/position', [RoleController::class,'show_position_list'])->name('position');
         Route::get('/role_register', [RoleController::class,'show_role_register'])->name('role_register');
+        Route::get('/data_role', [RoleController::class,'showRoleViewSelec'])->name('data_role');
         Route::post('/role_register_store', [RoleController::class,'store'])->name('role_register_store');
         Route::post('/role_edit', [RoleController::class,'editRole'])->name('role_edit');
         Route::post('/role_delete', [RoleController::class,'deleteRole'])->name('role_delete');
@@ -117,12 +120,12 @@ use App\Http\Controllers\test\testController;
         Route::post('/register_new_person_data_base', [PointOfSaleController::class,'registerNewPersonDataBase'])->name('register_new_person_data_base');
         Route::post('/register_express_data_client', [PointOfSaleController::class,'registerExpressDataClient'])->name('register_express_data_client');
         Route::post('/tiket_cancel_client', [PointOfSaleController::class,'tiketCancelClientOrder'])->name('tiket_cancel_client');
-    
+
     //--> Mozo
         Route::get('/mozo', [MozoController::class,'showPanelMozo'])->name('mozo');
         Route::get('/table_to_mozo', [MozoController::class,'shoqwPanelToTableData'])->name('table_to_mozo');
         Route::get('/order_to_client', [MozoController::class,'showPanelOrderMozo'])->name('order_to_client');
-        
+
     //--> Home
 
         Route::get('/home', [UserController::class,'show_home_list'])->name('home');
