@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Employee;
 use App\Models\order\CashierSession;
 use App\Models\order\Order;
+use App\Models\various\VoucherSerie;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -72,5 +73,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class, 'waiter_id');
+    }
+
+    public function voucher_series()
+    {
+        return $this->belongsToMany(VoucherSerie::class, 'user_voucher_series');
     }
 }

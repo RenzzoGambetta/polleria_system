@@ -16,18 +16,12 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'order_serie_id',
         'client_id',
         'table_id',
         'cashier_session_id',
         'waiter_id',
         'voucher_id',
-        'voucher_serie',
-        'correlative_number',
-        'issuance_date',
-        'expiration_date',
-        'payment_type',
-        'payment_method',
-        'total_amount',
         'status',
         'is_delibery',
         'commentary',
@@ -36,6 +30,11 @@ class Order extends Model
     public function details()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function orderSerie()
+    {
+        return $this->belongsTo(OrderSerie::class);
     }
 
     public function client()
