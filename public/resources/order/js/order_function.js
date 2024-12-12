@@ -73,8 +73,9 @@ async function addTableItem(code, sale) {
             let htmlContent = template
                 .replaceAll('{{lounge}}', sale)
                 .replaceAll('{{table}}', code)
+                .replace('{{styleIsBar}}', isBar ? 'display: none' : '')
                 .replaceAll('{{total}}', calculateTotal());
-
+                
             let itemsContent = '';
             selectedItems.forEach(item => {
                 let optionProduct = item.isDelivery === true ? 'Delivery' : 'Mesa';

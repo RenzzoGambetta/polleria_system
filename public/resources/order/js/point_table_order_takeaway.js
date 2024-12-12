@@ -229,8 +229,10 @@ async function addOrder(option) {
         .catch(error => console.error('Error loading template:', error));
     $('.conteiner-table').hide();
 
+
     $(document).on('click', '#button-div-option-new-order', function () {
-        console.log('Se presionó Agregar');
+        
+        urlGet('new_order_client',{isBar : true});
     });
 
 }

@@ -273,15 +273,23 @@ class PointOfSaleController extends Controller
     public function newOrderClient(Request $request)
     {
         $Navigation = $this->NavigationPonit;
-        $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
-        if ($request->id == null && $request->code == null && $request->sale == null) {
-            return response()->json(['mesage' => 'No se puede acceder sin datos']);
+        if($request->isBar){
+            $Data = [
+                'sale' => "Mostrador",
+                'isBar' =>false
+            ];
+        }else{
+            $Data = [
+                'id' => $request->id,
+                'code' => $request->code,
+                'sale' => $request->sale,
+                'isBar' =>true
+            ];
+            if ($request->id == null | $request->code == null | $request->sale == null) {
+                return response()->json(['mesage' => 'No se puede accesdeder sin datos']);
+            }
         }
-        $Data = [
-            'id' => $request->id,
-            'code' => $request->code,
-            'sale' => $request->sale
-        ];
+        $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
         return view('order.new_order_client', compact('Navigation', 'Category', 'Data'));
     }
     public function listItemFiltCategory(Request $request)
@@ -630,21 +638,20 @@ class PointOfSaleController extends Controller
     }
     public function tiketCancelClientOrder(Request $request)
     {
-
-/*
+        /*
         $RegisterData = [
             'voucher_serie_id' => 1,
             'issuance_date' => new DateTime(),
             'expiration_date' => new DateTime(),
             'payment_type' => 'contado',
             'commentary' => null,
-            'amounts' => [50.00, 30.00, 20.00],
+            'amounts' => [50.00, 30.00, 200.00],
             'payment_methods' => 'efectivo',
         ];
 
-        $responseRegister = (new PaymentService())->payOrder(1,$RegisterData);
+        $responseRegister = (new PaymentService())->payOrder(8,$RegisterData);
         return response()->json($responseRegister);
-*/
+        */
         try{
             $data = $request->input();
             $dataClient = Person::where('id', $request->idClient)->first();
