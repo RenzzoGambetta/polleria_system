@@ -2,7 +2,7 @@ const searchBox1 = new SearchBoxClient('No se encuntro el Cliente...', '.search-
 var quantityAlertLenghtDocument, totalPaymentClient, optionTypePayment = 'efectivo', optionTypePaymentGroup = 1, isActiveCombinePayment = false, isEfectivoOption = false;
 const URL_TEMPLATE = "/resources/order/template/";
 const URL_TEMPLATE_TIKET = "/resources/document/template/";
-let timerInterval, typeFactureGlobal = 'boleta';
+let timerInterval, typeFactureGlobal = 'nota';
 let pdfData;
 let itemPaySelect = items;
 
@@ -35,29 +35,29 @@ function calcPriceReturn(input) {
 }
 $(document).ready(function () {
     $('input[name="input-total-payment"]').on('input', function () {
-        var inputValue = parseInt($(this).val()) || 0; // Aseguramos que sea numérico
+        var inputValue = parseFloat($(this).val()) || 0; // Aseguramos que sea numérico
         var calc = 0; // Inicializamos el cálculo
 
         if (optionTypePaymentGroup === 1) {
             calc = inputValue - (totalPaymentClient || 0); // Calculamos para el grupo 1
         } else if (optionTypePaymentGroup === 3) {
-            var targetInput = parseInt($('input[name="input-payment-option-2"]').val()) || 0;
+            var targetInput = parseFloat($('input[name="input-payment-option-2"]').val()) || 0;
             calc = (inputValue + targetInput) - (totalPaymentClient || 0); // Calculamos para el grupo 3
         }
 
-        $('#return-money-client').text(calc); // Actualizamos el resultado
+        $('#return-money-client').text((calc).toFixed(2)); // Actualizamos el resultado
     });
 });
 
 $(document).ready(function () {
     var inputValue = 0; // Inicializamos como número
     $('input[name="input-payment-option-2"]').on('input', function () {
-        inputValue = parseInt($(this).val()) || 0; // Convertimos a número o usamos 0 si está vacío
+        inputValue = parseFloat($(this).val()) || 0; // Convertimos a número o usamos 0 si está vacío
 
         if (optionTypePaymentGroup === 3) {
-            var targetInput = parseInt($('input[name="input-total-payment"]').val()) || 0; // Aseguramos que sea un número
-            var calc = (inputValue + targetInput) - (totalPaymentClient || 0); // totalPaymentClient se inicializa como 0 si es undefined
-            $('#return-money-client').text(calc); // Mostramos el resultado
+            var targetInput = parseFloat($('input[name="input-total-payment"]').val()) || 0; // Aseguramos que sea un número
+            var calc = ((inputValue + targetInput) - (totalPaymentClient || 0)); // totalPaymentClient se inicializa como 0 si es undefined
+            $('#return-money-client').text((calc).toFixed(2)); // Mostramos el resultado
         }
     });
 });
@@ -378,7 +378,9 @@ $(document).ready(function () {
         const selectedValue = $(this).val();
         typeFactureGlobal = selectedValue;
         searchBox1.setValueTypeFacture(typeFactureGlobal);
-
+        $('#search-client').val('');
+        $('#search-client').css('border','2px solid var(--color-input-background-border)');
+        
     });
 });
 

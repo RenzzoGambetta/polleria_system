@@ -14,7 +14,7 @@ class SearchBoxClient {
         this.specialOperations = numberSpecialOperations;
         this.timeout = null;
         this.statusDivOpen = 0;
-        this.typeFacture = 'boleta';
+        this.typeFacture = 'nota';
     }
 
     init() {
@@ -221,9 +221,16 @@ class SearchBoxClient {
     }
 
     applyErrorStyle() {
-        if (!this.idInputElement.val()) {
-            this.searchBox.css('border', '2px solid #9d1616');
-            this.labelElement.css('color', 'red');
+        if(this.typeFacture != "nota"){
+            if (!this.idInputElement.val()) {
+                this.searchBox.css('border', '2px solid #9d1616');
+                this.labelElement.css('color', 'red');
+            }
+        }else{
+            if (!this.idInputElement.val()) {
+                this.searchBox.css('border', '2px solid green');
+                this.labelElement.css('color', 'green');
+            }
         }
     }
 

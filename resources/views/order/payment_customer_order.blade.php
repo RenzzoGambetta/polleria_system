@@ -77,10 +77,12 @@
                 <span>Cortesía / Descuento (no integrado)</span>
                 <span>S/ 0.00</span>
             </div>
-            <div class="total-row">
-                <span>Adicionales / Extras (no integrado)</span>
-                <span>S/ 0.00</span>
-            </div>
+            <!--
+                <div class="total-row">
+                    <span>Adicionales / Extras (no integrado)</span>
+                    <span>S/ 0.00</span>
+                </div>
+            -->
             <div class="total-row final-total">
                 <span>TOTAL</span>
                 <span>S/ <span>{{ $Data['sub_total'] }}</span></span>
@@ -95,19 +97,19 @@
             <div class="doc-buttons">
                 <div class="frame-option-t-type-payment">
                     <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="boleta" checked>
-                        <span class="star-item-border"><i class="fi fi-ss-point-of-sale-bill center-icon"></i>Boleta</span>
+                        <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="nota" checked>
+                        <span class="star-item-border"><i class="fi fi-sr-receipt center-icon"></i>Nota de Venta</span>
+                    </label>
+                    <label class="particles-checkbox-container">
+                        <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="boleta" >
+                        <span><i class="fi fi-ss-point-of-sale-bill center-icon"></i>Boleta</span>
                     </label>
 
                     <label class="particles-checkbox-container">
                         <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="factura">
-                        <span><i class="fi fi-sr-calculator-bill center-icon"></i>Factura</span>
+                        <span class="end-item-border"><i class="fi fi-sr-calculator-bill center-icon"></i>Factura</span>
                     </label>
 
-                    <label class="particles-checkbox-container">
-                        <input type="radio" class="particles-checkbox" name="toggle" id="document-type" value="nota">
-                        <span class="end-item-border"><i class="fi fi-sr-receipt center-icon"></i>Nota de Venta</span>
-                    </label>
                 </div>
             </div>
         </div>
