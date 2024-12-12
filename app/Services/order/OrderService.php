@@ -6,6 +6,7 @@ use App\Models\menu\Table;
 use App\Models\menu\MenuItem;
 use App\Models\order\Order;
 use App\Models\order\OrderDetail;
+use App\Models\order\OrderSerie;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -17,14 +18,21 @@ class OrderService
     {
         $table = Table::find($data['table_id']);
 
-        $tableIsOccupied = $table->status;
-        if ($tableIsOccupied) throw new Exception("La mesa ya tiene un pedido activo");
-
+        if ($table) {
+            $tableIsOccupied = $table->status;
+            if ($tableIsOccupied) throw new Exception("La mesa ya tiene un pedido activo");
+        }
+        
         DB::beginTransaction();
 
         try {
+            $orderSerie = OrderSerie::findOrFail(1);
+            $currentCorrelativeNumber = $orderSerie->last_correlative_number + 1;
+
             $order = Order::create([
-                'table_id' => $data['table_id'], // se cambio el table a $data['table_id']
+                'order_serie_id' => 1,
+                'correlative_number' => $currentCorrelativeNumber,
+                'table_id' => isset($data['table_id']) ? $data['table_id'] : null,
                 'cashier_session_id' => 1,
                 'waiter_id' => $data['waiter_id'],
                 'is_delibery' => $data['is_delibery'],

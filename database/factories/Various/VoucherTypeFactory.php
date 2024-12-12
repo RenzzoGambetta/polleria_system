@@ -30,6 +30,7 @@ class VoucherTypeFactory extends Factory
             'code' => $vt['code'],
             'name' => $vt['name'],
             'abbreviation' => $vt['abbreviation'],
+            'voucher_name' => $vt['voucher_name'],
         ];
     }
 }

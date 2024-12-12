@@ -20,6 +20,7 @@ class VoucherSerieFactory extends Factory
         $voucherSeries = [
             ['voucher_type_id' => 1, 'serie_number' => 'B001', 'last_correlative_number' => 0],
             ['voucher_type_id' => 2, 'serie_number' => 'F001', 'last_correlative_number' => 0],
+            ['voucher_type_id' => 3, 'serie_number' => 'NV01', 'last_correlative_number' => 0],
             ['voucher_type_id' => 1, 'serie_number' => 'B002', 'last_correlative_number' => 0],
             ['voucher_type_id' => 2, 'serie_number' => 'F002', 'last_correlative_number' => 0],
         ];
