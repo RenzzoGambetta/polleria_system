@@ -160,11 +160,13 @@ class EmployeeController extends Controller
     }
     public function showDataemployerBlock(Request $Data)
     {
-
         $Info = Employee::find($Data->id);
         $Info['title']='Empleado';
         $Info['sub_title']='Datos de empleado';
         $Info['data']=$Data->id;
+        $Info['type']='employer';
+        $Info['url']='data_employer_block';
+
 
         $Navigation = $this->Navigation;
 
