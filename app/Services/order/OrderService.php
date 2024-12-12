@@ -166,13 +166,18 @@ class OrderService
 
     public function getAllOrderDetailsOfTable(int $tableId)
     {
-        //Por tema de tiempo tome la desision de comentar el original y poner uno generico ;v el de avajo esta mas simplificado pero complejo, arregla el original
-        /*
         $table = Table::find($tableId);
 
         if (!$table) throw new Exception("No se encontro ninguna mesa con el ID");
 
-        $orderDetails = $table->orders()->last()->details;
+        $order = $table->orders()
+            ->whereNotIn('status', ['completado', 'cancelado', 'reembolsado'])
+            ->latest()
+            ->first();
+
+        if (!$order) throw new Exception("No existe una orden pendiente para esta mesa");
+
+        $orderDetails = $order->details;
         $orderDetailsDTO = [];
 
         foreach ($orderDetails as $od) {
@@ -180,14 +185,6 @@ class OrderService
         }
 
         return $orderDetailDTO;
-        */
-        $table = Table::find($tableId);
-        if (!$table) return false;
-
-        $order = $table->orders()->latest()->first();
-        if (!$order) return false;
-
-        return $order->details->map(fn($od) => $this->mapOrderDetailToDTO($od))->toArray();
     }
 
     private function addEveryDetailToOrder(Order $order, array $data)

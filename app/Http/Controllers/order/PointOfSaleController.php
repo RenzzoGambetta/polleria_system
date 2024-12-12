@@ -11,6 +11,7 @@ use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
 use App\Models\menu\Table;
 use App\Models\order\Order;
+use App\Models\order\OrderSerie;
 use App\Models\Person;
 use App\Models\User;
 use App\Services\IdentificationDocumentService;
@@ -468,8 +469,8 @@ class PointOfSaleController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Error en la validación de los datos',
-                'errors' => $e
+                'message' => 'Error en la validación de los datos XD',
+                'errors' => $e->getMessage(),
             ], 422);
         }
     }
