@@ -23,6 +23,7 @@ class Order extends Model
         'waiter_id',
         'voucher_id',
         'correlative_number',
+        'total_amount',
         'status',
         'is_delibery',
         'commentary',

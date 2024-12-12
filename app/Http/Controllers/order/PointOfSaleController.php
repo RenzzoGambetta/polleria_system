@@ -17,6 +17,7 @@ use App\Models\User;
 use App\Services\IdentificationDocumentService;
 use App\Services\order\CashierSessionService;
 use App\Services\order\ClientService;
+use App\Services\order\OrderDtoService;
 use App\Services\order\OrderService;
 use App\Services\order\PaymentService;
 use DateTime;
@@ -120,7 +121,6 @@ class PointOfSaleController extends Controller
     }
     public function registerSessionCashBox(Request $request)
     {
-        //return response()->json($request);
         try {
             $user = Auth::user();
 
@@ -274,8 +274,8 @@ class PointOfSaleController extends Controller
     {
         $Navigation = $this->NavigationPonit;
         $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
-        if ($request->id == null | $request->code == null | $request->sale == null) {
-            return response()->json(['mesage' => 'No se puede accesdeder sin datos']);
+        if ($request->id == null && $request->code == null && $request->sale == null) {
+            return response()->json(['mesage' => 'No se puede acceder sin datos']);
         }
         $Data = [
             'id' => $request->id,
@@ -289,10 +289,43 @@ class PointOfSaleController extends Controller
         $Item = MenuItem::where('category_id', $request->id)->select('name', 'id', 'display_order', 'price')->get();
         return response()->json($Item);
     }
-    public function listTakeawayOrders(Request $Data)
+    public function listTakeawayOrders(Request $data)
     {
+        $orderDtoService = new OrderDtoService();
+        $ordersForCounter = $orderDtoService->getAllOrdersDtoForCounter($data->type);
+        $typeCounterView = $data->type; 
 
-        //Datos de prueva para los pedidos de mostrador
+        $pedidos = [];
+        /*
+        / ADECUAR EL ARRAY A COMO ESTA AQUI. HAY QUE MODIFICARLO LO QUE ESTA AQUI CON NOMBRES DE VARIABLES MEJORES
+        */
+        foreach ($ordersForCounter as $o) {
+            $paymentMethod = strtolower($o['payment_method']);
+            $colorPaymentMethod = '#53008dbd';
+
+            if ($data->type == 'order' && $paymentMethod != null) break;
+            if ($data->type == 'preparation' && $paymentMethod == null) break;
+
+            if ($paymentMethod == 'efectivo') {
+                $colorPaymentMethod = '#088d00bd';
+            } else if ($paymentMethod == 'debito' || $paymentMethod == 'credito') {
+                $colorPaymentMethod = '#0006f3a1';
+            } 
+
+            $pedidos[] = [
+                'id' => $o['id'],
+                'order' => $o['order_number'],
+                'date' => $o['order_date_time'],
+                'client' => $o['client'],
+                'pay' => $o['payment_method'],
+                'color' => $colorPaymentMethod,
+                'total' => $o['total_amount'],
+            ];
+        }
+
+        return response()->json($pedidos);
+
+        /*Datos de prueva para los pedidos de mostrador
         $nombres = [
             'Juan Pérez',
             'María López',
@@ -415,6 +448,7 @@ class PointOfSaleController extends Controller
         }
 
         return response()->json($pedidos);
+        */
     }
     public function createOrderClient(Request $request)
     {

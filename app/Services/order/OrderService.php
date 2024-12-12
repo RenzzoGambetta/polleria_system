@@ -16,7 +16,7 @@ class OrderService
 
     public function createOrderWithDetails(array $data)
     {
-        $table = Table::find($data['table_id']);
+        $table = Table::find($data['table_id'] ?? 0);
 
         if ($table) {
             $tableIsOccupied = $table->status;
@@ -32,28 +32,41 @@ class OrderService
             $order = Order::create([
                 'order_serie_id' => 1,
                 'correlative_number' => $currentCorrelativeNumber,
-                'table_id' => isset($data['table_id']) ? $data['table_id'] : null,
+                'table_id' => $data['table_id'] ?? null,
                 'cashier_session_id' => 1,
                 'waiter_id' => $data['waiter_id'],
                 'is_delibery' => $data['is_delibery'],
-                'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
+                'commentary' => $data['commentary'] ?? null,
             ]);
 
+            $acumulativeTotalAmount = 0;
             for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
                 $order->details()->create([
-                    'menu_item_id' => $data['menu_item_ids'][$i], // se cambio el supply_id a menu_item_id
+                    'menu_item_id' => $data['menu_item_ids'][$i],
                     'price' => $data['prices'][$i],
                     'quantity' => $data['quantities'][$i],
                     'total_amount' => $data['total_prices'][$i],
                     'is_delibery' => $data['is_delibery_details'][$i],
-                    'note' => $data['notes'][$i],
+                    'note' => $data['notes'][$i] ?? null,
                 ]);
+
+                $acumulativeTotalAmount += $data['total_prices'][$i];
             }
 
-            $table->update([
-                'status' => true,
+            $order->update([
+                'total_amount' => $acumulativeTotalAmount,
             ]);
 
+            $orderSerie->update([
+                'last_correlative_number' => $currentCorrelativeNumber,
+            ]);
+
+            if ($table) {
+                $table->update([
+                    'status' => true,
+                ]);
+            }
+            
             DB::commit();
             return $order;
         } catch (Exception $e) {

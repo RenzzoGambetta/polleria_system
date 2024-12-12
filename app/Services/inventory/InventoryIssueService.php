@@ -17,7 +17,7 @@ class InventoryIssueService
         try {
             $currentIssue = InventoryIssue::create([
                 'outgoing_date' => now(),
-                'commentary' => isset($data['comment']) ?? null,
+                'commentary' => $data['comment'] ?? null,
             ]);
 
             for ($i = 0; $i < count($data['id']); $i++) {
