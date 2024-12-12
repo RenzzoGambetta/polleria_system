@@ -458,35 +458,38 @@ class PointOfSaleController extends Controller
         return response()->json($pedidos);
         */
     }
-    public function createOrderClient(Request $request)
+    public function createOrderClient(CreateOrderRequest $request)
     {
-        $requestFilt = [
-            'table_id' => (int) $request->table_id,
-            'waiter_id' => (int) Auth::user()->id,
-            'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
-            'commentary' => $request->commentary ?? '',
-            'menu_item_ids' => array_map('intval', $request->menu_item_ids),
-            'prices' => array_map('floatval', $request->prices),
-            'quantities' => array_map('intval', $request->quantities),
-            'total_prices' => array_map('floatval', $request->total_prices),
-            'is_delibery_details' => array_map(function ($value) {
-                return filter_var($value, FILTER_VALIDATE_BOOLEAN);
-            }, $request->is_delibery_details),
-            'notes' => $request->notes ?? [],
-        ];
-        //return response()->json($requestFilt);
+        // $requestFilt = [
+        //     'table_id' => (int) $request->table_id,
+        //     'waiter_id' => (int) Auth::user()->id,
+        //     'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
+        //     'commentary' => $request->commentary ?? '',
+        //     'menu_item_ids' => array_map('intval', $request->menu_item_ids),
+        //     'prices' => array_map('floatval', $request->prices),
+        //     'quantities' => array_map('intval', $request->quantities),
+        //     'total_prices' => array_map('floatval', $request->total_prices),
+        //     'is_delibery_details' => array_map(function ($value) {
+        //         return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        //     }, $request->is_delibery_details),
+        //     'notes' => $request->notes ?? [],
+        // ];
 
         try {
-            $response = $this->orderService->createOrderWithDetails($requestFilt);
+            $response = $this->orderService->createOrderWithDetails($request->validated());
+            
+            $finalMessage = 'para mostrador';
+            if ($response->table) $finalMessage = 'para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name;
+
             if ($request->type != 'mozo') {
                 return redirect()->route('point_of_sale')->withInput()->with([
-                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Message' => 'Se creo la orden satisfactoriamente '. $finalMessage,
                     'Type' => 'success',
                     'Time' => 1
                 ]);
             } else {
                 return redirect()->route('table_to_mozo', ['lounge_id' => $request->lounge])->withInput()->with([
-                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $finalMessage,
                     'Type' => 'success',
                     'Time' => 1
                 ]);
@@ -495,7 +498,7 @@ class PointOfSaleController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Error en el registro de la orden',
-                'errors' => $e
+                'errors' => $e->getMessage(),
             ], 422);
         }
     }

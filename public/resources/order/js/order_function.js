@@ -44,7 +44,7 @@ document.getElementById('tables-list').addEventListener('click', async (event) =
 
     const data = await alertSelectItem({
         quantity: 1,
-        isDelivery: false,
+        isDelivery: isBar ? 1 : 0,
         note: selectedItems.filter(entry => entry.id === id).at(-1)?.note || null
     });
 
@@ -291,15 +291,15 @@ function sendSegmentedData() {
     const csrfToken = document.querySelector('input[name="_token"]').value;
 
     Data = {
-        table_id: saleElement?.getAttribute('x:id') || "0",
+        table_id: saleElement?.getAttribute('x:id') || null,
         waiter_id : 1, //nc de donde sacarlo eso te mandaria
-        is_delibery: false, //por defecto false por lo que contiene una mesa
+        is_delibery: isBar ? 1 : 0, //por defecto false por lo que contiene una mesa
         commentary: '',
         menu_item_ids: selectedItems.map(item => item.id),
         prices: selectedItems.map(item => item.price),
         quantities: selectedItems.map(item => item.quantity),
         total_prices: selectedItems.map(item => item.price * item.quantity),
-        is_delibery_details: selectedItems.map(item => item.isDelivery),
+        is_delibery_details: selectedItems.map(item => item.isDelivery ? 1 : 0),
         notes: selectedItems.map(item => item.note)
     }
 
