@@ -34,8 +34,8 @@
             <button class="button-Category" title="Categoria de {{ $Categories->name }}" onclick="loadTableDataItem({{ $Categories->id }})">
                 <span>{{ $Categories->name }}</span>
             </button>
-            <span id="data" style="display: none" x:sale="{{ $Data['sale'] }}" x:code="{{ $Data['code'] }}" x:id="{{ $Data['id'] }}"></span>
         @endforeach
+            <span id="data" style="display: none" x:sale="{{ $Data['sale']  }}" @if ($Data['isBar']) x:code="{{ $Data['code'] }}" x:id="{{ $Data['id'] }}"@endif></span>
     </div>
     <div class="sale-and-table">
 
@@ -49,7 +49,8 @@
 
         <div class="container-select-table">
 
-            <h1 class="select-point-sale">{{ $Data['sale'] }} - Mesa: {{ $Data['code'] }}</h1>
+            <h1 class="select-point-sale">{{ $Data['sale'] }} @if ($Data['isBar'])- Mesa: {{ $Data['code'] }}@endif </h1>
+                
             <div class="loader">
                 <div class="loaderMiniContainer">
                     <div class="barContainer">
@@ -70,6 +71,11 @@
                 </div>
                 <samp class="span-select-table">
                     Selecciona un Categoria y un Item <samp style="color: red">*</samp>
+                    @if ($Data['isBar'])
+                        <script>const isBar = false;</script>
+                    @else
+                        <script>const isBar = true;</script>
+                    @endif
                 </samp>
             </div>
         </div>
