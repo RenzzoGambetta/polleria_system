@@ -10,7 +10,7 @@ class MenuItemService
 {
     public function __construct(){}
 
-    public function createMenuItem(array $data)  
+    public function createMenuItem(array $data)
     {
         DB::beginTransaction();
         try {
@@ -21,14 +21,15 @@ class MenuItemService
                 'price' => $data['price'],
                 'commentary' => $data['comment'],
             ]);
-
-            if ($data['is_combo'] == 1) {
-                $this->attachItemsToMenuCombo($menuItem, $data);
-            } 
-            else {
-                $this->attachSuppliesToMenuItem($menuItem, $data);
+            if (!empty($data['id_item_compact'])){
+                if ($data['is_combo'] == 1) {
+                    $this->attachItemsToMenuCombo($menuItem, $data);
+                }
+                else {
+                    $this->attachSuppliesToMenuItem($menuItem, $data);
+                }
             }
-            
+
             DB::commit();
             return $menuItem;
         } catch (Exception $e) {
@@ -50,12 +51,13 @@ class MenuItemService
                 'price' => $data['price'],
                 'commentary' => $data['comment'],
             ]);
-
-            if ($data['is_combo'] == 1) {
-                $this->attachItemsToMenuCombo($menuItem, $data);
-            } 
-            else {
-                $this->attachSuppliesToMenuItem($menuItem, $data);
+            if (!empty($data['id_item_compact'])) {
+                if ($data['is_combo'] == 1) {
+                    $this->attachItemsToMenuCombo($menuItem, $data);
+                }
+                else {
+                    $this->attachSuppliesToMenuItem($menuItem, $data);
+                }
             }
 
             DB::commit();
@@ -69,7 +71,7 @@ class MenuItemService
     private function attachSuppliesToMenuItem(MenuItem $menuItem, array $data)
     {
         $menuItem->supplyDetails()->detach();
-            for ($i=0; $i < count($data['id_item_compact']); $i++) { 
+            for ($i=0; $i < count($data['id_item_compact']); $i++) {
                 $menuItem->supplyDetails()->attach($data['id_item_compact'][$i], [
                     'supply_quantity' => $data['quantity_item_compact'][$i],
                 ]);
@@ -79,7 +81,7 @@ class MenuItemService
     private function attachItemsToMenuCombo(MenuItem $menuItem, array $data)
     {
         $menuItem->comboDetails()->detach();
-            for ($i=0; $i < count($data['id_item_compact']); $i++) { 
+            for ($i=0; $i < count($data['id_item_compact']); $i++) {
                 $menuItem->supplyDetails()->attach($data['id_item_compact'][$i], [
                     'supply_quantity' => $data['quantity_item_compact'][$i],
                 ]);
