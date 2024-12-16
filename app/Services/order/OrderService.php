@@ -212,6 +212,9 @@ class OrderService
                 'note' => $data['notes'][$i],
             ]);
         }
+
+        $orderTotalAmount = array_sum($data['total_amount']);
+        return $orderTotalAmount;
     }
 
     private function mapOrderDetailToDTO(OrderDetail $od)

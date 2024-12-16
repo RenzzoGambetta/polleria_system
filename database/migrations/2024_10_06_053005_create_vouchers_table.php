@@ -13,8 +13,8 @@ return new class extends Migration
             $table->unsignedBigInteger('voucher_serie_id');
             $table->foreign('voucher_serie_id')->references('id')->on('voucher_series');
             $table->unsignedInteger('correlative_number');
-            $table->date('issuance_date');
-            $table->date('expiration_date')->nullable();
+            $table->timestamp('issuance_date');
+            $table->timestamp('expiration_date')->nullable();
             $table->decimal('total_amount', 8 ,2)->default(0.0);
             $table->enum('payment_type', ['contado', 'credito'])->default('contado');
             $table->enum('status', ['pagado', 'anulado', 'reembolsado'])->default('pagado');

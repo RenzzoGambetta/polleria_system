@@ -19,7 +19,7 @@ use App\Http\Controllers\test\testController;
 //--> Modulo de autentificacion
 
     //Registro y login de acceso
-    Route::get('/', [LoginController::class,'show'])->name('login');
+    //Route::get('/', [LoginController::class,'show'])->name('login');
     Route::get('/login', [LoginController::class,'show'])->name('login');
     Route::post('/login', [LoginController::class,'login']);
     Route::get('/register', [RegisterController::class,'show'])->name('register');
@@ -120,7 +120,7 @@ use App\Http\Controllers\test\testController;
         Route::post('/register_new_person_data_base', [PointOfSaleController::class,'registerNewPersonDataBase'])->name('register_new_person_data_base');
         Route::post('/register_express_data_client', [PointOfSaleController::class,'registerExpressDataClient'])->name('register_express_data_client');
         Route::post('/tiket_cancel_client', [PointOfSaleController::class,'tiketCancelClientOrder'])->name('tiket_cancel_client');
-        Route::get('/lit', [PointOfSaleController::class,'tiketCancelClientOrder'])->name('tiket_cancel_client');
+        Route::get('/lit', [PointOfSaleController::class,'tiketCancelClientOrder'])->name('tiket_cancel_client_get');
 
     //--> Mozo
         Route::get('/mozo', [MozoController::class,'showPanelMozo'])->name('mozo');
