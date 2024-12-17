@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Services\IdentificationDocumentService;
 use App\Services\order\CashierSessionService;
 use App\Services\order\ClientService;
+use App\Services\order\OrderDtoService;
 use App\Services\order\OrderService;
 use App\Services\order\PaymentService;
 use DateTime;
@@ -603,7 +604,27 @@ class PointOfSaleController extends Controller
     }
     public function tiketCancelClientOrder(Request $request)
     {
-        /*
+        try{
+           // $data = Order::where('id',8)->first();
+
+           // $reponseData = (new OrderDtoService())->returnSaleDetails($data);
+
+    
+            $data = [
+                'voucher_serie_id' => 1,  // ID de la serie del comprobante
+                'amounts' => [50, 30],     // Montos de los pagos
+                'payment_methods' => ['efectivo', 'tarjeta'],  // Métodos de pago correspondientes
+
+                'payment_type' => 'contado',  // Tipo de pago (opcional)
+                'commentary' => 'Pago por productos de orden',  // Comentario (opcional)
+            ];
+            
+            $responseRegister = (new PaymentService())->payOrder(8,$data);
+
+            return response()->json($responseRegister);
+
+
+       /*
         $RegisterData = [
             'voucher_serie_id' => 1,
             'issuance_date' => new DateTime(),
@@ -616,8 +637,8 @@ class PointOfSaleController extends Controller
 
         $responseRegister = (new PaymentService())->payOrder(8,$RegisterData);
         return response()->json($responseRegister);
-        */
-        try{
+        
+
             $data = $request->input();
             $dataClient = Person::where('id', $request->idClient)->first();
             $dataTable = Table::where('id', $request->idTable)->first();
@@ -682,7 +703,7 @@ class PointOfSaleController extends Controller
                 }, $data['items']),
             ];
 
-            return response()->json($newArray);
+            return response()->json($newArray);*/
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }

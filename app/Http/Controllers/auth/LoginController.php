@@ -5,6 +5,7 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\auth\LoginRequest;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -23,8 +24,37 @@ class LoginController extends Controller
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
+/*
+        $user = Auth::user();
 
-        //return response()->json($user);
-        return redirect('/user');
+
+        if ($user && $user->role) {
+            $userPermissions = $user->role->permissions->pluck('id');
+
+            $routerConditions = [
+                'mozo' => [5, 6],
+            ];
+
+            foreach ($routerConditions as $route => $requiredPermissions) {
+                if ($userPermissions->intersect($requiredPermissions)->isNotEmpty()) {
+                    return redirect()->route($route);
+                }
+            }
+            return redirect('/user');
+
+       
+        } else {
+            return redirect('/user');
+
+        }
+*/
+        return redirect()->route('home');
     }
+    public function logOut(){
+            
+        Auth::logout();
+        return redirect('/login')->with('status', 'Sesión cerrada correctamente.');
+
+    }
+    
 }

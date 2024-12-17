@@ -36,7 +36,7 @@
 
                     @foreach ($Menu as $Menus)
                         <tr>
-                            <td>{{ $Menus->name }}</td>
+                            <td class="title">{{ $Menus->name }}</td>
                             <td>S/{{ $Menus->price }}</td>
                             <td>
                                 @if ($Menus->is_combo == 1)

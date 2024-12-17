@@ -166,7 +166,7 @@ class SupplyStockController extends Controller
             $inventoryReceiptService = new InventoryReceiptService();
             $entry = $inventoryReceiptService->createInventoryReceipt($data);
 
-            return redirect()->route('show_panel_register_entry');
+            return redirect()->route('show_list_inventory_movements');
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
@@ -181,7 +181,7 @@ class SupplyStockController extends Controller
             $inventoryIssueService = new InventoryIssueService();
             $entry = $inventoryIssueService->createInventoryIssue($data);
 
-            return redirect()->route('show_panel_register_output');
+            return redirect()->route('show_list_inventory_movements');
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,

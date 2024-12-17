@@ -3,6 +3,8 @@ var ID_SELECT = 0;
 var NAME_SELECT = "";
 let scrollInterval;
 var messenger = '';
+
+
 $(document).ready(function () {
     $('.conteiner-table').hide();
 });
@@ -123,6 +125,8 @@ function calculateTotal(selectedItems) {
 async function addTable(id, code = null) {
     var url = URL_TEMPLATE + "select_to_table_view.html";
     const tableDataList = await consultDataUrl("/list_order_details_table", { 'id': id });
+    listOrderDetails = tableDataList;
+    console.log(listOrderDetails);
     messenger = tableDataList.messenger;
     fetch(url)
         .then(response => response.text())
@@ -131,6 +135,7 @@ async function addTable(id, code = null) {
                 .replaceAll('{{lounge}}', NAME_SELECT)
                 .replaceAll('{{total}}', calculateTotal(tableDataList.data))
                 .replaceAll('{{id}}', id)
+                .replaceAll('{{note}}', (messenger === '') ? 'none' : 'block')
                 .replaceAll('{{table}}', code);
 
             let itemsContent = '';
@@ -149,8 +154,8 @@ async function addTable(id, code = null) {
 
                         <div class="hover-message-item">
                            <div class="option-item-selec-list-table">
-                                <button class="button-edit-list-table" onclick="editItemList(${item.id})"><i class="fi fi-sr-pencil center-icon"></i></button>
-                                <button class="button-delate-list-table" onclick="deleteItemList(${item.id})"><i class="fi fi-sr-trash center-icon"></i></button>
+                                <button class="button-message-list-table" title="Ver nota de la orden" style="display: ${item.note ? 'block' : 'none'};" onclick="noteItemOrderData('${item.note}')"><i class="fi fi-sr-comment-alt center-icon"></i></button>
+                                <button class="button-info-list-table" title="Ver estado de item" onclick="deleteItemList(${item.id})"><i class="fi fi-ss-eye center-icon"></i></button>
                             </div>
                         </div>
                     </div>
@@ -311,6 +316,17 @@ function noteOrderData() {
 
     Swal.fire({
         html: `<div style="font-size: 0.9rem;">${messenger}</div>`, 
+        didOpen: (popup) => {
+            if (typeof urlPostDeleteStyle === 'function') {
+                urlPostDeleteStyle(popup);
+            }
+        }
+    })
+}
+function noteItemOrderData(messengerItem) {
+
+    Swal.fire({
+        html: `<div style="font-size: 0.9rem;">${messengerItem}</div>`, 
         didOpen: (popup) => {
             if (typeof urlPostDeleteStyle === 'function') {
                 urlPostDeleteStyle(popup);
