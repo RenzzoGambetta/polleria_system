@@ -22,11 +22,13 @@ class InventoryController extends Controller
         'color' => 31
     ];
     protected $UnitOptions = [
-        ['kg', 'kilo'],
-        ['g', 'gramo'],
+        ['kg', 'kilogramo'],
         ['l', 'litro'],
-        ['ml', 'mililitro'],
-        ['ud', 'unidad']
+        ['und', 'unidad'],
+        ['pack', 'paquete'],
+        ['caj', 'caja'],
+        ['bls', 'bolsa'],
+        ['m', 'metro'],
     ];
     public function showInventoryList()
     {

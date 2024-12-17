@@ -33,7 +33,7 @@
             <li>
                 /
             </li>
-            <a href="{{ route('show_panel_register_entry') }}" class="active">
+            <a href="{{ route('new_supply_inventory') }}" class="active">
                 Nuevo suministro
             </a>
 
@@ -105,7 +105,11 @@
                     </div>
                     <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
                         <div class="input-group input-dimensions alert-style-div-input alert-input">
+                            @if ($Supply->isEdit ?? false)
                             <input type="number" id="stock-data" name="stock" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ old('stock', $Supply->stock ?? '') }}">
+                            @else
+                            <input type="number" id="stock-data" name="stock" class="input-iten effect-5 no-spinner date-icon alert-style" placeholder=" " value="{{ old('stock', $Supply->stock ?? '') }}" disabled>
+                            @endif
                             <label for="stock-data" class="label-input-data mobile-label">Stock</label>
                         </div>
                     </div>
