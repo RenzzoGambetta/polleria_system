@@ -213,9 +213,9 @@
     <button class="action-button accept" id="pay-bill" onclick="payBill()">Pagar Cuenta</button>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
+<script src="{{ asset($JsPdf) }}"></script>
+<script src="{{ asset($Html2Canvas) }}"></script>
 <script src="{{ asset($AlertSrc) }}"></script>
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($searchBoxDataCliene) }}"></script>

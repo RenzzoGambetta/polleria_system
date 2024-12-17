@@ -71,7 +71,7 @@ class MozoController extends Controller
             return response()->json($e->getMessage());
         }
     }
-    private function queryDataSaleOption(int $quantityBase,int $lounge_id){
+    public function queryDataSaleOption(int $quantityBase,int $lounge_id){
 
         if ($lounge_id) {
 

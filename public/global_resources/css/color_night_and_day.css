@@ -90,6 +90,9 @@
     --border-color-table-order-list-end:1px solid #ddd;
     --document-type-background-color:#ffb81f96;
     --payment-section-background-color:#00b8124d;
+    --fill-color-cat-svg:rgb(5, 5, 5);
+    --fill-color-cat-col-svg:rgba(0, 0, 0, 0.8);
+
 }
 
 
@@ -165,4 +168,6 @@ body.dark {
     --document-type-background-color:#474747;
     --payment-section-background-color:#474747;
     --color-item-selct-hover-product-table:linear-gradient(90deg, transparent, rgb(67 48 13), #9a3a00, rgb(255 124 0));
+    --fill-color-cat-svg:rgb(200, 200, 200);
+    --fill-color-cat-col-svg:rgba(205, 205, 205, 0.8);
 }

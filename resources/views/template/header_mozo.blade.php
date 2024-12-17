@@ -30,6 +30,9 @@
                 <div class="logo-name"><span>D'Brazza</span></div>
             </a>
             <ul class="side-menu">
+                <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
+                    <a href="{{ route('home') }}" class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-home'></i>Home</a>
+                </li>
                 <li class="{{ ($Navigation['seccion'] ?? null) == 10 ? 'sub active' : 'sub' }}">
                     <a href="{{ route('mozo') }}" class="{{ ($Navigation['seccion'] ?? null) == 10 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 100 ? 'nav_select' : '' }}" title="Todas las salas"><i class='fi fi-sr-table-pivot bx-adjustment-icon'></i>Salas</a>
                     <ul class="sub">
@@ -45,7 +48,7 @@
 
             <ul class="side-menu">
                 <li>
-                    <a href="#" class="logout">
+                    <a href="{{ route('log_out') }}" class="logout">
                         <i class="fi fi-br-arrow-up-left-from-circle bx-adjustment-icon"></i>
                         Regresar al home
                     </a>

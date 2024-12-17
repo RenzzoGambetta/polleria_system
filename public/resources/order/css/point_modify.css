@@ -796,3 +796,24 @@ i.fi.fi-ss-user-pen.center-icon {
 .edit-panel button.continue-button:hover{
     background-color: #195300;
 }
+
+.edit-panel button.button-info-list-table,
+.edit-panel button.button-message-list-table{
+    width: 100%;
+    margin: 0 5px;
+    height: 100%;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.edit-panel button.button-info-list-table:hover{
+    background-color: rgb(64, 0, 203);
+}
+.edit-panel button.button-message-list-table:hover{
+    background-color: rgb(26, 131, 0);
+}
