@@ -15,7 +15,7 @@
             <button class="option-view-coment" title="Ver nota de la orden" style="display: {{note}};" onclick="noteOrderData()">
                 <i class="fi fi-ss-memo center-icon"></i>
             </button>
-            <button class="option-edit-list-order" title="Agregar ordenes a la mesa">
+            <button class="option-edit-list-order" title="Agregar ordenes a la mesa" onclick="addOrderClient({{orderId}})">
                 <i class="fi fi-ss-customize-edit center-icon"></i>
             </button>
             <button class="continue-button" onclick="urlGet('/payment_service',{id:{{id}}})" title="Cobrar orden">

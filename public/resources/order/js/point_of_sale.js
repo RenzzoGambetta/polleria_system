@@ -126,7 +126,6 @@ async function addTable(id, code = null) {
     var url = URL_TEMPLATE + "select_to_table_view.html";
     const tableDataList = await consultDataUrl("/list_order_details_table", { 'id': id });
     listOrderDetails = tableDataList;
-    console.log(listOrderDetails);
     messenger = tableDataList.messenger;
     fetch(url)
         .then(response => response.text())
@@ -135,6 +134,7 @@ async function addTable(id, code = null) {
                 .replaceAll('{{lounge}}', NAME_SELECT)
                 .replaceAll('{{total}}', calculateTotal(tableDataList.data))
                 .replaceAll('{{id}}', id)
+                .replaceAll('{{orderId}}', tableDataList.orderId)
                 .replaceAll('{{note}}', (messenger === '') ? 'none' : 'block')
                 .replaceAll('{{table}}', code);
 
@@ -155,7 +155,7 @@ async function addTable(id, code = null) {
                         <div class="hover-message-item">
                            <div class="option-item-selec-list-table">
                                 <button class="button-message-list-table" title="Ver nota de la orden" style="display: ${item.note ? 'block' : 'none'};" onclick="noteItemOrderData('${item.note}')"><i class="fi fi-sr-comment-alt center-icon"></i></button>
-                                <button class="button-info-list-table" title="Ver estado de item" onclick="deleteItemList(${item.id})"><i class="fi fi-ss-eye center-icon"></i></button>
+                                <button class="button-info-list-table" title="Ver estado de item" style="display: none;"  onclick="deleteItemList(${item.id})"><i class="fi fi-ss-eye center-icon"></i></button>
                             </div>
                         </div>
                     </div>
@@ -260,38 +260,7 @@ async function loadHtmlFromFile(url) {
         return '';
     }
 }
-/*Codigo para efecto de efecto en caso de varios mostradores
-$('.counter-next').on('click', function () {
-    var container = $('.option-to-refresh-and-nex-to-style-order');
-    var navTable = $('.option-to-nav-table-container');
-    var textButton = $('.counter-next');
 
-
-    $(this).fadeOut(200, function () {
-        if ($(this).hasClass('right')) {
-            $(this).removeClass('right').addClass('left');
-            textButton.html('Mostrador<i class="fi fi-br-angle-small-right"></i>');
-            container.append($(this));
-        } else {
-            $(this).removeClass('left').addClass('right');
-            textButton.html('<i class="fi fi-br-angle-small-left"></i>Mesas');
-            container.prepend($(this));
-        }
-        $(this).fadeIn(200);
-    });
-
-    navTable.fadeOut(200, function () {
-
-        if (navTable.css('flex-direction') === 'row') {
-            navTable.css('flex-direction', 'row-reverse');
-        } else {
-            navTable.css('flex-direction', 'row');
-        }
-
-        navTable.fadeIn(200);
-    });
-});
-*/
 function newOrderToClient(id) {
 
     const nameOfInput = ["number_people", "id_user", "user_name", "id_person", "document_and_name_to_person"];
@@ -334,3 +303,7 @@ function noteItemOrderData(messengerItem) {
         }
     })
 }
+function addOrderClient(idOrder){
+    urlGet('/add_order_client_and_edit',{orderId : idOrder})
+}
+

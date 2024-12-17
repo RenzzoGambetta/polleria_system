@@ -116,16 +116,35 @@ div#puntoClave {
     color: #e53935;
     font-size: 20px;
 }
-
+.item-edit-client,
 .item-detail-client {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--edit-panel-background-color);
-    padding: 15px;
+    padding: 15px; 
     border-top: 1px solid #ddd;
 }
-
+.item-edit-client{
+    font-style: italic;
+    font-weight: bold;
+}
+.item-edit-client .hover-message-item{
+    justify-content: flex-end;
+    padding: 15px 10px;
+    background-color: transparent;
+}
+.item-edit-client .hover-message-item .button-option-list-product {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width: 35%;
+    min-width: 100px;
+}
+.item-edit-client .item-details{
+    color: rgb(255, 0, 0);
+}
 .item-details {
     font-size: 14px;
     color: var(--table-color-item);
@@ -179,22 +198,22 @@ div#puntoClave {
     font-size: 18px;
 }
 
-#data-item-client {
-    max-height: 65vh;
+#data-item-client-frame {
+    max-height: 75vh;
     overflow-y: auto;
     padding-right: 10px;
 }
 
-#data-item-client::-webkit-scrollbar {
+#data-item-client-frame::-webkit-scrollbar {
     width: 8px;
 }
 
-#data-item-client::-webkit-scrollbar-track {
+#data-item-client-frame::-webkit-scrollbar-track {
     background: #8e8e8e8d;
     border-radius: 15px;
 }
 
-#data-item-client::-webkit-scrollbar-thumb {
+#data-item-client-frame::-webkit-scrollbar-thumb {
     background-color: #f5b81e;
     border-radius: 4px;
     border: 0px solid #f1f1f193;
@@ -701,7 +720,7 @@ i.fi.fi-sr-layer-plus {
     background-color: #ff3300;
 }
 
-
+.edit-panel .item-edit-client,
 .edit-panel .item-detail-client {
     position: relative;
     transition: background-color 0.3s ease;

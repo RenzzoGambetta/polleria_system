@@ -129,7 +129,10 @@ use App\Http\Controllers\test\testController;
             Route::post('/register_new_person_data_base', [PointOfSaleController::class,'registerNewPersonDataBase'])->name('register_new_person_data_base');
             Route::post('/register_express_data_client', [PointOfSaleController::class,'registerExpressDataClient'])->name('register_express_data_client');
             Route::post('/tiket_cancel_client', [PointOfSaleController::class,'tiketCancelClientOrder'])->name('tiket_cancel_client');
+            Route::post('/add_and_edit_to_order_client', [PointOfSaleController::class,'addAndEditToOrderClient'])->name('add_and_edit_to_order_client');
+            Route::get('/add_order_client_and_edit', [PointOfSaleController::class,'addOrderClientAndEdit'])->name('add_order_client_and_edit');
             Route::get('/lit', [PointOfSaleController::class,'tiketCancelClientOrder']);
+       
         });
      
         Route::middleware(['auth', 'permission:5,6'])->group(function () {

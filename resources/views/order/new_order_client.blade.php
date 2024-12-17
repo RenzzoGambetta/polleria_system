@@ -35,7 +35,7 @@
                 <span>{{ $Categories->name }}</span>
             </button>
         @endforeach
-            <span id="data" style="display: none" x:sale="{{ $Data['sale']  }}" @if ($Data['isBar']) x:code="{{ $Data['code'] }}" x:id="{{ $Data['id'] }}"@endif></span>
+        <span id="data" style="display: none" x:sale="{{ $Data['sale'] }}" @if ($Data['isBar']) x:code="{{ $Data['code'] }}" x:id="{{ $Data['id'] }}" @endif></span>
     </div>
     <div class="sale-and-table">
 
@@ -49,8 +49,11 @@
 
         <div class="container-select-table">
 
-            <h1 class="select-point-sale">{{ $Data['sale'] }} @if ($Data['isBar'])- Mesa: {{ $Data['code'] }}@endif </h1>
-                
+            <h1 class="select-point-sale">{{ $Data['sale'] }} @if ($Data['isBar'])
+                    - Mesa: {{ $Data['code'] }}
+                @endif
+            </h1>
+
             <div class="loader">
                 <div class="loaderMiniContainer">
                     <div class="barContainer">
@@ -72,9 +75,13 @@
                 <samp class="span-select-table">
                     Selecciona un Categoria y un Item <samp style="color: red">*</samp>
                     @if ($Data['isBar'])
-                        <script>const isBar = false;</script>
+                        <script>
+                            const isBar = false;
+                        </script>
                     @else
-                        <script>const isBar = true;</script>
+                        <script>
+                            const isBar = true;
+                        </script>
                     @endif
                 </samp>
             </div>
@@ -89,6 +96,23 @@
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($searchBoxDataCliene) }}"></script>
 <script src="{{ asset($orderFunction) }}"></script>
+@if (isset($Data['order']))
+    <script>
+        const itemsEdit = @json($Data['order']);
+        let itemsEditView = @json($Data['order']);
+        var isEdit = true;
+        var orderId = {{$Data['order_id']}}
+        loadOrdersToEdit();
+        console.log('Anterior:', itemsEdit);
+
+    </script>
+@else
+    <script>
+        const itemsEdit = []
+        let itemsEditView = [];
+        var isEdit = false;
+    </script>
+@endif
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

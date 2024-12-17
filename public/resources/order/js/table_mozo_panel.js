@@ -33,6 +33,8 @@ async function addTable(id, code = null, lounge) {
                 .replaceAll('{{lounge}}', lounge)
                 .replaceAll('{{total}}', calculateTotal(tableDataList.data))
                 .replaceAll('{{id}}', id)
+                .replaceAll('{{orderId}}', tableDataList.orderId)
+                .replaceAll('{{note}}', (messenger === '') ? 'none' : 'block')
                 .replaceAll('{{table}}', code);
 
             let itemsContent = '';

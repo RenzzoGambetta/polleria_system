@@ -194,7 +194,7 @@ class OrderService
     {
         for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
             $order->details()->create([
-                'supply_id' => $data['menu_item_ids'][$i],
+                'menu_item_id' => $data['menu_item_ids'][$i],
                 'price' => $data['prices'][$i],
                 'quantity' => $data['quantities'][$i],
                 'total_amount' => $data['total_prices'][$i],

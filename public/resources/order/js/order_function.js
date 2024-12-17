@@ -63,11 +63,48 @@ document.getElementById('tables-list').addEventListener('click', async (event) =
     }
 });
 
+async function loadOrdersToEdit() {
+    await addTableItem(codeValue, saleValue);
+}
+async function refreshItemEdit() {
 
+    let itemsContent = '';
+    itemsEditView.forEach(item => {
+        let optionProduct = item.is_delibery === 1 ? 'Delivery' : 'Mesa';
+        let colorOptionProduct = item.is_delibery === 1 ? '#720000b3' : '#0030c2b3';
+        itemsContent += `
+                  <div class="item-edit-client" id="item-edit-${item.id}">
+                    <div class="item-details">
+                        <span>${item.menu_item_name}</span>
+                        <span class="label-able" style="background-color:${colorOptionProduct};">${optionProduct}</span>
+                        <p class="p-sub-text list-text-quantity" id="text-info-data-edit-${item.id}">${item.quantity} Unidad(es) en s/ ${item.price} </p>
+                    </div>
+                    <div class="price-detail" id="sub-total-price-edit-${item.id}">s/ ${item.price * item.quantity}</div>
+                    <div class="hover-message-item">
+                      
+                        <div class="button-option-list-product">
+                            <button class="button-edit-list" onclick="editItemList(${item.id} , 'edit')"><i class="fi fi-sr-pencil center-icon"></i></button>
+                            <button class="button-delate-list" onclick="deleteItemList(${item.id} , 'edit')"><i class="fi fi-sr-trash center-icon"></i></button>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                `;
+    });
+
+    const container = document.getElementById('item-edit-client');
+    if (container) {
+        container.innerHTML = itemsContent;
+    } else {
+        console.error("No se encontró el contenedor con ID 'item-edit-client'");
+    }
+
+}
 async function addTableItem(code, sale) {
     var url = URL_TEMPLATE + "select_to_table.html";
 
-    fetch(url)
+    await fetch(url)
         .then(response => response.text())
         .then(template => {
             let htmlContent = template
@@ -75,7 +112,7 @@ async function addTableItem(code, sale) {
                 .replaceAll('{{table}}', code)
                 .replace('{{styleIsBar}}', isBar ? 'display: none' : '')
                 .replaceAll('{{total}}', calculateTotal());
-                
+
             let itemsContent = '';
             selectedItems.forEach(item => {
                 let optionProduct = item.isDelivery === true ? 'Delivery' : 'Mesa';
@@ -97,8 +134,8 @@ async function addTableItem(code, sale) {
                             <button class="option-sum-lis-quantity" onclick="sumItemList(${item.idArray})">+</button>
                         </div>
                         <div class="button-option-list-product">
-                            <button class="button-edit-list" onclick="editItemList(${item.idArray})"><i class="fi fi-sr-pencil center-icon"></i></button>
-                            <button class="button-delate-list" onclick="deleteItemList(${item.idArray})"><i class="fi fi-sr-trash center-icon"></i></button>
+                            <button class="button-edit-list" onclick="editItemList(${item.idArray},'list')"><i class="fi fi-sr-pencil center-icon"></i></button>
+                            <button class="button-delate-list" onclick="deleteItemList(${item.idArray},'list')"><i class="fi fi-sr-trash center-icon"></i></button>
                         </div>
                     </div>
                 </div>
@@ -111,32 +148,58 @@ async function addTableItem(code, sale) {
             const referenceElement = document.getElementById('puntoClave');
             referenceElement.innerHTML = '';
             referenceElement.innerHTML = htmlContent;
-            //console.log('Completado');
-            $('.item-detail-client').hover(
-                function () {
-                    $(this).find('.hover-message-item').css({
-                        opacity: 1,
-                        visibility: 'visible',
-                        backgroundColor: 'rgba(100 100 100)'
-                    });
-                },
-                function () {
-                    $(this).find('.hover-message-item').css({
-                        opacity: 0,
-                        visibility: 'hidden'
-                    });
-                }
-            );
+
+
         })
         .catch(error => console.error('Error loading template:', error));
+
+    await refreshItemEdit();
+
+    $('.item-detail-client').hover(
+        function () {
+            $(this).find('.hover-message-item').css({
+                opacity: 1,
+                visibility: 'visible',
+                backgroundColor: 'rgba(100 100 100)'
+            });
+        },
+        function () {
+            $(this).find('.hover-message-item').css({
+                opacity: 0,
+                visibility: 'hidden'
+            });
+        }
+    );
+
+    $('.item-edit-client').hover(
+        function () {
+            $(this).find('.hover-message-item').css({
+                opacity: 1,
+                visibility: 'visible',
+                background: 'linear-gradient(90deg, transparent 0%, transparent 50%, rgba(255, 190, 123, 0.8) 60%,#f8c28b 90%, rgb(254, 179, 102) 100%)'
+            });
+        },
+        function () {
+            $(this).find('.hover-message-item').css({
+                opacity: 0,
+                visibility: 'hidden'
+            });
+        }
+    );
 }
 
 function calculateTotal() {
-    const total = selectedItems.reduce((sum, item) => {
+    const subTotalAdd = selectedItems.reduce((sum, item) => {
         const itemTotal = item.quantity * parseFloat(item.price.replace('S/.', '').trim());
         return sum + itemTotal;
     }, 0);
 
+    const subTotalEdit = itemsEditView.reduce((sum, item) => {
+        const itemTotal = item.quantity * parseFloat(item.price);
+        return sum + itemTotal;
+    }, 0);
+
+    var total = subTotalAdd + subTotalEdit;
     return total;
 }
 
@@ -247,65 +310,184 @@ function editDataItemList($input, currentValue, id) {
         $price.text("s/ " + calculateTotal());
     }
 }
-function deleteItemList(idArray) {
+function deleteItemList(idArray, typeList) {
+    // Mensajes predeterminados según el tipo de lista
+    let txt = '';
+    switch (typeList) {
+        case 'list':
+            txt = '¿Desea eliminar el producto de la lista?';
+            break;
+        case 'edit':
+            txt = '¿Estás seguro? Este cambio se notificará a la cocina y se pedirá la cancelación de este ítem si no ha iniciado el estado de preparación.';
+            break;
+        default:
+            Swal.fire("Error", "No se pudo encontrar el tipo de lista.", "error");
+            return;
+    }
+
+    // Mostrar la alerta de confirmación
     Swal.fire({
-        title: "Confirme!!",
-        text: "¿Desea eliminar el producto de la lista?",
+        title: "¡Confirme!",
+        text: txt,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, no ay problema",
+        confirmButtonText: "Sí, no hay problema",
         didOpen: urlPostDeleteStyle
-
     }).then((result) => {
         if (result.isConfirmed) {
-            selectedItems = selectedItems.filter(item => item.idArray !== idArray);
-            $(`#item-${idArray}`).remove();
-            $(`#price-item-data-total-product`).text("s/ " + calculateTotal());
+            try {
+                if (typeList === 'list') {
+
+                    selectedItems = selectedItems.filter(item => item.idArray !== idArray);
+                    $(`#item-${idArray}`).remove();
+                } else if (typeList === 'edit') {
+
+                    itemsEditView = itemsEditView.filter(item => item.id !== idArray);
+                    $(`#item-edit-${idArray}`).remove();
+                }
+
+                $(`#price-item-data-total-product`).text("s/ " + calculateTotal());
+
+            } catch (error) {
+                console.error("Error al eliminar el ítem:", error);
+                Swal.fire("Error", "Ocurrió un problema al eliminar el ítem.", "error");
+            }
         }
     });
 }
-async function editItemList(idArray) {
 
-    const item = selectedItems.find(row => row.idArray === idArray);
-    const data = await alertSelectItem({
-        quantity: item.quantity,
-        isDelivery: item.isDelivery,
-        note: item.note,
-        type: 'Editar'
-    });
+async function editItemList(idArray, typeList) {
+    var item;
 
-    if (data && data.result) {
-        if (item) {
-            item.quantity = data.quantity;
-            item.isDelivery = data.isDelivery;
-            item.note = data.note;
+    if (typeList == 'list') {
+        item = selectedItems.find(row => row.idArray === idArray);
+
+        const data = await alertSelectItem({
+            quantity: item.quantity,
+            isDelivery: item.isDelivery,
+            note: item.note,
+            type: 'Editar'
+        });
+
+        if (data && data.result) {
+            if (item) {
+                item.quantity = data.quantity;
+                item.isDelivery = data.isDelivery;
+                item.note = data.note;
+                item.note = data.note;
+            }
+            await addTableItem(codeValue, saleValue);
         }
-        await addTableItem(codeValue, saleValue);
+
+    } else if (typeList == 'edit') {
+        await Swal.fire({
+            title: "Confirme!!",
+            text: "Los cambios se reflejan a la cocina en caso de que no este en preparacion.¿Estas seguro de modificar?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, no ay problema",
+            didOpen: urlPostDeleteStyle
+
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                item = itemsEditView.find(row => row.id === idArray);
+
+                const data = await alertSelectItem({
+                    quantity: item.quantity,
+                    isDelivery: item.is_delibery == 1,
+                    note: item.note,
+                    type: 'Editar'
+                });
+
+                if (data && data.result) {
+                    if (item) {
+                        item.quantity = data.quantity;
+                        item.is_delibery = data.isDelivery ? 1 : 0;
+                        item.note = data.note === "" ? null : data.note;;
+                    }
+                    await addTableItem(codeValue, saleValue);
+                }
+            }
+        });
+    } else {
+        alert('No sepudo encontrar el tipo de lista');
     }
 }
-
+function isEqual(item1, item2) {
+    return JSON.stringify(item1) === JSON.stringify(item2);
+}
 function sendSegmentedData() {
 
     const csrfToken = document.querySelector('input[name="_token"]').value;
+    var reft;
+    let Data;
 
-    Data = {
-        table_id: saleElement?.getAttribute('x:id') || "0",
-        waiter_id : 1, //nc de donde sacarlo eso te mandaria
-        is_delibery: false, //por defecto false por lo que contiene una mesa
-        commentary: '',
-        menu_item_ids: selectedItems.map(item => item.id),
-        prices: selectedItems.map(item => item.price),
-        quantities: selectedItems.map(item => item.quantity),
-        total_prices: selectedItems.map(item => item.price * item.quantity),
-        is_delibery_details: selectedItems.map(item => item.isDelivery),
-        notes: selectedItems.map(item => item.note)
+    if (isEdit) {
+
+        let deletedItems = $.grep(itemsEdit, function (itemEdit) {
+            return !$.grep(itemsEditView, function (itemEditView) {
+                return itemEdit.id === itemEditView.id;
+            }).length;
+        });
+
+
+        let modifiedItemsView = $.grep(itemsEditView, function (itemEditView) {
+            let itemEdit = $.grep(itemsEdit, function (itemEdit) {
+                return itemEdit.id === itemEditView.id;
+            })[0];
+
+            return itemEdit && !isEqual(itemEdit, itemEditView);
+        });
+
+        reft = '/add_and_edit_to_order_client';
+        Data = {
+            table_id: saleElement?.getAttribute('x:id') || "0",
+            waiter_id: 1,
+            is_delibery: false,
+            commentary: '',
+            order_id:orderId,
+            menu_item_ids: selectedItems.map(item => item.id),
+            prices: selectedItems.map(item => parseFloat(parseFloat(item.price || 0.0).toFixed(2))),
+            quantities: selectedItems.map(item => item.quantity || 0),
+            total_prices: selectedItems.map(item => parseFloat((parseFloat(item.price || 0.0) * item.quantity).toFixed(2))),
+            is_delibery_details: selectedItems.map(item => item.isDelivery ?? false),
+            notes: selectedItems.map(item => item.note || ''),
+
+            // Datos de elementos eliminados
+            delete_id: deletedItems.map(item => item.id),
+
+            // Datos de elementos modificados
+            modified_id: modifiedItemsView.map(item => item.id),
+            modified_prices: modifiedItemsView.map(item => parseFloat(parseFloat(item.price || 0.0).toFixed(2))),
+            modified_quantities: modifiedItemsView.map(item => item.quantity || 0),
+            modified_total_prices: modifiedItemsView.map(item => parseFloat((parseFloat(item.price || 0.0) * item.quantity).toFixed(2))),
+            modified_is_delibery_details: modifiedItemsView.map(item => item.is_delibery ?? false),
+            modified_notes: modifiedItemsView.map(item => item.note || '')
+        };
+
+    } else {
+        reft = '/create_order_client';
+        Data = {
+            table_id: saleElement?.getAttribute('x:id') || "0",
+            waiter_id: 1, //nc de donde sacarlo eso te mandaria
+            is_delibery: false, //por defecto false por lo que contiene una mesa
+            commentary: '',
+            menu_item_ids: selectedItems.map(item => item.id),
+            prices: selectedItems.map(item => item.price),
+            quantities: selectedItems.map(item => item.quantity),
+            total_prices: selectedItems.map(item => item.price * item.quantity),
+            is_delibery_details: selectedItems.map(item => item.isDelivery),
+            notes: selectedItems.map(item => item.note)
+        }
     }
 
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = '/create_order_client';
+    form.action = reft;
 
     const csrfInput = document.createElement('input');
     csrfInput.type = 'hidden';
