@@ -27,6 +27,7 @@ class OrderService
 
         try {
             $orderSerie = OrderSerie::findOrFail(1);
+            $orderTotalAmount = array_sum($data['total_amount']);
             $currentCorrelativeNumber = $orderSerie->last_correlative_number + 1;
 
             $order = Order::create([
@@ -37,6 +38,7 @@ class OrderService
                 'waiter_id' => $data['waiter_id'],
                 'is_delibery' => $data['is_delibery'],
                 'commentary' => $data['commentary'] ?? null,
+                'total_amount' => $orderTotalAmount,
             ]);
 
             $acumulativeTotalAmount = 0;
@@ -83,8 +85,13 @@ class OrderService
     public function addDetailsToOrder($orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
+        $orderTotalAmount = array_sum($data['total_amount']);
 
         DB::beginTransaction();
+
+        $order->update([
+            'total_amount' => $orderTotalAmount,
+        ]);
 
         try {
             $this->addEveryDetailToOrder($order, $data);
@@ -100,10 +107,15 @@ class OrderService
     public function updateOnlyOrderDetails($orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
+        $orderTotalAmount = array_sum($data['total_amount']);
 
         DB::beginTransaction();
 
         try {
+            $order->update([
+                'total_amount' => $orderTotalAmount,
+            ]);
+
             $order->details()->delete();
 
             $this->addEveryDetailToOrder($order, $data);
@@ -119,6 +131,7 @@ class OrderService
     public function updateOrderWithDetails(int $orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
+        $orderTotalAmount = array_sum($data['total_amount']);
 
         DB::beginTransaction();
 
@@ -126,6 +139,7 @@ class OrderService
             $order->update([
                 'is_delibery' => $data['is_delibery'],
                 'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
+                'total_amount' => $orderTotalAmount,
             ]);
 
             $order->details()->delete();
@@ -212,9 +226,6 @@ class OrderService
                 'note' => $data['notes'][$i],
             ]);
         }
-
-        $orderTotalAmount = array_sum($data['total_amount']);
-        return $orderTotalAmount;
     }
 
     private function mapOrderDetailToDTO(OrderDetail $od)

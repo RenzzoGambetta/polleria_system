@@ -3,8 +3,10 @@
 namespace App\Services\order;
 
 use App\Models\order\Order;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\Throw_;
 
 use function Laravel\Prompts\text;
@@ -143,5 +145,45 @@ class OrderDtoService
             throw $ex;
         }
         
+    }
+
+    public function getAllCompleteOrdersDtoByCashierSession()
+    {
+        $loggedInUser = Auth::user();
+
+        try {
+            $activeCashierSession = User::find($loggedInUser->id)
+                                        ->cashierSessions()
+                                        ->latest()
+                                        ->whereNull('cash_close_at')
+                                        ->first();
+
+            $completeOrdersByCashierSession = Order::where('cashier_session_id', $activeCashierSession->id)
+                                                ->whereIn('status', ['completado', 'cancelado', 'reembolsado']);
+
+            $counterOrdersDTO = [];
+
+            foreach ($completeOrdersByCashierSession as $o) {
+                $orderNumber = $o->orderSerie->serie_number . '-' . $o->correlative_number;
+                $clientFullName = isset($o->client) ? ($o->client->person->name ?? '') . ' ' .($o->client->person->lastname ?? '') : '';
+
+                $paymentMethod = isset($o->voucher) ? $o->voucher->paymentDetails()->first() : null;
+                $paymentMethodText = isset($o->voucher) ? $paymentMethod->paymentMethod->abbreviation : null;
+
+                $counterOrdersDTO[] = [
+                    'id' => $o->id,
+                    'order_number' => $orderNumber,
+                    'order_date_time' => $o->created_at,
+                    'client' => $clientFullName,
+                    'payment_method' => $paymentMethodText,
+                    'status' => $o->status,
+                    'total_amount' => $o->total_amount,
+                ];
+            }
+
+            return $counterOrdersDTO;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
     }
 }
