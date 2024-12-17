@@ -22,16 +22,24 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
 
-     private static array $usernames = ['adminJunior', 'cashier1', 'kitchen1', 'waiter1', 'waiter2'];
-
     public function definition(): array
     {
-        $username = array_shift(self::$usernames);
+        static $index = 0;
+        $users = [
+            ['username' => 'admin', 'role_id' => 1,'password' => 'admin123'],
+            ['username' => 'cajero1', 'role_id' => 2,'password' => 'cajero123'],
+            ['username' => 'cocinero1', 'role_id' => 3,'password' => 'cocinero123'],
+            ['username' => 'mozo1', 'role_id' => 4,'password' => 'mozo123'],
+            ['username' => 'mozo2', 'role_id' => 4,'password' => 'mozo123'],
+        ];
+
+        $u = $users[$index];
+        $index++;
 
         return [
-            'username' => $username,
-            'password' => static::$password ??= Hash::make('password'),
-            'commentary' => '',
+            'username' => $u['username'],
+            'role_id' => $u['role_id'],
+            'password' => $u['password'],
             'remember_token' => Str::random(10),
         ];
     }

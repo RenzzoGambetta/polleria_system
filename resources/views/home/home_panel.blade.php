@@ -45,7 +45,7 @@
 </style>
 <div class="header">
     <div class="left">
-        <h1>Bienvenido {{Auth::user()->employee->person->name}} </h1>
+        <h1>Bienvenido {{Auth::user()->employee->person->name ?? Auth::user()->username}} </h1>
         <ul class="breadcrumb">
             <li><a href="#">
                     Home
