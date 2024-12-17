@@ -445,7 +445,7 @@ function sendSegmentedData() {
 
         reft = '/add_and_edit_to_order_client';
         Data = {
-            table_id: saleElement?.getAttribute('x:id') || "0",
+            table_id: saleElement?.getAttribute('x:id') || null,
             waiter_id: 1,
             is_delibery: isBar ? 1 : 0,
             commentary: '',
