@@ -382,7 +382,7 @@ function sendSegmentedData() {
 
     Data = {
         table_id: id_table,
-        is_delibery: false,
+        is_delibery: 0,
         commentary: commentary,
         type: 'mozo',
         lounge: id_lounge,

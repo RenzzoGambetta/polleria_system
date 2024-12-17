@@ -9,10 +9,11 @@ use App\Models\User;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Person
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'employees';
     protected $fillable = ['user_id', 'person_id', 'address', 'nationality'];
 

@@ -11,6 +11,7 @@ use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
 use App\Models\menu\Table;
 use App\Models\order\Order;
+use App\Models\order\OrderSerie;
 use App\Models\Person;
 use App\Models\User;
 use App\Services\IdentificationDocumentService;
@@ -121,7 +122,6 @@ class PointOfSaleController extends Controller
     }*/
     public function registerSessionCashBox(Request $request)
     {
-        //return response()->json($request);
         try {
             $user = Auth::user();
 
@@ -298,10 +298,43 @@ class PointOfSaleController extends Controller
         $Item = MenuItem::where('category_id', $request->id)->select('name', 'id', 'display_order', 'price')->get();
         return response()->json($Item);
     }
-    public function listTakeawayOrders(Request $Data)
+    public function listTakeawayOrders(Request $data)
     {
+        $orderDtoService = new OrderDtoService();
+        $ordersForCounter = $orderDtoService->getAllOrdersDtoForCounter($data->type);
+        $typeCounterView = $data->type; 
 
-        //Datos de prueva para los pedidos de mostrador
+        $pedidos = [];
+        /*
+        / ADECUAR EL ARRAY A COMO ESTA AQUI. HAY QUE MODIFICARLO LO QUE ESTA AQUI CON NOMBRES DE VARIABLES MEJORES
+        */
+        foreach ($ordersForCounter as $o) {
+            $paymentMethod = strtolower($o['payment_method']);
+            $colorPaymentMethod = '#53008dbd';
+
+            if ($data->type == 'order' && $paymentMethod != null) break;
+            if ($data->type == 'preparation' && $paymentMethod == null) break;
+
+            if ($paymentMethod == 'efectivo') {
+                $colorPaymentMethod = '#088d00bd';
+            } else if ($paymentMethod == 'debito' || $paymentMethod == 'credito') {
+                $colorPaymentMethod = '#0006f3a1';
+            } 
+
+            $pedidos[] = [
+                'id' => $o['id'],
+                'order' => $o['order_number'],
+                'date' => $o['order_date_time'],
+                'client' => $o['client'],
+                'pay' => $o['payment_method'],
+                'color' => $colorPaymentMethod,
+                'total' => $o['total_amount'],
+            ];
+        }
+
+        return response()->json($pedidos);
+
+        /*Datos de prueva para los pedidos de mostrador
         $nombres = [
             'Juan Pérez',
             'María López',
@@ -424,36 +457,40 @@ class PointOfSaleController extends Controller
         }
 
         return response()->json($pedidos);
+        */
     }
-    public function createOrderClient(Request $request)
+    public function createOrderClient(CreateOrderRequest $request)
     {
-        $requestFilt = [
-            'table_id' => (int) $request->table_id,
-            'waiter_id' => (int) Auth::user()->id,
-            'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
-            'commentary' => $request->commentary ?? '',
-            'menu_item_ids' => array_map('intval', $request->menu_item_ids),
-            'prices' => array_map('floatval', $request->prices),
-            'quantities' => array_map('intval', $request->quantities),
-            'total_prices' => array_map('floatval', $request->total_prices),
-            'is_delibery_details' => array_map(function ($value) {
-                return filter_var($value, FILTER_VALIDATE_BOOLEAN);
-            }, $request->is_delibery_details),
-            'notes' => $request->notes ?? [],
-        ];
-        //return response()->json($requestFilt);
+        // $requestFilt = [
+        //     'table_id' => (int) $request->table_id,
+        //     'waiter_id' => (int) Auth::user()->id,
+        //     'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
+        //     'commentary' => $request->commentary ?? '',
+        //     'menu_item_ids' => array_map('intval', $request->menu_item_ids),
+        //     'prices' => array_map('floatval', $request->prices),
+        //     'quantities' => array_map('intval', $request->quantities),
+        //     'total_prices' => array_map('floatval', $request->total_prices),
+        //     'is_delibery_details' => array_map(function ($value) {
+        //         return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        //     }, $request->is_delibery_details),
+        //     'notes' => $request->notes ?? [],
+        // ];
 
         try {
-            $response = $this->orderService->createOrderWithDetails($requestFilt);
+            $response = $this->orderService->createOrderWithDetails($request->validated());
+            
+            $finalMessage = 'para mostrador';
+            if ($response->table) $finalMessage = 'para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name;
+
             if ($request->type != 'mozo') {
                 return redirect()->route('point_of_sale')->withInput()->with([
-                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Message' => 'Se creo la orden satisfactoriamente '. $finalMessage,
                     'Type' => 'success',
                     'Time' => 1
                 ]);
             } else {
                 return redirect()->route('table_to_mozo', ['lounge_id' => $request->lounge])->withInput()->with([
-                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $finalMessage,
                     'Type' => 'success',
                     'Time' => 1
                 ]);
@@ -462,7 +499,7 @@ class PointOfSaleController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Error en el registro de la orden',
-                'errors' => $e
+                'errors' => $e->getMessage(),
             ], 422);
         }
     }
@@ -479,8 +516,8 @@ class PointOfSaleController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Error en la validación de los datos',
-                'errors' => $e
+                'message' => 'Error en la validación de los datos XD',
+                'errors' => $e->getMessage(),
             ], 422);
         }
     }

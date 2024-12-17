@@ -73,9 +73,12 @@ class SuppliersController extends Controller
     }
     public function newSupplierRegistration(supplierRequest $request)
     {
-
-        $data = $request->validated();
-        $response = $this->supplierService->createSupplier($data);
-        return redirect()->route('suppliers');
+        try {
+            $this->supplierService->createSupplier($request->validated());
+            return redirect()->route('suppliers');
+        }
+        catch (Exception $e) {
+            return redirect()->route('suppliers')->error($e);
+        }
     }
 }

@@ -22,6 +22,8 @@ class Order extends Model
         'cashier_session_id',
         'waiter_id',
         'voucher_id',
+        'correlative_number',
+        'total_amount',
         'status',
         'is_delibery',
         'commentary',

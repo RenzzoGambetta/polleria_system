@@ -137,7 +137,6 @@ class EmployeeController extends Controller
     public function deleteEmployeeRecord(Request $request)
     {
         try {
-
             $employee = Employee::find($request->id);
             $response = $this->employeeService->deleteEmployee($employee);
 
@@ -153,7 +152,7 @@ class EmployeeController extends Controller
             ]);
         } catch (Exception $e) {
             return redirect()->route('employeer')->with([
-                'Message' => 'No se pudo elimino el empleado/a.',
+                'Message' => 'No se pudo elimino el empleado/a.' . $e,
                 'Type' => 'error'
             ]);
         }

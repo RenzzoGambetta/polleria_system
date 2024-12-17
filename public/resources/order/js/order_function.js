@@ -44,7 +44,7 @@ document.getElementById('tables-list').addEventListener('click', async (event) =
 
     const data = await alertSelectItem({
         quantity: 1,
-        isDelivery: false,
+        isDelivery: isBar ? 1 : 0,
         note: selectedItems.filter(entry => entry.id === id).at(-1)?.note || null
     });
 
@@ -447,7 +447,7 @@ function sendSegmentedData() {
         Data = {
             table_id: saleElement?.getAttribute('x:id') || "0",
             waiter_id: 1,
-            is_delibery: false,
+            is_delibery: isBar ? 1 : 0,
             commentary: '',
             order_id:orderId,
             menu_item_ids: selectedItems.map(item => item.id),
@@ -472,9 +472,9 @@ function sendSegmentedData() {
     } else {
         reft = '/create_order_client';
         Data = {
-            table_id: saleElement?.getAttribute('x:id') || "0",
+            table_id: saleElement?.getAttribute('x:id') || null,
             waiter_id: 1, //nc de donde sacarlo eso te mandaria
-            is_delibery: false, //por defecto false por lo que contiene una mesa
+            is_delibery: isBar ? 1 : 0, //por defecto false por lo que contiene una mesa
             commentary: '',
             menu_item_ids: selectedItems.map(item => item.id),
             prices: selectedItems.map(item => item.price),

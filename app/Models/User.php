@@ -12,10 +12,11 @@ use App\Models\order\Order;
 use App\Models\various\VoucherSerie;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -44,12 +45,12 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
+    // protected function casts(): array
+    // {
+    //     return [
+    //         'password' => 'hashed',
+    //     ];
+    // }
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);

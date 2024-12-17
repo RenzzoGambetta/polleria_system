@@ -19,14 +19,29 @@ class supplierRequest extends BaseRequest
      */
     public function rules(): array
     {
-        return [
-            'ruc' => 'required|size:11|unique:persons,document_number',
-            'name' => 'required|string|max:50',
-            'birthdate' => 'date|nullable',
-            'gender' => 'string|nullable',
-            'phone' => 'string|max:20|nullable',
-            'email' => 'email|nullable',
-            'address' => 'string|max:255|nullable',
-        ];
+        if ($this->id != null) 
+        {
+            return [
+                'ruc' => 'required|string|min:8|max:11',
+                'name' => 'required|string|max:50',
+                'birthdate' => 'date|nullable',
+                'gender' => 'string|nullable',
+                'phone' => 'string|max:20|nullable',
+                'email' => 'email|nullable',
+                'address' => 'string|max:255|nullable',
+            ];
+        } 
+        else {
+            return [
+                'ruc' => 'required|string|min:8|max:11|unique:persons,document_number',
+                'name' => 'required|string|max:50',
+                'birthdate' => 'date|nullable',
+                'gender' => 'string|nullable',
+                'phone' => 'string|max:20|nullable',
+                'email' => 'email|nullable',
+                'address' => 'string|max:255|nullable',
+            ];
+        }
+        
     }
 }

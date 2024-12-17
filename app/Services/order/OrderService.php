@@ -16,7 +16,7 @@ class OrderService
 
     public function createOrderWithDetails(array $data)
     {
-        $table = Table::find($data['table_id']);
+        $table = Table::find($data['table_id'] ?? 0);
 
         if ($table) {
             $tableIsOccupied = $table->status;
@@ -27,33 +27,48 @@ class OrderService
 
         try {
             $orderSerie = OrderSerie::findOrFail(1);
+            $orderTotalAmount = array_sum($data['total_amount']);
             $currentCorrelativeNumber = $orderSerie->last_correlative_number + 1;
 
             $order = Order::create([
                 'order_serie_id' => 1,
                 'correlative_number' => $currentCorrelativeNumber,
-                'table_id' => isset($data['table_id']) ? $data['table_id'] : null,
+                'table_id' => $data['table_id'] ?? null,
                 'cashier_session_id' => 1,
                 'waiter_id' => $data['waiter_id'],
                 'is_delibery' => $data['is_delibery'],
-                'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
+                'commentary' => $data['commentary'] ?? null,
+                'total_amount' => $orderTotalAmount,
             ]);
 
+            $acumulativeTotalAmount = 0;
             for ($i = 0; $i < count($data['menu_item_ids']); $i++) {
                 $order->details()->create([
-                    'menu_item_id' => $data['menu_item_ids'][$i], // se cambio el supply_id a menu_item_id
+                    'menu_item_id' => $data['menu_item_ids'][$i],
                     'price' => $data['prices'][$i],
                     'quantity' => $data['quantities'][$i],
                     'total_amount' => $data['total_prices'][$i],
                     'is_delibery' => $data['is_delibery_details'][$i],
-                    'note' => $data['notes'][$i],
+                    'note' => $data['notes'][$i] ?? null,
                 ]);
+
+                $acumulativeTotalAmount += $data['total_prices'][$i];
             }
 
-            $table->update([
-                'status' => true,
+            $order->update([
+                'total_amount' => $acumulativeTotalAmount,
             ]);
 
+            $orderSerie->update([
+                'last_correlative_number' => $currentCorrelativeNumber,
+            ]);
+
+            if ($table) {
+                $table->update([
+                    'status' => true,
+                ]);
+            }
+            
             DB::commit();
             return $order;
         } catch (Exception $e) {
@@ -70,8 +85,13 @@ class OrderService
     public function addDetailsToOrder($orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
+        $orderTotalAmount = array_sum($data['total_amount']);
 
         DB::beginTransaction();
+
+        $order->update([
+            'total_amount' => $orderTotalAmount,
+        ]);
 
         try {
             $this->addEveryDetailToOrder($order, $data);
@@ -87,10 +107,15 @@ class OrderService
     public function updateOnlyOrderDetails($orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
+        $orderTotalAmount = array_sum($data['total_amount']);
 
         DB::beginTransaction();
 
         try {
+            $order->update([
+                'total_amount' => $orderTotalAmount,
+            ]);
+
             $order->details()->delete();
 
             $this->addEveryDetailToOrder($order, $data);
@@ -106,6 +131,7 @@ class OrderService
     public function updateOrderWithDetails(int $orderId, array $data)
     {
         $order = Order::findOrFail($orderId);
+        $orderTotalAmount = array_sum($data['total_amount']);
 
         DB::beginTransaction();
 
@@ -113,6 +139,7 @@ class OrderService
             $order->update([
                 'is_delibery' => $data['is_delibery'],
                 'commentary' => isset($data['commentary']) ? $data['commentary'] : null,
+                'total_amount' => $orderTotalAmount,
             ]);
 
             $order->details()->delete();
@@ -166,13 +193,18 @@ class OrderService
 
     public function getAllOrderDetailsOfTable(int $tableId)
     {
-        //Por tema de tiempo tome la desision de comentar el original y poner uno generico ;v el de avajo esta mas simplificado pero complejo, arregla el original
-        /*
         $table = Table::find($tableId);
 
         if (!$table) throw new Exception("No se encontro ninguna mesa con el ID");
 
-        $orderDetails = $table->orders()->last()->details;
+        $order = $table->orders()
+            ->whereNotIn('status', ['completado', 'cancelado', 'reembolsado'])
+            ->latest()
+            ->first();
+
+        if (!$order) throw new Exception("No existe una orden pendiente para esta mesa");
+
+        $orderDetails = $order->details;
         $orderDetailsDTO = [];
 
         foreach ($orderDetails as $od) {
@@ -180,14 +212,6 @@ class OrderService
         }
 
         return $orderDetailDTO;
-        */
-        $table = Table::find($tableId);
-        if (!$table) return false;
-
-        $order = $table->orders()->latest()->first();
-        if (!$order) return false;
-
-        return $order->details->map(fn($od) => $this->mapOrderDetailToDTO($od))->toArray();
     }
 
     private function addEveryDetailToOrder(Order $order, array $data)

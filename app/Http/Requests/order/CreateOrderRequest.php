@@ -20,16 +20,16 @@ class CreateOrderRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'table_id' => 'required|integer|exists:tables,id',
+            'table_id' => 'integer|nullable|exists:tables,id',
             'waiter_id' => 'required|integer|exists:users,id',
-            'is_delibery' => 'boolean',
+            'is_delibery' => 'boolean|nullable',
             'commentary' => 'string|max:255|nullable',
             'menu_item_ids' => 'required|array',
             'menu_item_ids.*' => 'integer|exists:menu_items,id',
             'prices' => 'required|array',
             'prices.*' => 'decimal:0,2|min:0',
             'quantities' => 'required|array',
-            'quantities.*' => 'numeric|min:1',
+            'quantities.*' => 'integer|min:1',
             'total_prices' => 'required|array',
             'total_prices.*' => 'decimal:0,2|min:0',
             'is_delibery_details' => 'array|nullable',

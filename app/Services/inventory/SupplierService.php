@@ -46,7 +46,7 @@ class SupplierService
                 'document_number' => $data['ruc'],
                 'name' => $data['name'],
                 'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
-                'gender' => isset($data['phone']) && $data['gender'] == 'male' ? 0 : 1,
+                'gender' => null,
                 'phone' => isset($data['phone']) ? $data['phone'] : null,
                 'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);

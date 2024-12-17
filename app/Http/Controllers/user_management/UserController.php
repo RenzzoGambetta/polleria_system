@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\user_management;
 
+use App\Exceptions\CustomException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\user_management\CreateUserRequest;
+use App\Http\Requests\user_management\UserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class UserController extends Controller
         if ($Data->action == 'edit') {
             $Info = User::with(['employee', 'employee.person'])->find($Data->id);
             $Info['title'] = 'Editar Usuario';
-            $Info['text_password'] = 'Escriva la nueva contraseña';
+            $Info['text_password'] = 'Escriba la nueva contraseña';
             $Info['text_repeat_password'] = 'Repita la nueva Contraseña';
             $Info['text_info_password'] = 'Solo rellene este campo si desea modificar la contraseña';
             $Info['id'] = $Data->id;
@@ -57,8 +58,9 @@ class UserController extends Controller
         }
         return view('user_management.user_register', compact('Navigation', 'Role', 'Employee', 'Info'));
     }
-    public function store(CreateUserRequest $request)
+    public function store(UserRequest $request)
     {
+        return response()->json('entro');
         try {
 
             $user = $this->userService->createUser($request->validated());
@@ -87,15 +89,11 @@ class UserController extends Controller
         $List = Employee::paginate(6);
         return view('user_management.employee', compact('Navigation', 'List'));
     }
-    public function editUser(CreateUserRequest $request)
+
+    public function editUser(Request $request)
     {
         try {
-
-            $user = User::find($request->id);
-
-            //*quitar el omentario cuando se complete el servisio para editar
-            $response = true;
-            //$response = $this->userService->updateUser($request->validated(), $user);
+            $response = $this->userService->updateUser($request->id, $request->all());
 
             if ($response) {
                 return redirect()->route('user')->with([
@@ -107,6 +105,7 @@ class UserController extends Controller
                 ->withInput()
                 ->with('Ms', 'Ocurrió un error al editar el usuario');
         } catch (Exception $e) {
+            return response()->json($e->getMessage());
             return redirect()->route('user_register')
                 ->withInput()
                 ->with('Ms', 'Ocurrió un error, puede ser que usuario ya se encuentre registrado');
@@ -115,15 +114,11 @@ class UserController extends Controller
     public function deleteUser(Request $request)
     {
         try {
-
-            $user = User::find($request->id);
-            //*quitar el omentario cuando se complete el servisio para eliminar
-            $response = true;
-            //$response = $this->userService->deleteUser($user);
+            $response = $this->userService->deleteUser($request->id);
 
             if ($response) {
                 return redirect()->route('user')->with([
-                    'Message' => 'Se elimino exitosomente el usuario.',
+                    'Message' => 'Se elimino exitosamente el usuario.',
                     'Type' => 'success'
                 ]);
             }
@@ -131,7 +126,13 @@ class UserController extends Controller
                 'Message' => 'No se pudo elimino el usuario.',
                 'Type' => 'error'
             ]);
-        } catch (Exception $e) {
+        } catch (CustomException $ce) {
+            return redirect()->route('user')->with([
+                'Message' => 'Error'. $ce->getMessage(),
+                'Type' => 'error'
+            ]);
+        }
+        catch (Exception $e) {
             return redirect()->route('user')->with([
                 'Message' => 'No se pudo elimino el usuario.',
                 'Type' => 'error'
