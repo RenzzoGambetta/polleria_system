@@ -7,12 +7,16 @@ use App\Models\menu\MenuItem;
 use App\Models\order\Order;
 use App\Models\order\OrderDetail;
 use App\Models\order\OrderSerie;
+use App\Services\inventory\supplyService;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
 class OrderService
 {
-    public function __construct() {}
+    protected supplyService $supplyService;
+    public function __construct() {
+        $this->supplyService = new supplyService();
+    }
 
     public function createOrderWithDetails(array $data)
     {
@@ -27,7 +31,7 @@ class OrderService
 
         try {
             $orderSerie = OrderSerie::findOrFail(1);
-            $orderTotalAmount = array_sum($data['total_amount']);
+            $orderTotalAmount = array_sum($data['prices']);
             $currentCorrelativeNumber = $orderSerie->last_correlative_number + 1;
 
             $order = Order::create([
@@ -38,7 +42,6 @@ class OrderService
                 'waiter_id' => $data['waiter_id'],
                 'is_delibery' => $data['is_delibery'],
                 'commentary' => $data['commentary'] ?? null,
-                'total_amount' => $orderTotalAmount,
             ]);
 
             $acumulativeTotalAmount = 0;
@@ -48,10 +51,11 @@ class OrderService
                     'price' => $data['prices'][$i],
                     'quantity' => $data['quantities'][$i],
                     'total_amount' => $data['total_prices'][$i],
-                    'is_delibery' => $data['is_delibery_details'][$i],
+                    'is_delibery' => $data['is_delibery_details'][$i] == 'false' ? false : true,
                     'note' => $data['notes'][$i] ?? null,
                 ]);
 
+                $this->supplyService->reduceSupplyStockByMenuItem($data['menu_item_ids'][$i], $data['quantities'][$i]);
                 $acumulativeTotalAmount += $data['total_prices'][$i];
             }
 

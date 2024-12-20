@@ -475,9 +475,8 @@ class PointOfSaleController extends Controller
         //     }, $request->is_delibery_details),
         //     'notes' => $request->notes ?? [],
         // ];
-
         try {
-            $response = $this->orderService->createOrderWithDetails($request->validated());
+            $response = $this->orderService->createOrderWithDetails($request->all());
             
             $finalMessage = 'para mostrador';
             if ($response->table) $finalMessage = 'para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name;

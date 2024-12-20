@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class InventoryIssueService
 {
-    public function __construct(){}
+    protected supplyService $supplyService;
+
+    public function __construct(){
+        $this->supplyService = new supplyService();
+    }
 
     public function createInventoryIssue(array $data)
     {
@@ -28,6 +32,8 @@ class InventoryIssueService
                     'total_amount' => 0.0,
                     'note' => $data['notes'][$i] ?? null,
                 ]);
+
+                $this->supplyService->reduceSupplyStock($data['id'][$i], $data['quantity'][$i]);
             };
 
             DB::commit();

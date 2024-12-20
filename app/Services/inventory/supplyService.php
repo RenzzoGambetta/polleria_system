@@ -3,6 +3,7 @@
 namespace App\Services\inventory;
 
 use App\Models\Brand;
+use App\Models\menu\MenuItem;
 use App\Models\Supply;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -94,6 +95,54 @@ class supplyService
             DB::rollBack();
             return $e;
         }
+    }
+
+    public function increaseSupplyStockByMenuItem(int $menuItemID, int $quantity)
+    {
+        $menuItem = MenuItem::findOrFail($menuItemID);
+        $relateadSupplies = $menuItem->supplyDetails;
+
+        foreach ($relateadSupplies as $supply) {
+            $incrementQuantity = $supply->pivot->supply_quantity * $quantity;
+    
+            $this->increaseSupplyStock($supply->id, $incrementQuantity);
+        }
+    }
+
+    public function reduceSupplyStockByMenuItem(int $menuItemID, int $quantity)
+    {
+        $menuItem = MenuItem::findOrFail($menuItemID);
+        $relateadSupplies = $menuItem->supplyDetails;
+
+        foreach ($relateadSupplies as $supply) {
+            $incrementQuantity = $supply->pivot->supply_quantity * $quantity;
+    
+            $this->reduceSupplyStock($supply->id, $incrementQuantity);
+        }
+    }
+
+    public function increaseSupplyStock(int $supplyId, int $quantity)
+    {
+        $supply = Supply::findOrFail($supplyId);
+        
+        $this->modifySupplyStock($supply, $quantity, 1);
+    }
+
+    public function reduceSupplyStock(int $supplyId, int $quantity)
+    {
+        $supply = Supply::findOrFail($supplyId);
+        
+        $this->modifySupplyStock($supply, $quantity, 0);
+    }
+
+    private function modifySupplyStock(Supply $supply, int $qty, bool $mode)
+    {
+        $currentQty = $supply->stock;
+        $modifiedQty = $mode ? $qty : ($qty * -1);
+
+        $supply->update([
+            'stock' => $currentQty + $modifiedQty,
+        ]);
     }
 
     public function getBrand(string $name)

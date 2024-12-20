@@ -32,8 +32,8 @@ class CreateOrderRequest extends BaseRequest
             'quantities.*' => 'integer|min:1',
             'total_prices' => 'required|array',
             'total_prices.*' => 'decimal:0,2|min:0',
-            'is_delibery_details' => 'array|nullable',
-            'is_delibery_details.*' => 'boolean',
+            // 'is_delibery_details' => 'array|nullable',
+            // 'is_delibery_details.*' => 'boolean',
             'notes' => 'array|nullable',
             'notes.*' => 'string|max:100|nullable',
         ];

@@ -24,7 +24,7 @@ class inventoryReceiptRequest extends BaseRequest
     {
         return [
             'voucher_type_id' => 'required|integer',
-            'voucher_serie' => 'required|string|max:5',
+            // 'voucher_serie' => 'required|string|max:5',
             'correlative_number' => 'required|string',
             'supplier_id' => 'required|integer',
             'issuance_date' => 'required|date',
