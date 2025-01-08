@@ -15,6 +15,7 @@
 
     <script src="{{ asset($JquerySrc) }}"></script>
     <script src="{{ asset($FunctionGlobal) }}"></script>
+    <script src="{{ asset($AlertSrc) }}"></script>
 
 
     <title>D'Brazza</title>
@@ -108,6 +109,16 @@
                 </li>
             @endif
 
+            <li class="{{ ($Navigation['seccion'] ?? null) == 7 ? 'sub active' : 'sub' }}">
+                <a href="#" class="{{ ($Navigation['seccion'] ?? null) == 7 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 70 ? 'nav_select' : '' }}"><i class='fi fi-bs-settings-sliders bx-adjustment-icon'></i>Config</a>
+                <ul class="sub">
+                    <li class="{{ ($Navigation['sub_seccion'] ?? null) == 7.1 ? 'active' : '' }}">
+                        <a href="{{ route('image_gallery') }}" id="{{ ($Navigation['color'] ?? null) == 71 ? 'nav_select' : '' }}"><i class='fi fi-sr-layout-fluid bx-adjustment-icon'></i>Galeria</a>
+                    </li>
+
+                </ul>
+            </li>
+            
             </ul>
 
             <ul class="side-menu">

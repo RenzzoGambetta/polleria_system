@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\ConstGlobal;
+use App\Http\Global\FunctionGlobal;
 use App\Http\Requests\inventory\CreateFastSupplierRequest;
 use App\Http\Requests\inventory\supplierRequest;
 use App\Models\Supplier;
@@ -13,27 +15,22 @@ use Exception;
 
 class SuppliersController extends Controller
 {
-    protected $Navigation = [
-        'seccion' => 3,
-        'sub_seccion' => 3.4,
-        'color' => 34
-    ];
-    protected $supplierService;
+    protected $Navigation;
 
-    public function __construct(SupplierService $supplierService)
+    public function __construct()
     {
-        $this->supplierService = $supplierService;
+        $this->Navigation = FunctionGlobal::NavigationFast(3,4);
+
     }
     public function showSuppliersList()
     {
-        $Suppliers = Supplier::paginate(10);
         $Navigation = $this->Navigation;
+        $Suppliers = Supplier::paginate(10);
         return view('inventory_management.suppliers', compact('Navigation', 'Suppliers'));
     }
 
     public function showSuppliersRegisterAndEdit()
     {
-
         $Navigation = $this->Navigation;
         $reply = 1;
         if ($reply = 1) {
@@ -41,14 +38,13 @@ class SuppliersController extends Controller
                 'option' => 'Registro',
             ];
         }
-
         return view('inventory_management.register_and_edit_suppliers', compact('Navigation', 'Data'));
     }
     public function newSupplierRegistrationFast(CreateFastSupplierRequest $request)
     {
         try {
             $data = $request->validated();
-            $response = $this->supplierService->createFastSupplier($data);
+            $response = (new SupplierService)->createFastSupplier($data);
             $Mesage["response"] = true;
         } catch (Exception $e) {
             $Mesage = [
@@ -74,7 +70,7 @@ class SuppliersController extends Controller
     public function newSupplierRegistration(supplierRequest $request)
     {
         try {
-            $this->supplierService->createSupplier($request->validated());
+            (new SupplierService)->createSupplier($request->validated());
             return redirect()->route('suppliers');
         }
         catch (Exception $e) {

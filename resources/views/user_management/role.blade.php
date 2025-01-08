@@ -97,7 +97,7 @@
     {{ $Roles->onEachSide(1)->links('pagination::numeros') }}
     {{ $Roles->onEachSide(1)->links('pagination::anterior') }}
 </section>
-<script src="{{ asset($AlertSrc) }}"></script>
+ 
 
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

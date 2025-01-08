@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\ConstGlobal;
+use App\Http\Global\FunctionGlobal;
 use App\Http\Requests\inventory\InventoryIssueRequest;
 use App\Http\Requests\inventory\inventoryReceiptRequest;
 use App\Http\Requests\inventory\supplyRequest;
@@ -25,29 +27,18 @@ use Exception;
 
 class SupplyStockController extends Controller
 {
-    protected $NavigationEntry = [
-        'seccion' => 3,
-        'sub_seccion' => 3.3,
-        'color' => 33
-    ];
-    protected $NavigationOutput = [
-        'seccion' => 3,
-        'sub_seccion' => 3.2,
-        'color' => 32
-    ];
-    protected $supplyService;
+    protected $NavigationEntry, $NavigationOutput;
 
-    public function __construct(supplyService $supplyService)
+    public function __construct()
     {
-        $this->supplyService = $supplyService;
+        $this->NavigationEntry = FunctionGlobal::NavigationFast(3, 3);
+        $this->NavigationOutput = FunctionGlobal::NavigationFast(3, 2);
     }
 
     public function showPanelRegisterEntry()
     {
-
         $Navigation = $this->NavigationEntry;
         $Voucher = VoucherType::select('id', 'name')->get();
-
         return view('inventory_management.supply_stock_entry', compact('Navigation', 'Voucher'));
     }
     public function showPanelRegisterOutput()
@@ -57,7 +48,6 @@ class SupplyStockController extends Controller
     }
     public function supplierSupplyList(Request $request)
     {
-
         $produc = DB::table('supplier_supply')
             ->join('supplies', 'supplier_supply.supply_id', '=', 'supplies.id')
             ->leftJoin('inventory_movement_details', function ($join) {
@@ -77,22 +67,19 @@ class SupplyStockController extends Controller
                 DB::raw('COALESCE(inventory_movement_details.price, 0) AS price_per_unit')
             )
             ->get();
-
         return response()->json($produc);
     }
     public function listOfSupplys()
     {
-
         $supply = Supply::all();
         return response()->json($supply);
     }
-    public function registerNewsupply(Request $request)
+    public function registerNewSupply(Request $request)
     {
-
         $validator = $request->toArray();
         $validator['unit'] = $request->unit_measure;
         if ($request->name != "null" & $request->unit != "null") {
-            $reply = $this->supplyService->createSupply($validator);
+            $reply = (new supplyService)->createSupply($validator);
             $reply['response'] = true;
         } else {
             $reply = [
@@ -104,20 +91,29 @@ class SupplyStockController extends Controller
     public function registerNewSupplyComplete(supplyRequest $request)
     {
         try {
+            //return response()->json($request);
             $validator = $request->validated();
             if ($request->filled(['id_edit_stock'])) {
-                $response = $this->supplyService->updateSupply($request->id_edit_stock,$validator);
+                $response = (new supplyService)->updateSupply($request->id_edit_stock, $validator);
                 return redirect()->route('inventory')->with([
                     'Message' => 'Se edito el suministro satisfactoriamente.',
                     'Type' => 'success'
                 ]);
-            }
-            $response = $this->supplyService->createSupply($validator);
-            if ($response) {
-                return redirect()->route('inventory')->with([
-                    'Message' => 'Se registro el suministro satisfactoriamente.',
-                    'Type' => 'success'
-                ]);
+            } else {
+                //$response = (new supplyService)->createSupply($validator);
+                $archivo = $request->file('image');
+                $nombreArchivo = time() . '_' . str_replace(' ', '_', $archivo->getClientOriginalName());
+                $archivo->move(public_path(ConstGlobal::ROUTE_SUPPLY), $nombreArchivo);
+                $request['ImageUrl'] = ConstGlobal::ROUTE_SUPPLY . "/$nombreArchivo";                
+
+                return response()->json($request);
+
+                if ($response) {
+                    return redirect()->route('inventory')->with([
+                        'Message' => 'Se registro el suministro satisfactoriamente.',
+                        'Type' => 'success'
+                    ]);
+                }
             }
         } catch (Exception $e) {
 

@@ -148,31 +148,46 @@ function selectorIten(select, option, listOption) {
         }
     });
 }
+
+
 function previewImage(event) {
-    const file = event.target.files[0];
     const iconPreview = document.getElementById('icon-preview');
     const textPreview = document.getElementById('text-preview');
     const existingImg = document.getElementById('preview-image');
 
-    if (existingImg) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            existingImg.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    } else {
+    try {
+        const file = event.target.files[0]; 
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
-                const imgPreview = document.createElement('img');
-                imgPreview.src = e.target.result;
-                imgPreview.id = 'preview-image';
-                imgPreview.className = 'Img-style-preview';
-                iconPreview.style.display = 'none';
-                textPreview.style.display = 'none';
-                iconPreview.parentNode.insertBefore(imgPreview, iconPreview);
+            reader.onload = function (e) {
+                if (existingImg) {
+                    
+                    existingImg.src = e.target.result;
+                } else {
+                 
+                    const imgPreview = document.createElement('img');
+                    imgPreview.src = e.target.result;
+                    imgPreview.id = 'preview-image';
+                    imgPreview.className = 'Img-style-preview';
+
+                    iconPreview.style.display = 'none';
+                    textPreview.style.display = 'none';
+
+                    iconPreview.parentNode.insertBefore(imgPreview, iconPreview);
+                }
             };
             reader.readAsDataURL(file);
+        } else {
+
+            throw new Error('No file selected');
         }
+    } catch (ex) {
+
+        if (existingImg) {
+            existingImg.remove(); 
+        }
+        iconPreview.style.display = 'flex'; 
+        textPreview.style.display = 'flex'; 
     }
 }
+

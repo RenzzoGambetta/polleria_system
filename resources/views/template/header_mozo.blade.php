@@ -16,6 +16,7 @@
 
     <script src="{{ asset($JquerySrc) }}"></script>
     <script src="{{ asset($FunctionGlobal) }}"></script>
+    <script src="{{ asset($AlertSrc) }}"></script>
 
     <title>D'Brazza</title>
 </head>

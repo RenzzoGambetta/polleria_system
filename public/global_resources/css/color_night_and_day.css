@@ -92,6 +92,9 @@
     --payment-section-background-color:#00b8124d;
     --fill-color-cat-svg:rgb(5, 5, 5);
     --fill-color-cat-col-svg:rgba(0, 0, 0, 0.8);
+    --container-panel-image-galery-background-color:white;
+    --select-panel-image-galery-background-color:#fff;
+    --container-panel-image-galery-box-shadow:0px 0px 0px 0 rgb(195 216 255 / 38%), 0px 1px 12px 0 rgb(0 28 79 / 15%);
 
 }
 
@@ -170,4 +173,7 @@ body.dark {
     --color-item-selct-hover-product-table:linear-gradient(90deg, transparent, rgb(67 48 13), #9a3a00, rgb(255 124 0));
     --fill-color-cat-svg:rgb(200, 200, 200);
     --fill-color-cat-col-svg:rgba(205, 205, 205, 0.8);
+    --container-panel-image-galery-background-color:#1c1c21;
+    --select-panel-image-galery-background-color:#000;
+    --container-panel-image-galery-box-shadow:0px 0px 0px 0 rgb(255 255 255 / 38%), 0px 0px 5px 0 #1c1c21;
 }

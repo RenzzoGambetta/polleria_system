@@ -1,0 +1,34 @@
+.container-image-frame-panel-select {
+    margin: 10px;
+    text-align: center;
+    color: var(--dark);
+    width: 200px;
+    max-width: 300px;
+    min-width: 150px;
+    user-select: none;
+    font-style: italic;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.frame-image-type {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0 ; 
+    -webkit-user-drag: none; 
+}
+.container-image-frame-panel-select:hover {
+    background: linear-gradient(to right, #fb5d00, #ff7a00);
+    border-radius: 10px;
+    color: white;
+    filter: drop-shadow(2px 2px 10px black);
+    transform: scale(1.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+    font-weight: bold;
+}
+
+
+.name-frame-data-select{
+    padding: 8px;
+}

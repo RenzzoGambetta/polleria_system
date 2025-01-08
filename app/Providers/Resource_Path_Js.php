@@ -53,8 +53,8 @@ class Resource_Path_Js extends ServiceProvider
             $SearchBoxTemplate = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'search_box_template.js');
             $view->with('SearchBoxTemplate', $SearchBoxTemplate);
 
-            $NewsupplyAction = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'new_supply_action.js');
-            $view->with('NewsupplyAction', $NewsupplyAction);
+            $NewSupplyAction = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'new_supply_action.js');
+            $view->with('NewSupplyAction', $NewSupplyAction);
 
             $FuctionButtonOutput = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'fuction_button_output.js');
             $view->with('FuctionButtonOutput', $FuctionButtonOutput);
@@ -94,6 +94,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $orderReceptionMozo = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'order_reception_and_register.js');
             $view->with('orderReceptionMozo', $orderReceptionMozo);
+
+            $GalleryQueryImage = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::JS, 'gallery_query.js');
+            $view->with('GalleryQueryImage', $GalleryQueryImage);
         });
     }
 }

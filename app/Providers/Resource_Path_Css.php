@@ -143,6 +143,9 @@ class Resource_Path_Css extends ServiceProvider
             
             $orderReceptionToClient = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::CSS, 'order_reception_to_client.css');
             $view->with('orderReceptionToClient', $orderReceptionToClient);
+         
+            $galleryStyleImage = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::CSS, 'gallery_style-image.css');
+            $view->with('galleryStyleImage', $galleryStyleImage);
         });
     }
 }

@@ -2,7 +2,7 @@
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
 
-<script src="{{ asset($AlertSrc) }}"></script>
+ 
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($RoleRegisterDesktop) }}">
 

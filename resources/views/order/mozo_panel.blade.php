@@ -1,7 +1,7 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderMozo)
 <!---------------------------------------------------------------------->
-<script src="{{ asset($AlertSrc) }}"></script>
+ 
 <link rel="stylesheet" href="{{ asset($TableEditAndRegister) }}">
 <link rel="stylesheet" href="{{ asset($TableMozoPanel) }}">
 

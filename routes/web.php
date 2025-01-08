@@ -14,9 +14,11 @@ use App\Http\Controllers\menu_management\MenuController;
 use App\Http\Controllers\menu_management\TableController;
 use App\Http\Controllers\order\PointOfSaleController;
 use App\Http\Controllers\order\MozoController;
-use App\Http\Controllers\temp\EfectController;
+use App\Http\Controllers\order\KitchenController;
+use App\Http\Controllers\container\EfectController;
+use App\Http\Controllers\container\ImageController;
+use App\Http\Controllers\config\ImageGalleryController;
 use App\Http\Controllers\test\testController;
-
 //--> Modulo de autentificacion
 
    
@@ -69,7 +71,7 @@ use App\Http\Controllers\test\testController;
             Route::get('/delete_new_supply_complete', [InventoryController::class,'deleteNewSupplyComplete'])->name('delete_new_supply_complete');
             //Suministros
             Route::get('/show_panel_register_entry', [SupplyStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
-            Route::get('/register_new_supply', [SupplyStockController::class,'registerNewsupply'])->name('register_new_supply');
+            Route::get('/register_new_supply', [SupplyStockController::class,'registerNewSupply'])->name('register_new_supply');
             Route::post('/register_new_supply_complete', [SupplyStockController::class,'registerNewSupplyComplete'])->name('register_new_supply_complete');
             Route::get('/show_panel_register_output', [SupplyStockController::class,'showPanelRegisterOutput'])->name('show_panel_register_output');
             Route::get('/supplier_supply_list', [SupplyStockController::class,'supplierSupplyList'])->name('supplier_supply_list');
@@ -131,6 +133,7 @@ use App\Http\Controllers\test\testController;
             Route::post('/tiket_cancel_client', [PointOfSaleController::class,'tiketCancelClientOrder'])->name('tiket_cancel_client');
             Route::post('/add_and_edit_to_order_client', [PointOfSaleController::class,'addAndEditToOrderClient'])->name('add_and_edit_to_order_client');
             Route::get('/add_order_client_and_edit', [PointOfSaleController::class,'addOrderClientAndEdit'])->name('add_order_client_and_edit');
+            Route::get('/show_kitchen_list', [KitchenController::class,'showKitchenList'])->name('show_kitchen_list');
             Route::get('/lit', [PointOfSaleController::class,'tiketCancelClientOrder']);
        
         });
@@ -141,6 +144,10 @@ use App\Http\Controllers\test\testController;
             Route::get('/table_to_mozo', [MozoController::class,'shoqwPanelToTableData'])->name('table_to_mozo');
             Route::get('/order_to_client', [MozoController::class,'showPanelOrderMozo'])->name('order_to_client');
         });
+        
+        //--> Galeria
+            Route::get('/image_gallery', [ImageGalleryController::class,'showPanelGalley'])->name('image_gallery');
+
 
     //--> Home
 
@@ -151,6 +158,10 @@ use App\Http\Controllers\test\testController;
 
         Route::get('/switch_theme_', [EfectController::class, 'switch_theme']);
         Route::get('/update_menu_state', [EfectController::class, 'updateMenuState']);
+
+        Route::get('/get_image_gallery', [ImageController::class, 'getImageGallery']);
+        Route::post('/delete_image_gallery', [ImageController::class, 'deleteImageGallery']);
+        Route::post('/upload_image_gallery', [ImageController::class, 'uploadImageGallery']);
 
     //-- testing view
         Route::get('/view-test-v0', [testController::class, 'viewTestV0']);

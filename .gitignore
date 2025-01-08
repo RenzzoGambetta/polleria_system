@@ -20,3 +20,9 @@ yarn-error.log
 /.idea
 /.vscode
 /storage/logs/laravel.log
+/public/warehouse/combo/*
+!/public/warehouse/combo/
+/public/warehouse/supply/*
+!/public/warehouse/supply/
+/public/warehouse/item/*
+!/public/warehouse/item/

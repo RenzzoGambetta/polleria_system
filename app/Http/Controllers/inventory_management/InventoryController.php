@@ -3,43 +3,35 @@
 namespace App\Http\Controllers\inventory_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\ConstGlobal;
+use App\Http\Global\FunctionGlobal;
 use App\Models\Brand;
 use App\Models\Supply;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\inventory\InventoryDTOService;
 
+
 class InventoryController extends Controller
 {
-    protected $Navigationsupply = [
-        'seccion' => 3,
-        'sub_seccion' => 3.0,
-        'color' => 30
-    ];
-    protected $NavigationMovement = [
-        'seccion' => 3,
-        'sub_seccion' => 3.1,
-        'color' => 31
-    ];
-    protected $UnitOptions = [
-        ['kg', 'kilogramo'],
-        ['l', 'litro'],
-        ['und', 'unidad'],
-        ['pack', 'paquete'],
-        ['caj', 'caja'],
-        ['bls', 'bolsa'],
-        ['m', 'metro'],
-    ];
+    protected $NavigationSupply, $NavigationMovement;
+
+    public function __construct()
+    {
+        $this->NavigationSupply = FunctionGlobal::NavigationFast(3,0);
+        $this->NavigationMovement = FunctionGlobal::NavigationFast(3,1);
+    }
+
     public function showInventoryList()
     {
-        $Inventory = Supply::paginate(10);
-        $Navigation = $this->Navigationsupply;
+        $Navigation = $this->NavigationSupply;
+        $Inventory = Supply::orderBy('id', 'desc')->paginate(ConstGlobal::PAGINATION);
         return view('inventory_management.inventory', compact('Navigation', 'Inventory'));
     }
     public function newsupplyInventory(Request $request)
     {
-        $Navigation = $this->Navigationsupply;
-        $UnitOptions = $this->UnitOptions;
+        $Navigation = $this->NavigationSupply;
+        $UnitOptions = ConstGlobal::UNIT_OPTIONS;
 
         if ($request->filled(['id'])) {
 
@@ -70,7 +62,7 @@ class InventoryController extends Controller
     }
     public function deleteNewSupplyComplete(Request $request)
     {
-        $response = Supply::destroy($request->id); // Cambié 'Delate' a 'destroy' para eliminar correctamente
+        $response = Supply::destroy($request->id); 
 
         if ($response) {
             return redirect()->route('inventory')->with([

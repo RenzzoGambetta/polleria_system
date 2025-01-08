@@ -20,14 +20,14 @@ class supplyRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'brand_name' => 'string|max:50|nullable',
-            'code' => 'string|max:15|nullable',
+            'brand_name' => 'nullable|string|max:50',
+            'code' => 'nullable|string|max:15',
             'name' => 'required|string|max:100',
-            'is_stockable' => 'string|nullable',
-            'stock' => 'integer|nullable',
-            'unit' => 'required|string|max:15|nullable',
-            'note' => 'string|max:255|nullable'
+            'is_stockable' => 'nullable|string',
+            'stock' => 'nullable|integer',
+            'unit' => 'nullable|string|max:15',
+            'note' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
-
 }

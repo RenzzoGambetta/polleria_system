@@ -17,6 +17,7 @@ class Folder_Path
     public const MENU_MANAGEMENT = "menu_management";
     public const ORDER = "order";
     public const DOCUMENT = "document";
+    public const CONFIG = "config";
 
     // Carpetas integradas en Hijos
     public const CSS = "css";
