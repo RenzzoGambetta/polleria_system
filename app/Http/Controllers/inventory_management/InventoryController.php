@@ -53,8 +53,7 @@ class InventoryController extends Controller
         *   Implementacion temporal del servicio de movimeintos, implementa tu logica propia
         */
 
-        $InventoryDTOService = new InventoryDTOService();
-        $Movement = $InventoryDTOService->getLatestInventoryMovementsDto();
+        $Movement = (new InventoryDTOService())->getLatestInventoryMovementsDto();
 
         // return response()->json($Movement);
         $Navigation = $this->NavigationMovement;

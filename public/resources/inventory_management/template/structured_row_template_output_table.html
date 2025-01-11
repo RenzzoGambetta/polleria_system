@@ -1,10 +1,11 @@
 <tr class="movile-style-tr-get" id="idRow{{id}}">
     <td class="name-iten">
         <div class="name-aling-text"><span>{{name}}</span></div>
-        <input type="text" name="id[]" value="{{id}}" class="hidden-input">
+        <input type="text" name="id[]" value="{{id_supply}}" class="hidden-input">
     </td>
     <td class="data-entry">
-        <input type="number" name="quantity[]" id="quantity_{{id}}" class="quantity-input no-spinner input-number-style input-output-data" value="{{quantity}}" required>
+        <input type="number" name="quantity[]" id="quantity_{{id}}"
+            class="quantity-input no-spinner input-number-style input-output-data" value="{{quantity}}" min="1" required>
     </td>
 
     <td class="data-entry">
@@ -13,12 +14,25 @@
                 <span>{{unit}}</span>
             </div>
         </div>
-      </td>
+    </td>
+
+    <td class="data-entry">
+        <input type="number" name="prices[]" id="price_{{id}}"
+            class="quantity-input no-spinner input-number-style input-output-data" value="{{price}}" step="0.01" min="0" required>
+    </td>
+
     <td class="data-button">
-        <button type="button" class="button-icon-dimensions delate-color" onclick="deletesupplyRow('{{id}}')">
+        <button type="button" class="button-icon-dimensions" style="background-color: var(--primary);" onclick="noteDetailOrder('#notes_{{id}}')" title="Poner una nota a el suminstro">
+            <div class="icon-calibration">
+                <i class="fi fi-sr-note-medical style-adicon-adaptation"></i>
+            </div>
+        </button>
+        <button type="button" class="button-icon-dimensions delate-color" onclick="deletesupplyRow('{{id}}')" title="Eliminar el suministro de la lista">
             <div class="icon-calibration">
                 <i class="fi fi-sr-trash style-adicon-adaptation"></i>
             </div>
         </button>
     </td>
+    <input type="hidden" name="notes[]" id="notes_{{id}}" value="234polo" 
+    class="quantity-input no-spinner input-number-style input-output-data">
 </tr>

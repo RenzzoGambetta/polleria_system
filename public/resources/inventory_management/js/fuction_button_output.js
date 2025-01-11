@@ -1,52 +1,71 @@
 const URL_TEMPLATE = "/resources/inventory_management/template/";
+const URL_TEMPLATE_ALERT = "/resources/order/template/";
+
+let isAddingSupply = false; // Variable para controlar el estado de bloqueo
 
 async function addSupply() {
+    if (isAddingSupply) {
+        console.log("Espere un momento antes de añadir otro suministro.");
+        return; // Evita múltiples ejecuciones simultáneas
+    }
 
-    const supplyElement = document.getElementsByName('id_supply_name')[0];
-    if (supplyElement) {
-        const id = parseFloat(supplyElement.value) || 0;
+    isAddingSupply = true; // Bloquea nuevas ejecuciones
+    function generateUniqueNumber() {
+        return Date.now() + Math.floor(Math.random() * 1000); // Marca de tiempo + número aleatorio
+    }
+    try {
+        const supplyElement = document.getElementsByName('id_supply_name')[0];
+        if (supplyElement) {
+            const id = parseFloat(supplyElement.value) || 0;
 
-        if (id !== 0) {
+            if (id !== 0) {
+                var newTbody = document.createElement('tbody');
+                var url = URL_TEMPLATE + "structured_row_template_output_table.html";
+                var filter = document.querySelector('.filter');
+                var table = document.querySelector('.content main .bottom-data .orders table');
 
-            var newTbody = document.createElement('tbody');
-            var url = URL_TEMPLATE + "structured_row_template_output_table.html";
-            var filter = document.querySelector('.filter');
-            var table = document.querySelector('.content main .bottom-data .orders table');
+                newTbody.classList.add('list-inten', 'iten');
+                const data = {
+                    id: id
+                };
 
-            newTbody.classList.add('list-inten', 'iten');
-            const data = {
-                id: id
-            };
-            const result = await querySearchGet("/query_supply_data", data);
+                const result = await querySearchGet("/query_supply_data", data);
+               
+                await fetch(url)
+                    .then(response => response.text())
+                    .then(template => {
+                        let htmlContent = template
+                            .replaceAll('{{id}}', generateUniqueNumber())
+                            .replaceAll('{{id_supply}}', result.id)
+                            .replace('{{name}}', result.name)
+                            .replace('{{price}}', result.last_price)
+                            .replace('{{quantity}}', 1)
+                            .replace('{{unit}}', result.unit);
 
-            fetch(url)
-                .then(response => response.text())
-                .then(template => {
-                    let htmlContent = template
-                        .replaceAll('{{id}}', result.id)
-                        .replace('{{name}}', result.name)
-                        .replace('{{quantity}}', 1)
-                        .replace('{{unit}}', result.unit);
+                        newTbody.innerHTML = htmlContent;
 
-                    newTbody.innerHTML = htmlContent;
+                        var referenceElement = document.getElementById('puntoClave');
+                        referenceElement.parentNode.insertBefore(newTbody, referenceElement.previousSibling);
+                    })
+                    .catch(error => console.error('Error loading template:', error));
 
-                    var referenceElement = document.getElementById('puntoClave');
-
-                    referenceElement.parentNode.insertBefore(newTbody, referenceElement.previousSibling);
-                })
-                .catch(error => console.error('Error loading template:', error));
-
-            filter.style.display = 'none';
-            table.style.display = 'revert';
-            document.getElementById('search').value = null;
-            document.getElementById('id-supply').value = null;
-
-
+                filter.style.display = 'none';
+                table.style.display = 'revert';
+                document.getElementById('search').value = null;
+                document.getElementById('id-supply').value = null;
+            } else {
+                console.log("Seleccione un producto. ID actual: " + id);
+            }
         } else {
-            console.log("Seleccione un producto. ID actual: " + id);
+            console.log("No se encontró el elemento con el nombre 'id_supply_name'.");
         }
-    } else {
-        console.log("No se encontró el elemento con el nombre 'id_supply_name'.");
+    } catch (error) {
+        console.error("Error al añadir suministro:", error);
+    } finally {
+        // Desbloquea la ejecución después de 2 segundos
+        setTimeout(() => {
+            isAddingSupply = false;
+        }, 1000);
     }
 }
 
@@ -87,6 +106,51 @@ function deletesupplyRow(id) {
     } else {
         console.log('No se encontró la fila con ID: ' + rowId);
     }
- //   sumOfPrices();
+    //   sumOfPrices();
 
+}
+function clearComentDataAlert() {
+    $('#comment-input').val('');
+}
+async function noteDetailOrder(idInput) {
+    try {
+        const url = `${URL_TEMPLATE_ALERT}commentary_order_total.html`;
+        const htmlContent = await loadHtmlFromFile(url);
+
+        Swal.fire({
+            html: htmlContent,
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Agregar",
+            cancelButtonText: "Cancelar",
+            didOpen: (popup) => {
+                if (typeof urlPostDeleteStyle === 'function') {
+                    urlPostDeleteStyle(popup);
+                }
+                // Asegúrate de que el input existe antes de asignar el valor
+                const commentInput = $(popup).find('#comment-input');
+                if (commentInput.length && $(idInput).length) {
+                    commentInput.val($(idInput).val());
+                }
+            }, 
+            preConfirm: () => {
+                const noteValue = $('#comment-input').val();
+                return {
+                    note: noteValue,
+                };
+            }
+            
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if ($(idInput).length) {
+                    $(idInput).val(result.value.note);
+                }
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                console.log("Acción cancelada");
+            }
+        });
+    } catch (error) {
+        console.error("Error en noteDetailOrder:", error);
+    }
 }

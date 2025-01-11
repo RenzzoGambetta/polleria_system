@@ -27,7 +27,7 @@ class supplyRequest extends BaseRequest
             'stock' => 'nullable|integer',
             'unit' => 'nullable|string|max:15',
             'note' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imageURL' => 'nullable|string',
         ];
     }
 }

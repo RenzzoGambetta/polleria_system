@@ -149,6 +149,8 @@ function selectorIten(select, option, listOption) {
     });
 }
 
+let fileDataGlobal = null;
+var urlNameGloval = null;
 
 function previewImage(event) {
     const iconPreview = document.getElementById('icon-preview');
@@ -157,11 +159,12 @@ function previewImage(event) {
 
     try {
         const file = event.target.files[0]; 
+        fileDataGlobal = file;
+        urlNameGloval = null;
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                if (existingImg) {
-                    
+                if (existingImg) {  
                     existingImg.src = e.target.result;
                 } else {
                  
@@ -177,6 +180,7 @@ function previewImage(event) {
                 }
             };
             reader.readAsDataURL(file);
+            
         } else {
 
             throw new Error('No file selected');
@@ -188,6 +192,9 @@ function previewImage(event) {
         }
         iconPreview.style.display = 'flex'; 
         textPreview.style.display = 'flex'; 
+        
+        fileDataGlobal = null;
+        urlNameGloval = null;
     }
 }
 

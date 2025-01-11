@@ -159,6 +159,7 @@ div#loader {
 }
 .input-output-data{
     border-radius: 20px;
+    font-weight: bold;
 }
 .unit-data{
     width: 40%;

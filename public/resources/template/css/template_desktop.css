@@ -545,7 +545,8 @@ a.profile {
 }
 
 .content main .bottom-data .orders table tbody tr:hover {
-    background: var(--grey);
+    /*background: var(--grey);*/
+    background: #ff830054;
 }
 
 .content main .bottom-data .orders table tr td .status {

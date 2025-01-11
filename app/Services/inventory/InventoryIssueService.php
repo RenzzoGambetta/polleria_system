@@ -23,9 +23,9 @@ class InventoryIssueService
             for ($i = 0; $i < count($data['id']); $i++) {
                 $currentIssue->details()->create([
                     'supply_id' => $data['id'][$i],
-                    'price' => 0.0,
+                    'price' => floatval($data['prices'][$i]),
                     'quantity' => $data['quantity'][$i],
-                    'total_amount' => 0.0,
+                    'total_amount' => floatval($data['quantity'][$i]*$data['prices'][$i]),
                     'note' => $data['notes'][$i] ?? null,
                 ]);
             };

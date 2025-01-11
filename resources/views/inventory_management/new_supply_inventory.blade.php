@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ asset($ItemSelectionAlert) }}">
 <link rel="stylesheet" href="{{ asset($CheckboxAnimation) }}">
 <link rel="stylesheet" href="{{ asset($RegisterNewsupply) }}">
+<link rel="stylesheet" href="{{ asset($galleryStyleImageAlert) }}">
 
 @if (session()->has('Message'))
     <div class="container-aler">
@@ -152,6 +153,7 @@
                 </div>
             </div>
             <input id="file" type="file" accept="image/*" onchange="previewImage(event)" style="display:none;" name="image" value="{{ old('image', $Supply->image ?? '') }}">
+            <input id="imageURL" type="text" name="imageURL" value="{{ old('imageURL', $Supply->image_url ?? '') }}" style="display:none;">
 
         </div>
         <div class="conteiner-02">
@@ -170,6 +172,16 @@
 
     </div>
 </form>
+<!-- Fullscreen Overlay -->
+<div id="overlay"></div>
+
+<!-- Dropzone Form for Visual Effect -->
+<div id="dropzone-area">
+    <div class="dz-message" data-dz-message>
+        <i class="fi fi-sr-add-image"></i>
+        <span>¡Ya puedes dejar tu imagen aquí para guardarla!</span>
+    </div>
+</div>
 <script src="{{ asset($OptionSelector) }}"></script>
 <script src="{{ asset($NewSupplyAction) }}"></script>
 <!--Pie de pagina como plantilla de todo el panel de control-->

@@ -44,7 +44,7 @@ class SuppliersController extends Controller
     {
         try {
             $data = $request->validated();
-            $response = (new SupplierService)->createFastSupplier($data);
+            $Mesage = (new SupplierService)->createFastSupplier($data);
             $Mesage["response"] = true;
         } catch (Exception $e) {
             $Mesage = [

@@ -2,27 +2,28 @@
     margin: 10px;
     text-align: center;
     color: var(--dark);
-    width: 200px;
+    width: 160px;
     max-width: 300px;
     min-width: 150px;
     user-select: none;
     font-style: italic;
     font-weight: 400;
     cursor: pointer;
+    height: 160px;
 }
 
 .frame-image-type {
     width: 100%;
-    height: 150px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 10px 10px 0 0 ; 
+    border-radius: 10px ; 
     -webkit-user-drag: none; 
 }
 .container-image-frame-panel-select:hover {
-    background: linear-gradient(to right, #fb5d00, #ff7a00);
+    background: var(--container-panel-image-galery-background-color);
     border-radius: 10px;
     color: white;
-    filter: drop-shadow(2px 2px 10px black);
+    filter: drop-shadow(2px 2px 10px rgb(105, 105, 105));
     transform: scale(1.1);
     transition: transform 0.3s ease, background 0.3s ease;
     font-weight: bold;
@@ -30,11 +31,7 @@
 
 
 .name-frame-data-select{
-    padding: 8px;
-    white-space: normal; /* Permite que el texto se ajuste automáticamente a múltiples líneas */
-    word-wrap: break-word; /* Fuerza el ajuste de palabras largas si exceden el ancho */
-    overflow-wrap: break-word; /* Compatibilidad adicional para ajustar palabras largas */
-
+    display: none;
 }
 
   /* First Layer: Fullscreen Overlay */

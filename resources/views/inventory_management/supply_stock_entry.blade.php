@@ -46,7 +46,7 @@
 
                         <div class="search-container">
                             <input type="number" id="id-supplier" name="supplier_id">
-                            <input type="text" id="search-supplier" name="supplier_name" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
+                            <input type="text" id="search-supplier" name="supplier_name" style="display: none" class="search-box-supplier input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
                             <label for="search-supplier" id="search-label-supplier" class="label-input-data mobile-label main-panel">Seleccione el proveedor</label>
                             <div id="suggestions" class="suggestions-supplier"></div>
                             <div id="loader-supplier" class="loader-section">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="button-new-supplier" onclick="newSupplierRegistrationFast()">+</button>
+                        <button type="button" class="button-new-supplier"  onclick="newSupplierRegistrationFast()">+</button>
                     </div>
 
                     <div class="lateralside-content sub-block-02">
@@ -202,20 +202,14 @@
             <button type="button" class="button-opcion-form clear-option border-style-right" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
             <button type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Añadir supplyo</button>
             <button type="submit" class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
-            <script src="{{ asset($FunctionButtonOnclick) }}"></script>
-
+            
         </div>
     </div>
 </form>
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($OptionSelector) }}"></script>
-<script>
-    const apiUrl = '/list_of_suppliers';
-    new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier', apiUrl, 5, 1);
-    selectorItenandAnimation('selected-type-credit-and-cash', 'options-type-credit-and-cash', 'option-type-credit-and-cash', 'sub-title-div-type');
-    selectorItenandAnimation('selected-document', 'options-document', 'option-document');
+<script src="{{ asset($FunctionButtonOnclick) }}"></script>
 
- </script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

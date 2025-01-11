@@ -1,4 +1,8 @@
 const URL_TEMPLATE = "/resources/inventory_management/template/";
+const supplierSearchBox = new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier',' /list_of_suppliers', 5, 1);
+selectorItenandAnimation('selected-type-credit-and-cash', 'options-type-credit-and-cash', 'option-type-credit-and-cash', 'sub-title-div-type');
+selectorItenandAnimation('selected-document', 'options-document', 'option-document','sub-title-div-document');
+
 var changeInterval;
 
 function cancelPage(url) {
@@ -540,8 +544,13 @@ async function newSupplierRegistrationFast() {
                 } else {
                     if (companyName != null & documentNumber != null & phone != null) {
                         const result = await querySearchGet("/new_supplier_registration_fast", dataCompact);
+                        console.log(result);
                         if (result.response === true) {
                             quickAlert("success", "Se registro exitosamente el provedor", "Listo")
+                            supplierSearchBox.fetchAllItems();
+                            $('#id-supplier').val(result.supplier.id);
+                            $('#search-supplier').val(result.person.name);
+                            supplierConsultation(result.supplier.id); 
                         } else {
                             quickAlert("error", "No se pudo registrar el provedor", "Oops...")
                         }

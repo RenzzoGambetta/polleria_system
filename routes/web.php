@@ -160,6 +160,7 @@ use App\Http\Controllers\test\testController;
         Route::get('/update_menu_state', [EfectController::class, 'updateMenuState']);
 
         Route::get('/get_image_gallery', [ImageController::class, 'getImageGallery']);
+        Route::post('/new_image_galery', [ImageController::class, 'newImageGalery']);
         Route::post('/delete_image_gallery', [ImageController::class, 'deleteImageGallery']);
         Route::post('/upload_image_gallery', [ImageController::class, 'uploadImageGallery']);
 

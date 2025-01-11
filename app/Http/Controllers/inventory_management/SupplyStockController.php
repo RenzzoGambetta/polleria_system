@@ -100,13 +100,8 @@ class SupplyStockController extends Controller
                     'Type' => 'success'
                 ]);
             } else {
-                //$response = (new supplyService)->createSupply($validator);
-                $archivo = $request->file('image');
-                $nombreArchivo = time() . '_' . str_replace(' ', '_', $archivo->getClientOriginalName());
-                $archivo->move(public_path(ConstGlobal::ROUTE_SUPPLY), $nombreArchivo);
-                $request['ImageUrl'] = ConstGlobal::ROUTE_SUPPLY . "/$nombreArchivo";                
-
-                return response()->json($request);
+                $response = (new supplyService)->createSupply($validator);  
+                //return response()->json($request);
 
                 if ($response) {
                     return redirect()->route('inventory')->with([
@@ -173,30 +168,33 @@ class SupplyStockController extends Controller
     public function registerSupplyOutput(InventoryIssueRequest $request)
     {
         try {
-            $data = $request->validated();
-            $inventoryIssueService = new InventoryIssueService();
-            $entry = $inventoryIssueService->createInventoryIssue($data);
-
-            return redirect()->route('show_list_inventory_movements');
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error al registrar la entrada: ' . $e->getMessage()
-            ], 500);
+            //return response()->json($request);
+            $entry = (new InventoryIssueService)->createInventoryIssue($request->validated());
+            return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageSuccess('El registro fue con exito.'));
+        } catch (Exception $e) {
+            return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageError('Lo sentimos algunos dados no son balidos reinicie el preosedimiento.',10, $e->getMessage()));
         }
     }
     public function querySupplyData(Request $request)
     {
 
         $id = $request->input('id');
-
-        $item = DB::table('supplies')
-            ->select('id', 'name', 'unit', 'stock')
-            ->where('id', $id)
-            ->first();
-
+       
+        $item = Supply::select(
+            'supplies.id',
+            'supplies.name',
+            'supplies.unit',
+            'supplies.stock',
+            DB::raw('IFNULL(imd.price, 0) as last_price')
+        )
+        ->leftJoin('inventory_movement_details as imd', 'supplies.id', '=', 'imd.supply_id')
+        ->where('supplies.id', $id)
+        ->orderBy('imd.id', 'desc') 
+        ->first();
 
         if ($item) {
+            $unitMap = array_column(ConstGlobal::UNIT_OPTIONS, 1, 0);
+            $item->unit = $unitMap[$item->unit] ?? $item->unit;
             return response()->json($item);
         } else {
             return response()->json(['error' => 'Item no encontrado'], 404);

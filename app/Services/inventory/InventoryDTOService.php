@@ -4,6 +4,7 @@ namespace App\Services\inventory;
 
 use App\Models\InventoryIssue;
 use App\Models\InventoryReceipt;
+use Carbon\Carbon;
 use Exception;
 
 class InventoryDTOService
@@ -27,7 +28,7 @@ class InventoryDTOService
         $receiptsMovementDto = $receipts->map(function ($r) {
             return [
                 'id' => $r->id,
-                'date' => $r->incoming_date,
+                'date' => Carbon::parse($r->incoming_date)->format('d - m - Y'),
                 'type' => 'Entrada',
                 'proveedor' => $r->supplier->person->name,
                 'total_amount' => $r->total_amount,
@@ -53,7 +54,7 @@ class InventoryDTOService
         $issuesMovementDto = $issues->map(function ($i) {
             return [
                 'id' => $i->id,
-                'date' => $i->outgoing_date,
+                'date' => Carbon::parse($i->outgoing_date)->format('d - m - Y'),
                 'type' => 'Salida',
                 'proveedor' => null,
                 'total_amount' => 0.0,

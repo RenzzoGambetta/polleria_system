@@ -19,7 +19,17 @@
 
 <div class="image-container-primary">
     <div class="image-container-option-select">
-        <!-- Aquí se insertarán las imágenes dinámicamente -->
+    </div>
+</div>
+
+<!-- Fullscreen Overlay -->
+<div id="overlay"></div>
+
+<!-- Dropzone Form for Visual Effect -->
+<div id="dropzone-area">
+    <div class="dz-message" data-dz-message>
+        <i class="fi fi-sr-add-image"></i>
+        <span>¡Ya puedes dejar tu imagen aquí para guardarla!</span>
     </div>
 </div>
 

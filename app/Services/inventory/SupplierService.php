@@ -28,7 +28,10 @@ class SupplierService
             ]);
 
             DB::commit();
-            return $supplier;
+            return [
+                'supplier' => $supplier,
+                'person' => $person,
+            ];
         }
         catch (Exception $e) {
             DB::rollBack();

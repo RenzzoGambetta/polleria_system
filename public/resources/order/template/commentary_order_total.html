@@ -20,7 +20,7 @@
         color: white;
     }
 
-    textarea#comment-input {
+    textarea#comment-input.alert-comet-input {
         padding: 10px 40px 10px 20px;
         font-size: 0.9rem;
         height: 20vh;
@@ -38,14 +38,16 @@
         margin-top: 10px;
         width: 100%;
     }
-
+    .wave-group.input-dimensions.comment.data.alert-option-text-note {
+        width: calc(100% - 2vh);
+    }
     button.swal2-cancel.swal2-styled.swal2-default-outline,
     button.swal2-confirm.swal2-styled.swal2-default-outline {
         width: calc(50% - 30px);
     }
 </style>
-<div class="wave-group input-dimensions comment data">
-    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="note" id="comment-input"
+<div class="wave-group input-dimensions comment data alert-option-text-note">
+    <textarea class="input effect-4 comment alert-comet-input" rows="5" cols="50" maxlength="500" name="note" id="comment-input"
         placeholder=" "></textarea>
     <label class="label">
         <span style="--index: 1" class="label-char">N</span>

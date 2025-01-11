@@ -3,6 +3,10 @@ const templateUrl = '/resources/config/template';
 let imageUrlGlobal, imageNameGlobal;
 let selectedFile = null;
 let nameFileGallery = 'supply';
+
+const imagesPerPage = 6;  // Número de imágenes por página
+let currentPage = 1;      // Página actual
+
 // Función para obtener las imágenes del servidor
 async function fetchImages() {
     try {
@@ -78,6 +82,7 @@ async function mostrarAlerta(imageUrl, imageName, option = true) {
             $('button#btnDelete').css({
                 'background': 'linear-gradient(to right, #b40000, #df0000, #ff0000)',
             });
+            $('.swal2-container.swal2-center.swal2-backdrop-show').css('backdrop-filter', 'blur(5px)');
             $('button#btnUpdate').css({
                 'background': 'linear-gradient(to right, rgb(0 36 180), rgb(0 101 223), rgb(0 124 255))',
             });
@@ -187,6 +192,7 @@ function previewImageAlert(event) {
                 'justify-content': 'center',
                 'align-items': 'center',
             });
+            $('.swal2-container.swal2-center.swal2-backdrop-show').css('backdrop-filter', 'blur(5px)');
             $('.icon-alert-comparison').css({
                 'font-size': '2rem',
                 'color': 'var(--dark)',
@@ -410,6 +416,219 @@ $(document).ready( function() {
         var selectedValue = $(this).val();
         console.log(selectedValue);
         nameFileGallery = selectedValue;
+        $(".image-container-option-select").slideUp(400);
         await fetchImages();
+        $(".image-container-option-select").slideDown(800);
+
+    });
+});
+
+
+//*
+// Inplementacion de arrastre y sulte en todo el body 
+// */ 
+$(document).ready(function () {
+    const overlay = $("#overlay");
+    const dropzoneArea = $("#dropzone-area");
+    const csrfToken = $('input[name="_token"]').val();
+    const allowedFileTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+
+    if (!overlay.length || !dropzoneArea.length || !csrfToken) {
+        console.error("Faltan elementos necesarios (overlay, dropzoneArea o CSRF token).");
+        return;
+    }
+
+    // Mostrar el overlay y dropzone al arrastrar archivos sobre la página
+    $(window).on("dragenter", function (event) {
+        if (event.originalEvent.dataTransfer?.types.includes("Files")) {
+            overlay.show();
+           $(dropzoneArea).css("display", "flex");
+        }
+    });
+
+    // Ocultar el overlay cuando el ratón sale del área
+    overlay.on("dragleave", function (event) {
+        if (event.target === overlay[0]) {
+            overlay.hide();
+            dropzoneArea.hide();
+        }
+    });
+
+    // Evitar el comportamiento por defecto y mantener el overlay visible
+    overlay.on("dragover", function (event) {
+        event.preventDefault();
+    });
+
+    // Manejar el evento drop
+    overlay.on("drop", function (event) {
+        event.preventDefault();
+        overlay.hide();
+        dropzoneArea.hide();
+
+        const files = event.originalEvent.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files[0]; // Tomar solo el primer archivo
+
+            if (!allowedFileTypes.includes(file.type)) {
+                Swal.fire({
+                    icon: "info",
+                    title: "Archivo no permitido",
+                    text: "Este archivo no es válido. Solo se permiten imágenes en formato JPG, JPEG, PNG o GIF.",
+                    confirmButtonText: "Entendido",
+                    didOpen: urlPostDeleteStyle
+                });
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                Swal.fire({
+                    title: "¿Deseas guardar esta imagen?",
+                    text: "¡Estas a tiempo de modificar su nombre!",
+                    imageUrl: e.target.result,
+                    imageAlt: "Vista previa de la imagen",
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, guardar",
+                    cancelButtonText: "No, cancelar",
+                    reverseButtons: true,
+                    input: "text",
+                
+                    didOpen: () => {
+                        $('.swal2-container.swal2-center.swal2-backdrop-show').css('backdrop-filter', 'blur(5px)');
+                        $('.image-comparison-alert').css({
+                            'display': 'flex',
+                            'justify-content': 'center',
+                            'align-items': 'center',
+                        });
+                        $('.icon-alert-comparison').css({
+                            'font-size': '2rem',
+                            'color': 'var(--dark)',
+                            'padding': '20px',
+                        });
+
+                        $('.swal2-confirm.swal2-styled.alert-button').css({
+                            'width': '45%',
+                        });
+                        $('.name-frame-data-select-alert').css({
+                            'text-align': 'center',
+                            'color': 'var(--dark)',
+                            'font-style': 'italic',
+                            'font-weight': '400',
+                        });
+                        $('img.swal2-image').css({
+                            'max-width': '100%',
+                            'min-width': '40%',
+                            'margin-bottom': '15px',
+                            'border-radius': '5px',
+                            'border': '1px dashed #82828278',
+                            'max-height': '55vh',
+                            'object-fit': 'contain',
+                            '-webkit-user-drag': 'none',
+                        });
+                        $('.swal2-popup.swal2-modal').css({
+                            'max-height': '90vh',
+                            'max-width': '80%',
+                            'width': 'auto',
+                            'border-radius': '10px',
+                            'user-select': 'none',
+                            'justify-items': 'center',
+                        });
+            
+                        $('div:where(.swal2-container) h2:where(.swal2-title)').css({
+                            'font-size': '1.5rem',
+                            'color': 'var(--dark)',
+                        });
+                        $('div:where(.swal2-container) div:where(.swal2-footer)').css({
+                            'border-top': '1px solid rgb(171 171 171 / 60%)',
+            
+                        });
+                        $('div:where(.swal2-container) img:where(.swal2-image)').css({
+                            'margin': '2em 1em 1em',
+            
+                        });
+                        $('div:where(.swal2-container) .swal2-input').css({'text-align':'center'});
+                        $('div:where(.swal2-container) .swal2-input').val(file.name.replace(/\.[^/.]+$/, ""));
+                    },
+                    preConfirm: async (data) => {
+                        try {
+                            // Expresión regular que permite solo letras, números, guiones y guiones bajos
+                            const invalidCharsPattern = /[<>:"/\\|?*]/; // Carácteres no permitidos para nombres de archivo
+                
+                            // Verificar si el nombre contiene caracteres no permitidos
+                            if (invalidCharsPattern.test(data)) {
+                                throw new Error('El nombre del archivo contiene caracteres no permitidos. Evita usar < > : " / \\ | ? *');
+                            }
+                
+                            // Validar si el nombre está vacío
+                            if (!data.trim()) {
+                                throw new Error('El nombre del archivo no puede estar vacío.');
+                            }
+                
+                            return data; // Si pasa la validación, se devuelve el valor
+                        } catch (error) {
+                            Swal.showValidationMessage(`
+                                Request failed: ${error.message}
+                            `); // Mostrar el mensaje de error
+                        }
+                    }
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        // Crear un FormData para enviar los datos
+                        const formData = new FormData();
+                        formData.append("image", file);   
+                        formData.append("image_name", result.value);
+                        formData.append("folder_name", nameFileGallery);
+                        console.log(result.value);
+
+                        try {
+                            const response = await fetch("/new_image_galery", {
+                                method: "POST",
+                                headers: {
+                                    "X-CSRF-TOKEN": csrfToken
+                                },
+                                body: formData
+                            });
+
+                            if (!response.ok) {
+                                throw new Error("Error al subir la imagen.");
+                            }
+
+                            const data = await response.json();
+                            if(data.success){
+                                Swal.fire({
+                                    title: "¡Éxito!", 
+                                    text: data.message, 
+                                    icon: "success",
+                                    confirmButtonText: "Entendido",
+                                    didOpen: urlPostDeleteStyle
+                                });
+                            }else{
+                                Swal.fire({
+                                    title: "Error!", 
+                                    text: data.message,
+                                    icon: "error",
+                                    confirmButtonText: "Entendido",
+                                    didOpen: urlPostDeleteStyle
+                                });
+                            }
+                            fetchImages();
+
+                        } catch (error) {
+                            Swal.fire({
+                                title: "Error!", 
+                                text: "No se pudo subir la imagen.", 
+                                icon: "error",
+                                confirmButtonText: "Entendido",
+                                didOpen: urlPostDeleteStyle
+                            });
+                            fetchImages();
+                        }
+                    }
+                });
+            };
+
+            reader.readAsDataURL(file);
+        }
     });
 });

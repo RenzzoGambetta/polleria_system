@@ -1,3 +1,7 @@
+let storedImages = [];
+const templateUrl = '/resources/config/template';
+let nameFileGallery = 'supply';
+
 $(document).ready(function () {
     $('#checkbox-preference-input').change(function () {
         updateLabelColor();
@@ -74,111 +78,293 @@ $(document).ready(function () {
     });
 });
 
+//*
+// Inplementacion de arrastre y sulte en todo el body 
+// */ 
 $(document).ready(function () {
-    const $dropFrame = $('#drop-frame');
-    const $overlay = $('#overlay');
-    const $fileInput = $('#file');
+    const $overlay = $("#overlay");
+    const $dropzoneArea = $("#dropzone-area");
+    const csrfToken = $('input[name="_token"]').val();
+    const allowedFileTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
 
-    let draggingImage = false;
-    let dragLeaveTimeout;
+    if (!$overlay.length || !$dropzoneArea.length || !csrfToken) {
+        console.error("Faltan elementos necesarios ($overlay, $dropzoneArea o CSRF token).");
+        return;
+    }
 
-    $('body').on('dragenter dragover dragleave drop', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-    });
-
-    $('body').on('dragenter dragover', function (e) {
-
-        if (!draggingImage) {
-            draggingImage = true;
-            $('#text-image').text('Suelta aca la imagen o elige una opcion');
+    // Mostrar el overlay y el área de dropzone al arrastrar archivos
+    $(window).on("dragenter", function (event) {
+        if (event.originalEvent.dataTransfer?.types.includes("Files")) {
+            $overlay.show();
+            $dropzoneArea.css("display", "flex");
         }
     });
 
-    $('body').on('dragleave', function () {
-        if (dragLeaveTimeout) {
-            clearTimeout(dragLeaveTimeout);
+    // Ocultar el overlay cuando el ratón sale del área de dropzone
+    $overlay.on("dragleave", function (event) {
+        if (event.target === $overlay[0]) {
+            $overlay.hide();
+            $dropzoneArea.hide();
         }
-
-        dragLeaveTimeout = setTimeout(function () {
-            if (draggingImage) {
-                draggingImage = false;
-                $('#text-image').text('Subir una imagen');
-            }
-        }, 5000);
-
     });
 
-    $dropFrame.on('drop', function (e) {
-        draggingImage = false;
-        const files = e.originalEvent.dataTransfer.files;
+    // Evitar el comportamiento por defecto y mantener el overlay visible
+    $overlay.on("dragover", function (event) {
+        event.preventDefault();
+    });
+
+    // Manejar el evento de soltar archivos
+    $overlay.on("drop", function (event) {
+        event.preventDefault();
+        $overlay.hide();
+        $dropzoneArea.hide();
+
+        const files = event.originalEvent.dataTransfer.files;
+
         if (files.length > 0) {
-            $fileInput[0].files = files;
-            previewImage({ target: $fileInput[0] });
-        }
+            const file = files[0]; // Tomar solo el primer archivo
 
+            // Validar el tipo de archivo
+            if (!allowedFileTypes.includes(file.type)) {
+                Swal.fire({
+                    icon: "info",
+                    title: "Archivo no permitido",
+                    text: "Este archivo no es válido. Solo se permiten imágenes en formato JPG, JPEG, PNG o GIF.",
+                    confirmButtonText: "Entendido",
+                });
+                return;
+            }
+
+            // Utilizar la función previewImage
+            const eventMock = { target: { files: [file] } };
+            previewImage(eventMock); // Llamar a la función de vista previa
+        }
     });
 });
 
-
-function showImages() {
-
-    $.get('/get_image_gallery', function (images) {
-        if (images.length > 0) {
-            // Crear un HTML con las imágenes y sus nombres
-            let content = `
-            <div class="container-option-select">
-                <div class="tabs">
-                    <input type="radio" id="radio-1" name="tabs" checked="">
-                    <label class="tab" for="radio-1">Suministros <i class="fi fi-sr-dolly-flatbed-alt icon-image-section"></i></label>
-                    <input type="radio" id="radio-2" name="tabs">
-                    <label class="tab" for="radio-2">Items <i class="fi fi-sr-plate-wheat icon-image-section"></i></label>
-                    <input type="radio" id="radio-3" name="tabs">
-                    <label class="tab" for="radio-3">Combos <i class="fi fi-sr-crown icon-image-section"></i></label>
-                    <span class="glider"></span>
-                </div>
-            </div>
-            
-            <div class="image-container-primary">
-            <div class="image-container-option-select">
-            `;
-            images.forEach(function (image) {
-                let imageUrl = '/warehouse/supply/' + image;
-                content += `
-                    <div style="margin: 10px; text-align: center;color:var(--dark);">
-                        <img src="${imageUrl}" alt="${image}" style="width: 100px; height: 100px; object-fit: cover;">
-                        <p style="dsplay:none;">${image}</p>
-                    </div>
-                `;
-            });
-            content += '</div></div>';
-
-            // Mostrar las imágenes en un SweetAlert2
-            Swal.fire({
-                title: 'Imágenes almacenadas',
-                html: content,
-                showCloseButton: true,
-                didOpen: () => {
-
-                    $('.swal2-popup.swal2-modal').css({
-                        'height': '80vh',
-                        'width': '90%',
-                        'border-radius': '20px'
-                    });
-                    $('div:where(.swal2-container) .swal2-html-container').css({
-                        'height': '60vh',
-                    });
-                    $('div:where(.swal2-container) h2:where(.swal2-title)').css({
-                        'font-size': '1.5rem',
-                        'padding-top': '15px',
-                        'color': 'var(--dark)',
-                    });
-
-                    
-                },
-            });
-        } else {
-            Swal.fire('No hay imágenes', 'No se encontraron imágenes en la carpeta.', 'warning');
+/**fin */
+async function fetchImages() {
+    try {
+        const response = await fetch(`/get_image_gallery?name_file=${nameFileGallery}`);
+        if (!response.ok) {
+            throw new Error('Error al obtener las imágenes');
         }
+        const images = await response.json();
+        storedImages = images;
+    } catch (error) {
+        console.error('Error al obtener las imágenes:', error);
+    }
+}
+
+async function showImages() {
+
+    await fetchImages();
+    const template = await loadHtmlFromFile(templateUrl + '/image_template.html');
+    if (!template) return;
+
+    let content = `
+       <div class="container-option-select">
+            <div class="tabs">
+                <input type="radio" id="radio-1" name="tabs" value="supply" checked="">
+                <label class="tab" for="radio-1">Suministros <i class="fi fi-sr-dolly-flatbed-alt icon-image-section"></i></label>
+                <input type="radio" id="radio-2" name="tabs" value="item">
+                <label class="tab" for="radio-2">Items <i class="fi fi-sr-plate-wheat icon-image-section"></i></label>
+                <input type="radio" id="radio-3" name="tabs" value="combo">
+                <label class="tab" for="radio-3">Combos <i class="fi fi-sr-crown icon-image-section"></i></label>
+                <span class="glider"></span>
+            </div>
+        </div>
+        
+        <div class="image-container-primary">
+            <div class="image-container-option-select">
+                <div class="container-image-frame-panel-select" onclick="clearPreviewImage()" style="display: flex;justify-content: center;align-items: center;border: 3px dotted var(--dark);var(--dark: );border-radius: 10px;">
+                    <p style="color: black;">Quitar Imagen</p>
+                </div>
+    `;
+    storedImages.forEach(function (image) {
+        const imageUrl = `/warehouse/${nameFileGallery}/${image}`;
+
+        const imageHtml = template
+            .replaceAll('{{imageUrl}}', imageUrl)
+            .replaceAll('{{imageName}}', procesarNombreArchivo(image));
+
+        content += imageHtml;
     });
+  content += '</div></div>';
+
+    // Mostrar las imágenes en un SweetAlert2
+    Swal.fire({
+        title: 'Imágenes almacenadas',
+        html: content,
+        showConfirmButton: false,
+        showCloseButton: true,
+        didOpen: () => {
+
+            $('.swal2-popup.swal2-modal').css({
+                'height': '80vh',
+                'width': '90%',
+                'border-radius': '20px'
+            });
+            $('div:where(.swal2-container) .swal2-html-container').css({
+                'height': '70vh',
+            });
+            $('div:where(.swal2-container) h2:where(.swal2-title)').css({
+                'font-size': '1.5rem',
+                'padding-top': '15px',
+                'color': 'var(--dark)',
+            });
+
+            $(document).ready( function() {
+                $('input[name="tabs"]').on('change',async function() {
+                    var selectedValue = $(this).val();
+                    console.log(selectedValue);
+                    nameFileGallery = selectedValue;
+                    $(".image-container-option-select").slideUp(400);
+                    await showImagesAlertUpdate();
+                    $(".image-container-option-select").slideDown(800);
+            
+                });
+            });
+            
+
+        },
+    });
+}
+function procesarNombreArchivo(nombreArchivo) {
+
+    let nombreSinNumeros = nombreArchivo.split('_').slice(1).join('_');
+
+    let nombrePuro = nombreSinNumeros.split('.')[0];
+
+    if (nombrePuro.length > 10) {
+        nombrePuro = nombrePuro.substring(0, 25) + '...';
+    }
+
+    return nombrePuro;
+}
+
+
+async function showImagesAlertUpdate() {
+    await fetchImages();
+    const template = await loadHtmlFromFile(templateUrl + '/image_template.html');
+    if (!template) return;
+
+    let content = ` 
+                <div class="container-image-frame-panel-select"clearPreviewImage()" style="display: flex;justify-content: center;align-items: center;border: 3px dotted var(--dark);var(--dark: );border-radius: 10px;">
+                    <p style="color: black;">Quitar Imagen</p>
+                </div>`;
+    storedImages.forEach(function (image) {
+        const imageUrl = `/warehouse/${nameFileGallery}/${image}`;
+
+        const imageHtml = template
+            .replaceAll('{{imageUrl}}', imageUrl)
+            .replaceAll('{{imageName}}', procesarNombreArchivo(image));
+
+        content += imageHtml;
+    });
+
+    const container = document.querySelector('.image-container-option-select');
+    if (container) {
+        container.innerHTML = content;
+    }
+}
+function clearPreviewImage(){
+    const existingImg = document.getElementById('preview-image');
+    const iconPreview = document.getElementById('icon-preview');
+    const textPreview = document.getElementById('text-preview');
+
+    if (existingImg) {
+        existingImg.remove(); 
+    }
+    iconPreview.style.display = 'flex'; 
+    textPreview.style.display = 'flex'; 
+    
+    fileDataGlobal = null;
+    Swal.close();
+}
+function mostrarAlerta(urlImage, nameImage){
+    fileDataGlobal = null;
+    urlNameGloval = urlImage;
+    
+    const existingImg = document.getElementById('preview-image');
+    const iconPreview = document.getElementById('icon-preview');
+    const textPreview = document.getElementById('text-preview');
+
+    if (existingImg) {  
+        existingImg.src = urlImage;
+        Swal.close();
+    } else {
+     
+        const imgPreview = document.createElement('img');
+        imgPreview.src = urlImage;
+        imgPreview.id = 'preview-image';
+        imgPreview.className = 'Img-style-preview';
+
+        iconPreview.style.display = 'none';
+        textPreview.style.display = 'none';
+
+        iconPreview.parentNode.insertBefore(imgPreview, iconPreview);
+        Swal.close();
+    }
+}
+
+document.getElementById('myForm').addEventListener('submit',async function (event) {
+    event.preventDefault();
+    if(fileDataGlobal != null){
+
+        const csrfToken = $('input[name="_token"]').val();
+        const formData = new FormData();
+        formData.append("image", fileDataGlobal);   
+        formData.append("image_name", cleanFileName($('#name-data').val()));
+        formData.append("folder_name", 'supply');
+    
+        try {
+            const response = await fetch("/new_image_galery", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": csrfToken
+                },
+                body: formData
+            });
+    
+            if (!response.ok) {
+                throw new Error("Error al subir la imagen.");
+            }
+    
+            const data = await response.json();
+            if(data.success === true && data.new_url){
+               document.getElementById('imageURL').value = data.new_url;
+               document.getElementById('myForm').submit();
+            }else{
+                Swal.fire({
+                    title: "Error!", 
+                    text: data.message,
+                    icon: "error",
+                    confirmButtonText: "Entendido",
+                    didOpen: urlPostDeleteStyle
+                });
+            }
+            fetchImages();
+    
+        } catch (error) {
+            Swal.fire({
+                title: "Error!", 
+                text: "No se pudo subir la imagen.", 
+                icon: "error",
+                confirmButtonText: "Entendido",
+                didOpen: urlPostDeleteStyle
+            });
+            fetchImages();
+        }
+    }else if(urlNameGloval != null){
+        document.getElementById('imageURL').value = urlNameGloval;
+        document.getElementById('myForm').submit();
+        fetchImages();
+    }else{
+        fetchImages();
+    }
+});
+function cleanFileName(fileName) {
+    // Reemplaza los caracteres no permitidos con un guion bajo (_) en Windows
+    return fileName.replace(/[\\\/:*?"<>|]/g, '_'); // Reemplaza caracteres no permitidos por guiones bajos
 }

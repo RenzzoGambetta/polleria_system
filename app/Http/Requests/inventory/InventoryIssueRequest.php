@@ -20,11 +20,15 @@ class InventoryIssueRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'comment' => 'string|max:255|nullable',
+            'comment' => 'nullable|string|max:255',  // 'nullable' debe ir antes de 'string'
             'id' => 'required|array',
             'id.*' => 'integer|exists:supplies,id',
             'quantity' => 'required|array',
             'quantity.*' => 'integer|min:1',
+            'notes' => 'nullable|array',  // 'nullable' debe ir antes de 'array'
+            'notes.*' => 'nullable|string|max:255',
+            'prices' => 'nullable|array',
+            'prices.*' => 'nullable|string',  // Aseguramos que los elementos de 'prices' sean nulos o cadenas
         ];
     }
 }

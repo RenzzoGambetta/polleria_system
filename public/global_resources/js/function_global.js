@@ -100,6 +100,7 @@ function urlPostDeleteStyle() {
     swalContainer.find('.swal2-success-circular-line-left').css('background-color', 'transparent');
     swalContainer.find('.swal2-success-fix').css('background-color', 'transparent');
     swalContainer.find('.swal2-success-circular-line-right').css('background-color', 'transparent');
+    $('.swal2-container.swal2-center.swal2-backdrop-show').css('backdrop-filter', 'blur(5px)');
 
 }
 

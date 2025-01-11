@@ -54,20 +54,20 @@
                     </div>
                 </div>
                 <div class="sub-frame-02">
-                    <button type="button" class="btn-output-supply-item" onclick="addSupply()"><i class="fi fi-br-plus"></i></button>
+                    <button type="button" class="btn-output-supply-item" onclick="addSupply()" title="Agregar producto a la lista"><i class="fi fi-br-plus"></i></button>
                 </div>
             </div>
             <div class="frame-02">
                 <div class="sub-frame-001">
-                    <button type="button" class="btn-cancel-action-output">Cancelar</button>
-                    <button type="submit" class="btn-register-action-output">Registrar</button>
+                    <button type="button" class="btn-cancel-action-output" title="Cancelar y regresar a la pagina anterior">Cancelar</button>
+                    <button type="submit" class="btn-register-action-output" title="Registrar toda la lista">Registrar</button>
                 </div>
             </div>
         </div>
         <div class="output-supply-sub-02">
             <div class="frame-001">
                 <div class="wave-group input-dimensions comment">
-                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input" value="" placeholder=" "></textarea>
+                    <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="comment" id="comment-input-note" value="" placeholder=" "></textarea>
                     <label class="label">
                         @foreach (str_split($comment) as $index => $char)
                             <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
@@ -84,8 +84,9 @@
                     <thead>
                         <tr>
                             <th class="field-size movile-style-th">Producto</th>
-                            <th class="data-entry movile-style-th">Unidad</th>
+                            <th class="data-entry movile-style-th">Cantidad</th>
                             <th class="data-entry movile-style-th">Unidad medida</th>
+                            <th class="data-entry movile-style-th">Precio</th>
                             <th class="data-button movile-style-th">Opciones</th>
 
                         </tr>
