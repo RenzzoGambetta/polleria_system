@@ -11,11 +11,13 @@ use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
 use App\Models\menu\Table;
 use App\Models\order\Order;
+use App\Models\order\OrderSerie;
 use App\Models\Person;
 use App\Models\User;
 use App\Services\IdentificationDocumentService;
 use App\Services\order\CashierSessionService;
 use App\Services\order\ClientService;
+use App\Services\order\OrderDtoService;
 use App\Services\order\OrderService;
 use App\Services\order\PaymentService;
 use DateTime;
@@ -47,7 +49,7 @@ class PointOfSaleController extends Controller
     public function showPointOfSale(Request $request)
     {
         $user = Auth::user();
-        
+
         if (DB::table('cashier_sessions')->where('user_id', $user->id)->whereNull('cash_close_at')->exists()) {
             $Lounge = Lounge::all();
             $Navigation = $this->NavigationPonit;
@@ -113,13 +115,13 @@ class PointOfSaleController extends Controller
             return view('order.cashier_sessions', compact('Navigation', 'Data'));
         }
     }
+    /*
     public function listEmployeesOpenBox()
     {
         $Lounge = Lounge::all();
-    }
+    }*/
     public function registerSessionCashBox(Request $request)
     {
-        //return response()->json($request);
         try {
             $user = Auth::user();
 
@@ -272,15 +274,23 @@ class PointOfSaleController extends Controller
     public function newOrderClient(Request $request)
     {
         $Navigation = $this->NavigationPonit;
-        $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
-        if ($request->id == null | $request->code == null | $request->sale == null) {
-            return response()->json(['mesage' => 'No se puede accesdeder sin datos']);
+        if ($request->isBar) {
+            $Data = [
+                'sale' => "Mostrador",
+                'isBar' => false
+            ];
+        } else {
+            $Data = [
+                'id' => $request->id,
+                'code' => $request->code,
+                'sale' => $request->sale,
+                'isBar' => true
+            ];
+            if ($request->id == null | $request->code == null | $request->sale == null) {
+                return response()->json(['mesage' => 'No se puede accesdeder sin datos']);
+            }
         }
-        $Data = [
-            'id' => $request->id,
-            'code' => $request->code,
-            'sale' => $request->sale
-        ];
+        $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
         return view('order.new_order_client', compact('Navigation', 'Category', 'Data'));
     }
     public function listItemFiltCategory(Request $request)
@@ -288,10 +298,43 @@ class PointOfSaleController extends Controller
         $Item = MenuItem::where('category_id', $request->id)->select('name', 'id', 'display_order', 'price')->get();
         return response()->json($Item);
     }
-    public function listTakeawayOrders(Request $Data)
+    public function listTakeawayOrders(Request $data)
     {
+        $orderDtoService = new OrderDtoService();
+        $ordersForCounter = $orderDtoService->getAllOrdersDtoForCounter($data->type);
+        $typeCounterView = $data->type; 
 
-        //Datos de prueva para los pedidos de mostrador
+        $pedidos = [];
+        /*
+        / ADECUAR EL ARRAY A COMO ESTA AQUI. HAY QUE MODIFICARLO LO QUE ESTA AQUI CON NOMBRES DE VARIABLES MEJORES
+        */
+        foreach ($ordersForCounter as $o) {
+            $paymentMethod = strtolower($o['payment_method']);
+            $colorPaymentMethod = '#53008dbd';
+
+            if ($data->type == 'order' && $paymentMethod != null) break;
+            if ($data->type == 'preparation' && $paymentMethod == null) break;
+
+            if ($paymentMethod == 'efectivo') {
+                $colorPaymentMethod = '#088d00bd';
+            } else if ($paymentMethod == 'debito' || $paymentMethod == 'credito') {
+                $colorPaymentMethod = '#0006f3a1';
+            } 
+
+            $pedidos[] = [
+                'id' => $o['id'],
+                'order' => $o['order_number'],
+                'date' => $o['order_date_time'],
+                'client' => $o['client'],
+                'pay' => $o['payment_method'],
+                'color' => $colorPaymentMethod,
+                'total' => $o['total_amount'],
+            ];
+        }
+
+        return response()->json($pedidos);
+
+        /*Datos de prueva para los pedidos de mostrador
         $nombres = [
             'Juan Pérez',
             'María López',
@@ -414,36 +457,39 @@ class PointOfSaleController extends Controller
         }
 
         return response()->json($pedidos);
+        */
     }
-    public function createOrderClient(Request $request)
+    public function createOrderClient(CreateOrderRequest $request)
     {
-        $requestFilt = [
-            'table_id' => (int) $request->table_id,
-            'waiter_id' => (int) Auth::user()->id,
-            'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
-            'commentary' => $request->commentary ?? '',
-            'menu_item_ids' => array_map('intval', $request->menu_item_ids),
-            'prices' => array_map('floatval', $request->prices),
-            'quantities' => array_map('intval', $request->quantities),
-            'total_prices' => array_map('floatval', $request->total_prices),
-            'is_delibery_details' => array_map(function ($value) {
-                return filter_var($value, FILTER_VALIDATE_BOOLEAN);
-            }, $request->is_delibery_details),
-            'notes' => $request->notes ?? [],
-        ];
-        //return response()->json($requestFilt);
-
+        // $requestFilt = [
+        //     'table_id' => (int) $request->table_id,
+        //     'waiter_id' => (int) Auth::user()->id,
+        //     'is_delibery' => filter_var($request->is_delibery, FILTER_VALIDATE_BOOLEAN),
+        //     'commentary' => $request->commentary ?? '',
+        //     'menu_item_ids' => array_map('intval', $request->menu_item_ids),
+        //     'prices' => array_map('floatval', $request->prices),
+        //     'quantities' => array_map('intval', $request->quantities),
+        //     'total_prices' => array_map('floatval', $request->total_prices),
+        //     'is_delibery_details' => array_map(function ($value) {
+        //         return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        //     }, $request->is_delibery_details),
+        //     'notes' => $request->notes ?? [],
+        // ];
         try {
-            $response = $this->orderService->createOrderWithDetails($requestFilt);
+            $response = $this->orderService->createOrderWithDetails($request->all());
+            
+            $finalMessage = 'para mostrador';
+            if ($response->table) $finalMessage = 'para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name;
+
             if ($request->type != 'mozo') {
                 return redirect()->route('point_of_sale')->withInput()->with([
-                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Message' => 'Se creo la orden satisfactoriamente '. $finalMessage,
                     'Type' => 'success',
                     'Time' => 1
                 ]);
             } else {
                 return redirect()->route('table_to_mozo', ['lounge_id' => $request->lounge])->withInput()->with([
-                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name,
+                    'Message' => 'Se creo la orden satisfactoriamente para la Mesa: ' . $finalMessage,
                     'Type' => 'success',
                     'Time' => 1
                 ]);
@@ -452,7 +498,7 @@ class PointOfSaleController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Error en el registro de la orden',
-                'errors' => $e
+                'errors' => $e->getMessage(),
             ], 422);
         }
     }
@@ -463,13 +509,14 @@ class PointOfSaleController extends Controller
             $order = Order::where('table_id', $Data->id)->first();
             return response()->json([
                 'data' => $response,
-                'messenger' => $order->commentary
+                'messenger' => $order->commentary,
+                'orderId' => $order->id
             ]);
         } catch (Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Error en la validación de los datos',
-                'errors' => $e
+                'message' => 'Error en la validación de los datos XD',
+                'errors' => $e->getMessage(),
             ], 422);
         }
     }
@@ -593,24 +640,182 @@ class PointOfSaleController extends Controller
             return $responseClient;
         }
     }
+    public function addAndEditToOrderClient(Request $request)
+    {
+        try {
+            $ms=""; 
+            $order = Order::findOrFail($request['order_id']);
+ 
+            if (!empty($request->input('menu_item_ids'))) {
+                $addItems = [
+                    'menu_item_ids' => array_map('intval', $request['menu_item_ids']),
+                    'prices' => array_map(function ($price) {
+                        return round((float)$price, 2);
+                    }, $request['prices']),
+                    'quantities' => array_map('intval', $request['quantities']),
+                    'total_prices' => array_map(function ($total) {
+                        return round((float)$total, 2);
+                    }, $request['total_prices']),
+                    'is_delibery_details' => array_map(function ($value) {
+                        return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+                    }, $request['is_delibery_details']),
+                    'notes' => $request['notes'],
+                ];
+
+                $response = $this->orderService->addDetailsToOrder((int)$request['order_id'], $addItems);
+                $ms .= ",se agrego";
+            }
+
+            if (!empty($request->input('delete_id'))) {
+
+                $deleted = $order->details()->whereIn('id', $request->input('delete_id'))->delete();
+                $ms .= ",se cancelo";
+
+            }
+            if (!empty($request->input('modified_id'))) {
+
+                DB::beginTransaction();
+
+                foreach ($request['modified_id'] as $index => $id) {
+                    $orderDetail = $order->details()->find($id);
+
+                    if ($orderDetail) {
+
+                        $orderDetail->update([
+                            'price' => round((float) $request['modified_prices'][$index], 2),
+                            'quantity' => (int) $request['modified_quantities'][$index],
+                            'total_amount' => round((float) $request['modified_total_prices'][$index], 2),
+                            'is_delibery' => filter_var($request['modified_is_delibery_details'][$index], FILTER_VALIDATE_BOOLEAN),
+                            'note' => isset($request['modified_notes'][$index]) ? (string) $request['modified_notes'][$index] : null,
+                        ]);
+                    }
+                }
+
+                DB::commit();
+                $ms .= ",se edito";
+
+            }
+
+            return redirect()->route('point_of_sale', ['lounge_id' => $request->lounge])->withInput()->with([
+                'Message' => 'En el proseso'.$ms.' correctamente',
+                'Type' => 'success',
+                'Time' => 1
+            ]);
+        } catch (Exception $e) {
+            return redirect()->route('point_of_sale', ['lounge_id' => $request->lounge])->withInput()->with([
+                'Message' => 'Tubimos un problema con: '.$e->getMessage(),
+                'Type' => 'error',
+                'Time' => 1
+            ]);
+        }
+    }
+    public function addOrderClientAndEdit(Request $request)
+    {
+        //return response()->json($Data);
+
+        $Navigation = $this->NavigationPonit;
+        $Order = Order::where('id', $request->orderId)->first();
+
+        if ($Order && isset($Order->isBar)) {
+            // Si la propiedad "isBar" existe en la orden
+            $Data = [
+                'sale' => "Mostrador",
+                'isBar' => false,
+                'order_id' => $request->orderId,
+                'order' => isset($Order->details) && $Order->details->isNotEmpty()
+                    ? $Order->details
+                    ->filter(fn($detail) => $detail->status !== 'cancelado')
+                    ->map(function ($detail) {
+                        return [
+                            'id' => $detail->id ?? null,
+                            'is_delibery' => $detail->is_delibery ?? null,
+                            'menu_item_id' => $detail->menu_item_id ?? null,
+                            'menu_item_name' => $detail->item->name ?? "Sin nombre",
+                            'note' => $detail->note ?? null,
+                            'order_id' => $detail->order_id ?? null,
+                            'price' => $detail->price ?? "0.00",
+                            'quantity' => $detail->quantity ?? 0,
+                            'status' => $detail->status ?? "Desconocido",
+                            'total_amount' => $detail->total_amount ?? "0.00",
+                        ];
+                    })->values()
+                    ->toArray()
+                    : [], // Devuelve un array vacío si no hay detalles
+            ];
+        } elseif ($Order && $Order->table) {
+            // Si existe la orden y su relación "table" está presente
+            $Data = [
+                'id' => $Order->table->id ?? null,
+                'code' => $Order->table->code ?? null,
+                'sale' => $Order->table->lounge->name ?? "Sin nombre",
+                'isBar' => true,
+                'order_id' => $request->orderId,
+                'order' => isset($Order->details) && $Order->details->isNotEmpty()
+                    ? $Order->details
+                    ->filter(fn($detail) => $detail->status !== 'cancelado')
+                    ->map(function ($detail) {
+                        return [
+                            'id' => $detail->id ?? null,
+                            'is_delibery' => $detail->is_delibery ?? null,
+                            'menu_item_id' => $detail->menu_item_id ?? null,
+                            'menu_item_name' => $detail->item->name ?? "Sin nombre",
+                            'note' => $detail->note ?? null,
+                            'order_id' => $detail->order_id ?? null,
+                            'price' => $detail->price ?? "0.00",
+                            'quantity' => $detail->quantity ?? 0,
+                        ];
+                    })->values()
+                    ->toArray()
+                    : [], // Devuelve un array vacío si no hay detalles
+            ];
+        } else {
+            // Si no existe la orden o no tiene la información necesaria
+            $Data = [
+                'sale' => "Información no disponible",
+                'isBar' => null
+            ];
+        }
+
+        $Category = MenuCategory::query()->select('name', 'id')->orderBy('display_order')->get();
+        return view('order.new_order_client', compact('Navigation', 'Category', 'Data'));
+    }
     public function tiketCancelClientOrder(Request $request)
     {
+        try {
+            // $data = Order::where('id',8)->first();
+
+            // $reponseData = (new OrderDtoService())->returnSaleDetails($data);
 
 /*
+            $data = [
+                'voucher_serie_id' => 1,  // ID de la serie del comprobante
+                'amounts' => [50, 30],     // Montos de los pagos
+                'payment_methods' => ['efectivo', 'tarjeta'],  // Métodos de pago correspondientes
+
+                'payment_type' => 'contado',  // Tipo de pago (opcional)
+                'commentary' => 'Pago por productos de orden',  // Comentario (opcional)
+            ];
+
+            $responseRegister = (new PaymentService())->payOrder(8, $data);
+
+            return response()->json($responseRegister);
+
+*/
+            /*
         $RegisterData = [
             'voucher_serie_id' => 1,
             'issuance_date' => new DateTime(),
             'expiration_date' => new DateTime(),
             'payment_type' => 'contado',
             'commentary' => null,
-            'amounts' => [50.00, 30.00, 20.00],
+            'amounts' => [50.00, 30.00, 200.00],
             'payment_methods' => 'efectivo',
         ];
 
-        $responseRegister = (new PaymentService())->payOrder(1,$RegisterData);
+        $responseRegister = (new PaymentService())->payOrder(8,$RegisterData);
         return response()->json($responseRegister);
-*/
-        try{
+        */
+
             $data = $request->input();
             $dataClient = Person::where('id', $request->idClient)->first();
             $dataTable = Table::where('id', $request->idTable)->first();

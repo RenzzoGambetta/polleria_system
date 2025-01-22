@@ -9,12 +9,14 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Employee;
 use App\Models\order\CashierSession;
 use App\Models\order\Order;
+use App\Models\various\VoucherSerie;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -43,12 +45,12 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
+    // protected function casts(): array
+    // {
+    //     return [
+    //         'password' => 'hashed',
+    //     ];
+    // }
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
@@ -72,5 +74,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class, 'waiter_id');
+    }
+
+    public function voucher_series()
+    {
+        return $this->belongsToMany(VoucherSerie::class, 'user_voucher_series');
     }
 }

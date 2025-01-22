@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('code', 15)->unique();
             $table->string('name', 50)->unique();
             $table->string('abbreviation', 15)->unique();
+            $table->string('voucher_name')->unique();
             $table->timestamps();
         });
     }

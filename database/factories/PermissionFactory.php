@@ -10,19 +10,27 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PermissionFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    protected static $increment = 1;
-
     public function definition(): array
     {
+        static $index = 0;
+
+        $permissions = [
+            ['name' => 'Panel de cocina', 'category' => 'cocina'],
+            ['name' => 'Acciones de cocina', 'category' => 'cocina'],
+            ['name' => 'Permisos de administrador', 'category' => 'admin'],
+            ['name' => 'Gestion de usuarios', 'category' => 'admin'],
+            ['name' => 'Atencion de mesas', 'category' => 'mozo'],
+            ['name' => 'Registro de pedidos', 'category' => 'mozo'],
+            ['name' => 'Apertura y cierre de caja', 'category' => 'caja'],
+            ['name' => 'Administrador de ordenes', 'category' => 'caja'],
+        ];
+
+        $p = $permissions[$index];
+        $index++;
 
         return [
-            'name' => $this->faker->word() . self::$increment++,
-            'category' => $this->faker->randomElement(['admin', 'ventas', 'pedidos', 'cocina']),
+            'name' => $p['name'],
+            'category' => $p['category'],
         ];
     }
 }

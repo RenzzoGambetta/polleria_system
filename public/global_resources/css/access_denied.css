@@ -1,0 +1,142 @@
+html {
+    height: 100%
+}
+
+body {
+    height: 100%;
+}
+
+.loader {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.catContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.catbody {
+    width: 80px;
+}
+
+.tail {
+    position: absolute;
+    width: 17px;
+    top: 50%;
+    animation: tail 2s ease-in infinite alternate-reverse;
+    transform-origin: top;
+}
+
+@keyframes tail {
+    0% {
+        transform: rotateZ(60deg);
+    }
+
+
+    100% {
+        transform: rotateZ(-30deg);
+    }
+}
+
+.wall {
+    width: 300px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    position: absolute;
+    margin: 0px 0px 100px 120px;
+}
+
+.zzz {
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 15px;
+    animation: zzz 2s linear infinite;
+}
+
+.bigzzz {
+    color:var(--dark) ;
+    font-weight: 700;
+    font-size: 25px;
+    margin-left: 10px;
+    animation: zzz 2.3s linear infinite;
+}
+
+@keyframes zzz {
+    0% {
+        color: transparent;
+    }
+
+    50% {
+        color: var(--dark);
+    }
+
+    100% {
+        color: transparent;
+    }
+}
+
+.container-primary {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+}
+.cat{
+    fill: var(--fill-color-cat-svg);
+}
+.cat-col{
+    fill:var(--fill-color-cat-col-svg);
+}
+.sub-container-01 {
+    margin: 70px 10px 10px 10px;
+}
+h1.title {
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--dark);
+    font-family: monospace;
+}
+p.router {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: monospace;
+    margin-top: 20px;
+    color: var(--dark);
+    text-align: center;
+}
+span.span-sub-title{
+    font-weight: bold;
+    color: var(--dark);
+}
+a.button-retur{
+    background-color: #5b5b5b;
+    padding: 10px 20%;
+    border-radius: 10px;
+    margin-top: 50px;
+    color: white;
+    font-weight: bold;
+    font-family: inherit;
+}

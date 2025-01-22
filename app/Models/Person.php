@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Employee;
 use App\Models\Supplier;
 use App\Models\various\IdentityDocumentType;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'persons';
     protected $fillable = ['document_type_id', 'document_number', 'name', 'lastname', 'company_name', 'birthdate', 'gender', 'phone', 'email'];

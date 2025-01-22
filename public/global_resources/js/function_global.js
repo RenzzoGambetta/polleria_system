@@ -160,7 +160,7 @@ async function loadHtmlFromFile(url) {
         return '';
     }
 }
-
+/*
 window.addEventListener('popstate', (event) => {
     event.preventDefault(); 
     Swal.close();
@@ -168,3 +168,4 @@ window.addEventListener('popstate', (event) => {
 });
 
 history.pushState(null, '', location.href);
+*/

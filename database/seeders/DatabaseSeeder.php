@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
         Supplier::factory(10)->create();
         Brand::factory(5)->create();
         Supply::factory(10)->create();
-        InventoryMovementDetail::factory(10)->create();
+        // InventoryMovementDetail::factory(10)->create();
 
         MenuCategory::factory(4)->create()->each(function ($category) {
             $qty = rand(1, 5);

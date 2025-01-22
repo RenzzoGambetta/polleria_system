@@ -45,7 +45,7 @@
                 Bienvenidos a D'Brazza.
             </h1>
             <img src="{{ asset($CompanyLogoIcon) }}" alt="Logo" id="logo">
-            <form id="form" action='/login' method="POST">
+            <form id="form" action='{{ route('login_validate') }}' method="POST">
                 <div class="box">
 
                     @csrf

@@ -58,6 +58,7 @@ function setupDropdown(toggleSelector, optionsSelector, itemSelector) {
     items.forEach(option => {
         option.addEventListener('click', () => {
             toggle.innerHTML = option.querySelector('span').innerText;
+            if (option.querySelector('input').value == 0) toggle.innerHTML += "<i class='bx bxs-eject bx-rotate-180'></i>";
             options.classList.remove('active');
         });
     });

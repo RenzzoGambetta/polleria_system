@@ -29,9 +29,11 @@ class Resource_Path_Css extends ServiceProvider
             $ColorNightAndDay = $fpFunc->Global_Resource(Folder_Path::CSS, 'color_night_and_day.css');
             $view->with('ColorNightAndDay', $ColorNightAndDay);
 
-
             $InputResources = $fpFunc->Global_Resource(Folder_Path::CSS, 'input_resources.css');
             $view->with('InputResources', $InputResources);
+
+            $AccessDenied = $fpFunc->Global_Resource(Folder_Path::CSS, 'access_denied.css');
+            $view->with('AccessDenied', $AccessDenied);
             //Resources
 
             $StyleDocument = $fpFunc->Resource(Folder_Path::DOCUMENT, Folder_Path::CSS, 'style_document.css');

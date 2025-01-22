@@ -19,7 +19,7 @@ class PaymentService
 
         $voucherTotalAmount = array_sum($data['amounts']);
         $difference = $order->total_amount - $voucherTotalAmount;
-        if ($difference != 0) throw new Exception('Falta cancelar: S/'. $difference);
+        if ($difference > 0) throw new Exception($difference);
 
         DB::beginTransaction();
 

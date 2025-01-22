@@ -49,6 +49,12 @@ class Essential_Services extends ServiceProvider
             $view->with('JsonApp', 'resources/auth/json/manifest.json');
             $view->with('JsApp', 'resources/auth/js/sw.js');
 
+            //jsPdf
+            $view->with('JsPdf', 'plugin\js\jspdf.umd.js');
+
+            //Html2Canvas
+            $view->with('Html2Canvas', 'plugin\js\html2canvas.js');
+
         });
     }
 }

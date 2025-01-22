@@ -18,8 +18,9 @@ class VoucherTypeFactory extends Factory
 
         // Valores por defecto en la base de datos
         $voucherTypes = [
-            ['code' => 'B1', 'name' => 'Boleta', 'abbreviation' => 'BL'],
-            ['code' => 'F1', 'name' => 'Factura', 'abbreviation' => 'FT'],
+            ['code' => 'B1', 'name' => 'Boleta', 'abbreviation' => 'BL', 'voucher_name' => 'Boleta de venta electronica'],
+            ['code' => 'F1', 'name' => 'Factura', 'abbreviation' => 'FT', 'voucher_name' => 'Factura electronica'],
+            ['code' => 'NV1', 'name' => 'Nota de Venta', 'abbreviation' => 'NV', 'voucher_name' => 'Nota de venta'],
         ];
 
         $vt = $voucherTypes[$index];
@@ -29,6 +30,7 @@ class VoucherTypeFactory extends Factory
             'code' => $vt['code'],
             'name' => $vt['name'],
             'abbreviation' => $vt['abbreviation'],
+            'voucher_name' => $vt['voucher_name'],
         ];
     }
 }

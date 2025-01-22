@@ -19,6 +19,16 @@
 
     <title>D'Brazza</title>
 </head>
+    @php
+       $user = Auth::user();
+
+        if ($user && $user->role) {
+            $userPermissions = $user->role->permissions->pluck('id');
+        } else {
+            $userPermissions = collect(); 
+        }
+
+    @endphp
 
 <body class="{{ session('theme', 'light') }}">
 
@@ -31,11 +41,12 @@
             </a>
 
             <ul class="side-menu">
-
+               
                 <li class="{{ ($Navigation['seccion'] ?? null) == 1 ? 'active' : '' }}">
                     <a href="{{ route('home') }}" class="{{ ($Navigation['color'] ?? null) == 10 ? 'submenu-toggle nav_select' : 'submenu-toggle' }}" id="accion"><i class='bx bxs-home'></i>Home</a>
                 </li>
-
+            @if($userPermissions->contains(2))
+              
                 <li class="{{ ($Navigation['seccion'] ?? null) == 2 ? 'sub active' : 'sub' }}">
                     <a href="{{ route('user') }}" class="{{ ($Navigation['seccion'] ?? null) == 2 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 20 ? 'nav_select' : '' }}"><i class='fi fi-ss-user-unlock bx-adjustment-icon'></i>Usuarios</a>
                     <ul class="sub">
@@ -47,7 +58,8 @@
                         </li>
                     </ul>
                 </li>
-
+            @endif
+            @if($userPermissions->contains(1))
                 <li class="{{ ($Navigation['seccion'] ?? null) == 3 ? 'sub active' : 'sub' }}">
                     <a href="{{ route('inventory') }}" class="{{ ($Navigation['seccion'] ?? null) == 3 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 30 ? 'nav_select' : '' }}"><i class='fi fi-br-supplier-alt bx-adjustment-icon'></i>Inventario</a>
                     <ul class="sub">
@@ -77,34 +89,30 @@
                         </li>
                     </ul>
                 </li>
+            @endif
+            @if($userPermissions->contains(7))
 
                 <li class="{{ ($Navigation['seccion'] ?? null) == 6 ? 'sub active' : 'sub' }}">
                     <a href="{{ route('point_of_sale') }}" class="{{ ($Navigation['seccion'] ?? null) == 6 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 60 ? 'nav_select' : '' }}"><i class='fi fi-rs-cash-register bx-adjustment-icon'></i>Caja</a>
+                    
                     <ul class="sub">
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 6.1 ? 'active' : '' }}">
                             <a href="{{ route('cashier_sessions') }}" id="{{ ($Navigation['color'] ?? null) == 61 ? 'nav_select' : '' }}"><i class='fi fi-ss-marketplace-alt bx-adjustment-icon'></i>Apertura y sierre</a>
                         </li>
+                    @if($userPermissions->contains(5) || $userPermissions->contains(6)) 
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 6.2 ? 'active' : '' }}">
                             <a href="{{ route('mozo') }}" id="{{ ($Navigation['color'] ?? null) == 62 ? 'nav_select' : '' }}"><i class='fi fi-ss-holding-hand-dinner bx-adjustment-icon'></i>Mozo</a>
                         </li>
+                    @endif
                     </ul>
                 </li>
-
-                <li class="{{ ($Navigation['seccion'] ?? null) == 5 ? 'sub active' : 'sub' }}">
-                    <a href="{{ route('menu') }}" class="{{ ($Navigation['seccion'] ?? null) == 5 ? ' submenu-toggle inac' : 'submenu-toggle acti' }}" id="{{ ($Navigation['color'] ?? null) == 50 ? 'nav_select' : '' }}"><i class='fi fi-rs-customize-computer bx-adjustment-icon'></i>Configuracion</a>
-                    <ul class="sub">
-                        <li class="{{ ($Navigation['sub_seccion'] ?? null) == 4.1 ? 'active' : '' }}">
-                            <a href="{{ route('category_carte') }}" id="{{ ($Navigation['color'] ?? null) == 41 ? 'nav_select' : '' }}"><i class='fi fi-rs-recipe-book bx-adjustment-icon'></i>Carta</a>
-                        </li>
-
-                    </ul>
-                </li>
+            @endif
 
             </ul>
 
             <ul class="side-menu">
                 <li>
-                    <a href="#" class="logout">
+                    <a href="{{ route('log_out') }}" class="logout">
                         <i class='bx bx-log-out-circle'></i>
                         Serrar sesion
                     </a>

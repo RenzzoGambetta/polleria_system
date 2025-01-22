@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('order_serie_id');
+            $table->foreign('order_serie_id')->references('id')->on('order_series');
             $table->unsignedBigInteger('client_id')->nullable();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->unsignedBigInteger('table_id')->nullable();
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->foreign('waiter_id')->references('id')->on('users');
             $table->unsignedBigInteger('voucher_id')->nullable();
             $table->foreign('voucher_id')->references('id')->on('vouchers');
+            $table->unsignedInteger('correlative_number');
             $table->decimal('total_amount', 8 ,2)->nullable();
             $table->enum('status', ['pendiente', 'preparacion', 'terminado', 'en espera', 'pagado', 'completado', 'cancelado', 'reembolsado'])->default('pendiente');
             $table->boolean('is_delibery')->default(false);

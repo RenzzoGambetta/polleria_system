@@ -11,7 +11,7 @@ class VoucherType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['code', 'name', 'abbreviation'];
+    protected $fillable = ['code', 'name', 'abbreviation', 'voucher_name'];
 
     public function inventoryReceipts()
     {

@@ -77,13 +77,16 @@
                     <div class="row">
                         <div class="select">
                             <div class="employers">
+                                <label class="employer">
+                                    <input type="radio" id="E-0" name="employee_id" value="" {{ empty($Info->employee_id) ? 'checked' : '' }} />
+                                    <span> Empleado </span>
+                                </label>
                                 @foreach ($Employee as $Employee_)
                                     <label class="employer">
                                         <input type="radio" id="E-{{ $Employee_->id ?? 'not_id' }}" name="employee_id" value="{{ $Employee_->id ?? 'not_id' }}" {{ $Employee_->id == ($Info->employee_id ?? 0) ? 'checked' : '' }} />
                                         <span> {{ $Employee_->person->name ?? 'No registrado' }} </span>
                                     </label>
                                 @endforeach
-
                             </div>
                             <div class="posemployer">{{ $Info->employee->person->name ?? 'Empleado' }}<i class='bx bxs-eject bx-rotate-180'></i></div>
                         </div>
@@ -112,11 +115,11 @@
                     </div>
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="password" id="password_primary" class="effect-4" name="password" placeholder=" " title="{{ $Info['text_info_password'] ?? 'introdusca la contraseña' }}" {{ $exit ?? 'required' }} />
+                            <input type="password" id="password_primary" class="effect-4" name="password" placeholder=" " title="{{ $Info['text_info_password'] ?? 'introduzca la contraseña' }}" {{ $exit ?? 'required' }} />
                             <label for="password_primary">{{ $Info['text_password'] }}</label>
                         </div>
                         <div class="input-group col-md-6 one">
-                            <input type="password" id="password_repeat" class="effect-4" name="password_confirmation" placeholder=" " title="{{ $Info['text_info_password'] ?? 'introdusca la contraseña' }}" {{ $exit ?? 'required' }} />
+                            <input type="password" id="password_repeat" class="effect-4" name="password_confirmation" placeholder=" " title="{{ $Info['text_info_password'] ?? 'introduzca la contraseña' }}" {{ $exit ?? 'required' }} />
                             <label for="password_repeat">{{ $Info['text_repeat_password'] }}</label>
                         </div>
                     </div>

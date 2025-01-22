@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class InventoryReceiptService
 {
-    public function __construct(){}
+    protected supplyService $supplyService;
+
+    public function __construct(){
+            $this->supplyService = new supplyService();
+    }
 
     public function createInventoryReceipt(array $data) {
         DB::beginTransaction();
@@ -44,6 +48,7 @@ class InventoryReceiptService
                     'note' => $data['notes'][$i] ?? null,
                 ]);
 
+                $this->supplyService->increaseSupplyStock($data['supply_ids'][$i], $data['quantities'][$i]);
                 $receiptTotalAmount += $data['total_prices'][$i];
             }
 

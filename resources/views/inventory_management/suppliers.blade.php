@@ -42,7 +42,7 @@
                     <th>Nombre</th>
                     <th>Celular</th>
                     <th>Estado</th>
-                    <th>Opciones</th>
+                  <!--<th>Opciones</th>-->
                 </tr>
             </thead>
 
@@ -60,7 +60,7 @@
                             @endif
                         </td>
                         <td>-------</td>
-                        <td><button type="button" class="btn-clasic">Eitar</button></td>
+                        <!-- <td><button type="button" class="btn-clasic">Eitar</button></td>-->
                     </tr>
                 @endforeach
             </tbody>

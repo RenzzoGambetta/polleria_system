@@ -81,8 +81,9 @@ class EmployeeService
 
             $employee->delete();
 
-            $person = Person::first($person_id);
+            $person = Person::find($person_id);
             $person->delete();
+
             DB::commit();
             return true;
         } catch (Exception $e) {

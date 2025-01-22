@@ -170,7 +170,7 @@
                         <div class="lateralside-content sub-block-02 alert-style-div heigh-div-input">
 
                             <div class="search-container categort-conteiner">
-                                <input type="number" id="id-cooking-place" name="cooking_place_id" value="{{ $ComboItem->category_id ?? '' }}{{ $Data['idCategory'] ?? '' }}">
+                                <input type="number" id="id-cooking-place" name="cooking_place_id" value="{{ $ComboItem->cooking_place_id ?? '' }}">
                                 <input type="text" id="search-cooking-place" name="cooking_place_name" class="search-box input-iten effect-5 no-spinner alert-style search-cooking-place" placeholder=" " autocomplete="off" value="">
                                 <label for="search-cooking-place" id="search-label-cooking-place" class="label-input-data mobile-label">Lugar preparacion</label>
                                 <div id="suggestions" class="suggestions-cooking-place"></div>
