@@ -29,6 +29,7 @@ class InventoryDTOService
             return [
                 'id' => $r->id,
                 'date' => Carbon::parse($r->incoming_date)->format('d - m - Y'),
+                'date_order' => $r->incoming_date,
                 'type' => 'Entrada',
                 'proveedor' => $r->supplier->person->name,
                 'total_amount' => $r->total_amount,
@@ -55,6 +56,7 @@ class InventoryDTOService
             return [
                 'id' => $i->id,
                 'date' => Carbon::parse($i->outgoing_date)->format('d - m - Y'),
+                'date_order' => $i->outgoing_date,
                 'type' => 'Salida',
                 'proveedor' => null,
                 'total_amount' => 0.0,

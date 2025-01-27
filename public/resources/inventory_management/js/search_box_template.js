@@ -180,6 +180,10 @@ class SearchBox {
         }
     }
 
+    idSelect(){
+        return idInputElement.val()
+    }
+
     highlightItem(items) {
         items.removeClass('highlighted');
         if (this.highlightedIndex > -1) {

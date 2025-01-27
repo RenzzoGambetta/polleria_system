@@ -61,7 +61,8 @@ class SupplyStockController extends Controller
             })
             ->where('supplier_supply.supplier_id', $request->id)
             ->select(
-                'supplies.id',
+                'supplier_supply.supply_id as supply',
+                'supplier_supply.supplier_id as supplier',
                 'supplies.name',
                 DB::raw('COALESCE(inventory_movement_details.quantity, 1) AS quantity'),
                 DB::raw('COALESCE(inventory_movement_details.price, 0) AS price_per_unit')
@@ -100,7 +101,7 @@ class SupplyStockController extends Controller
                     'Type' => 'success'
                 ]);
             } else {
-                $response = (new supplyService)->createSupply($validator);  
+                $response = (new supplyService)->createSupply($validator);
                 //return response()->json($request);
 
                 if ($response) {
@@ -120,35 +121,105 @@ class SupplyStockController extends Controller
     }
     public function anchorSupplyProvider(Request $request)
     {
-        $idData = validator::make(
-            $request->all(),
-            [
-                'supplierId' => 'required',
-                'supplyId' => 'required',
-            ]
-        );
+        $validator = Validator::make($request->all(), [
+            'supplierId' => 'required|exists:suppliers,id',
+            'supplyId' => 'required|exists:supplies,id',
+        ]);
 
-        $supplyId = $request->input('supplyId');
-        $supplierId = $request->input('supplierId');
-        if ($supplyId != "null") {
-            $reply = [
-
-                'supplyo' => $supplyId,
-                'provedor' => $supplierId,
-                'mensage' => 'Totos los productos fueron registrados con exito'
-
-            ];
-        } else {
-            $reply = [
-
-                'supplyo' => $supplyId,
-                'provedor' => $supplierId,
-                'mensage' => 'El registro no se pude realizar'
-
-            ];
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Datos inválidos.',
+                'errors' => $validator->errors(),
+            ], 422);
         }
 
-        return response()->json($reply);
+        $supplier = Supplier::find($request->supplierId);
+        if (!$supplier) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Proveedor no encontrado.',
+            ], 404);
+        }
+
+        try {
+            $attached = $supplier->supplies()->syncWithoutDetaching([$request->supplyId]);
+
+            if (empty($attached['attached'])) {
+                return response()->json([
+                    'error' => false,
+                    'message' => 'El suministro ya estaba registrado para este proveedor.',
+                    'supplier' => intval($supplier->id),
+                    'supply' => intval($request->supplyId),
+                    'repeat' => true,
+                ], 200);
+            }
+
+            return response()->json([
+                'error' => false,
+                'message' => 'El suministro fue registrado con éxito para este proveedor.',
+                'supplier' => intval($supplier->id),
+                'supply' => intval($request->supplyId),
+                'repeat' => false,
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Ocurrió un error al registrar el producto.',
+                'details' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function removeSupplyProvider(Request $request)
+    {
+        // Validar los datos de entrada
+        $validator = Validator::make($request->all(), [
+            'supplierId' => 'required|exists:suppliers,id',
+            'supplyId' => 'required|exists:supplies,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Datos inválidos.',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        // Buscar el proveedor
+        $supplier = Supplier::find($request->supplierId);
+        if (!$supplier) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Proveedor no encontrado.',
+            ], 404);
+        }
+
+        // Verificar si existe la relación antes de eliminar
+        if (!$supplier->supplies()->where('supplies.id', $request->supplyId)->exists()) {
+            return response()->json([
+                'error' => true,
+                'message' => 'La relación entre el proveedor y el suministro no existe.',
+            ], 404);
+        }
+
+        // Eliminar la relación
+        try {
+            $supplier->supplies()->detach($request->supplyId);
+
+            return response()->json([
+                'error' => false,
+                'message' => 'La relación entre el proveedor y el suministro fue eliminada con éxito.',
+                'supplier' => $supplier->id,
+                'supply' => $request->supplyId,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => 'Ocurrió un error al intentar eliminar la relación.',
+                'details' => $e->getMessage(),
+            ], 500);
+        }
     }
     public function registerSupplyEntry(inventoryReceiptRequest $request)
     {
@@ -172,14 +243,14 @@ class SupplyStockController extends Controller
             $entry = (new InventoryIssueService)->createInventoryIssue($request->validated());
             return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageSuccess('El registro fue con exito.'));
         } catch (Exception $e) {
-            return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageError('Lo sentimos algunos dados no son balidos reinicie el preosedimiento.',10, $e->getMessage()));
+            return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageError('Lo sentimos algunos dados no son balidos reinicie el preosedimiento.', 10, $e->getMessage()));
         }
     }
     public function querySupplyData(Request $request)
     {
 
         $id = $request->input('id');
-       
+
         $item = Supply::select(
             'supplies.id',
             'supplies.name',
@@ -187,10 +258,10 @@ class SupplyStockController extends Controller
             'supplies.stock',
             DB::raw('IFNULL(imd.price, 0) as last_price')
         )
-        ->leftJoin('inventory_movement_details as imd', 'supplies.id', '=', 'imd.supply_id')
-        ->where('supplies.id', $id)
-        ->orderBy('imd.id', 'desc') 
-        ->first();
+            ->leftJoin('inventory_movement_details as imd', 'supplies.id', '=', 'imd.supply_id')
+            ->where('supplies.id', $id)
+            ->orderBy('imd.id', 'desc')
+            ->first();
 
         if ($item) {
             $unitMap = array_column(ConstGlobal::UNIT_OPTIONS, 1, 0);

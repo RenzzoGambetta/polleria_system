@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{{ asset($CheckboxAnimation) }}">
 <link rel="stylesheet" href="{{ asset($SearchBox) }}">
 <link rel="stylesheet" href="{{ asset($SupplyEntry) }}">
- 
+<link rel="stylesheet" href="{{ asset($galleryStyleImageAlert) }}">
 
 <div class="header">
     <div class="left">
@@ -22,7 +22,7 @@
             <li>
                 /
             </li>
-            <a href="{{ route('show_panel_register_entry') }}" class="active">
+            <a onclick="clearInput()" class="active">
                 Registro
             </a>
 
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="button-new-supplier"  onclick="newSupplierRegistrationFast()">+</button>
+                        <button type="button" class="button-new-supplier" onclick="newSupplierRegistrationFast()">+</button>
                     </div>
 
                     <div class="lateralside-content sub-block-02">
@@ -72,10 +72,10 @@
                             <div class="options-document">
 
                                 @foreach ($Voucher as $Type)
-                                <label for="{{ $Type->name }}" class="option-document">
-                                    <input type="radio" name="voucher_type_id" id="{{ $Type->name }}" value="{{ $Type->id }}" />
-                                    <span>{{ $Type->name }}</span>
-                                </label>
+                                    <label for="{{ $Type->name }}" class="option-document">
+                                        <input type="radio" name="voucher_type_id" id="{{ $Type->name }}" value="{{ $Type->id }}" />
+                                        <span>{{ $Type->name }}</span>
+                                    </label>
                                 @endforeach
                             </div>
 
@@ -89,7 +89,7 @@
 
                             <div class="options-type-credit-and-cash">
                                 <label for="credit" class="option-type-credit-and-cash">
-                                    <input type="radio" name="payment_type" id="credit" value="credito" />
+                                    <input type="radio" name="payment_type" id="credit" value="credito" xa/>
                                     <span>Credito</span>
                                 </label>
                                 <label for="cash" class="option-type-credit-and-cash">
@@ -100,7 +100,6 @@
 
                             <div class="selected-type-credit-and-cash new-supply-select entry-data">Tipo</div>
                         </div>
-
 
                     </div>
 
@@ -118,7 +117,7 @@
                             <input type="date" name="expiration_date" id="dateTimeEnd" class="effect-16" placeholder=" ">
                             <label for="dateTimeEnd">Fecha de vencimiento</label>
                             <span class="focus-border"></span>
-                        </div>
+                                 </div>
                     </div>
                     <div class="dub-block-002">
                         <div class="col-3 input-effect data-series">
@@ -146,34 +145,40 @@
                 </div>
 
             </div>
+            <div class="constainer-data-buton-register">
+                <button type="button" class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
+                <button type="submit" class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
+            </div>
         </div>
 
         <div class="bottom-data">
             <div class="orders">
-                <table class="list-data-supply">
-                    <thead>
-                        <tr>
-                            <th class="field-size movile-style-th">Producto</th>
-                            <th class="data-entry movile-style-th">Cantidad</th>
-                            <th class="data-entry movile-style-th">P.U.</th>
-                            <th class="data-entry movile-style-th">Precio Total</th>
-                            <th class="data-button movile-style-th">Opciones</th>
+                <div class="table-data-container-supply-item">
+                    <table class="list-data-supply">
+                        <thead>
+                            <tr>
+                                <th class="field-size movile-style-th">Producto</th>
+                                <th class="data-entry movile-style-th">Cantidad</th>
+                                <th class="data-entry movile-style-th">P.U.</th>
+                                <th class="data-entry movile-style-th">Precio Total</th>
+                                <th class="data-button movile-style-th">Opciones</th>
+    
+                            </tr>
+                        </thead>
+    
+                        <tbody class="list-inten" id="puntoClave"></tbody>
+    
+                    </table>
+                </div>
+                <div class="container-plus-supply" style="display: none" id="spam-data-option">
+                    <button type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Añadir suministro</button>
+                    <div class="total-price-and-unit">
+                        <div class="aling-center-displey">
+                            <div class="text-aling-preci">Total -> s/<span id="total-price">0</span></div>
+                        </div>
+                    </div>
+                </div>
 
-                        </tr>
-                    </thead>
-
-                    <tbody class="list-inten" id="puntoClave">
-                        <td></td>
-                        <td></td>
-                        <td class="name-iten total-price-and-unit">Total -></td>
-                        <td class="total-price-and-unit">
-                            <div class="aling-center-displey">
-                                <div class="text-aling-preci">s/<span id="total-price">0</span></div>
-                            </div>
-                        </td>
-                    </tbody>
-
-                </table>
                 <div class="filter">
                     <div id="wifi-loader">
                         <svg class="circle-outer" viewBox="0 0 86 86">
@@ -196,19 +201,21 @@
 
         </div>
     </div>
+    <!--
     <div class="options-button">
         <div class="sub-input-02">
             <button type="button" class="button-opcion-form cancel-option" onclick="cancelPage('{{ route('inventory') }}')"><i class="fi fi-sr-document-circle-wrong icon-option"></i>Cancelar</button>
             <button type="button" class="button-opcion-form clear-option border-style-right" onclick="clearInput()"><i class="fi fi-sr-broom icon-option"></i>Limpiar</button>
-            <button type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Añadir supplyo</button>
+            <button type="button" class="button-opcion-form element-option" onclick="addItems()"><i class="fi fi-sr-add-document icon-option"></i>Añadir suministro</button>
             <button type="submit" class="button-opcion-form register-option"><i class="fi fi-sr-registration-paper icon-option"></i>Registrar</button>
             
         </div>
-    </div>
+    </div>-->
 </form>
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($OptionSelector) }}"></script>
 <script src="{{ asset($FunctionButtonOnclick) }}"></script>
+
 
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)

@@ -1,7 +1,7 @@
 const URL_TEMPLATE = "/resources/inventory_management/template/";
-const supplierSearchBox = new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier',' /list_of_suppliers', 5, 1);
+const supplierSearchBox = new SearchBox('No se encuntro el provedor...', '.search-box-supplier', '#search-supplier', '#search-label-supplier', '.suggestions-supplier', '#loader-supplier', '#id-supplier', ' /list_of_suppliers', 5, 1);
 selectorItenandAnimation('selected-type-credit-and-cash', 'options-type-credit-and-cash', 'option-type-credit-and-cash', 'sub-title-div-type');
-selectorItenandAnimation('selected-document', 'options-document', 'option-document','sub-title-div-document');
+selectorItenandAnimation('selected-document', 'options-document', 'option-document', 'sub-title-div-document');
 
 var changeInterval;
 
@@ -39,11 +39,11 @@ async function addItems() {
         cancelButtonAriaLabel: "Thumbs down",
         didOpen: urlPostDeleteStyle
 
-    }).then((result) => {
+    }).then(async (result) => {
         if (result.isConfirmed) {
 
             //const supply = document.querySelector('input[name="supply"]:checked');
-            const supplier = document.querySelector('input[name="supplier_id"]:checked');
+            const supplier = document.querySelector('input[name="supplier_id"]');
             //const supplyId = supply ? supply.value : null;
             const supplierId = supplier ? supplier.value : null;
             //const supplyName = supply ? supply.nextElementSibling.textContent : null;
@@ -55,17 +55,33 @@ async function addItems() {
             const save_option = document.getElementById('checkbox-preference-input').checked;
 
             const item = {
-                id: supplyId,
                 name: supplyName,
                 price_per_unit: price,
-                quantity: quantity
+                quantity: quantity,
+                supply: supplyId,
+                supplier: supplierId,
             };
             if (save_option & supplyId != null) {
-                var rpta = anchorsupply(supplyId, supplierId);
-                console.log(rpta);
+                //var rpta = anchorsupply(supplyId, supplierId);
+                var anchorPostResult = await consultDataPost('/anchor_supply_provider', { supplyId: supplyId, supplierId: supplierId })
+                // console.log(anchorPostResult);
+                anchorPostResult.anchor = true;
+                anchorPostResult.repeat = $(`#copntainer-${supplierId}-${supplyId}`).length > 0;
+
+                console.log(anchorPostResult);
+            } else {
+                var anchorPostResult = {
+                    repeat: $(`#copntainer-${supplierId}-${supplyId}`).length > 0,
+                    achor: false,
+                }
             }
+
             if (supplyId != null) {
-                addTableBodyAboveReference(item);
+                //for (let index = 0; index < 20; index++) {
+                //    console.log('Prueva numero:'+index)
+                addTableBodyAboveReference(item, anchorPostResult);
+
+                //}
             } else {
                 Swal.fire({
                     icon: "error",
@@ -80,7 +96,8 @@ async function addItems() {
     });
 
     const apiUrl = '/list_of_supplys';
-    new SearchBox('No se encuntro el producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-supply', apiUrl, 5, 0);
+    supplyData = new SearchBox('No se encuntro el producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-supply', apiUrl, 5, 0);
+    //console.log(supplyData.idSelect());
     //fetchRoles();
     //selectorIten(".selected-iten", ".options-iten", ".option-iten");
     revertStyleDefaultAlert();
@@ -97,7 +114,7 @@ async function newSupply() {
     const htmlContent = await loadHtmlFromFile(url);
 
     Swal.fire({
-        title: '<h1 class="title">Registrar nuevo supplyo</h1>',
+        title: '<h1 class="title">Registrar nuevo suministro</h1>',
         html: htmlContent,
         showCloseButton: true,
         showCancelButton: true,
@@ -109,6 +126,12 @@ async function newSupply() {
 
     }).then(async (result) => {
         if (result.isConfirmed) {
+
+            //const supply = document.querySelector('input[name="supply"]:checked');
+            const supplier = document.querySelector('input[name="supplier_id"]');
+            //const supplyId = supply ? supply.value : null;
+            const supplierId = supplier ? supplier.value : null;
+            //const supplyName = supply ? supply.nextElementSibling.textContent : null;
 
             const newsupplyName = document.getElementsByName('name_new_supply')[0]?.value || null;
             const newsupplyQuantity = document.getElementsByName('quantity_new_supply')[0]?.value || null;
@@ -128,18 +151,69 @@ async function newSupply() {
             };
             if (newsupplyName != null & newsupplyQuantity != null & newsupplyPrice != null & measurementSystemValue != null) {
                 const result = await querySearchGet("/register_new_supply", data);
-                console.log(result);
+                //console.log(result);
                 if (result.response === true) {
                     const item = {
-                        id: result.id,
                         name: result.name,
                         price_per_unit: newsupplyPrice,
-                        quantity: newsupplyQuantity
+                        quantity: newsupplyQuantity,
+                        supply: result.id,
+                        supplier: supplierId,
                     };
-                    addTableBodyAboveReference(item);
+
+                    if (data.save_option & item.supply != null) {
+                        try { //var rpta = anchorsupply(supplyId, supplierId);
+                            var anchorPostResult = await consultDataPost('/anchor_supply_provider', { supplyId: item.supply, supplierId: supplierId })
+                            const csrfToken = $('input[name="_token"]').val();
+                            const formData = new FormData();
+                            formData.append("image", fileDataGlobal);
+                            formData.append("image_name", $('#name-data').val());
+                            formData.append("folder_name", 'supply');
+
+
+                            const response = await fetch("/new_image_galery", {
+                                method: "POST",
+                                headers: {
+                                    "X-CSRF-TOKEN": csrfToken
+                                },
+                                body: formData
+                            });
+
+                            if (!response.ok) {
+                                throw new Error("Error al subir la imagen.");
+                            }
+                        } catch (error) {
+                            console.log('No se pudo registrar la imagen')
+                        }
+                        // console.log(anchorPostResult);
+                        anchorPostResult.anchor = true;
+                        anchorPostResult.repeat = $(`#copntainer-${supplierId}-${item.supply}`).length > 0;
+
+                        //console.log(anchorPostResult);
+                    } else {
+                        var anchorPostResult = {
+                            repeat: $(`#copntainer-${supplierId}-${item.supply}`).length > 0,
+                            achor: false,
+                        }
+                    }
+
+                    if (item.supply != null) {
+                        //for (let index = 0; index < 20; index++) {
+                        //    console.log('Prueva numero:'+index)
+                        addTableBodyAboveReference(item, anchorPostResult);
+
+                        //}
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "No seleccionastes un supplyo o no esta escrito bien",
+                            didOpen: urlPostDeleteStyle
+                        });
+                    }
                     quickAlert("success", "Se registro exitosamente", "Listo")
                 } else {
-                    quickAlert("error", "No seleccionastes un supplyo o no esta escrito bien", "Oops...")
+                    quickAlert("error", "No seleccionastes un suministro o no esta escrito bien", "Oops...")
                 }
             } else {
                 quickAlert("error", "Dejastes algunos campos vacíos", "Oops...")
@@ -152,10 +226,74 @@ async function newSupply() {
     });
     selectorIten(".selected-unit-of-measurement-supply-new", ".options-unit-of-measurement-supply-new", ".option-unit-of-measurement-supply-new");
     $(document).ready(function () {
+
         $('#checkbox-preference-input').change(function () {
             updateLabelColor();
         });
+        $('.swal2-html-container').css('z-index', 2)
+
+        const $overlay = $("#overlay");
+        const $dropzoneArea = $("#dropzone-area");
+        const csrfToken = $('input[name="_token"]').val();
+        const allowedFileTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+
+        if (!$overlay.length || !$dropzoneArea.length || !csrfToken) {
+            console.error("Faltan elementos necesarios ($overlay, $dropzoneArea o CSRF token).");
+            return;
+        }
+
+        // Mostrar el overlay y el área de dropzone al arrastrar archivos
+        $(window).on("dragenter", function (event) {
+            if (event.originalEvent.dataTransfer?.types.includes("Files")) {
+                $overlay.show();
+                $dropzoneArea.css("display", "flex");
+            }
+        });
+
+        // Ocultar el overlay cuando el ratón sale del área de dropzone
+        $overlay.on("dragleave", function (event) {
+            if (event.target === $overlay[0]) {
+                $overlay.hide();
+                $dropzoneArea.hide();
+            }
+        });
+
+        // Evitar el comportamiento por defecto y mantener el overlay visible
+        $overlay.on("dragover", function (event) {
+            event.preventDefault();
+        });
+
+        // Manejar el evento de soltar archivos
+        $overlay.on("drop", function (event) {
+            event.preventDefault();
+            $overlay.hide();
+            $dropzoneArea.hide();
+
+            const files = event.originalEvent.dataTransfer.files;
+
+            if (files.length > 0) {
+                const file = files[0]; // Tomar solo el primer archivo
+
+                // Validar el tipo de archivo
+                if (!allowedFileTypes.includes(file.type)) {
+                    Swal.fire({
+                        icon: "info",
+                        title: "Archivo no permitido",
+                        text: "Este archivo no es válido. Solo se permiten imágenes en formato JPG, JPEG, PNG o GIF.",
+                        confirmButtonText: "Entendido",
+                    });
+                    return;
+                }
+
+                // Utilizar la función previewImage
+                const eventMock = { target: { files: [file] } };
+                previewImage(eventMock); // Llamar a la función de vista previa
+            }
+        });
     });
+
+    /**fin */
+
 
 }
 function quickAlert(icon, text, title) {
@@ -327,7 +465,7 @@ function valueActionInput(button, inputName, buttonActionIcon) {
     sumOfPrices();
 
 }
-function addTableBodyAboveReference(item) {
+function addTableBodyAboveReference(item, data = null) {
 
     var newTbody = document.createElement('tbody');
     var url = URL_TEMPLATE + "structured_row_template.html";
@@ -336,12 +474,14 @@ function addTableBodyAboveReference(item) {
     fetch(url)
         .then(response => response.text())
         .then(template => {
+
             let htmlContent = template
-                .replaceAll('{{id}}', item.id)
+                .replaceAll('{{id}}', item.supply)
                 .replace('{{name}}', item.name)
                 .replace('{{price_total}}', (item.price_per_unit * item.quantity) % 1 === 0 ? (item.price_per_unit * item.quantity).toFixed(0) : (item.price_per_unit * item.quantity).toFixed(2))
                 .replace('{{price_per_unit}}', item.price_per_unit)
-                .replace('{{quantity}}', item.quantity);
+                .replace('{{quantity}}', item.quantity)
+                .replace('{{option_to_anchor}}', buttonOptionAnchor(data, item.supplier, item.supply));
 
             newTbody.innerHTML = htmlContent;
 
@@ -350,6 +490,39 @@ function addTableBodyAboveReference(item) {
             referenceElement.parentNode.insertBefore(newTbody, referenceElement.previousSibling);
         })
         .catch(error => console.error('Error loading template:', error));
+    setTimeout(sumOfPrices, 500);
+
+}
+function buttonOptionAnchor(data, supplier, supply) {
+    let htmlAnchor = '';
+    if (data != null && !data.repeat) {
+
+        htmlAnchor = `<div class="container-btn-animation" id="copntainer-${supplier}-${supply}">
+                                  <label class="label-btn-animation">
+                                  `;
+        if (data.anchor) {
+            htmlAnchor += `<input type="checkbox" class="input inputAnchor" x:supplier="${supplier}" x:supply="${supply}"/>`;
+        } else {
+            htmlAnchor += `<input type="checkbox" class="input inputAnchor" x:supplier="${supplier}" x:supply="${supply}" checked/>`;
+        }
+        htmlAnchor += `        <span class="circle">
+                                          <i class="fi fi-br-link-alt icon"></i>
+                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                              d="M12 19V5m0 14-4-4m4 4 4-4"></path>
+                                          </svg>
+                                          <div class="square">
+                                          </div>
+                                      </span>
+
+                                      <p class="title">
+                                          <span class="circle-red">
+                                              <i class="fi fi-br-link-slash-alt"></i>
+                                          </span>
+                                      </p>
+                                  </label>
+                              </div>`;
+    }
+    return htmlAnchor;
 }
 function removeAllTableBodies() {
     const tbodies = document.querySelectorAll('tbody.list-inten.iten');
@@ -365,13 +538,20 @@ function supplierConsultation(id) {
         .then(data => {
 
             const items = data.map(supply => ({
-                id: supply.id,
                 name: supply.name,
                 price_per_unit: supply.price_per_unit,
-                quantity: supply.quantity
+                quantity: supply.quantity,
+                supply: supply.supply,
+                supplier: supply.supplier,
             }));
+            const dataFilt = {
+                repeat: false,
+                anchor: true,
+
+            };
+
             items.forEach(item => {
-                addTableBodyAboveReference(item);
+                addTableBodyAboveReference(item, dataFilt);
             });
             setTimeout(sumOfPrices, 500);
             setTimeout(toggleDisplay, 500);
@@ -385,16 +565,16 @@ function supplierConsultation(id) {
 
 function toggleDisplay() {
     var listDatasupply = document.querySelector('.list-data-supply');
-    var buttonElement = document.querySelector('.element-option');
     var buttonClear = document.querySelector('.clear-option');
-    var buttonRegister = document.querySelector('.register-option');
     var buttonCancel = document.querySelector('.cancel-option');
     var filter = document.querySelector('.filter');
 
     if (listDatasupply) {
         listDatasupply.style.display = 'inline-table';
-        buttonElement.style.display = 'flex';
-        buttonRegister.style.display = 'flex';
+        $('#spam-data-option').css({ 'display': 'flex', })
+        $('.element-option').css({ 'display': 'flex', })
+        $('.register-option').css({ 'display': 'flex', })
+
         if (buttonClear) {
             buttonClear.classList.remove('border-style-right');
             buttonClear.classList.add('border-style-left');
@@ -408,16 +588,16 @@ function toggleDisplay() {
 }
 function reverseToggleDisplay() {
     var listDatasupply = document.querySelector('.list-data-supply');
-    var buttonElement = document.querySelector('.element-option');
-    var buttonRegister = document.querySelector('.register-option');
     var buttonClear = document.querySelector('.clear-option');
     var buttonCancel = document.querySelector('.cancel-option');
     var filter = document.querySelector('.filter');
 
     if (listDatasupply) {
         listDatasupply.style.display = 'none';
-        buttonElement.style.display = 'none';
-        buttonRegister.style.display = 'none';
+        $('#spam-data-option').css({ 'display': 'none', })
+        $('.element-option').css({ 'display': 'none', })
+        $('.register-option').css({ 'display': 'none', })
+
         if (buttonClear) {
             buttonClear.classList.remove('border-style-left');
             buttonClear.classList.add('border-style-right');
@@ -486,11 +666,11 @@ function fetchRoles() {
         })
         .catch(error => console.error('Error al obtener los productos:', error));
 }
-*/
+
 function anchorsupply(supplyId, supplierId) {
 
     const url = '/anchor_supply_provider?supplyId=' + supplyId + '&supplierId=' + supplierId;
-
+    //console.log('/anchor_supply_provider?supplyId=' + supplyId + '&supplierId=' + supplierId)
     fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -499,14 +679,14 @@ function anchorsupply(supplyId, supplierId) {
             return response.json();
         })
         .then(data => {
-            console.log('Datos recibidos:', data);
+            return data
         })
         .catch(error => {
             console.error('Error:', error);
         });
 
 
-}
+}*/
 async function newSupplierRegistrationFast() {
 
     var url = URL_TEMPLATE + "new_supplier_alert_template.html";
@@ -550,7 +730,7 @@ async function newSupplierRegistrationFast() {
                             supplierSearchBox.fetchAllItems();
                             $('#id-supplier').val(result.supplier.id);
                             $('#search-supplier').val(result.person.name);
-                            supplierConsultation(result.supplier.id); 
+                            supplierConsultation(result.supplier.id);
                         } else {
                             quickAlert("error", "No se pudo registrar el provedor", "Oops...")
                         }
@@ -567,4 +747,58 @@ document.getElementById('form-register-entry').addEventListener('keydown', funct
     if (event.key === 'Enter') {
         event.preventDefault();
     }
+});
+
+$(document).ready(function () {
+    $(document).on('change', 'input.inputAnchor[type="checkbox"]', async function () {
+        const checkboxIdSupplier = $(this).attr('x:supplier');
+        const checkboxIdSupply = $(this).attr('x:supply');
+        const isChecked = $(this).is(':checked');
+        console.log(`input Id Provedor:${checkboxIdSupplier},input Id Suminsitro:${checkboxIdSupply}, Estado: ${isChecked ? 'Seleccioado' : 'No seleccionado'}`)
+        if (isChecked) {
+            var anchorPostResult = await consultDataPost('/remove_supply_provider', { supplyId: checkboxIdSupply, supplierId: checkboxIdSupplier })
+        } else if (!isChecked) {
+            var anchorPostResult = await consultDataPost('/anchor_supply_provider', { supplyId: checkboxIdSupply, supplierId: checkboxIdSupplier })
+        }
+    })
+})
+
+$(function () {
+    $(".register-option").on("click", function (e) {
+        e.preventDefault(); // Detener el envío inicial del formulario
+        let isValid = true, errors = [];
+
+        // Validar campos
+        if (!$("#id-supplier").val() || !$("#search-supplier").val()) 
+            errors.push("Debe seleccionar un proveedor.");
+        if ($("input[name='voucher_type_id']:checked").length === 0) 
+            errors.push("Debe seleccionar un tipo de documento.");
+        if ($("input[name='payment_type']:checked").length === 0) 
+            errors.push("Debe seleccionar un tipo de pago.");
+/*
+        const issuanceDate = $("#dateTime").val(), expirationDate = $("#dateTimeEnd").val();
+        if (!issuanceDate) errors.push("Debe ingresar la fecha de emisión.");
+        if (!expirationDate) errors.push("Debe ingresar la fecha de vencimiento.");
+        if (issuanceDate && expirationDate && expirationDate < issuanceDate) 
+            errors.push("La fecha de vencimiento debe ser posterior a la fecha de emisión.");
+
+        if (!$("#series").val().trim()) errors.push("Debe ingresar la serie del documento.");
+        if (!$("#numeric").val() || $("#numeric").val() <= 0) 
+            errors.push("Debe ingresar un número de documento válido.");
+*/
+        // Mostrar errores o enviar formulario
+        if (errors.length) {
+            Swal.fire({
+                icon: "error",
+                title: "Errores en el formulario",
+                html: errors.join("<br>"),
+                confirmButtonText: "Aceptar",
+                didOpen: urlPostDeleteStyle
+            });        
+
+        } else {
+            // Si todo es válido, envía el formulario
+            $(this).closest("form").submit();
+        }
+    });
 });
