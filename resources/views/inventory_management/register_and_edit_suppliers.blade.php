@@ -31,7 +31,7 @@
                 /
             </li>
             <a href="{{ route('suppliers') }}" class="sub-link">
-                Provedores
+                Proveedores
             </a>
             <li>
                 /
@@ -51,49 +51,48 @@
     <div class="container-data-supplier">
         <div class="row">
             <div class="input-group col-md-6">
-                <input type="text" id="name_input" class="effect-4" name="name" placeholder=" " required maxlength="50" value="{{ old('name', $Supply->name ?? '') }}"/>
+                <input type="text" id="name_input" class="effect-4" name="name" placeholder=" " required maxlength="50" value="{{ old('name', $Data->person->name ?? '') }}"/>
                 <label for="name_input">*Seudonimo o Razon social</label>
             </div>
             <div class="input-group col-md-6 one" id="div_frame_ruc_input">
-                <input type="text" id="frame_ruc_input" class="effect-4" name="ruc" placeholder=" " required maxlength="11" value="{{ old('ruc', $Supply->ruc ?? '') }}"/>
+                <input type="text" id="frame_ruc_input" class="effect-4" name="ruc" placeholder=" " required maxlength="11" value="{{ old('ruc', $Data->person->document_number ?? '') }}"/>
                 <label for="frame_ruc_input">*RUC</label>
             </div>
         </div>
+<!--
+    <div class="row">
+        <div class="select">
+            <div class="generos">
+                <label class="genero">
+                    <input type="radio" id="Hombre" name="gender" value="male" />
+                    <span> Hombre </span>
+                </label>
 
-        <div class="row">
-            <div class="select">
-                <div class="generos">
-                    <label class="genero">
-                        <input type="radio" id="Hombre" name="gender" value="male" />
-                        <span> Hombre </span>
-                    </label>
-
-                    <label class="genero">
-                        <input type="radio" id="Mujer" name="gender" value="feminine" />
-                        <span> Mujer </span>
-                    </label>
-                </div>
-                <div class="posgenero">Genero <i class='bx bxs-eject bx-rotate-180'></i></div>
+                <label class="genero">
+                    <input type="radio" id="Mujer" name="gender" value="feminine" />
+                    <span> Mujer </span>
+                </label>
             </div>
-
-            <div class="input-group col-md-6 one">
-                <input type="date" id="fechaNacimiento" class="effect-4" name="birthdate" placeholder=" " value="{{ old('birthdate', $Supply->birthdate ?? '') }}"/>
-                <label for="fechaNacimiento">*Fecha de Nacimiento</label>
-            </div>
+            <div class="posgenero">Genero <i class='bx bxs-eject bx-rotate-180'></i></div>
+        </div> 
+    </div>
+-->     <div class="input-group col-md-6 one">
+            <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " value="{{ old('email', $Data->person->email ?? '') }}"/>
+            <label for="Correo">*Correo</label>
         </div>
         <div class="row">
             <div class="input-group col-md-6">
-                <input type="text" id="Telefono" class="effect-4" name="phone" placeholder=" " maxlength="20" value="{{ old('phone', $Supply->phone ?? '') }}"/>
+                <input type="text" id="Telefono" class="effect-4" name="phone" placeholder=" " maxlength="20" value="{{ old('phone', $Data->person->phone ?? '') }}"/>
                 <label for="Telefono">*Teléfono</label>
             </div>
             <div class="input-group col-md-6 one">
-                <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " value="{{ old('email', $Supply->email ?? '') }}"/>
-                <label for="Correo">*Correo</label>
+                <input type="date" id="fechaNacimiento" class="effect-4" name="birthdate" placeholder=" " value="{{ old('birthdate', $Data->person->birthdate ?? '') }}"/>
+                <label for="fechaNacimiento">*Fecha de fundacion</label>
             </div>
         </div>
 
         <div class="input-group col-md-6 one unique">
-            <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " maxlength="255" value="{{ old('address', $Supply->address ?? '') }}"/>
+            <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " maxlength="255" value="{{ old('address', $Data->address ?? '') }}"/>
             <label for="Direccion">*Dirección</label>
         </div>
 

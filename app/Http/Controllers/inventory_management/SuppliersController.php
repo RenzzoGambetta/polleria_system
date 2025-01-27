@@ -19,25 +19,28 @@ class SuppliersController extends Controller
 
     public function __construct()
     {
-        $this->Navigation = FunctionGlobal::NavigationFast(3,4);
-
+        $this->Navigation = FunctionGlobal::NavigationFast(3, 4);
     }
     public function showSuppliersList()
     {
         $Navigation = $this->Navigation;
-        $Suppliers = Supplier::paginate(10);
+        $Suppliers = Supplier::orderBy('created_at', 'desc')->paginate(ConstGlobal::PAGINATION);
         return view('inventory_management.suppliers', compact('Navigation', 'Suppliers'));
     }
 
-    public function showSuppliersRegisterAndEdit()
+    public function showSuppliersRegisterAndEdit(Request $request)
     {
         $Navigation = $this->Navigation;
-        $reply = 1;
-        if ($reply = 1) {
+
+        if ($request->action == 'edit') {
+            $Data = supplier::find($request->id);
+            $Data ['option'] = 'Editar' ;
+        }else{
             $Data = [
                 'option' => 'Registro',
             ];
         }
+        //return response()->json($Data);
         return view('inventory_management.register_and_edit_suppliers', compact('Navigation', 'Data'));
     }
     public function newSupplierRegistrationFast(CreateFastSupplierRequest $request)
@@ -72,9 +75,17 @@ class SuppliersController extends Controller
         try {
             (new SupplierService)->createSupplier($request->validated());
             return redirect()->route('suppliers');
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('suppliers')->error($e);
+        }
+    }
+    public function deleteSupplier(Request $request)
+    {
+        try {
+            $data = (new SupplierService)->deleteSupplier(Supplier::find($request->id));
+            return redirect()->route('suppliers')->with(FunctionGlobal::MessageSuccess('Se elimino correctamente el proveedor.'));
+        } catch (Exception $e) {
+            return redirect()->route('suppliers')->with(FunctionGlobal::MessageError('Lo sentimos no se pudo eliminar este proveedor',10,$e->getMessage()));
         }
     }
 }

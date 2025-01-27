@@ -74,7 +74,7 @@
                             <a href="{{ route('show_panel_register_entry') }}" id="{{ ($Navigation['color'] ?? null) == 33 ? 'nav_select' : '' }}"><i class='fi fi-ss-inbox-in bx-adjustment-icon'></i>Entradas</a>
                         </li>
                         <li class="{{ ($Navigation['sub_seccion'] ?? null) == 3.4 ? 'active' : '' }}">
-                            <a href="{{ route('suppliers') }}" id="{{ ($Navigation['color'] ?? null) == 34 ? 'nav_select' : '' }}"><i class='fi fi-bs-person-dolly bx-adjustment-icon'></i>Provedores</a>
+                            <a href="{{ route('suppliers') }}" id="{{ ($Navigation['color'] ?? null) == 34 ? 'nav_select' : '' }}"><i class='fi fi-bs-person-dolly bx-adjustment-icon'></i>Proveedores</a>
                         </li>
                     </ul>
                 </li>

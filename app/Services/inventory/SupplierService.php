@@ -95,7 +95,7 @@ class SupplierService
         }
         catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            throw $e;
         }
     }
 
@@ -107,14 +107,14 @@ class SupplierService
             $personId = $supplier->person_id;
             $supplier->delete();
 
-            $person = Person::first($personId);
+            $person = Person::find($personId);// Corregido aquí Person::first($personId);. La función first() no acepta un parámetro como un identificador. En lugar de eso, deberías usar find() para obtener un registro por su ID.
             $person->delete();
 
             DB::commit();
             return true;
         } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            throw $e;
         }
     }
 
