@@ -44,6 +44,36 @@
         <div class="infotop">
             <i class="fi fi-sr-user-shield user-icon-employer"></i>
             <br>
+            @if ($Info['type'] == 'supplier')
+                <div class="title-name-table-data">
+                    <span class="name-employer"></span>{{ $Info['title'] }}: {{ $Info->person->name }}
+                </div>
+                <br>
+                <div class="primary-front-row">
+                    @if ($Info->person->name != null)
+                        <div class="data-employer name"><samp class="sub-title-data-general">Nombre:</samp> {{ $Info->person->name ?? '' }} {{ $Info->person->lastname ?? '' }}</div>
+                    @endif
+                    @if ($Info->person->document_number != null)
+                        <div class="data-employer document"><samp class="sub-title-data-general">Documento:</samp> {{ $Info->person->document_number }}</div>
+                    @endif
+                    @if ($Info->person->phone != null)
+                        <div class="data-employer phone"><samp class="sub-title-data-general">Celular:</samp> {{ $Info->person->phone }}</div>
+                    @endif
+                    @if ($Info->nationality != null)
+                        <div class="data-employer nationality"><samp class="sub-title-data-general">Nacionalidad:</samp> {{ $Info->nationality }}</div>
+                    @endif
+                    @if ($Info->person->birthdate != null)
+                        <div class="data-employer birthdate"><samp class="sub-title-data-general">Fecha de Fundacion:</samp> {{ $Info->person->birthdate }}</div>
+                    @endif
+                    @if ($Info->person->email != null)
+                        <div class="data-employer email"><samp class="sub-title-data-general">Correo:</samp> {{ $Info->person->email }}</div>
+                    @endif
+                    @if ($Info->address != null)
+                        <div class="data-employer address"><samp class="sub-title-data-general">Direccion:</samp> {{ $Info->address }}</div>
+                    @endif
+
+                </div>
+            @endif
             @if ($Info['type'] == 'employer')
                 <div class="title-name-table-data">
                     <span class="name-employer"></span>{{ $Info['title'] }}: {{ $Info->person->name }}

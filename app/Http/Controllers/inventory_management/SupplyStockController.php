@@ -92,31 +92,18 @@ class SupplyStockController extends Controller
     public function registerNewSupplyComplete(supplyRequest $request)
     {
         try {
-            //return response()->json($request);
             $validator = $request->validated();
             if ($request->filled(['id_edit_stock'])) {
                 $response = (new supplyService)->updateSupply($request->id_edit_stock, $validator);
-                return redirect()->route('inventory')->with([
-                    'Message' => 'Se edito el suministro satisfactoriamente.',
-                    'Type' => 'success'
-                ]);
+                return redirect()->route('inventory')->with(FunctionGlobal::MessageSuccess('Se edito el suministro satisfactoriamente.'));
             } else {
                 $response = (new supplyService)->createSupply($validator);
-                //return response()->json($request);
-
                 if ($response) {
-                    return redirect()->route('inventory')->with([
-                        'Message' => 'Se registro el suministro satisfactoriamente.',
-                        'Type' => 'success'
-                    ]);
+                    return redirect()->route('inventory')->with(FunctionGlobal::MessageSuccess('Se registro el suministro satisfactoriamente.'));
                 }
             }
         } catch (Exception $e) {
-
-            return redirect()->route('new_supply_inventory')->withInput()->with([
-                'Message' => 'No se pudo registrar el suminsitro.',
-                'Type' => 'error'
-            ]);
+            return redirect()->route('new_supply_inventory')->withInput()->with(FunctionGlobal::MessageError('No se pudo registrar el suminsitro.'));
         }
     }
     public function anchorSupplyProvider(Request $request)
@@ -213,7 +200,7 @@ class SupplyStockController extends Controller
                 'supplier' => $supplier->id,
                 'supply' => $request->supplyId,
             ], 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'error' => true,
                 'message' => 'Ocurrió un error al intentar eliminar la relación.',
@@ -228,12 +215,9 @@ class SupplyStockController extends Controller
             $inventoryReceiptService = new InventoryReceiptService();
             $entry = $inventoryReceiptService->createInventoryReceipt($data);
 
-            return redirect()->route('show_list_inventory_movements');
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error al registrar la entrada: ' . $e->getMessage()
-            ], 500);
+            return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageSuccess('Se registro satisfactoriamente la entrada.'));
+        } catch (Exception $e) {
+            return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageError('Lo sentimos se pudoregistrar la entrada',10,$e->getMessage()));
         }
     }
     public function registerSupplyOutput(InventoryIssueRequest $request)
@@ -271,4 +255,5 @@ class SupplyStockController extends Controller
             return response()->json(['error' => 'Item no encontrado'], 404);
         }
     }
+
 }

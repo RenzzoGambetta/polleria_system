@@ -712,7 +712,7 @@ async function newSupplierRegistrationFast() {
 
             const dataCompact = {
                 name: companyName,//company_name
-                ruc: documentNumber,//document_number
+                document_number: documentNumber,//document_number
                 phone: phone,
             };
 

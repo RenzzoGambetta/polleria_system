@@ -86,7 +86,9 @@ use App\Http\Controllers\test\testController;
             Route::get('/new_supplier_registration_fast', [SuppliersController::class,'newSupplierRegistrationFast'])->name('new_supplier_registration_fast');
             Route::get('/suppliers_register_and_edit', [SuppliersController::class,'showSuppliersRegisterAndEdit'])->name('suppliers_register_and_edit');
             Route::get('/list_of_suppliers', [SuppliersController::class,'listOfSuppliers'])->name('list_of_suppliers');
+            Route::get('/data_supplier_block', [SuppliersController::class,'showDataSupplier'])->name('data_supplier_block');
             Route::post('/new_supplier_registration', [SuppliersController::class,'newSupplierRegistration'])->name('new_supplier_registration');
+            Route::post('/supplier_update', [SuppliersController::class,'updateSupplier'])->name('supplier_update');
             Route::post('/delete_supplier', [SuppliersController::class,'deleteSupplier'])->name('delete_supplier');
         //--> Modulo de gestion de Menu
             //Menu

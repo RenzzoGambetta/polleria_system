@@ -64,15 +64,9 @@ class InventoryController extends Controller
         $response = Supply::destroy($request->id); 
 
         if ($response) {
-            return redirect()->route('inventory')->with([
-                'Message' => 'Se eliminó satisfactoriamente.',
-                'Type' => 'success'
-            ]);
+            return redirect()->route('inventory')->with(FunctionGlobal::MessageSuccess('Se eliminó satisfactoriamente.'));
         }
 
-        return redirect()->route('new_supply_inventory', ['id' => $request->id])->withInput()->with([
-            'Message' => 'No se pudo eliminar el suministro.',
-            'Type' => 'error'
-        ]);
+        return redirect()->route('new_supply_inventory', ['id' => $request->id])->withInput()->with(FunctionGlobal::MessageError('No se pudo eliminar el suministro.'));
     }
 }

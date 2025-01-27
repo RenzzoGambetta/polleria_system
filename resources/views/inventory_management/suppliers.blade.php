@@ -82,7 +82,7 @@
                             <button class="button-option-employee edit" onclick="urlGet('{{route('suppliers_register_and_edit')}}',{id : {{$Suplier->id}}, action:'edit'})" title="Editar datos empleado">
                                 <i class="fi fi-sr-user-pen option-table" ></i>
                             </button>
-                            <button class="button-option-employee view" onclick="urlGet('{{route('data_employer_block')}}',{id : {{$Suplier->id}}})" title="Visualizar los datos del empleado">
+                            <button class="button-option-employee view" onclick="urlGet('{{route('data_supplier_block')}}',{id : {{$Suplier->id}}})" title="Visualizar los datos del empleado">
                                 <i class="fi fi-ss-eye option-table"></i>
                             </button>
                         </td>

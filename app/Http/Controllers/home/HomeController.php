@@ -4,6 +4,7 @@ namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\order\MozoController;
+use App\Http\Global\FunctionGlobal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,12 @@ class HomeController extends Controller
         'sub_seccion' => 1.0,
         'color' => 10
     ];
+
+    public function __construct()
+    {
+        $this->Navigation = FunctionGlobal::NavigationFast(1,0);
+    }
+
 
     public function showHomePanel()
     {

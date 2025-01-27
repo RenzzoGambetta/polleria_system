@@ -44,9 +44,11 @@
     </div>
 </div>
 
-<form method="POST" class="form-container" action="{{ route('new_supplier_registration') }}">
+<form method="POST" class="form-container" action="{{ route($Data['urlAccet']) }}">
     @csrf
-
+    @if ($Data->id ?? false)
+        <input type="hidden" name="id" value="{{ old('name', $Data->id ?? '') }}">
+    @endif
     <!-- Steps -->
     <div class="container-data-supplier">
         <div class="row">
@@ -55,28 +57,11 @@
                 <label for="name_input">*Seudonimo o Razon social</label>
             </div>
             <div class="input-group col-md-6 one" id="div_frame_ruc_input">
-                <input type="text" id="frame_ruc_input" class="effect-4" name="ruc" placeholder=" " required maxlength="11" value="{{ old('ruc', $Data->person->document_number ?? '') }}"/>
+                <input type="text" id="frame_ruc_input" class="effect-4" name="document_number" placeholder=" " required maxlength="11" value="{{ old('ruc', $Data->person->document_number ?? '') }}"/>
                 <label for="frame_ruc_input">*RUC</label>
             </div>
         </div>
-<!--
-    <div class="row">
-        <div class="select">
-            <div class="generos">
-                <label class="genero">
-                    <input type="radio" id="Hombre" name="gender" value="male" />
-                    <span> Hombre </span>
-                </label>
-
-                <label class="genero">
-                    <input type="radio" id="Mujer" name="gender" value="feminine" />
-                    <span> Mujer </span>
-                </label>
-            </div>
-            <div class="posgenero">Genero <i class='bx bxs-eject bx-rotate-180'></i></div>
-        </div> 
-    </div>
--->     <div class="input-group col-md-6 one">
+        <div class="input-group col-md-6 one">
             <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " value="{{ old('email', $Data->person->email ?? '') }}"/>
             <label for="Correo">*Correo</label>
         </div>
@@ -97,36 +82,14 @@
         </div>
 
         <div class="btns-group btn-navegation-form-3frem">
-            <a href="#" class="btn">Atrás</a>
-            <input type="submit" class="btn" id="submitButton" value="Registrar" />
+            <a href="{{ route('suppliers')}}" class="btn">Atrás</a>
+            <input type="submit" class="btn" id="submitButton" value="{{ $Data['subButthon'] ?? '' }}" />
         </div>
     </div>
 </form>
 
 </section>
-<script>
-    const posgenero = document.querySelector('.posgenero');
-    const generos = document.querySelector('.generos');
-    const genero = document.querySelectorAll('.genero');
 
-    posgenero.addEventListener('click', () => {
-        generos.classList.toggle('active');
-    });
-
-    genero.forEach(option => {
-        option.addEventListener('click', () => {
-            posgenero.innerHTML = option.querySelector('span').innerText;
-            generos.classList.remove("active");
-        });
-    });
-
-    document.addEventListener('click', (event) => {
-        const isClickInside = posgenero.contains(event.target) || generos.contains(event.target);
-        if (!isClickInside) {
-            generos.classList.remove('active');
-        }
-    });
-</script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

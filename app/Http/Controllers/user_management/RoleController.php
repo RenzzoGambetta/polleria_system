@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\ConstGlobal;
+use App\Http\Global\FunctionGlobal;
 use App\Http\Requests\user_management\CreateRoleRequest;
 use App\Models\Role;
 use App\Models\Permission;
@@ -13,34 +15,24 @@ use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
-    protected $Navigation = [
-        'seccion' => 2,
-        'sub_seccion' => 2.2,
-        'color' => 22
-    ];
+    protected $Navigation;
 
-    protected $roleService;
-
-    public function __construct(RoleService $roleService)
+    public function __construct()
     {
-        $this->roleService = $roleService;
+        $this->Navigation = FunctionGlobal::NavigationFast(2, 2);
     }
 
     public function show_position_list()
     {
         $Navigation = $this->Navigation;
-
-        $Roles = Role::paginate(10);
+        $Roles = Role::paginate(ConstGlobal::PAGINATION);
         return view('user_management.role', compact('Navigation', 'Roles'));
     }
     public function show_role_register(Request $Data)
     {
         $Navigation = $this->Navigation;
-
         $Categories = Permission::all()->groupBy('category');
-
         if ($Data->action == 'edit' || $Data->action == 'modify') {
-
             $rolePermissions = DB::table('role_permission')
                 ->where('role_id', $Data->id)
                 ->pluck('permission_id')
@@ -69,7 +61,7 @@ class RoleController extends Controller
                 ];
             } else if ($Data->action == 'modify') {
                 $Info = [
-                    'title' => 'Nuevo sub Rol de '.Role::select('name')->where('id', $Data->id)->first()->name ?? '',
+                    'title' => 'Nuevo sub Rol de ' . Role::select('name')->where('id', $Data->id)->first()->name ?? '',
                     'id' => $Data->id,
                     'form_url' => 'new_extension_role',
                     'button_text' => 'Mejorar',
@@ -78,7 +70,6 @@ class RoleController extends Controller
                 ];
             }
         } else {
-
             $Categories = $Categories->map(function ($permissions) {
                 return (object)[
                     'permissions' => $permissions->map(function ($permission) {
@@ -88,7 +79,6 @@ class RoleController extends Controller
                     'checked' => false
                 ];
             });
-
             $Info = [
                 'title' => 'Registro de nuevo Rol',
                 'button_text' => 'Registrar',
@@ -101,140 +91,89 @@ class RoleController extends Controller
     }
     public function store(CreateRoleRequest $request)
     {
-        /*
-        *   Implementacion temporal de la creación de roles, modifica la logica.
-        */
         try {
-            $role = $this->roleService->createRoleAndAssignPermissions($request->validated());
-
-            return redirect()->route('position')->withInput()->with([
-                'Message' => 'Rol y permisos asignados correctamente.',
-                'Type' => 'success'
-            ]);
+            $role = (new RoleService)->createRoleAndAssignPermissions($request->validated());
+            return redirect()->route('position')->withInput()->with(FunctionGlobal::MessageSuccess('Rol y permisos asignados correctamente.'));
         } catch (Exception $e) {
-            //return $e;
-            return redirect()->route('role_register')->withInput()->with([
-                'Message' => 'Error al asignar el rol y permisos.',
-                'Type' => 'error'
-            ]);
+            return redirect()->route('role_register')->withInput()->with(FunctionGlobal::MessageError('Error al asignar el rol y permisos.'));
         }
     }
     public function editRole(CreateRoleRequest $request)
     {
         try {
-
-            $response = $this->roleService->updatesRoleAndAssignPermissions($request->id,$request->validated());
-
+            $response = (new RoleService)->updatesRoleAndAssignPermissions($request->id, $request->validated());
             if ($response) {
-                return redirect()->route('position')->with([
-                    'Message' => 'Se edito exitosomente el rol.',
-                    'Type' => 'success'
-                ]);
+                return redirect()->route('position')->with(FunctionGlobal::MessageSuccess('Se edito exitosomente el rol.'));
             }
             return redirect()->route('role_register', ['id' => $request->id, 'action' => 'edit'])
                 ->withInput()
-                ->with([
-                    'Message' => 'Error al asignar el rol.',
-                    'Type' => 'error'
-                ]);
+                ->with(FunctionGlobal::MessageError('Error al asignar el rol.'));
         } catch (Exception $e) {
             return redirect()->route('position')
                 ->withInput()
-                ->with([
-                    'Message' => 'Error al asignar el rol.',
-                    'Console' => $e->getMessage(),
-                    'Type' => 'error'
-                ]);
+                ->with(FunctionGlobal::MessageError('Error al asignar el rol.', 10, $e->getMessage()));
         }
     }
     public function deleteRole(Request $request)
     {
         try {
 
-            $response = $this->roleService->deleteRoleAndRelatedPermissions($request->id);
+            $response = (new RoleService)->deleteRoleAndRelatedPermissions($request->id);
 
             if ($response) {
-                return redirect()->route('position')->with([
-                    'Message' => 'Se elimino exitosomente el rol.',
-                    'Type' => 'success'
-                ]);
+                return redirect()->route('position')->with(FunctionGlobal::MessageSuccess('Se elimino exitosomente el rol.'));
             }
-            return redirect()->route('position')->with([
-                'Message' => 'No se pudo elimino el rol.',
-                'Type' => 'error'
-            ]);
+            return redirect()->route('position')->with(FunctionGlobal::MessageError('No se pudo elimino el rol.'));
         } catch (Exception $e) {
-            return redirect()->route('position')->with([
-                'Message' => 'No se pudo eliminar el rol por un problema interno.',
-                'Console' => $e->getMessage(),
-                'Type' => 'error'
-            ]);
+            return redirect()->route('position')->with(FunctionGlobal::MessageError('No se pudo eliminar el rol por un problema interno.', 10, $e->getMessage()));
         }
     }
     public function newExtensionRole(CreateRoleRequest $request)
     {
         try {
-
-            $role = Role::find($request->id);
-
+            //$role = Role::find($request->id);
             //*quitar el omentario cuando se complete el servisio para editar
             $response = true;
             //$response = $this->roleService->newExtensionRole($request->validated(), $role);
-
             if ($response) {
-                return redirect()->route('user_register', ['id' => $request->id_user, 'action' => 'edit'])->with([
-                    'Message' => 'Se creo una modificocion exitosomente del rol.',
-                    'Type' => 'success'
-                ]);
+                return redirect()->route('user_register', ['id' => $request->id_user, 'action' => 'edit'])->with(FunctionGlobal::MessageSuccess('Se creo una modificocion exitosomente del rol.'));
             }
             return redirect()->route('role_register', ['id' => $request->id, 'action' => 'modify'])
                 ->withInput()
-                ->with([
-                    'Message' => 'Error al modificar un rol.',
-                    'Type' => 'error'
-                ]);
+                ->with(FunctionGlobal::MessageError('Error al modificar un rol.'));
         } catch (Exception $e) {
             return redirect()->route('role_register')
                 ->withInput()
-                ->with([
-                    'Message' => 'Error al asignar el rol.',
-                    'Type' => 'error'
-                ]);
+                ->with(FunctionGlobal::MessageError('Error al asignar el rol.'));
         }
     }
-    public function showRoleViewSelec(Request $Data){
-
+    public function showRoleViewSelec(Request $Data)
+    {
         $Navigation = $this->Navigation;
-
         $Categories = Permission::all()->groupBy('category');
-
-            $rolePermissions = DB::table('role_permission')
-                ->where('role_id', $Data->id)
-                ->pluck('permission_id')
-                ->toArray();
-
-            $Categories = $Categories->map(function ($permissions, $category) use ($rolePermissions) {
-                $hasChecked = false;
-                $permissions = $permissions->map(function ($permission) use ($rolePermissions, &$hasChecked) {
-                    $permission->checked = in_array($permission->id, $rolePermissions);
-                    if ($permission->checked) {
-                        $hasChecked = true;
-                    }
-                    return $permission;
-                });
-                return (object)[
-                    'permissions' => $permissions,
-                    'checked' => $hasChecked
-                ];
+        $rolePermissions = DB::table('role_permission')
+            ->where('role_id', $Data->id)
+            ->pluck('permission_id')
+            ->toArray();
+        $Categories = $Categories->map(function ($permissions, $category) use ($rolePermissions) {
+            $hasChecked = false;
+            $permissions = $permissions->map(function ($permission) use ($rolePermissions, &$hasChecked) {
+                $permission->checked = in_array($permission->id, $rolePermissions);
+                if ($permission->checked) {
+                    $hasChecked = true;
+                }
+                return $permission;
             });
-
-                $Info = [
-                    'title' => 'Rol: ',
-                    'id' => $Data->id,
-                    'name' => Role::select('name')->where('id', $Data->id)->first() ?? ''
-                ];
-           
-       
+            return (object)[
+                'permissions' => $permissions,
+                'checked' => $hasChecked
+            ];
+        });
+        $Info = [
+            'title' => 'Rol: ',
+            'id' => $Data->id,
+            'name' => Role::select('name')->where('id', $Data->id)->first() ?? ''
+        ];
         //return response()->json($Categories);
         return view('user_management.role_data', compact('Navigation',  'Categories', 'Info'));
     }

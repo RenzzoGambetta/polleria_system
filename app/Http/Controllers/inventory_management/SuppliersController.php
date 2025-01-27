@@ -35,9 +35,13 @@ class SuppliersController extends Controller
         if ($request->action == 'edit') {
             $Data = supplier::find($request->id);
             $Data ['option'] = 'Editar' ;
+            $Data ['subButthon'] = 'Editar' ;
+            $Data ['urlAccet'] = 'supplier_update' ;
         }else{
             $Data = [
                 'option' => 'Registro',
+                'subButthon' => 'Registrar',
+                'urlAccet' => 'new_supplier_registration'
             ];
         }
         //return response()->json($Data);
@@ -64,7 +68,8 @@ class SuppliersController extends Controller
         foreach ($Suppliers as $supplier) {
             $data[] = [
                 'id' => $supplier->id,
-                'name' => $supplier->person->document_number . " | " . $supplier->person->name,
+                'name' => ($supplier->person->document_number ?? '00000000') . " | " . ($supplier->person->name ?? 'anonimo'),
+
             ];
         }
 
@@ -74,9 +79,17 @@ class SuppliersController extends Controller
     {
         try {
             (new SupplierService)->createSupplier($request->validated());
-            return redirect()->route('suppliers');
+            return redirect()->route('suppliers')->with(FunctionGlobal::MessageSuccess('Se Registro satisfactoriamente.'));
         } catch (Exception $e) {
-            return redirect()->route('suppliers')->error($e);
+            return redirect()->route('suppliers')->with(FunctionGlobal::MessageError('Lo sentimos no se pudo registrar el proveedor',10,$e->getMessage()));
+        }
+    }
+    public function updateSupplier(supplierRequest $request){
+        try {
+            (new SupplierService)->updateSupplier(supplier::find($request->id),$request->validated());
+            return redirect()->route('suppliers')->with(FunctionGlobal::MessageSuccess('Se edito satisfactoriamente los datos del proveedor.'));
+        } catch (Exception $e) {
+            return redirect()->route('suppliers')->with(FunctionGlobal::MessageError('Lo sentimos no se pudo editar el proveedor',10,$e->getMessage()));
         }
     }
     public function deleteSupplier(Request $request)
@@ -87,5 +100,19 @@ class SuppliersController extends Controller
         } catch (Exception $e) {
             return redirect()->route('suppliers')->with(FunctionGlobal::MessageError('Lo sentimos no se pudo eliminar este proveedor',10,$e->getMessage()));
         }
+    }
+    public function showDataSupplier(Request $Data)
+    {
+        $Info = Supplier::find($Data->id);
+        $Info['title']='Proveedor';
+        $Info['sub_title']='Datos de porveedor';
+        $Info['data']=$Data->id;
+        $Info['type']='supplier';
+        $Info['url']='data_supplier_block';
+
+
+        $Navigation = $this->Navigation;
+
+        return view('user_management.data_employer', compact('Navigation', 'Info'));
     }
 }

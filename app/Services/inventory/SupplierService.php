@@ -18,7 +18,7 @@ class SupplierService
         try {
             $person = Person::create([
                 'document_type_id' => 2,
-                'document_number' => $data['ruc'],
+                'document_number' => $data['document_number'],
                 'name' => $data['name'],
                 'phone' => $data['phone'],
             ]);
@@ -46,10 +46,10 @@ class SupplierService
         try {
             $person = Person::create([
                 'document_type_id' => 2,
-                'document_number' => $data['ruc'],
+                'document_number' => $data['document_number'],
                 'name' => $data['name'],
                 'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
-                'gender' => null,
+                //'gender' => null,
                 'phone' => isset($data['phone']) ? $data['phone'] : null,
                 'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);
@@ -79,13 +79,13 @@ class SupplierService
             ]);
 
             $personId = $supplier->person_id;
-            $person = Person::first($personId);
+            $person = Person::find($personId);// Corregido aquí Person::first($personId);. La función first() no acepta un parámetro como un identificador. En lugar de eso, deberías usar find() para obtener un registro por su ID.
 
             $person->update([
-                'document_number' => $data['ruc'],
+                'document_number' => $data['document_number'],
                 'name' => $data['name'],
                 'birthdate' => isset($data['birthdate']) ? $data['birthdate'] : null,
-                'gender' => isset($data['phone']) && $data['gender'] == 'male' ? 0 : 1,
+               // 'gender' => isset($data['phone']) && $data['gender'] == 'male' ? 0 : 1,
                 'phone' => isset($data['phone']) ? $data['phone'] : null,
                 'email' => isset($data['email']) ? strtolower($data['email']) : null,
             ]);

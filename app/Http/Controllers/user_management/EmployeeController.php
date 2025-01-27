@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\user_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\ConstGlobal;
+use App\Http\Global\FunctionGlobal;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Exception;
@@ -14,31 +16,22 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
-    protected $identificationDocumentService;
-    protected $employeeService;
+    protected $Navigation;
 
-    protected $Navigation = [
-        'seccion' => 2,
-        'sub_seccion' => 2.1,
-        'color' => 21
-    ];
-
-    public function __construct(IdentificationDocumentService $identificationDocumentService, EmployeeService $employeeService)
+    public function __construct()
     {
-        $this->identificationDocumentService = $identificationDocumentService;
-        $this->employeeService = $employeeService;
+        $this->Navigation = FunctionGlobal::NavigationFast(2,1);
     }
 
     public function show_employeer_list()
     {
-        $List = Employee::orderBy('created_at', 'desc')->with(['person', 'user'])->paginate(10);
-
         $Navigation = $this->Navigation;
-
+        $List = Employee::orderBy('created_at', 'desc')->with(['person', 'user'])->paginate(ConstGlobal::PAGINATION);
         return view('user_management.employee', compact('Navigation', 'List'));
     }
     public function show_employeer_register(Request $Data)
     {
+        $Navigation = $this->Navigation;
         if ($Data->action == "new") {
             $Info = [
                 'title' => 'Registro',
@@ -63,7 +56,6 @@ class EmployeeController extends Controller
                 'form_url' => 'create_employee_record'
             ];
         }
-        $Navigation = $this->Navigation;
         return view('user_management.employee_register', compact('Navigation', 'Info'));
     }
 
@@ -85,7 +77,7 @@ class EmployeeController extends Controller
             return response()->json(['error' => $sms], 400);
         }
 
-        $response = $this->identificationDocumentService->fetchDataByDni($dni);
+        $response = (new IdentificationDocumentService)->fetchDataByDni($dni);
 
         if (is_array($response)) {
             return response()->json(['data' => $response], 200);
@@ -95,13 +87,10 @@ class EmployeeController extends Controller
     public function create_employee_record(EmployeeRequest $request)
     {
         try {
-            $response = $this->employeeService->createEmployee($request->validated());
+            $response = (new EmployeeService)->createEmployee($request->validated());
 
             if ($response) {
-                return redirect()->route('employeer')->with([
-                    'Message' => 'Se registro exitosomente el empleado/a.',
-                    'Type' => 'success'
-                ]);
+                return redirect()->route('employeer')->with(FunctionGlobal::MessageSuccess('Se registro exitosomente el empleado/a.'));
             }
             return redirect()->route('employeer_register')
                 ->withInput()
@@ -115,15 +104,11 @@ class EmployeeController extends Controller
     public function editEmployeeRecord(EmployeeRequest $request)
     {
         try {
-
             $employee = Employee::find($request->id);
-            $response = $this->employeeService->updateEmployee($request->validated(), $employee);
+            $response = (new EmployeeService)->updateEmployee($request->validated(), $employee);
 
             if ($response) {
-                return redirect()->route('employeer')->with([
-                    'Message' => 'Se edito exitosomente el empleado/a.',
-                    'Type' => 'success'
-                ]);
+                return redirect()->route('employeer')->with(FunctionGlobal::MessageSuccess('Se edito exitosomente el empleado/a.'));
             }
             return redirect()->route('employeer_register')
                 ->withInput()
@@ -138,36 +123,25 @@ class EmployeeController extends Controller
     {
         try {
             $employee = Employee::find($request->id);
-            $response = $this->employeeService->deleteEmployee($employee);
+            $response = (new EmployeeService)->deleteEmployee($employee);
 
             if ($response) {
-                return redirect()->route('employeer')->with([
-                    'Message' => 'Se elimino exitosomente el empleado/a.',
-                    'Type' => 'success'
-                ]);
+                return redirect()->route('employeer')->with(FunctionGlobal::MessageSuccess('Se elimino exitosomente el empleado/a.'));
             }
-            return redirect()->route('employeer')->with([
-                'Message' => 'No se pudo elimino el empleado/a.',
-                'Type' => 'error'
-            ]);
+            return redirect()->route('employeer')->with(FunctionGlobal::MessageError('No se pudo elimino el empleado/a.'));
         } catch (Exception $e) {
-            return redirect()->route('employeer')->with([
-                'Message' => 'No se pudo elimino el empleado/a.' . $e,
-                'Type' => 'error'
-            ]);
+            return redirect()->route('employeer')->with(FunctionGlobal::MessageError('No se pudo elimino el empleado/a.' . $e));
         }
     }
     public function showDataemployerBlock(Request $Data)
     {
+        $Navigation = $this->Navigation;
         $Info = Employee::find($Data->id);
         $Info['title']='Empleado';
         $Info['sub_title']='Datos de empleado';
         $Info['data']=$Data->id;
         $Info['type']='employer';
         $Info['url']='data_employer_block';
-
-
-        $Navigation = $this->Navigation;
 
         return view('user_management.data_employer', compact('Navigation', 'Info'));
     }

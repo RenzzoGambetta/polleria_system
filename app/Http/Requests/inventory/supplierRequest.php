@@ -22,7 +22,7 @@ class supplierRequest extends BaseRequest
         if ($this->id != null) 
         {
             return [
-                'ruc' => 'required|string|min:8|max:11',
+                'document_number' => 'required|string|min:8|max:11',
                 'name' => 'required|string|max:50',
                 'birthdate' => 'date|nullable',
                 'gender' => 'string|nullable',
@@ -33,7 +33,7 @@ class supplierRequest extends BaseRequest
         } 
         else {
             return [
-                'ruc' => 'required|string|min:8|max:11|unique:persons,document_number',
+                'document_number' => 'required|string|min:8|max:11|unique:persons,document_number',
                 'name' => 'required|string|max:50',
                 'birthdate' => 'date|nullable',
                 'gender' => 'string|nullable',

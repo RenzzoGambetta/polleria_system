@@ -23,7 +23,7 @@ class CreateFastSupplierRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'ruc' => 'required|string|size:8',
+            'document_number' => 'required|string|size:8',
             'name' => 'required|string|max:50',
             'phone' => 'required|string',
         ];

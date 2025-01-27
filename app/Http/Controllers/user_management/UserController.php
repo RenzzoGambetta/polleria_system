@@ -60,7 +60,7 @@ class UserController extends Controller
     }
     public function store(UserRequest $request)
     {
-        return response()->json('entro');
+        //return response()->json('entro');
         try {
 
             $user = $this->userService->createUser($request->validated());
