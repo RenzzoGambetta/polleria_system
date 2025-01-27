@@ -31,7 +31,7 @@ class InventoryDTOService
                 'date' => Carbon::parse($r->incoming_date)->format('d - m - Y'),
                 'date_order' => $r->incoming_date,
                 'type' => 'Entrada',
-                'proveedor' => $r->supplier->person->name,
+                'proveedor' => $r->supplier->person->name ?? 'Sin nombre',
                 'total_amount' => $r->total_amount,
             ];
         });
