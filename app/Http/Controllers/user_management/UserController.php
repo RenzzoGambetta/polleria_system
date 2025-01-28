@@ -42,6 +42,7 @@ class UserController extends Controller
             $Info['text_info_password'] = 'Solo rellene este campo si desea modificar la contraseña';
             $Info['id'] = $Data->id;
             $Info['form_url'] = 'user_edit';
+            $Info['person_name'] =  ($Info->employee->person->document_number ?? '00000000') . " | " . (($Info->employee->person->name ?? 'anonimo').' '.($Info->employee->person->lastname ?? '' ));
         } else {
             $Info['title'] = 'Nuevo usuario';
             $Info['text_password'] = '*Contraseña';

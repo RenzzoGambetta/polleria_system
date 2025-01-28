@@ -146,21 +146,29 @@ class EmployeeController extends Controller
 
         return view('user_management.data_employer', compact('Navigation', 'Info'));
     }
-    public function listOfEmployer()
+    public function listOfEmployer(Request $request)
     {
-        $UserIds = User::pluck('employee_id')->toArray(); // Obtener todos los employer_id registrados en User
-        $Employer = Employee::whereNotIn('id', $UserIds)->get(); // Filtrar los empleados no registrados en User
+        if ($request->id) {
+            // Obtener todos los employee_id registrados en User, pero excluyendo el id proporcionado en la solicitud
+            $UserIds = User::whereNotIn('id', [$request->id])->pluck('employee_id')->toArray();
+        } else {
+            // Obtener todos los employee_id registrados en User
+            $UserIds = User::pluck('employee_id')->toArray();
+        }
+        
+        // Filtrar los empleados que no están registrados en User
+        $Employer = Employee::whereNotIn('id', $UserIds)->get();
         
         $data = [];
-
+        
         foreach ($Employer as $employer) {
             $data[] = [
                 'id' => $employer->id,
-                'name' => ($employer->person->document_number ?? '00000000') . " | " . (($employer->person->name ?? 'anonimo').' '.($employer->person->lastname ?? '' )),
-
+                'name' => ($employer->person->document_number ?? '00000000') . " | " . (($employer->person->name ?? 'anonimo') . ' ' . ($employer->person->lastname ?? '')),
             ];
         }
-
+        
         return response()->json($data);
+        
     }
 }

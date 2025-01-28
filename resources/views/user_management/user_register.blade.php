@@ -71,6 +71,9 @@
             @php
                 $exit = '';
             @endphp
+            <script>employeeURL = '/list_of_employer?id={{$Info->id}}'</script>
+        @else   
+            <script>employeeURL = '/list_of_employer'</script>
         @endif
         <section class="form_pos">
             <section class="form_pos2">
@@ -80,8 +83,8 @@
                     <div class="row">
                         <div class="select">
                             <div class="search-container">
-                                <input type="number" id="id-employer" name="employee_id">
-                                <input type="text" id="search-employer" name="employer_name" style="display: none" class="search-box-employer input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
+                                <input type="number" id="id-employer" name="employee_id" value="{{ $Info->employee->person->id ?? '' }}">
+                                <input type="text" id="search-employer" name="employer_name" style="display: none" class="search-box-employer input-iten effect-5 no-spinner alert-style" placeholder=" " value="{{ $Info['person_name'] ?? '' }}" autocomplete="off">
                                 <label for="search-employer" id="search-label-employer" class="label-input-data mobile-label main-panel">Seleccione el Empelado</label>
                                 <div id="suggestions" class="suggestions-employer"></div>
                                 <div id="loader-employer" class="loader-section">
@@ -98,8 +101,8 @@
 
                         <div class="select one role-data">
                             <div class="search-container">
-                                <input type="number" id="id-role" name="role_id">
-                                <input type="text" id="search-role" name="role_name" style="display: none" class="search-box-role input-iten effect-5 no-spinner alert-style" placeholder=" " autocomplete="off">
+                                <input type="number" id="id-role" name="role_id" value="{{ $Info->role->id ?? '' }}">
+                                <input type="text" id="search-role" name="role_name" style="display: none" class="search-box-role input-iten effect-5 no-spinner alert-style" placeholder=" " value="{{ $Info->role->name ?? '' }}" autocomplete="off">
                                 <label for="search-role" id="search-label-role" class="label-input-data mobile-label main-panel">Seleccione el Empelado</label>
                                 <div id="suggestions" class="suggestions-role"></div>
                                 <div id="loader-role" class="loader-section">
@@ -146,8 +149,8 @@
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 
 <script>
-new SearchBox('No se encuntro el empleado...', '.search-box-supplier', '#search-employer', '#search-label-employer', '.suggestions-employer', '#loader-employer', '#id-employer', ' /list_of_employer', 5, 0);
-new SearchBox('No se encuntro el rol...', '.search-box-role', '#search-role', '#search-label-role', '.suggestions-role', '#loader-role', '#id-role', ' /list_of_role', 5, 0);
+new SearchBox('No se encuntro el empleado...', '.search-box-supplier', '#search-employer', '#search-label-employer', '.suggestions-employer', '#loader-employer', '#id-employer', employeeURL, 5, 0);
+new SearchBox('No se encuntro el rol...', '.search-box-role', '#search-role', '#search-label-role', '.suggestions-role', '#loader-role', '#id-role', '/list_of_role', 5, 0);
 </script>
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
