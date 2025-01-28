@@ -52,12 +52,12 @@
 .suggestions-supplier.open,
 .suggestions-employer.open,
 .suggestions-client.open,
-.suggestions.ope{
+.suggestions.open{
     max-height: 250px;
     opacity: 1;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     padding: 10px 2px;
-
+    border-radius: 5px;
 }
 
 .suggestion-item {

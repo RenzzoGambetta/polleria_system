@@ -308,16 +308,29 @@ function mostrarAlerta(urlImage, nameImage){
     }
 }
 
-document.getElementById('myForm').addEventListener('submit',async function (event) {
-    event.preventDefault();
-    if(fileDataGlobal != null){
+document.getElementById('myForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Evitar el envío predeterminado
+    console.log('Se ingresó al submit');
 
-        const csrfToken = $('input[name="_token"]').val();
+    // Obtener el token CSRF
+    const csrfToken = document.querySelector('input[name="_token"]')?.value;
+    if (!csrfToken) {
+        Swal.fire({
+            title: "Error!",
+            text: "Token CSRF no encontrado.",
+            icon: "error",
+            confirmButtonText: "Entendido"
+        });
+        return;
+    }
+
+    // Verificar si hay una imagen seleccionada
+    if (fileDataGlobal) {
         const formData = new FormData();
-        formData.append("image", fileDataGlobal);   
-        formData.append("image_name", cleanFileName($('#name-data').val()));
+        formData.append("image", fileDataGlobal);
+        formData.append("image_name", cleanFileName(document.getElementById('name-data').value));
         formData.append("folder_name", 'supply');
-    
+
         try {
             const response = await fetch("/new_image_galery", {
                 method: "POST",
@@ -326,45 +339,72 @@ document.getElementById('myForm').addEventListener('submit',async function (even
                 },
                 body: formData
             });
-    
+
             if (!response.ok) {
                 throw new Error("Error al subir la imagen.");
             }
-    
+
             const data = await response.json();
-            if(data.success === true && data.new_url){
-               document.getElementById('imageURL').value = data.new_url;
-               document.getElementById('myForm').submit();
-            }else{
-                Swal.fire({
-                    title: "Error!", 
-                    text: data.message,
+
+            if (data.success && data.new_url) {
+                document.getElementById('imageURL').value = data.new_url;
+                document.getElementById('myForm').submit();
+            } else {
+                await Swal.fire({
+                    title: "Error!",
+                    text: data.message || "No se pudo procesar la imagen.",
                     icon: "error",
-                    confirmButtonText: "Entendido",
-                    didOpen: urlPostDeleteStyle
+                    confirmButtonText: "Entendido"
                 });
+                document.getElementById('myForm').submit();
             }
-            fetchImages();
-    
+
         } catch (error) {
             Swal.fire({
-                title: "Error!", 
-                text: "No se pudo subir la imagen.", 
+                title: "Error!",
+                text: error.message || "No se pudo subir la imagen.",
                 icon: "error",
-                confirmButtonText: "Entendido",
-                didOpen: urlPostDeleteStyle
+                confirmButtonText: "Entendido"
             });
-            fetchImages();
         }
-    }else if(urlNameGloval != null){
+
+        await fetchImages(); // Esperar la carga de imágenes
+
+    } else if (urlNameGloval) {
         document.getElementById('imageURL').value = urlNameGloval;
         document.getElementById('myForm').submit();
-        fetchImages();
-    }else{
-        fetchImages();
+        await fetchImages();
+
+    } else {
+        await fetchImages();
+        document.getElementById('myForm').submit();
     }
 });
+
 function cleanFileName(fileName) {
     // Reemplaza los caracteres no permitidos con un guion bajo (_) en Windows
     return fileName.replace(/[\\\/:*?"<>|]/g, '_'); // Reemplaza caracteres no permitidos por guiones bajos
 }
+$(document).ready(function () {
+    $('#code-data').on('input', function () {
+        // Permitir solo números (incluyendo ceros)
+        let value = $(this).val().replace(/[^0-9]/g, '');
+
+        $(this).val(value);
+    });
+
+    // Evitar que se peguen caracteres no permitidos
+    $('#code-data').on('paste', function (event) {
+        event.preventDefault();
+        let pasteData = (event.originalEvent || event).clipboardData.getData('text');
+        let cleanedData = pasteData.replace(/[^0-9]/g, ''); // Permite solo números
+        $(this).val(cleanedData);
+    });
+
+    // Evitar que se use el signo "-" o "e" con el teclado
+    $('#code-data').on('keydown', function (event) {
+        if (event.key === '-' || event.key === 'e') {
+            event.preventDefault();
+        }
+    });
+});
