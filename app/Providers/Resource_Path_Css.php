@@ -149,6 +149,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $galleryStyleImageAlert = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::CSS, 'gallery_style-image-alert.css');
             $view->with('galleryStyleImageAlert', $galleryStyleImageAlert);
+
+            $UserRegisterStyle = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'user_register_style.css');
+            $view->with('UserRegisterStyle', $UserRegisterStyle);
         });
     }
 }

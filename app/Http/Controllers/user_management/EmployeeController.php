@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Lang;
 use App\Services\IdentificationDocumentService;
 use App\Services\user_management\EmployeeService;
 use App\Http\Requests\user_management\EmployeeRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
@@ -144,5 +145,22 @@ class EmployeeController extends Controller
         $Info['url']='data_employer_block';
 
         return view('user_management.data_employer', compact('Navigation', 'Info'));
+    }
+    public function listOfEmployer()
+    {
+        $UserIds = User::pluck('employee_id')->toArray(); // Obtener todos los employer_id registrados en User
+        $Employer = Employee::whereNotIn('id', $UserIds)->get(); // Filtrar los empleados no registrados en User
+        
+        $data = [];
+
+        foreach ($Employer as $employer) {
+            $data[] = [
+                'id' => $employer->id,
+                'name' => ($employer->person->document_number ?? '00000000') . " | " . (($employer->person->name ?? 'anonimo').' '.($employer->person->lastname ?? '' )),
+
+            ];
+        }
+
+        return response()->json($data);
     }
 }

@@ -4,9 +4,9 @@
     margin: 0px 1vh
 }
 
-input#search-supplier {}
-
 .search-box-supplier:focus,
+.search-box-role:focus,
+.search-box-employer:focus,
 .search-box:focus,
 .search-box-data-client:focus {
     width: 100%;
@@ -14,8 +14,10 @@ input#search-supplier {}
 }
 
 .search-box-supplier,
-.search-box,
-.search-box-data-client {
+.search-box-role,
+.search-box-employer,
+.search-box-data-client,
+.search-box{
     width: 100%;
     border-radius: 10px;
     border: 2px solid var(--color-input-background-border);
@@ -26,9 +28,11 @@ input#search-supplier {}
 
 .suggestions-category,
 .suggestions-cooking-place,
+.suggestions-role,
 .suggestions-supplier,
-.suggestions,
-.suggestions-client {
+.suggestions-employer,
+.suggestions-client, 
+.suggestions{
 
     position: absolute;
     top: calc(100% + 4px);
@@ -44,9 +48,11 @@ input#search-supplier {}
 
 .suggestions-category.open,
 .suggestions-cooking-place.open,
+.suggestions-role.open,
 .suggestions-supplier.open,
-.suggestions.open,
-.suggestions-client.open {
+.suggestions-employer.open,
+.suggestions-client.open,
+.suggestions.ope{
     max-height: 250px;
     opacity: 1;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -78,12 +84,16 @@ input#search-supplier {}
 
 #id-category,
 #id-cooking-place,
+#id-role,
 #id-supplier,
+#id-employer,
 #id-supply {
     display: none;
 }
 
+div#loader-role,
 div#loader-supplier,
+div#loader-employer,
 div#loader {
     display: flex;
     align-content: center;
@@ -92,8 +102,11 @@ div#loader {
     align-items: center;
 }
 
+#search-label-role,
 #search-label-supplier,
-#search-label,#search-label-client
+#search-label-employer,
+#search-label-client,
+#search-label
  {
     left: 15px;
 }

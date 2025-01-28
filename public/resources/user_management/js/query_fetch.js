@@ -69,3 +69,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+$(document).ready(function() {
+    // Aplicar la validación solo a los campos de dni y phone
+    $('#frame_dni_input, #Telefono').on('input', function() {
+        var currentValue = $(this).val();
+        
+        // Si el valor es negativo, lo cambiamos a positivo
+        if (currentValue < 0) {
+            $(this).val(Math.abs(currentValue)); // Asignamos el valor absoluto
+        }
+    });
+});

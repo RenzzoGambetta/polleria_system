@@ -127,8 +127,8 @@
                         </div>
                     </div>
                     <div class="input-group col-md-6 one unique">
-                        <input type="text" id="nacionalidad" class="effect-4" name="nationality" placeholder=" " required value="{{ old('nationality', $Info->nationality ?? '' ) }}"/>
-                        <label for="nacionalidad">*Nacionalidad</label>
+                        <input type="text" id="nacionalidad" class="effect-4" name="nationality" placeholder=" " value="{{ old('nationality', $Info->nationality ?? '' ) }}"/>
+                        <label for="nacionalidad">Nacionalidad</label>
                     </div>
 
                     <div class="btns-group btn-navegation-form-3frem">
@@ -139,17 +139,17 @@
                 <div class="form-step">
                     <div class="row">
                         <div class="input-group col-md-6">
-                            <input type="number" id="Telefono" class="effect-4" name="phone" placeholder=" " required value="{{ old('phone', $Info->person->phone ?? '' ) }}"/>
-                            <label for="Telefono">*Telefono</label>
+                            <input type="number" id="Telefono" class="effect-4" name="phone" placeholder=" " value="{{ old('phone', $Info->person->phone ?? '' ) }}"/>
+                            <label for="Telefono">Telefono</label>
                         </div>
                         <div class="input-group col-md-6 one">
-                            <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " required value="{{ old('email', $Info->person->email ?? '' ) }}"/>
-                            <label for="Correo">*Correo</label>
+                            <input type="email" id="Correo" class="effect-4" name="email" placeholder=" " value="{{ old('email', $Info->person->email ?? '' ) }}"/>
+                            <label for="Correo">Correo</label>
                         </div>
                     </div>
                     <div class="input-group col-md-6 one unique">
-                        <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " required value="{{ old('address', $Info->address ?? '' ) }}"/>
-                        <label for="Direccion">*Direccion</label>
+                        <input type="text" id="Direccion" class="effect-4" name="address" placeholder=" " value="{{ old('address', $Info->address ?? '' ) }}"/>
+                        <label for="Direccion">Direccion</label>
                     </div>
 
 
@@ -167,6 +167,7 @@
 </section>
 <script src="{{ asset($EffectsAndActions) }}"></script>
 <script src="{{ asset($FueryFetch) }}"></script>
+
 <!--Pie de pagina como plantilla de todo el panel de control-->
 @include($FooterPanel)
 <!------------------------------------------------------------>

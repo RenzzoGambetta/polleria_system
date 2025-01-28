@@ -177,4 +177,19 @@ class RoleController extends Controller
         //return response()->json($Categories);
         return view('user_management.role_data', compact('Navigation',  'Categories', 'Info'));
     }
+    public function listOfRole()
+    {
+        $Role = Role::all();
+        $data = [];
+
+        foreach ($Role as $role) {
+            $data[] = [
+                'id' => $role->id,
+                'name' => ($role->name ?? 'indefinido'),
+
+            ];
+        }
+
+        return response()->json($data);
+    }
 }

@@ -1,0 +1,25 @@
+.search-container {
+    margin: 0px;
+}
+
+.search-box-employer,
+.search-box-role {
+    width: 100%;
+    border-radius: 0.25rem;
+    border: 2px solid #ccc;
+    box-shadow: none;
+    font-size: 16px;
+    padding: 12px 24px;
+}
+
+.effect-5:focus+label.label-input-data,
+.effect-5:not(:placeholder-shown)+label.label-input-data {
+    background-color: var(--grey);
+}
+
+.select.one.role-data {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+

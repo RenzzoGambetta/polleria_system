@@ -64,7 +64,6 @@ class SuppliersController extends Controller
     {
         $Suppliers = Supplier::all();
         $data = [];
-
         foreach ($Suppliers as $supplier) {
             $data[] = [
                 'id' => $supplier->id,
@@ -72,7 +71,6 @@ class SuppliersController extends Controller
 
             ];
         }
-
         return response()->json($data);
     }
     public function newSupplierRegistration(supplierRequest $request)

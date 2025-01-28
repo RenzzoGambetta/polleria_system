@@ -45,7 +45,7 @@ function updateProgressbar() {
     progress.style.width =
         ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
-
+/*
 function setupDropdown(toggleSelector, optionsSelector, itemSelector) {
     const toggle = document.querySelector(toggleSelector);
     const options = document.querySelector(optionsSelector);
@@ -72,7 +72,7 @@ function setupDropdown(toggleSelector, optionsSelector, itemSelector) {
 
 setupDropdown('.posemployer', '.employers', '.employer');
 setupDropdown('.posrole', '.roles', '.role');
-
+*/
 function skip_field(event, siguienteCampo) {
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -162,7 +162,7 @@ function validarFormulario(event) {
 }
 
 function validarSeleccion(text, element, name, mensajeError) {
-    var seleccionado = document.querySelector(`input[name="${name}"]:checked`);
+    var seleccionado = $(`input[name="${name}"]`).val();
     if (!seleccionado) {
         mostrarError(text, element, mensajeError);
         return false;
@@ -187,11 +187,34 @@ function activarRetroceso() {
 }
 function modifyRoleUser(urlModify,id) {
 
-    const selectedRole = document.querySelector('input[name="role_id"]:checked');
+    const selectedRole = $('input[name="role_id"]').val();
 
     if (selectedRole) {
-        urlGet(urlModify, { id: selectedRole.value, action: 'modify', id_user: id });
+        urlGet(urlModify, { id: selectedRole, action: 'modify', id_user: id });
     } else {
         alert('Por favor, selecciona un rol.');
     }
 }
+
+$(document).ready(function() {
+    // Escuchamos el evento keydown en los inputs dentro del formulario
+    $('form input[type="text"], form input[type="password"]').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevenir el comportamiento por defecto de Enter (como enviar el formulario)
+            
+            var currentInput = $(this); // Input actual donde se presionó Enter
+            var allInputs = $('form input[type="text"], form input[type="password"]'); // Todos los inputs dentro del formulario
+            var currentIndex = allInputs.index(currentInput); // Índice del input actual
+
+            // Obtenemos el siguiente input
+            var nextInput = allInputs.eq(currentIndex + 1);
+
+            // Si existe un siguiente input, movemos el foco a él
+            if (nextInput.length) {
+                nextInput.focus();
+            } else {
+                $('#submitButton').click();
+            }
+        }
+    });
+});
