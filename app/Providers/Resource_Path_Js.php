@@ -97,6 +97,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $GalleryQueryImage = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::JS, 'gallery_query.js');
             $view->with('GalleryQueryImage', $GalleryQueryImage);
+
+            $FilterTransactions = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'filter_transactions.js');
+            $view->with('FilterTransactions', $FilterTransactions);
         });
     }
 }
