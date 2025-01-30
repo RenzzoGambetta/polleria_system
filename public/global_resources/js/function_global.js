@@ -163,7 +163,19 @@ async function loadHtmlFromFile(url) {
 }
 
 
-
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(event) {
+            this.querySelectorAll('[type="submit"]').forEach(button => {
+                button.disabled = true; // Deshabilita los botones de envío
+                
+                setTimeout(() => {
+                    button.disabled = false; // Rehabilita los botones después de 5 segundos
+                }, 5000);
+            });
+        });
+    });
+});
 /*
 window.addEventListener('popstate', (event) => {
     event.preventDefault(); 

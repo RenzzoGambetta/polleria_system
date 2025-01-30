@@ -54,13 +54,13 @@
                     </div>
                 </div>
                 <div class="sub-frame-02">
-                    <button type="button" class="btn-output-supply-item" onclick="addSupply()" title="Agregar producto a la lista"><i class="fi fi-br-plus"></i></button>
+                    <button type="button" class="btn-output-supply-item cusror-is-poin" onclick="addSupply()" title="Agregar producto a la lista"><i class="fi fi-br-plus"></i></button>
                 </div>
             </div>
             <div class="frame-02">
                 <div class="sub-frame-001">
-                    <button type="button" class="btn-cancel-action-output" title="Cancelar y regresar a la pagina anterior">Cancelar</button>
-                    <button type="submit" class="btn-register-action-output" title="Registrar toda la lista">Registrar</button>
+                    <button type="button" class="btn-cancel-action-output cusror-is-poin" title="Cancelar y regresar a la pagina anterior">Cancelar</button>
+                    <button type="submit" class="btn-register-action-output cusror-is-poin" title="Registrar toda la lista">Registrar</button>
                 </div>
             </div>
         </div>

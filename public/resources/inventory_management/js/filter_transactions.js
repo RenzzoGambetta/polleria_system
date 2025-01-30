@@ -23,7 +23,7 @@ $(document).ready(function() {
 
         pageData.forEach(movement => {
             // Crear fila <tr>
-            const row = $("<tr>");
+            const row = $(`<tr x:id='${movement.id}' x:type='${movement.type}' class="cursor-pointer" onclick="showDetails(this)">`);
 
             // Asignar color según el tipo de movimiento
             if (movement.type === "Entrada") {
@@ -39,7 +39,7 @@ $(document).ready(function() {
                     ${movement.type}
                 </td>
                 <td>${movement.date}</td>
-               
+                <td>${movement.quantity}</td>
                 <td>s/ ${movement.total_amount}</td>
                 <td>${movement.proveedor ?? ''}</td>
             `);
@@ -222,3 +222,36 @@ $(document).ready(function() {
     renderTable(currentPage);
     renderPagination();
 });
+// Función para enviar el formulario con CSRF token
+function showDetails(event) {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/get_movement_detail_by_type';
+
+    // Obtener valores de atributos personalizados
+    const datos = { 
+        id: event.getAttribute('x:id'), 
+        type: event.getAttribute('x:type') 
+    };
+
+    // Agregar los datos como inputs ocultos
+    Object.entries(datos).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+    });
+
+    // Obtener el token CSRF
+    const csrfToken = document.querySelector('input[name="_token"]').value;
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = '_token';
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
+
+    // Agregar y enviar el formulario
+    document.body.appendChild(form);
+    form.submit();
+}

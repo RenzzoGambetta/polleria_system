@@ -152,6 +152,9 @@ class Resource_Path_Css extends ServiceProvider
 
             $UserRegisterStyle = $fpFunc->Resource(Folder_Path::USER_MANAGEMENT, Folder_Path::CSS, 'user_register_style.css');
             $view->with('UserRegisterStyle', $UserRegisterStyle);
+            
+            $StyleMovementDetail = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'style_movement_detail.css');
+            $view->with('StyleMovementDetail', $StyleMovementDetail);
         });
     }
 }

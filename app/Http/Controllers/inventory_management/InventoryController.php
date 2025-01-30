@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Global\ConstGlobal;
 use App\Http\Global\FunctionGlobal;
 use App\Models\Brand;
+use App\Models\inventory\InventoryMovementDetail;
 use App\Models\Supply;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -18,8 +19,8 @@ class InventoryController extends Controller
 
     public function __construct()
     {
-        $this->NavigationSupply = FunctionGlobal::NavigationFast(3,0);
-        $this->NavigationMovement = FunctionGlobal::NavigationFast(3,1);
+        $this->NavigationSupply = FunctionGlobal::NavigationFast(3, 0);
+        $this->NavigationMovement = FunctionGlobal::NavigationFast(3, 1);
     }
 
     public function showInventoryList()
@@ -39,12 +40,10 @@ class InventoryController extends Controller
             $Supply['brandName']  = Brand::where('id', $Supply->brand_id)->value('name');
             $Supply['isEdit'] = true;
             $Supply['title'] = 'Editar suministro';
-
-        }else{
+        } else {
             $Supply['title'] = 'Registro nuevo suministro';
-
         }
-        return view('inventory_management.new_supply_inventory', compact('Navigation','UnitOptions','Supply'));
+        return view('inventory_management.new_supply_inventory', compact('Navigation', 'UnitOptions', 'Supply'));
     }
 
     public function showListInventoryMovements()
@@ -61,12 +60,45 @@ class InventoryController extends Controller
     }
     public function deleteNewSupplyComplete(Request $request)
     {
-        $response = Supply::destroy($request->id); 
+        $response = Supply::destroy($request->id);
 
         if ($response) {
             return redirect()->route('inventory')->with(FunctionGlobal::MessageSuccess('Se eliminó satisfactoriamente.'));
         }
 
         return redirect()->route('new_supply_inventory', ['id' => $request->id])->withInput()->with(FunctionGlobal::MessageError('No se pudo eliminar el suministro.'));
+    }
+    public function getMovementDetailByType(Request $request)
+    {
+        $Navigation = $this->NavigationMovement;
+        
+        if (!$request->filled(['id', 'type'])) {
+            return redirect()->route('movement_detail')
+                ->with(FunctionGlobal::MessageError('Parámetros insuficientes.'));
+        }
+    
+        $MovementDetail = null;
+    
+        if ($request->type === 'Entrada') {
+            $MovementDetail = InventoryMovementDetail::where('receipt_id', $request->id)->get();
+        } elseif ($request->type === 'Salida') {
+            $MovementDetail = InventoryMovementDetail::where('issue_id', $request->id)->get();
+        }
+    
+        if ($MovementDetail->isEmpty()) {
+            return redirect()->route('movement_detail')
+                ->with(FunctionGlobal::MessageError('No se encontró el detalle del movimiento.'));
+        }
+    
+        if ($request->wantsJson()) {
+            return response()->json($MovementDetail);
+        }
+    
+        $MovementDetail->title = 'Detalle de movimiento';
+        $Data['isEdit'] = $MovementDetail->first()->created_at->diffInDays(now()) <= 1;
+        $Data['title'] = $request->type;
+        //return response()->json($MovementDetail);
+        return view('inventory_management.movement_detail_edit_and_delete', 
+            compact('Navigation', 'MovementDetail', 'Data'));
     }
 }

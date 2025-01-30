@@ -186,3 +186,6 @@ div#loader {
 tbody#puntoClave {
     display: none;
 }
+.cusror-is-poin{
+    cursor: pointer;
+}

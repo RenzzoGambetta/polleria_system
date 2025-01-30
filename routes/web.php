@@ -71,6 +71,7 @@ use App\Http\Controllers\test\testController;
             Route::get('/show_list_inventory_movements', [InventoryController::class,'showListInventoryMovements'])->name('show_list_inventory_movements');
             Route::get('/new_supply_inventory', [InventoryController::class,'newsupplyInventory'])->name('new_supply_inventory');
             Route::get('/delete_new_supply_complete', [InventoryController::class,'deleteNewSupplyComplete'])->name('delete_new_supply_complete');
+            Route::post('/get_movement_detail_by_type', [InventoryController::class,'getMovementDetailByType'])->name('get_movement_detail_by_type');
             //Suministros
             Route::get('/show_panel_register_entry', [SupplyStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
             Route::get('/register_new_supply', [SupplyStockController::class,'registerNewSupply'])->name('register_new_supply');

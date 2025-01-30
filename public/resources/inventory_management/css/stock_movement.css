@@ -256,3 +256,6 @@ button.page-button.next-button:hover {
 }
 
 /*fin de estilos de opciones*/
+.content main .bottom-data .orders table tbody tr.cursor-pointer {
+  cursor: pointer;
+}
