@@ -7,11 +7,15 @@ use App\Http\Global\ConstGlobal;
 use App\Http\Global\FunctionGlobal;
 use App\Models\Brand;
 use App\Models\inventory\InventoryMovementDetail;
+use App\Models\InventoryIssue;
+use App\Models\InventoryReceipt;
 use App\Models\Supply;
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\inventory\InventoryDTOService;
 
+use function PHPSTORM_META\type;
 
 class InventoryController extends Controller
 {
@@ -70,35 +74,47 @@ class InventoryController extends Controller
     }
     public function getMovementDetailByType(Request $request)
     {
-        $Navigation = $this->NavigationMovement;
-        
-        if (!$request->filled(['id', 'type'])) {
-            return redirect()->route('movement_detail')
-                ->with(FunctionGlobal::MessageError('Parámetros insuficientes.'));
+        try {
+            $Navigation = $this->NavigationMovement;
+
+            if (!$request->filled(['id', 'type'])) {
+                return redirect()->route('movement_detail')
+                    ->with(FunctionGlobal::MessageError('Parámetros insuficientes.'));
+            }
+
+            $DataMovement = null;
+
+            if ($request->type === 'Entrada') {
+
+                // $MovementDetail = InventoryMovementDetail::where('receipt_id', $request->id)->get();
+                $DataMovement = InventoryReceipt::find($request->id);
+            } elseif ($request->type === 'Salida') {
+                //$DataMovement = InventoryMovementDetail::where('issue_id', $request->id)->get();
+                $DataMovement = InventoryIssue::find($request->id);
+            }
+
+            if ($request->wantsJson()) {
+                return response()->json($DataMovement);
+            }
+
+            $MovementDetail = $DataMovement->details()->get();
+
+            if ($MovementDetail->isEmpty()) {
+                return redirect()->route('movement_detail')
+                    ->with(FunctionGlobal::MessageError('No se encontró el detalle del movimiento.'));
+            }
+
+            $MovementDetail->title = 'Detalle de movimiento';
+            $Data['isEdit'] = $MovementDetail->first()->created_at->diffInDays(now()) <= 1;
+            $Data['isNote'] = $MovementDetail->contains(fn($item) => !is_null($item->note));
+            $Data['title'] = $request->type;
+            //return response()->json($MovementDetail);
+            return view(
+                'inventory_management.movement_detail_edit_and_delete',
+                compact('Navigation', 'MovementDetail', 'Data', 'DataMovement')
+            );
+        } catch (Exception $e) {
+            return redirect()->route('show_list_inventory_movements')->with(FunctionGlobal::MessageError('No se puede acceder por una incopativilidad de datos.'));
         }
-    
-        $MovementDetail = null;
-    
-        if ($request->type === 'Entrada') {
-            $MovementDetail = InventoryMovementDetail::where('receipt_id', $request->id)->get();
-        } elseif ($request->type === 'Salida') {
-            $MovementDetail = InventoryMovementDetail::where('issue_id', $request->id)->get();
-        }
-    
-        if ($MovementDetail->isEmpty()) {
-            return redirect()->route('movement_detail')
-                ->with(FunctionGlobal::MessageError('No se encontró el detalle del movimiento.'));
-        }
-    
-        if ($request->wantsJson()) {
-            return response()->json($MovementDetail);
-        }
-    
-        $MovementDetail->title = 'Detalle de movimiento';
-        $Data['isEdit'] = $MovementDetail->first()->created_at->diffInDays(now()) <= 1;
-        $Data['title'] = $request->type;
-        //return response()->json($MovementDetail);
-        return view('inventory_management.movement_detail_edit_and_delete', 
-            compact('Navigation', 'MovementDetail', 'Data'));
     }
 }
