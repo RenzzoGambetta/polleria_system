@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\menu_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\FunctionGlobal;
 use App\Http\Requests\menu\LoungeRequest;
 use App\Models\menu\Lounge;
 use App\Models\menu\Table;
@@ -14,16 +15,11 @@ use Illuminate\Support\Facades\Log;
 
 class TableController extends Controller
 {
-    protected $NavigationTable = [
-        'seccion' => 4,
-        'sub_seccion' => 4.2,
-        'color' => 42
-    ];
-    protected $loungeService;
+    protected $NavigationTable; 
 
-    public function __construct(LoungeService $loungeService)
+    public function __construct()
     {
-        $this->loungeService = $loungeService;
+        $this->NavigationTable = FunctionGlobal::NavigationFast(4, 0);
     }
     public function showDrawingTable(Request $request)
     {
@@ -46,7 +42,7 @@ class TableController extends Controller
     {
         try {
 
-            $lounge = $this->loungeService->createLounge($request->validated());
+            $lounge = (new LoungeService)->createLounge($request->validated());
 
             return response()->json([
                 'result' => true,

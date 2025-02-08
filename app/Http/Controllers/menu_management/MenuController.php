@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\menu_management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\ConstGlobal;
+use App\Http\Global\FunctionGlobal;
 use App\Http\Requests\menu\MenuItemRequest;
 use App\Models\menu\CookingPlace;
 use App\Models\menu\MenuCategory;
@@ -16,40 +18,34 @@ use PHPUnit\Runner\Extension\Extension;
 
 class MenuController extends Controller
 {
-    protected $Navigation = [
-        'seccion' => 4,
-        'sub_seccion' => 4.0,
-        'color' => 40
-    ];
-    protected $NavigationCart = [
-        'seccion' => 4,
-        'sub_seccion' => 4.1,
-        'color' => 41
-    ];
+    protected $Navigation, $NavigationCart;
 
+    public function __construct()
+    {
+        $this->Navigation = FunctionGlobal::NavigationFast(4, 0);
+        $this->NavigationCart = FunctionGlobal::NavigationFast(4, 1);
+    }
     public function showMenuList(Request $request)
     {
-        $filt = $request->input('filt');
-        $Url = ['filt' => $filt];
-
-        if ($filt == "combo") {
-            $Data = [
-                'button' => 1,
-            ];
-
-            $Menu = MenuItem::where('is_combo', 1)->paginate(6)->appends($Url);
-        } else if ($filt == "menu") {
-            $Data = [
-                'button' => 2,
-            ];
-            $Menu = MenuItem::where('is_combo', 0)->paginate(6)->appends($Url);
-        } else {
-            $Data = [
-                'button' => 3,
-            ];
-            $Menu = MenuItem::paginate(8);
-        }
         $Navigation = $this->Navigation;
+        $Data = [];
+        switch ($$request->filt) {
+            case 'combo':
+                $Data['button'] = 1;
+                $Menu = MenuItem::where('is_combo', 1)->paginate(ConstGlobal::PAGINATION)->appends($Url);
+                break;
+
+            case 'menu':
+                $Data['button'] = 2;
+                $Menu = MenuItem::where('is_combo', 0)->paginate(ConstGlobal::PAGINATION)->appends($Url);
+                break;
+
+            default:
+                $Data['button'] = 2;
+                $Menu = MenuItem::paginate(ConstGlobal::PAGINATION);
+                break;
+        }
+
         return view('menu_management.menu', compact('Navigation', 'Menu', 'Data'));
         //return response()->json($Menu);
 
@@ -58,28 +54,23 @@ class MenuController extends Controller
     {
         try {
 
-            $direction = $request->input('direction');
-            $option = $request->input('option');
-            $id = $request->input('id');
-
             $Data = [
                 'Title' => 'Nuevo plato o bebida',
                 'Toggle' => true,
                 'SubTitle' => 'Conjunto que conforma un plato o bebida',
                 'Input' => 'Suministro',
             ];
-            if ($direction == "cart") {
+            if ($request->direction == "cart") {
                 $Navigation = $this->NavigationCart;
                 $Data['UrlCancel'] = 'show_order_item';
-                $Data['UrlComplement'] = '?category_id='.$id;
-                $Category = MenuCategory::where('id', $id)->first();
+                $Data['UrlComplement'] = '?category_id=' . $request->id;
+                $Category = MenuCategory::where('id', $request->id)->first();
                 $Data['idCategory'] = $Category->id;
                 $Data['nameCategory'] = $Category->name;
-
             } else {
                 $Navigation = $this->Navigation;
-                if ($option != null) {
-                    $ComboItem = MenuItem::where('id', $option)->first();
+                if ($request->option != null) {
+                    $ComboItem = MenuItem::where('id', $request->option)->first();
                     $Data = [
                         'Title' => ($ComboItem->is_combo == 1) ? 'Editador de Combo' : 'Editador de Plato o Bebida',
                         'UrlCancel' => 'menu',
@@ -87,8 +78,6 @@ class MenuController extends Controller
                         'SubTitle' => 'Conjunto que conforma un Combo',
                         'Input' => 'Item',
                     ];
-
-
                     return view('menu_management.new_menu_and_edit', compact('Navigation', 'ComboItem', 'Data'));
                 }
                 $Data['UrlCancel'] = 'menu';
@@ -106,10 +95,10 @@ class MenuController extends Controller
 
         if ($combo == 0) {
             $item = DB::table('menu_supply_details as msd')
-            ->join('supplies as s', 'msd.supply_id', '=', 's.id')
-            ->select('msd.supply_quantity as quantity', 'msd.supply_id as id', 's.name' )
-            ->where('item_id', $id)
-            ->get();
+                ->join('supplies as s', 'msd.supply_id', '=', 's.id')
+                ->select('msd.supply_quantity as quantity', 'msd.supply_id as id', 's.name')
+                ->where('item_id', $id)
+                ->get();
         } else if ($combo == 1) {
 
             //Consulta sql a la tabla combo_item_details
@@ -187,7 +176,7 @@ class MenuController extends Controller
         //return response()->json($request);
         $menuItemService = new MenuItemService();
         try {
-            $menuItem = $menuItemService->editMenuItem($request->id ,$request->validated());
+            $menuItem = $menuItemService->editMenuItem($request->id, $request->validated());
 
             return redirect()->route('menu');
         } catch (Exception $e) {
@@ -197,7 +186,7 @@ class MenuController extends Controller
     public function registerNewMenu(MenuItemRequest $request)
     {
         //return response()->json($request);
-       
+
         $menuItemService = new MenuItemService();
         try {
             $menuItem = $menuItemService->createMenuItem($request->validated());
@@ -206,8 +195,6 @@ class MenuController extends Controller
         } catch (Exception $e) {
             return $e;
         }
-        
-
     }
     public function showOrderItem(Request $request)
     {
