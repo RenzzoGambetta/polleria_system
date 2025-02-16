@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\order;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\FunctionGlobal;
 use App\Models\menu\Lounge;
 use App\Models\menu\MenuCategory;
 use App\Models\menu\MenuItem;
@@ -12,11 +13,12 @@ use Illuminate\Http\Request;
 
 class MozoController extends Controller
 {
-    protected $Navigation = [
-        'seccion' => 10,
-        'sub_seccion' => 10.0,
-        'color' => 100
-    ];
+    protected $Navigation;
+    
+    public function __construct()
+    {
+        $this->Navigation = FunctionGlobal::NavigationFast(10, 0);
+    }
     public function showPanelMozo(Request $request)
     {
         

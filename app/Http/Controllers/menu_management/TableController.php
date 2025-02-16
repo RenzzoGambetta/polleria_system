@@ -19,7 +19,7 @@ class TableController extends Controller
 
     public function __construct()
     {
-        $this->NavigationTable = FunctionGlobal::NavigationFast(4, 0);
+        $this->NavigationTable = FunctionGlobal::NavigationFast(4, 2);
     }
     public function showDrawingTable(Request $request)
     {

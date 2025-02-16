@@ -28,23 +28,19 @@ class MenuController extends Controller
     public function showMenuList(Request $request)
     {
         $Navigation = $this->Navigation;
-        $Data = [];
-        switch ($$request->filt) {
-            case 'combo':
-                $Data['button'] = 1;
-                $Menu = MenuItem::where('is_combo', 1)->paginate(ConstGlobal::PAGINATION)->appends($Url);
-                break;
+        $filt = $request->input('filt', 'default');
+        $buttonMap = ['combo' => 1, 'menu' => 2];
 
-            case 'menu':
-                $Data['button'] = 2;
-                $Menu = MenuItem::where('is_combo', 0)->paginate(ConstGlobal::PAGINATION)->appends($Url);
-                break;
+        $Data = ['button' => $buttonMap[$filt] ?? 3];
+        $query = MenuItem::query();
 
-            default:
-                $Data['button'] = 2;
-                $Menu = MenuItem::paginate(ConstGlobal::PAGINATION);
-                break;
+        if ($filt === 'combo') {
+            $query->where('is_combo', 1);
+        } elseif ($filt === 'menu') {
+            $query->where('is_combo', 0);
         }
+
+        $Menu = $query->paginate((ConstGlobal::PAGINATION-1))->appends(['filt' => $filt]);
 
         return view('menu_management.menu', compact('Navigation', 'Menu', 'Data'));
         //return response()->json($Menu);

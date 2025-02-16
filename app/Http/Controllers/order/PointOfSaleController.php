@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\order;
 
 use App\Http\Controllers\Controller;
+use App\Http\Global\FunctionGlobal;
 use App\Http\Requests\order\CashierSessionRequest;
 use App\Http\Requests\order\CreateOrderRequest;
 use App\Models\Employee;
@@ -28,22 +29,13 @@ use Illuminate\Support\Facades\DB;
 
 class PointOfSaleController extends Controller
 {
-    protected $NavigationPonit = [
-        'seccion' => 6,
-        'sub_seccion' => 6.0,
-        'color' => 60
-    ];
-    protected $NavigationSessions = [
-        'seccion' => 6,
-        'sub_seccion' => 6.1,
-        'color' => 61
-    ];
-    protected $cashierSessionService;
-    protected $orderService;
-    public function __construct(CashierSessionService $cashierSessionService, OrderService $orderService)
+    protected $NavigationPonit, $NavigationSessions;
+
+    public function __construct()
     {
-        $this->cashierSessionService = $cashierSessionService;
-        $this->orderService = $orderService;
+        $this->NavigationPonit = FunctionGlobal::NavigationFast(6, 0);
+        $this->NavigationSessions = FunctionGlobal::NavigationFast(6, 1);
+
     }
 
     public function showPointOfSale(Request $request)
@@ -65,7 +57,7 @@ class PointOfSaleController extends Controller
     }
     public function showPaymentService(Request $request)
     {
-        $Item = $this->orderService->getAllOrderDetailsOfTable($request->id);
+        $Item = (new OrderService)->getAllOrderDetailsOfTable($request->id);
         $Data = Table::where('id', $request->id)->first();
         $Navigation = $this->NavigationPonit;
         $Data['sub_total'] = array_sum(array_column($Item, 'total_price'));
@@ -131,7 +123,7 @@ class PointOfSaleController extends Controller
 
                 $validatedData = $request->validate((new CashierSessionRequest)->rules()); //validacion de CashierSessionRequest
 
-                $response = $this->cashierSessionService->openCashRegister($validatedData);
+                $response = (new CashierSessionService)->openCashRegister($validatedData);
                 if ($request->redirect == 'poin_of_sale') {
                     return redirect()->route('point_of_sale')->with([
                         'Message' => 'Se aperturó la caja satisfactoriamente.',
@@ -146,7 +138,7 @@ class PointOfSaleController extends Controller
                 }
             }
             if ($request->id != null) {
-                $response = $this->cashierSessionService->closeCashRegister($request->id, $request->note ?? ' ');
+                $response = (new CashierSessionService)->closeCashRegister($request->id, $request->note ?? ' ');
 
                 return redirect()->route('cashier_sessions')->withInput()->with([
                     'Message' => 'Se cerro la caja satisfactoriamente.',
@@ -477,7 +469,7 @@ class PointOfSaleController extends Controller
         // ];
 
         try {
-            $response = $this->orderService->createOrderWithDetails($request->validated());
+            $response = (new OrderService)->createOrderWithDetails($request->validated());
             
             $finalMessage = 'para mostrador';
             if ($response->table) $finalMessage = 'para la Mesa: ' . $response->table->code . ' / ' . $response->table->lounge->name;
@@ -506,7 +498,7 @@ class PointOfSaleController extends Controller
     public function allOrderDetailsOfTable(Request $Data)
     {
         try {
-            $response = $this->orderService->getAllOrderDetailsOfTable($Data->id);
+            $response = (new OrderService)->getAllOrderDetailsOfTable($Data->id);
             $order = Order::where('table_id', $Data->id)->first();
             return response()->json([
                 'data' => $response,
@@ -663,7 +655,7 @@ class PointOfSaleController extends Controller
                     'notes' => $request['notes'],
                 ];
 
-                $response = $this->orderService->addDetailsToOrder((int)$request['order_id'], $addItems);
+                $response = (new OrderService)->addDetailsToOrder((int)$request['order_id'], $addItems);
                 $ms .= ",se agrego";
             }
 
