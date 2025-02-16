@@ -100,6 +100,9 @@ class Resource_Path_Js extends ServiceProvider
 
             $FilterTransactions = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'filter_transactions.js');
             $view->with('FilterTransactions', $FilterTransactions);
+            
+            $MovementDetailEditAndDelete = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'movement_detail_edit_and_delete.js');
+            $view->with('MovementDetailEditAndDelete', $MovementDetailEditAndDelete);
         });
     }
 }

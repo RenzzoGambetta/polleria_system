@@ -4,3 +4,90 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.data-supplier-and-vaucher {
+    background: #38ff004a;
+    border-radius: 10px;
+    padding: 20px;
+    user-select: none;
+}
+
+.facture-number {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.supplier-name {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Columnas dinámicas */
+    gap: 10px;
+    /* Espaciado entre columnas */
+    width: 100%;
+    padding: 15px;
+}
+
+.supplier-name div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* Espaciado entre elementos */
+}
+
+.supplier-name span {
+    font-weight: bold;
+    color: var(--dark);
+    margin-left: 0.5rem;
+}
+
+.supplier-name a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.supplier-name p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.spam-title {
+    margin-left: 10px;
+    color: #ff6c00;
+}
+
+.data-comentary-and-reason {
+    background: #00c9ff57;
+    padding: 20px 40px;
+    margin-top: 10px;
+    border-radius: 10px;
+    user-select: none;
+}
+
+.data-comentary-and-reason p span {
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.button-option-employee.note{
+    background-color: rgb(0, 9, 190);
+    transition: background-color 0.3s ease;
+}
+
+.button-option-employee.note:hover{
+    background-color: rgb(0, 3, 67);
+}
+/* Responsivo */
+@media (max-width: 480px) {
+    .supplier-name {
+        grid-template-columns: 1fr;
+        /* Se apila en una sola columna en pantallas pequeñas */
+    }
+}
