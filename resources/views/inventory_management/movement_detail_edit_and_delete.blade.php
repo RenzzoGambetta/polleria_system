@@ -37,7 +37,8 @@
             <a href="{{ route('show_list_inventory_movements') }}" class="pagina">
                 Movimientos
             </a>
-            /
+            <li>
+                /
             </li>
             <a href="{{ route('show_list_inventory_movements') }}" class="active">
                 {{ $Data['title'] }}

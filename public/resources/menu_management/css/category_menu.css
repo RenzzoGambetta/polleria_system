@@ -154,3 +154,24 @@ button.btn-clasic.view-item {
 button.btn-clasic.view-item {
     background-color: #032774;
 }
+.container-data-talbe {
+    max-height: 75vh; /* Ajusta según necesidad */
+    overflow-y: auto; /* Habilita el scroll vertical si es necesario */
+}
+
+.container-data-talbe table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.container-data-talbe thead {
+    position: sticky;
+    top: 0;
+    background: var(--light); /* Asegura que el encabezado sea visible */
+    z-index: 10;
+}
+.left {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

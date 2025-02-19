@@ -109,7 +109,8 @@ class MenuController extends Controller
     public function categoryCarte()
     {
         $Navigation = $this->NavigationCart;
-        $Category = MenuCategory::orderBy('display_order')->get();
+        //$Category = MenuCategory::orderBy('display_order')->get();
+        $Category = MenuCategory::withCount('items')->orderBy('display_order')->get();
         return view('menu_management.category_carte', compact('Navigation', 'Category'));
     }
     public function newMenuCategories(Request $request)
