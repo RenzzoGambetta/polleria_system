@@ -132,7 +132,9 @@ input#name {
     background-color: green;
     border-radius: 0 10px 10px 0;
 }
-
+.btn-edit-data{
+    background-color: #b69300;
+}
 .btn-cancel-data {
     background-color: red;
     border-radius: 10px 0 0 10px;

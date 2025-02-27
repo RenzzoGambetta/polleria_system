@@ -60907,3 +60907,78 @@ Did you mean one of these?
 [2025-02-17 19:15:39] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories?display_order=31&name=promarte"} 
 [2025-02-17 19:15:54] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_order_item?category_id=21","route_name":"show_order_item","permissions_required":["1"]} 
 [2025-02-17 19:15:54] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_order_item?category_id=21"} 
+[2025-02-20 18:49:00] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-02-20 18:49:00] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-02-20 18:52:02] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-20 18:52:02] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-20 18:52:42] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_order_item?category_id=4","route_name":"show_order_item","permissions_required":["1"]} 
+[2025-02-20 18:52:42] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_order_item?category_id=4"} 
+[2025-02-20 18:53:04] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_order_item","route_name":"edit_to_order_item","permissions_required":["1"]} 
+[2025-02-20 18:53:04] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_order_item"} 
+[2025-02-20 18:53:58] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories?display_order=1&name=pollo%20con%20pescado","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-02-20 18:53:58] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories?display_order=1&name=pollo%20con%20pescado"} 
+[2025-02-23 20:02:21] local.ERROR: Command "server" is not defined.
+
+Did you mean one of these?
+    make:observer
+    serve {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"server\" is not defined.
+
+Did you mean one of these?
+    make:observer
+    serve at C:\\Users\\Diego\\Desktop\\polleria_system\\vendor\\symfony\\console\\Application.php:702)
+[stacktrace]
+#0 C:\\Users\\Diego\\Desktop\\polleria_system\\vendor\\symfony\\console\\Application.php(258): Symfony\\Component\\Console\\Application->find('server')
+#1 C:\\Users\\Diego\\Desktop\\polleria_system\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 C:\\Users\\Diego\\Desktop\\polleria_system\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\Users\\Diego\\Desktop\\polleria_system\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1198): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\Users\\Diego\\Desktop\\polleria_system\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#5 {main}
+"} 
+[2025-02-23 20:03:14] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-23 20:03:14] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-23 20:06:24] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-23 20:06:24] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-23 20:08:03] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-23 20:08:03] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-23 20:22:06] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-23 20:22:06] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-23 20:23:18] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-23 20:23:18] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-23 20:23:33] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-02-23 20:23:33] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-02-23 20:23:40] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-23 20:23:40] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-24 15:53:28] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-24 15:53:28] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 06:05:47] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 06:05:47] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 06:21:57] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 06:21:57] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 06:22:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 06:22:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:25:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:25:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:32:40] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:32:40] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:35:49] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:35:49] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:36:29] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:36:29] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:37:37] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:37:37] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:38:33] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:38:33] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:44:27] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_order_item?category_id=32","route_name":"show_order_item","permissions_required":["1"]} 
+[2025-02-25 15:44:27] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_order_item?category_id=32"} 
+[2025-02-25 15:44:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:44:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:47:31] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:47:31] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 15:48:57] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 15:48:57] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 19:17:48] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 19:17:48] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 19:24:58] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 19:24:58] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-02-25 19:25:26] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-02-25 19:25:26] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 

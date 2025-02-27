@@ -52,7 +52,7 @@
                                         <td>{{ $Categories->name }}</td>
                                         <td>{{ $Categories->items_count }}</td>
                                         <td>
-                                            <button type="button" class="btn-clasic">Editar</button>
+                                            <button type="button" class="btn-clasic" onclick="editCategoryCarte({{$Categories}})">Editar</button>
                                             <button type="button" class="btn-clasic view-item"
                                                 onclick="urlGet('{{ route('show_order_item') }}',{'category_id':{{ $Categories->id }}})">Ver
                                                 Item</button>
@@ -79,15 +79,16 @@
                     <span class="focus-border"></span>
                 </div>
                 <div class="col-3 input-effect data-numeric order-name">
-                    <input class="effect-16" type="text" name="name" id="name" placeholder="" value="">
+                    <input class="effect-16" type="text" name="name" id="name" placeholder=" " value="">
                     <label for="name">Nombre</label>
                     <span class="focus-border"></span>
                 </div>
             </div>
             <div class="frame002">
-                <button type="button" class="btn-cancel-data"
-                    onclick="urlGet('{{ route('menu') }}')">Cancelar</button>
-                <button type="button" class="btn-register-data" onclick="addRow()">Agregar</button>
+                <button type="button" class="btn-cancel-data" id="clear_to_input">Limpiar</button>
+                <button type="button" class="btn-cancel-data" id="cancel_edit" style="display: none" onclick="cancelToEdit()">Cancelar</button>
+                <button type="button" class="btn-register-data" id="add_to_table" onclick="addRow()">Agregar</button>
+                <button type="button" class="btn-register-data btn-edit-data" id="edit_to_category" style="display: none">Editar</button>
             </div>
         </div>
     </div>

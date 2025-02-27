@@ -98,3 +98,29 @@ async function addRow() {
 
     updateDisplayOrder();
 }
+function editCategoryCarte(Data){
+    $('.div-primary-conteiner-02').slideToggle(500)
+    $('.div-primary-conteiner-02').slideToggle(500)
+    setTimeout(function() {
+        $('#add_to_table').hide();
+        $('#clear_to_input').hide();
+        $('#order-number').val(Data.display_order);
+        $('#name').val(Data.name);
+        $('#cancel_edit').show();
+        $('#edit_to_category').show();
+    },250)
+
+} 
+function cancelToEdit(){
+    $('.div-primary-conteiner-02').slideToggle(500)
+    $('.div-primary-conteiner-02').slideToggle(500)
+    setTimeout(function()  {
+        $('#add_to_table').show();
+        $('#clear_to_input').show();
+        $('#order-number').val('');
+        $('#name').val('');
+        $('#cancel_edit').hide();
+        $('#edit_to_category').hide();
+
+    },250)
+}
