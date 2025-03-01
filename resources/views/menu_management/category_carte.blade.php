@@ -27,15 +27,39 @@
 @csrf
 
 <div class="conteiner-header-data">
+    <div class="div-primary-conteiner-02" style="display: none">
+        <div class="dub-block-002">
+            <div class="sub-title-data">
+                <h1 class="sub-title" id="sub-title-category">Nueva categoria</h1>
+            </div>
+            <div class="frame001">
+                <div class="col-3 input-effect data-series order-number input-effect-001">
+                    <input type="text" name="display_order" id="order-number" class="effect-16" placeholder=" ">
+                    <label for="order-number">Orden</label>
+                    <span class="focus-border"></span>
+                </div>
+                <div class="col-3 input-effect data-numeric order-name input-effect-001">
+                    <input class="effect-16" type="text" name="name" id="name" placeholder=" " value="">
+                    <label for="name">Nombre</label>
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="frame002">
+                <button type="button" class="btn-cancel-data" id="clear_to_input">Limpiar</button>
+                <button type="button" class="btn-cancel-data" id="cancel_edit" style="display: none" onclick="cancelToEdit()">Cancelar</button>
+                <button type="button" class="btn-register-data" id="add_to_table" onclick="addRow()">Agregar</button>
+                <button type="button" class="btn-register-data btn-edit-data" id="edit_to_category" onclick="acceptEdition()" style="display: none">Editar</button>
+            </div>
+        </div>
+    </div>
     <div class="div-primary-conteiner-01">
         <div class="new-item">
-            <button class="a-navegation-and-action-data retain-data" type="button" onclick="sectionData()"><i
-                    class="fi fi-ss-floppy-disk-pen"></i></button>
+            <button class="a-navegation-and-action-data retain-data" type="button" title="Agregar nueva vategoria" onclick="showNewCategoriForm()"><i class="fi fi-sr-apps-add center"></i></button>
         </div>
         <div class="conteiner-total">
             <div class="bottom-data">
                 <div class="orders">
-                    <div class="container-data-talbe">
+                    <div class="container-data-table">
                         <table class="table-striped-columns table">
                             <thead>
                                 <tr>
@@ -52,9 +76,8 @@
                                         <td>{{ $Categories->name }}</td>
                                         <td>{{ $Categories->items_count }}</td>
                                         <td>
-                                            <button type="button" class="btn-clasic" onclick="editCategoryCarte({{$Categories}})">Editar</button>
-                                            <button type="button" class="btn-clasic view-item"
-                                                onclick="urlGet('{{ route('show_order_item') }}',{'category_id':{{ $Categories->id }}})">Ver
+                                            <button type="button" class="btn-clasic" onclick="editCategoryCarte({{ $Categories }})">Editar</button>
+                                            <button type="button" class="btn-clasic view-item" onclick="urlGet('{{ route('show_order_item') }}',{'category_id':{{ $Categories->id }}})">Ver
                                                 Item</button>
                                         </td>
                                     </tr>
@@ -64,31 +87,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="div-primary-conteiner-02">
-        <div class="dub-block-002">
-            <h1 class="sub-title">Nueva categoria</h1>
-            <span class="limit-data"></span>
-            <div class="frame001">
-                <div class="col-3 input-effect data-series order-number">
-                    <input type="text" name="display_order" id="order-number" class="effect-16" placeholder=" "
-                        value="{{ $Category->count() + 1 }}">
-                    <label for="order-number">Orden</label>
-                    <span class="focus-border"></span>
-                </div>
-                <div class="col-3 input-effect data-numeric order-name">
-                    <input class="effect-16" type="text" name="name" id="name" placeholder=" " value="">
-                    <label for="name">Nombre</label>
-                    <span class="focus-border"></span>
-                </div>
-            </div>
-            <div class="frame002">
-                <button type="button" class="btn-cancel-data" id="clear_to_input">Limpiar</button>
-                <button type="button" class="btn-cancel-data" id="cancel_edit" style="display: none" onclick="cancelToEdit()">Cancelar</button>
-                <button type="button" class="btn-register-data" id="add_to_table" onclick="addRow()">Agregar</button>
-                <button type="button" class="btn-register-data btn-edit-data" id="edit_to_category" style="display: none">Editar</button>
             </div>
         </div>
     </div>

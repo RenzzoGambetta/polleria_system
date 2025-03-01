@@ -34,3 +34,4 @@ function clearDivContents(selector) {
         div.innerHTML = '';
     }
 }
+

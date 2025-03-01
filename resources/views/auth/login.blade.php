@@ -49,8 +49,8 @@
                 <div class="box">
 
                     @csrf
-                    <input type="text" name="username" id="username" placeholder="Usuario" required>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" required>
+                    <input type="text" name="username" id="username" placeholder="Usuario" value="admin" required>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" value="12345678" required>
 
                     <button>Ingresar</button>
 

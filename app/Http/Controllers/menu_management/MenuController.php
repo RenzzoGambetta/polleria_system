@@ -40,7 +40,7 @@ class MenuController extends Controller
             $query->where('is_combo', 0);
         }
 
-        $Menu = $query->paginate((ConstGlobal::PAGINATION-1))->appends(['filt' => $filt]);
+        $Menu = $query->paginate((ConstGlobal::PAGINATION - 1))->appends(['filt' => $filt]);
 
         return view('menu_management.menu', compact('Navigation', 'Menu', 'Data'));
         //return response()->json($Menu);
@@ -233,4 +233,72 @@ class MenuController extends Controller
         $data = CookingPlace::select('id', 'name')->get();
         return response()->json($data);
     }
+    public function editToCategory(Request $request)
+    {
+        try {
+            $category = MenuCategory::find($request->id);
+    
+            if (!$category) {
+                return response()->json(['response' => false]);
+            }
+    
+            $newName = $request->input('name');
+            $newOrder = (int) $request->input('display_order'); 
+            $oldOrder = $category->display_order;
+    
+            // Si el nuevo orden es diferente, ajustamos el display_order
+            if ($newOrder !== $oldOrder) {
+                $this->adjustDisplayOrder($oldOrder, $newOrder, $category->id);
+            }
+    
+            // Actualizar la categoría con el nuevo nombre y orden
+            $category->name = $newName;
+            $category->display_order = $newOrder;
+            $category->save();
+    
+            // Reordenar la lista para evitar duplicados
+            $this->fillDisplayOrderGaps();
+    
+            return response()->json(['response' => true]);
+        } catch (Exception $e) {
+            return response()->json(['response' => false]);
+        }
+    }
+    
+    /**
+     * Ajusta el orden de las categorías desplazando los elementos según sea necesario.
+     */
+    private function adjustDisplayOrder($oldOrder, $newOrder, $categoryId)
+    {
+        if ($newOrder < $oldOrder) {
+            // Mover las categorías hacia adelante
+            MenuCategory::whereBetween('display_order', [$newOrder, $oldOrder - 1])
+                ->where('id', '!=', $categoryId)
+                ->increment('display_order');
+        } else {
+            // Mover las categorías hacia atrás
+            MenuCategory::whereBetween('display_order', [$oldOrder + 1, $newOrder])
+                ->where('id', '!=', $categoryId)
+                ->decrement('display_order');
+        }
+    }
+    
+    /**
+     * Asegura que los display_order sean secuenciales sin huecos.
+     */
+    private function fillDisplayOrderGaps()
+    {
+        $categories = MenuCategory::orderBy('display_order', 'asc')->get();
+        $expectedOrder = 1;
+    
+        foreach ($categories as $category) {
+            if ($category->display_order != $expectedOrder) {
+                $category->display_order = $expectedOrder;
+                $category->save();
+            }
+            $expectedOrder++;
+        }
+    }
+    
+    
 }
