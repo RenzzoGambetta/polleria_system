@@ -1,4 +1,4 @@
-,7k4                  <!--Encabezado de la pagina como plantilla de todo el panel de control-->
+<!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
