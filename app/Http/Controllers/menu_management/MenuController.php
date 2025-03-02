@@ -40,10 +40,10 @@ class MenuController extends Controller
             $query->where('is_combo', 0);
         }
 
-        $Menu = $query->paginate((ConstGlobal::PAGINATION - 1))->appends(['filt' => $filt]);
+        $Menu = $query->paginate((ConstGlobal::PAGINATION - 3))->appends(['filt' => $filt]);
 
         return view('menu_management.menu', compact('Navigation', 'Menu', 'Data'));
-        //return response()->json($Menu);
+        //return response()->json($Data);
 
     }
     public function newMenuAndEdit(Request $request)
@@ -297,6 +297,25 @@ class MenuController extends Controller
                 $category->save();
             }
             $expectedOrder++;
+        }
+    }
+    public function deleteToCategory(Request $request)
+    {
+        try {
+            $category = MenuCategory::find($request->id);
+    
+            if (!$category) {
+                return response()->json(['response' => false]);
+            }
+    
+            $category->delete();
+    
+            // Reordenar la lista para evitar duplicados
+            $this->fillDisplayOrderGaps();
+    
+            return response()->json(['response' => true]);
+        } catch (Exception $e) {
+            return response()->json(['response' => false]);
         }
     }
     

@@ -102,6 +102,7 @@ use App\Http\Controllers\test\testController;
             Route::post('/edit_to_order_categori', [MenuController::class,'editToOrderCategori'])->name('edit_to_order_categori');
             Route::post('/edit_to_order_item', [MenuController::class,'editToOrderItem'])->name('edit_to_order_item');
             Route::post('/edit_to_category', [MenuController::class,'editToCategory'])->name('edit_to_category');
+            Route::post('/delete_to_category', [MenuController::class,'deleteToCategory'])->name('delete_to_category');
             Route::get('/list_of_item', [MenuController::class,'listOfItem'])->name('list_of_item');
             Route::get('/list_of_category', [MenuController::class,'listOfCategory'])->name('list_of_category');
             Route::get('/filt_item_data', [MenuController::class,'filtItemData'])->name('filt_item_data');

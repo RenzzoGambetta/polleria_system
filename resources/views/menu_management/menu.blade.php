@@ -17,7 +17,7 @@
     <a href="{{ route('menu') }}?filt=combo" class="combo-filt {{ ($Data['button'] ?? null) == 1 ? 'active-btn' : '' }}">Combo</a>
 </div>
 <div class="new-item">
-    <a class="a-navegation-and-action-data" href="{{ route('registro_menu') }}">+</a>
+    <a class="a-navegation-and-action-data" href="{{ route('registro_menu', ['button_type' => $Data["button"]]) }}">+</a>
 </div>
 <div class="conteiner-total">
     <div class="bottom-data">
@@ -36,7 +36,10 @@
 
                     @foreach ($Menu as $Menus)
                         <tr>
-                            <td class="title">{{ $Menus->name }}</td>
+                            <td class="title">
+                                <img src="" onerror="this.onerror=null; this.src='{{ asset($GlobalImageError) }}'; this.style.objectFit='contain';" alt="">
+                                {{ $Menus->name }}
+                            </td>
                             <td>S/{{ $Menus->price }}</td>
                             <td>
                                 @if ($Menus->is_combo == 1)

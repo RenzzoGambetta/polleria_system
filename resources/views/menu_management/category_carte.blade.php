@@ -71,19 +71,21 @@
                             </thead>
                             <tbody id="sortable">
                                 @foreach ($Category as $Categories)
-                                    <tr data-id="{{ $Categories->id }}">
-                                        <td class="order">{{ $Categories->display_order }}</td>
-                                        <td>{{ $Categories->name }}</td>
-                                        <td>{{ $Categories->items_count }}</td>
-                                        <td>
-                                            <button type="button" class="btn-clasic" onclick="editCategoryCarte({{ $Categories }})">Editar</button>
-                                            <button type="button" class="btn-clasic view-item" onclick="urlGet('{{ route('show_order_item') }}',{'category_id':{{ $Categories->id }}})">Ver
-                                                Item</button>
+                                    <tr data-id="{{ $Categories->id }}" title="Arrastra y suelta en la posicion deseada">
+                                        <td id="order_number_{{ $Categories->id}}" class="order">{{ $Categories->display_order }}</td>
+                                        <td id="name_category_{{ $Categories->id}}">{{ $Categories->name }}</td>
+                                        <td id="quantity_items_{{ $Categories->id}}">{{ $Categories->items_count }}</td>
+                                        <td class="center-btn-options">
+                                            <button title="Ver los platos o bebidas asociasos" type="button" class="btn-clasic view-item" onclick="urlGet('{{ route('show_order_item') }}',{'category_id':{{ $Categories->id }}})"><i class="fi fi-rr-overview option-table"></i>Ver Item</button>
+                                            <button title="Editar la categoria" type="button" class="btn-clasic edit-button" onclick="editCategoryCarte({{ $Categories->id }})"><i class="fi fi-sc-pencil option-table"></i></button>
+                                            <button title="Eliminar la categoria" type="button" class="btn-clasic delete-button" onclick="deleteCategory({{ $Categories->id }})"><i class="fi fi-sr-trash option-table"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
-
+                            <script>
+                                var urlOrderItem = '{{ route('show_order_item') }}';
+                            </script>
                         </table>
                     </div>
                 </div>

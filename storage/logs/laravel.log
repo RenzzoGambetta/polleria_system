@@ -61807,3 +61807,543 @@ Did you mean one of these?
 [2025-03-01 01:00:14] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
 [2025-03-01 01:00:15] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
 [2025-03-01 01:00:15] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-01 11:43:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/inventory","route_name":"inventory","permissions_required":["1"]} 
+[2025-03-01 11:43:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/inventory"} 
+[2025-03-01 11:47:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/inventory","route_name":"inventory","permissions_required":["1"]} 
+[2025-03-01 11:47:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/inventory"} 
+[2025-03-02 01:03:04] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 01:03:04] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 02:05:06] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:05:06] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:06:59] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:06:59] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:07:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:07:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:14:27] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:14:27] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:14:35] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:14:35] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:14:42] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:14:42] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:14:49] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:14:49] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:14:58] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:14:58] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:22:53] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:22:53] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:23:02] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:23:02] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:23:12] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:23:12] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:23:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:23:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:24:04] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:24:04] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:25:39] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:25:39] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:25:45] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:25:45] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:32:59] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:32:59] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:33:05] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:33:05] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:33:58] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:33:58] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:34:02] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:34:02] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:34:41] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:34:41] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:34:48] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:34:48] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:43:19] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:43:19] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:43:58] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:43:58] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:44:26] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:44:26] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:44:35] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:44:35] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:45:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_order_categori","route_name":"edit_to_order_categori","permissions_required":["1"]} 
+[2025-03-02 02:45:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_order_categori"} 
+[2025-03-02 02:45:08] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:45:08] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:50:42] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-03-02 02:50:42] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories"} 
+[2025-03-02 02:53:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:53:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:53:44] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-03-02 02:53:44] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories"} 
+[2025-03-02 02:54:23] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:54:23] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:54:30] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-03-02 02:54:30] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories"} 
+[2025-03-02 02:55:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:55:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:55:09] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-03-02 02:55:09] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories"} 
+[2025-03-02 02:56:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:56:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:56:57] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-03-02 02:56:57] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories"} 
+[2025-03-02 02:57:38] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:57:38] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:57:47] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-03-02 02:57:47] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories"} 
+[2025-03-02 02:57:53] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/edit_to_category","route_name":"edit_to_category","permissions_required":["1"]} 
+[2025-03-02 02:57:53] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/edit_to_category"} 
+[2025-03-02 02:58:38] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 02:58:38] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 02:58:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_menu_categories","route_name":"new_menu_categories","permissions_required":["1"]} 
+[2025-03-02 02:58:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_menu_categories"} 
+[2025-03-02 02:58:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_order_item?category_id=39","route_name":"show_order_item","permissions_required":["1"]} 
+[2025-03-02 02:58:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_order_item?category_id=39"} 
+[2025-03-02 13:44:12] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_drawing_table","route_name":"show_drawing_table","permissions_required":["1"]} 
+[2025-03-02 13:44:12] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_drawing_table"} 
+[2025-03-02 13:44:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/tables_list_data?id=4","route_name":"tables_list_data","permissions_required":["1"]} 
+[2025-03-02 13:44:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/tables_list_data?id=4"} 
+[2025-03-02 13:44:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/lounge_data_edit?id=4","route_name":"lounge_data_edit","permissions_required":["1"]} 
+[2025-03-02 13:44:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/lounge_data_edit?id=4"} 
+[2025-03-02 13:44:49] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/tables_list_data?id=1","route_name":"tables_list_data","permissions_required":["1"]} 
+[2025-03-02 13:44:49] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/tables_list_data?id=1"} 
+[2025-03-02 13:44:49] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/lounge_data_edit?id=1","route_name":"lounge_data_edit","permissions_required":["1"]} 
+[2025-03-02 13:44:49] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/lounge_data_edit?id=1"} 
+[2025-03-02 13:44:52] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/tables_list_data?id=1","route_name":"tables_list_data","permissions_required":["1"]} 
+[2025-03-02 13:44:52] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/tables_list_data?id=1"} 
+[2025-03-02 13:44:52] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/tables_list_data?id=1","route_name":"tables_list_data","permissions_required":["1"]} 
+[2025-03-02 13:44:52] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/tables_list_data?id=1"} 
+[2025-03-02 13:44:52] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/lounge_data_edit?id=1","route_name":"lounge_data_edit","permissions_required":["1"]} 
+[2025-03-02 13:44:52] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/lounge_data_edit?id=1"} 
+[2025-03-02 13:45:04] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:45:04] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 13:50:08] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:50:08] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 13:50:56] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:50:56] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 13:53:05] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/user","route_name":"user","permissions_required":["2"]} 
+[2025-03-02 13:53:05] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/user"} 
+[2025-03-02 13:53:23] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:53:23] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 13:53:32] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:53:32] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 13:53:55] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/user","route_name":"user","permissions_required":["2"]} 
+[2025-03-02 13:53:55] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/user"} 
+[2025-03-02 13:54:20] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:54:20] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 13:55:28] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/user","route_name":"user","permissions_required":["2"]} 
+[2025-03-02 13:55:28] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/user"} 
+[2025-03-02 13:55:55] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:55:55] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 13:59:16] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 13:59:16] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:00:37] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:00:37] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:01:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:01:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:02:51] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:02:51] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:07:31] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:07:31] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:08:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:08:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:09:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:09:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:09:13] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:09:13] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:09:26] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:09:26] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:12:11] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:12:11] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:12:39] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:12:39] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:13:25] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_order_item?category_id=21","route_name":"show_order_item","permissions_required":["1"]} 
+[2025-03-02 14:13:25] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_order_item?category_id=21"} 
+[2025-03-02 14:13:29] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_order_item?category_id=4","route_name":"show_order_item","permissions_required":["1"]} 
+[2025-03-02 14:13:29] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_order_item?category_id=4"} 
+[2025-03-02 14:21:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:21:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:22:08] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:22:08] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:23:15] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:23:15] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:31:49] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:31:49] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:32:30] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:32:30] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:36:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:36:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:39:38] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:39:38] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:40:09] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:40:09] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:40:14] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/delete_to_category","route_name":"delete_to_category","permissions_required":["1"]} 
+[2025-03-02 14:40:14] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/delete_to_category"} 
+[2025-03-02 14:40:33] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/delete_to_category","route_name":"delete_to_category","permissions_required":["1"]} 
+[2025-03-02 14:40:33] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/delete_to_category"} 
+[2025-03-02 14:40:37] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/delete_to_category","route_name":"delete_to_category","permissions_required":["1"]} 
+[2025-03-02 14:40:37] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/delete_to_category"} 
+[2025-03-02 14:40:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/delete_to_category","route_name":"delete_to_category","permissions_required":["1"]} 
+[2025-03-02 14:40:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/delete_to_category"} 
+[2025-03-02 14:40:47] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/delete_to_category","route_name":"delete_to_category","permissions_required":["1"]} 
+[2025-03-02 14:40:47] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/delete_to_category"} 
+[2025-03-02 14:40:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/delete_to_category","route_name":"delete_to_category","permissions_required":["1"]} 
+[2025-03-02 14:40:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/delete_to_category"} 
+[2025-03-02 14:40:54] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/delete_to_category","route_name":"delete_to_category","permissions_required":["1"]} 
+[2025-03-02 14:40:54] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/delete_to_category"} 
+[2025-03-02 14:41:13] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:41:13] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:41:21] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_drawing_table","route_name":"show_drawing_table","permissions_required":["1"]} 
+[2025-03-02 14:41:21] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_drawing_table"} 
+[2025-03-02 14:41:24] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:41:24] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:41:28] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_order_item?category_id=2","route_name":"show_order_item","permissions_required":["1"]} 
+[2025-03-02 14:41:28] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_order_item?category_id=2"} 
+[2025-03-02 14:43:57] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:43:57] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:44:39] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:44:39] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:44:51] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:44:51] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:45:20] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_drawing_table","route_name":"show_drawing_table","permissions_required":["1"]} 
+[2025-03-02 14:45:20] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_drawing_table"} 
+[2025-03-02 14:45:23] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:45:23] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 14:45:33] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?option=1","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:45:33] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?option=1"} 
+[2025-03-02 14:45:34] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 14:45:34] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 14:45:35] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:45:35] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:45:35] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1","route_name":"filt_item_data","permissions_required":["1"]} 
+[2025-03-02 14:45:35] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1"} 
+[2025-03-02 14:45:35] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:45:35] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:45:57] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:45:57] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 14:46:00] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?option=1","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:46:00] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?option=1"} 
+[2025-03-02 14:46:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 14:46:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 14:46:01] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:46:01] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:46:02] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1","route_name":"filt_item_data","permissions_required":["1"]} 
+[2025-03-02 14:46:02] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1"} 
+[2025-03-02 14:46:02] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:46:02] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:46:32] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:46:32] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 14:46:34] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?option=31","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:46:34] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?option=31"} 
+[2025-03-02 14:46:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_item","route_name":"list_of_item","permissions_required":["1"]} 
+[2025-03-02 14:46:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_item"} 
+[2025-03-02 14:46:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:46:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:46:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:46:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:46:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/filt_item_data?combo=1&id=31","route_name":"filt_item_data","permissions_required":["1"]} 
+[2025-03-02 14:46:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/filt_item_data?combo=1&id=31"} 
+[2025-03-02 14:46:41] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?option=31","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:46:41] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?option=31"} 
+[2025-03-02 14:46:42] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_item","route_name":"list_of_item","permissions_required":["1"]} 
+[2025-03-02 14:46:42] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_item"} 
+[2025-03-02 14:46:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:46:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:46:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:46:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:46:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/filt_item_data?combo=1&id=31","route_name":"filt_item_data","permissions_required":["1"]} 
+[2025-03-02 14:46:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/filt_item_data?combo=1&id=31"} 
+[2025-03-02 14:51:04] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 14:51:04] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 14:51:15] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:51:15] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 14:51:18] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:51:19] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 14:51:20] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:51:20] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu"} 
+[2025-03-02 14:51:22] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 14:51:22] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 14:51:22] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:51:22] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:51:23] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:51:23] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:51:24] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:51:24] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 14:51:25] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:51:25] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu"} 
+[2025-03-02 14:51:26] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 14:51:26] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 14:51:27] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:51:27] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:51:27] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:51:27] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:51:30] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_item","route_name":"list_of_item","permissions_required":["1"]} 
+[2025-03-02 14:51:30] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_item"} 
+[2025-03-02 14:51:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:51:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 14:51:38] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:51:38] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 14:51:53] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/inventory","route_name":"inventory","permissions_required":["1"]} 
+[2025-03-02 14:51:53] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/inventory"} 
+[2025-03-02 14:51:58] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_supply_inventory?id=27","route_name":"new_supply_inventory","permissions_required":["1"]} 
+[2025-03-02 14:51:58] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_supply_inventory?id=27"} 
+[2025-03-02 14:52:18] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_list_inventory_movements","route_name":"show_list_inventory_movements","permissions_required":["1"]} 
+[2025-03-02 14:52:18] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_list_inventory_movements"} 
+[2025-03-02 14:52:24] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:52:24] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 14:52:29] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?option=1","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:52:29] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?option=1"} 
+[2025-03-02 14:52:31] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 14:52:31] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 14:52:31] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:52:31] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:52:31] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:52:31] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:52:32] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1","route_name":"filt_item_data","permissions_required":["1"]} 
+[2025-03-02 14:52:32] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1"} 
+[2025-03-02 14:52:57] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/inventory","route_name":"inventory","permissions_required":["1"]} 
+[2025-03-02 14:52:57] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/inventory"} 
+[2025-03-02 14:53:00] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_supply_inventory?id=27","route_name":"new_supply_inventory","permissions_required":["1"]} 
+[2025-03-02 14:53:00] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_supply_inventory?id=27"} 
+[2025-03-02 14:53:16] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/inventory","route_name":"inventory","permissions_required":["1"]} 
+[2025-03-02 14:53:16] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/inventory"} 
+[2025-03-02 14:53:17] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/new_supply_inventory","route_name":"new_supply_inventory","permissions_required":["1"]} 
+[2025-03-02 14:53:17] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/new_supply_inventory"} 
+[2025-03-02 14:53:30] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 14:53:30] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 14:53:43] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?option=1","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 14:53:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?option=1"} 
+[2025-03-02 14:53:44] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 14:53:44] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 14:53:45] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 14:53:45] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 14:53:45] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 14:53:45] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 14:53:45] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1","route_name":"filt_item_data","permissions_required":["1"]} 
+[2025-03-02 14:53:45] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/filt_item_data?combo=0&id=1"} 
+[2025-03-02 16:54:29] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/user","route_name":"user","permissions_required":["2"]} 
+[2025-03-02 16:54:29] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/user"} 
+[2025-03-02 16:54:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/employeer","route_name":"employeer","permissions_required":["1"]} 
+[2025-03-02 16:54:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/employeer"} 
+[2025-03-02 16:54:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/position","route_name":"position","permissions_required":["1"]} 
+[2025-03-02 16:54:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/position"} 
+[2025-03-02 16:54:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/show_list_inventory_movements","route_name":"show_list_inventory_movements","permissions_required":["1"]} 
+[2025-03-02 16:54:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/show_list_inventory_movements"} 
+[2025-03-02 16:54:52] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/inventory","route_name":"inventory","permissions_required":["1"]} 
+[2025-03-02 16:54:52] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/inventory"} 
+[2025-03-02 16:54:56] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 16:54:56] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 16:56:10] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 16:56:10] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 16:58:23] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 16:58:23] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 16:58:29] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 16:58:29] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 16:59:13] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 16:59:13] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 16:59:15] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 16:59:15] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:01:24] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:01:24] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:01:26] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 17:01:26] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 17:01:35] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:01:35] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:01:39] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/inventory","route_name":"inventory","permissions_required":["1"]} 
+[2025-03-02 17:01:39] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/inventory"} 
+[2025-03-02 17:01:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:01:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:03:15] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:03:15] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:04:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:04:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:05:59] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:05:59] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:06:14] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:06:14] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:06:20] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:06:20] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:15:38] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:15:38] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:17:37] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:17:37] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:22:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:22:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:25:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:25:51] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:29:36] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:29:36] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 17:30:46] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:30:46] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 17:30:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:30:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 17:31:27] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 17:31:27] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 18:09:26] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:26] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 18:09:34] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:34] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 18:09:37] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:37] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 18:09:40] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:40] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 18:09:44] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:44] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 18:09:47] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=1","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:47] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=1"} 
+[2025-03-02 18:09:51] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:51] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 18:09:55] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:09:55] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 18:11:25] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:11:25] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 18:11:25] local.ERROR: Attempt to read property "button" on array (View: C:\Users\fer\Desktop\D'brazza\resources\views\menu_management\menu.blade.php) {"userId":35,"exception":"[object] (Illuminate\\View\\ViewException(code: 0): Attempt to read property \"button\" on array (View: C:\\Users\\fer\\Desktop\\D'brazza\\resources\\views\\menu_management\\menu.blade.php) at C:\\Users\\fer\\Desktop\\D'brazza\\storage\\framework\\views\\8b6070fea7d2b23876af7b22345e4cb3.php:20)
+[stacktrace]
+#0 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(ErrorException), 1)
+#1 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(73): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\Users\\\\fer\\\\De...', Array)
+#2 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\Users\\\\fer\\\\De...', Array)
+#3 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(191): Illuminate\\View\\View->getContents()
+#4 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(160): Illuminate\\View\\View->renderContents()
+#5 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(70): Illuminate\\View\\View->render()
+#6 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#9 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#10 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\Users\\fer\\Desktop\\D'brazza\\app\\Http\\Middleware\\CheckPermission.php(42): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#12 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): App\\Http\\Middleware\\CheckPermission->handle(Object(Illuminate\\Http\\Request), Object(Closure), '1')
+#13 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#14 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#15 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(64): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#17 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#23 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#30 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#31 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#32 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#33 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#34 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#51 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#52 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1183): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#53 C:\\Users\\fer\\Desktop\\D'brazza\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#54 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\fer\\\\De...')
+#55 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Attempt to read property \"button\" on array at C:\\Users\\fer\\Desktop\\D'brazza\\storage\\framework\\views\\8b6070fea7d2b23876af7b22345e4cb3.php:20)
+[stacktrace]
+#0 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(256): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\Users\\\\fer\\\\De...', 20)
+#1 C:\\Users\\fer\\Desktop\\D'brazza\\storage\\framework\\views\\8b6070fea7d2b23876af7b22345e4cb3.php(20): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\Users\\\\fer\\\\De...', 20)
+#2 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(123): require('C:\\\\Users\\\\fer\\\\De...')
+#3 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\Users\\\\fer\\\\De...', Array)
+#5 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(73): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\Users\\\\fer\\\\De...', Array)
+#6 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\Users\\\\fer\\\\De...', Array)
+#7 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(191): Illuminate\\View\\View->getContents()
+#8 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(160): Illuminate\\View\\View->renderContents()
+#9 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(70): Illuminate\\View\\View->render()
+#10 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#11 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#12 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#13 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#14 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\Users\\fer\\Desktop\\D'brazza\\app\\Http\\Middleware\\CheckPermission.php(42): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#16 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): App\\Http\\Middleware\\CheckPermission->handle(Object(Illuminate\\Http\\Request), Object(Closure), '1')
+#17 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(64): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#27 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#34 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#35 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#36 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#37 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#38 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#55 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#56 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1183): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#57 C:\\Users\\fer\\Desktop\\D'brazza\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#58 C:\\Users\\fer\\Desktop\\D'brazza\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\fer\\\\De...')
+#59 {main}
+"} 
+[2025-03-02 18:12:27] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:12:27] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 18:12:38] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/category_carte","route_name":"category_carte","permissions_required":["1"]} 
+[2025-03-02 18:12:38] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/category_carte"} 
+[2025-03-02 18:12:40] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:12:40] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu"} 
+[2025-03-02 18:12:50] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:12:50] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 18:12:54] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=combo","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:12:54] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=combo"} 
+[2025-03-02 18:12:57] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/menu?filt=menu","route_name":"menu","permissions_required":["1"]} 
+[2025-03-02 18:12:57] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/menu?filt=menu"} 
+[2025-03-02 18:13:39] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?button=2","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 18:13:39] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?button=2"} 
+[2025-03-02 18:13:41] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 18:13:41] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 18:13:42] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 18:13:42] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
+[2025-03-02 18:13:42] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 18:13:43] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 18:14:07] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/register_new_menu?_token=VwGGJoP26U7gVjCEdUItloBlBd9RVaAc9EE7f9jx&category_id=&category_name=&comment=&cooking_place_id=&cooking_place_name=&id_item_name=&is_combo=0&item_name=&name=&price=&quantity=","route_name":"register_new_menu","permissions_required":["1"]} 
+[2025-03-02 18:14:07] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/register_new_menu?_token=VwGGJoP26U7gVjCEdUItloBlBd9RVaAc9EE7f9jx&category_id=&category_name=&comment=&cooking_place_id=&cooking_place_name=&id_item_name=&is_combo=0&item_name=&name=&price=&quantity="} 
+[2025-03-02 18:14:08] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/registro_menu?button=2","route_name":"registro_menu","permissions_required":["1"]} 
+[2025-03-02 18:14:08] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/registro_menu?button=2"} 
+[2025-03-02 18:14:10] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_supplys","route_name":"list_of_supplys","permissions_required":["1"]} 
+[2025-03-02 18:14:10] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_supplys"} 
+[2025-03-02 18:14:10] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_category","route_name":"list_of_category","permissions_required":["1"]} 
+[2025-03-02 18:14:10] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_category"} 
+[2025-03-02 18:14:11] local.INFO: Verificando permiso {"url":"http://127.0.0.1:8000/list_of_cooking_place","route_name":"list_of_cooking_place","permissions_required":["1"]} 
+[2025-03-02 18:14:11] local.INFO: Acceso permitido {"user_id":35,"url":"http://127.0.0.1:8000/list_of_cooking_place"} 
