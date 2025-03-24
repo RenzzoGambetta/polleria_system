@@ -238,15 +238,6 @@ button.btn-clasic.view-item {
     animation: reduceHeight 0.5s ease-in-out forwards;
 }
 
-button.btn-clasic.edit-button {
-    background-color: #f0a700;
-    font-weight: bold;
-    transition: background-color 0.5s ease;
-}
-
-button.btn-clasic.edit-button:hover {
-    background-color: #ab7801;
-}
 
 .center-btn-options {
     display: flex;
@@ -255,17 +246,3 @@ button.btn-clasic.edit-button:hover {
     gap: 10px;
 }
 
-button.btn-clasic.delete-button {
-    font-weight: bold;
-    background-color: #c50000;
-    transition: background-color 0.5s ease;
-}
-
-button.btn-clasic.delete-button:hover {
-
-    background-color: #680000;
-}
-
-button.btn-clasic.view-item:hover {
-    background: linear-gradient(to right, #2800ff, #000000);
-}

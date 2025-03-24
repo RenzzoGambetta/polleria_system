@@ -71,6 +71,9 @@ class Resource_Path_Js extends ServiceProvider
             $tableEditAndRegister = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'table_edit_and_register.js');
             $view->with('tableEditAndRegister', $tableEditAndRegister);
 
+            $newActionImage = $fpFunc->Resource(Folder_Path::MENU_MANAGEMENT, Folder_Path::JS, 'new_action_image.js');
+            $view->with('newActionImage', $newActionImage);
+
             $pointOfSale = $fpFunc->Resource(Folder_Path::ORDER, Folder_Path::JS, 'point_of_sale.js');
             $view->with('pointOfSale', $pointOfSale);
 

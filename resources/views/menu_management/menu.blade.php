@@ -4,6 +4,21 @@
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
 <link rel="stylesheet" href="{{ asset($MenuTable) }}">
+@csrf
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message')}}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10}})
+    </script>
+@endif
 
 <div class="header">
     <div class="left">
@@ -56,7 +71,10 @@
                                     </div>
                                 @endif
                             </td>
-                            <td><button type="button" class="btn-clasic" onclick="urlGet('{{ route('registro_menu') }}',{'option':{{ $Menus->id }}})">Eitar</button></td>
+                            <td class="center-btn-options">
+                                <button title="Editar la menu" type="button" class="btn-clasic edit-button span-center-option" onclick="urlGet('{{ route('registro_menu') }}',{'option':{{ $Menus->id }}})"><i class="fi fi-sc-pencil option-table"></i></button>
+                                <button title="Eliminar la menu" type="button" class="btn-clasic delete-button" onclick="urlPostDelete('/delete_to_menu_item',{'id':{{$Menus->id}}},'Estas seguro?','Se eliminara de forma permanente el {{ $Menus->name }}')"><i class="fi fi-sr-trash option-table"></i></button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -67,7 +85,7 @@
 
     <section class="paginacion">
         {{ $Menu->onEachSide(1)->links('pagination::custom') }}
-        {{ $Menu->onEachSide(1)->links('pagination::numeros') }}
+        {{ $Menu->onEachSide(1)->links('pagination::numeros') }}                                            
         {{ $Menu->onEachSide(1)->links('pagination::anterior') }}
     </section>
 

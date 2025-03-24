@@ -55,7 +55,9 @@ class MenuController extends Controller
                 'Toggle' => true,
                 'SubTitle' => 'Conjunto que conforma un plato o bebida',
                 'Input' => 'Suministro',
+                'button_type' => $request->button_type ?? 0,
             ];
+
             if ($request->direction == "cart") {
                 $Navigation = $this->NavigationCart;
                 $Data['UrlCancel'] = 'show_order_item';
@@ -71,14 +73,16 @@ class MenuController extends Controller
                         'Title' => ($ComboItem->is_combo == 1) ? 'Editador de Combo' : 'Editador de Plato o Bebida',
                         'UrlCancel' => 'menu',
                         'Toggle' => false,
-                        'SubTitle' => 'Conjunto que conforma un Combo',
-                        'Input' => 'Item',
+                        'SubTitle' => ($ComboItem->is_combo == 1) ? 'Conjunto que conforma un Combo' : 'Conjunto que conforma un plato o bebida',
+                        'Input' => ($ComboItem->is_combo == 1) ? 'Item' : 'Suministro',
+
                     ];
                     return view('menu_management.new_menu_and_edit', compact('Navigation', 'ComboItem', 'Data'));
                 }
                 $Data['UrlCancel'] = 'menu';
             }
 
+            //return response()->json($Data);
             return view('menu_management.new_menu_and_edit', compact('Navigation', 'Data'));
         } catch (Extension $e) {
             return abort(404);
@@ -237,34 +241,34 @@ class MenuController extends Controller
     {
         try {
             $category = MenuCategory::find($request->id);
-    
+
             if (!$category) {
                 return response()->json(['response' => false]);
             }
-    
+
             $newName = $request->input('name');
-            $newOrder = (int) $request->input('display_order'); 
+            $newOrder = (int) $request->input('display_order');
             $oldOrder = $category->display_order;
-    
+
             // Si el nuevo orden es diferente, ajustamos el display_order
             if ($newOrder !== $oldOrder) {
                 $this->adjustDisplayOrder($oldOrder, $newOrder, $category->id);
             }
-    
+
             // Actualizar la categoría con el nuevo nombre y orden
             $category->name = $newName;
             $category->display_order = $newOrder;
             $category->save();
-    
+
             // Reordenar la lista para evitar duplicados
             $this->fillDisplayOrderGaps();
-    
+
             return response()->json(['response' => true]);
         } catch (Exception $e) {
             return response()->json(['response' => false]);
         }
     }
-    
+
     /**
      * Ajusta el orden de las categorías desplazando los elementos según sea necesario.
      */
@@ -282,7 +286,7 @@ class MenuController extends Controller
                 ->decrement('display_order');
         }
     }
-    
+
     /**
      * Asegura que los display_order sean secuenciales sin huecos.
      */
@@ -290,7 +294,7 @@ class MenuController extends Controller
     {
         $categories = MenuCategory::orderBy('display_order', 'asc')->get();
         $expectedOrder = 1;
-    
+
         foreach ($categories as $category) {
             if ($category->display_order != $expectedOrder) {
                 $category->display_order = $expectedOrder;
@@ -303,21 +307,39 @@ class MenuController extends Controller
     {
         try {
             $category = MenuCategory::find($request->id);
-    
+
             if (!$category) {
                 return response()->json(['response' => false]);
             }
-    
+
             $category->delete();
-    
+
             // Reordenar la lista para evitar duplicados
             $this->fillDisplayOrderGaps();
-    
+
             return response()->json(['response' => true]);
         } catch (Exception $e) {
             return response()->json(['response' => false]);
         }
     }
-    
-    
+
+    public function deleteToMenuItem(Request $request)
+    {
+        try {
+            $Menu = MenuItem::find($request->id);
+            $nameMenuDelete = $Menu->name;
+            if (!$Menu) {
+                return response()->json(['response' => false]);
+            }
+
+            $Menu->delete();
+
+            // Reordenar la lista para evitar duplicados
+            $this->fillDisplayOrderGaps();
+
+            return redirect()->route('menu')->with(FunctionGlobal::MessageSuccess('Se eliminso correctamente el Item: '.$nameMenuDelete));
+        } catch (Exception $e) {
+            return redirect()->route('menu')->with(FunctionGlobal::MessageError('No aw pudo eliminar el item: '.$nameMenuDelete));
+        }
+    }
 }

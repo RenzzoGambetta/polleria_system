@@ -3,7 +3,7 @@
 <!---------------------------------------------------------------------->
 <link rel="stylesheet" href="{{ asset($EmployeeRecordDesktop) }}">
 <link rel="stylesheet" href="{{ asset($PaginationStyle) }}">
-
+@csrf
 @if (session()->has('Message'))
     <div class="container-aler">
         <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
@@ -82,7 +82,16 @@
                                 <span></span>
                             @endif
                         </td>
-                        <td><a class="btn-clasic" href="{{ route('new_supply_inventory').'?id='.$Inventories->id}}">Eitar</a></td>
+                        <td class="option">
+                            <button class="button-option-employee edit" title="Editar la Inventario" onclick="urlGet('{{ route('new_supply_inventory') }}',{'id':{{ $Inventories->id }}})" title="Editar datos empleado">
+                                <i class="fi fi-sc-pencil option-table" ></i>
+                            </button>
+                            <button class="button-option-employee clear" title="Eliminar la Inventario" onclick="urlPostDelete('/delete_new_supply_complete',{'id':{{$Inventories->id}}},'Estas seguro?','Se eliminara de forma permanente el/la{{ $Inventories->name }}')">
+                                <i class="fi fi-sr-trash option-table"></i>
+                            </button>
+                           
+                        </td>
+
                     </tr>
                 @endforeach
             </tbody>

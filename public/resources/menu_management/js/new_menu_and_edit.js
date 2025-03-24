@@ -4,7 +4,21 @@ new SearchBox('No se encuntra la categoria...', '.search-category', '#search-cat
 
 function handleRadioChange(event) {
     const selectedValue = event.target.value;
+    dataSelevtValue(selectedValue)
+}
 
+function shortenRequest(url) {
+    return new SearchBox('No se encuntro el Producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-item', url, 5, 0);
+}
+
+function clearDivContents(selector) {
+    const div = document.querySelector(selector);
+    if (div) {
+        div.innerHTML = '';
+    }
+}
+
+function dataSelevtValue(selectedValue){
     if (selectedValue == 0) {
         $('#title').text('Nuevo plato o bebida');
         $('#sub-title').text('Conjunto que conforma un plato o bebida');
@@ -23,15 +37,3 @@ function handleRadioChange(event) {
         console.log("no se pudo realizar la accion");
     }
 }
-
-function shortenRequest(url) {
-    return new SearchBox('No se encuntro el Producto...', '.search-box', '#search', '#search-label', '.suggestions', '#loader', '#id-item', url, 5, 0);
-}
-
-function clearDivContents(selector) {
-    const div = document.querySelector(selector);
-    if (div) {
-        div.innerHTML = '';
-    }
-}
-

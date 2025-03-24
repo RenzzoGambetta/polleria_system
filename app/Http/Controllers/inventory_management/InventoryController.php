@@ -64,13 +64,18 @@ class InventoryController extends Controller
     }
     public function deleteNewSupplyComplete(Request $request)
     {
-        $response = Supply::destroy($request->id);
+        try{
+            $response = Supply::destroy($request->id);
+    
+            if ($response) {
+                return redirect()->route('inventory')->with(FunctionGlobal::MessageSuccess('Se eliminó satisfactoriamente.'));
+            }
+    
+            return redirect()->route('new_supply_inventory', ['id' => $request->id])->withInput()->with(FunctionGlobal::MessageError('No se pudo eliminar el suministro.'));
+        }catch(Exception $e){
+            return redirect()->route('inventory')->withInput()->with(FunctionGlobal::MessageError('No se pudo eliminar el suministro.'));
 
-        if ($response) {
-            return redirect()->route('inventory')->with(FunctionGlobal::MessageSuccess('Se eliminó satisfactoriamente.'));
         }
-
-        return redirect()->route('new_supply_inventory', ['id' => $request->id])->withInput()->with(FunctionGlobal::MessageError('No se pudo eliminar el suministro.'));
     }
     public function getMovementDetailByType(Request $request)
     {

@@ -1,10 +1,23 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
- 
 <link rel="stylesheet" href="{{ asset($InventoryRegisterDesktop) }}">
 <link rel="stylesheet" href="{{ asset($InputResources) }}">
 <link rel="stylesheet" href="{{ asset($TableEditAndRegister) }}">
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message')}}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10}})
+    </script>
+@endif
 
 <div class="header">
     <div class="left">

@@ -70,7 +70,7 @@ use App\Http\Controllers\test\testController;
             Route::get('/inventory', [InventoryController::class,'showInventoryList'])->name('inventory');
             Route::get('/show_list_inventory_movements', [InventoryController::class,'showListInventoryMovements'])->name('show_list_inventory_movements');
             Route::get('/new_supply_inventory', [InventoryController::class,'newsupplyInventory'])->name('new_supply_inventory');
-            Route::get('/delete_new_supply_complete', [InventoryController::class,'deleteNewSupplyComplete'])->name('delete_new_supply_complete');
+            Route::post('/delete_new_supply_complete', [InventoryController::class,'deleteNewSupplyComplete'])->name('delete_new_supply_complete');
             Route::post('/get_movement_detail_by_type', [InventoryController::class,'getMovementDetailByType'])->name('get_movement_detail_by_type');
             //Suministros
             Route::get('/show_panel_register_entry', [SupplyStockController::class,'showPanelRegisterEntry'])->name('show_panel_register_entry');
@@ -103,6 +103,7 @@ use App\Http\Controllers\test\testController;
             Route::post('/edit_to_order_item', [MenuController::class,'editToOrderItem'])->name('edit_to_order_item');
             Route::post('/edit_to_category', [MenuController::class,'editToCategory'])->name('edit_to_category');
             Route::post('/delete_to_category', [MenuController::class,'deleteToCategory'])->name('delete_to_category');
+            Route::post('/delete_to_menu_item', [MenuController::class,'deleteToMenuItem'])->name('delete_to_menu_item');
             Route::get('/list_of_item', [MenuController::class,'listOfItem'])->name('list_of_item');
             Route::get('/list_of_category', [MenuController::class,'listOfCategory'])->name('list_of_category');
             Route::get('/filt_item_data', [MenuController::class,'filtItemData'])->name('filt_item_data');

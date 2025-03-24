@@ -121,7 +121,7 @@
                             const OptionId = '{{ $Supply->unit }}';
                         </script>
                         <input type="text" name='id_edit_stock' value="{{ $Supply->id }}" style="display: none">
-                        <button type="button" class="button-option-new-supply cancel-btn" onclick="urlGet('{{ route('delete_new_supply_complete') }}',{id:{{ $Supply->id }}})">Eliminar</button>
+                        <button type="button" class="button-option-new-supply cancel-btn" onclick="urlPostDelete('/delete_new_supply_complete',{'id':{{$Supply->id}}},'Estas seguro?','Se eliminara de forma permanente el {{ $Supply->name }}')">Eliminar</button>
                         <button type="submit" class="button-option-new-supply register-or-edit">Editar</button>
                     @else
                         <script>

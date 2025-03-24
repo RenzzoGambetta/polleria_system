@@ -7,6 +7,20 @@
 <link rel="stylesheet" href="{{ asset($MenuTable) }}">
 <link rel="stylesheet" href="{{ asset($ItemOrder) }}">
 @csrf
+@if (session()->has('Message'))
+    <div class="container-aler">
+        <div class="alert-error-and-response {{ session('Type') ?? 'error'}}">
+            <div class="message-title-and-timer">
+                <span class="tilte-alert">Mensaje:</span>
+                <span class="sub-title-time" id="timer">{{ session('Time') ?? 10}}s</span>
+            </div>
+            <span class="text-alert">{{ session('Message')}}</span>
+        </div>
+    </div>
+    <script>
+        timeAlert({{ session('Time') ?? 10}})
+    </script>
+@endif
 
 <div class="header">
     <div class="left">

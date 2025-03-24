@@ -199,7 +199,7 @@ i.style-button-plus {
 }
 
 .button-option-employee.edit {
-    background-color: rgb(190 135 0);
+    background-color:#f0a700;
     transition: background-color 0.3s ease;
     margin-right: 5px;
 }
