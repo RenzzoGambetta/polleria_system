@@ -29,19 +29,28 @@
 
 @csrf
 <div class="modify-estyle">
-    <div class="list_category_item">
-        @foreach ($Category as $Categories)
-            <button class="button-Category" title="Categoria de {{ $Categories->name }}" onclick="loadTableDataItem({{ $Categories->id }})">
-                <span>{{ $Categories->name }}</span>
-            </button>
-        @endforeach
-        <span id="data" style="display: none" x:sale="{{ $Data['sale'] }}" @if ($Data['isBar']) x:code="{{ $Data['code'] }}" x:id="{{ $Data['id'] }}" @endif></span>
-    </div>
-    <div class="sale-and-table">
-
-        <div class="conteiner-table">
-            <div class="tables-list" id="tables-list">
-
+    <div class="conteiner-item-and-sub-category">
+        <div class="frame-nav-option" id="button-categori-display">
+            <div class="sub-title-cetgory category items-container">
+                <span id="sub-title-category-text">Categorias</span>
+                <i class="fi fi-sr-angle-small-down center-icon" id="icon-efect-to-category"></i>
+            </div>
+        </div>
+        <div class="list_category_item" id="frame-category-data">
+            @foreach ($Category as $Categories)
+                <button class="button-Category" title="Categoria de {{ $Categories->name }}" onclick="loadTableDataItem({{ $Categories->id }},'{{ $Categories->name }}')">
+                    <span>{{ $Categories->name }}</span>
+                    <i class="fi fi-rr-angle-right table-add"></i>
+                </button>
+            @endforeach
+            <span id="data" style="display: none" x:sale="{{ $Data['sale'] }}" @if ($Data['isBar']) x:code="{{ $Data['code'] }}" x:id="{{ $Data['id'] }}" @endif></span>
+        </div>
+        <div class="sale-and-table" id="item-container-select-to-category">
+    
+            <div class="conteiner-table">
+                <div class="tables-list" id="tables-list">
+    
+                </div>
             </div>
         </div>
     </div>
