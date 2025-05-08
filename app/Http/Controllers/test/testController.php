@@ -62,7 +62,7 @@ class testController extends Controller
         $pdfPath = storage_path('app/public/boleta.pdf');
 
         // Generar el PDF con Browsershot
-        Browsershot::html($html)
+        /*Browsershot::html($html)
             ->showBackground() // Asegura que los estilos con fondo se respeten
             ->format('A4') // Formato base, se puede cambiar si necesitas otro
             ->margins(0, 0, 0, 0) // Sin márgenes
@@ -71,7 +71,7 @@ class testController extends Controller
             ->setOption('printBackground', true) // Imprimir los fondos  
             ->setOption('no-images', false)
             ->savePdf($pdfPath);
-
+*/
         // Retornar el PDF como respuesta para mostrarlo en un iframe o descargarlo
         return response()->file($pdfPath, [
             'Content-Type' => 'application/pdf',
@@ -79,6 +79,56 @@ class testController extends Controller
         ]);
     }
     /*
+    Fin del testeo
+    */
+    
+    /*
+    Test para inprecion de boleta poir ip 
+    */
+    public function viewTestV2(Request $request)
+    {
+        $ticket = $this->generarEscPosTicket($request->datos); // puedes pasar los datos desde el frontend
+        $ipImpresora = '192.168.1.240'; // IP de tu impresora
+        $puerto = 9100;
+
+        try {
+            $socket = fsockopen($ipImpresora, $puerto, $errno, $errstr, 5);
+            if (!$socket) {
+                return response()->json(['error' => "No se pudo conectar: $errstr ($errno)"], 500);
+            }
+
+            fwrite($socket, $ticket);
+            fclose($socket);
+
+            return response()->json(['estado' => 'Ticket enviado']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    private function generarEscPosTicket($datos)
+    {
+        return
+        "\x1B\x40" .            // Reset (Inicializa impresora)
+        "\x1B\x61\x01" .        // Alinear centrado
+        "Tienda XYZ\n" .
+        "RUC: 12345678900\n" .
+        "Av. Principal 123\n" .
+        "-----------------------------\n" .
+        "\x1B\x61\x00" .        // Alinear a la izquierda
+        "Producto A     x2  S/. 5.00\n" .
+        "Producto B     x1  S/. 3.00\n" .
+        "-----------------------------\n" .
+        "Total:              S/. 13.00\n" .
+        "\n" .
+        "\x1B\x61\x01" .        // Centrar de nuevo
+        "Gracias por su compra\n" .
+        "\n\n" .
+        "\x1D\x56\x41" .
+        "\x1B\x40" ;         // Corte total (ESC/POS full cut)
+        
+    }
+   /*
     Fin del testeo
     */
 }
