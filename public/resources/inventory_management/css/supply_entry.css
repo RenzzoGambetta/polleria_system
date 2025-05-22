@@ -13,6 +13,17 @@
     font-weight: bold;
     color: var(--dark);
 }
-.search-box-supplier, .search-box {
+
+.search-box-supplier,
+.search-box {
     border-radius: 10px 0 0 10px;
+}
+
+.wave-group .label-char.comment-input-class {
+    background-color: var(--light);
+}
+
+.sub-title-select-type,
+.sub-title-select-document {
+    background-color: var(--light);
 }

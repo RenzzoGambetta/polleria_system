@@ -106,6 +106,9 @@ class Resource_Path_Js extends ServiceProvider
             
             $MovementDetailEditAndDelete = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'movement_detail_edit_and_delete.js');
             $view->with('MovementDetailEditAndDelete', $MovementDetailEditAndDelete);
+        
+            $SupplierEntryAction = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'supplier_entry_action.js');
+            $view->with('SupplierEntryAction', $SupplierEntryAction);
         });
     }
 }
