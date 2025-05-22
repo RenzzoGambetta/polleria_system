@@ -7,6 +7,7 @@ use App\Models\menu\Lounge;
 use Illuminate\Http\Request;
 use Spatie\Browsershot\Browsershot;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 class testController extends Controller
 {
 
@@ -131,4 +132,49 @@ class testController extends Controller
    /*
     Fin del testeo
     */
+    public function generateThermalPdf()
+    {
+        // Datos de ejemplo (debes reemplazar con tus datos reales)
+        $data = [
+            'fecha' => now()->format('d/m/Y H:i'),
+            'cliente' => 'Juan Pérez',
+            'items' => [
+                [
+                    'cantidad' => 2,
+                    'producto' => 'Pizza Margarita',
+                    'precio' => '25.00'
+                ],
+                [
+                    'cantidad' => 1,
+                    'producto' => 'Coca Cola 500ml',
+                    'precio' => '5.00'
+                ],
+                [
+                    'cantidad' => 3,
+                    'producto' => 'Hamburguesa Clásica',
+                    'precio' => '15.00'
+                ]
+            ],
+            'total' => '95.00'
+        ];
+
+        // Configurar el PDF para 80mm de ancho
+        $pdf = Pdf::loadView('test.tester-v0', $data)
+            ->setPaper([0, 0, 226.77, 1000], 'portrait'); // 80mm ≈ 226.77 puntos (1mm = 2.83465 puntos)
+
+        // Opciones:
+        // 1. Descargar el PDF
+        // return $pdf->download('ticket.pdf');
+        
+        // 2. Ver en el navegador
+        return $pdf->stream('ticket.pdf');
+        
+        // 3. Guardar en el servidor
+        // $pdf->save(storage_path('app/public/tickets/ticket.pdf'));
+        
+        // 4. Enviar directamente a la impresora (requiere configuración adicional)
+        // return response($pdf->output(), 200)
+        //     ->header('Content-Type', 'application/pdf')
+        //     ->header('Content-Disposition', 'inline; filename="ticket.pdf"');
+    }
 }
