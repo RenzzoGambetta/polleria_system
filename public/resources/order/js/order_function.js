@@ -2,11 +2,11 @@ const URL_TEMPLATE = "/resources/order/template/";
 const saleElement = document.querySelector('#data');
 const saleValue = saleElement?.getAttribute('x:sale') || "0";
 const codeValue = saleElement?.getAttribute('x:code') || "Sin código";
-
+var statusCategory = 0;
 let selectedItems = [];
 let idArrayCounter = selectedItems.length > 0 ? selectedItems[selectedItems.length - 1].id_array + 1 : 1;
 
-async function loadTableDataItem(id, text = null) {
+async function loadTableDataItem(id, nameCategory, text = null) {
     const tablesList = document.getElementById('tables-list');
     const tableData = await consultDataUrl("/list_item_filt_category", { 'id': id });
     const url = URL_TEMPLATE + "item_frame.html";
@@ -31,6 +31,19 @@ async function loadTableDataItem(id, text = null) {
             })
             .catch(error => console.error('Error loading template:', error));
     });
+
+    $('#frame-category-data').slideUp(300);
+
+    $('#sub-title-category-text').fadeOut(300, function () {
+        $(this).text(nameCategory).fadeIn(300);
+    });
+    $('#icon-efect-to-category').fadeOut(300, function () {
+        $(this).attr('class', 'fi fi-sr-angle-small-down center-icon').fadeIn(300);
+    });
+    $('#item-container-select-to-category').slideDown(300, function () {
+        statusCategory = 1;
+    });
+
 }
 
 document.getElementById('tables-list').addEventListener('click', async (event) => {
@@ -516,3 +529,23 @@ function sendSegmentedData() {
     document.body.appendChild(form);
     form.submit();
 }
+
+$(document).on('click', '.frame-nav-option#button-categori-display', function () {
+    if (statusCategory == 1) {
+        $('#frame-category-data').slideToggle(300, function () {
+            if ($(this).is(':visible')) {
+                $('#item-container-select-to-category').slideUp(300);
+                $('#icon-efect-to-category').fadeOut(300, function () {
+                    $(this).attr('class', 'fi-sr-angle-double-small-up center-icon').fadeIn(300);
+                });
+
+            } else {
+
+                $('#item-container-select-to-category').slideDown(300);
+                $('#icon-efect-to-category').fadeOut(300, function () {
+                    $(this).attr('class', 'fi fi-sr-angle-small-down center-icon').fadeIn(300);
+                });
+            }
+        });
+    }
+});

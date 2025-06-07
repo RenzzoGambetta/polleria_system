@@ -1,23 +1,31 @@
 .list_category_item {
     min-width: 170px;
-    width: 10%;
+    /* width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    background-color: var(--backgraund-color-category-option);
+    background-color: var(--backgraund-color-category-option);*/
+    padding: 20px;
     border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 230px));
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
 }
 
 button.button-Category {
     transition: background-color 0.3s ease;
     transition: color 0.5s ease;
-    padding: 10px 0;
+    padding: 20px 0;
     border: none;
     border-bottom: 1px solid var(--backgraund-color-category-option-border);
     background-color: var(--backgraund-color-category-option);
     color: var(--dark);
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    margin: 0 10px;
+    font-size: 1rem;
 }
 
 button.button-Category:hover {
@@ -40,8 +48,9 @@ button.button-Category:hover {
     align-content: center;
     justify-content: center;
     align-items: center;
-    width: calc(80% - 170px);
-    margin: 0 20px;
+    width: 100%;
+    margin: 0;
+    padding: 15px 25px;
 }
 
 div#puntoClave {
@@ -53,7 +62,7 @@ div#puntoClave {
     max-height: 90vh;
     overflow-y: auto;
     padding-right: 10px;
-    direction: rtl;
+    /*direction: rtl;*/
 }.list_category_item > * {
     direction: ltr;
 }
@@ -187,4 +196,33 @@ div#puntoClave {
     width: 100%;
     height: calc(100% - 2px);
     margin: 1px 0;
+}
+.conteiner-item-and-sub-category {
+    width: 80%;  
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sub-title-cetgory.category.items-container {
+    border-top: 2px solid #5f5f5f;
+    border-radius: 5px;
+    color: var(--dark);
+    font-size: 1rem;
+    font-weight: bold;
+}
+.sub-title-cetgory {
+    border: 2px solid #5f5f5f;
+    border-top: 0;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+}
+div#button-categori-display {
+    margin: 0px 15px;
+}
+i#icon-efect-to-category {
+    padding-left: 5px;
 }
