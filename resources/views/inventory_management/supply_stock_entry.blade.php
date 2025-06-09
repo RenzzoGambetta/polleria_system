@@ -153,7 +153,7 @@
                     <textarea class="input effect-4 comment" rows="5" cols="50" maxlength="500" name="commentary" id="comment-input" value="" placeholder=" "></textarea>
                     <label class="label">
                         @foreach (str_split($comment) as $index => $char)
-                            <span style="--index: {{ $index }}" class="label-char">{{ $char }}</span>
+                            <span style="--index: {{ $index }}" class="label-char comment-input-class">{{ $char }}</span>
                         @endforeach
                     </label>
                 </div>
@@ -229,6 +229,7 @@
 <script src="{{ asset($SearchBoxTemplate) }}"></script>
 <script src="{{ asset($OptionSelector) }}"></script>
 <script src="{{ asset($FunctionButtonOnclick) }}"></script>
+<script src="{{ asset($SupplierEntryAction) }}"></script>
 
 
 <!--Pie de pagina como plantilla de todo el panel de control-->
