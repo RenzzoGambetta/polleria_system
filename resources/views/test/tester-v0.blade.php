@@ -1,96 +1,6 @@
 <!DOCTYPE html>
 <html>
-<style>
-    
-body,
-html {
-    margin: 0;
-    padding: 0;
-    width: 80mm;
-}
 
-.ticket {
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-    text-align: left;
-}
-
-.ticket .center {
-    text-align: center;
-}
-
-.ticket .right {
-    text-align: right;
-}
-
-.ticket .bold {
-    font-weight: bold;
-}
-
-.ticket table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.ticket td {
-    padding: 2px;
-}
-
-.image-document-icon {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.image-document-icon svg {
-    width: 35mm;
-    height: 30mm;
-}
-
-.title {
-    margin-top: 3mm;
-    margin-bottom: 2mm;
-    font-weight: bold;
-    font-size: 1.1rem;
-    font-family: initial;
-}
-
-.capital {
-    text-transform: uppercase;
-}
-.type-document-data {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.9rem;
-    font-family: system-ui;
-    padding: 2mm 0;
-    font-weight: 700;
-}
-.moment-to-order {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-}
-.document-client-and-origin{
-    font-family: system-ui;
-    font-size: 0.7rem;
-}
-.inpor-total-text {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    padding: 5px 0;
-}
-.table-data-order {
-    font-family: system-ui;
-    font-size: 0.7rem;
-}
-</style>
 
 <body>
     <div class="ticket">
@@ -198,7 +108,7 @@ html {
             <div class="attention-type">
                 ATENCION :<span class="area-of-attention"> Preimera 1 - Mesa : 2</span>
             </div>
-            <div>CLIENTE: {{ $datos['cliente'] }}</div>
+            <div>CLIENTE: {{ $cliente }}</div>
             <div>DNI: 71571704</div>
         </div>
         <hr style="margin-bottom: 0">
@@ -213,7 +123,7 @@ html {
             </table>
             <hr style="margin: 0">
             <table>
-                @foreach ($datos['items'] as $item)
+                @foreach ($items as $item)
                     <tr>
                         <td>{{ $item['producto'] }}</td>
                         <td class="right">{{ $item['cantidad'] }}</td>

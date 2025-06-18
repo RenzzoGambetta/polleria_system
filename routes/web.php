@@ -185,5 +185,6 @@ use App\Http\Controllers\test\testController;
         Route::get('/view-test-v1', [testController::class, 'viewTestV1']);
         Route::get('/view-test-v2', [testController::class, 'viewTestV2']);
         Route::get('/view-test-pdf', [testController::class, 'generarPDF']);
+        Route::get('/view-test-pdf-01', [testController::class, 'generateThermalPdf']);
 
     });
