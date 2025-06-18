@@ -18,6 +18,8 @@ use App\Http\Controllers\order\KitchenController;
 use App\Http\Controllers\container\EfectController;
 use App\Http\Controllers\container\ImageController;
 use App\Http\Controllers\config\ImageGalleryController;
+use App\Http\Controllers\config\ConfigCenterController;
+use App\Http\Controllers\config\CookingPlaceController;
 use App\Http\Controllers\test\testController;
 //--> Modulo de autentificacion
 
@@ -155,9 +157,13 @@ use App\Http\Controllers\test\testController;
             Route::get('/order_to_client', [MozoController::class,'showPanelOrderMozo'])->name('order_to_client');
         });
         
-        //--> Galeria
+        //--> Configuracion
+            //--> Galeria   
             Route::get('/image_gallery', [ImageGalleryController::class,'showPanelGalley'])->name('image_gallery');
-
+            //--> Panel
+            Route::get('/panel_config', [ConfigCenterController::class,'showPanelConfig'])->name('panel_config');
+            //--> Lugar de preparacion
+            Route::get('/cooking_place', [CookingPlaceController::class,'showCookingPlace'])->name('cooking_place');
 
     //--> Home
 
