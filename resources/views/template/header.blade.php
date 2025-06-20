@@ -116,7 +116,7 @@
                         <a href="{{ route('image_gallery') }}" id="{{ ($Navigation['color'] ?? null) == 71 ? 'nav_select' : '' }}"><i class='fi fi-sr-layout-fluid bx-adjustment-icon'></i>Galeria</a>
                     </li>
                     <li class="{{ ($Navigation['sub_seccion'] ?? null) == 7.2 ? 'active' : '' }}">
-                        <a href="{{ route('cooking_place') }}" id="{{ ($Navigation['color'] ?? null) == 72 ? 'nav_select' : '' }}"><i class='fi fi-sr-layout-fluid bx-adjustment-icon'></i>Lugar</a>
+                        <a href="{{ route('cooking_place') }}" id="{{ ($Navigation['color'] ?? null) == 72 ? 'nav_select' : '' }}"><i class='fi fi-ss-print bx-adjustment-icon'></i>Lugar</a>
                     </li>
                 </ul>
             </li>
