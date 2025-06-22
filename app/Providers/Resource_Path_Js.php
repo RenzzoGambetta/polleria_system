@@ -109,6 +109,9 @@ class Resource_Path_Js extends ServiceProvider
         
             $SupplierEntryAction = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::JS, 'supplier_entry_action.js');
             $view->with('SupplierEntryAction', $SupplierEntryAction);
+
+            $CookingPlaceEfect = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::JS, 'cooking_place_efect.js');
+            $view->with('CookingPlaceEfect', $CookingPlaceEfect);
         });
     }
 }

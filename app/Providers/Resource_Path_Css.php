@@ -156,8 +156,11 @@ class Resource_Path_Css extends ServiceProvider
             $StyleMovementDetail = $fpFunc->Resource(Folder_Path::INVENTORY_MANAGEMENT, Folder_Path::CSS, 'style_movement_detail.css');
             $view->with('StyleMovementDetail', $StyleMovementDetail);
 
-            $CookingPlace = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::CSS, 'cooking_place_style.css');
-            $view->with('CookingPlace', $CookingPlace);
+            $ConfigCenter = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::CSS, 'config_center.css');
+            $view->with('ConfigCenter', $ConfigCenter);
+            
+            $CookingPlaceStyle = $fpFunc->Resource(Folder_Path::CONFIG, Folder_Path::CSS, 'cooking_place_style.css');
+            $view->with('CookingPlaceStyle', $CookingPlaceStyle);
         });
     }
 }

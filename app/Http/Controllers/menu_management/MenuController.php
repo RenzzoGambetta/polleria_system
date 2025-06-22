@@ -339,7 +339,7 @@ class MenuController extends Controller
 
             return redirect()->route('menu')->with(FunctionGlobal::MessageSuccess('Se eliminso correctamente el Item: '.$nameMenuDelete));
         } catch (Exception $e) {
-            return redirect()->route('menu')->with(FunctionGlobal::MessageError('No aw pudo eliminar el item: '.$nameMenuDelete));
+            return redirect()->route('menu')->with(FunctionGlobal::MessageError('No aw pudo eliminar el item'));
         }
     }
 }

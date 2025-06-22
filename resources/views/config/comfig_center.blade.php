@@ -1,7 +1,7 @@
 <!--Encabezado de la pagina como plantilla de todo el panel de control-->
 @include($HeaderPanel)
 <!---------------------------------------------------------------------->
-<link rel="stylesheet" href="{{ asset($CookingPlace) }}">
+<link rel="stylesheet" href="{{ asset($ConfigCenter) }}">
 
 <div class="bottom-data">
 

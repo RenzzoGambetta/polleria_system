@@ -1,57 +1,19 @@
-.content main .bottom-data .reminders .task-list li {
-    border-radius: 4px;
+th.name {
+    text-align-last: left;
 }
 
-.content main .bottom-data>div {
-    border-radius: 10px;
-}
 
-.reminders {
-    user-select: none;
-}
-
-.sub-title-and-description {
+.content main .bottom-data .orders table tr td:first-child.name {
     display: flex;
-    flex-direction: column;
-}
-
-h1.title-to-config {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-left: 6px;
-}
-
-p.sub-title-to-config {
-    font-size: 0.8rem;
+    align-items: center;
+    justify-content: flex-start;
     font-style: italic;
-    font-weight: 100;
-    margin-top: 4px;
 }
 
-.icon-center-data {
-    display: flex;
-    align-content: center;
-    font-size: 1.3rem;
-}
-
-.icon-center-table.config {
-    background-color: #ff5300;
-}
-
-.icon-center-table {
-    display: flex;
-    align-content: center;
-    padding: 12px;
-    font-size: 1.2rem;
-    border-radius: 100%;
-    color: white;
-    margin-left: 5px;
-}
-
-.content main .bottom-data .reminders .task-list li.completed {
-    border-left: none;
-}
-
-.content main .bottom-data .reminders .task-list li.not-completed {
-    border-left: none;
+p.state-data {
+    background-color: red;
+    border-radius: 10px;
+    padding: 4px 0px;
+    font-weight: bold;
+    font-size: 0.8rem;
 }
