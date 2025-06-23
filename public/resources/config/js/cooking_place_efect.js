@@ -47,6 +47,46 @@ async function addRow() {
 
     updateDisplayOrder();
 }
+
+function formatearIP(input) {
+    // Solo números y puntos
+    input.value = input.value.replace(/[^\d.]/g, '');
+
+    // Partes
+    let partes = input.value.split('.');
+    if (partes.length > 4) {
+        partes = partes.slice(0, 4);
+    }
+
+    // Limitar cada parte a 3 dígitos y 255 máx
+    partes = partes.map(p => {
+        let num = parseInt(p);
+        if (isNaN(num)) return '';
+        if (num > 255) return '255';
+        return num.toString();
+    });
+
+    input.value = partes.join('.');
+}
+function formatearPuerto(){
+    let input = document.getElementById('port');
+    // Solo números
+    input.value = input.value.replace(/\D/g, '');
+
+    // Limitar a 5 dígitos
+    if (input.value.length > 5) {
+        input.value = input.value.slice(0, 5);
+    }
+
+    // Convertir a número y limitar a 65535
+    let num = parseInt(input.value);
+    if (isNaN(num) || num < 0 || num > 65535) {
+        input.value = '';
+    } else {
+        input.value = num.toString();
+    }
+}
+
 function editCategoryCarte(id) {
     $('.div-primary-conteiner-02').slideUp(500);
     document.querySelector('.container-data-table').classList.remove('shrink');
@@ -57,11 +97,11 @@ function editCategoryCarte(id) {
     setTimeout(function () {
         $('#add_to_table').hide();
         $('#clear_to_input').hide();
-        $('#order-number').val($(`#order_number_${id}`).text().trim());
-        $('#name').val($(`#name_category_${id}`).text().trim());
+       // $('#order-number').val($(`#order_number_${id}`).text().trim());
+       // $('#name').val($(`#name_category_${id}`).text().trim());
         $('#cancel_edit').show();
         $('#edit_to_category').show();
-        $('#sub-title-category').text('Editar categoria');
+        $('#sub-title-category').text('Editar comanda');
         $('.sub-title-data').css('background', 'linear-gradient(to right, #e84d00, #ff7700, #ff9737)');
     }, 500)
     isEdit = true;
@@ -81,7 +121,7 @@ function cancelToEdit() {
         $('#name').val('');
         $('#cancel_edit').hide();
         $('#edit_to_category').hide();
-        $('#sub-title-category').text('Nueva categoria');
+        $('#sub-title-category').text('Nueva comanda');
         $('.sub-title-data').css('background', 'linear-gradient(to right, #218800, #27aa00, #09c800)');
     }, 500)
 }
@@ -217,7 +257,7 @@ function deleteCategory(id){
         Swal.fire({
             icon: 'error',
             title: 'Upps',
-            text: 'Esta categoria no es posuible eliminarla ya que tiene items asociados y afectaria los datos',
+            text: 'Esta comanda no es posuible eliminarla ya que tiene items asociados y afectaria los datos',
             didOpen: urlPostDeleteStyle
         });
     }

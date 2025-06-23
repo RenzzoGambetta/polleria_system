@@ -16,4 +16,141 @@ p.state-data {
     padding: 4px 0px;
     font-weight: bold;
     font-size: 0.8rem;
+    color: white;
+}
+
+.center-to-icon-table {
+    margin-right: 10px;
+    font-size: 1.3rem;
+    display: flex
+}
+
+.div-ip-and-port {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+p.state-data.inactive-data {
+    background-color: red;
+}
+
+p.state-data.active-data {
+    background-color: green;
+}
+
+.content main .bottom-data .orders table tbody tr {
+    cursor: pointer;
+}
+
+.effect-16~label.ip-config {
+    top: -1.5vh;
+    font-size: 12px;
+
+}
+
+.col-3.input-effect.input-effect-001.ip {
+    max-width: 140px;
+}
+
+.col-3.input-effect.input-effect-001.port {
+    max-width: 90px;
+}
+
+
+/* From Uiverse.io by AbanoubMagdy1 */ 
+/* The switch - the box around the slider */
+.switch-state {
+  font-size: 15px;
+  position: relative;
+  display: inline-block;
+  width: 8em;
+  height: 2em;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+/* Hide default HTML checkbox */
+.switch-state input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider-state {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #b20000;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider-state:before {
+  position: absolute;
+  content: "";
+  height: 1.2em;
+  width: 1.2em;
+  border-radius: 20px;
+  border: 0px solid #ffffff;
+  left: 0.4em;
+  bottom: 0.4em;
+  background-color: rgb(255, 255, 255);
+  transition: .5s;
+}
+
+input:checked + .slider-state {
+  background-color: green;
+}
+
+input:focus + .slider-state {
+  box-shadow: 0 0 1px green;
+}
+
+input:checked + .slider-state:before {
+  transform: translateX(5.6rem);
+}
+
+.switch-state .text-state {
+  position: absolute;
+  top: 50%;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+  transition: .4s;
+}
+
+.switch-state .text-state.on {
+  left: .8rem;
+  transform: translateX(-6rem) translateY(-50%);
+  color: #fff;
+}
+
+.switch-state .text-state.off {
+  color: #fff;
+  right: .8rem;
+}
+
+input:checked ~ .text-state.off {
+  transform: translateX(6rem) translateY(-50%);
+}
+
+input:checked ~ .text-state.on {
+  transform: translateX(0.6rem) translateY(-50%);
+}
+
+.state-data-div {
+    margin-left: 15px;
+}
+
+p.sub-state {
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--label-efect-transiccion-focus);
 }
