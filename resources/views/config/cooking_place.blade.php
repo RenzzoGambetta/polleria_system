@@ -66,7 +66,7 @@
                 <div class="state-data-div">
                     <p class="sub-state">Estado</p>
                     <label class="switch-state">
-                        <input type="checkbox">
+                        <input type="checkbox" id="state" checked>
                         <span class="slider-state"></span>
                         <span class="text-state on">Activo</span>
                         <span class="text-state off">Inactivo</span>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="frame002">
-                <button type="button" class="btn-cancel-data" id="clear_to_input">Limpiar</button>
+                <button type="button" class="btn-cancel-data" id="clear_to_input" onclick="clearToInput()">Limpiar</button>
                 <button type="button" class="btn-cancel-data" id="cancel_edit" style="display: none" onclick="cancelToEdit()">Cancelar</button>
                 <button type="button" class="btn-register-data" id="add_to_table" onclick="addRow()">Agregar</button>
                 <button type="button" class="btn-register-data btn-edit-data" id="edit_to_category" onclick="acceptEdition()" style="display: none">Editar</button>
@@ -103,19 +103,25 @@
 
                                 @foreach ($Command as $data)
                                     <tr data-id="{{ $data->id }}">
-                                        <td class="name">{{ $data->name }}</td>
-                                        <td>
-                                            <div class="div-ip-and-port"><i class="fi fi-ss-ethernet center-to-icon-table"></i>{{ $data->ip }}</div>
+                                        <td class="name">
+                                            <p id="name-commad_{{ $data->id }}">{{ $data->name }}</p>
                                         </td>
                                         <td>
-                                            <div class="div-ip-and-port"><i class="fi fi-ss-system-cloud center-to-icon-table"></i>{{ $data->port }}</div>
+                                            <div class="div-ip-and-port"><i class="fi fi-ss-ethernet center-to-icon-table"></i>
+                                                <p id="ip-commad_{{ $data->id }}">{{ $data->ip }}</p>
+                                            </div>
                                         </td>
                                         <td>
-                                            <p class="state-data {{ $data->state == 1 ? 'active-data' : 'inactive-data' }}">{{ $data->state == 1 ? 'Activo' : 'Inactivo' }}</p>
+                                            <div class="div-ip-and-port"><i class="fi fi-ss-system-cloud center-to-icon-table"></i>
+                                                <p id="port-commad_{{ $data->id }}">{{ $data->port }}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="state-data {{ $data->state == 1 ? 'active-data' : 'inactive-data' }}" id="state-commad_{{ $data->id }}">{{ $data->state == 1 ? 'Activo' : 'Inactivo' }}</p>
                                         </td>
                                         <td class="center-btn-options">
-                                            <button title="Ver los platos o bebidas asociasos" type="button" class="btn-clasic view-item" onclick="urlGet('{{ route('show_order_item') }}',{'category_id':{{ $data->id }}})"><i class="fi fi-ss-print-magnifying-glass option-table"></i>Test</button>
-                                            <button title="Editar la categoria" type="button" class="btn-clasic edit-button" onclick="editCategoryCarte({{ $data->id }})"><i class="fi fi-sc-pencil option-table"></i></button>
+                                            <button title="Ver los platos o bebidas asociasos" type="button" class="btn-clasic view-item" onclick="testCookinPlace({{ $data->id }})"><i class="fi fi-ss-print-magnifying-glass option-table"></i>Test</button>
+                                            <button title="Editar la categoria" type="button" class="btn-clasic edit-button" onclick="editCookingPlace({{ $data->id }})"><i class="fi fi-sc-pencil option-table"></i></button>
                                             <button title="Eliminar la categoria" type="button" class="btn-clasic delete-button" onclick="deleteCategory({{ $data->id }})"><i class="fi fi-sr-trash option-table"></i></button>
                                         </td>
                                     </tr>

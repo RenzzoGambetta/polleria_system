@@ -1,52 +1,86 @@
-async function addRow() {
-    var name = document.getElementById('name').value;
-    var orderNumber = parseInt(document.getElementById('order-number').value);
+var selectEditId = false;
+var selectEditId;
+var isEdit = false;
 
-    if (!name.trim()) {
+async function addRow() {
+    const name = document.getElementById('name').value.trim();
+    const ip = document.getElementById('ip').value.trim();
+    const port = document.getElementById('port').value.trim();
+    const state = document.getElementById('state').checked ? 1 : 0;
+
+    if (!name || !ip || !port) {
         Swal.fire({
             icon: 'error',
-            title: 'Upps',
-            text: 'El nombre es obligatorio',
+            title: 'Campos requeridos',
+            text: 'Completa todos los campos antes de guardar.',
             didOpen: urlPostDeleteStyle
-        }); 
+        });
         return;
     }
 
-    const data = await consultDataPost('/new_menu_categories', { 'name': name, 'display_order': orderNumber })
-    console.log(data);
+    const data = await consultDataPost('/new_command_cooking_place', { name, ip, port, state });
+
     if (data.response) {
         $('.div-primary-conteiner-02').slideUp(500);
         document.querySelector('.container-data-table').classList.remove('shrink');
         document.getElementById('name').value = '';
-        document.getElementById('order-number').value = null;
+        document.getElementById('ip').value = '';
+        document.getElementById('port').value = '9100';
+        document.getElementById('state').checked = true;
 
-        var rows = document.querySelectorAll('#sortable tr');
-        var rowCount = rows.length;
-        var insertPosition = (data.display_order > rowCount) ? rowCount : data.display_order - 1;
-
-        var newRow = document.createElement('tr');
+        const newRow = document.createElement('tr');
         newRow.setAttribute('data-id', data.id);
         newRow.innerHTML = `
-                    <td id="order_number_${data.id}" class="order">${insertPosition + 1}</td>
-                    <td id="name_category_${data.id}">${data.name}</td>
-                    <td id="quantity_items_${data.id}">0</td>
-                    <td>
-                        <button title="Ver los platos o bebidas asociasos" type="button" class="btn-clasic view-item" onclick="urlGet('${urlOrderItem}',{'category_id':${data.id}})"><i class="fi fi-rr-overview option-table"></i>Ver Item</button>
-                        <button title="Editar la categoria" type="button" class="btn-clasic" onclick="editCategoryCarte(${data.id})"><i class="fi fi-sc-pencil option-table"></i></button>
-                        <button title="Eliminar la categoria" type="button" class="btn-clasic delete-button" onclick="deleteCategory(${data.id})"><i class="fi fi-sr-trash option-table"></i></button>
-                    </td>                 
-                `;
+            <td class="name"><p id="name-commad_${data.id}">${data.name}</p></td>
+            <td>
+                <div class="div-ip-and-port">
+                    <i class="fi fi-ss-ethernet center-to-icon-table"></i>
+                    <p id="ip-commad_${data.id}">${data.ip}</p>
+                </div>
+            </td>
+            <td>
+                <div class="div-ip-and-port">
+                    <i class="fi fi-ss-system-cloud center-to-icon-table"></i>
+                    <p id="port-commad_${data.id}">${data.port}</p>
+                </div>
+            </td>
+            <td>
+                <p class="state-data ${data.state == 1 ? 'active-data' : 'inactive-data'}" id="state-commad_${data.id}">
+                    ${data.state == 1 ? 'Activo' : 'Inactivo'}
+                </p>
+            </td>
+            <td class="center-btn-options">
+                <button title="Ver los platos o bebidas asociasos" type="button" class="btn-clasic view-item" onclick="testCookinPlace(${data.id})">
+                    <i class="fi fi-ss-print-magnifying-glass option-table"></i>Test
+                </button>
+                <button title="Editar la categoria" type="button" class="btn-clasic edit-button" onclick="editCookingPlace(${data.id})">
+                    <i class="fi fi-sc-pencil option-table"></i>
+                </button>
+                <button title="Eliminar la categoria" type="button" class="btn-clasic delete-button" onclick="deleteCategory(${data.id})">
+                    <i class="fi fi-sr-trash option-table"></i>
+                </button>
+            </td>
+        `;
+
+        // 👉 Inserta en la primera posición
+        document.getElementById('sortable').prepend(newRow);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Comanda registrada',
+            text: 'Se agregó correctamente la comanda.'
+        });
     } else {
         Swal.fire({
             icon: 'error',
-            title: 'Upps',
-            text: 'Hubo un problema con el servidor, por favor intentelo de nuevo',
+            title: 'Error',
+            text: 'No se pudo registrar la comanda.',
             didOpen: urlPostDeleteStyle
-        }); 
-    } 
-
-    updateDisplayOrder();
+        });
+    }
 }
+
+
 
 function formatearIP(input) {
     // Solo números y puntos
@@ -68,7 +102,7 @@ function formatearIP(input) {
 
     input.value = partes.join('.');
 }
-function formatearPuerto(){
+function formatearPuerto() {
     let input = document.getElementById('port');
     // Solo números
     input.value = input.value.replace(/\D/g, '');
@@ -87,7 +121,7 @@ function formatearPuerto(){
     }
 }
 
-function editCategoryCarte(id) {
+function editCookingPlace(id) {
     $('.div-primary-conteiner-02').slideUp(500);
     document.querySelector('.container-data-table').classList.remove('shrink');
     setTimeout(function () {
@@ -97,10 +131,20 @@ function editCategoryCarte(id) {
     setTimeout(function () {
         $('#add_to_table').hide();
         $('#clear_to_input').hide();
-       // $('#order-number').val($(`#order_number_${id}`).text().trim());
-       // $('#name').val($(`#name_category_${id}`).text().trim());
+        //lineas de texto donde tomar inforamcion
+        $('#name').val($(`#name-commad_${id}`).text().trim());
+        $('#ip').val($(`#ip-commad_${id}`).text().trim());
+        $('#port').val($(`#port-commad_${id}`).text().trim());
+        if ($(`#state-commad_${id}`).text().trim() == "Activo") {
+            $('#state').prop('checked', true);
+        } else {
+            $('#state').prop('checked', false);
+        }
+        //fin de lineas
+        //ocultar y mostrar
         $('#cancel_edit').show();
         $('#edit_to_category').show();
+        //Sustituir texto
         $('#sub-title-category').text('Editar comanda');
         $('.sub-title-data').css('background', 'linear-gradient(to right, #e84d00, #ff7700, #ff9737)');
     }, 500)
@@ -117,8 +161,10 @@ function cancelToEdit() {
     setTimeout(function () {
         $('#add_to_table').show();
         $('#clear_to_input').show();
-        $('#order-number').val('');
         $('#name').val('');
+        $('#ip').val('');
+        $('#port').val('9100');
+        $('#state').prop('checked', true);
         $('#cancel_edit').hide();
         $('#edit_to_category').hide();
         $('#sub-title-category').text('Nueva comanda');
@@ -128,7 +174,7 @@ function cancelToEdit() {
 function showNewCategoriForm() {
     const divPrimary = $('.div-primary-conteiner-02');
     const containerDataTable = document.querySelector('.container-data-table');
-    
+
     if (divPrimary.is(':visible')) {
         containerDataTable.classList.remove('shrink');
         divPrimary.slideUp(500);
@@ -136,48 +182,45 @@ function showNewCategoriForm() {
         containerDataTable.classList.add('shrink');
         divPrimary.slideDown(500);
     }
-    
+
     if (isEdit) {
         cancelToEdit();
         isEdit = false;
     }
 }
-async function acceptEdition(){
-    var orderNumber = $('#order-number').val();
-    var Data = await consultDataPost('/edit_to_category', { 'id': selectEditId, 'name': $('#name').val(), 'display_order': orderNumber });
+async function acceptEdition() {
+    var Data = await consultDataPost('/edit_to_cooking_place', { 'name': $('#name').val(), 'ip': $('#ip').val(), 'port': $('#port').val(), 'state': $('#state').prop('checked') });
     console.log(Data);
-     if (Data.response) {
 
-        const rowCount = document.querySelectorAll("#sortable tr").length;
-        if (orderNumber <= rowCount) {
-            updateOrderAfterEdit(selectEditId,orderNumber);
-        }else{
-            Swal.fire({
-                icon: 'info',
-                title: 'Upss',
-                text: 'El numero de orden otorgado es demaciado lejano para mantener el orden de la tabla, se asignara al final de la tabla',
-                confirmButtonText: 'OK',
-                didOpen: urlPostDeleteStyle
-    
-            }).then(() => { 
-                updateOrderAfterEdit(selectEditId,rowCount);
-            });  
-        }
+    if (Data.response) {
+
+        $(`#name-commad_${selectEditId}`).text(Data.name);
+        $(`#ip-commad_${selectEditId}`).text(Data.ip);
+        $(`#port-commad_${selectEditId}`).text(Data.port);
+        $(`#state-commad_${selectEditId}`).text(Data.state ? 'Activo' : 'Inactivo');
+        $(`#state-commad_${selectEditId}`).css('background-color', Data.state ? 'green' : 'red');
         $('.div-primary-conteiner-02').slideUp(500);
         document.querySelector('.container-data-table').classList.remove('shrink');
+        Swal.fire({
+            icon: 'success',
+            title: 'Listo',
+            text: 'Se edito correctamente la comanda',
+            didOpen: urlPostDeleteStyle
+        });
+
     } else {
         Swal.fire({
             icon: 'error',
             title: 'Upps',
             text: 'Hubo un problema con el servidor, por favor intentelo de nuevo',
             didOpen: urlPostDeleteStyle
-        }); 
+        });
     }
 }
 function updateOrderAfterEdit(id, newOrder) {
     const tbody = document.getElementById("sortable");
     const rows = Array.from(tbody.querySelectorAll("tr"));
-    
+
     // Encontrar la fila actual
     const currentRow = tbody.querySelector(`tr[data-id="${id}"]`);
     if (!currentRow) return;
@@ -191,7 +234,7 @@ function updateOrderAfterEdit(id, newOrder) {
     // Ajustar posiciones de las demás filas
     rows.forEach(row => {
         let rowOrder = parseInt(row.querySelector(".order").textContent);
-        
+
         if (rowOrder >= newOrder && rowOrder < oldOrder) {
             row.querySelector(".order").textContent = rowOrder + 1; // Mover hacia abajo
         } else if (rowOrder <= newOrder && rowOrder > oldOrder) {
@@ -218,47 +261,81 @@ function updateOrderAfterEdit(id, newOrder) {
     currentRow.querySelector(".order").textContent = newOrder;
 }
 
-function deleteCategory(id){
-    var cuantityItems = parseInt($(`#quantity_items_${id}`).text().trim());
-    if (cuantityItems == 0) {
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "Recuerda que esta accion no se podrá revertir luego!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminarlo!',
-            cancelButtonText: 'Cancelar',
-            didOpen: urlPostDeleteStyle
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                var Data = await consultDataPost('/delete_to_category', { 'id': id });
-                if (Data.response) {
-                    document.querySelector(`#sortable tr[data-id="${id}"]`).remove();
-                    updateDisplayOrder();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Eliminado!',
-                        text: 'La categoría ha sido eliminada.',
-                        didOpen: urlPostDeleteStyle
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Upps',
-                        text: 'Hubo un problema con el servidor, por favor intentelo de nuevo',
-                        didOpen: urlPostDeleteStyle
-                    });
-                }
+function deleteCategory(id) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Recuerda que esta accion no se podrá revertir luego!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo!',
+        cancelButtonText: 'Cancelar',
+        didOpen: urlPostDeleteStyle
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            var Data = await consultDataPost('/delete_to_cooking_place', { 'id': id });
+            if (Data.response) {
+                document.querySelector(`#sortable tr[data-id="${id}"]`).remove();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado!',
+                    text: 'La categoría ha sido eliminada.',
+                    didOpen: urlPostDeleteStyle
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Upps',
+                    text: 'Hubo un problema con el servidor, por favor intentelo de nuevo',
+                    didOpen: urlPostDeleteStyle
+                });
             }
+        }
+    });
+}
+async function testCookinPlace(id) {
+    // Mostrar barra de carga
+    Swal.fire({
+        title: 'Imprimiendo...',
+        html: 'Enviando prueba a la impresora',
+        allowOutsideClick: false,
+        didOpen: () => {
+            urlPostDeleteStyle();
+            Swal.showLoading();
+        }
+    });
+
+    // Espera mínima de 2 segundos (aunque la respuesta sea rápida)
+    const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+    // Ejecutar ambas en paralelo: la espera y la petición
+    const [Data] = await Promise.all([
+        consultDataPost('/commandTest', { 'id': id }),
+        delay(2000)
+    ]);
+
+    // Luego de 2 segundos, mostrar resultado
+    if (Data.response) {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Impresión exitosa!',
+            text: 'La impresora respondió correctamente.',
+            didOpen: urlPostDeleteStyle
         });
-    }else{
+    } else {
         Swal.fire({
             icon: 'error',
-            title: 'Upps',
-            text: 'Esta comanda no es posuible eliminarla ya que tiene items asociados y afectaria los datos',
+            title: 'Error de impresión',
+            text: 'No se pudo comunicar con la impresora. Verifique la conexión e intente nuevamente.',
             didOpen: urlPostDeleteStyle
         });
     }
+}
+
+function clearToInput() {
+    $('#name').val('');
+    $('#ip').val('');
+    $('#port').val('9100');
+    $('#state').prop('checked', true);
 }

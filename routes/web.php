@@ -164,6 +164,10 @@ use App\Http\Controllers\test\testController;
             Route::get('/panel_config', [ConfigCenterController::class,'showPanelConfig'])->name('panel_config');
             //--> Lugar de preparacion
             Route::get('/cooking_place', [CookingPlaceController::class,'showCookingPlace'])->name('cooking_place');
+            Route::post('/edit_to_cooking_place', [CookingPlaceController::class,'editToCookingPlace'])->name('edit_to_cooking_place');
+            Route::post('/delete_to_cooking_place', [CookingPlaceController::class,'deleteToCookingPlace'])->name('delete_to_cooking_place');
+            Route::post('/new_command_cooking_place', [CookingPlaceController::class,'newCommandCookingPlace'])->name('new_command_cooking_place');
+            Route::post('/commandTest', [CookingPlaceController::class,'commandTest'])->name('commandTest');
 
     //--> Home
 
